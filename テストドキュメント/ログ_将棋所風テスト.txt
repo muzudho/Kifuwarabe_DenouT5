@@ -1,0 +1,8 @@
+usi
+<1:usiok
+set USI false
+isready
+<1:readyok
+usinewgame
+position startpos moves 2h7h 8b9b
+>1:go btime 178000 wtime 179000 byoyomi 0

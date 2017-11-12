@@ -1,0 +1,58 @@
+﻿# コンピューターが走り出すのを止めておくんだぜ☆（＾～＾）
+set P1Com false
+set P2Com false
+
+ky clear
+set BanYokoHaba 9
+set BanTateHaba 9
+
+ky oku s A1
+ky oku u B1
+ky oku n C1
+ky oku i D1
+ky oku r E1
+ky oku i F1
+ky oku n G1
+ky oku u H1
+ky oku s I1
+
+ky oku k B2
+ky oku z H2
+
+ky oku h A3
+ky oku h B3
+ky oku h C3
+ky oku h D3
+ky oku h E3
+ky oku h F3
+ky oku h G3
+ky oku h H3
+ky oku h I3
+
+ky oku H A7
+ky oku H B7
+ky oku H C7
+ky oku H D7
+ky oku H E7
+ky oku H F7
+ky oku H G7
+ky oku H H7
+ky oku H I7
+
+ky oku Z B8
+ky oku K H8
+
+ky oku S A9
+ky oku U B9
+ky oku N C9
+ky oku I D9
+ky oku R E9
+ky oku I F9
+ky oku N G9
+ky oku U H9
+ky oku S I9
+
+ky tekiyo
+ky
+# set P1Com true
+set P2Com true

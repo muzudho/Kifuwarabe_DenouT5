@@ -1,0 +1,103 @@
+        public static bool IsLegalMove(Shogiban.YomiShogiban yomiSg, Koma km, Masu dstMs, Masu attackerMs)
+        {
+            return BitboardsOmatome.KomanoUgokikataYk00.IsIntersect_Merge(
+                yomiSg,
+                km, attackerMs,// 相手の利き
+                dstMs// 調べる升
+                );
+        }
+
+        /// <summary>
+        /// 手番と、
+        /// 駒の種類と、その升、
+        /// この３つを指定すると、利きを表にして返すぜ☆（＾▽＾）
+        /// </summary>
+        /// <param name="tai"></param>
+        /// <param name="targetMs"></param>
+        /// <param name="ks"></param>
+        /// <param name="attackerMs"></param>
+        /// <returns></returns>
+        public static bool[] Kiki(Koma km, Masu attackerMs, Kyokumen.YomiKy yomiKy)
+        {
+            bool[] kiki = new bool[PureSettei.banHeimen];
+
+            // 盤上
+            for (int iDan = 0; iDan < PureSettei.banTateHaba; iDan++)
+            {
+                for (int iSuji = 0; iSuji < PureSettei.banYokoHaba; iSuji++)
+                {
+                    kiki[iDan * PureSettei.banYokoHaba + iSuji] = Util_Hioute.IsLegalMove(
+                        yomiKy.yomiShogiban, km, (Masu)(iDan * PureSettei.banYokoHaba + iSuji), attackerMs);
+                }
+            }
+
+            return kiki;
+        }
+
+
+        /// <summary>
+        /// リーガルムーブを表示
+        /// </summary>
+        /// <param name="yomiSg"></param>
+        /// <param name="km"></param>
+        /// <param name="attackerMs"></param>
+        /// <param name="bb_kiki_update"></param>
+        /// <returns></returns>
+        public static Bitboard ToStandup_LegalMove(
+            Shogiban.YomiShogiban yomiSg,
+            Koma km,
+            Masu attackerMs,
+            Bitboard bb_kiki_update
+            )
+        {
+            // 盤上
+            for (int iDan = 0; iDan < PureSettei.banTateHaba; iDan++)
+            {
+                for (int iSuji = 0; iSuji < PureSettei.banYokoHaba; iSuji++)
+                {
+                    if (Util_Hioute.IsLegalMove(
+                        yomiSg,
+                        km,
+                        (Masu)(iDan * PureSettei.banYokoHaba + iSuji),// スキャンしている升
+                        attackerMs // 攻撃する駒の升
+                        ))
+                    {
+                        bb_kiki_update.Standup((Masu)(iDan * PureSettei.banYokoHaba + iSuji));
+                    }
+                }
+            }
+
+            return bb_kiki_update;
+        }
+
+#if DEBUG
+using kifuwarabe_shogithink.pure.com.sasiteorder.hioute;
+using kifuwarabe_shogithink.pure.genkyoku;
+using kifuwarabe_shogithink.pure.ky;
+using kifuwarabe_shogithink.pure.ky.bb;
+using kifuwarabe_shogithink.pure.listen;
+using kifuwarabe_shogithink.pure.listen.ky;
+using kifuwarabe_shogithink.pure.logger;
+using System.Text.RegularExpressions;
+#else
+using kifuwarabe_shogithink.pure.com.sasiteorder.hioute;
+using kifuwarabe_shogithink.pure.ky;
+using kifuwarabe_shogithink.pure.ky.bb;
+#endif
+
+namespace kifuwarabe_shogithink.pure.ikkyoku
+{
+    public static class UtilKiki
+    {
+
+    }
+}
+
+
+
+
+
+
+
+
+

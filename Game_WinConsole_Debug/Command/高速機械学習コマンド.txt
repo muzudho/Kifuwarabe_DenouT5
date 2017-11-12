@@ -1,0 +1,34 @@
+﻿# もちろん機械学習をＯＮだぜ☆（＾▽＾）ｗｗｗ
+set Learn true
+
+# 定跡を使った手は、機械学習しないぜ☆（＾～＾）
+set JosekiPer 0
+
+# 二駒評価値表に 1P も 2P もないぜ☆（＾～＾）手番から見た評価値だからな☆
+# キャラクターは両方を「探索のみ」にするぜ☆（＾▽＾）
+# 「新手」マンを教師にしたら指し手がぐちゃぐちゃになってしまう☆（＾～＾）
+set P1Char TansakuNomi
+set P2Char TansakuNomi
+set RandomCharacter false
+
+# 高速で回そうぜ☆（＾▽＾）
+set SaidaiFukasa 4
+set SikoJikan 600
+set SikoJikanRandom 801
+
+# 学習の調整量☆（＾▽＾）
+set NikomaGakusyuKeisu 0.01
+
+# 千日手を回避しないと、同じ局面に何度も点数を付けてしまうぜ☆（＾～＾）
+set SennititeKaihi true
+
+set RenzokuTaikyoku true
+set RenzokuRandomRule true
+
+# 開始局面をランダムにしてみるぜ☆（＾～＾）
+set RandomStart true
+set RandomStartTaikyokusya true
+
+#コンピューターに設定するのは最後にしないと、コマンドの途中で指してくるぜ☆（＾▽＾）
+set P2Com true
+set P1Com true

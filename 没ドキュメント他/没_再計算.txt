@@ -1,0 +1,66 @@
+
+        /// <summary>
+        /// 利きの再計算を表示
+        /// </summary>
+        public static void HyojiKikiSaikeisan( IDebugMojiretu dbg_reigai)
+        {
+            // 再計算
+            Shogiban saikeisanSg = new Shogiban();
+            // FIXME:駒配置
+            saikeisanSg.Tukurinaosi_RemakeKiki();
+
+            dbg_reigai.AppendLine("利き（再計算）");
+            SpkBan_MultiRow.HyojiKomanoKiki(saikeisanSg.yomiShogiban.yomiKikiBan, dbg_reigai);
+        }
+
+
+                Shogiban saikeisanSg = new Shogiban();
+                // FIXME:駒配置
+                saikeisanSg.Tukurinaosi_RemakeKiki();
+
+
+                    // 再計算
+
+                    hyoji.AppendLine("利き:（再計算）全部、駒別");
+                    SpkBan_MultiRow.HyojiKomanoKiki(saikeisanSg.yomiShogiban.yomiKikiBan, hyoji);
+
+                    hyoji.AppendLine("利き数:（再計算）全部、駒別");
+                    SpkBan_MultiRow.HyojiKomanoKikiSu(saikeisanSg.yomiShogiban.yomiKikiBan, hyoji);
+
+
+
+                else if (Util_String.MatchAndNext("saikeisan", line, ref caret))
+                {
+                    // 再計算
+                    Shogiban saikeisanSg = new Shogiban();
+                    // FIXME:駒配置
+                    saikeisanSg.Tukurinaosi_RemakeKiki();
+
+                    hyoji.AppendLine("利き数:（再計算）全部、駒別");
+                    SpkBan_MultiRow.HyojiKomanoKikiSu(saikeisanSg.yomiShogiban.yomiKikiBan, hyoji);
+                }
+
+                    if (CommandK.TryFail_Kiki("kiki saikeisan", hyoji))
+                    {
+                        // なんらかのエラーの場合
+                        return Pure.FailTrue("TryFail_Kiki"
+#if DEBUG
+                            , (IDebugMojiretu)hyoji
+#endif
+                        );
+                    }
+
+                // 利き表示（再計算）
+                else if (Util_String.MatchAndNext("saikeisan", line, ref caret))
+                {
+#if DEBUG
+                    SpkDump.HyojiKikiSaikeisan( (IDebugMojiretu)hyoji);
+#else
+                    hyoji.AppendLine("デバッグモード用");
+#endif
+                }
+
+
+
+
+

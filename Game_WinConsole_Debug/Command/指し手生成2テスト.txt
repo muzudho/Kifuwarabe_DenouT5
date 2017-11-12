@@ -1,0 +1,15 @@
+﻿# 合法手を全て生成しているか、テストをするぜ☆（＾▽＾）
+
+# コンピューターがコマンドの途中で動きださないように止めておくぜ☆（＾▽＾）
+set P2Com false
+
+ky fen krz/2h/1K1/Z1R H 2
+ky
+
+set JohoJikan 0
+set SaidaiFukasa 2
+set SikoJikan 60000
+
+# 指し手を一覧☆（＾～＾）
+sasite
+sasite seisei

@@ -1,0 +1,9 @@
+https://qiita.com/7of9/items/3334286bc0f0cb5cae13
+
+error CS0117: System.Text.RegularExpressions.RegexOptions' does not contain a definition forCompiled'
+
+Edit -> Project Settings -> Player -> Other Settings -> Optimization
+Api Compatibility Level => .NET 2.0
+
+> APIの設定が.NET 2.0 subsetではだめで、.NET 2.0に変更したらエラーがでなくなった。
+

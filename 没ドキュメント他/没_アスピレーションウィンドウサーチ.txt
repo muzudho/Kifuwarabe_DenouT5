@@ -1,0 +1,258 @@
+                // アスピレーション・サーチが動いているかどうか☆
+                if (!PureSettei.usi
+                    &&
+                (0 < ComSettei.aspirationWindow
+                && ComSettei.aspirationFukasa <= HanpukuSinka.happaenoFukasa))
+                {
+                    hyoji.Append(" (aspi)");
+                }
+
+
+            hyoji.AppendLine("set AspirationFukasa 7  : アスピレーション窓探索を使い始める深さ☆（＾～＾）");
+            hyoji.AppendLine("set AspirationWindow 300: アスピレーション窓探索で使う数字☆（＾～＾）");
+
+
+
+#region アスピレーション・ウィンドウ・サーチ（２）
+                        // アスピレーション・ウィンドウ・サーチ（２）を使う場合
+                        if (0 < ComSettei.aspirationWindow)
+                        {// 設定されていれば使うぜ☆（＾▽＾）
+                            if (ComSettei.aspirationFukasa <= HanpukuSinka.happaenoFukasa)
+                            {// 反復深化探索の根からの深さが、指定の深さまで進んでいればな☆（＾～＾）！
+
+                                // まず　ちゃんと評価値が数値か確認するぜ☆（＾▽＾）
+                                // それ以外のもの（何手詰めとか、無勝負とか）だったら、無視な☆（＾▽＾）ｗｗｗｗ
+                                if (PureCom.mattanKyokumenHyokaSu.InHyokati())
+                                {
+                                    if (3 < aspirationWindowSearchSippai)
+                                    {
+#if DEBUG
+                                        hyoji.Append("アスピレーション諦めようぜ☆（＾▽＾） 失敗");
+                                        hyoji.Append(aspirationWindowSearchSippai);
+                                        hyoji.Append("回目");
+                                        hyoji.AppendLine();
+#endif
+
+                                        // 3回失敗していれば、アスピレーション・ウィンドウ・サーチを諦めようぜ☆（＾▽＾）ｗｗｗ
+                                        // 次が最後の　再探索な☆（＾▽＾）
+                                        aspirationWindowSearchSippai = 0;
+
+                                        // ウィンドウ幅を最大にして、同じ深さで探索をやり直すぜ☆（＾▽＾）
+                                        // これで、アルファ・ベータ探索と同じだぜ☆（＾▽＾）
+                                        alpha = Conv_HyokaSu.Syokiti_Alpha;// Hyokati.Value_Min;
+                                        beta = Conv_HyokaSu.Syokiti_Beta;// Hyokati.Value_Max;
+
+                                        HanpukuSinka.onajiFukasaDeSaiTansaku = true;
+                                        goto gt_FutatabiFukasaTansaku;//continue;
+                                    }
+                                    else if ((PureCom.mattanKyokumenHyokaSu.hyokaTen <= alpha) || (beta <= PureCom.mattanKyokumenHyokaSu.hyokaTen))
+                                    {
+                                        aspirationWindowSearchSippai++;
+
+                                        // alpha,beta の幅をウィンドウと呼ぶとし、ウィンドウの外に評価値が出ている場合、
+                                        // ウィンドウ幅を広げて、同じ深さで探索をやり直すぜ☆（＾▽＾）
+                                        alpha = Conv_HyokaSu.hitotuAsaiFukasaNoBestHyokati;
+                                        beta = Conv_HyokaSu.hitotuAsaiFukasaNoBestHyokati;
+                                        // 指数関数的に増やしたいぜ☆（＾～＾）が、増えすぎだったので……☆
+                                        //int henkoryo = (int)Math.Pow((int)Option_Application.Optionlist.AspirationWindow,
+                                        //    aspirationWindowSearchSippai);
+                                        int henkoryo = (int)ComSettei.aspirationWindow * (int)Math.Pow(4,
+                                            aspirationWindowSearchSippai);
+                                        alpha -= henkoryo;
+                                        beta += henkoryo;
+
+                                        if (alpha < Conv_HyokaSu.Hyokati_Saisyo)
+                                        {
+                                            alpha = Conv_HyokaSu.Hyokati_Saisyo;
+                                        }
+
+                                        if (Conv_HyokaSu.Hyokati_Saidai < beta)
+                                        {
+                                            beta = Conv_HyokaSu.Hyokati_Saidai;
+                                        }
+
+#if DEBUG
+                                        hyoji.Append("アスピレーション窓幅広げようぜ☆（＾▽＾）");
+                                        hyoji.AppendLine(string.Format("失敗{0}回　前の深さの評価値{1}　変更量{2}",
+                                            aspirationWindowSearchSippai,
+                                            Conv_HyokaSu.hitotuAsaiFukasaNoBestHyokati,
+                                            henkoryo));
+#endif
+
+                                        // 読みを深めないぜ☆（＾～＾）
+                                        HanpukuSinka.onajiFukasaDeSaiTansaku = true;
+                                        goto gt_FutatabiFukasaTansaku;// もう１回☆ //continue;
+                                    }
+                                    else
+                                    {// 閾値Ｘ、Ｙの範囲内なら、探索は　うまいこと行ったんだぜ☆（＾▽＾）
+#if DEBUG
+                                        hyoji.Append("アスピレーションサーチうまくいったぜ☆（＾▽＾）　根からの深さ");
+                                        hyoji.Append(HanpukuSinka.happaenoFukasa);
+                                        hyoji.AppendLine(string.Format("　確定評価値{0}　α{1}　β{2}",
+                                            PureCom.mattanKyokumenHyokaSu,
+                                            alpha,
+                                            beta
+                                            ));
+#endif
+
+                                        // 次の反復で使う　ウィンドウ　を初回と同じに戻すぜ☆（＾▽＾）
+                                        alpha = Conv_HyokaSu.hitotuAsaiFukasaNoBestHyokati - (int)ComSettei.aspirationWindow;
+                                        if (alpha < Conv_HyokaSu.Hyokati_Saisyo) { alpha = Conv_HyokaSu.Hyokati_Saisyo; }
+                                        beta = Conv_HyokaSu.hitotuAsaiFukasaNoBestHyokati + (int)ComSettei.aspirationWindow;
+                                        if (Conv_HyokaSu.Hyokati_Saidai < beta) { beta = Conv_HyokaSu.Hyokati_Saidai; }
+                                    }
+                                }
+                            }
+
+                            // ここに来たら、アスピレーション・ウィンドウ・サーチは成功したんだろ☆（＾▽＾）
+                            aspirationWindowSearchSippai = 0;
+
+                            // アスピレーション・ウィンドウ・サーチを使う深さの直前からでもいいんだが、前回の評価値は覚えておく必要があるぜ☆（＾▽＾）
+                            Conv_HyokaSu.hitotuAsaiFukasaNoBestHyokati = PureCom.mattanKyokumenHyokaSu.hyokaTen;
+
+                            gt_FutatabiFukasaTansaku: // 次の深さ、または、同じ深さで条件を変えて再探索☆
+                            ;
+                            if (HanpukuSinka.onajiFukasaDeSaiTansaku)
+                            {
+                                HanpukuSinka.happaenoFukasa--;//同じ深さで再探索したいのでループ・カウンターが増えないようにしておくぜ☆（＾▽＾）
+                                HanpukuSinka.onajiFukasaDeSaiTansaku = false;
+                            }
+                        }
+#endregion
+
+
+
+#region アスピレーション・ウィンドウ・サーチ（１）
+                        // アスピレーション・ウィンドウ・サーチ（１）を使う場合
+                        if (0 < ComSettei.aspirationWindow)
+                        {// 設定されていれば使うぜ☆（＾▽＾）
+                            // アスピレーション・ウィンドウ・サーチの初回☆（＾▽＾）
+                            if (HanpukuSinka.happaenoFukasa == ComSettei.aspirationFukasa
+                                && 0==aspirationWindowSearchSippai)
+                            {// この深さから、アスピレーション・ウィンドウ・サーチを開始な☆（＾▽＾）！
+                                // 再探索のときは避けろよ☆（＾▽＾）ｗｗｗｗ
+                                // 初回の幅を決めるぜ☆（＾▽＾）
+                                alpha = Conv_HyokaSu.hitotuAsaiFukasaNoBestHyokati - (int)ComSettei.aspirationWindow;
+                                if (alpha < Conv_HyokaSu.Hyokati_Saisyo) { alpha = Conv_HyokaSu.Hyokati_Saisyo; }
+                                beta = Conv_HyokaSu.hitotuAsaiFukasaNoBestHyokati + (int)ComSettei.aspirationWindow;
+                                if (Conv_HyokaSu.Hyokati_Saidai < beta) { beta = Conv_HyokaSu.Hyokati_Saidai; }
+#if DEBUG
+                                hyoji.Append("この深さからアスピレーション窓探索開始な☆（＾▽＾）　根からの深さ");
+                                hyoji.Append(HanpukuSinka.happaenoFukasa);
+                                hyoji.AppendLine(string.Format("　確定評価値{0}　α{1}　β{2}",
+                                    PureCom.mattanKyokumenHyokaSu,
+                                    alpha,
+                                    beta
+                                    ));
+#endif
+                            }
+                        }
+#endregion
+
+
+
+
+
+                    // アスピレーション・ウィンドウ・サーチ失敗回数☆
+                    int aspirationWindowSearchSippai = 0;
+
+
+
+        /// <summary>
+        /// １つ浅い深さでのベストな評価値☆（＾～＾）
+        /// アスピレーションサーチをするために使う☆（＾▽＾）
+        /// </summary>
+        public static int hitotuAsaiFukasaNoBestHyokati;
+
+
+
+        /// <summary>
+        /// アスピレーション・ウィンドウ・サーチのウィンドウ（幅）
+        /// </summary>
+        public const int Hyokati_AspWindow = 6;
+
+
+
+        /// <summary>
+        /// 同じ深さで再探索☆（＾～＾）
+        /// アスピレーション・ウィンドウ・サーチに失敗したときに使うぜ☆（＾▽＾）
+        /// </summary>
+        public static bool onajiFukasaDeSaiTansaku;
+
+
+
+        /// <summary>
+        /// アスピレーション・ウィンドウ・サーチを使い始める深さだぜ☆（＾▽＾）
+        /// </summary>
+        public static int aspirationFukasa { get; set; }
+        /// <summary>
+        /// アスピレーション・ウィンドウ・サーチで使う幅だぜ☆（＾▽＾）
+        /// </summary>
+        public static int aspirationWindow { get; set; }
+
+
+
+
+
+            aspirationFukasa = 7;
+            aspirationWindow = Conv_HyokaSu.Hyokati_AspWindow;
+
+
+
+#region AspirationWindow
+            if (Util_String.MatchAndNext("AspirationFukasa ", line,ref caret))
+            {
+                // うしろに続く文字は☆（＾▽＾）
+                string rest = line.Substring(caret);
+
+                if (int.TryParse(rest, out int val))
+                {
+                    ComSettei.aspirationFukasa = val;
+                }
+            }
+#endregion
+#region AspirationWindow
+            else if (Util_String.MatchAndNext("AspirationWindow ", line, ref caret))
+            {
+                // うしろに続く文字は☆（＾▽＾）
+                string rest = line.Substring(caret);
+
+                if (int.TryParse(rest, out int val))
+                {
+                    //if (val < 0) { val = -val; }
+                    //else if ((int)Conv_Tumesu.TumeTesu_SeiNoSu_ReiTeDume < val) { val = (int)Conv_Tumesu.TumeTesu_SeiNoSu_ReiTeDume; }
+                    ComSettei.aspirationWindow = val;
+                }
+            }
+#endregion
+
+
+
+
+                hyoji.AppendLine("AspirationFukasa         = " + ComSettei.aspirationFukasa);
+                hyoji.AppendLine("AspirationWindow         = " + (int)ComSettei.aspirationWindow);
+
+
+
+            //Option_Application.Optionlist.AspirationFukasa = 7;
+            //Option_Application.Optionlist.AspirationWindow = Hyokati.Hyokati_SeiNoSu_Hiyoko;
+
+
+
+
+                    // 前の深さの評価値をリセット☆
+                    Conv_HyokaSu.hitotuAsaiFukasaNoBestHyokati = Conv_HyokaSu.Hyokati_Rei;
+                    HanpukuSinka.onajiFukasaDeSaiTansaku = false;
+
+
+
+
+
+
+
+
+
+
+
+
+

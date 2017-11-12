@@ -1,0 +1,42 @@
+対局者２（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 1 hyokati 15000(15000 0 0 jibun_p2 HappaKomatori) yomisuji C2C3
+joho jikan 30 fukasa -/2 eda 2 hyokati [katu 1] 31099(0 0 [katu 1] 31099 jibun_p2 TansakuIttedume) yomisuji C2C3
+joho jikan 46 fukasa -/3 eda 3 hyokati [katu 1] 31099(0 0 [katu 1] 31099 jibun_p2 TansakuIttedume) yomisuji C2C3
+joho jikan 65 fukasa -/4 eda 4 hyokati [katu 1] 31099(0 0 [katu 1] 31099 jibun_p2 TansakuIttedume) yomisuji C2C3
+joho jikan 91 fukasa -/5 eda 5 hyokati [katu 1] 31099(0 0 [katu 1] 31099 jibun_p2 TansakuIttedume) yomisuji C2C3
+joho jikan 127 fukasa -/6 eda 6 hyokati [katu 1] 31099(0 0 [katu 1] 31099 jibun_p2 TansakuIttedume) yomisuji C2C3
+joho jikan 149 fukasa -/7 eda 7 hyokati [katu 1] 31099(0 0 [katu 1] 31099 jibun_p2 TansakuIttedume) yomisuji C2C3 (aspi)
+joho jikan 214 fukasa -/8 eda 8 hyokati [katu 1] 31099(0 0 [katu 1] 31099 jibun_p2 TansakuIttedume) yomisuji C2C3 (aspi)
+joho jikan 287 fukasa -/9 eda 9 hyokati [katu 1] 31099(0 0 [katu 1] 31099 jibun_p2 TansakuIttedume) yomisuji C2C3 (aspi)
+joho jikan 303 fukasa -/10 eda 10 hyokati [katu 1] 31099(0 0 [katu 1] 31099 jibun_p2 TansakuIttedume) yomisuji C2C3 (aspi)
+joho jikan 353 fukasa -/11 eda 11 hyokati [katu 1] 31099(0 0 [katu 1] 31099 jibun_p2 TansakuIttedume) yomisuji C2C3 (aspi)
+joho jikan 367 fukasa -/12 eda 12 hyokati [katu 1] 31099(0 0 [katu 1] 31099 jibun_p2 TansakuIttedume) yomisuji C2C3 (aspi)
+joho jikan 398 fukasa -/13 eda 13 hyokati [katu 1] 31099(0 0 [katu 1] 31099 jibun_p2 TansakuIttedume) yomisuji C2C3 (aspi)
+joho jikan 437 fukasa -/13 eda 13 hyokati [katu 1] 31099(0 0 [katu 1] 31099 jibun_p2 TansakuIttedume) yomisuji C2C3 (aspi)
+決着図
+
+図は 70手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽ら│　　│
+  ├──┼──┼──┤
+２│　　│▽ぞ│　　│
+  ├──┼──┼──┤
+３│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+４│▲き│　　│▲ひ│
+  └──┴──┴──┘
+ぞ1
+やったぜ☆（＾▽＾）！
+┌─────────────────結　果─────────────────┐
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│　　　　　　　　　　　　　　　対局者２の勝ち　　　　　　　　　　　　　　　│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+└─────────────────────────────────────┘
+終わったぜ☆（＾▽＾）
+成績更新中||....................................................................☆
+感想戦を行う場合は kansosen と打てだぜ☆（＾▽＾）　そのあと kifu 1 とか打て☆（＾▽＾）
+終わるときは hirate な☆（＾▽＾）
+定跡ファイル書出中.....☆
+成績ファイル書出中.....☆
+> quit

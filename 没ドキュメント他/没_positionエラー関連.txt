@@ -1,0 +1,35 @@
+                    //// 「手目」を最初に戻すぜ☆（＾～＾）
+                    //SasiteSeiseiAccessor.BackTemeToFirst();
+
+                    //                    // positionで渡された最終局面まで進めようぜ☆（＾▽＾）ｗｗｗ
+                    //                    // 初期局面に戻すぜ☆（＾～＾）
+                    //                    string moves_notUse;
+                    //                    if (LisGenkyoku.TryFail_MatchPositionvalue(f,
+                    //                        PureMemory.kifu_syokiKyokumenFen, ref caret,
+                    //                        true//適用
+                    //                        , false, out moves_notUse
+                    //#if DEBUG
+                    //                        , (IDebugMojiretu)hyoji
+                    //#endif
+                    //                    ))
+                    //                    {
+                    //                        hyoji.AppendLine("パースに失敗2だぜ☆（＾～＾）！ #黒牛");
+                    //                        // 例外で出力したいので、フラッシュされる前に退避だぜ☆（＾～＾）
+                    //                        string msg = hyoji.ToContents();
+                    //                        Util_Machine.Flush(hyoji);
+                    //                        throw new Exception(msg);
+                    //                    }
+
+                // 手番を進めるぜ☆（＾～＾）
+                //SasiteSeiseiAccessor.MoveTebanToNext();
+
+
+                        //Kifu kifu2 = new Kifu();
+                        //kifu2.AddMoves(isSfen, m.Groups[5].Value, this.Sindan);
+                        //kifu2.GoToFinish(isSfen, this, syuturyoku);
+
+                        //IHyojiMojiretu sfen = new MojiretuImpl();
+                        //SpkGenkyokuOpe.AppendFenTo( FenSyurui.sfe_n, sfen);
+                        //sfen.AppendLine();
+
+

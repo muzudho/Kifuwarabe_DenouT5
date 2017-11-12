@@ -1,0 +1,41 @@
+﻿# 本将棋の設定にするぜ☆（＾～＾）
+
+# コンピューターが走り出すのを止めておくんだぜ☆（＾～＾）
+set P1Com false
+set P2Com false
+
+# ルール編集だぜ☆（＾～＾）
+# （１）ゲームの種類    ：本将棋
+# （２）盤サイズ        ：9x9
+# （３）飛び利きの有無  ：使用
+set USI false
+set FEN dfen
+set GameRule HonShogi
+set BanYokoHaba 9
+set BanTateHaba 9
+set TobikikiTukau true
+
+# 局面を設定する前に、変更したルールを確定しておく必要があるぜ☆（＾～＾）
+updaterule
+
+# 盤面の設定は、きふわらべ・どうぶつしょうぎ の表記で行うんだぜ☆（＾～＾）
+ky set
+シウネイライネウシ
+　キ　　　　　ゾ　
+ヒヒヒヒヒヒヒヒヒ
+　　　　　　　　　
+　　　　　　　　　
+　　　　　　　　　
+ひひひひひひひひひ
+　ぞ　　　　　き　
+しうねいらいねうし
+.
+
+ky tekiyo
+ky
+
+# 平手初期局面として登録するぜ☆（＾～＾）
+hirate toroku
+
+# set P1Com true
+set P2Com true

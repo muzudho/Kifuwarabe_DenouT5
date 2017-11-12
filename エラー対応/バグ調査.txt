@@ -1,0 +1,51 @@
+fen sunirinus/1k5z1/hhhhhh1hh/6h2/9/2HH5/HH2HHHHH/1Z5K1/SUNIRINUS - 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+position startpos moves 1i1h 4a3b 7i7h 3c3d 3i4h 3a4b 4h3i 6a5b 3i4h 3d3e 4h3i 1c1d 3i4h 1d1e 4h3i 8c8d 3i4h 8d8e 4h3i 8e8f 8g8f 8b8f 3i4h 8f8h+ P*8f 8h9i 4h3i P*8h 3i4h 8h8i+ 7h8i 2b7g+
+
+@9x9
+honyaku sfen fen position startpos moves 1i1h 4a3b 7i7h 3c3d 3i4h 3a4b 4h3i 6a5b 3i4h 3d3e 4h3i 1c1d 3i4h 1d1e 4h3i 8c8d 3i4h 8d8e 4h3i 8e8f 8g8f 8b8f 3i4h 8f8h+ P*8f 8h9i 4h3i P*8h 3i4h 8h8i+ 7h8i 2b7g+
+
+fen sunirinus/1k5z1/hhhhhhhhh/9/9/9/HHHHHHHHH/1Z5K1/SUNIRINUS - 1I9I8 F1G2 C9C8 G3G4 G9F8 G1F2 F8G9 D1E2 G9F8 G4G5 F8G9 I3I4 G9F8 I4I5 F8G9 B3B4 G9F8 B4B5 F8G9 B5B6 B7B6 B2B6 G9F8 B6B8+ P*B6 B8A9 F8G9 P*B8 G9F8 B8B9+ C8B9 H2C7+
+
+
+fen 1rz/Kh1/K1H/1R1 Z 2
+
+}‚Í 39Žè‚Ü‚Å ‘Î‹ÇŽÒ‚Q‚Ì”Ô
+
+     ‚`    ‚a    ‚b
+  „¡„Ÿ„Ÿ„¦„Ÿ„Ÿ„¦„Ÿ„Ÿ„¢
+‚P„ @@„ ¤‚ç„ ¤‚¼„ 
+  „¥„Ÿ„Ÿ„©„Ÿ„Ÿ„©„Ÿ„Ÿ„§
+‚Q„ £‚«„ ¤‚Ð„ @@„ 
+  „¥„Ÿ„Ÿ„©„Ÿ„Ÿ„©„Ÿ„Ÿ„§
+‚R„ £‚«„ @@„ £‚Ð„ 
+  „¥„Ÿ„Ÿ„©„Ÿ„Ÿ„©„Ÿ„Ÿ„§
+‚S„ @@„ £‚ç„ @@„ 
+  „¤„Ÿ„Ÿ„¨„Ÿ„Ÿ„¨„Ÿ„Ÿ„£
+‚¼1
+> sasite
+Žw‚µŽè‘S•”
+„¡„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„¢
+„¤„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„£
+
+
+
+
+

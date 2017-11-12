@@ -1,0 +1,23 @@
+#if DEBUG
+using kifuwarabe_shogithink.pure.com.hyoka;
+#else
+using kifuwarabe_shogithink.pure.com.hyoka;
+#endif
+
+
+namespace kifuwarabe_shogithink.pure.com
+{
+    public static class PureCom
+    {
+        static PureCom()
+        {
+            mattanKyokumenHyokaSu = new HyokaSu();
+        }
+
+        /// <summary>
+        /// コンピューター・プレイヤーのアルファベータ探索中に、
+        /// 末端局面の評価値として見るのに利用しろだぜ☆（＾～＾）
+        /// </summary>
+        public static HyokaSu mattanKyokumenHyokaSu;
+    }
+}

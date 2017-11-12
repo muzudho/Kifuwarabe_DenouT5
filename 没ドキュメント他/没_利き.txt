@@ -1,0 +1,49 @@
+        //        public static bool TryFail_Kiki(string line, Genkyoku gky, out Masu out_ms, out Bitboard out_kikiBB
+        //#if DEBUG
+        //            , IDebugMojiretu reigai1
+        //#endif
+        //            )
+        //        {
+        //            // うしろに続く文字は☆（＾▽＾）
+        //            int caret = 0;
+
+        //            // kiki b3 R 1
+        //            {
+        //                out_ms = Conv_Masu.masu_error;
+
+        //                // 盤面表示を返すぜ☆
+        //                string moji1 = "";
+        //                string moji2 = "";
+        //                string moji3 = "";
+        //                string moji4 = "";
+        //                Match m = Itiran_FenParser.GetKikiCommandPattern(PureSettei.usi).Match(line, caret);
+        //                if (m.Success)
+        //                {
+        //                    Util_String.SkipMatch(line, ref caret, m);
+
+        //                    moji1 = m.Groups[1].Value;
+        //                    moji2 = m.Groups[2].Value;
+        //                    moji3 = m.Groups[3].Value;
+        //                    moji4 = m.Groups[4].Value;
+
+        //                    Taikyokusya tai;
+        //                    if (!Med_Parser.Try_Taikyokusya(PureSettei.usi, moji4, out tai))
+        //                    {
+        //                        out_kikiBB = null;
+        //                        return Pure.FailTrue(string.Format( "対局者のパースエラー moji4={0}", moji4 )
+        //#if DEBUG
+        //                            , reigai1
+        //#endif
+        //                        );
+        //                    }
+        //                    out_kikiBB = Kiki_BB(
+        //                        gky.yomiKy.yomiShogiban,
+        //                        Med_Koma.KomasyuruiAndTaikyokusyaToKoma(Med_Parser.Moji_Komasyurui(PureSettei.usi, moji3), tai), Med_Parser.FenSujiDan_Masu(PureSettei.usi, moji1, moji2), gky.yomiKy.yomiKikiBan);
+        //                }
+        //                else
+        //                {
+        //                    out_kikiBB = null;
+        //                }
+        //            }
+        //            return Pure.SUCCESSFUL_FALSE;
+        //        }

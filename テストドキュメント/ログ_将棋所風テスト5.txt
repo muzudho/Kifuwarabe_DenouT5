@@ -1,0 +1,60 @@
+usi
+isready
+usinewgame
+
+set USI false
+
+position startpos moves 2h7h 7a6b 7h6h 5a4b 6h7h 6a5b 7h6h 4b3b 6h7h 7c7d 7h6h 6b7c 6h7h 7d7e 7h6h 5c5d 6h7h 3a4b 7h6h 4b5c 6h7h 5d5e 7h6h 9c9d 6h7h 9d9e 7h6h 3c3d 6h7h 3d3e 7h6h 8c8d 6h7h 8d8e 7h6h 8e8f 8g8f 8b8f
+go btime 159000 wtime 161000 byoyomi 0
+ã≠êßèIóπ
+
+kifu
+ky
+
+position startpos moves
+0    2h7h
+1    7a6b
+2    7h6h
+3    5a4b
+4    6h7h
+5    6a5b
+6    7h6h
+7    4b3b
+8    6h7h
+9    7c7d
+10   7h6h
+11   6b7c
+12   6h7h
+13   7d7e
+14   7h6h
+15   5c5d
+16   6h7h
+17   3a4b
+18   7h6h
+19   4b5c
+20   6h7h
+21   5d5e
+22   7h6h
+23   9c9d
+24   6h7h
+25   9d9e
+26   7h6h
+27   3c3d
+28   6h7h
+29   3d3e
+30   7h6h
+31   8c8d
+32   6h7h
+33   8d8e
+34   7h6h
+35   8e8f
+36   8g8f
+37   8b8f
+
+
+37éËÇ‹Ç≈
+position sfen ln3g1nl/1r2g1kb1/2spsp1pp/9/p1p1p1p2/1P7/P1PPPPPPP/1B1R5/LNSGKGSNL - w
+
+position sfen ln3g1nl/1r2g1kb1/2spsp1pp/9/p1p1p1p2/1P7/P1PPPPPPP/1B1R5/LNSGKGSNL - w moves 8b8f
+
+

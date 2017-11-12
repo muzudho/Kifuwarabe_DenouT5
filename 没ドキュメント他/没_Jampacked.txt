@@ -1,0 +1,185 @@
+        /// <summary>
+        /// テスト表示用に将棋盤を、ランダムな駒で全埋めするぜ☆（＾▽＾）
+        /// </summary>
+        public static bool TryFail_Jampacked( FenSyurui f
+#if DEBUG
+            , IDebugMojiretu reigai1
+#endif
+            )
+        {
+            // まず空っぽにします。
+            SasiteSeiseiAccessor.BackTemeToFirst_AndClear1Teme();
+            PureMemory.gky_ky.Tukurinaosi_ClearKyokumen();
+
+            Genkyoku.Tekiyo(
+#if DEBUG
+                reigai1
+                , "Jampacked(1)"
+#endif
+                );
+
+            // 盤上の駒
+            for (int i = 0; i < PureSettei.banHeimen; i++)
+            {
+                // 先頭の空白を除いた、駒の部分で埋めるぜ☆（＾▽＾）
+
+                if(PureMemory.gky_ky.shogiban.TryFail_OkuKoma(//Jampacked
+                    (Masu)i, Conv_Koma.itiranRaionNozoku[PureSettei.random.Next(Conv_Koma.itiranRaionNozoku.Length - 1)],
+                    true
+#if DEBUG
+                    , reigai1
+#endif
+                    ))
+                {
+                    return Pure.FailTrue("TryFail_Oku"
+#if DEBUG
+                        , reigai1
+#endif
+                                                );
+                }
+                // あとで適用
+            }
+
+            // てきとうに間引き
+            for (int i = 0; i < PureSettei.banHeimen; i++)
+            {
+                // 先頭の空白を除いた、駒の部分で埋めるぜ☆（＾▽＾）
+
+                if (0 < PureSettei.random.Next(3))
+                {
+                    Koma km_remove = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma((Masu)i);
+                    Debug.Assert(Conv_Koma.IsOk(km_remove), "km_remove can not remove");
+                    if (PureMemory.gky_ky.shogiban.TryFail_TorinozokuKoma(
+                        (Masu)i,
+                        km_remove, Conv_Masu.masu_error, true
+#if DEBUG
+                        , reigai1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("TryFail_Torinozoku(7)"
+#if DEBUG
+                        , reigai1
+#endif
+                                                );
+                    }
+                }
+            }
+
+            // らいおん
+            {
+                // 先手らいおん
+                int iMs = PureSettei.random.Next(PureSettei.banHeimen - 1);
+                if(PureMemory.gky_ky.shogiban.TryFail_OkuKoma(//Jampacked
+                    (Masu)iMs, Koma.R, true
+#if DEBUG
+                    , reigai1
+#endif
+                    ))
+                {
+                    return Pure.FailTrue("TryFail_Oku"
+#if DEBUG
+                        , reigai1
+#endif
+                                                );
+                }
+                // あとで適用
+
+                // 後手らいおん
+                if (PureMemory.gky_ky.shogiban.TryFail_OkuKoma(//Jampacked
+                    (Masu)((iMs + PureSettei.random.Next(PureSettei.banHeimen - 2)) % PureSettei.banHeimen), Koma.r,
+                    true
+#if DEBUG
+                    , reigai1
+#endif
+                    ))
+                {
+                    return Pure.FailTrue("TryFail_Oku"
+#if DEBUG
+                        , reigai1
+#endif
+                                                );
+                }
+                // あとで適用
+            }
+
+            // 持ち駒
+            foreach (Motigoma mk in Conv_Motigoma.itiran)
+            {
+                // 1か2で埋めるぜ☆（＾▽＾）
+                if(!PureMemory.gky_ky.motigomaItiran.Try_Set(mk, PureSettei.random.Next(2) + 1
+#if DEBUG
+                , reigai1
+#endif
+                    ))
+                {
+                    return Pure.FailTrue("Try_Set"
+#if DEBUG
+                        , reigai1
+#endif
+                                                );
+                }
+            }
+
+            Util_Control.UpdateRule(
+#if DEBUG
+                "Jampacked(2)"
+#endif
+                );
+            Genkyoku.Tekiyo(
+#if DEBUG
+                reigai1
+                , "Jampacked(2)"
+#endif
+                );
+            return Pure.SUCCESSFUL_FALSE;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        public static void Jam(FenSyurui f
+#if DEBUG
+            , IDebugMojiretu reigai1
+#endif
+            )
+        {
+            if (GenkyokuOpe.TryFail_Jampacked( f
+#if DEBUG
+                , reigai1
+#endif
+                ))
+            {
+#if DEBUG
+                Util_Machine.Flush(reigai1);
+                throw new Exception(reigai1.ToContents());
+#endif
+            }
+        }
+
+            hyoji.AppendLine("jam             : テスト表示用に空き升をデータで埋めるぜ☆ JAMpacked");
+
+
+
+
+
+            else if (caret == cmdline.IndexOf("jam", caret)) { CommandJ.Jam(PureSettei.fenSyurui
+#if DEBUG
+                , (IDebugMojiretu)hyoji
+#endif
+                );
+                isKyokumenEcho1 = true;
+            }
+
+
+
+
+

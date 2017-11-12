@@ -1,0 +1,252 @@
+
+        /// <summary>
+        /// 下がれる　ひよこ　モードフラグ☆　普通のひよこはいなくなるぜ☆（＾▽＾） #仲ルール
+        /// </summary>
+        public static bool sagareruHiyoko { get; set; }
+
+            sagareruHiyoko = false;
+
+            PureSettei.sagareruHiyoko = false;// さがれるひよこモード☆ アプリケーション開始後は Face_Kifuwarabe.Execute("set SagareruHiyoko true") コマンドを使って設定すること☆ #仲ルール
+
+                hyoji.AppendLine("SagareruHiyoko           = " + PureSettei.sagareruHiyoko);
+
+
+                #region SagareruHiyoko
+                else if (Util_String.MatchAndNext("SagareruHiyoko", line, ref caret))
+                {
+                    // うしろに続く文字は☆（＾▽＾）
+                    string rest = line.Substring(caret);
+                    if (bool.TryParse(rest, out bool val))
+                    {
+                        // #仲ルール
+                        if (
+                            (!PureSettei.sagareruHiyoko && val)// さがれるひよこ　モードにチェンジ☆
+                            ||
+                            (PureSettei.sagareruHiyoko && !val)// 普通のひよこ　モードにチェンジ☆
+                            )
+                        {
+                            Console02.Restart_SavefileTimeSpan();// 保存間隔の再調整だぜ☆（＾▽＾）
+
+                            // フラグ変更☆
+                            PureSettei.sagareruHiyoko = val;
+
+                            // 駒の動き方を作り直し
+                            Util_Control.UpdateRule(
+#if DEBUG
+                            "set SagareruHiyoko"
+#endif
+                        );
+                        }
+                        else
+                        {
+                            PureSettei.sagareruHiyoko = val;
+                        }
+                    }
+                }
+                #endregion
+
+                                if (PureSettei.sagareruHiyoko)
+                                {
+                                    // 下がれるひよこ　モード☆（＾▽＾） #仲ルール
+                                    TasuKonoUe(km_all, ms);// 上
+                                    TasuKonoSita(km_all, ms);// 下
+                                }
+                                else
+                                {
+                                    // 普通のひよこ☆（＾▽＾）
+                                }
+
+        /// <summary>
+        /// 設定　下がれるひよこ（「歩」の動きを「仲」駒に変える）なら真
+        /// </summary>
+        /// <param name="value"></param>
+        public static void SetOption_SagareruHiyoko(bool value)
+        {
+            PureSettei.sagareruHiyoko = value;
+        }
+
+                // #仲ルール
+                if (PureSettei.sagareruHiyoko)
+                {
+                    hyoji.Append(" #仲");
+                }
+
+            // 下がれるひよこルール
+            Shogi34.SetOption_SagareruHiyoko(false);
+
+
+
+
+            
+            hyoji.AppendLine("taikyokusya hanten: 手番を反転だぜ☆");
+            hyoji.AppendLine("taikyokusya mazeru: 手番をランダムに決めるぜ☆");
+
+//                if (Util_String.MatchAndNext("hanten", line, ref caret))
+//                {
+//                    // 手番を反転☆
+//                    PureMemory.gky_ky.SetTeban(Conv_Taikyokusya.Hanten(SasiteSeiseiAccessor.GetTeban()));
+//                    Genkyoku.Tekiyo(
+//#if DEBUG
+//                    hyoji
+//                        , "taikyokusya hanten"
+//#endif
+//                    );
+//                    SpkBan_1Column.Setumei_Kyokumen( hyoji);
+//                    hyoji.AppendLine();
+//                }
+//                else
+//                if (Util_String.MatchAndNext("mazeru", line, ref caret))
+//                {
+//                    // 手番をランダムに決定☆☆
+//                    int r = PureSettei.random.Next(2);
+//                    if (r == 0)
+//                    {
+//                        PureMemory.gky_ky.SetTeban(Conv_Taikyokusya.Hanten(PureMemory.gky_ky.yomiKy.teban));
+//                        Genkyoku.Tekiyo(
+//#if DEBUG
+//                        hyoji
+//                            , "taikyokusya mazeru"
+//#endif
+//                        );
+//                        SpkBan_1Column.Setumei_Kyokumen( hyoji);
+//                        hyoji.AppendLine();
+//                    }
+//                }
+//                else
+
+
+        /// <summary>
+        /// 対局終了時に、コンピューターの指し手の性格をランダムに変えるぜ☆（＾▽＾） 主にルール別定跡をまんべんなく作る用だぜ☆
+        /// </summary>
+        public static bool randomCharacter { get; set; }
+        /// <summary>
+        /// ランダム局面から開始するぜ☆（＾▽＾）主に機械学習用だぜ☆（＾▽＾）
+        /// </summary>
+        public static bool randomStart { get; set; }
+        /// <summary>
+        /// 手番をランダムに選んで開始するぜ☆（＾▽＾）主に機械学習用だぜ☆（＾▽＾）
+        /// </summary>
+        public static bool randomStartTaikyokusya { get; set; }
+
+
+            //Option_Application.Optionlist.RandomCharacter = false;
+            //Option_Application.Optionlist.RandomStart = false;
+            //Option_Application.Optionlist.RenzokuTaikyoku = false;
+
+            hyoji.AppendLine("set RandomCharacter true: 対局終了時に、COMの指し手の性格を変えるぜ☆");
+            hyoji.AppendLine("set RandomSei true      : （廃止されたぜ☆）");//指し手にランダム性を付けるぜ☆
+            // RandomSei は、思考が弱くなるので廃止☆（＾▽＾）
+            hyoji.AppendLine("set RandomStart true    : 開始局面をランダムにするぜ☆");
+            hyoji.AppendLine("set RandomStartTaikyokusya true: 開始先後をランダムにするぜ☆");
+
+
+
+
+        /// <summary>
+        /// 連続対局モードで、ルール設定をランダムに変えるぜ☆（＾▽＾） 主にルール別定跡をまんべんなく作る用だぜ☆
+        /// </summary>
+        public static bool renzokuRandomRule { get; set; }
+
+            randomCharacter = false;
+            randomStart = false;
+
+                hyoji.AppendLine("RandomCharacter          = " + ConsolegameSettei.randomCharacter);
+                hyoji.AppendLine("RandomStart              = " + ConsolegameSettei.randomStart);
+                hyoji.AppendLine("RandomStartTaikyokusya   = " + ConsolegameSettei.randomStartTaikyokusya);
+
+
+            if (ConsolegameSettei.randomCharacter)
+            {
+                // コンピューター対局者の性格は　ころころ変えるぜ☆（＾▽＾）
+                for (int iTb = 0; iTb < Conv_Taikyokusya.itiran.Length; iTb++)
+                {
+                    PureSettei.char_playerN[(int)Conv_Taikyokusya.itiran[iTb]] = Conv_SasiteCharacter.items[PureSettei.random.Next(Conv_SasiteCharacter.items.Length)];
+                }
+            }
+
+                if (ConsolegameSettei.renzokuRandomRule && // 連続対局中、ルールをランダムに変える設定で
+                    0 == PureSettei.random.Next(2) && // ランダムに
+                    Console02.IsTimeOver_RenzokuRandomRule() // 変更間隔が空いているとき
+                    )
+                {
+                    // ルールを変えるぜ☆（＾▽＾）
+                    string commandline_2 = "set SagareruHiyoko " + !PureSettei.sagareruHiyoko;
+                    hyoji.AppendLine("RenzokuRandomRule> " + commandline_2);
+                    Util_Machine.Flush(hyoji);
+
+                    // 表示してから実行しようぜ☆（＾～＾）
+                    ConvAppli.Set(commandline_2, hyoji);
+
+                    Console02.Restart_RenzokuRandomRuleTimeSpan();// 変更間隔の再調整だぜ☆（＾▽＾）
+                }
+
+            if (ConsolegameSettei.randomStart)
+            {
+                if (CommandK.TryFail_Ky("ky mazeru", hyoji))
+                {
+                    Util_Machine.Flush(hyoji);
+                    throw new Exception(hyoji.ToContents());
+                }
+            }
+
+            if (ConsolegameSettei.randomStartTaikyokusya)
+            {
+                CommandT.Taikyokusya_cmd("taikyokusya mazeru", hyoji);
+            }
+
+
+                // RandomSei は 廃止されたぜ☆（＾▽＾）ｗｗｗ
+                #region RandomStart
+                else if (Util_String.MatchAndNext("RandomStart", line, ref caret))
+                {
+                    // うしろに続く文字は☆（＾▽＾）
+                    string rest = line.Substring(caret);
+                    if (bool.TryParse(rest, out bool val))
+                    {
+                        ConsolegameSettei.randomStart = val;
+                    }
+                }
+                #endregion
+
+
+                #region RandomStartTaikyokusya
+                else if (Util_String.MatchAndNext("RandomStartTaikyokusya", line, ref caret))
+                {
+                    // うしろに続く文字は☆（＾▽＾）
+                    string rest = line.Substring(caret);
+                    if (bool.TryParse(rest, out bool val))
+                    {
+                        ConsolegameSettei.randomStartTaikyokusya = val;
+                    }
+                }
+                #endregion
+
+                #region RandomCharacter
+                else if (Util_String.MatchAndNext("RandomCharacter", line, ref caret))
+                {
+                    // うしろに続く文字は☆（＾▽＾）
+                    string rest = line.Substring(caret);
+                    if (bool.TryParse(rest, out bool val))
+                    {
+                        ConsolegameSettei.randomCharacter = val;
+                    }
+                }
+                #endregion
+
+
+                #region RenzokuRandomRule
+                else if (Util_String.MatchAndNext("RenzokuRandomRule", line, ref caret))
+                {
+                    // うしろに続く文字は☆（＾▽＾）
+                    string rest = line.Substring(caret);
+                    if (bool.TryParse(rest, out bool val))
+                    {
+                        ConsolegameSettei.renzokuRandomRule = val;
+                    }
+                }
+                #endregion
+
+
+
+
+

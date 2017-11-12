@@ -1,0 +1,3 @@
+    /// Ｕｎｉｔｙで必要な設定：
+    /// 　　Ｕｎｉｔｙのメインメニューから[File] - [Build Settings...] - [Player Settings...] - [Other Settings] - [Configuration]
+    /// 　　と進み [Scripting Define Symbols*] テキストボックスに「UNITY」と入れてシーンを保存すること。（キーワードが複数ある場合は空白区切り）

@@ -1,0 +1,60 @@
+fen krz/1h1/1H1/ZRK - 1
+B3B2 none 0 9 131
+fen kr1/1z1/3/ZRK Hh 1
+C4C3 none 0 8 131
+fen k1r/1z1/2K/ZR1 Hh 1
+H*A3 none 500 7 131
+fen k1r/hz1/H1K/ZR1 - 1
+A3A2 none 400 7 131
+fen 2r/kz1/2K/ZR1 Hh 1
+C3B3 none 100 7 131
+fen z1r/k2/1K1/ZR1 Hh 1
+H*A3 none 0 7 131
+fen z1r/1k1/HK1/ZR1 h 1
+B3B2 none -100 7 131
+fen 2r/1z1/H2/ZR1 Kkh 1
+K*B3 none 200 7 131
+fen z1r/3/HK1/ZR1 kh 1
+A3A2 none 500 7 131
+fen z1r/Hh1/1K1/ZR1 k 1
+A2A1 none 600 8 131
+fen H1r/3/1h1/ZR1 Z2k 1
+A4B3 none 600 7 131
+fen H1r/2k/1Z1/1R1 ZkH 1
+Z*C4 none 800 6 131
+fen H1r/1k1/1Z1/1RZ kH 1
+B3A4 none 400 7 131
+fen Hr1/1k1/3/ZRZ kH 1
+H*B3 none 600 7 131
+fen Hr1/2k/1H1/ZRZ k 1
+B4A3 none -1800 8 131
+fen r2/2k/RH1/Z1Z kh 1
+B3B2 none 100 7 131
+fen r2/1k1/R2/Z1Z k2h 1
+A4B3 none -1000 7 131
+fen r1h/1k1/RZ1/2Z kh 1
+A3B4 none -1100 7 131
+fen r1h/3/1k1/1RZ zkh 1
+C4B3 none -200 8 131
+fen rhh/3/1Z1/1R1 zKk 1
+B4C4 none -100 7 131
+fen rhh/1k1/1Z1/2R zK 1
+B3A2 none -700 7 131
+fen rhh/k2/3/2R 2zK 1
+K*B3 none -2600 7 131
+fen rhh/1k1/1K1/2R 2z 1
+B3A3 none -2300 8 131
+fen rhh/1kz/K2/2R z 1
+C4B4 none -2500 8 131
+fen rhh/2z/Kk1/1R1 z 1
+A3B3 none -2000 8 131
+fen rhh/3/1z1/1R1 zKk 1
+K*A3 none -2300 8 131
+fen rhh/1k1/Kz1/1R1 z 1
+A3B3 none -2000 8 131
+fen rhh/3/1k1/1R1 Zzk 1
+B4A4 none -30000 7 131
+fen rhh/k2/1k1/R2 Zz 1
+Z*B2 none -30990 14 131
+fen r1h/kh1/1k1/R2 2z 1
+A4A3 none -31099 14 131

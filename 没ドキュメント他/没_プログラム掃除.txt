@@ -1,0 +1,442 @@
+            /*
+#if DEBUG
+            // いろいろテスト☆
+            System.Console.WriteLine("# デバッグ");
+            System.Console.WriteLine("# (1L<<31)=[" + (1L << 31) + "]");
+            System.Console.WriteLine("# (1L<<32)=[" + (1L << 32) + "]");
+            System.Console.WriteLine("# (1L<<33)=[" + (1L << 33) + "]");
+            System.Console.WriteLine("# (1L<<62)=[" + (1L << 62) + "]");
+            System.Console.WriteLine("# (1L<<63)=[" + (1L << 63) + "]");
+            System.Console.WriteLine("# (1L<<64)=[" + (1L << 64) + "]");
+            System.Console.WriteLine("# (1L<<65)=[" + (1L << 65) + "]");
+            System.Console.WriteLine("# (long.MinValue << 1)=[" + (long.MinValue << 1) + "]");
+            System.Console.WriteLine("# (~0UL)=[" + (~0UL) + "]");
+            System.Console.WriteLine("# (~0UL << 1)=[" + (~0UL << 1) + "]");
+#endif
+            */
+
+
+
+
+            //#if DEBUG
+            //            SpkShogiban.Setumei_NingenGameYo(kyw, syuturyoku);
+            //            Ky(isSfen, "ky fen", kyw, syuturyoku);// 参考：改造FEN表示
+            //            Sasite_cmd(isSfen, "sasite", kyw, syuturyoku);// 参考：指し手表示
+            //            if (false){
+            //                SpkShogiban.HyojiKomanoIbasho(kyw.ky.shogiban, syuturyoku);// 参考：駒の表示
+            //            }
+            //            SpkShogiban.HyojiKomanoKikiSu(kyw.ky.shogiban, syuturyoku);// 参考：利きの数
+            //            Sasite_cmd(isSfen, "sasite seisei", kyw, syuturyoku);// 参考：指し手生成表示
+            //            Util_Machine.Flush(syuturyoku);
+            //#endif
+
+
+
+                /*FIXME:
+                jibunKomaSuNew = gky.ky.shogiban.ibashoBan.RefBB_KomaZenbu(jibun).PopCnt();
+                bb_jibunKomaNew = gky.ky.shogiban.ibashoBan.RefBB_KomaZenbu(jibun);
+
+                safe = jibunKomaSuOld - 1 == jibunKomaSuNew;
+                if (!safe)
+                {
+                    reigai1.AppendLine("#鮫 診断（Ｄｏ手順３打） もしかして：対局者１用に作った指し手が、対局者２に回ってくるエラー☆？");
+                    reigai1.Append("jibunKomaSuOld - 1=["); reigai1.Append(jibunKomaSuOld - 1); reigai1.AppendLine("]");
+                    reigai1.Append("jibunKomaSuNew    =["); reigai1.Append(jibunKomaSuNew); reigai1.AppendLine("]");
+                    reigai1.AppendLine("駒全部");
+                    SpkShogiban.Setumei_Bitboards(new string[] { "駒全部古", "駒全部新" },
+                        new YomiBitboard[] { new YomiBitboard(bb_jibunKomaOld), new YomiBitboard(bb_jibunKomaNew) }, reigai1);
+
+                    reigai1.Append("kaisi-対局者=["); SpkTaikyokusya.Setumei_Name(Util_Tansaku.kaisiTaikyokusya, reigai1); reigai1.AppendLine("]");
+                    reigai1.Append("自分=["); SpkTaikyokusya.Setumei_Name(jibun, reigai1); reigai1.AppendLine("]");
+                    reigai1.Append("do sasite=["); SpkSasite.Setumei(isSfen, ss, reigai1); reigai1.AppendLine("]");
+                    reigai1.Append("ms_src=["); SpkMasu.Setumei(ms_t0, gky, reigai1); reigai1.AppendLine("]位置を、手番の駒全部BBからオフにしたいぜ☆");
+                    reigai1.Append("手番=["); SpkTaikyokusya.Setumei_Name(jibun, reigai1); reigai1.AppendLine("]");
+                    reigai1.Append("移動元の手番の駒=["); SpkKoma.Setumei(km_t0, reigai1); reigai1.AppendLine("]");
+                    reigai1.AppendLine("現局面");
+                    SpkShogiban.Setumei_Lines_Kyokumen(gky, reigai1);
+
+                    return Pure.FailTrue("#鮫(do-tj3u) 診断", reigai1);
+                }
+                //*/
+
+
+//#if DEBUG
+//            Develop.assert.TryFail_DoSasite2(
+//                gky,
+//                aite,
+//                ms_t1,
+//                km_c,
+//                aiteKomaSuOld,
+//                bb_aiteKomaOld,
+//                isSfen,
+//                reigai1,
+//                isAssertYokusei
+//                );
+//#endif
+
+//#if DEBUG
+//            Develop.assert.TryFail_DbgDoSasite1(
+//                gky,
+//                ms_t0,
+//                km_t0,
+//                jibunKomaSuOld,
+//                bb_jibunKomaOld,
+//                isSfen,
+//                "T1[2]移動元に手番の駒が無い",
+//                reigai1,
+//                isAssertYokusei
+//                );
+//#endif
+
+
+            /*
+#if DEBUG
+            if (Develop.assert.TryFail_DstOn_EndAssert(
+                gky,
+                jibun,
+                ms_t0,
+                ms_t1,
+                jibunKomaSuOld,
+                bb_jibunKomaOld,
+                isSfen,
+                reigai1,
+                isAssertYokusei
+                ))
+            {
+                return Pure.FailTrue("TryFail_DstOn_End", reigai1);
+            }
+#endif
+            */
+
+        /*
+        public override bool TryFail_DstOn_EndAssert(
+            Genkyoku gky,
+            Taikyokusya jibun,
+            Masu ms_t0,
+            Masu ms_t1,
+            int jibunKomaSuOld,
+            Bitboard bb_jibunKomaOld,
+            bool isSfen,
+            IDebugMojiretu reigai1,
+            bool isAssertYokusei
+            )
+        {
+            return Pure.SUCCESSFUL_FALSE;//未実装
+        }
+        */
+        //public override bool TryFail_DbgDoSasite1(
+        //    Genkyoku gky,
+        //    Masu ms_t0,
+        //    Koma km_t0,
+        //    int jibunKomaSuOld,
+        //    Bitboard bb_jibunKomaOld,
+        //    bool isSfen,
+        //    string hint,
+        //    IDebugMojiretu reigai1,
+        //    bool isAssertYokusei
+        //    )
+        //{
+        //    return Pure.SUCCESSFUL_FALSE;//未実装
+        //}
+        //public override bool TryFail_DoSasite2(
+        //    Genkyoku gky,
+        //    Taikyokusya jibun,
+        //    Taikyokusya aite,
+        //    Masu ms_t1,
+        //    Koma km_c,
+        //    int aiteKomaSuOld,
+        //    Bitboard bb_aiteKomaOld,
+        //    bool isSfen,
+        //    IDebugMojiretu reigai1,
+        //    bool isAssertYokusei
+        //    )
+        //{
+        //    return Pure.SUCCESSFUL_FALSE;//未実装
+        //}
+
+
+                /*
+                komaSuNew = gky.ky.shogiban.ibashoBan.RefBB_KomaZenbu(jibun).PopCnt();
+                Debug.Assert(komaSuOld + 1 == komaSuNew, "error undo-tj2u-8 #嵐");
+
+                IViewMojiretu sindan3 = new MojiretuImpl();
+                sindan3.Append("error undo-tj2u-9 盤上_駒戻しＢ 現局面");
+                SpkShogiban.Setumei_Lines_Kyokumen(gky, sindan3);
+                sindan3.Append("ss=["); SpkSasite.AppendFenTo(isSfen, ss, sindan3); sindan3.Append(sindan3.ToContents()); sindan3.AppendLine("]");
+                sindan3.Append("tb1=["); SpkTaikyokusya.Setumei_Name(jibun, sindan3); sindan3.AppendLine("]");
+                sindan3.Append("ms=["); SpkMasu.Setumei(ms_t0, gky, sindan3); sindan3.AppendLine("]");
+                sindan3.Append("ks1=["); SpkKomasyurui.GetNingenyoMijikaiFugo(ks_t0, sindan3); sindan3.AppendLine("]");
+                if (!PureAssert.Try_Assert_Sabun_Komawari(sindan3.ToContents(), gky.roGky, syuturyoku))
+                {
+                    return Pure.FailTrue("undo-tj2u Try_Assert_Sabun_Komawari"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                }
+                if (!PureAssert.Try_Assert_Genkou_Bitboard(sindan3.ToContents(), gky, syuturyoku))
+                {
+                    return Pure.FailTrue("undo-tj2u Try_Assert_Genkou_Bitboard"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                }
+                //*/
+
+        /*
+        /// <summary>
+        /// 何をするメソッド？
+        /// 終わりのアサート
+        /// </summary>
+        /// <param name="gky"></param>
+        /// <param name="jibun"></param>
+        /// <param name="ms_t0"></param>
+        /// <param name="ms_t1"></param>
+        /// <param name="jibunKomaSuOld"></param>
+        /// <param name="bb_jibunKomaOld"></param>
+        /// <param name="isSfen"></param>
+        /// <param name="reigai1"></param>
+        /// <param name="isAssertYokusei"></param>
+        /// <returns></returns>
+        public override bool TryFail_DstOn_EndAssert(
+            Genkyoku gky,
+            Taikyokusya jibun,
+            Masu ms_t0,//
+            Masu ms_t1,//
+            int jibunKomaSuOld,
+            Bitboard bb_jibunKomaOld,
+            bool isSfen,
+            IDebugMojiretu reigai1,
+            bool isAssertYokusei
+            )
+        {
+            if (!isAssertYokusei)
+            {
+                bool safe;
+                int jibunKomaSuNew;
+                Bitboard bb_jibunKomaNew;
+
+                if (Develop.assert.TryFail_Assert_Sabun_Kiki("error Do-T2-d-1", gky, reigai1))
+                {
+                    return Pure.FailTrue("error Do-T2-d-1", reigai1);
+                }
+                // 移動先に手番の駒が増え、移動元の手番の駒がまだ消えていない状態なのでビットボードはチェックしないぜ☆
+
+                jibunKomaSuNew = gky.ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(jibun).PopCnt();
+                bb_jibunKomaNew = gky.ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(jibun);
+
+                IHyojiMojiretu sindan2 = new MojiretuImpl();
+                sindan2.Append("#巨人 診断");
+                //sindan2.Append("jibunKomaSuOld + 1 =["); sindan2.Append(jibunKomaSuOld + 1); sindan2.AppendLine("]");
+                sindan2.Append("jibunKomaSuNew     =["); sindan2.Append(jibunKomaSuNew); sindan2.AppendLine("]");
+
+                sindan2.Append("kaisi-対局者=["); SpkTaikyokusya.AppendSetumeiName(Util_Tansaku.kaisiTaikyokusya, sindan2); sindan2.AppendLine("]");
+                sindan2.Append("対局者=["); SpkTaikyokusya.AppendSetumeiName(jibun, sindan2); sindan2.AppendLine("]");
+                //sindan2.Append("do sasite=["); SpkSasite.AppendSetumei(isSfen, ss, sindan2); sindan2.AppendLine("]");
+                //sindan2.Append("ms_t0=["); SpkMasu.AppendSetumei(ms_t0, gky.yomiKy, sindan2); sindan2.AppendLine("]");
+                //sindan2.Append("ms_t1=["); SpkMasu.AppendSetumei(ms_t1, gky.yomiKy, sindan2); sindan2.AppendLine("]");
+                SpkBan_1Column.Setumei_Bitboard("手番の全部の駒", gky.ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(jibun), sindan2);
+                SpkBan_1Column.Setumei_Bitboard("dstにビットを立てる前の bb_jibunKomaOld", bb_jibunKomaOld, sindan2);
+                sindan2.AppendLine("現局面");
+                SpkBan_1Column.Setumei_Kyokumen(gky.yomiGky, sindan2);
+
+                //移動先に手番の駒が増え、移動元の手番の駒がまだ消えていない状態☆（＾～＾）
+                safe = jibunKomaSuOld + 1 == jibunKomaSuNew;
+                if (!safe)
+                {
+                    return Pure.FailTrue("#巨人 診断", reigai1);
+                }
+                Debug.Assert(safe, sindan2.ToContents());
+            }
+            return Pure.SUCCESSFUL_FALSE;
+        }
+        */
+        //public override bool TryFail_DbgDoSasite1(
+        //    Genkyoku gky,
+        //    Masu ms_t0,
+        //    Koma km_t0,
+        //    int jibunKomaSuOld,
+        //    Bitboard bb_jibunKomaOld,
+        //    bool isSfen,
+        //    string hint,
+        //    IDebugMojiretu reigai1,
+        //    bool isAssertYokusei
+        //    )
+        //{
+        //    if (!isAssertYokusei)
+        //    {
+        //        bool safe;
+        //        int jibunKomaSuNew;
+        //        Bitboard bb_jibunKomaNew;
+
+        //        if (Develop.assert.TryFail_Assert_Sabun_Kiki(
+        //            string.Format("error 指し手着手診断 hint={0} ms_t0={1} km_t0={2}", hint, ms_t0, km_t0)
+        //            , gky, reigai1))
+        //        {
+        //            return Pure.FailTrue("TryFail_Assert_Sabun_Kiki", reigai1);
+        //        }
+        //        // ビットボードの図形は新旧一致しないからチェックしないぜ☆
+
+        //        //*FIXME:
+        //        jibunKomaSuNew = gky.ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(gky.yomiKy.teban).PopCnt();
+        //        bb_jibunKomaNew = gky.ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(gky.yomiKy.teban);
+
+        //        safe = jibunKomaSuOld - 1 == jibunKomaSuNew;
+        //        if (!safe)
+        //        {
+        //            reigai1.AppendLine("#鮫 診断（Ｄｏ手順３指） もしかして：対局者１用に作った指し手が、対局者２に回ってくるエラー☆？");
+        //            reigai1.Append("jibunKomaSuOld - 1=["); reigai1.Append(jibunKomaSuOld - 1); reigai1.AppendLine("]");
+        //            reigai1.Append("jibunKomaSuNew    =["); reigai1.Append(jibunKomaSuNew); reigai1.AppendLine("]");
+        //            reigai1.AppendLine("駒全部");
+        //            SpkBan_MultiColumn.Setumei_Bitboard(new string[] { "駒全部古", "駒全部新" },
+        //                new YomiBitboard[] { new YomiBitboard(bb_jibunKomaOld), new YomiBitboard(bb_jibunKomaNew) }, reigai1);
+
+        //            reigai1.Append("kaisi-対局者=["); SpkTaikyokusya.AppendSetumeiName(Util_Tansaku.kaisiTaikyokusya, reigai1); reigai1.AppendLine("]");
+        //            reigai1.Append("自分=["); SpkTaikyokusya.AppendSetumeiName(gky.yomiKy.teban, reigai1); reigai1.AppendLine("]");
+        //            //reigai1.Append("do sasite=["); SpkSasite.AppendSetumei(isSfen, ss, reigai1); reigai1.AppendLine("]");
+        //            reigai1.Append("ms_src=["); SpkMasu.AppendSetumei(ms_t0, gky.yomiKy, reigai1); reigai1.AppendLine("]位置を、手番の駒全部BBからオフにしたいぜ☆");
+        //            reigai1.Append("手番=["); SpkTaikyokusya.AppendSetumeiName(gky.yomiKy.teban, reigai1); reigai1.AppendLine("]");
+        //            reigai1.Append("移動元の手番の駒=["); SpkKoma.AppendSetumei(km_t0, reigai1); reigai1.AppendLine("]");
+        //            reigai1.AppendLine("現局面");
+        //            SpkBan_1Column.Setumei_Kyokumen(gky.yomiGky, reigai1);
+
+        //            return Pure.FailTrue("#鮫(do-tj3s) 診断", reigai1);
+        //        }
+        //        //*/
+        //    }
+        //    return Pure.SUCCESSFUL_FALSE;
+        //}
+        //public override bool TryFail_DoSasite2(
+        //    Genkyoku gky,
+        //    Taikyokusya jibun,
+        //    Taikyokusya aite,
+        //    Masu ms_t1,
+        //    Koma km_c,
+        //    int aiteKomaSuOld,
+        //    Bitboard bb_aiteKomaOld,
+        //    bool isSfen,
+        //    IDebugMojiretu reigai1,
+        //    bool isAssertYokusei
+        //    )
+        //{
+        //    if (!isAssertYokusei)
+        //    {
+        //        bool safe;
+        //        int aiteKomaSuNew;
+        //        Bitboard bb_aiteKomaNew;
+
+        //        if (Develop.assert.TryFail_Assert_Sabun_Kiki("error Do-B-a-7", gky, reigai1))
+        //        {
+        //            return Pure.FailTrue("error Do-B-a-7", reigai1);
+        //        }
+
+        //        aiteKomaSuNew = gky.ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(aite).PopCnt();
+        //        bb_aiteKomaNew = gky.ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(aite);
+
+        //        if (Develop.assert.TryFail_Assert_Sabun_Kiki("error Do-B-a-8", gky, reigai1))
+        //        {
+        //            return Pure.FailTrue("error Do-B-a-8", reigai1);
+        //        }
+
+        //        IHyojiMojiretu sindan1 = new MojiretuImpl();
+
+        //        if (Develop.assert.TryFail_Assert_Sabun_Kiki("error Do-B-a-9", gky, reigai1))
+        //        {
+        //            return Pure.FailTrue("error Do-B-a-9", reigai1);
+        //        }
+
+        //        sindan1.Append("banjoAiteKomaSuOld - 1=["); sindan1.Append(aiteKomaSuOld - 1); sindan1.AppendLine("]");
+        //        sindan1.Append("banjoAiteKomaSuNew    =["); sindan1.Append(aiteKomaSuNew); sindan1.AppendLine("]");
+        //        SpkBan_MultiColumn.Setumei_Bitboard(new string[] { "駒全部古", "駒全部新" }, new YomiBitboard[] { new YomiBitboard(bb_aiteKomaOld), new YomiBitboard(bb_aiteKomaNew) }, sindan1);
+
+        //        sindan1.Append("ms_t1=["); SpkMasu.AppendSetumei(ms_t1, gky.yomiKy, sindan1); sindan1.AppendLine("]位置を、シットダウンした。");
+        //        sindan1.Append("kaisi-対局者=["); SpkTaikyokusya.AppendSetumeiName(Util_Tansaku.kaisiTaikyokusya, sindan1); sindan1.AppendLine("]");
+        //        //sindan1.Append("対局者=["); SpkTaikyokusya.AppendSetumeiName(jibun, sindan1); sindan1.AppendLine("]");
+        //        //sindan1.Append("do sasite=["); SpkSasite.AppendSetumei(isSfen, ss, sindan1); sindan1.AppendLine("]");
+        //        sindan1.Append("相手対局者=["); SpkTaikyokusya.AppendSetumeiName(aite, sindan1); sindan1.AppendLine("]");
+        //        sindan1.Append("相手番のfood駒=["); SpkKoma.AppendSetumei(km_c, sindan1); sindan1.AppendLine("]");
+        //        //SpkBan_1Column.Setumei_Bitboard("手番の駒全部BB", gky.ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(jibun), sindan1);
+        //        SpkBan_1Column.Setumei_Bitboard("相手の駒全部BB", gky.ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(aite), sindan1);
+        //        sindan1.AppendLine("現局面");
+        //        SpkBan_1Column.Setumei_Kyokumen(gky.yomiGky, sindan1);
+        //        safe = aiteKomaSuOld - 1 == aiteKomaSuNew;// 相手の駒を１個減らすぜ☆
+        //        if (!safe)
+        //        {
+        //            return Pure.FailTrue("#狒々 診断", reigai1);
+        //        }
+        //        Debug.Assert(safe, "#狒々 診断 " + sindan1.ToContents());
+        //    }
+        //    return Pure.SUCCESSFUL_FALSE;
+        //}
+
+
+                            //SpkBan_1Column.Setumei_Bitboard("手番の駒がいる升", PureMemory.bb_friendKomaAr[(int)aiteban], hyoji);
+                            //Conv_Bitboard.Setumei_1Bitboard("相手番の駒がいる升", opponentHioute.OpponentKomaBB_TestNoTame, syuturyoku);
+                            //Conv_Bitboard.Setumei_1Bitboard("相手の利き全部", opponentHioute.OpponentKikiZenbuBB_TestNoTame, syuturyoku);
+                            //Conv_Bitboard.Setumei_1Bitboard("塞がれている逃げ道", opponentHioute.FusagiMitiBB_TestNoTame, syuturyoku);
+
+
+//                    // 深さを変える、または再探索するときにも、強制情報表示
+//                    if(Util_TimeManager.IsEnableShowJoho())
+//                    {
+//                        PureAppli.dlgt_CreateJoho(
+//                            ky2.yomiKy.teban,
+//#if DEBUG
+//                alpha,
+//#endif
+//                            bestHyokaSu,
+//                            int.MinValue,//とりあえず、こうして表示を 「-」 にしておくぜ☆
+//                                            //Util_Tansaku.NekkoKaranoFukasa,
+//                            itibanFukaiNekkoKaranoFukasa_JohoNoTameni,
+//                            ky2,
+//                            hyoji
+//#if DEBUG
+//                ,"Fukasa"
+//#endif
+//                );
+//                        Util_TimeManager.DoneShowJoho();
+//                    }
+
+
+
+                    //// 最大深さを超えていない
+                    //HanpukuSinka.happaenoFukasa <= ComSettei.saidaiFukasa
+                    //&&
+
+
+                // 指し手が決まったとき
+//                PureAppli.dlgt_CreateJoho(
+//                    Conv_Taikyokusya.Hanten(ky.yomiKy.teban),// DoSasite の後なので、相手の手番に進んでいるので、戻すぜ☆（＾～＾）
+//#if DEBUG
+//                    Conv_HyokaSu.Hyokati_Rei,// ここでアルファ無いんで
+//#endif
+//                    bestHyokaSu,
+//                    int.MinValue,//とりあえず、こうして表示を 「-」 にしておくぜ☆
+//                    itibanFukaiNekkoKaranoFukasa_JohoNoTameni,
+//                    ky,
+//                    hyoji
+//#if DEBUG
+//                    ,"fin"
+//#endif
+//                    );
+//                Util_TimeManager.DoneShowJoho();
+
+
+                //out_hyokasuToBack.Set(PureMemory.gky_hyokaSu);
+
+
+
+//            // 指し手が無かった場合の評価値を初期値として設定
+//            PureMemory.tnsk_bestHappaHyokaSu.Set(
+//                Conv_HyokaSu.Hyokati_Rei,
+//                Conv_Tumesu.Stalemate// 合法手が無ければ、詰められ☆
+//#if DEBUG
+//                , Conv_HyokaSu.Hyokati_Rei
+//                , Conv_HyokaSu.Hyokati_Rei
+//                , Conv_HyokaSu.Hyokati_Rei
+//                , HyokaRiyu.SaseruTeNasi1_Go// 合法手が無いとき☆
+//                ,""
+//#endif
+//                );
+

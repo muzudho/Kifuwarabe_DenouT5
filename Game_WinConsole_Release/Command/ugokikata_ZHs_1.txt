@@ -1,0 +1,169 @@
+set BanYokoHaba 9
+set BanTateHaba 9
+set TobikikiTukau true
+# ãÓÇÃìÆÇ´ï˚ÇçÏÇËíºÇµ
+updaterule
+
+# ÇTå‹ÇºÇ§
+ugokikata Z 0 ZHs 1
+
+ugokikata Z 1 ZHs 1
+
+ugokikata Z 2 ZHs 1
+
+ugokikata Z 3 ZHs 1
+
+ugokikata Z 4 ZHs 1
+
+ugokikata Z 5 ZHs 1
+
+ugokikata Z 6 ZHs 1
+
+ugokikata Z 7 ZHs 1
+
+ugokikata Z 8 ZHs 1
+
+ugokikata Z 9 ZHs 1
+
+ugokikata Z 10 ZHs 1
+
+ugokikata Z 11 ZHs 1
+
+ugokikata Z 12 ZHs 1
+
+ugokikata Z 13 ZHs 1
+
+ugokikata Z 14 ZHs 1
+
+ugokikata Z 15 ZHs 1
+
+ugokikata Z 16 ZHs 1
+
+ugokikata Z 17 ZHs 1
+
+ugokikata Z 18 ZHs 1
+
+ugokikata Z 19 ZHs 1
+
+ugokikata Z 20 ZHs 1
+
+ugokikata Z 21 ZHs 1
+
+ugokikata Z 22 ZHs 1
+
+ugokikata Z 23 ZHs 1
+
+ugokikata Z 24 ZHs 1
+
+ugokikata Z 25 ZHs 1
+
+ugokikata Z 26 ZHs 1
+
+ugokikata Z 27 ZHs 1
+
+ugokikata Z 28 ZHs 1
+
+ugokikata Z 29 ZHs 1
+
+ugokikata Z 30 ZHs 1
+
+ugokikata Z 31 ZHs 1
+
+ugokikata Z 32 ZHs 1
+
+ugokikata Z 33 ZHs 1
+
+ugokikata Z 34 ZHs 1
+
+ugokikata Z 35 ZHs 1
+
+ugokikata Z 36 ZHs 1
+
+ugokikata Z 37 ZHs 1
+
+ugokikata Z 38 ZHs 1
+
+ugokikata Z 39 ZHs 1
+
+ugokikata Z 40 ZHs 1
+
+ugokikata Z 41 ZHs 1
+
+ugokikata Z 42 ZHs 1
+
+ugokikata Z 43 ZHs 1
+
+ugokikata Z 44 ZHs 1
+
+ugokikata Z 45 ZHs 1
+
+ugokikata Z 46 ZHs 1
+
+ugokikata Z 47 ZHs 1
+
+ugokikata Z 48 ZHs 1
+
+ugokikata Z 49 ZHs 1
+
+ugokikata Z 50 ZHs 1
+
+ugokikata Z 51 ZHs 1
+
+ugokikata Z 52 ZHs 1
+
+ugokikata Z 53 ZHs 1
+
+ugokikata Z 54 ZHs 1
+
+ugokikata Z 55 ZHs 1
+
+ugokikata Z 56 ZHs 1
+
+ugokikata Z 57 ZHs 1
+
+ugokikata Z 58 ZHs 1
+
+ugokikata Z 59 ZHs 1
+
+ugokikata Z 60 ZHs 1
+
+ugokikata Z 61 ZHs 1
+
+ugokikata Z 62 ZHs 1
+
+ugokikata Z 63 ZHs 1
+
+ugokikata Z 64 ZHs 1
+
+ugokikata Z 65 ZHs 1
+
+ugokikata Z 66 ZHs 1
+
+ugokikata Z 67 ZHs 1
+
+ugokikata Z 68 ZHs 1
+
+ugokikata Z 69 ZHs 1
+
+ugokikata Z 70 ZHs 1
+
+ugokikata Z 71 ZHs 1
+
+ugokikata Z 72 ZHs 1
+
+ugokikata Z 73 ZHs 1
+
+ugokikata Z 74 ZHs 1
+
+ugokikata Z 75 ZHs 1
+
+ugokikata Z 76 ZHs 1
+
+ugokikata Z 77 ZHs 1
+
+ugokikata Z 78 ZHs 1
+
+ugokikata Z 79 ZHs 1
+
+ugokikata Z 80 ZHs 1
+

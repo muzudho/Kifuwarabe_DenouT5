@@ -1,0 +1,1589 @@
+    /// 
+    /// 千日手の判定にも利用
+
+        /// <summary>
+        /// 負けてるときの千日手受け入れ☆
+        /// </summary>
+        Friend_MaketeruTokinoSennititeUkeire,
+        /// <summary>
+        /// 勝ってるときの千日手拒否☆
+        /// </summary>
+        Friend_KatteruTokinoSennititeKyohi,
+        /// <summary>
+        /// 負けてるときの千日手渡し☆
+        /// </summary>
+        Opponent_MaketeruTokinoSennititeWatasi,
+        /// <summary>
+        /// 勝ってるときの千日手渡さず☆
+        /// </summary>
+        Opponent_KatteruTokinoSennititeWatasazu,
+
+
+
+
+        /// <summary>
+        /// 同一局面が今、何回目かをカウント
+        /// </summary>
+        /// <returns></returns>
+        public static int CountSennitite()
+        {
+            return PureAppli.genkyokumen.yomiGky.yomiKonoteme.GetSennititeCount();
+        }
+
+
+
+                sb.AppendLine("（６）同一局面が今何回目か");
+                sb.AppendLine(Shogi34.CountSennitite().ToString());
+
+
+
+                    case TaikyokuKekka.Sennitite:
+                        {
+                            hyoji.AppendLine("まあ、良しとするかだぜ☆（＾＿＾）");
+                        }
+                        break;
+
+
+
+
+            // 1行目
+            {
+                // 千日手
+                int sennitite = yomiGky.yomiKonoteme.GetSennititeCount();
+                if (PureSettei.SENNITITE_COUNT == sennitite)
+                {
+                    SpkTaikyokusya.AppendSetumeiName(Conv_Taikyokusya.Hanten(yomiKy.teban), hyoji);
+                    hyoji.AppendLine("の着手にて　千日手");
+                }
+                else if (1 < sennitite)
+                {
+                    hyoji.Append("同一局面反復 ");
+                    hyoji.Append(sennitite.ToString());
+                    hyoji.AppendLine(" 回目");
+                }
+            }
+
+
+
+
+#if DEBUG
+using kifuwarabe_shogithink.pure;
+using kifuwarabe_shogithink.pure.com;
+using kifuwarabe_shogithink.pure.genkyoku;
+using kifuwarabe_shogithink.pure.ky;
+using kifuwarabe_shogithink.pure.ky.bb;
+using kifuwarabe_shogithink.pure.listen.ky;
+using kifuwarabe_shogithink.pure.logger;
+using kifuwarabe_shogiwin.consolegame.console;
+using kifuwarabe_shogiwin.consolegame.console.command;
+using kifuwarabe_shogiwin.consolegame.machine;
+using System;
+using kifuwarabe_shogithink.pure.control;
+#else
+using kifuwarabe_shogithink.pure.control;
+using kifuwarabe_shogithink.pure;
+using kifuwarabe_shogithink.pure.com;
+using kifuwarabe_shogithink.pure.genkyoku;
+using kifuwarabe_shogithink.pure.ky;
+using kifuwarabe_shogithink.pure.listen.ky;
+using kifuwarabe_shogithink.pure.logger;
+using kifuwarabe_shogiwin.consolegame.console;
+using kifuwarabe_shogiwin.consolegame.console.command;
+using kifuwarabe_shogiwin.consolegame.machine;
+using System;
+#endif
+
+namespace kifuwarabe_shogiwin.consolegame.tantai_test
+{
+    /// <summary>
+    /// 単体テストだぜ☆（＾▽＾）
+    /// </summary>
+    public abstract class Util_TantaiTest
+    {
+        static void ClearGky(Genkyoku gky)
+        {
+            gky.Tukurinaosi_ClearKyokumen();
+        }
+
+        /// <summary>
+        /// 千日手のテストだぜ☆（＾▽＾）
+        /// 
+        /// 失敗したものだけを出力するという仕掛けがあるぜ☆（*＾～＾*）
+        /// </summary>
+        public static bool TryFail_SennitiTe(Genkyoku gky, IHyojiMojiretu hyoji1)
+        {
+            bool isSfen = PureSettei.usi;
+            Util_Machine.Flush(hyoji1);// 溜まっているログがあれば、吐き出させておくぜ☆（＾～＾）
+
+            CommandMode mode = CommandMode.NigenYoConsoleKaihatu;
+            IHyojiMojiretu sippaiZenbu = new MojiretuImpl();
+            bool seikou = true;//成功☆
+
+            // 準備
+            long motonoSikoJikan = ComSettei.sikoJikan;// PCが重かったりして、1秒の思考時間じゃ足りないこともある☆？？（＾▽＾）
+            int motonoSikoJikanRandom = ComSettei.sikoJikanRandom;
+            ComSettei.sikoJikan = 5000; // 5秒もあれば足りるだろ☆（＾～＾）
+            ComSettei.sikoJikanRandom = 0;
+            int motonoJohoJikan = ComSettei.johoJikan;// 読み筋は全部出してしまおうぜ☆（＾▽＾）
+            ComSettei.johoJikan = 0;
+
+            #region 千日手のテスト☆
+            // 千日手を判定するテストだぜ☆　きりんを上下しようぜ☆ｗｗｗｗ（＾▽＾）
+            {
+                #region （０１） 対局者１が千日手を認識するかのテストだぜ☆
+                //if(false)
+                {
+                    IHyojiMojiretu kakusi1 = new MojiretuImpl();
+                    kakusi1.AppendLine("# （０１） 対局者１が千日手を認識するかのテストだぜ☆");
+                    int fail = 0;
+                    if(GenkyokuOpe.TryFail_DoHirate_34Shogi(gky, isSfen
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_DoHirate_34Shogi"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    int oldSaidaiFukasa = ComSettei.saidaiFukasa;
+                    ComSettei.saidaiFukasa = 1; // ログが出過ぎないように1手読みにするぜ☆
+                    int count;
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1); count = gky.yomiGky.yomiKonoteme.GetSennititeCount(); if (PureSettei.SENNITITE_COUNT == count) { fail = 1; goto gt_EndUnittestSennitite1a; }//1回目
+                    CommandD.TryFail_Do(isSfen, "do a1a2", gky, mode, kakusi1); count = gky.yomiGky.yomiKonoteme.GetSennititeCount(); if (PureSettei.SENNITITE_COUNT == count) { fail = 2; goto gt_EndUnittestSennitite1a; }
+                    CommandD.TryFail_Do(isSfen, "do c3c4", gky, mode, kakusi1); count = gky.yomiGky.yomiKonoteme.GetSennititeCount(); if (PureSettei.SENNITITE_COUNT == count) { fail = 3; goto gt_EndUnittestSennitite1a; }
+                    CommandD.TryFail_Do(isSfen, "do a2a1", gky, mode, kakusi1); count = gky.yomiGky.yomiKonoteme.GetSennititeCount(); if (PureSettei.SENNITITE_COUNT == count) { fail = 4; goto gt_EndUnittestSennitite1a; }
+
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1); count = gky.yomiGky.yomiKonoteme.GetSennititeCount(); if (PureSettei.SENNITITE_COUNT == count) { fail = 5; goto gt_EndUnittestSennitite1a; }//2回目
+                    CommandD.TryFail_Do(isSfen, "do a1a2", gky, mode, kakusi1); count = gky.yomiGky.yomiKonoteme.GetSennititeCount(); if (PureSettei.SENNITITE_COUNT == count) { fail = 6; goto gt_EndUnittestSennitite1a; }
+                    CommandD.TryFail_Do(isSfen, "do c3c4", gky, mode, kakusi1); count = gky.yomiGky.yomiKonoteme.GetSennititeCount(); if (PureSettei.SENNITITE_COUNT == count) { fail = 7; goto gt_EndUnittestSennitite1a; }
+                    CommandD.TryFail_Do(isSfen, "do a2a1", gky, mode, kakusi1); count = gky.yomiGky.yomiKonoteme.GetSennititeCount(); if (PureSettei.SENNITITE_COUNT == count) { fail = 8; goto gt_EndUnittestSennitite1a; }
+
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1); count = gky.yomiGky.yomiKonoteme.GetSennititeCount(); if (PureSettei.SENNITITE_COUNT != count) { fail = 9; goto gt_EndUnittestSennitite1a; }//3回目 千日手☆（＾▽＾）
+
+                    gt_EndUnittestSennitite1a:
+                    ComSettei.saidaiFukasa = oldSaidaiFukasa;//設定を元に戻しておくぜ☆
+                    if (0 != fail)
+                    {
+                        if (seikou)
+                        {
+                            sippaiZenbu.Append(kakusi1.ToContents());
+                        }
+                        seikou = false;
+                        sippaiZenbu.AppendLine("# 失敗（０１）：　対局者１に、千日手が見えなかったぜ☆（／＿＼） fail=[" + fail + "] count=[" + count + "]");
+                        //goto gt_EndUnitTest;
+                    }
+                }
+#endregion
+#region （０２） 対局者２が千日手を認識するかのテストだぜ☆
+                //if (false)
+                {
+                    IHyojiMojiretu kakusi1 = new MojiretuImpl();
+                    kakusi1.AppendLine("# （０２） 対局者２が千日手を認識するかのテストだぜ☆");
+                    int fail = 0;
+
+                    ClearGky(gky);
+                    if (LisKyokumen.TryFail_AddBanjo(gky,
+                        "　ラゾ" +//キは持ち駒に☆
+                        "　ヒ　" +
+                        "　ひ　" +
+                        "ぞらき"
+#if DEBUG
+                        , isSfen
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_SetBanjo"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    gky.ky.motigomaItiran.Clear();
+                    if (!gky.ky.motigomaItiran.Try_Set(Motigoma.k, 1
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_Set"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    //{ 0, 0, 0, 0, 1, 0 }
+                    Util_Control.UpdateRule(
+                        gky.ky
+#if DEBUG
+                        ,"sennitite(1)"
+#endif
+                        );
+                    gky.Tekiyo(
+#if DEBUG
+                        hyoji1
+                        , "sennitite(1)"
+#endif
+                        );
+                    int oldSaidaiFukasa = ComSettei.saidaiFukasa;
+                    ComSettei.saidaiFukasa = 1; // ログが出過ぎないように1手読みにするぜ☆
+                    int count;
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1); count = gky.yomiGky.yomiKonoteme.GetSennititeCount(); if (PureSettei.SENNITITE_COUNT == count) { fail = 1; goto gt_EndUnittestSennitite1b; }// 同一局面から外れた手
+
+                    CommandD.TryFail_Do(isSfen, "do K*a2", gky, mode, kakusi1); count = gky.yomiGky.yomiKonoteme.GetSennititeCount(); if (PureSettei.SENNITITE_COUNT == count) { fail = 2; goto gt_EndUnittestSennitite1b; }// 1回目（きりん打）
+                    CommandD.TryFail_Do(isSfen, "do c3c4", gky, mode, kakusi1); count = gky.yomiGky.yomiKonoteme.GetSennititeCount(); if (PureSettei.SENNITITE_COUNT == count) { fail = 3; goto gt_EndUnittestSennitite1b; }
+                    CommandD.TryFail_Do(isSfen, "do a2a1", gky, mode, kakusi1); count = gky.yomiGky.yomiKonoteme.GetSennititeCount(); if (PureSettei.SENNITITE_COUNT == count) { fail = 4; goto gt_EndUnittestSennitite1b; }
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1); count = gky.yomiGky.yomiKonoteme.GetSennititeCount(); if (PureSettei.SENNITITE_COUNT == count) { fail = 5; goto gt_EndUnittestSennitite1b; }
+
+                    CommandD.TryFail_Do(isSfen, "do a1a2", gky, mode, kakusi1); count = gky.yomiGky.yomiKonoteme.GetSennititeCount(); if (PureSettei.SENNITITE_COUNT == count) { fail = 6; goto gt_EndUnittestSennitite1b; }// 2回目（きりん指し）
+                    CommandD.TryFail_Do(isSfen, "do c3c4", gky, mode, kakusi1); count = gky.yomiGky.yomiKonoteme.GetSennititeCount(); if (PureSettei.SENNITITE_COUNT == count) { fail = 7; goto gt_EndUnittestSennitite1b; }
+                    CommandD.TryFail_Do(isSfen, "do a2a1", gky, mode, kakusi1); count = gky.yomiGky.yomiKonoteme.GetSennititeCount(); if (PureSettei.SENNITITE_COUNT == count) { fail = 8; goto gt_EndUnittestSennitite1b; }
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1); count = gky.yomiGky.yomiKonoteme.GetSennititeCount(); if (PureSettei.SENNITITE_COUNT == count) { fail = 9; goto gt_EndUnittestSennitite1b; }
+
+                    CommandD.TryFail_Do(isSfen, "do a1a2", gky, mode, kakusi1); count = gky.yomiGky.yomiKonoteme.GetSennititeCount(); if (PureSettei.SENNITITE_COUNT != count) { fail = 10; goto gt_EndUnittestSennitite1b; }//3回目 千日手☆（＾▽＾）
+
+                    gt_EndUnittestSennitite1b:
+                    ComSettei.saidaiFukasa = oldSaidaiFukasa;//設定を元に戻しておくぜ☆
+                    if (0 != fail)
+                    {
+                        if (seikou)
+                        {
+                            sippaiZenbu.Append(kakusi1.ToContents());
+                        }
+                        seikou = false;
+                        sippaiZenbu.AppendLine("# 失敗（０２）：　対局者２に、千日手が見えなかったぜ☆（／＿＼） fail=[" + fail + "] count=[" + count + "]");
+                        //goto gt_EndUnitTest;
+                    }
+                }
+#endregion
+#region （０３）対局者１が、勝っているときは　千日手を回避するかのテストだぜ☆
+                //if (false)
+                {
+                    IHyojiMojiretu kakusi1 = new MojiretuImpl();
+                    kakusi1.AppendLine("# （０３）対局者１が、勝っているときは　千日手を回避するかのテストだぜ☆");
+                    bool fail = false;
+
+                    ClearGky(gky);
+                    if (LisKyokumen.TryFail_AddBanjo(gky,
+                        "キラ　" + // ゾは対局者１の持ち駒に☆
+                        "　　　" + // ヒは対局者１の持ち駒に☆
+                        "　ひ　" +
+                        "ぞらき"
+#if DEBUG
+                        , isSfen
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_SetBanjo"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    gky.ky.motigomaItiran.Clear();
+                    if (!gky.ky.motigomaItiran.Try_Set(Motigoma.Z, 1
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_Set"
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                            );
+                    }
+                    if (!gky.ky.motigomaItiran.Try_Set(Motigoma.H, 1
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_Set"
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                            );
+                    }
+                    // = new int[] { 1, 0, 1, 0, 0, 0 };
+                    Util_Control.UpdateRule(
+                        gky.ky
+#if DEBUG
+                        ,"sennitite(2)"
+#endif
+                        );
+                    gky.Tekiyo(
+#if DEBUG
+                        hyoji1
+                        , "sennitite(2)"
+#endif
+                        );
+                    int oldSaidaiFukasa = ComSettei.saidaiFukasa;
+                    ComSettei.saidaiFukasa = 1; // ログが出過ぎないように1手読みにするぜ☆
+                    kakusi1.AppendLine("# 1回目");
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do a1a2", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do c3c4", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do a2a1", gky, mode, kakusi1);
+
+                    kakusi1.AppendLine("# 2回目");
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do a1a2", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do c3c4", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do a2a1", gky, mode, kakusi1);
+
+                    kakusi1.AppendLine("# 次に千日手を回避するかだぜ☆（＾▽＾）");
+                    if(CommandG.TryFail_Go(isSfen, mode, gky, kakusi1))
+                    {
+                        return Pure.FailTrue("TryFail_Go"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    int count = gky.yomiGky.yomiKonoteme.GetSennititeCount();
+                    if (PureSettei.SENNITITE_COUNT == count) { fail = true; goto gt_EndUnittestSennitite2a; }
+
+                    gt_EndUnittestSennitite2a:
+                    ComSettei.saidaiFukasa = oldSaidaiFukasa;//設定を元に戻しておくぜ☆
+                    if (fail)
+                    {
+                        if (seikou)
+                        {
+                            sippaiZenbu.Append(kakusi1.ToContents());
+                        }
+                        seikou = false;
+                        sippaiZenbu.AppendLine("# 失敗（０３）：　対局者１が、勝っているときに　千日手を回避しなかったぜ☆（／＿＼）");
+                        //goto gt_EndUnitTest;
+                    }
+                }
+#endregion
+#region （０４）対局者２が、勝っているときは　千日手を回避するかのテストだぜ☆
+                //if (false)
+                {
+                    IHyojiMojiretu kakusi1 = new MojiretuImpl();
+                    kakusi1.AppendLine("# （０４）対局者２が、勝っているときは　千日手を回避するかのテストだぜ☆");
+                    bool fail = false;
+
+                    ClearGky(gky);
+                    if (LisKyokumen.TryFail_AddBanjo(gky,
+                        "　ラゾ" +//キ　は対局者２の持ち駒に☆
+                        "　ヒ　" +
+                        "　　　" +//ひ　は対局者２の持ち駒に☆
+                        "　らき"//ぞ　は対局者２の持ち駒に☆
+#if DEBUG
+                        , isSfen
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_SetBanjo"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    gky.ky.motigomaItiran.Clear();
+                    if (!gky.ky.motigomaItiran.Try_Set(Motigoma.z, 1
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_Set"
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                            );
+                    }
+                    if (!gky.ky.motigomaItiran.Try_Set(Motigoma.k, 1
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_Set"
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                            );
+                    }
+                    if (!gky.ky.motigomaItiran.Try_Set(Motigoma.h, 1
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_Set"
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                            );
+                    }
+                    // = new int[] { 0, 0, 0, 1, 1, 1 };
+                    Util_Control.UpdateRule(
+                        gky.ky
+#if DEBUG
+                        ,"sennitite(3)"
+#endif
+                        );
+                    gky.Tekiyo(
+#if DEBUG
+                        hyoji1
+                        , "sennitite(3)"
+#endif
+                        );
+                    int oldSaidaiFukasa = ComSettei.saidaiFukasa;
+                    ComSettei.saidaiFukasa = 1; // ログが出過ぎないように1手読みにするぜ☆
+
+                    kakusi1.AppendLine("# 同一局面から外れた手");
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1);
+
+                    kakusi1.AppendLine("# 1回目（きりん打）");
+                    CommandD.TryFail_Do(isSfen, "do K*a2", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do c3c4", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do a2a1", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1);
+
+                    kakusi1.AppendLine("# 2回目（きりん指し）");
+                    CommandD.TryFail_Do(isSfen, "do a1a2", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do c3c4", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do a2a1", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1);
+
+                    kakusi1.AppendLine("# 次に千日手を回避するか、指させるぜ☆（＾▽＾）ｗｗ");
+                    if(CommandG.TryFail_Go(isSfen, mode, gky, kakusi1))
+                    {
+                        return Pure.FailTrue("kakusi1"
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                            );
+                    }
+                    int count = gky.yomiGky.yomiKonoteme.GetSennititeCount();
+                    if (PureSettei.SENNITITE_COUNT == count) { fail = true; goto gt_EndUnittestSennitite2b; }
+
+                    gt_EndUnittestSennitite2b:
+                    ComSettei.saidaiFukasa = oldSaidaiFukasa;//設定を元に戻しておくぜ☆
+                    if (fail)
+                    {
+                        if (seikou)
+                        {
+                            sippaiZenbu.Append(kakusi1.ToContents());
+                        }
+                        seikou = false;
+                        sippaiZenbu.AppendLine("# 失敗（０４）：　対局者２が、勝っているときに　千日手を回避しなかったぜ☆（／＿＼）");
+                        //goto gt_EndUnitTest;
+                    }
+                }
+#endregion
+#region （０５）対局者１が、勝っているときは　千日手の権利を渡さないテストだぜ☆
+                //if (false)
+                {
+                    IHyojiMojiretu kakusi1 = new MojiretuImpl();
+                    kakusi1.AppendLine("# （０５）対局者１が、勝っているときは　千日手の権利を渡さないテストだぜ☆");
+                    bool fail = false;
+
+                    ClearGky(gky);
+                    if (LisKyokumen.TryFail_AddBanjo(gky,
+                        "キラ　" + // ゾは対局者１の持ち駒に☆
+                        "　　　" + // ヒは対局者１の持ち駒に☆
+                        "　ひ　" +
+                        "ぞらき"
+#if DEBUG
+                        , isSfen
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_SetBanjo"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    gky.ky.motigomaItiran.Clear();
+                    if (!gky.ky.motigomaItiran.Try_Set(Motigoma.Z, 1
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_Set"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    if (!gky.ky.motigomaItiran.Try_Set(Motigoma.H, 1
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_Set"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    // = new int[] { 1, 0, 1, 0, 0, 0 };
+                    Util_Control.UpdateRule(
+                        gky.ky
+#if DEBUG
+                        ,"sennitite(4)"
+#endif
+                        );
+                    gky.Tekiyo(
+#if DEBUG
+                        hyoji1
+                        , "sennitite(4)"
+#endif
+                        );
+                    int oldSaidaiFukasa = ComSettei.saidaiFukasa;
+                    ComSettei.saidaiFukasa = 1; // ログが出過ぎないように1手読みにするぜ☆
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1); //1回目
+                    CommandD.TryFail_Do(isSfen, "do a1a2", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do c3c4", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do a2a1", gky, mode, kakusi1);
+
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1); //2回目
+                    CommandD.TryFail_Do(isSfen, "do a1a2", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do c3c4", gky, mode, kakusi1);
+
+                    // 次に千日手の権利を渡すのを回避するかだぜ☆（＾▽＾）
+                    if(CommandG.TryFail_Go(isSfen, mode, gky, kakusi1))
+                    {
+                        return Pure.FailTrue("TryFail_Go"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    int count = gky.yomiGky.yomiKonoteme.GetSennititeCount();
+                    if (PureSettei.SENNITITE_COUNT == count) { fail = true; goto gt_EndUnittestSennitite3a; }
+
+                    gt_EndUnittestSennitite3a:
+                    ComSettei.saidaiFukasa = oldSaidaiFukasa;//設定を元に戻しておくぜ☆
+                    if (fail)
+                    {
+                        if (seikou)
+                        {
+                            sippaiZenbu.Append(kakusi1.ToContents());
+                        }
+                        seikou = false;
+                        sippaiZenbu.AppendLine("# 失敗（０５）：　対局者１が、勝っているときに　千日手の権利を渡さないことをしなかったんだぜ☆（／＿＼）");
+                        //goto gt_EndUnitTest;
+                    }
+                }
+#endregion
+#region （０６）対局者２が、勝っているときは　千日手の権利を渡さないテストだぜ☆
+                //if (false)
+                {
+                    IHyojiMojiretu kakusi1 = new MojiretuImpl();
+                    kakusi1.AppendLine("# （０６）対局者２が、勝っているときは　千日手の権利を渡さないテストだぜ☆");
+                    bool fail = false;
+
+                    ClearGky(gky);
+                    if (LisKyokumen.TryFail_AddBanjo(gky,
+                        "　ラゾ" + // キ　は対局者２の持ち駒に☆
+                        "　ヒ　" +
+                        "　　　" + // ひ　は対局者２の持ち駒に☆
+                        "　らき" // ぞ　は対局者２の持ち駒に☆
+#if DEBUG
+                        , isSfen
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_SetBanjo"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    gky.ky.motigomaItiran.Clear();
+                    if (!gky.ky.motigomaItiran.Try_Set(Motigoma.z, 1
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_Set"
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                            );
+                    }
+                    if (!gky.ky.motigomaItiran.Try_Set(Motigoma.k, 1
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_Set"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    if (!gky.ky.motigomaItiran.Try_Set(Motigoma.h, 1
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_Set"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    // = new int[] { 0, 0, 0, 1, 1, 1 };
+                    Util_Control.UpdateRule(
+                        gky.ky
+#if DEBUG
+                        ,"sennitite(5)"
+#endif
+                        );
+                    gky.Tekiyo(
+#if DEBUG
+                        hyoji1
+                        , "sennitite(5)"
+#endif
+                        );
+                    int oldSaidaiFukasa = ComSettei.saidaiFukasa;
+                    ComSettei.saidaiFukasa = 1; // ログが出過ぎないように1手読みにするぜ☆
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1); // 同一局面から外れた手
+
+                    CommandD.TryFail_Do(isSfen, "do K*a2", gky, mode, kakusi1); // 1回目（きりん打）
+                    CommandD.TryFail_Do(isSfen, "do c3c4", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do a2a1", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1);
+
+                    CommandD.TryFail_Do(isSfen, "do a1a2", gky, mode, kakusi1); // 2回目（きりん指し）
+                    CommandD.TryFail_Do(isSfen, "do c3c4", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do a2a1", gky, mode, kakusi1);
+
+                    // 次に千日手の権利を渡すのを回避するかだぜ☆（＾▽＾）
+                    if(CommandG.TryFail_Go(isSfen, mode, gky, kakusi1))
+                    {
+                        return Pure.FailTrue("TryFail_Go"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    int count = gky.yomiGky.yomiKonoteme.GetSennititeCount();
+                    if (PureSettei.SENNITITE_COUNT == count) { fail = true; goto gt_EndUnittestSennitite3b; }
+
+                    gt_EndUnittestSennitite3b:
+                    ComSettei.saidaiFukasa = oldSaidaiFukasa;//設定を元に戻しておくぜ☆
+                    if (fail)
+                    {
+                        if (seikou)
+                        {
+                            sippaiZenbu.Append(kakusi1.ToContents());
+                        }
+                        seikou = false;
+                        sippaiZenbu.AppendLine("# 失敗（０６）：　対局者２が、勝っているときに　千日手の権利を渡さないことをしなかったんだぜ☆（／＿＼）");
+                        //goto gt_EndUnitTest;
+                    }
+                }
+#endregion
+#region （０７）対局者１が、負けているときは　千日手を受け入れるテストだぜ☆
+                //if (false)
+                {
+                    IHyojiMojiretu kakusi1 = new MojiretuImpl();
+                    kakusi1.AppendLine("# （０７）対局者１が、負けているときは　千日手を受け入れるテストだぜ☆");
+                    bool fail = false;
+
+                    ClearGky(gky);
+                    if (LisKyokumen.TryFail_AddBanjo(gky,
+                        "キラゾ" +
+                        "　ヒ　" +
+                        "　　　" + // ひ　は対局者２の持ち駒に☆
+                        "　らき" // ぞ　は対局者２の持ち駒に☆
+#if DEBUG
+                        , isSfen
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_SetBanjo"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    gky.ky.motigomaItiran.Clear();
+                    if (!gky.ky.motigomaItiran.Try_Set(Motigoma.z, 1
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        Util_Machine.Flush(hyoji1);
+                        throw new Exception(hyoji1.ToContents());
+                    }
+                    if (!gky.ky.motigomaItiran.Try_Set(Motigoma.h, 1
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_Set"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    // = new int[] { 0, 0, 0, 1, 0, 1 };
+                    Util_Control.UpdateRule(
+                        gky.ky
+#if DEBUG
+                        ,"sennitite(6)"
+#endif
+                        );
+                    gky.Tekiyo(
+#if DEBUG
+                        hyoji1
+                        , "sennitite(6)"
+#endif
+                        );
+                    int oldSaidaiFukasa = ComSettei.saidaiFukasa;
+                    ComSettei.saidaiFukasa = 1; // ログが出過ぎないように1手読みにするぜ☆
+
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1); //1回目
+                    CommandD.TryFail_Do(isSfen, "do a1a2", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do c3c4", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do a2a1", gky, mode, kakusi1);
+
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1); //2回目
+                    CommandD.TryFail_Do(isSfen, "do a1a2", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do c3c4", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do a2a1", gky, mode, kakusi1);
+
+                    // 次に千日手を受け入れるかだぜ☆（＾▽＾）
+                    if(CommandG.TryFail_Go(isSfen, mode, gky, kakusi1))
+                    {
+                        return Pure.FailTrue("TryFail_Go"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    ComSettei.saidaiFukasa = oldSaidaiFukasa;//設定を元に戻しておくぜ☆
+
+                    int count = gky.yomiGky.yomiKonoteme.GetSennititeCount();
+                    if (PureSettei.SENNITITE_COUNT != count) { fail = true; goto gt_EndUnittestSennitite4a; }
+
+                    gt_EndUnittestSennitite4a:
+                    if (fail)
+                    {
+                        if (seikou)
+                        {
+                            sippaiZenbu.Append(kakusi1.ToContents());
+                        }
+                        seikou = false;
+                        sippaiZenbu.AppendLine("# 失敗（０７）：　対局者１が、負けているときに　千日手を受け入れなかったんだぜ☆（／＿＼）");
+                        //goto gt_EndUnitTest;
+                    }
+                }
+#endregion
+#region （０８）対局者２が、負けているときは　千日手を受け入れるテストだぜ☆
+                //if (false)
+                {
+                    IHyojiMojiretu kakusi1 = new MojiretuImpl();
+                    kakusi1.AppendLine("# （０８）対局者２が、負けているときは　千日手を受け入れるテストだぜ☆");
+                    bool fail = false;
+                    ClearGky(gky);
+                    if (LisKyokumen.TryFail_AddBanjo(gky,
+                        "　ラ　" + // キ　は対局者２の持ち駒に☆　ゾ　は対局者１の持ち駒に☆
+                        "　　　" + // ヒ　は対局者１の持ち駒に☆
+                        "　ひ　" +
+                        "ぞらき"
+#if DEBUG
+                        , isSfen
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_SetBanjo"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    gky.ky.motigomaItiran.Clear();
+                    if (!gky.ky.motigomaItiran.Try_Set(Motigoma.Z, 1
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_Set"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    if (!gky.ky.motigomaItiran.Try_Set(Motigoma.H, 1
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_Set"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    if (!gky.ky.motigomaItiran.Try_Set(Motigoma.k, 1
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_Set"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    // = new int[] { 1, 0, 1, 0, 1, 0 };
+                    Util_Control.UpdateRule(
+                        gky.ky
+#if DEBUG
+                        ,"sennitite(7)"
+#endif
+                        );
+                    gky.Tekiyo(
+#if DEBUG
+                        hyoji1
+                        , "sennitite(7)"
+#endif
+                        );
+                    int oldSaidaiFukasa = ComSettei.saidaiFukasa;
+                    ComSettei.saidaiFukasa = 1; // ログが出過ぎないように1手読みにするぜ☆
+
+                    kakusi1.AppendLine("# 同一局面から外れた手");
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1);
+
+                    kakusi1.AppendLine("# 1回目（きりん打）");
+                    CommandD.TryFail_Do(isSfen, "do K*a2", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do c3c4", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do a2a1", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1);
+
+                    kakusi1.AppendLine("# 2回目（きりん指し）");
+                    CommandD.TryFail_Do(isSfen, "do a1a2", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do c3c4", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do a2a1", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1);
+
+                    kakusi1.AppendLine("# 次に　きりん　を上げて、千日手を受け入れるかだぜ☆（＾▽＾）");
+
+                    if(CommandS.TryFail_Sasite_cmd( "sasite seisei", gky, kakusi1))
+                    {
+                        return Pure.FailTrue("TryFail_Sasite_cmd"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+
+                    if (CommandG.TryFail_Go(isSfen, mode, gky, kakusi1))
+                    {
+                        return Pure.FailTrue("TryFail_Go"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    ComSettei.saidaiFukasa = oldSaidaiFukasa;//設定を元に戻しておくぜ☆
+
+                    int count = gky.yomiGky.yomiKonoteme.GetSennititeCount();
+                    if (PureSettei.SENNITITE_COUNT != count) { fail = true; goto gt_EndUnittestSennitite4b; }
+
+                    gt_EndUnittestSennitite4b:
+                    if (fail)
+                    {
+                        if (seikou)
+                        {
+                            sippaiZenbu.Append(kakusi1.ToContents());
+                        }
+                        seikou = false;
+                        sippaiZenbu.AppendLine("# 失敗（０８）：　対局者２が、負けているときに　千日手を受け入れなかったんだぜ☆（／＿＼）");
+                        //goto gt_EndUnitTest;
+                    }
+                }
+#endregion
+#region （０９）対局者２が、負けているときは　千日手の権利を相手に渡すテストだぜ☆
+                //if (false)
+                {
+                    IHyojiMojiretu kakusi1 = new MojiretuImpl();
+                    kakusi1.AppendLine("# （０９）対局者２が、負けているときは　千日手の権利を相手に渡すテストだぜ☆");
+                    bool fail = false;
+
+                    ClearGky(gky);
+                    if (LisKyokumen.TryFail_AddBanjo(gky,
+                        "キラ　" + // ゾは対局者１の持ち駒に☆
+                        "　　　" + // ヒは対局者１の持ち駒に☆
+                        "　ひ　" +
+                        "ぞらき"
+#if DEBUG
+                        , isSfen
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_SetBanjo"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    gky.ky.motigomaItiran.Clear();
+                    if (!gky.ky.motigomaItiran.Try_Set(Motigoma.Z, 1
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_Set"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    if (!gky.ky.motigomaItiran.Try_Set(Motigoma.H, 1
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_Set"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    // = new int[] { 1, 0, 1, 0, 0, 0 };
+                    Util_Control.UpdateRule(
+                        gky.ky
+#if DEBUG
+                        ,"sennitite(8)"
+#endif
+                        );
+                    gky.Tekiyo(
+#if DEBUG
+                        hyoji1
+                        , "sennitite(8)"
+#endif
+                        );
+                    int oldSaidaiFukasa = ComSettei.saidaiFukasa;
+                    ComSettei.saidaiFukasa = 2; // 相手に千日手の手番を回したいので、2手読み以上にする必要があるぜ☆（＾▽＾）
+
+                    kakusi1.AppendLine("# 1回目");
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do a1a2", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do c3c4", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do a2a1", gky, mode, kakusi1);
+
+                    kakusi1.AppendLine("# 2回目");
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do a1a2", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do c3c4", gky, mode, kakusi1);
+
+                    kakusi1.AppendLine("# ↓次の手に注目だぜ☆　対局者２は　きりん　を引いて、千日手の権利を相手に渡すかだぜ☆（＾▽＾）");
+                    // do a2a1 とやることを期待☆
+                    if (CommandG.TryFail_Go(isSfen, mode, gky, kakusi1))
+                    {
+                        return Pure.FailTrue("TryFail_Go"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    ComSettei.saidaiFukasa = oldSaidaiFukasa;//設定を元に戻しておくぜ☆
+
+                    Genkyoku gky2 = new Genkyoku();
+
+                    ClearGky(gky2);
+                    if (LisKyokumen.TryFail_AddBanjo(gky2,
+                        "キラ　" +
+                        "　　　" +
+                        "　ひ　" +
+                        "ぞらき"
+#if DEBUG
+                        , isSfen
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_SetBanjo"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    Util_Control.UpdateRule(
+                        gky.ky
+#if DEBUG
+                        ,"sennitite(9)"
+#endif
+                        );
+                    gky.Tekiyo(
+#if DEBUG
+                        (IDebugMojiretu)hyoji1
+                        , "sennitite(9)"
+#endif
+                    );
+
+                    int[] motigomas1 = { 1, 0, 1, 0, 0, 0, };
+                    if (!gky.Equals_ForDevelop(gky2.ky.shogiban, motigomas1))
+                    {
+                        fail = true;
+                    }
+
+                    if (fail)
+                    {
+                        if (seikou)
+                        {
+                            sippaiZenbu.Append(kakusi1.ToContents());
+                        }
+                        seikou = false;
+                        sippaiZenbu.AppendLine("# 失敗（０９）：　対局者２が、負けているときに　千日手の権利を相手に渡さなかったんだぜ☆（／＿＼）");
+                        //goto gt_EndUnitTest;
+                    }
+                }
+#endregion
+#region （１０）対局者１が、負けているときは　千日手の権利を相手に渡すテストだぜ☆
+                //if (false)
+                {
+                    IHyojiMojiretu kakusi1 = new MojiretuImpl();
+                    kakusi1.AppendLine("# （１０）対局者１が、負けているときは　千日手の権利を相手に渡すテストだぜ☆");
+                    bool fail = false;
+
+                    ClearGky(gky);
+                    if (LisKyokumen.TryFail_AddBanjo(gky,
+                        "　ラゾ" + // キ　は対局者２の持ち駒に☆
+                        "　ヒ　" +
+                        "　　　" + // ひ　は対局者２の持ち駒に☆
+                        "　らき" // ぞ　は対局者２の持ち駒に☆
+#if DEBUG
+                        , isSfen
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_SetBanjo"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    gky.ky.motigomaItiran.Clear();
+                    if (!gky.ky.motigomaItiran.Try_Set(Motigoma.z, 1
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_Set"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    if (!gky.ky.motigomaItiran.Try_Set(Motigoma.k, 1
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_Set"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    if (!gky.ky.motigomaItiran.Try_Set(Motigoma.h, 1
+#if DEBUG
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_Set"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    // = new int[] { 0, 0, 0, 1, 1, 1 };
+                    Util_Control.UpdateRule(
+                        gky.ky
+#if DEBUG
+                        ,"sennitite(10)"
+#endif
+                        );
+                    gky.Tekiyo(
+#if DEBUG
+                        hyoji1
+                        , "sennitite(10)"
+#endif
+                        );
+                    int oldSaidaiFukasa = ComSettei.saidaiFukasa;
+                    ComSettei.saidaiFukasa = 2; // 相手に千日手の手番を回したいので、2手読み以上にする必要があるぜ☆（＾▽＾）
+
+                    kakusi1.AppendLine("# 同一局面から外れた手");
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1);
+
+                    kakusi1.AppendLine("# 1回目（きりん打）");
+                    CommandD.TryFail_Do(isSfen, "do K*a2", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do c3c4", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do a2a1", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do c4c3", gky, mode, kakusi1);
+
+                    kakusi1.AppendLine("# 2回目（きりん指し）");
+                    CommandD.TryFail_Do(isSfen, "do a1a2", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do c3c4", gky, mode, kakusi1);
+                    CommandD.TryFail_Do(isSfen, "do a2a1", gky, mode, kakusi1);
+
+                    kakusi1.AppendLine("# ↓次の手に注目だぜ☆　対局者１は　きりん　を上げて、千日手の権利を相手に渡すかだぜ☆（＾▽＾）");
+                    // do c4c3 とやることを期待☆
+                    if(CommandG.TryFail_Go(isSfen, mode, gky, kakusi1))
+                    {
+                        return Pure.FailTrue("TryFail_Go"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+                    ComSettei.saidaiFukasa = oldSaidaiFukasa;//設定を元に戻しておくぜ☆
+
+                    Genkyoku gky2 = new Genkyoku();
+                    ClearGky(gky2);
+                    if (LisKyokumen.TryFail_AddBanjo(gky2,
+                        "キラゾ" +
+                        "　ヒ　" +
+                        "　　き" +
+                        "　ら　"
+#if DEBUG
+                        , isSfen
+                        , (IDebugMojiretu)hyoji1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("Try_SetBanjo"
+#if DEBUG
+                        , (IDebugMojiretu)kakusi1
+#endif
+                            );
+                    }
+
+                    Util_Control.UpdateRule(
+                        gky.ky
+#if DEBUG
+                        ,"sennitite(11)"
+#endif
+                        );
+                    gky.Tekiyo(
+#if DEBUG
+                        (IDebugMojiretu)hyoji1
+                        , "sennitite(11)"
+#endif
+                    );
+
+                    int[] motigomaItiran1 = { 0, 0, 0, 1, 0, 1, };
+                    if (!gky.Equals_ForDevelop(gky2.ky.shogiban, motigomaItiran1))
+                    {
+                        fail = true;
+                    }
+
+                    if (fail)
+                    {
+                        if (seikou)
+                        {
+                            sippaiZenbu.Append(kakusi1.ToContents());
+                        }
+                        seikou = false;
+                        sippaiZenbu.AppendLine("# 失敗（１０）：　対局者１が、負けているときに、千日手の権利を相手に渡さなかったんだぜ☆（／＿＼）");
+                        //goto gt_EndUnitTest;
+                    }
+                }
+#endregion
+            }
+#endregion
+            //gt_EndUnitTest:
+            //;
+
+            // 元に戻すぜ☆（＾▽＾）
+            ComSettei.sikoJikan = motonoSikoJikan;
+            ComSettei.sikoJikanRandom = motonoSikoJikanRandom;
+            ComSettei.johoJikan = motonoJohoJikan;
+
+            if (seikou)
+            {
+                hyoji1.AppendLine("ユニットテストの結果は、オール・オッケーだぜ☆（＾▽＾）");
+            }
+            else
+            {
+                hyoji1.Append(sippaiZenbu.ToContents()); // 失敗した過程のログ☆
+            }
+            Util_Machine.Flush(hyoji1);
+
+            return Pure.SUCCESSFUL_FALSE;
+        }
+    }
+}
+
+
+
+
+
+#region SennititeKaihi
+            else if (Util_String.MatchAndNext("SennititeKaihi ", line, ref caret))
+            {
+                // うしろに続く文字は☆（＾▽＾）
+                string rest = line.Substring(caret);
+
+                if (bool.TryParse(rest, out bool val))
+                {
+                    ComSettei.sennititeKaihi = val;
+                }
+            }
+#endregion
+
+
+
+
+
+
+
+        //    // 千日手用、同形反復の回数☆（[24]文字目）１桁という前提だぜ☆（＾▽＾）
+        //    syuturyoku.Append(this.Konoteme.GetSennititeCount().ToString());
+
+
+            sennititeHash = 0;
+        /// <summary>
+        /// 千日手の判定のために局面を覚えておくぜ☆（＾▽＾）
+        /// </summary>
+        public ulong sennititeHash { get; set; }
+
+
+
+
+
+            /// <summary>
+            /// 千日手の判定だぜ☆（＾～＾）反復した回数を返すぜ☆
+            /// 千日手になったら数えるのを止めるぜ☆
+            /// </summary>
+            /// <returns></returns>
+            public int GetSennititeCount()
+            {
+                ulong expected = hontai_.sennititeHash;
+                int count = 1;// 同じ局面が出た回数☆
+
+                for (Nanteme nanteme = hontai_.ittemae; null != nanteme; nanteme = nanteme.ittemae)
+                {
+                    if (nanteme.sennititeHash == expected)
+                    {
+                        count++;
+                        if (PureSettei.SENNITITE_COUNT <= count)// 千日手だぜ☆（＾～＾）数えるのを止めるぜ☆
+                        {
+                            break;
+                        }
+                    }
+                }
+                return count;
+            }
+
+
+            /// <summary>
+            /// 千日手判定だぜ☆（＾▽＾）
+            /// </summary>
+            /// <returns></returns>
+            public bool IsSennitite()
+            {
+                return PureSettei.SENNITITE_COUNT <= GetSennititeCount();
+            }
+
+
+
+
+#region 千日手回避☆
+                //────────────────────────────────────────
+                // 千日手回避
+                //────────────────────────────────────────
+                if (PureSettei.SENNITITE_COUNT == gky.yomiGky.yomiKonoteme.GetSennititeCount())
+                {
+#if DEBUG
+                    // 千日手が回ってきたとき☆
+                    HyokaRiyu riyu = HyokaRiyu.Yososu;//千日手を選ぶなら、理由を付けろだぜ☆（＾▽＾）
+#endif
+
+
+                    bool tansakusyaTyakusyu = Util_Tansaku.kaisiTaikyokusya == Conv_Taikyokusya.Hanten(gky.yomiKy.teban); // 手番はもう相手に回っているので、反転させて、千日手に着手したものかどうか調べるぜ☆
+                    int tyakusyuHyokati = 0;//TODO: 駒割り削除 (Tumesu)(-(int)sennititeHyokati);
+
+#if DEBUG
+#else
+                    HyokaRiyu riyu = HyokaRiyu.Yososu;
+#endif
+                    if (ComSettei.sennititeKaihi)
+                    {
+                        //千日手は選ばないぜ☆（＾▽＾）
+                    }
+                    else if (tansakusyaTyakusyu)// 千日手の着手が、探索者のとき☆
+                    {
+                        if (Conv_HyokaSu.Hyokati_SeiNoSu_SennititeDakai <= tyakusyuHyokati)
+                        {
+                            // 着手時に　勝ってるときは、自分は千日手を選ばないぜ☆（＾▽＾）
+                            riyu = HyokaRiyu.Friend_KatteruTokinoSennititeKyohi;
+                        }
+                        else
+                        {
+                            // 着手時に　打開する気がないときは、最優先的に、千日手を受け入れようぜ☆（＾▽＾）ｗｗ
+                            riyu = HyokaRiyu.Friend_MaketeruTokinoSennititeUkeire;
+                        }
+                    }
+                    else// 千日手の着手が回ってくるのが、探索者の反対側のとき☆
+                    {
+                        if (Conv_HyokaSu.Hyokati_SeiNoSu_SennititeDakai <= tyakusyuHyokati)
+                        {
+                            // 探索者と反対側の着手時に、探索者と反対側が勝っているときは、
+                            // 探索者は負けているぜ☆
+                            //
+                            // 向こうに千日手を打開（＝基本的に損する手）する権利を渡そうぜ☆
+                            riyu = HyokaRiyu.Opponent_MaketeruTokinoSennititeWatasi;
+                        }
+                        else
+                        {
+                            // 探索者と反対側の着手時に、探索者と反対側が　打開するほど勝っていないときは、
+                            // 千日手を選ぶかもしれない☆
+                            //
+                            // コンピューターはなるべく千日手を回避したいので、
+                            // 探索者と反対側には　千日手の権利を回さないようにしようぜ☆（＾▽＾）
+                            riyu = HyokaRiyu.Opponent_KatteruTokinoSennititeWatasazu;
+                        }
+                    }
+
+                    out_yomisujiToBack = new Yomisuji();
+                    Debug.Assert(Sasite.Toryo != eda_sasite);
+                    out_yomisujiToBack.Add(eda_sasite, eda_sasiteType);
+                    switch (riyu)
+                    {
+                        case HyokaRiyu.Friend_MaketeruTokinoSennititeUkeire:
+                            // 負けてるときは、最優先的に、千日手を受け入れようぜ☆（＾▽＾）ｗｗ
+                            out_hyokasuToBack.Set(
+                                Conv_HyokaSu.Hyokati_Saidai,//千日手受入れ
+                                Conv_Tumesu.None
+#if DEBUG
+                                , Conv_HyokaSu.Hyokati_Saidai
+                                , Conv_HyokaSu.Hyokati_Rei
+                                , Conv_HyokaSu.Hyokati_Rei
+                                , riyu
+                                , ""
+#endif
+                                );
+                            utikiri = true;
+                            goto gt_GoUndo;// 一手指しているので、アンドゥして戻すぜ☆（＾▽＾）
+                        case HyokaRiyu.Friend_KatteruTokinoSennititeKyohi:
+                            // 勝ってるときは、自分は千日手を選ばないぜ☆（＾▽＾）
+                            out_hyokasuToBack.Set(
+                                Conv_HyokaSu.Hyokati_Saisyo,
+                                Conv_Tumesu.None
+#if DEBUG
+                                , Conv_HyokaSu.Hyokati_Saisyo
+                                , Conv_HyokaSu.Hyokati_Rei
+                                , Conv_HyokaSu.Hyokati_Rei
+                                , riyu
+                                , ""
+#endif
+                                );
+                            goto gt_GoUndo;// 一手指しているので、アンドゥして戻すぜ☆（＾▽＾）
+                        case HyokaRiyu.Opponent_MaketeruTokinoSennititeWatasi:
+                            // 自分が負けてるときは、千日手の権利を相手に渡したいので☆（＾▽＾）
+                            out_hyokasuToBack.Set(
+                                Conv_HyokaSu.Hyokati_Saisyo,// 相手が一番嫌がっている点数にしておけば、選ばれるぜ☆（＾▽＾）ｗｗｗ
+                                Conv_Tumesu.None
+#if DEBUG
+                                , Conv_HyokaSu.Hyokati_Saisyo
+                                , Conv_HyokaSu.Hyokati_Rei
+                                , Conv_HyokaSu.Hyokati_Rei
+                                , riyu
+                                , ""
+#endif
+                                );
+                            utikiri = true;
+                            goto gt_GoUndo;// 一手指しているので、アンドゥして戻すぜ☆（＾▽＾）
+                        case HyokaRiyu.Opponent_KatteruTokinoSennititeWatasazu:
+                            //千日手権利回さず
+                            // 探索中は、よく千日手になっているようだ。
+                            out_hyokasuToBack.Set(
+                                Conv_HyokaSu.Hyokati_Saidai,
+                                Conv_Tumesu.None
+#if DEBUG
+                                , Conv_HyokaSu.Hyokati_Saidai
+                                , Conv_HyokaSu.Hyokati_Rei
+                                , Conv_HyokaSu.Hyokati_Rei
+                                , riyu
+                                , ""
+#endif
+                                );
+                            utikiri = true;
+                            // 相手は千日手を必ず選ぶという想定にしておけば、
+                            // アルファベータ探索によって手順中に、相手に千日手の権利を渡さないだろ☆（＾▽＾）
+                            goto gt_GoUndo;// 一手指しているので、アンドゥして戻すぜ☆（＾▽＾）
+                        default:
+                            break;//続行☆
+                    }
+                }
+#endregion
+
+
+
+
+
+
+        /// <summary>
+        /// 単体テストだぜ☆（＾▽＾）
+        /// </summary>
+        public static bool TryFail_TantaiTest(Genkyoku gky, IHyojiMojiretu hyoji)
+        {
+            // （＾～＾）千日手のテストをしようぜ☆
+            return Util_TantaiTest.TryFail_SennitiTe(gky, hyoji);
+        }
+
+
+            gky.konoteme.sennititeHash = gky.kyokumenHash.value;// 千日手用に局面ハッシュを覚えておくぜ☆（＾▽＾）
+
+
+
+
+
+            sennititeKaihi = false;
+
+
+
+
+
+
+        /// <summary>
+        /// コンピューターが千日手を「必ず」回避するなら真☆（＾～＾）　機械学習で利用するぜ☆
+        /// </summary>
+        public static bool sennititeKaihi { get; set; }
+
+
+
+
+        /// <summary>
+        /// 千日手を打開すると、損をすると思われる想定の、点数差だぜ☆（＾▽＾）ｗｗｗ
+        /// 
+        /// 例：ひよこ　＋　きりん　を損しても打開の方が良いとき☆（＾▽＾）
+        /// </summary>
+        public const int Hyokati_FuNoSu_SennititeDakai = -10;
+
+
+
+        /// <summary>
+        /// 千日手を打開すると、損をすると思われる想定の、点数差だぜ☆（＾▽＾）ｗｗｗ
+        /// 
+        /// 例：ひよこ　＋　きりん　を損しても打開の方が良いとき☆（＾▽＾）
+        /// </summary>
+        public const int Hyokati_SeiNoSu_SennititeDakai = 10;
+
+
+
+        /// <summary>
+        /// 千日手の権利を渡したい（劣勢を引き分けで終えたい）
+        /// </summary>
+        SennititeKenriWatasi,
+        /// <summary>
+        /// 負けているときの千日手受け入れ☆
+        /// </summary>
+        MaketeruTokinoSennititeUkeire,
+        KatteruTokinoSennititeWatasazu,
+
+
+
+            // 千日手用、同形反復の回数☆（[24]文字目）１桁という前提だぜ☆（＾▽＾）
+            syuturyoku.Append(yomiGky.yomiKonoteme.GetSennititeCount());
+
+
+                            case TaikyokuKekka.Sennitite: hyoji.AppendLine("結果：　千日手"); break;
+
+
+
+
+                            case TaikyokuKekka.Sennitite:
+                                {
+                                    hyoji.AppendLine("┌─────────────────結　果─────────────────┐");
+                                    hyoji.AppendLine("│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│");
+                                    hyoji.AppendLine("│　　　　　　　　　　　　　　　　　千日手　　　　　　　　　　　　　　　　　│");
+                                    hyoji.AppendLine("│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│");
+                                    hyoji.AppendLine("└─────────────────────────────────────┘");
+                                }
+                                break;
+
+
+
+
+
+            hyoji.AppendLine("set SennititeKaihi true : コンピューターが千日手を必ず回避するぜ☆");
+
+
+
+
+        /// <summary>
+        /// 同じ局面が N 回起こったら千日手だぜ☆（＾▽＾）
+        /// </summary>
+        public const int SENNITITE_COUNT = 3;
+
+
+
+
+            else if (gky.yomiGky.yomiKonoteme.IsSennitite())
+            {
+                gky.kekka = TaikyokuKekka.Sennitite;
+            }
+
+
+
+
+        /// <summary>
+        /// 引き分け（千日手）
+        /// </summary>
+        Sennitite,
+
+
+
+
+
+
+                gt_GoUndo:// 千日手などから飛んでくるぜ☆（＾～＾）
+                ;
+
+
+
+            else if (caret == cmdline.IndexOf("tantaitest", caret)) {
+                if(CommandT.TryFail_TantaiTest(gky, hyoji))
+                {
+                    return Pure.FailTrue("TryFail_TantaiTest"
+#if DEBUG
+                                        , (IDebugMojiretu)hyoji
+#endif
+                        );
+                }
+            }
+
+
+
+

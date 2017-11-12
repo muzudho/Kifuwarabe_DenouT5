@@ -1,0 +1,2 @@
+fen r1h/kh1/1k1/R2 2z 1
+A4A3 none 131 0 0 1

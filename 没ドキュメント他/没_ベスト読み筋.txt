@@ -1,0 +1,30 @@
+        /// <summary>
+        /// ’Tõ’†‚ÌÅ‘Pè‚ğŠo‚¦‚Ä‚¨‚­‚½‚ß‚ÌA” ‚Æ‚µ‚Ä—˜—p‚µ‚ë‚¾‚º™iO`Oj
+        /// •ªŠò“_‚©‚çA––’[‹Ç–Ê‚ ‚½‚è‚ğŠo‚¦‚Ä‚¨‚­‚à‚Ì‚¾‚º™iO`Oj
+        /// </summary>
+        public static readonly Sasite[] tnsk_bestSasiteAr;
+        public static readonly SasiteType[] tnsk_bestSasiteTypeAr;
+
+            tnsk_bestSasiteAr[PureMemory.tnsk_kaisiTeme] = Sasite.Toryo;
+            tnsk_bestSasiteTypeAr[PureMemory.tnsk_kaisiTeme] = SasiteType.N00_Karappo;
+
+            tnsk_bestSasiteAr = new Sasite[KIFU_SIZE];
+            tnsk_bestSasiteTypeAr = new SasiteType[KIFU_SIZE];
+
+            if (0 < PureMemory.sasitelist[fukasa].sslistCount)
+            {
+                // •À‚Ñ‡‚Ì‚P‚Â–Ú‚Ìè‚ğƒxƒXƒgè‚Ì‰Šú’l‚É‚·‚é‚º™iO`Oj
+                PureMemory.tnsk_bestSasiteAr[PureMemory.kifu_teme] = PureMemory.sasitelist[fukasa].list_Sasite[0];
+                PureMemory.tnsk_bestSasiteTypeAr[PureMemory.kifu_teme] = PureMemory.sasitelist[fukasa].list_Reason[0];
+            }
+            else
+            {
+                bestSasite = Sasite.Toryo;
+                bestSasiteType = SasiteType.N00_Karappo;
+            }
+
+
+                    Array.Copy(PureMemory.kifu_sasiteAr, PureMemory.tnsk_kaisiTeme, PureMemory.tnsk_bestSasiteAr, PureMemory.tnsk_kaisiTeme, PureMemory.tnsk_happaTeme - PureMemory.tnsk_kaisiTeme + 1);
+                    Array.Copy(PureMemory.kifu_sasiteTypeAr, PureMemory.tnsk_kaisiTeme, PureMemory.tnsk_bestSasiteTypeAr, PureMemory.tnsk_kaisiTeme, PureMemory.tnsk_happaTeme - PureMemory.tnsk_kaisiTeme + 1);
+
+

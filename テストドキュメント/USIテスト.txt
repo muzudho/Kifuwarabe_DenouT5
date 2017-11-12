@@ -1,0 +1,17 @@
+usi
+isready
+usinewgame
+position startpos
+position sfen startpos moves 7g7f 3c3d 2g2f
+go
+
+
+position startpos moves 1i1h 4a3b 7i6h 6a5b 6h7i 5a4b 7i6h 4c4d 6h7i 5b4c 7i6h 4d4e 6h7i 5c5d 7i6h 5d5e 6h7i 9c9d 7i6h 9d9e 6h7i 6c6d 7i6h 6d6e 6h7i 7c7d 7i6h 7d7e 6h7i 1c1d 7i6h 2b1c 6h7i 1c5g+ 7i6h 5g4g 6h7i 4e4f 3i4h 4g5f 4h5g 5f5g 7i6h 5g5f 6h5g 5f5g 6i6h S*7i
+
+@9x9
+honyaku sfen fen startpos moves 1i1h 4a3b 7i6h 6a5b 6h7i 5a4b 7i6h 4c4d 6h7i 5b4c 7i6h 4d4e 6h7i 5c5d 7i6h 5d5e 6h7i 9c9d 7i6h 9d9e 6h7i 6c6d 7i6h 6d6e 6h7i 7c7d 7i6h 7d7e 6h7i 1c1d 7i6h 2b1c 6h7i 1c5g+ 7i6h 5g4g 6h7i 4e4f 3i4h 4g5f 4h5g 5f5g 7i6h 5g5f 6h5g 5f5g 6i6h S*7i
+
+
+
+
+position fen sunirinus/1k5z1/hhhhhhhhh/9/9/9/HHHHHHHHH/1Z5K1/SUNIRINUS - 1 moves I9I8 F1G2 C9D8 D1E2 D8C9 E1F2 C9D8 F3F4 D8C9 E2F3 C9D8 F4F5 D8C9 E3E4 C9D8 E4E5 D8C9 A3A4 C9D8 A4A5 D8C9 D3D4 C9D8 D4D5 D8C9 C3C4 C9D8 C4C5 D8C9 I3I4 C9D8 H2I3 D8C9 I3E7+ C9D8 E7F7 D8C9 F5F6 G9F8 F7E6 F8E7 E6E7 C9D8 E7E6 D8E7 E6E7 D9D8 S*C9

@@ -1,0 +1,539 @@
+            else if (caret == cmdline.IndexOf("see", caret)) {
+                if (CommandS.TryFail_See(cmdline, gky, hyoji))
+                {
+                    return Pure.FailTrue("TryFail_See"
+#if DEBUG
+                                        , (IDebugMojiretu)hyoji
+#endif
+                        );
+                }
+            }
+
+
+
+        /// <summary>
+        /// SEEの作業内容を見るコマンド☆（＾～＾）
+        /// </summary>
+        /// <param name="isSfen"></param>
+        /// <param name="line"></param>
+        /// <param name="gky"></param>
+        /// <param name="hyoji"></param>
+        public static bool TryFail_See(string line, Genkyoku gky, IHyojiMojiretu hyoji)
+        {
+            // うしろに続く文字は☆（＾▽＾）
+            int caret = 0;
+            Util_String.TobasuTangoToMatubiKuhaku(line, ref caret, "see ");
+            string line2 = line.Substring(caret).Trim();
+
+            if (line2.Length == 2)// see b3
+            {
+                // すでに相手の駒がある升だけを指定した場合☆
+                // 升を返すぜ☆
+                if (!LisMasu.Try_ParseMs( line, ref caret, out Masu ms
+#if DEBUG
+                    , (IDebugMojiretu)hyoji
+#endif
+                    ))
+                {
+                    return Pure.FailTrue("パースエラー104"
+#if DEBUG
+                    , (IDebugMojiretu)hyoji
+#endif
+                        );
+                }
+
+                hyoji.AppendLine("SEE>────────────────────");
+                int oisisaTen;
+                int oisisaTume;
+                GenkyokuOpe.SEE(
+                    out oisisaTen,
+                    out oisisaTume,
+                    gky, PureSettei.usi, ms
+#if DEBUG
+                    , (IDebugMojiretu)hyoji
+#endif
+                );
+                if (oisisaTume != Conv_Tumesu.None)
+                {
+                    if (oisisaTume%2==0)
+                    {
+                        hyoji.Append("SEE_cmd>SEE評価値は tume=");
+                        hyoji.Append(oisisaTume);
+                        hyoji.AppendLine(" と 詰め が出ているので、駒交換は得か☆");
+                    }
+                    else
+                    {
+                        hyoji.Append("SEE_cmd>SEE評価値は tume=");
+                        hyoji.Append(oisisaTume);
+                        hyoji.AppendLine(" と 詰められ が出ているので、駒交換は損か☆");
+                    }
+                }
+                else
+                {
+                    if (0 <= oisisaTen)
+                    {
+                        hyoji.Append("SEE_cmd>SEE評価値 ten=");
+                        hyoji.Append(oisisaTen);
+                        //SpkHyokati.Setumei(oisisa.hyokaTen, hyoji);
+                        hyoji.AppendLine(" は 0以上なので、駒交換は得か☆");
+                    }
+                    else
+                    {
+                        hyoji.Append("SEE_cmd>SEE評価値 ten=");
+                        hyoji.Append(oisisaTen);
+                        //SpkHyokati.Setumei(oisisa.hyokaTen, hyoji);
+                        hyoji.AppendLine(" は 0を下回っているので、駒交換は損か☆");
+                    }
+                }
+            }
+            else if (4 <= line2.Length)// see K*b2
+            {
+                // 指し手を指定した場合☆
+                if (!LisPlay.Try_FenSasite(PureSettei.usi, line, ref caret, out Sasite ss))
+                {
+                    Util_Machine.Flush(hyoji);
+                    throw new Exception(hyoji.ToContents());
+                }
+                Nanteme nanteme = new Nanteme();
+
+#if DEBUG
+                if (Develop.assert.TryFail_Assert_Sabun_Kiki("error Pre-DoSasite-13", gky, (IDebugMojiretu)hyoji))
+                {
+                    Util_Machine.Flush(hyoji);
+                    throw new Exception(hyoji.ToContents());
+                }
+#endif
+
+                if (DoSasiteOpe.TryFail_DoSasite_All(gky, ss, SasiteType.N00_Karappo, ref nanteme
+#if DEBUG
+                    , PureSettei.usi
+                    , (IDebugMojiretu)hyoji
+                    , false
+                    , "CommandS#See"
+#endif
+                    ))
+                {
+                    Util_Machine.Flush(hyoji);
+                    throw new Exception(hyoji.ToContents());
+                }
+                Masu ms = Conv_Sasite.GetDstMasu(ss, gky);
+
+
+                hyoji.AppendLine("SEE>────────────────────");
+                // 相手番の評価値が返ってくるので、この手番にひっくり返すぜ☆（＾▽＾）
+                int oisisaTen;
+                int oisisaTume;
+                GenkyokuOpe.SEE(
+                    out oisisaTen,
+                    out oisisaTume,
+                    gky, PureSettei.usi, ms
+#if DEBUG
+                    , (IDebugMojiretu)hyoji
+#endif
+                );
+                oisisaTen = -oisisaTen;
+
+                if (null != hyoji)
+                {
+                    // 戻す前に局面を表示しておくぜ☆
+                    // 後ろから遡るように表示されると思うが、そういう仕組みなので仕方ないだろう☆（＾～＾）
+
+                    if (CommandK.TryFail_Ky("ky", gky, hyoji))
+                    {
+                        Util_Machine.Flush(hyoji);
+                        throw new Exception(hyoji.ToContents());
+                    }
+                    //デバッグ用☆
+
+                    // 自分の手番として見たいので　正負をひっくり返そうぜ☆（＾▽＾）
+                    hyoji.Append(string.Format("SEE_cmd>SEE ten={0} tume={1}",
+                        oisisaTen,
+                        oisisaTume
+                        ));
+                    hyoji.AppendLine();
+                }
+                if (UndoSasiteOpe.TryFail_UndoSasite(gky, ss
+#if DEBUG
+                    , PureSettei.usi
+                    , (IDebugMojiretu)hyoji
+                    , false
+#endif
+                    ))
+                {
+                    Util_Machine.Flush(hyoji);
+                    throw new Exception(hyoji.ToContents());
+                }
+
+                hyoji.Append(string.Format("SEE_cmd>SEE評価値 ten={0} tume={1}",
+                    oisisaTen,
+                    oisisaTume
+                    ));
+
+                if (oisisaTume!=Conv_Tumesu.None)
+                {
+                    if (oisisaTume%2==0)
+                    {
+                        hyoji.AppendLine(" と 詰め が出ているので、駒交換は得か☆");
+                    }
+                    else
+                    {
+                        hyoji.AppendLine(" と 詰められ が出ているので、駒交換は損か☆");
+                    }
+                }
+                else
+                {
+                    if (0 <= oisisaTen)
+                    {
+                        hyoji.AppendLine(" は 0以上なので、手番での駒交換は得か☆");
+                    }
+                    else
+                    {
+                        hyoji.AppendLine(" は 0を下回っているので、手番での駒交換は損か☆");
+                    }
+                }
+            }
+
+            return Pure.SUCCESSFUL_FALSE;
+        }
+
+
+
+
+            hyoji.AppendLine("see B3          : B3 にある駒を取り合ったときの評価値を返すぜ☆");
+
+
+
+        #region 駒種類→駒割り評価値
+        /// <summary>
+        /// SEE で使うぜ☆（＾～＾）
+        /// </summary>
+        public static int[] komasyuruiToKomawariHyokati = new int[]
+        {
+            // らいおん
+            15000,
+
+            // ぞう
+            16,
+
+            // パワーアップぞう
+            20,
+
+            // きりん
+            16,
+
+            // パワーアップきりん
+            20,
+
+            // ひよこ
+            1,
+
+            // にわとり
+            6,
+
+            // いぬ
+            6,
+
+            // ねこ
+            5,
+
+            // パワーアップねこ
+            6,
+
+            // うさぎ
+            2,
+
+            // パワーアップうさぎ
+            6,
+
+            // いのしし
+            8,
+
+            // パワーアップいのしし
+            6,
+
+            // らいおん～にわとり　までの要素の個数になるぜ☆（＾▽＾）
+            // どの駒の種類にも当てはまらない場合に、Yososu と書くことがある☆（＾▽＾）ｗｗｗ
+            0,
+        };
+        #endregion
+
+
+                // このとき、駒を取った手かどうか☆
+                if (Sasite.Toryo != eranda_sasite)
+                {
+                    // 駒を取る手が　葉っぱ　に来たときは、ＳＥＥ（Static Exchange Evaluation）をやりたいぜ☆
+                    // おいしさ：この手を指したときに確定している手番の得だぜ☆（＾▽＾）
+                    int oisisaTen;
+                    int oisisaTume;
+                    GenkyokuOpe.SEE(
+                        out oisisaTen,
+                        out oisisaTume,
+                        gky, PureSettei.usi, Conv_Sasite.GetDstMasu_WithoutErrorCheck((int)eranda_sasite)
+#if DEBUG
+                        , (IDebugMojiretu)hyoji// ログ出力なし
+#endif
+                        );
+
+                    if (oisisaTume!=Conv_Tumesu.None)
+                    {
+                        // 詰みが出ているぜ☆（＾～＾）
+                        out_hyokasuToBack.Set(
+                            Conv_HyokaSu.Hyokati_Rei,
+                            oisisaTume
+#if DEBUG
+                            , Conv_HyokaSu.Hyokati_Rei
+                            , Conv_HyokaSu.Hyokati_Rei
+                            , Conv_HyokaSu.Hyokati_Rei
+                            , HyokaRiyu.HappaKomatoriTumi
+                            , ""
+#endif
+                        );
+                    }
+                    else//Conv_HyokatiAb.InHyokati(oisisa)
+                    {
+                        // 0以上なら　おいしい手、マイナスなら損な手だぜ☆（＾～＾）そのまま足すぜ☆
+                        out_hyokasuToBack.Set(
+                            (int)out_hyokasuToBack.hyokaTen + oisisaTen,
+                            Conv_Tumesu.None
+#if DEBUG
+                            , (int)out_hyokasuToBack.dbg_okimari + oisisaTen
+                            , Conv_HyokaSu.Hyokati_Rei
+                            , Conv_HyokaSu.Hyokati_Rei
+                            , HyokaRiyu.HappaKomatori
+                            ,""
+#endif
+                            );
+#if DEBUG
+                        //Debug.Assert(!Conv_HyokatiAb.InTumeTesu(out_bestHyokatiAb.okimari),"詰め手数ではダメだぜ☆（＾～＾）！");
+#endif
+                    }
+//                    else if (Conv_HyokatiAb.InTumeTesu(oisisa))
+//                    {
+//                        if (oisisa <= Conv_Tumesu.TumeTesu_SeiNoSu_HyakuTeDume)
+//                        {
+//                            // 取らなくていい手番の駒を　取りに来て、相手番は　らいおん　を取られる　という未来が見えているぜ☆（＾▽＾）
+//                            // この場合、相手番は取りに来なかった、と考えるべきだぜ☆（＾～＾）
+
+//                            // スルーする☆
+//                        }
+//                        else
+//                        {
+//                        }
+//                    }
+                    //else
+                    //{
+                    //    IHyojiMojiretu mojiretu = new MojiretuImpl();
+                    //    mojiretu.Append(string.Format("評価値、詰め手数　以外のものだぜ☆ oisisa={0}",
+                    //        oisisa
+                    //        ));
+                    //    throw new Exception(mojiretu.ToContents());
+                    //}
+                }
+
+
+
+        /// <summary>
+        /// static excange evaluation という技法だぜ☆（＾▽＾）
+        /// 
+        /// 駒の取り合いが終わるまで　進めるぜぜ☆（＾～＾）
+        /// 「おいしさ」という独自単位で評価値を返すぜ☆（＾▽＾）
+        /// 
+        /// ＳＥＥ時（探索時）にエラーが起こったら強制終了しろだぜ☆（＾～＾）
+        /// </summary>
+        public static void SEE(
+            out int out_oisisaTen,
+            out int out_oisisaTume,
+            Genkyoku gky,
+            bool isSfen,
+            Masu ms
+#if DEBUG
+            , IDebugMojiretu dbg_reigaiOrKarappo
+#endif
+            )
+        {
+            // おいしさ☆ その駒を取ったときの確定している損得だぜ☆（＾▽＾） マイナスなら取ってはいけないぜ☆（＾▽＾）ｗｗｗ
+            out_oisisaTen = Conv_HyokaSu.Hyokati_Rei; // 取り返されることが無かった場合は、0 を返すぜ☆（＾▽＾）
+            out_oisisaTume = Conv_Tumesu.None;
+
+            // その升に利いている駒を調べるぜ☆（＾～＾）
+            // ひよこ→きりん→ぞう→にわとり→らいおん　の順にアタックするぜ☆（＾▽＾）
+            Komasyurui[] junbanKs = new Komasyurui[] { Komasyurui.H, Komasyurui.K, Komasyurui.Z, Komasyurui.PH, Komasyurui.R };
+            Masu ms_src;
+            for (int iKs = 0; iKs < junbanKs.Length; iKs++)
+            {
+                Bitboard semegomaBB = new Bitboard();// msから相手番の利きを伸ばせば、攻撃を掛けれる場所にいる自駒が分かるぜ☆（＾▽＾）
+                gky.ky.shogiban.yomiIbashoBan_yoko.ToSet_Koma(Med_Koma.KomasyuruiAndTaikyokusyaToKoma(junbanKs[iKs], gky.ky.teban), semegomaBB);
+                BitboardsOmatome.KomanoUgokikataYk00.ToSelect_Merge(
+                    gky.yomiKy.yomiShogiban,
+                    Med_Koma.KomasyuruiAndTaikyokusyaToKoma(junbanKs[iKs], gky.ky.aiteban),
+                    ms,
+                    semegomaBB
+                    );
+
+                Masu ms_semegoma;
+                if (semegomaBB.Ref_PopNTZ(out ms_semegoma))// 最初の１個だけ処理するぜ☆（＾～＾）
+                {
+                    ms_src = (Masu)ms_semegoma;
+
+                    // FIXME: とりあえず、成らずで作ってみるぜ☆（＾～＾）
+                    Sasite ss = Conv_Sasite.ToSasite_01a_NarazuSasi(
+                        ms_src, ms
+                        );
+
+                    // 駒を取る前に、取る駒の点数を取っておくぜ☆（＾～＾）
+                    Komasyurui tottaKomasyurui;
+                    int tottaKomaHyokati;
+
+                    Taikyokusya tai;
+                    if (gky.ky.shogiban.ibashoBan_yk00.yomiIbashoBan.ExistsKomaZenbu(ms, out tai))
+                    {
+                        gky.ky.shogiban.ibashoBan_yk00.yomiIbashoBan.ExistsKoma(tai, ms, out tottaKomasyurui);
+                        tottaKomaHyokati = Med_Koma.komasyuruiToKomawariHyokati[(int)tottaKomasyurui];
+                    }
+                    else
+                    {
+                        //駒が置いてない升に対して SEE を調べたとき☆
+                        tottaKomasyurui = Komasyurui.Yososu;
+                        // まあ、零点で続行してみてはどうか☆（＾～＾）
+                        tottaKomaHyokati = 0;
+                    }
+
+                    Nanteme nanteme = new Nanteme();
+
+                    //#if DEBUG
+                    //                    if (!PureAssert.Try_Assert_Sabun_Kiki("error Pre-DoSasite-6", gky.sindanM, syuturyokuTestYo_orKarappo))
+                    //                    {
+                    //                        out_hyokati = oisisa;//エラー
+                    //                        return false;
+                    //                    }
+                    //#endif
+
+                    if (DoSasiteOpe.TryFail_DoSasite_All(gky, ss, SasiteType.N00_Karappo, ref nanteme
+#if DEBUG
+                        , isSfen
+                        , dbg_reigaiOrKarappo
+                        , true //アサート抑制
+                        , "Try_SEE"
+#endif
+                        ))
+                    {
+#if DEBUG
+                        throw new Exception(dbg_reigaiOrKarappo.ToContents());
+#else
+                        throw new Exception("探索時にエラーが起こった場合は強制終了☆（＾～＾）");
+#endif
+                    }
+
+                    if (Komasyurui.R == tottaKomasyurui)
+                    {
+                        // 取れるところに　らいおん　が飛び込んできているのは　おかしいぜ☆（＾～＾）
+                        // らいおん　を取ったのなら、決着だぜ☆（＾～＾）
+                        out_oisisaTen = Conv_HyokaSu.Hyokati_Rei;
+                        out_oisisaTume = Conv_Tumesu.CatchRaion;
+
+#if DEBUG
+                        if (PureDebugFlag.SEE_DANRAKU)
+                        {
+                            if (dbg_reigaiOrKarappo.IsHataraku)
+                            {
+                                dbg_reigaiOrKarappo.AppendLine("SEE>らいおん捕まえた☆");
+                            }
+                        }
+#endif
+                    }
+                    else
+                    {
+                        // ここで再帰☆
+                        GenkyokuOpe.SEE(
+                            out out_oisisaTen,
+                            out out_oisisaTume,
+                            gky, isSfen, ms
+#if DEBUG
+                            , dbg_reigaiOrKarappo
+#endif
+                        );
+
+                        if (out_oisisaTen<0)
+                        {
+                            // マイナスのときは、駒を取る動きはしないと想定し、ここから計算をし直すぜ☆（＾～＾）
+                            out_oisisaTen = 0;
+#if DEBUG
+                            if (PureDebugFlag.SEE_DANRAKU)
+                            {
+                                if (dbg_reigaiOrKarappo.IsHataraku)
+                                {
+                                    dbg_reigaiOrKarappo.AppendLine("SEE>このあとの手を指すと損するぜ☆（＾～＾）；；；　取り合いは");
+                                    dbg_reigaiOrKarappo.AppendLine("SEE>ここまで止めると想定し、SEEを 0 から計算しなおすぜ☆(＾◇＾)");
+                                    dbg_reigaiOrKarappo.Append(string.Format("SEE>Ten={0} Tume={1}", out_oisisaTen, out_oisisaTume));
+                                    dbg_reigaiOrKarappo.AppendLine();
+                                }
+                            }
+#endif
+                        }
+
+                        if (out_oisisaTume != Conv_Tumesu.None)
+                        {
+                            // 詰めが出ている場合☆
+                            out_oisisaTume++;
+                        }
+                        else
+                        {
+                            out_oisisaTen = (int)(tottaKomaHyokati - out_oisisaTen);
+                        }
+                    }
+
+                    //#if DEBUG
+                    //                    if (syuturyokuTestYo_orKarappo.IsHataraku)
+                    //                    {
+                    //                        // 後ろから遡るように表示されると思うが、そういう仕組みなので仕方ないだろう☆（＾～＾）
+                    //                        CommandK.Ky(isSfen, "ky", gky, syuturyokuTestYo_orKarappo);//デバッグ用☆
+                    //                        syuturyokuTestYo_orKarappo.Append("SEE>tottaKomaHyokati = ");
+                    //                        syuturyokuTestYo_orKarappo.AppendLine(((int)tottaKomaHyokati).ToString());
+                    //                        syuturyokuTestYo_orKarappo.Append("SEE>SEE = ");
+                    //                        SpkHyokati.Setumei(oisisa, syuturyokuTestYo_orKarappo);
+                    //                        syuturyokuTestYo_orKarappo.AppendLine();
+                    //                        syuturyokuTestYo_orKarappo.AppendLine("SEE>────────────────────");
+                    //                    }
+                    //#endif
+
+                    if (UndoSasiteOpe.TryFail_UndoSasite(gky, ss
+#if DEBUG
+                        , isSfen
+                        , dbg_reigaiOrKarappo
+                        , true//アサート抑制
+#endif
+                        ))
+                    {
+#if DEBUG
+                        throw new Exception(dbg_reigaiOrKarappo.ToContents());
+#else
+                        throw new Exception("探索時にエラーが起こった場合は強制終了☆（＾～＾）");
+#endif
+                    }
+
+                    goto gt_EndLoop; // 実質、break文☆（＾～＾）
+                }// if 文
+
+            }// for 文
+
+            // おっと、この駒は取り返されなかったようだな☆（＾▽＾）
+            // この関数を呼び出したところは、取り返されることのない最後の駒だぜ、ラッキー☆（＾▽＾）
+            // SEE=0点を返すぜ☆（＾▽＾）
+
+            gt_EndLoop:
+            ;
+        }
+
+
+
+
+        /// <summary>
+        /// SEE（駒の取り合い）
+        /// 段落
+        /// </summary>
+        public static bool SEE_DANRAKU = false;
+
+
+
+
+

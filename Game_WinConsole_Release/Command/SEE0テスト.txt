@@ -1,0 +1,7 @@
+﻿set P2Com false
+
+# 0
+ky fen zr1/2K/HR1/1zh K 1
+ky
+
+see K*B2

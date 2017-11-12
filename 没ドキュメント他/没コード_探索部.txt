@@ -1,0 +1,35 @@
+                /*
+#if DEBUG
+                //────────────────────────────────────────
+                // デバッグ時 情報
+                //────────────────────────────────────────
+                if (true
+                    //Util_TimeManager.CanShowJoho()
+                        )
+                {
+                    Mojiretu yomisuji = new MojiretuImpl();
+                    ky.Konoteme.ScanYomisuji(
+                        Util_Tansaku.KaisiNantemade + 1, // 現局面の次の手から☆
+                        yomisuji);
+
+                    dlgt_CreateJoho(
+                        ky.TbTaikyokusya,
+                        alpha,
+                        eda_gokeiHyokati,
+                        eda_komawariHyokati_forJoho,
+                        eda_okimariHyokati_forJoho,
+                        eda_hyokaRiyu_forJoho,
+                        "",
+                        fukasa + 1,// 深さは 0 になっているので、Tansaku していない状態（＝+1 して）に戻すぜ☆
+                        Util_Tansaku.NekkoKaranoFukasa,
+                        yomisuji.ToContents(),//読み筋☆
+                        false,
+                        syuturyoku
+#if DEBUG
+                        , "Tansaku直後"
+#endif
+                        );
+                    Util_TimeManager.DoneShowJoho();
+                }
+#endif
+                // */

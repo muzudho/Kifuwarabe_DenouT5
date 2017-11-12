@@ -1,0 +1,36 @@
+﻿# 盤を先手ヒヨコで埋め尽くすぜ☆（＾～＾）後手のテストにはならないぜ☆（＾～＾）
+
+# コンピューターが走り出すのを止めておくんだぜ☆（＾～＾）
+set P1Com false
+set P2Com false
+
+# 盤を作る前に設定するもの
+# （１）盤サイズ設定
+# （２）飛び利きの有無設定
+set BanYokoHaba 9
+set BanTateHaba 9
+set TobikikiTukau true
+# 駒の動き方を作り直し
+updaterule
+
+# ky clear
+ky set
+ひひひひひひひひひ
+ひひひひひひひひひ
+ひひひひひひひひひ
+ひひひひひひひひひ
+ひひひひひひひひひ
+ひひひひひひひひひ
+ひひひひひひひひひ
+ひひひひひひひひひ
+ひひひひひひひひひ
+.
+
+ky tekiyo
+ky
+
+# 平手初期局面として登録します
+hirate toroku
+
+# set P1Com true
+set P2Com true

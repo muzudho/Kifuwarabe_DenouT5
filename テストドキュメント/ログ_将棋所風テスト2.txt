@@ -1,0 +1,11 @@
+usi
+<1:usiok
+set USI false
+set P2Com false
+isready
+<1:readyok
+usinewgame
+position startpos moves 1g1f 4a3b
+>1:go btime 178000 wtime 179000 byoyomi 0
+position startpos moves 1g1f 4a3b 2h5h 6a5b
+

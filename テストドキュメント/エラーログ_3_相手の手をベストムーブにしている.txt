@@ -1,0 +1,3342 @@
+
+┌─────────────────────────────────────┐
+│ら　ぞ　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　き　ぞ│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│ぞ　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　き│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│　　　　　　　　し　ょ　う　ぎ　　　　さ　ん　　　　よ　ん　　　　　　　　│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│　　　　　　　　　　　　かいはつしゃ　　　むずでょ　　　　　　　　　　　　│
+│　　　　　　　　　　　　さーくる　　ぐれーすけーる　　　　　　　　　　　　│
+│ひ　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　に│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│き　ひ　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　に　ひ│
+└─────────────────────────────────────┘
+……ようこそ、将棋３４へ☆（＾▽＾）ｗｗｗ
+
+
+　　　　　　　　[Enter]　　　　……　対局開始
+　　　　　　　　man [Enter]　　……　コマンド説明
+　　　　　　　　quit [Enter]　　……　終了
+
+
+
+**デバッグ・モード**> set P2Com false
+> 
+図は  0手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ら│▽ぞ│
+  ├──┼──┼──┤
+２│　　│▽ひ│　　│
+  ├──┼──┼──┤
+３│　　│▲ひ│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│▲き│
+  └──┴──┴──┘
+
+指し手を入力してください。一例　do B3B2　※ do b3b2 も同じ
+> go
+探索前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=toryo ssType=N00_Karappo cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=toryo ssType=N00_Karappo cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+探索後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+探索前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=toryo ssType=N00_Karappo cap=R
+ドゥ前
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=toryo ssType=N00_Karappo cap=R
+ドゥ後・探索前
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キ　ゾ
+ラヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+キ　ゾ
+ラヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+　ラゾ
+キヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+　ラゾ
+キヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=A1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=A1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=A1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=A1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　　　
+らヒ　
+ぞ　き
+
+curr[  2] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+キラゾ
+　　　
+らヒ　
+ぞ　き
+
+curr[  2] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+探索後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+探索前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=toryo ssType=N00_Karappo cap=R
+ドゥ前
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=toryo ssType=N00_Karappo cap=R
+ドゥ後・探索前
+キラゾ
+　　　
+　ぞら
+　　き
+
+curr[  3] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+キラゾ
+　　　
+　ぞら
+　　き
+
+curr[  3] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キ　ゾ
+ラヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+ドゥ前
+キ　ゾ
+ラヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キ　ゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  3] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+キ　ゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  3] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+キ　ゾ
+ラヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キ　ゾ
+ラヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+　ラゾ
+キヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ前
+　ラゾ
+キヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+　ラゾ
+キひ　
+　　き
+ぞら　
+
+curr[  3] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+　ラゾ
+キひ　
+　　き
+ぞら　
+
+curr[  3] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+　ラゾ
+キヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+　ラゾ
+キヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=A1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=A1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=A1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=A1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　　　
+らヒ　
+ぞ　き
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　　　
+らヒ　
+ぞ　き
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+らぞ　
+　　き
+
+curr[  3] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+キラゾ
+　　　
+らぞ　
+　　き
+
+curr[  3] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+キラゾ
+　　　
+らヒ　
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　　　
+らヒ　
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+探索後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+探索前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+　ぞら
+　　き
+
+curr[  3] ss=toryo ssType=N00_Karappo cap=R
+ドゥ前
+キラゾ
+　　　
+　ぞら
+　　き
+
+curr[  3] ss=toryo ssType=N00_Karappo cap=R
+ドゥ後・探索前
+キラ　
+　ゾ　
+　ぞら
+　　き
+
+curr[  4] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+キラ　
+　ゾ　
+　ぞら
+　　き
+
+curr[  4] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+キラゾ
+　　　
+　ぞら
+　　き
+
+curr[  3] ss=C1B2 ssType=N10_HimozukiOteZasi cap=Yososu
+探索後・アンドゥ前
+キラゾ
+　　　
+　ぞら
+　　き
+
+curr[  3] ss=C1B2 ssType=N10_HimozukiOteZasi cap=Yososu
+アンドゥ後
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キ　ゾ
+ラヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+ドゥ前
+キ　ゾ
+ラヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キ　ゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  3] ss=C1B2 ssType=N10_HimozukiOteZasi cap=Yososu
+ドゥ前
+キ　ゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  3] ss=C1B2 ssType=N10_HimozukiOteZasi cap=Yososu
+ドゥ後・探索前
+キ　　
+ラゾ　
+　　き
+ぞら　
+
+curr[  4] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+キ　　
+ラゾ　
+　　き
+ぞら　
+
+curr[  4] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+キ　ゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  3] ss=C1B2 ssType=_a1_toru cap=H
+ドゥ前
+キ　ゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  3] ss=C1B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+　キゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  4] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+　キゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  4] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+キ　ゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  3] ss=A1B1 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索後・アンドゥ前
+キ　ゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  3] ss=A1B1 ssType=N08_HimotukiKanmanSasi cap=Yososu
+アンドゥ後
+キ　ゾ
+ラヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キ　ゾ
+ラヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+　ラゾ
+キヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ前
+　ラゾ
+キヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+　ラゾ
+キひ　
+　　き
+ぞら　
+
+curr[  3] ss=A1B1 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索後・アンドゥ前
+　ラゾ
+キひ　
+　　き
+ぞら　
+
+curr[  3] ss=A1B1 ssType=N08_HimotukiKanmanSasi cap=Yososu
+アンドゥ後
+　ラゾ
+キヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+　ラゾ
+キヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=A1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=A1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=A1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=A1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　　　
+らヒ　
+ぞ　き
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　　　
+らヒ　
+ぞ　き
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+らぞ　
+　　き
+
+curr[  3] ss=A1B1 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　　　
+らぞ　
+　　き
+
+curr[  3] ss=A1B1 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+　ラゾ
+キ　　
+らぞ　
+　　き
+
+curr[  4] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+　ラゾ
+キ　　
+らぞ　
+　　き
+
+curr[  4] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+キラゾ
+　　　
+らぞ　
+　　き
+
+curr[  3] ss=A1A2 ssType=N10_HimozukiOteZasi cap=Yososu
+探索後・アンドゥ前
+キラゾ
+　　　
+らぞ　
+　　き
+
+curr[  3] ss=A1A2 ssType=N10_HimozukiOteZasi cap=Yososu
+アンドゥ後
+キラゾ
+　　　
+らヒ　
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　　　
+らヒ　
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+探索後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+探索前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+　ぞら
+　　き
+
+curr[  3] ss=A1A2 ssType=N10_HimozukiOteZasi cap=Yososu
+ドゥ前
+キラゾ
+　　　
+　ぞら
+　　き
+
+curr[  3] ss=A1A2 ssType=N10_HimozukiOteZasi cap=Yososu
+ドゥ後・探索前
+キラ　
+　ゾ　
+　ぞら
+　　き
+
+curr[  4] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+キラ　
+　ゾ　
+　ぞら
+　　き
+
+curr[  4] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+キラゾ
+　　　
+　ぞら
+　　き
+
+curr[  3] ss=C1B2 ssType=N10_HimozukiOteZasi cap=Yososu
+探索後・アンドゥ前
+キラゾ
+　　　
+　ぞら
+　　き
+
+curr[  3] ss=C1B2 ssType=N10_HimozukiOteZasi cap=Yososu
+アンドゥ後
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キ　ゾ
+ラヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+ドゥ前
+キ　ゾ
+ラヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キ　ゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  3] ss=C1B2 ssType=N10_HimozukiOteZasi cap=Yososu
+ドゥ前
+キ　ゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  3] ss=C1B2 ssType=N10_HimozukiOteZasi cap=Yososu
+ドゥ後・探索前
+キ　　
+ラゾ　
+　　き
+ぞら　
+
+curr[  4] ss=toryo ssType=N00_Karappo cap=R
+ドゥ前
+キ　　
+ラゾ　
+　　き
+ぞら　
+
+curr[  4] ss=toryo ssType=N00_Karappo cap=R
+ドゥ後・探索前
+キ　　
+ラゾ　
+　ぞき
+　ら　
+
+curr[  5] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+キ　　
+ラゾ　
+　ぞき
+　ら　
+
+curr[  5] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+キ　　
+ラゾ　
+　　き
+ぞら　
+
+curr[  4] ss=A4B3 ssType=N10_HimozukiOteZasi cap=Yososu
+探索後・アンドゥ前
+キ　　
+ラゾ　
+　　き
+ぞら　
+
+curr[  4] ss=A4B3 ssType=N10_HimozukiOteZasi cap=Yososu
+アンドゥ後
+キ　ゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  3] ss=C1B2 ssType=_a1_toru cap=H
+ドゥ前
+キ　ゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  3] ss=C1B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+　キゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  4] ss=A4B3 ssType=N10_HimozukiOteZasi cap=Yososu
+ドゥ前
+　キゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  4] ss=A4B3 ssType=N10_HimozukiOteZasi cap=Yososu
+ドゥ後・探索前
+　ひゾ
+ラ　　
+　　き
+ぞら　
+
+curr[  5] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+　ひゾ
+ラ　　
+　　き
+ぞら　
+
+curr[  5] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+　キゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  4] ss=B2B1 ssType=_a1_toru cap=K
+探索後・アンドゥ前
+　キゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  4] ss=B2B1 ssType=_a1_toru cap=K
+アンドゥ後
+キ　ゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  3] ss=A1B1 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索後・アンドゥ前
+キ　ゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  3] ss=A1B1 ssType=N08_HimotukiKanmanSasi cap=Yososu
+アンドゥ後
+キ　ゾ
+ラヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キ　ゾ
+ラヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+　ラゾ
+キヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ前
+　ラゾ
+キヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+　ラゾ
+キひ　
+　　き
+ぞら　
+
+curr[  3] ss=A1B1 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索後・アンドゥ前
+　ラゾ
+キひ　
+　　き
+ぞら　
+
+curr[  3] ss=A1B1 ssType=N08_HimotukiKanmanSasi cap=Yososu
+アンドゥ後
+　ラゾ
+キヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+　ラゾ
+キヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=A1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=A1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=A1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=A1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　　　
+らヒ　
+ぞ　き
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　　　
+らヒ　
+ぞ　き
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+らぞ　
+　　き
+
+curr[  3] ss=A1B1 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　　　
+らぞ　
+　　き
+
+curr[  3] ss=A1B1 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+　ラゾ
+キ　　
+らぞ　
+　　き
+
+curr[  4] ss=B2B1 ssType=_a1_toru cap=K
+ドゥ前
+　ラゾ
+キ　　
+らぞ　
+　　き
+
+curr[  4] ss=B2B1 ssType=_a1_toru cap=K
+ドゥ後・探索前
+　ラゾ
+キ　　
+らぞき
+　　　
+
+curr[  5] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+　ラゾ
+キ　　
+らぞき
+　　　
+
+curr[  5] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+　ラゾ
+キ　　
+らぞ　
+　　き
+
+curr[  4] ss=C4C3 ssType=N02_BottiKanmanSasi cap=Yososu
+探索後・アンドゥ前
+　ラゾ
+キ　　
+らぞ　
+　　き
+
+curr[  4] ss=C4C3 ssType=N02_BottiKanmanSasi cap=Yososu
+アンドゥ後
+キラゾ
+　　　
+らぞ　
+　　き
+
+curr[  3] ss=A1A2 ssType=N10_HimozukiOteZasi cap=Yososu
+探索後・アンドゥ前
+キラゾ
+　　　
+らぞ　
+　　き
+
+curr[  3] ss=A1A2 ssType=N10_HimozukiOteZasi cap=Yososu
+アンドゥ後
+キラゾ
+　　　
+らヒ　
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　　　
+らヒ　
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+探索後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+探索前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+　ぞら
+　　き
+
+curr[  3] ss=A1A2 ssType=N10_HimozukiOteZasi cap=Yososu
+ドゥ前
+キラゾ
+　　　
+　ぞら
+　　き
+
+curr[  3] ss=A1A2 ssType=N10_HimozukiOteZasi cap=Yososu
+ドゥ後・探索前
+キラ　
+　ゾ　
+　ぞら
+　　き
+
+curr[  4] ss=C4C3 ssType=N02_BottiKanmanSasi cap=Yososu
+探索後・アンドゥ前
+キラ　
+　ゾ　
+　ぞら
+　　き
+
+curr[  4] ss=C4C3 ssType=N02_BottiKanmanSasi cap=Yososu
+アンドゥ後
+キラゾ
+　　　
+　ぞら
+　　き
+
+curr[  3] ss=C1B2 ssType=N10_HimozukiOteZasi cap=Yososu
+探索後・アンドゥ前
+キラゾ
+　　　
+　ぞら
+　　き
+
+curr[  3] ss=C1B2 ssType=N10_HimozukiOteZasi cap=Yososu
+アンドゥ後
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キ　ゾ
+ラヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+ドゥ前
+キ　ゾ
+ラヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キ　ゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  3] ss=C1B2 ssType=N10_HimozukiOteZasi cap=Yososu
+ドゥ前
+キ　ゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  3] ss=C1B2 ssType=N10_HimozukiOteZasi cap=Yososu
+ドゥ後・探索前
+キ　　
+ラゾ　
+　　き
+ぞら　
+
+curr[  4] ss=C4C3 ssType=N02_BottiKanmanSasi cap=Yososu
+ドゥ前
+キ　　
+ラゾ　
+　　き
+ぞら　
+
+curr[  4] ss=C4C3 ssType=N02_BottiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キ　　
+ラゾ　
+　ぞき
+　ら　
+
+curr[  5] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+キ　　
+ラゾ　
+　ぞき
+　ら　
+
+curr[  5] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+キ　　
+ラゾ　
+　　き
+ぞら　
+
+curr[  4] ss=A4B3 ssType=N10_HimozukiOteZasi cap=Yososu
+探索後・アンドゥ前
+キ　　
+ラゾ　
+　　き
+ぞら　
+
+curr[  4] ss=A4B3 ssType=N10_HimozukiOteZasi cap=Yososu
+アンドゥ後
+キ　ゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  3] ss=C1B2 ssType=_a1_toru cap=H
+ドゥ前
+キ　ゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  3] ss=C1B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+　キゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  4] ss=A4B3 ssType=N10_HimozukiOteZasi cap=Yososu
+ドゥ前
+　キゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  4] ss=A4B3 ssType=N10_HimozukiOteZasi cap=Yososu
+ドゥ後・探索前
+　ひゾ
+ラ　　
+　　き
+ぞら　
+
+curr[  5] ss=toryo ssType=N00_Karappo cap=R
+ドゥ前
+　ひゾ
+ラ　　
+　　き
+ぞら　
+
+curr[  5] ss=toryo ssType=N00_Karappo cap=R
+ドゥ後・探索前
+　ひ　
+ラゾ　
+　　き
+ぞら　
+
+curr[  6] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+　ひ　
+ラゾ　
+　　き
+ぞら　
+
+curr[  6] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+　ひゾ
+ラ　　
+　　き
+ぞら　
+
+curr[  5] ss=C1B2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索後・アンドゥ前
+　ひゾ
+ラ　　
+　　き
+ぞら　
+
+curr[  5] ss=C1B2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+アンドゥ後
+　キゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  4] ss=B2B1 ssType=_a1_toru cap=K
+探索後・アンドゥ前
+　キゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  4] ss=B2B1 ssType=_a1_toru cap=K
+アンドゥ後
+キ　ゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  3] ss=A1B1 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索後・アンドゥ前
+キ　ゾ
+ラひ　
+　　き
+ぞら　
+
+curr[  3] ss=A1B1 ssType=N08_HimotukiKanmanSasi cap=Yososu
+アンドゥ後
+キ　ゾ
+ラヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キ　ゾ
+ラヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+　ラゾ
+キヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ前
+　ラゾ
+キヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+　ラゾ
+キひ　
+　　き
+ぞら　
+
+curr[  3] ss=A1B1 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索後・アンドゥ前
+　ラゾ
+キひ　
+　　き
+ぞら　
+
+curr[  3] ss=A1B1 ssType=N08_HimotukiKanmanSasi cap=Yososu
+アンドゥ後
+　ラゾ
+キヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+　ラゾ
+キヒ　
+　ひき
+ぞら　
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=A1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=A1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=A1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=A1A2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　　　
+らヒ　
+ぞ　き
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　　　
+らヒ　
+ぞ　き
+
+curr[  2] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+らぞ　
+　　き
+
+curr[  3] ss=A1B1 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　　　
+らぞ　
+　　き
+
+curr[  3] ss=A1B1 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+　ラゾ
+キ　　
+らぞ　
+　　き
+
+curr[  4] ss=B2B1 ssType=_a1_toru cap=K
+ドゥ前
+　ラゾ
+キ　　
+らぞ　
+　　き
+
+curr[  4] ss=B2B1 ssType=_a1_toru cap=K
+ドゥ後・探索前
+　ラゾ
+キ　　
+らぞき
+　　　
+
+curr[  5] ss=C1B2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+　ラゾ
+キ　　
+らぞき
+　　　
+
+curr[  5] ss=C1B2 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+　ラゾ
+　　　
+キぞき
+　　　
+
+curr[  6] ss=toryo ssType=N00_Karappo cap=R
+探索後・アンドゥ前
+　ラゾ
+　　　
+キぞき
+　　　
+
+curr[  6] ss=toryo ssType=N00_Karappo cap=R
+アンドゥ後
+　ラゾ
+キ　　
+らぞき
+　　　
+
+curr[  5] ss=A2A3 ssType=N12_RaionCatch cap=R
+探索後・アンドゥ前
+　ラゾ
+キ　　
+らぞき
+　　　
+
+curr[  5] ss=A2A3 ssType=N12_RaionCatch cap=R
+アンドゥ後
+　ラゾ
+キ　　
+らぞ　
+　　き
+
+curr[  4] ss=C4C3 ssType=N02_BottiKanmanSasi cap=Yososu
+探索後・アンドゥ前
+　ラゾ
+キ　　
+らぞ　
+　　き
+
+curr[  4] ss=C4C3 ssType=N02_BottiKanmanSasi cap=Yososu
+アンドゥ後
+キラゾ
+　　　
+らぞ　
+　　き
+
+curr[  3] ss=A1A2 ssType=N10_HimozukiOteZasi cap=Yososu
+探索後・アンドゥ前
+キラゾ
+　　　
+らぞ　
+　　き
+
+curr[  3] ss=A1A2 ssType=N10_HimozukiOteZasi cap=Yososu
+アンドゥ後
+キラゾ
+　　　
+らヒ　
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　　　
+らヒ　
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+らひ　
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+探索後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+探索前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4A3 ssType=N02_BottiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+　ぞら
+　　き
+
+curr[  3] ss=A1A2 ssType=N10_HimozukiOteZasi cap=Yososu
+ドゥ前
+キラゾ
+　　　
+　ぞら
+　　き
+
+curr[  3] ss=A1A2 ssType=N10_HimozukiOteZasi cap=Yososu
+ドゥ後・探索前
+キラ　
+　ゾ　
+　ぞら
+　　き
+
+curr[  4] ss=C4C3 ssType=N02_BottiKanmanSasi cap=Yososu
+探索後・アンドゥ前
+キラ　
+　ゾ　
+　ぞら
+　　き
+
+curr[  4] ss=C4C3 ssType=N02_BottiKanmanSasi cap=Yososu
+アンドゥ後
+キラゾ
+　　　
+　ぞら
+　　き
+
+curr[  3] ss=C1B2 ssType=N10_HimozukiOteZasi cap=Yososu
+探索後・アンドゥ前
+キラゾ
+　　　
+　ぞら
+　　き
+
+curr[  3] ss=C1B2 ssType=N10_HimozukiOteZasi cap=Yososu
+アンドゥ後
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　　　
+　ヒら
+ぞ　き
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+　ひら
+ぞ　き
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ひ　
+　　　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=B3B2 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+ドゥ後・探索前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　　　
+　ヒき
+ぞら　
+
+curr[  2] ss=A4B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+探索後・アンドゥ前
+キラゾ
+　ヒ　
+　ひき
+ぞら　
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+アンドゥ後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+探索後
+キラゾ
+　ヒ　
+　ひ　
+ぞらき
+
+curr[  0] ss=C4C3 ssType=N08_HimotukiKanmanSasi cap=Yososu
+ドゥ後・探索前
+キラゾ
+　　　
+　ひ　
+ぞらき
+
+curr[  1] ss=B2B3 ssType=_a1_toru cap=H
+bestSasite: [0] ss=B2B3
+図は  1手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ら│▽ぞ│
+  ├──┼──┼──┤
+２│　　│　　│　　│
+  ├──┼──┼──┤
+３│　　│▲ひ│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│▲き│
+  └──┴──┴──┘
+
+指し手を入力してください。一例　do B3B2　※ do b3b2 も同じ
+> ky
+図は  1手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ら│▽ぞ│
+  ├──┼──┼──┤
+２│　　│　　│　　│
+  ├──┼──┼──┤
+３│　　│▲ひ│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│▲き│
+  └──┴──┴──┘
+
+指し手を入力してください。一例　do B3B2　※ do b3b2 も同じ
+> quit

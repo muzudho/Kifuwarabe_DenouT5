@@ -1,0 +1,858 @@
+
+
+
+
+        /// 
+        /// シグモイド曲線の導関数　(1 - Sigmoid(x)) * Sigmoid(x)　は、
+        /// 面積を出していて
+        /// この面積は　シグモイド曲線の x 上での線の傾き　でもあるようなんだぜ☆（＾～＾）
+        /// 
+        /// 傾きが
+        /// （２５個の点）、（２４個の点）、（２１個の点）、（１６個の点）、（９個の点）
+        /// というのは　どういうことか☆（＾～＾）
+        /// 
+        /// そもそも傾きというのは　ｙ／ｘ　のように　１ｘ当たりのｙの増分　で、
+        /// ｘが０．５付近では　（０．５倍の謎の力が働き）　ｙ　が　０．２５　だけ増え、
+        /// ｘが０．１付近では　（０．９倍の謎の力が働き）　ｙ　が　０．０９　だけ増える☆
+        /// 
+        /// この謎の力は何か☆（＾～＾）？
+        /// 
+        /// 
+        /// 
+        /// では、シグモイド曲線の式を見直してみよう☆（＾▽＾）
+        /// 
+        /// y = 1 / (1 + e^-x)
+        /// 
+        /// （＾～＾）ネイピア数 e はよく分からないので 10 ということにしておこう☆
+        /// 
+        /// y = 1 / (1 + 10^-x)
+        ///
+        /// 指数の「^-x」の部分は、xが1、2、3...と増えるたびに 0.1、0.01、0.001...　と
+        /// 細かくなることを表しているぜ☆（＾～＾）
+        /// 
+        /// もう少し形をよく見てみると、
+        /// 
+        ///     1
+        /// ─────────
+        ///   1 + n
+        /// 
+        /// という形をしていて、
+        /// 0.1、　0.1*0.1、　0.1*0.1*0.1、　と
+        /// 
+        /// 
+        /// 
+        /// 
+        /// これが　どういうことかというと　例えば x を動かすと次のような掛け算が考えられるぜ☆
+        /// 
+        /// A列     B列     C列
+        /// 0.51  * 0.49  = 0.2499
+        /// 0.5   * 0.5   = 0.25
+        /// 0.49  * 0.51  = 0.2499
+        /// 
+        /// これは、横幅が縮まった分、縦幅が伸びるような　２辺の合計が 1 の長方形の面積　だな☆（＾▽＾）
+        /// 
+        /// 正方形のときが一番でかく、細長になるほど面積は狭い☆（＾▽＾）
+        /// 確かに 0.5 * 0.5 の正方形の
+        /// y を 0.01 増やすために x を 0.01 減らせば、
+        /// 面積は 0.01 * 0.49 の 0.0049 だけ増えて、
+        /// 0.01 * 0.50 の 0.005 が減るから、
+        /// 0.5 * 0.5 + 0.0049 - 0.005 = 0.2499
+        /// になる☆
+        /// 
+        /// xかyの片方に寄らすほど面積が減るみたいだぜ☆（＾～＾）
+        /// これはあれだぜ、ベクトルの矢印が　45°～90°　に立って行っている☆（＾▽＾）
+        /// あるいは 45°～0°　に寝て行っているのかもしれないな☆（＾～＾）
+        /// 
+        /// で、シグモイド関数は　どの x を取っても、
+        /// x を 0.1 横へ動かせば、
+        /// まるで 元が1辺1cmの正方形のx辺、y辺を 0.1 寄せたときの面積の減り（増え）ほどに
+        /// y が増加（減少）しているのかもしれないな☆（＾▽＾）
+        /// 
+        /// 
+        /// シグモイド曲線の x=0 が正方形で、 遠くなるほど　長方形で、
+        /// ∞　に行くと線になる感じだぜ☆
+        /// 
+        /// もっと簡単に言うと、
+        /// 
+        /// という動きをしているんだぜ☆（＾～＾）
+        /// で、消えていった１列が yの増分☆（＾▽＾）
+        /// ただし、
+        /// ｘ軸は　-∞ ≦ x ≦ ∞　サイズなのに対し
+        /// ｙ軸は　-1　＜　ｙ　＜　１　サイズなので、
+        /// 
+        /// 
+        /// 
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    /// 
+    /// ────────────────────────────────────────
+    /// 
+    /// 【応用】
+    /// 
+    /// シグモイド曲線の　ｘ　を　（その他の指し手の評価値　－　教師の指し手の評価値）、
+    /// シグモイド曲線の　線の傾斜の急さ　を　パラメーター修正量
+    /// 
+    /// と考えれば、
+    /// 
+    /// 教師の指し手の評価値　と近い　その他の指し手　ほど、
+    /// パラメーターを大きく修正し、
+    /// 
+    /// 教師の指し手の評価値　と遠い　その他の指し手　は
+    /// パラメーターをほとんど動かさない、
+    /// 
+    /// といったことができるんだぜ☆（＾～＾）
+
+
+
+
+    /// そして、ｙが　０、１　のグラフに似ていると言っても実際には　見えないぐらいに小さくカーブしており、
+    /// x のそれぞれに対応する y には　微細に異なる数字が入っていることから、
+    /// ｙ　の　０、１　という一見デジタルな数字から　ｘというアナログな数字に　逆に戻せるぜ☆
+    /// この可逆性のおかげで　ｙをどれぐらい減らすと、ｘがどれぐらい０から離れるかも分かるな☆（＾▽＾）
+    /// （性質２：　ｙとｘの可逆性）
+
+
+    /// 
+    /// ｙ　を調整量として使うのではなく、
+    /// 傾斜の急さ、緩さを　調整量として使うのがミソだぜ☆（＾～＾）
+
+
+
+    /// ────────────────────────────────────────
+    /// 
+    /// 似ているグラフに、ステップ関数　というものがあるぜ☆
+    /// 
+    /// 　　ステップ関数
+    /// 1        ┌------
+    ///          │
+    /// 0.5      │
+    ///          │
+    /// 0  ------┘
+    ///   -∞     0     ∞
+    /// 
+    /// シグモイド関数と、ステップ関数の違いは、
+    /// シグモイド関数の方は　カーブ　で、ステップ関数の方は　水平・垂直　だということだぜ☆（＾▽＾）
+    /// 
+    /// こっちは
+    /// 
+    /// x が 正の数 のとき y は 1 　ぴったり☆
+    /// x が   0   のとき y は 0.5 ぴったり☆
+    /// x が 負の数 のとき y は 0 　ぴったり☆
+    /// 
+    /// ステップ関数の方は　－１、０.５、１　がくっきり分かれているので、
+    /// デジタルと　アナログを　往復できないぜ☆（＾～＾）
+
+
+
+
+
+
+
+            /*
+            Util_Machine.AppendLine("（※コンピューターの数値型の精度には限界があり、0 か 1 に丸まってしまう☆）");
+            {
+                float a = 1.0f / (256.0f / 7.0f);
+                Util_Machine.AppendLine("a = 1 / (256 / 7) = [" + a + "]");//[0.02734375]
+                Util_Machine.AppendLine("a * -x        = 指数");
+                Util_Machine.AppendLine("a * -256.0000 = [" + (a * -256.0000f) + "]");//[-7]
+                Util_Machine.AppendLine("a * -219.4285 = [" + (a * -219.4285f) + "]");//[-5.999998]
+                Util_Machine.AppendLine("a * -182.8571 = [" + (a * -182.8571f) + "]");//[-4.999999]
+                Util_Machine.AppendLine("a * -146.2857 = [" + (a * -146.2857f) + "]");//[-4]
+                Util_Machine.AppendLine("a * -109.7142 = [" + (a * -109.7142f) + "]");//[-2.999998]
+                Util_Machine.AppendLine("a * - 73.1428 = [" + (a * -73.1428f) + "]");//[-1.999998]
+                Util_Machine.AppendLine("a * - 36.5714 = [" + (a * -36.5714f) + "]");//[-0.9999992]
+                Util_Machine.AppendLine("a *    0.0000 = [" + (a * 0.0000f) + "]");//[0]
+                Util_Machine.AppendLine("a *   36.5714 = [" + (a * 36.5714f) + "]");//[0.9999992]
+                Util_Machine.AppendLine("a *   73.1428 = [" + (a * 73.1428f) + "]");//[1.999998]
+                Util_Machine.AppendLine("a *  109.7142 = [" + (a * 109.7142f) + "]");//[2.999998]
+                Util_Machine.AppendLine("a *  146.2857 = [" + (a * 146.2857f) + "]");//[4]
+                Util_Machine.AppendLine("a *  182.8571 = [" + (a * 182.8571f) + "]");//[4.999999]
+                Util_Machine.AppendLine("a *  219.4285 = [" + (a * 219.4285f) + "]");//[5.999998]
+                Util_Machine.AppendLine("a *  256.0000 = [" + (a * 256.0000f) + "]");//[7]
+                Util_Machine.AppendLine();
+            }
+            // */
+
+            //Util_Machine.AppendLine("まず シグモイド曲線の指数☆（＾～＾）");
+            //Util_Machine.AppendLine("xに -256～256 を入れると、7～-7 になって返ってくるようになっている☆（＾～＾）");
+            //Util_Machine.AppendLine("これが （１）FV_WINDOW = 256、 （２）x = -FV_WINDOW～FV_WINDOW、 （３）FV_WINDOW / 7 のちから☆（＾～＾）");
+
+            /*
+            Util_Machine.AppendLine("まず ふつうのシグモイドだぜ☆（＾～＾）");
+            Util_Machine.AppendLine("sigmoid1(-∞      ) は、0 だぜ☆");
+            Util_Machine.AppendLine("sigmoid1(-256.0000) → [" + Sigmoid(1.0f, -256.0000f) + "]");//[0.0009110515]
+            Util_Machine.AppendLine("sigmoid1(-255.0000) → [" + Sigmoid(1.0f, -255.0000f) + "]");//[0.0009362831]
+            Util_Machine.AppendLine("sigmoid1(-219.4285) → [" + Sigmoid(1.0f, -219.4285f) + "]");//[0.002472629]
+            Util_Machine.AppendLine("sigmoid1(-182.8571) → [" + Sigmoid(1.0f, -182.8571f) + "]");//[0.00669286]
+            Util_Machine.AppendLine("sigmoid1(-146.2857) → [" + Sigmoid(1.0f, -146.2857f) + "]");//[0.01798622]
+            Util_Machine.AppendLine("sigmoid1(-109.7142) → [" + Sigmoid(1.0f, -109.7142f) + "]");//[0.04742598]
+            Util_Machine.AppendLine("sigmoid1(- 73.1428) → [" + Sigmoid(1.0f, -73.1428f) + "]");//[0.1192031]
+            Util_Machine.AppendLine("sigmoid1(- 36.5714) → [" + Sigmoid(1.0f, -36.5714f) + "]");//[0.2689416]
+            Util_Machine.AppendLine("sigmoid1(-  1.0000) → [" + Sigmoid(1.0f, -1.0000f) + "]");//[0.4931645]
+            Util_Machine.AppendLine("sigmoid1(   0.0000) → [" + Sigmoid(1.0f, 0.0000f) + "]");//[0.5]
+            Util_Machine.AppendLine("sigmoid1(   1.0000) → [" + Sigmoid(1.0f, 1.0000f) + "]");//[0.5068355]
+            Util_Machine.AppendLine("sigmoid1(  36.5714) → [" + Sigmoid(1.0f, 36.5714f) + "]");//[0.7310584]
+            Util_Machine.AppendLine("sigmoid1(  73.1428) → [" + Sigmoid(1.0f, 73.1428f) + "]");//[0.8807969]
+            Util_Machine.AppendLine("sigmoid1( 109.7142) → [" + Sigmoid(1.0f, 109.7142f) + "]");//[0.952574]
+            Util_Machine.AppendLine("sigmoid1( 146.2857) → [" + Sigmoid(1.0f, 146.2857f) + "]");//[0.9820138]
+            Util_Machine.AppendLine("sigmoid1( 182.8571) → [" + Sigmoid(1.0f, 182.8571f) + "]");//[0.9933071]
+            Util_Machine.AppendLine("sigmoid1( 219.4285) → [" + Sigmoid(1.0f, 219.4285f) + "]");//[0.9975274]
+            Util_Machine.AppendLine("sigmoid1( 255.0000) → [" + Sigmoid(1.0f, 255.0000f) + "]");//[0.9990637]
+            Util_Machine.AppendLine("sigmoid1( 256.0000) → [" + Sigmoid(1.0f, 256.0000f) + "]");//[0.9990889]
+            Util_Machine.AppendLine("sigmoid1(+∞      ) は、1 だぜ☆");
+            Util_Machine.AppendLine();
+            // */
+
+
+            /*
+            {
+                float[] alphas = new float[] { 64.0f, 100.0f, 128.0f, 200.0f, 255.0f, 256.0f, 257.0f};
+
+                for(int iA=0; iA < alphas.Length; iA ++){
+                    float alpha = alphas[iA];
+                    Util_Machine.AppendLine("係数 "+alpha+" を付けたシグモイドだぜ☆（＾～＾）");
+                    Util_Machine.AppendLine("sigmoid2(-∞      ) は、0 だぜ☆");
+                    Util_Machine.AppendLine("sigmoid2(-256.0000) → [" + Sigmoid(alpha, -256.0000f) + "]");//[0]
+                    Util_Machine.AppendLine("sigmoid2(-255.0000) → [" + Sigmoid(alpha, -255.0000f) + "]");//[0]
+                    Util_Machine.AppendLine("sigmoid2(-219.4285) → [" + Sigmoid(alpha, -219.4285f) + "]");//[0]
+                    Util_Machine.AppendLine("sigmoid2(-182.8571) → [" + Sigmoid(alpha, -182.8571f) + "]");//[0]
+                    Util_Machine.AppendLine("sigmoid2(-146.2857) → [" + Sigmoid(alpha, -146.2857f) + "]");//[0]
+                    Util_Machine.AppendLine("sigmoid2(-109.7142) → [" + Sigmoid(alpha, -109.7142f) + "]");//[0]
+                    Util_Machine.AppendLine("sigmoid2(- 73.1428) → [" + Sigmoid(alpha, -73.1428f) + "]");//[0]
+                    Util_Machine.AppendLine("sigmoid2(- 36.5714) → [" + Sigmoid(alpha, -36.5714f) + "]");//[0]
+                    Util_Machine.AppendLine("sigmoid2(-  1.0000) → [" + Sigmoid(alpha, -1.0000f) + "]");//[0]
+                    Util_Machine.AppendLine("sigmoid2(-  0.0001) → [" + Sigmoid(alpha, -0.0001f) + "]");//
+                    Util_Machine.AppendLine("sigmoid2(   0.0000) → [" + Sigmoid(alpha, 0.0000f) + "]");//[0.5]
+                    Util_Machine.AppendLine("sigmoid2(   0.0001) → [" + Sigmoid(alpha, 0.0001f) + "]");//
+                    Util_Machine.AppendLine("sigmoid2(   1.0000) → [" + Sigmoid(alpha, 1.0000f) + "]");//[1]
+                    Util_Machine.AppendLine("sigmoid2(  36.5714) → [" + Sigmoid(alpha, 36.5714f) + "]");//[1]
+                    Util_Machine.AppendLine("sigmoid2(  73.1428) → [" + Sigmoid(alpha, 73.1428f) + "]");//[1]
+                    Util_Machine.AppendLine("sigmoid2( 109.7142) → [" + Sigmoid(alpha, 109.7142f) + "]");//[1]
+                    Util_Machine.AppendLine("sigmoid2( 146.2857) → [" + Sigmoid(alpha, 146.2857f) + "]");//[1]
+                    Util_Machine.AppendLine("sigmoid2( 182.8571) → [" + Sigmoid(alpha, 182.8571f) + "]");//[1]
+                    Util_Machine.AppendLine("sigmoid2( 219.4285) → [" + Sigmoid(alpha, 219.4285f) + "]");//[1]
+                    Util_Machine.AppendLine("sigmoid2( 255.0000) → [" + Sigmoid(alpha, 255.0000f) + "]");//[1]
+                    Util_Machine.AppendLine("sigmoid2( 256.0000) → [" + Sigmoid(alpha, 256.0000f) + "]");//[1]
+                    Util_Machine.AppendLine("sigmoid2(+∞      ) は、1 だぜ☆");
+                    Util_Machine.AppendLine();
+                }
+            }
+            // */
+            /*
+            Util_Machine.AppendLine("係数 1/7 を付けたシグモイドだぜ☆（＾～＾）");
+            Util_Machine.AppendLine("sigmoid2(-∞      ) は、0 だぜ☆");
+            Util_Machine.AppendLine("sigmoid2(-256.0000) → [" + Sigmoid(1.0f / 7.0f, -256.0000f) + "]");//[1.309875E-16]
+            Util_Machine.AppendLine("sigmoid2(-255.0000) → [" + Sigmoid(1.0f / 7.0f, -255.0000f) + "]");//[1.511025E-16]
+            Util_Machine.AppendLine("sigmoid2(-219.4285) → [" + Sigmoid(1.0f / 7.0f, -219.4285f) + "]");//[2.433333E-14]
+            Util_Machine.AppendLine("sigmoid2(-182.8571) → [" + Sigmoid(1.0f / 7.0f, -182.8571f) + "]");//[4.520293E-12]
+            Util_Machine.AppendLine("sigmoid2(-146.2857) → [" + Sigmoid(1.0f / 7.0f, -146.2857f) + "]");//[8.397147E-10]
+            Util_Machine.AppendLine("sigmoid2(-109.7142) → [" + Sigmoid(1.0f / 7.0f, -109.7142f) + "]");//[1.559924E-07]
+            Util_Machine.AppendLine("sigmoid2(- 73.1428) → [" + Sigmoid(1.0f / 7.0f, -73.1428f) + "]");//[2.897721E-05]
+            Util_Machine.AppendLine("sigmoid2(- 36.5714) → [" + Sigmoid(1.0f / 7.0f, -36.5714f) + "]");//[0.005354304]
+            Util_Machine.AppendLine("sigmoid2(-  1.0000) → [" + Sigmoid(1.0f / 7.0f, -1.0000f) + "]");//[0.4643463]
+            Util_Machine.AppendLine("sigmoid2(   0.0000) → [" + Sigmoid(1.0f / 7.0f, 0.0000f) + "]");//[0.5]
+            Util_Machine.AppendLine("sigmoid2(   1.0000) → [" + Sigmoid(1.0f / 7.0f, 1.0000f) + "]");//[0.5356537]
+            Util_Machine.AppendLine("sigmoid2(  36.5714) → [" + Sigmoid(1.0f / 7.0f, 36.5714f) + "]");//[0.9946457]
+            Util_Machine.AppendLine("sigmoid2(  73.1428) → [" + Sigmoid(1.0f / 7.0f, 73.1428f) + "]");//[0.999971]
+            Util_Machine.AppendLine("sigmoid2( 109.7142) → [" + Sigmoid(1.0f / 7.0f, 109.7142f) + "]");//[0.9999998]
+            Util_Machine.AppendLine("sigmoid2( 146.2857) → [" + Sigmoid(1.0f / 7.0f, 146.2857f) + "]");//[1]
+            Util_Machine.AppendLine("sigmoid2( 182.8571) → [" + Sigmoid(1.0f / 7.0f, 182.8571f) + "]");//[1]
+            Util_Machine.AppendLine("sigmoid2( 219.4285) → [" + Sigmoid(1.0f / 7.0f, 219.4285f) + "]");//[1]
+            Util_Machine.AppendLine("sigmoid2( 255.0000) → [" + Sigmoid(1.0f / 7.0f, 255.0000f) + "]");//[1]
+            Util_Machine.AppendLine("sigmoid2( 256.0000) → [" + Sigmoid(1.0f / 7.0f, 256.0000f) + "]");//[1]
+            Util_Machine.AppendLine("sigmoid2(+∞      ) は、1 だぜ☆");
+            Util_Machine.AppendLine();
+            // */
+            /*
+            Util_Machine.AppendLine("係数 1/256 を付けたシグモイドだぜ☆（＾～＾）");
+            Util_Machine.AppendLine("sigmoid2(-∞      ) は、0 だぜ☆");
+            Util_Machine.AppendLine("sigmoid2(-256.0000) → [" + Sigmoid(1.0f / 256.0f, -256.0000f) + "]");//[0.2689414]
+            Util_Machine.AppendLine("sigmoid2(-255.0000) → [" + Sigmoid(1.0f / 256.0f, -255.0000f) + "]");//[0.2697101]
+            Util_Machine.AppendLine("sigmoid2(-219.4285) → [" + Sigmoid(1.0f / 256.0f, -219.4285f) + "]");//[0.2979367]
+            Util_Machine.AppendLine("sigmoid2(-182.8571) → [" + Sigmoid(1.0f / 256.0f, -182.8571f) + "]");//[0.3286526]
+            Util_Machine.AppendLine("sigmoid2(-146.2857) → [" + Sigmoid(1.0f / 256.0f, -146.2857f) + "]");//[0.3609073]
+            Util_Machine.AppendLine("sigmoid2(-109.7142) → [" + Sigmoid(1.0f / 256.0f, -109.7142f) + "]");//[0.3944676]
+            Util_Machine.AppendLine("sigmoid2(- 73.1428) → [" + Sigmoid(1.0f / 256.0f, -73.1428f) + "]");//[0.4290535]
+            Util_Machine.AppendLine("sigmoid2(- 36.5714) → [" + Sigmoid(1.0f / 256.0f, -36.5714f) + "]");//[0.4643464]
+            Util_Machine.AppendLine("sigmoid2(-  1.0000) → [" + Sigmoid(1.0f / 256.0f, -1.0000f) + "]");//[0.4990234]
+            Util_Machine.AppendLine("sigmoid2(   0.0000) → [" + Sigmoid(1.0f / 256.0f, 0.0000f) + "]");//[0.5]
+            Util_Machine.AppendLine("sigmoid2(   1.0000) → [" + Sigmoid(1.0f / 256.0f, 1.0000f) + "]");//[0.5009766]
+            Util_Machine.AppendLine("sigmoid2(  36.5714) → [" + Sigmoid(1.0f / 256.0f, 36.5714f) + "]");//[0.5356537]
+            Util_Machine.AppendLine("sigmoid2(  73.1428) → [" + Sigmoid(1.0f / 256.0f, 73.1428f) + "]");//[0.5709465]
+            Util_Machine.AppendLine("sigmoid2( 109.7142) → [" + Sigmoid(1.0f / 256.0f, 109.7142f) + "]");//[0.6055324]
+            Util_Machine.AppendLine("sigmoid2( 146.2857) → [" + Sigmoid(1.0f / 256.0f, 146.2857f) + "]");//[0.6390927]
+            Util_Machine.AppendLine("sigmoid2( 182.8571) → [" + Sigmoid(1.0f / 256.0f, 182.8571f) + "]");//[0.6713474]
+            Util_Machine.AppendLine("sigmoid2( 219.4285) → [" + Sigmoid(1.0f / 256.0f, 219.4285f) + "]");//[0.7020633]
+            Util_Machine.AppendLine("sigmoid2( 255.0000) → [" + Sigmoid(1.0f / 256.0f, 255.0000f) + "]");//[0.7302899]
+            Util_Machine.AppendLine("sigmoid2( 256.0000) → [" + Sigmoid(1.0f / 256.0f, 256.0000f) + "]");//[0.7310586]
+            Util_Machine.AppendLine("sigmoid2(+∞      ) は、1 だぜ☆");
+            Util_Machine.AppendLine();
+            // */
+            /*
+            Util_Machine.AppendLine("係数 1/ (128/7) を付けたシグモイドだぜ☆（＾～＾）");
+            Util_Machine.AppendLine("sigmoid2(-∞        ) は、0 だぜ☆");
+            Util_Machine.AppendLine("sigmoid2(-256.0000/2) → [" + Sigmoid(1.0f / (128.0f / 7.0f), -256.0000f / 2) + "]");//[0.0009110512]
+            Util_Machine.AppendLine("sigmoid2(-255.0000/2) → [" + Sigmoid(1.0f / (128.0f / 7.0f), -255.0000f / 2) + "]");//[0.0009362828]
+            Util_Machine.AppendLine("sigmoid2(-219.4285/2) → [" + Sigmoid(1.0f / (128.0f / 7.0f), -219.4285f / 2) + "]");//[0.002472628]
+            Util_Machine.AppendLine("sigmoid2(-182.8571/2) → [" + Sigmoid(1.0f / (128.0f / 7.0f), -182.8571f / 2) + "]");//[0.006692858]
+            Util_Machine.AppendLine("sigmoid2(-146.2857/2) → [" + Sigmoid(1.0f / (128.0f / 7.0f), -146.2857f / 2) + "]");//[0.01798621]
+            Util_Machine.AppendLine("sigmoid2(-109.7142/2) → [" + Sigmoid(1.0f / (128.0f / 7.0f), -109.7142f / 2) + "]");//[0.04742598]
+            Util_Machine.AppendLine("sigmoid2(- 73.1428/2) → [" + Sigmoid(1.0f / (128.0f / 7.0f), -73.1428f / 2) + "]");//[0.1192031]
+            Util_Machine.AppendLine("sigmoid2(- 36.5714/2) → [" + Sigmoid(1.0f / (128.0f / 7.0f), -36.5714f / 2) + "]");//[0.2689416]
+            Util_Machine.AppendLine("sigmoid2(-  1.0000/2) → [" + Sigmoid(1.0f / (128.0f / 7.0f), -1.0000f / 2) + "]");//[0.4931645]
+            Util_Machine.AppendLine("sigmoid2(   0.0000/2) → [" + Sigmoid(1.0f / (128.0f / 7.0f), 0.0000f / 2) + "]");//[0.5]
+            Util_Machine.AppendLine("sigmoid2(   1.0000/2) → [" + Sigmoid(1.0f / (128.0f / 7.0f), 1.0000f / 2) + "]");//[0.5068355]
+            Util_Machine.AppendLine("sigmoid2(  36.5714/2) → [" + Sigmoid(1.0f / (128.0f / 7.0f), 36.5714f / 2) + "]");//[0.7310584]
+            Util_Machine.AppendLine("sigmoid2(  73.1428/2) → [" + Sigmoid(1.0f / (128.0f / 7.0f), 73.1428f / 2) + "]");//[0.8807969]
+            Util_Machine.AppendLine("sigmoid2( 109.7142/2) → [" + Sigmoid(1.0f / (128.0f / 7.0f), 109.7142f / 2) + "]");//[0.952574]
+            Util_Machine.AppendLine("sigmoid2( 146.2857/2) → [" + Sigmoid(1.0f / (128.0f / 7.0f), 146.2857f / 2) + "]");//[0.9820138]
+            Util_Machine.AppendLine("sigmoid2( 182.8571/2) → [" + Sigmoid(1.0f / (128.0f / 7.0f), 182.8571f / 2) + "]");//[0.9933071]
+            Util_Machine.AppendLine("sigmoid2( 219.4285/2) → [" + Sigmoid(1.0f / (128.0f / 7.0f), 219.4285f / 2) + "]");//[0.9975274]
+            Util_Machine.AppendLine("sigmoid2( 255.0000/2) → [" + Sigmoid(1.0f / (128.0f / 7.0f), 255.0000f / 2) + "]");//[0.9990637]
+            Util_Machine.AppendLine("sigmoid2( 256.0000/2) → [" + Sigmoid(1.0f / (128.0f / 7.0f), 256.0000f / 2) + "]");//[0.9990889]
+            Util_Machine.AppendLine("sigmoid2(+∞        ) は、1 だぜ☆");
+            Util_Machine.AppendLine();
+            // */
+
+            // 歩の交換値は 174、
+            // x / 174 が 2 になるぐらいを端っこに☆
+            // ウィンドウは 348 か☆（＾～＾）
+            /*
+            {
+                for (float nazo = 1.0f; nazo < 11.0f; nazo += 1.0f)// 謎の数字☆
+                {
+                    Util_Machine.AppendLine("係数 1/ (256/" + nazo + ") を付けたシグモイドだぜ☆（＾～＾）");
+                    Util_Machine.AppendLine("sigmoid2(-∞      ) は、0 だぜ☆");
+                    Util_Machine.AppendLine("sigmoid2(-256.0000) → [" + Sigmoid(1.0f / (256.0f / nazo), -256.0000f) + "]");//[0.0009110512]
+                    Util_Machine.AppendLine("sigmoid2(-255.0000) → [" + Sigmoid(1.0f / (256.0f / nazo), -255.0000f) + "]");//[0.0009362828]
+                    Util_Machine.AppendLine("sigmoid2(-219.4285) → [" + Sigmoid(1.0f / (256.0f / nazo), -219.4285f) + "]");//[0.002472628]
+                    Util_Machine.AppendLine("sigmoid2(-182.8571) → [" + Sigmoid(1.0f / (256.0f / nazo), -182.8571f) + "]");//[0.006692858]
+                    Util_Machine.AppendLine("sigmoid2(-146.2857) → [" + Sigmoid(1.0f / (256.0f / nazo), -146.2857f) + "]");//[0.01798621]
+                    Util_Machine.AppendLine("sigmoid2(-109.7142) → [" + Sigmoid(1.0f / (256.0f / nazo), -109.7142f) + "]");//[0.04742598]
+                    Util_Machine.AppendLine("sigmoid2(- 73.1428) → [" + Sigmoid(1.0f / (256.0f / nazo), -73.1428f) + "]");//[0.1192031]
+                    Util_Machine.AppendLine("sigmoid2(- 36.5714) → [" + Sigmoid(1.0f / (256.0f / nazo), -36.5714f) + "]");//[0.2689416]
+                    Util_Machine.AppendLine("sigmoid2(-  1.0000) → [" + Sigmoid(1.0f / (256.0f / nazo), -1.0000f) + "]");//[0.4931645]
+                    Util_Machine.AppendLine("sigmoid2(   0.0000) → [" + Sigmoid(1.0f / (256.0f / nazo), 0.0000f) + "]");//[0.5]
+                    Util_Machine.AppendLine("sigmoid2(   1.0000) → [" + Sigmoid(1.0f / (256.0f / nazo), 1.0000f) + "]");//[0.5068355]
+                    Util_Machine.AppendLine("sigmoid2(  36.5714) → [" + Sigmoid(1.0f / (256.0f / nazo), 36.5714f) + "]");//[0.7310584]
+                    Util_Machine.AppendLine("sigmoid2(  73.1428) → [" + Sigmoid(1.0f / (256.0f / nazo), 73.1428f) + "]");//[0.8807969]
+                    Util_Machine.AppendLine("sigmoid2( 109.7142) → [" + Sigmoid(1.0f / (256.0f / nazo), 109.7142f) + "]");//[0.952574]
+                    Util_Machine.AppendLine("sigmoid2( 146.2857) → [" + Sigmoid(1.0f / (256.0f / nazo), 146.2857f) + "]");//[0.9820138]
+                    Util_Machine.AppendLine("sigmoid2( 182.8571) → [" + Sigmoid(1.0f / (256.0f / nazo), 182.8571f) + "]");//[0.9933071]
+                    Util_Machine.AppendLine("sigmoid2( 219.4285) → [" + Sigmoid(1.0f / (256.0f / nazo), 219.4285f) + "]");//[0.9975274]
+                    Util_Machine.AppendLine("sigmoid2( 255.0000) → [" + Sigmoid(1.0f / (256.0f / nazo), 255.0000f) + "]");//[0.9990637]
+                    Util_Machine.AppendLine("sigmoid2( 256.0000) → [" + Sigmoid(1.0f / (256.0f / nazo), 256.0000f) + "]");//[0.9990889]
+                    Util_Machine.AppendLine("sigmoid2(+∞      ) は、1 だぜ☆");
+                    Util_Machine.AppendLine();
+                    Util_Machine.AppendLine();
+                }
+                // */
+
+            /*
+係数 1/ (256/1) = 1/256 を付けたシグモイドだぜ☆（＾～＾）
+sigmoid2(-∞      ) は、0 だぜ☆
+sigmoid2(-256.0000) → [0.2689414]
+sigmoid2(-255.0000) → [0.2697101]
+sigmoid2(-219.4285) → [0.2979367]
+sigmoid2(-182.8571) → [0.3286526]
+sigmoid2(-146.2857) → [0.3609073]
+sigmoid2(-109.7142) → [0.3944676]
+sigmoid2(- 73.1428) → [0.4290535]
+sigmoid2(- 36.5714) → [0.4643464]
+sigmoid2(-  1.0000) → [0.4990234]
+sigmoid2(   0.0000) → [0.5]
+sigmoid2(   1.0000) → [0.5009766]
+sigmoid2(  36.5714) → [0.5356537]
+sigmoid2(  73.1428) → [0.5709465]
+sigmoid2( 109.7142) → [0.6055324]
+sigmoid2( 146.2857) → [0.6390927]
+sigmoid2( 182.8571) → [0.6713474]
+sigmoid2( 219.4285) → [0.7020633]
+sigmoid2( 255.0000) → [0.7302899]
+sigmoid2( 256.0000) → [0.7310586]
+sigmoid2(+∞      ) は、1 だぜ☆
+
+
+係数 1/ (256/2) = 1/128 を付けたシグモイドだぜ☆（＾～＾）
+sigmoid2(-∞      ) は、0 だぜ☆
+sigmoid2(-256.0000) → [0.1192029]
+sigmoid2(-255.0000) → [0.1200256]
+sigmoid2(-219.4285) → [0.1526087]
+sigmoid2(-182.8571) → [0.1933214]
+sigmoid2(-146.2857) → [0.2417962]
+sigmoid2(-109.7142) → [0.2979368]
+sigmoid2(- 73.1428) → [0.3609073]
+sigmoid2(- 36.5714) → [0.4290535]
+sigmoid2(-  1.0000) → [0.4980469]
+sigmoid2(   0.0000) → [0.5]
+sigmoid2(   1.0000) → [0.5019531]
+sigmoid2(  36.5714) → [0.5709465]
+sigmoid2(  73.1428) → [0.6390926]
+sigmoid2( 109.7142) → [0.7020633]
+sigmoid2( 146.2857) → [0.7582038]
+sigmoid2( 182.8571) → [0.8066786]
+sigmoid2( 219.4285) → [0.8473912]
+sigmoid2( 255.0000) → [0.8799744]
+sigmoid2( 256.0000) → [0.8807971]
+sigmoid2(+∞      ) は、1 だぜ☆
+
+
+係数 1/ (256/3) = 1/85.3333 を付けたシグモイドだぜ☆（＾～＾）
+sigmoid2(-∞      ) は、0 だぜ☆
+sigmoid2(-256.0000) → [0.04742587]
+sigmoid2(-255.0000) → [0.0479581]
+sigmoid2(-219.4285) → [0.07100008]
+sigmoid2(-182.8571) → [0.1050006]
+sigmoid2(-146.2857) → [0.1526087]
+sigmoid2(-109.7142) → [0.2165793]
+sigmoid2(- 73.1428) → [0.2979368]
+sigmoid2(- 36.5714) → [0.3944676]
+sigmoid2(-  1.0000) → [0.4970703]
+sigmoid2(   0.0000) → [0.5]
+sigmoid2(   1.0000) → [0.5029296]
+sigmoid2(  36.5714) → [0.6055324]
+sigmoid2(  73.1428) → [0.7020633]
+sigmoid2( 109.7142) → [0.7834207]
+sigmoid2( 146.2857) → [0.8473913]
+sigmoid2( 182.8571) → [0.8949994]
+sigmoid2( 219.4285) → [0.9289999]
+sigmoid2( 255.0000) → [0.9520419]
+sigmoid2( 256.0000) → [0.9525741]
+sigmoid2(+∞      ) は、1 だぜ☆
+
+
+係数 1/ (256/4) = 1/64 を付けたシグモイドだぜ☆（＾～＾）
+sigmoid2(-∞      ) は、0 だぜ☆
+sigmoid2(-256.0000) → [0.01798621]
+sigmoid2(-255.0000) → [0.01826428]
+sigmoid2(-219.4285) → [0.0314144]
+sigmoid2(-182.8571) → [0.0543133]
+sigmoid2(-146.2857) → [0.09231304]
+sigmoid2(-109.7142) → [0.1526088]
+sigmoid2(- 73.1428) → [0.2417963]
+sigmoid2(- 36.5714) → [0.3609073]
+sigmoid2(-  1.0000) → [0.4960938]
+sigmoid2(   0.0000) → [0.5]
+sigmoid2(   1.0000) → [0.5039062]
+sigmoid2(  36.5714) → [0.6390926]
+sigmoid2(  73.1428) → [0.7582037]
+sigmoid2( 109.7142) → [0.8473912]
+sigmoid2( 146.2857) → [0.9076869]
+sigmoid2( 182.8571) → [0.9456867]
+sigmoid2( 219.4285) → [0.9685856]
+sigmoid2( 255.0000) → [0.9817357]
+sigmoid2( 256.0000) → [0.9820138]
+sigmoid2(+∞      ) は、1 だぜ☆
+
+
+係数 1/ (256/5) = 1/51.2 を付けたシグモイドだぜ☆（＾～＾）
+sigmoid2(-∞      ) は、0 だぜ☆
+sigmoid2(-256.0000) → [0.006692851]
+sigmoid2(-255.0000) → [0.006823955]
+sigmoid2(-219.4285) → [0.01357694]
+sigmoid2(-182.8571) → [0.02734681]
+sigmoid2(-146.2857) → [0.05431328]
+sigmoid2(-109.7142) → [0.1050007]
+sigmoid2(- 73.1428) → [0.1933216]
+sigmoid2(- 36.5714) → [0.3286527]
+sigmoid2(-  1.0000) → [0.4951174]
+sigmoid2(   0.0000) → [0.5]
+sigmoid2(   1.0000) → [0.5048826]
+sigmoid2(  36.5714) → [0.6713473]
+sigmoid2(  73.1428) → [0.8066785]
+sigmoid2( 109.7142) → [0.8949993]
+sigmoid2( 146.2857) → [0.9456867]
+sigmoid2( 182.8571) → [0.9726532]
+sigmoid2( 219.4285) → [0.9864231]
+sigmoid2( 255.0000) → [0.993176]
+sigmoid2( 256.0000) → [0.9933072]
+sigmoid2(+∞      ) は、1 だぜ☆
+
+
+係数 1/ (256/6) を付けたシグモイドだぜ☆（＾～＾）
+sigmoid2(-∞      ) は、0 だぜ☆
+sigmoid2(-256.0000) → [0.002472623]
+sigmoid2(-255.0000) → [0.002531111]
+sigmoid2(-219.4285) → [0.005807068]
+sigmoid2(-182.8571) → [0.01357693]
+sigmoid2(-146.2857) → [0.03141438]
+sigmoid2(-109.7142) → [0.07100015]
+sigmoid2(- 73.1428) → [0.1526088]
+sigmoid2(- 36.5714) → [0.2979368]
+sigmoid2(-  1.0000) → [0.4941409]
+sigmoid2(   0.0000) → [0.5]
+sigmoid2(   1.0000) → [0.5058591]
+sigmoid2(  36.5714) → [0.7020633]
+sigmoid2(  73.1428) → [0.8473912]
+sigmoid2( 109.7142) → [0.9289998]
+sigmoid2( 146.2857) → [0.9685856]
+sigmoid2( 182.8571) → [0.9864231]
+sigmoid2( 219.4285) → [0.994193]
+sigmoid2( 255.0000) → [0.9974689]
+sigmoid2( 256.0000) → [0.9975274]
+sigmoid2(+∞      ) は、1 だぜ☆
+
+
+係数 1/ (256/7) を付けたシグモイドだぜ☆（＾～＾）
+sigmoid2(-∞      ) は、0 だぜ☆
+sigmoid2(-256.0000) → [0.0009110512]
+sigmoid2(-255.0000) → [0.0009362828]
+sigmoid2(-219.4285) → [0.002472628]
+sigmoid2(-182.8571) → [0.006692858]
+sigmoid2(-146.2857) → [0.01798621]
+sigmoid2(-109.7142) → [0.04742598]
+sigmoid2(- 73.1428) → [0.1192031]
+sigmoid2(- 36.5714) → [0.2689416]
+sigmoid2(-  1.0000) → [0.4931645]
+sigmoid2(   0.0000) → [0.5]
+sigmoid2(   1.0000) → [0.5068355]
+sigmoid2(  36.5714) → [0.7310584]
+sigmoid2(  73.1428) → [0.8807969]
+sigmoid2( 109.7142) → [0.952574]
+sigmoid2( 146.2857) → [0.9820138]
+sigmoid2( 182.8571) → [0.9933071]
+sigmoid2( 219.4285) → [0.9975274]
+sigmoid2( 255.0000) → [0.9990637]
+sigmoid2( 256.0000) → [0.9990889]
+sigmoid2(+∞      ) は、1 だぜ☆
+
+
+係数 1/ (256/8) を付けたシグモイドだぜ☆（＾～＾）
+sigmoid2(-∞      ) は、0 だぜ☆
+sigmoid2(-256.0000) → [0.0003353501]
+sigmoid2(-255.0000) → [0.0003459916]
+sigmoid2(-219.4285) → [0.001050812]
+sigmoid2(-182.8571) → [0.003287666]
+sigmoid2(-146.2857) → [0.01023729]
+sigmoid2(-109.7142) → [0.03141445]
+sigmoid2(- 73.1428) → [0.09231318]
+sigmoid2(- 36.5714) → [0.2417963]
+sigmoid2(-  1.0000) → [0.4921881]
+sigmoid2(   0.0000) → [0.5]
+sigmoid2(   1.0000) → [0.5078118]
+sigmoid2(  36.5714) → [0.7582037]
+sigmoid2(  73.1428) → [0.9076868]
+sigmoid2( 109.7142) → [0.9685856]
+sigmoid2( 146.2857) → [0.9897627]
+sigmoid2( 182.8571) → [0.9967123]
+sigmoid2( 219.4285) → [0.9989492]
+sigmoid2( 255.0000) → [0.999654]
+sigmoid2( 256.0000) → [0.9996647]
+sigmoid2(+∞      ) は、1 だぜ☆
+
+
+係数 1/ (256/9) を付けたシグモイドだぜ☆（＾～＾）
+sigmoid2(-∞      ) は、0 だぜ☆
+sigmoid2(-256.0000) → [0.0001233946]
+sigmoid2(-255.0000) → [0.0001278093]
+sigmoid2(-219.4285) → [0.0004462062]
+sigmoid2(-182.8571) → [0.001612155]
+sigmoid2(-146.2857) → [0.00580706]
+sigmoid2(-109.7142) → [0.02069117]
+sigmoid2(- 73.1428) → [0.07100015]
+sigmoid2(- 36.5714) → [0.2165793]
+sigmoid2(-  1.0000) → [0.4912119]
+sigmoid2(   0.0000) → [0.5]
+sigmoid2(   1.0000) → [0.5087882]
+sigmoid2(  36.5714) → [0.7834207]
+sigmoid2(  73.1428) → [0.9289998]
+sigmoid2( 109.7142) → [0.9793088]
+sigmoid2( 146.2857) → [0.994193]
+sigmoid2( 182.8571) → [0.9983879]
+sigmoid2( 219.4285) → [0.9995538]
+sigmoid2( 255.0000) → [0.9998722]
+sigmoid2( 256.0000) → [0.9998766]
+sigmoid2(+∞      ) は、1 だぜ☆
+
+
+係数 1/ (256/10) を付けたシグモイドだぜ☆（＾～＾）
+sigmoid2(-∞      ) は、0 だぜ☆
+sigmoid2(-256.0000) → [4.539787E-05]
+sigmoid2(-255.0000) → [4.720623E-05]
+sigmoid2(-219.4285) → [0.0001894065]
+sigmoid2(-182.8571) → [0.0007898672]
+sigmoid2(-146.2857) → [0.003287663]
+sigmoid2(-109.7142) → [0.01357696]
+sigmoid2(- 73.1428) → [0.05431338]
+sigmoid2(- 36.5714) → [0.1933216]
+sigmoid2(-  1.0000) → [0.4902356]
+sigmoid2(   0.0000) → [0.5]
+sigmoid2(   1.0000) → [0.5097644]
+sigmoid2(  36.5714) → [0.8066785]
+sigmoid2(  73.1428) → [0.9456866]
+sigmoid2( 109.7142) → [0.986423]
+sigmoid2( 146.2857) → [0.9967123]
+sigmoid2( 182.8571) → [0.9992101]
+sigmoid2( 219.4285) → [0.9998106]
+sigmoid2( 255.0000) → [0.9999528]
+sigmoid2( 256.0000) → [0.9999546]
+sigmoid2(+∞      ) は、1 だぜ☆
+        }
+            // */
+
+            /*
+            Util_Machine.AppendLine("まず func☆（＾～＾） targetって何だぜ☆？");
+            Util_Machine.AppendLine("func(-∞      ) は、0 だぜ☆");
+            Util_Machine.AppendLine("func(-256.0000) → [" + func(-256.0000f) + "]");//[0.0009110515]
+            Util_Machine.AppendLine("func(-255.0000) → [" + func(-255.0000f) + "]");//[0.0009362831]
+            Util_Machine.AppendLine("func(-219.4285) → [" + func(-219.4285f) + "]");//[0.002472629]
+            Util_Machine.AppendLine("func(-182.8571) → [" + func(-182.8571f) + "]");//[0.00669286]
+            Util_Machine.AppendLine("func(-146.2857) → [" + func(-146.2857f) + "]");//[0.01798622]
+            Util_Machine.AppendLine("func(-109.7142) → [" + func(-109.7142f) + "]");//[0.04742598]
+            Util_Machine.AppendLine("func(- 73.1428) → [" + func(- 73.1428f) + "]");//[0.1192031]
+            Util_Machine.AppendLine("func(- 36.5714) → [" + func(- 36.5714f) + "]");//[0.2689416]
+            Util_Machine.AppendLine("func(-  1.0000) → [" + func(-  1.0000f) + "]");//[0.4931645]
+            Util_Machine.AppendLine("func(   0.0000) → [" + func(   0.0000f) + "]");//[0.5]
+            Util_Machine.AppendLine("func(   1.0000) → [" + func(   1.0000f) + "]");//[0.5068355]
+            Util_Machine.AppendLine("func(  36.5714) → [" + func(  36.5714f) + "]");//[0.7310584]
+            Util_Machine.AppendLine("func(  73.1428) → [" + func(  73.1428f) + "]");//[0.8807969]
+            Util_Machine.AppendLine("func( 109.7142) → [" + func( 109.7142f) + "]");//[0.952574]
+            Util_Machine.AppendLine("func( 146.2857) → [" + func( 146.2857f) + "]");//[0.9820138]
+            Util_Machine.AppendLine("func( 182.8571) → [" + func( 182.8571f) + "]");//[0.9933071]
+            Util_Machine.AppendLine("func( 219.4285) → [" + func( 219.4285f) + "]");//[0.9975274]
+            Util_Machine.AppendLine("func( 255.0000) → [" + func( 255.0000f) + "]");//[0.9990637]
+            Util_Machine.AppendLine("func( 256.0000) → [" + func( 256.0000f) + "]");//[0.9990889]
+            Util_Machine.AppendLine("func(+∞      ) は、1 だぜ☆");
+            Util_Machine.AppendLine();
+            // */
+
+            /*
+            // [0.1-E2] は、[0.01]。
+            Util_Machine.AppendLine("dfuncって上がり幅かだぜ☆（＾～＾）？");
+            Util_Machine.AppendLine("-256より枠の外は 0 に切ってるぜ☆（＾～＾）");
+            Util_Machine.AppendLine("dfunc(-256.0000) → [" + dfunc(-256.0000f) + "]");//[0]
+            Util_Machine.AppendLine("dfunc(-255.0000) → [" + dfunc(-255.0000f) + "]");//[0.00002557752]  //[2.557752E-05]
+            Util_Machine.AppendLine("dfunc(-219.4285) → [" + dfunc(-219.4285f) + "]");//[0.00006744377]  //[6.744377E-05]
+            Util_Machine.AppendLine("dfunc(-182.8571) → [" + dfunc(-182.8571f) + "]");//[0.0001817830 ]
+            Util_Machine.AppendLine("dfunc(-146.2857) → [" + dfunc(-146.2857f) + "]");//[0.0004829648 ]
+            Util_Machine.AppendLine("dfunc(-109.7142) → [" + dfunc(-109.7142f) + "]");//[0.001235302  ]
+            Util_Machine.AppendLine("dfunc(- 73.1428) → [" + dfunc(- 73.1428f) + "]");//[0.002870922  ]
+            Util_Machine.AppendLine("dfunc(- 36.5714) → [" + dfunc(- 36.5714f) + "]");//[0.005376109  ]
+            Util_Machine.AppendLine("dfunc(-  1.0000) → [" + dfunc(-  1.0000f) + "]");//[0.006834660  ]
+            Util_Machine.AppendLine("dfunc(   0.0000) → [" + dfunc(   0.0000f) + "]");//[0.006835937  ]
+            Util_Machine.AppendLine("dfunc(   1.0000) → [" + dfunc(   1.0000f) + "]");//[0.006834660  ]
+            Util_Machine.AppendLine("dfunc(  36.5714) → [" + dfunc(  36.5714f) + "]");//[0.005376109  ]
+            Util_Machine.AppendLine("dfunc(  73.1428) → [" + dfunc(  73.1428f) + "]");//[0.002870922  ]
+            Util_Machine.AppendLine("dfunc( 109.7142) → [" + dfunc( 109.7142f) + "]");//[0.001235302  ]
+            Util_Machine.AppendLine("dfunc( 146.2857) → [" + dfunc( 146.2857f) + "]");//[0.0004829648 ]
+            Util_Machine.AppendLine("dfunc( 182.8571) → [" + dfunc( 182.8571f) + "]");//[0.0001817830 ]
+            Util_Machine.AppendLine("dfunc( 219.4285) → [" + dfunc( 219.4285f) + "]");//[0.00006744376]  //[6.744376E-05]
+            Util_Machine.AppendLine("dfunc( 255.0000) → [" + dfunc( 255.0000f) + "]");//[0.00002557752]  //[2.557752E-05]
+            Util_Machine.AppendLine("dfunc( 256.0000) → [" + dfunc( 256.0000f) + "]");//[0]
+            Util_Machine.AppendLine("256より枠の外は 0 に切ってるぜ☆（＾～＾）");
+            // */
+
+            /*
+            // [0.1-E2] は、[0.01]。
+            Util_Machine.AppendLine("評価値の修正点に使うときは、32で割ってるみたいだな☆（＾～＾）");
+            Util_Machine.AppendLine("-256より枠の外は 0 に切ってるぜ☆（＾～＾）");
+            Util_Machine.AppendLine("dfunc(-256.0) → [" + dfunc(-256.0f) + "]。 ÷32 → [" + (dfunc(-256.0f) / FV_SCALE) + "]");//[0]
+            Util_Machine.AppendLine("dfunc(-255.0) → [" + dfunc(-255.0f) + "]。 ÷32 → [" + (dfunc(-255.0f) / FV_SCALE) + "]");//[0.0000007992975] //[7.992975E-07]
+            Util_Machine.AppendLine("dfunc(-244.0) → [" + dfunc(-224.0f) + "]。 ÷32 → [" + (dfunc(-224.0f) / FV_SCALE) + "]");//[0.000001861044] //[1.861044E-06]
+            Util_Machine.AppendLine("dfunc(-192.0) → [" + dfunc(-192.0f) + "]。 ÷32 → [" + (dfunc(-192.0f) / FV_SCALE) + "]");//[0.000004437273] //[4.437273E-06]
+            Util_Machine.AppendLine("dfunc(-128.0) → [" + dfunc(-128.0f) + "]。 ÷32 → [" + (dfunc(-128.0f) / FV_SCALE) + "]");//[0.00002431289] //[2.431289E-05]
+            Util_Machine.AppendLine("dfunc(- 96.0) → [" + dfunc(-96.0f) + "]。 ÷32 → [" + (dfunc(-96.0f) / FV_SCALE) + "]");//[0.00005381946] //[5.381946E-05]
+            Util_Machine.AppendLine("dfunc(- 64.0) → [" + dfunc(-64.0f) + "]。 ÷32 → [" + (dfunc(-64.0f) / FV_SCALE) + "]");//[0.0001077764]
+            Util_Machine.AppendLine("dfunc(- 32.0) → [" + dfunc(-32.0f) + "]。 ÷32 → [" + (dfunc(-32.0f) / FV_SCALE) + "]");//[0.0001774375]
+            Util_Machine.AppendLine("dfunc(- 16.0) → [" + dfunc(-16.0f) + "]。 ÷32 → [" + (dfunc(-16.0f) / FV_SCALE) + "]");//[0.0002037183]
+            Util_Machine.AppendLine("dfunc(-  1.0) → [" + dfunc(-1.0f) + "]。 ÷32 → [" + (dfunc(-1.0f) / FV_SCALE) + "]");//[0.0002135831]
+            Util_Machine.AppendLine("dfunc(   0.0) → [" + dfunc(   0.0f) + "]。 ÷32 → [" + (dfunc(0.0f) / FV_SCALE) + "]");//[0.000213623]
+            Util_Machine.AppendLine("dfunc(   1.0) → [" + dfunc(   1.0f) + "]。 ÷32 → [" + (dfunc(1.0f) / FV_SCALE) + "]");//[0.0002135831]
+            Util_Machine.AppendLine("dfunc(  16.0) → [" + dfunc(16.0f) + "]。 ÷32 → [" + (dfunc(16.0f) / FV_SCALE) + "]");//[0.0002037183]
+            Util_Machine.AppendLine("dfunc(  32.0) → [" + dfunc(32.0f) + "]。 ÷32 → [" + (dfunc(32.0f) / FV_SCALE) + "]");//[0.0001774375]
+            Util_Machine.AppendLine("dfunc(  64.0) → [" + dfunc(64.0f) + "]。 ÷32 → [" + (dfunc(64.0f) / FV_SCALE) + "]");//[0.0001077764]
+            Util_Machine.AppendLine("dfunc(  96.0) → [" + dfunc(96.0f) + "]。 ÷32 → [" + (dfunc(96.0f) / FV_SCALE) + "]");//[0.00005381945] //[5.381945E-05]
+            Util_Machine.AppendLine("dfunc( 128.0) → [" + dfunc(128.0f) + "]。 ÷32 → [" + (dfunc(128.0f) / FV_SCALE) + "]");//[0.00002431289] //[2.431289E-05]
+            Util_Machine.AppendLine("dfunc( 192.0) → [" + dfunc( 192.0f) + "]。 ÷32 → [" + (dfunc(192.0f) / FV_SCALE) + "]");//[0.000004437273] //[4.437273E-06]
+            Util_Machine.AppendLine("dfunc( 244.0) → [" + dfunc(224.0f) + "]。 ÷32 → [" + (dfunc(224.0f) / FV_SCALE) + "]");//[0.000001861044] //[1.861044E-06]
+            Util_Machine.AppendLine("dfunc( 255.0) → [" + dfunc(255.0f) + "]。 ÷32 → [" + (dfunc(255.0f) / FV_SCALE) + "]");//[0.0000007992975] //[7.992975E-07]
+            Util_Machine.AppendLine("dfunc( 256.0) → [" + dfunc( 256.0f) + "]。 ÷32 → [" + (dfunc(256.0f) / FV_SCALE) + "]");//[0]
+            Util_Machine.AppendLine("256より枠の外は 0 に切ってるぜ☆（＾～＾）");
+            // */
+
+            /*
+            Util_Machine.AppendLine("Derivedシグモイド関数を眺めてみるんだぜ☆ +も-も結果は同じ☆");
+            Util_Machine.AppendLine("　　　　　　　小数点第４位以下を四捨五入してみるぜ☆！");
+            Util_Machine.AppendLine("dfunc(-256.0) → 約[" + string.Format("{0:0.0}", dfunc(-256.0f)*1000) + "]　[" + dfunc(-256.0f) + "]");//約[0.0]　[0]
+            Util_Machine.AppendLine("dfunc(-255.0) → 約[" + string.Format("{0:0.0}", dfunc(-255.0f) * 1000) + "]　[" + dfunc(-255.0f) + "]");//約[0.0]　[2.557752E-05]
+            Util_Machine.AppendLine("dfunc(-128.0) → 約[" + string.Format("{0:0.0}", dfunc(-128.0f) * 1000) + "]　[" + dfunc(-128.0f) + "]");//約[0.8]　[0.0007780124]
+            Util_Machine.AppendLine("dfunc(-120.0) → 約[" + string.Format("{0:0.0}", dfunc(-120.0f) * 1000) + "]　[" + dfunc(-120.0f) + "]");// 約[1.0]　[0.0009545202]
+            Util_Machine.AppendLine("dfunc(-112.0) → 約[" + string.Format("{0:0.0}", dfunc(-112.0f) * 1000) + "]　[" + dfunc(-112.0f) + "]");//約[1.2]　[0.001167154]
+            Util_Machine.AppendLine("dfunc(-104.0) → 約[" + string.Format("{0:0.0}", dfunc(-104.0f) * 1000) + "]　[" + dfunc(-104.0f) + "]");//約[1.4]　[0.00142132]
+            Util_Machine.AppendLine("dfunc(- 96.0) → 約[" + string.Format("{0:0.0}", dfunc(-96.0f) * 1000) + "]　[" + dfunc(-96.0f) + "]");//約[1.7]　[0.001722223]
+            Util_Machine.AppendLine("dfunc(- 88.0) → 約[" + string.Format("{0:0.0}", dfunc(-88.0f) * 1000) + "]　[" + dfunc(-88.0f) + "]");//約[2.1]　[0.002074256]
+            Util_Machine.AppendLine("dfunc(- 80.0) → 約[" + string.Format("{0:0.0}", dfunc(-80.0f) * 1000) + "]　[" + dfunc(-80.0f) + "]");//約[2.5]　[0.002480136]
+            Util_Machine.AppendLine("dfunc(- 72.0) → 約[" + string.Format("{0:0.0}", dfunc(-72.0f) * 1000) + "]　[" + dfunc(-72.0f) + "]");//約[2.9]　[0.002939762]
+            Util_Machine.AppendLine("dfunc(- 64.0) → 約[" + string.Format("{0:0.0}", dfunc(-64.0f) * 1000) + "]　[" + dfunc(-64.0f) + "]");//約[3.4]　[0.003448846]
+            Util_Machine.AppendLine("dfunc(- 56.0) → 約[" + string.Format("{0:0.0}", dfunc(-56.0f) * 1000) + "]　[" + dfunc(-56.0f) + "]");//約[4.0]　[0.003997497]
+            Util_Machine.AppendLine("dfunc(- 48.0) → 約[" + string.Format("{0:0.0}", dfunc(-48.0f) * 1000) + "]　[" + dfunc(-48.0f) + "]");//約[4.6]　[0.004569021]
+            Util_Machine.AppendLine("dfunc(- 40.0) → 約[" + string.Format("{0:0.0}", dfunc(-40.0f) * 1000) + "]　[" + dfunc(-40.0f) + "]");//約[5.1]　[0.00513941]
+            Util_Machine.AppendLine("dfunc(- 32.0) → 約[" + string.Format("{0:0.0}", dfunc(-32.0f) * 1000) + "]　[" + dfunc(-32.0f) + "]");//約[5.7]　[0.005677999]
+            Util_Machine.AppendLine("dfunc(- 24.0) → 約[" + string.Format("{0:0.0}", dfunc(-24.0f) * 1000) + "]　[" + dfunc(-24.0f) + "]");//約[6.1]　[0.006149716]
+            Util_Machine.AppendLine("dfunc(- 16.0) → 約[" + string.Format("{0:0.0}", dfunc(-16.0f) * 1000) + "]　[" + dfunc(-16.0f) + "]");//約[6.5]　[0.006518986]
+            Util_Machine.AppendLine("dfunc(-  8.0) → 約[" + string.Format("{0:0.0}", dfunc(-8.0f) * 1000) + "]　[" + dfunc(-8.0f) + "]");//約[6.8]　[0.006754808]
+            Util_Machine.AppendLine("dfunc(   0.0) → 約[" + string.Format("{0:0.0}", dfunc(-0.0f) * 1000) + "]　[" + dfunc(0.0f) + "]");//約[6.8]　[0.006835937]
+            // */
+            /*
+            Util_Machine.AppendLine("　※Ａ……Derivedシグモイドする　※Ｂ……変化手に下方修正する特徴量1000倍表示");
+            Util_Sigmoid.Display(256.0f);
+            Util_Sigmoid.Display(255.0f);
+            Util_Machine.AppendLine("　～中略～");
+            Util_Sigmoid.Display(144.0f);
+            Util_Sigmoid.Display(136.0f);
+            Util_Sigmoid.Display(128.0f);
+            Util_Sigmoid.Display(120.0f);
+            Util_Sigmoid.Display(112.0f);
+            Util_Sigmoid.Display(104.0f);
+            Util_Sigmoid.Display(96.0f);
+            Util_Sigmoid.Display(88.0f);
+            Util_Sigmoid.Display(80.0f);
+            Util_Sigmoid.Display(72.0f);
+            Util_Sigmoid.Display(64.0f);
+            Util_Sigmoid.Display(56.0f);
+            Util_Sigmoid.Display(48.0f);
+            Util_Sigmoid.Display(40.0f);
+            Util_Sigmoid.Display(32.0f);
+            Util_Sigmoid.Display(24.0f);
+            Util_Sigmoid.Display(16.0f);
+            Util_Sigmoid.Display(8.0f);
+            Util_Sigmoid.Display(0.0f);
+            // */
+
+        static void Display(float value_diff)
+        {
+            string predi = string.Format("{0:0.00}", func(value_diff));
+            string dLv = string.Format("{0:0.0}", dfunc(value_diff) * 1000);
+            float d;
+            float.TryParse(dLv, out d);
+            StringBuilder sb = new StringBuilder();
+            //sb.Append("変化の本譜との誤差" + string.Format("{0,6:0.0}", value) + "→(※Ａ)→約" + level + "(※Ｂ)");
+            sb.Append("評価値の差" + string.Format("{0,6:0.0}", value_diff) + "→(※Ａ)→約" + dLv + "(※Ｂ)p=" + predi);
+
+            int max = (int)(d * 10.0 / 2);
+            for (int i = 0; i < max; i++)
+            {
+                sb.Append(".");
+            }
+            //sb.Append("　[" + dfunc(value) + "]");
+
+            Util_Machine.AppendLine(sb.ToString());
+        }
+
+        /// <summary>
+        /// シグモイド関数
+        /// 
+        /// （１）
+        /// シグモイド曲線は x軸に　－∞～∞　の間の好きな数字を、ｙ軸に　0.0～1.0　の数字を打ち込んだ
+        /// ただのプロットな表で、まだ微分は出てこないぜ☆（＾～＾）
+        /// 指数関数がちょっと調子こいてるだけだぜ☆（＾～＾）
+        /// 
+        /// （２）
+        /// シグモイド曲線の　ｘとｙの関係は、y = 1 / 1 + 10^-x　だぜ☆（＾～＾）
+        /// これをちょっとアレンジするときは、 y = 1 / 1 + 10^-ax　だぜ☆（＾～＾）
+        /// ボナンザ６．０では a は 1/delta にしているぜ☆（＾～＾）
+        /// 
+        /// 指数に、係数とか掛けるというのが、タケノコが伸びすぎてわけがわからないが、
+        /// ボナンザ６．０は　指数に掛ける係数が少なくなるようにしているので、
+        /// 桁が倍々ゲームにならないようにしてると思うんだが☆（＾～＾） 
+        /// 
+        /// で、とりあえず　指数に掛かっている係数の x を、-256～256 に一旦範囲を決めていて、
+        /// その外は -256、256 に丸めているぜ☆（＾～＾）
+        /// で、この係数を　36.57...ぐらいの数字で割っているので結果、指数はおよそ -7.0～7.0に収まる☆
+        /// </summary>
+        /// <param name="x">
+        /// 指し手の評価値　－　教師の指し手の評価値。
+        /// まあ仮に -20000～20000 ぐらい入ってくるものと想像しておこうぜ☆（＾▽＾）</param>
+        /// <returns></returns>
+        static float func(float x)
+        {
+            // 評価を分解し過ぎると
+            //
+            // 0 , 1 になってしまう☆
+            //
+            // 範囲を広くするほど　合法手に別の点を付けるという、細かさが出てしまう☆（＾～＾）
+            // 評価値の空間を使い切るには、学習データが足りなくなってしまう☆（＾～＾）
+
+            // 評価が粗っぽいと
+            //
+            // 悪い手も良い手も誇張されてしまう☆（＾～＾）
+            // 評価値の空間を使い切るには、学習データが足りなくなってしまう☆（＾～＾）
+
+
+            // （３）
+            // delta は、指数にかかる係数だぜ☆　１／delta　という割り算として使う☆（＾～＾）
+            // これで delta を使った幅は、-36.57... ～ 0 ～ 36.57... ぐらいの数字に変わったぜ☆（＾～＾）
+            float delta =
+                // （１）
+                // FV_WINDOW は 256 だぜ☆（＾～＾）
+                // これは x が -256 ～ 0 ～ 256 の範囲で動くという幅だぜ☆
+                (float)WINDOW
+                // （２）
+                // x に対して、y が反応するのを 7 倍鈍感にするぜ☆（＾▽＾）
+                // FV_WINDOW / n = 歩の交換値
+                //
+                // FV_WINDOW が x の絶対値の最大と考えれば、
+                // それを 7 で割るということは x が -7～0～7 に収まるような縮小ズームを掛ける感じだぜ☆（＾～＾）
+                // 7倍の縮小ではなく、7に収まる縮小だぜ☆
+                //
+                // なぜ指数を -7～0～7 ぐらいに収めたいのかというと、
+                // float型の有効桁が 7桁なのと 関係あるのかだぜ☆（＾～＾）
+                // 0.00000000000000001234567 みたいなやつ☆（＾～＾）
+                //
+                // -0.0000...000001234567 ～ 0 ～ 1234567
+                / 7.0f;
+
+            // x を、-FV_WINDOW ～ FV_WINDOW の範囲に収めるぜ☆（＾▽＾）
+            if (x < -WINDOW) { x = -WINDOW; }
+            else if (x > WINDOW) { x = WINDOW; }
+
+            // シグモイド曲線の基本形は 1 / ( 1 + 10^-x ) だぜ☆（＾▽＾）
+            // ちょっとアレンジすると 1 / ( 1 + 10^-ax ) だぜ☆（＾▽＾）
+
+            // これがシグモイド曲線の y ☆（＾～＾）
+            return
+                // （３）
+                // xが仮に 7 なら、1/1.0000001 みたいな、1 に近い 0.9999999 のような数字になるし、
+                // xが仮に -7 なら、1/10000001 みたいな、0 に近い 0.00000009999999 のような数字になるぜ☆（＾～＾）
+                1.0f / (
+                // （２）
+                // 1 + 10^-x　はお決まりの形だぜ☆（＾～＾）
+                // xが仮に 7 なら 1.0000001 だし、
+                // xが仮に -7 なら 10000001 になるぜ☆
+                // どちらにしろ、1 より大きい数字だぜ☆
+                1.0f + (float)Math.Exp(
+                // （１）
+                // -x に、1/delta を掛けているんだぜ☆ｗｗｗ（＾▽＾）
+                // -ax だな☆（＾▽＾）ｗｗｗ
+                -x / delta
+                )
+                );
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

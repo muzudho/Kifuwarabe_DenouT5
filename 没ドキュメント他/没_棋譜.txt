@@ -1,0 +1,267 @@
+#if DEBUG
+using kifuwarabe_shogithink.pure.com.sasiteorder;
+using kifuwarabe_shogithink.pure.genkyoku;
+using kifuwarabe_shogithink.pure.genkyoku.play;
+using kifuwarabe_shogithink.pure.ky;
+using kifuwarabe_shogithink.pure.listen.genkyoku;
+using kifuwarabe_shogithink.pure.listen.play;
+using kifuwarabe_shogithink.pure.logger;
+using kifuwarabe_shogithink.pure.speak.play;
+using System.Collections.Generic;
+#else
+using kifuwarabe_shogithink.pure.com.sasiteorder;
+using kifuwarabe_shogithink.pure.genkyoku;
+using kifuwarabe_shogithink.pure.genkyoku.play;
+using kifuwarabe_shogithink.pure.ky;
+using kifuwarabe_shogithink.pure.listen.genkyoku;
+using kifuwarabe_shogithink.pure.listen.play;
+using kifuwarabe_shogithink.pure.logger;
+using kifuwarabe_shogithink.pure.speak.play;
+using System.Collections.Generic;
+#endif
+
+namespace kifuwarabe_shogithink.pure.ikkyoku
+{
+    /// <summary>
+    /// 対局終了時の記録用だぜ☆
+    /// 
+    /// (2017-04-27 08:37) USI用にも拡張するぜ☆（*＾～＾*）
+    /// </summary>
+    public class Kifu
+    {
+        public Kifu()
+        {
+            this.ssList = new List<Sasite>();
+            this.syokiKyokumenFen = "";
+        }
+
+        /// <summary>
+        /// 先頭に追加するぜ☆（＾▽＾）
+        /// </summary>
+        /// <param name="ss"></param>
+        public void AddFirst(Sasite ss)
+        {
+            this.ssList.Insert(0, ss);
+        }
+        /// <summary>
+        /// moves 以降の符号を指定しろだぜ☆（＾～＾）
+        /// </summary>
+        /// <param name="moves"></param>
+        public void AddMoves(bool isSfen, string moves, Kyokumen.YomiKy kymS)
+        {
+            string[] fugoItiran = moves.Split(' ');
+
+            foreach(string fugo in fugoItiran)
+            {
+                int caret = 0;
+                Sasite sasite;
+                if (!LisPlay.Try_FenSasite(isSfen, fugo, ref caret,out sasite))
+                {
+                    throw new System.Exception("指し手のパースエラー fugo=["+ fugo + "]");
+                }
+                ssList.Add(sasite);
+            }
+        }
+
+
+
+        public List<Sasite> ssList { get; set; }
+        public string syokiKyokumenFen { get; set; }
+
+        /// <summary>
+        /// 終局図まで進めるぜ☆（＾～＾）
+        /// </summary>
+        /// <param name="gky"></param>
+        /// <param name="hyoji"></param>
+        public bool Try_GoToFinish(bool isSfen, Genkyoku gky, IHyojiMojiretu hyoji)
+        {
+            gky.Tukurinaosi_ClearKyokumen();
+
+            int caret = 0;
+            string moves;
+            if (LisGenkyoku.TryFail_ParsePositionvalue(gky, isSfen,  syokiKyokumenFen, ref caret,
+                true//適用
+                , false, out moves
+#if DEBUG
+                , (IDebugMojiretu)hyoji
+#endif
+                ))
+            {
+                return false;
+            }
+
+            // 棋譜を元に、局面データを再現するぜ☆
+            foreach (Sasite ss in ssList)
+            {
+
+#if DEBUG
+                if (Develop.assert.TryFail_Assert_Sabun_Kiki("error Pre-DoSasite-4", gky, (IDebugMojiretu)hyoji))
+                {
+                    return false;
+                }
+#endif
+
+                if (DoSasiteOpe.TryFail_DoSasite_All(gky, ss, SasiteType.N00_Karappo
+#if DEBUG
+                    , isSfen
+                    , (IDebugMojiretu)hyoji
+                    , false
+                    , "Try_GoToFinish"
+#endif
+                    ))
+                {
+                    return false;
+                }
+
+                //#if DEBUG
+                //                CommandK.Ky(isSfen, "ky", gky, syuturyoku);
+                //                //Util_Machine.Flush(syuturyoku);
+                //                Util_Machine.Flush_USI(syuturyoku);
+                //#endif
+            }
+            return true;
+        }
+        /// <summary>
+        /// 指定の手目まで進めるぜ☆（＾～＾）
+        /// </summary>
+        /// <param name="temeMade"></param>
+        /// <param name="gky"></param>
+        /// <param name="hyoji"></param>
+        public bool Try_GoToTememade(bool isSfen, int temeMade, Genkyoku gky, IHyojiMojiretu hyoji)
+        {
+            // 棋譜を元に、局面データを再現するぜ☆
+
+            // クリアー
+            gky.Tukurinaosi_ClearKyokumen();
+
+            int caret = 0;
+            string moves;
+            if (LisGenkyoku.TryFail_ParsePositionvalue(gky, isSfen, syokiKyokumenFen, ref caret,
+                true//適用
+                , false, out moves
+#if DEBUG
+                , (IDebugMojiretu)hyoji
+#endif
+                ))
+            {
+                //Util_Machine.Flush(syuturyoku);
+                //throw new Exception(syuturyoku.ToContents());
+                return false;
+            }
+            // 指定の手目まで進めるぜ☆（＾～＾）
+            foreach (Sasite ss in ssList)
+            {
+                if (temeMade < 1)
+                {
+                    break;
+                }
+
+#if DEBUG
+                if (Develop.assert.TryFail_Assert_Sabun_Kiki("error Pre-DoSasite-5", gky, (IDebugMojiretu)hyoji))
+                {
+                    return false;
+                }
+#endif
+
+                if (DoSasiteOpe.TryFail_DoSasite_All(gky, ss, SasiteType.N00_Karappo
+#if DEBUG
+                    , isSfen
+                    , (IDebugMojiretu)hyoji
+                    , false
+                    , "Try_GoToTememade"
+#endif
+                    ))
+                {
+                    return false;
+                }
+                temeMade--;
+            }
+            return true;
+        }
+
+        public void AppendMovesTo(bool isSfen, ICommandMojiretu syuturyoku)
+        {
+            foreach (Sasite ss in ssList)
+            {
+                SpkSasite.AppendFenTo(isSfen, ss, syuturyoku);
+                syuturyoku.Append(" ");
+            }
+        }
+    }
+}
+
+
+        /// <summary>
+        /// 先頭に追加するぜ☆（＾▽＾）
+        /// </summary>
+        /// <param name="ss"></param>
+        public void AddFirst(Sasite ss)
+        {
+            this.ssList.Insert(0, ss);
+        }
+
+
+
+                //#if DEBUG
+                //                CommandK.Ky(isSfen, "ky", gky, syuturyoku);
+                //                //Util_Machine.Flush(syuturyoku);
+                //                Util_Machine.Flush_USI(syuturyoku);
+                //#endif
+
+
+#if DEBUG
+using kifuwarabe_shogithink.pure.genkyoku;
+using kifuwarabe_shogithink.pure.ikkyoku;
+using kifuwarabe_shogithink.pure.listen.genkyoku;
+using kifuwarabe_shogithink.pure.logger;
+using kifuwarabe_shogithink.pure.genkyoku.play;
+using kifuwarabe_shogithink.pure.speak.genkyoku;
+using kifuwarabe_shogithink.pure.speak.play;
+#else
+using kifuwarabe_shogithink.pure.genkyoku;
+using kifuwarabe_shogithink.pure.ikkyoku;
+using kifuwarabe_shogithink.pure.listen.genkyoku;
+using kifuwarabe_shogithink.pure.logger;
+using kifuwarabe_shogithink.pure.genkyoku.play;
+using kifuwarabe_shogithink.pure.speak.genkyoku;
+using kifuwarabe_shogithink.pure.speak.play;
+#endif
+
+namespace kifuwarabe_shogithink.pure.speak.ikkyoku
+{
+    public static class SpkKifu
+    {
+
+        public static bool Try_TusinYo(Kifu kf, bool isSfen, ICommandMojiretu syuturyoku)
+        {
+            // 初期局面を作成
+            Genkyoku gky2 = new Genkyoku();
+            int caret = 0;
+            string moves;
+            if (LisGenkyoku.TryFail_ParsePositionvalue(gky2, isSfen, kf.syokiKyokumenFen, ref caret, false, false, out moves
+#if DEBUG
+                    , (IDebugMojiretu)syuturyoku
+#endif
+                ))
+            {
+                return false;
+            }
+
+            // 初期局面を出力
+            syuturyoku.Append("< kifu, 初期局面, ");
+            SpkGenkyokuOpe.TusinYo_Line(gky2.yomiGky, isSfen, syuturyoku);
+
+            syuturyoku.Append("< kifu, sasite = ");
+            int temeMade = 1;
+            foreach (Sasite ss in kf.ssList)
+            {
+                SpkSasite.AppendFenTo(isSfen, ss, syuturyoku);
+                syuturyoku.Append(" ");
+                temeMade++;
+            }
+            syuturyoku.AppendLine();
+            return true;
+        }
+
+    }
+}

@@ -1,0 +1,21 @@
+﻿# 反復深化探索をするテストをするぜ☆（＾▽＾）
+
+# コンピューターがコマンドの途中で動きださないように止めておくぜ☆（＾▽＾）
+set P1Com false
+set P2Com false
+
+# 反復深化探索  使う
+set HanpukuSinkaTansaku true
+
+# 一手で詰めてみろだぜ☆（＾▽＾） 答えは b3b2 だぜ☆（＾▽＾）ｖ
+ky fen 1r1/K1K/1NR/ZHZ - 1
+# 詰められる側に回すぜ☆
+ky hanten
+ky
+
+set JohoJikan 0
+set SaidaiFukasa 3
+set SikoJikan 10000
+
+# コンピューターに指させるぜ☆（＾～＾）
+go

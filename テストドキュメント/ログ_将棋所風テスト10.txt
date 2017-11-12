@@ -1,0 +1,25 @@
+usi
+isready
+
+set USI false
+
+
+
+position startpos moves 2h7h 7a6b 7h6h 5a4b 6h7h 6a5b 7h6h 4b3b 6h7h 7c7d 7h6h 6b7c 6h7h 7d7e 7h6h 5c5d 6h7h 3a4b 7h6h 4b5c 6h7h 5d5e 7h6h 9c9d 6h7h 9d9e 7h6h 3c3d 6h7h 3d3e 7h6h 8c8d 6h7h 8d8e 7h6h 8e8f 8g8f 8b8f 6h7h 8f8g+ 7h6h 8g8e 6h7h P*8f 7h6h 8f8g+ 6h7h 8g7h 6i7h 5e5f 5g5f R*5g
+
+ky
+
+
+kifu
+tansaku
+kifu teban
+
+koma
+
+sasite
+sasite seisei
+dump sasite
+
+go btime 138000 wtime 154000 byoyomi 0
+
+

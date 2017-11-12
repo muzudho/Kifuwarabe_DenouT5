@@ -1,0 +1,169 @@
+set BanYokoHaba 9
+set BanTateHaba 9
+set TobikikiTukau true
+# ‹î‚Ì“®‚«•û‚ğì‚è’¼‚µ
+updaterule
+
+# ‚TŒÜ”òÔ
+ugokikata K 0 KT 0
+
+ugokikata K 1 KT 0
+
+ugokikata K 2 KT 0
+
+ugokikata K 3 KT 0
+
+ugokikata K 4 KT 0
+
+ugokikata K 5 KT 0
+
+ugokikata K 6 KT 0
+
+ugokikata K 7 KT 0
+
+ugokikata K 8 KT 0
+
+ugokikata K 9 KT 0
+
+ugokikata K 10 KT 0
+
+ugokikata K 11 KT 0
+
+ugokikata K 12 KT 0
+
+ugokikata K 13 KT 0
+
+ugokikata K 14 KT 0
+
+ugokikata K 15 KT 0
+
+ugokikata K 16 KT 0
+
+ugokikata K 17 KT 0
+
+ugokikata K 18 KT 0
+
+ugokikata K 19 KT 0
+
+ugokikata K 20 KT 0
+
+ugokikata K 21 KT 0
+
+ugokikata K 22 KT 0
+
+ugokikata K 23 KT 0
+
+ugokikata K 24 KT 0
+
+ugokikata K 25 KT 0
+
+ugokikata K 26 KT 0
+
+ugokikata K 27 KT 0
+
+ugokikata K 28 KT 0
+
+ugokikata K 29 KT 0
+
+ugokikata K 30 KT 0
+
+ugokikata K 31 KT 0
+
+ugokikata K 32 KT 0
+
+ugokikata K 33 KT 0
+
+ugokikata K 34 KT 0
+
+ugokikata K 35 KT 0
+
+ugokikata K 36 KT 0
+
+ugokikata K 37 KT 0
+
+ugokikata K 38 KT 0
+
+ugokikata K 39 KT 0
+
+ugokikata K 40 KT 0
+
+ugokikata K 41 KT 0
+
+ugokikata K 42 KT 0
+
+ugokikata K 43 KT 0
+
+ugokikata K 44 KT 0
+
+ugokikata K 45 KT 0
+
+ugokikata K 46 KT 0
+
+ugokikata K 47 KT 0
+
+ugokikata K 48 KT 0
+
+ugokikata K 49 KT 0
+
+ugokikata K 50 KT 0
+
+ugokikata K 51 KT 0
+
+ugokikata K 52 KT 0
+
+ugokikata K 53 KT 0
+
+ugokikata K 54 KT 0
+
+ugokikata K 55 KT 0
+
+ugokikata K 56 KT 0
+
+ugokikata K 57 KT 0
+
+ugokikata K 58 KT 0
+
+ugokikata K 59 KT 0
+
+ugokikata K 60 KT 0
+
+ugokikata K 61 KT 0
+
+ugokikata K 62 KT 0
+
+ugokikata K 63 KT 0
+
+ugokikata K 64 KT 0
+
+ugokikata K 65 KT 0
+
+ugokikata K 66 KT 0
+
+ugokikata K 67 KT 0
+
+ugokikata K 68 KT 0
+
+ugokikata K 69 KT 0
+
+ugokikata K 70 KT 0
+
+ugokikata K 71 KT 0
+
+ugokikata K 72 KT 0
+
+ugokikata K 73 KT 0
+
+ugokikata K 74 KT 0
+
+ugokikata K 75 KT 0
+
+ugokikata K 76 KT 0
+
+ugokikata K 77 KT 0
+
+ugokikata K 78 KT 0
+
+ugokikata K 79 KT 0
+
+ugokikata K 80 KT 0
+

@@ -1,0 +1,32 @@
+﻿# コンピューターが走り出すのを止めておくんだぜ☆（＾～＾）
+set P1Com false
+set P2Com false
+# 2017-09-14 追加
+
+ky clear
+set BanYokoHaba 9
+set BanTateHaba 9
+
+ky oku r E1
+ky oku R E9
+
+ky motu I 2
+ky motu N 2
+ky motu U 2
+ky motu S 2
+ky motu K 2
+ky motu Z 2
+ky motu H 9
+
+ky motu i 2
+ky motu n 2
+ky motu u 2
+ky motu s 2
+ky motu k 2
+ky motu z 2
+ky motu h 9
+
+ky tekiyo
+ky
+# set P1Com true
+set P2Com true

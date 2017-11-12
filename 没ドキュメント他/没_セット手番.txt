@@ -1,0 +1,26 @@
+        /// <summary>
+        /// FIXME: b’è“®ì
+        /// è”Ô‚ğİ’è‚·‚é‚±‚Æ‚Í‚Å‚«‚È‚¢‚Ì‚ÅAè–Ú‚ğ•Ï‚¦‚é‚º™iO`Oj
+        /// </summary>
+        public static void InitToTeme(Taikyokusya tai)
+        {
+            if (tai == Taikyokusya.T1)
+            {
+                kifu_teme_ = 0;
+                ExtractKifuCursor();
+            }
+            else
+            {
+                kifu_teme_ = 1;
+                ExtractKifuCursor();
+            }
+        }
+                // è”Ô‚à‚Ğ‚Á‚­‚è•Ô‚»‚¤‚º™iO¤Oj
+                {
+                    r = PureSettei.random.Next(Conv_Taikyokusya.itiran.Length);
+                    if (0 == r)
+                    {
+                        PureMemory.InitToTeme(Conv_Taikyokusya.itiran[PureMemory.kifu_teme % 2]);
+                    }
+                }
+            PureMemory.InitToTeme(tai);

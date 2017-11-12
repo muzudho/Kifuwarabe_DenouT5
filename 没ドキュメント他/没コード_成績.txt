@@ -1,0 +1,1344 @@
+using kifuwarabe_shogithink.pure.gakusyu.seiseki;
+using kifuwarabe_shogithink.pure.ky;
+using kifuwarabe_shogithink.pure.genkyoku.play;
+using System.Collections.Generic;
+
+namespace kifuwarabe_shogiwin.consolegame.io
+{
+    public static class SeisekiIo
+    {
+        /// <summary>
+        /// 定跡ファイルの容量を小さくしたいときに、定跡を削っていくぜ☆（＾～＾）
+        /// </summary>
+        /// <param name="removeBytes">減らしたいバイトサイズ☆（＾▽＾）</param>
+        public static long DownSizeing(Seiseki seiseki, long removeBytes)
+        {
+            long removed = 0;
+
+            if (removeBytes < 1)
+            {
+                return removed;
+            }
+
+            // 削る優先順
+            // （１）１つの局面の中で、２つ以上の指し手があり、勝率が一番悪い手、
+            // （２）あとは泣く泣く適当に削る☆
+            //
+            // 最後に、指し手を持たない局面を削っておくぜ☆
+
+            //────────────────────────────────────────
+            // （１）１つの局面の中で、２つ以上の指し手があり、勝率が一番悪い手
+            //────────────────────────────────────────
+            foreach (SeisekiKyokumen seisekiKy in seiseki.KyItems.Values)
+            {
+                if (2 <= seisekiKy.SsItems.Count)
+                {
+                    // 全ての手を走査し、一番勝率が悪いもの☆（＾▽＾）
+                    float badest = float.MaxValue;
+                    float goodest = float.MinValue;
+
+                    foreach (SeisekiSasite seisekiSs in seisekiKy.SsItems.Values)
+                    {
+                        if (seisekiSs.GetSyoritu() < badest)
+                        {
+                            badest = seisekiSs.GetSyoritu();
+                        }
+                        else if (goodest < seisekiSs.GetSyoritu())
+                        {
+                            goodest = seisekiSs.GetSyoritu();
+                        }
+                    }
+
+                    if (badest == goodest || goodest < badest)
+                    {
+                        break;
+                    }
+
+                    // 評価が悪いキーを列挙☆（＾▽＾）
+                    List<Sasite> removee = new List<Sasite>();
+                    foreach (KeyValuePair<Sasite, SeisekiSasite> entry in seisekiKy.SsItems)
+                    {
+                        if (badest == entry.Value.GetSyoritu())
+                        {
+                            removee.Add(entry.Key);
+                        }
+                    }
+
+                    // 列挙したキーに従って削除だぜ☆（＾▽＾）
+                    foreach (Sasite key in removee)
+                    {
+                        int size = seisekiKy.SsItems[key].ToString().Length;
+                        seisekiKy.SsItems.Remove(key);
+                        removeBytes -= size;
+                        removed += size;
+                        if (removeBytes < 1)
+                        {
+                            goto gt_FinishRemove;
+                        }
+                    }
+                }
+            }
+
+            //────────────────────────────────────────
+            // （４）あとは泣く泣く適当に削る☆
+            //────────────────────────────────────────
+            {
+                // 全部のキーを列挙☆（＾▽＾）
+                List<ulong> removee = new List<ulong>();
+                foreach (KeyValuePair<ulong, SeisekiKyokumen> entry in seiseki.KyItems)
+                {
+                    removee.Add(entry.Key);
+                }
+
+                // 列挙したキーに従って削除だぜ☆（＾▽＾）
+                foreach (ulong key in removee)
+                {
+                    int size = seiseki.KyItems[key].ToString().Length;
+                    seiseki.KyItems.Remove(key);
+                    removeBytes -= size;
+                    removed += size;
+                    if (removeBytes < 1)
+                    {
+                        goto gt_FinishRemove;
+                    }
+                }
+            }
+
+            gt_FinishRemove:
+            //────────────────────────────────────────
+            // （最後に）指し手を持たない局面を削る☆
+            //────────────────────────────────────────
+            {
+                // 指し手を持たない局面のキーを列挙☆（＾▽＾）
+                List<ulong> removee = new List<ulong>();
+                foreach (KeyValuePair<ulong, SeisekiKyokumen> entry in seiseki.KyItems)
+                {
+                    if (entry.Value.SsItems.Count < 1)
+                    {
+                        removee.Add(entry.Key);
+                    }
+                }
+
+                // 列挙したキーに従って削除だぜ☆（＾▽＾）
+                foreach (ulong key in removee)
+                {
+                    seiseki.KyItems.Remove(key);
+                }
+            }
+
+            if (0 < removed)
+            {
+                seiseki.Edited = true;
+            }
+            return removed;
+        }
+
+        /// <summary>
+        /// ファイルの容量が大きくなったので、分割するぜ☆（＾～＾）
+        /// 低速にはなるが、たくさん記憶するためのものだぜ☆
+        /// </summary>
+        /// <returns>分けた残りの定跡</returns>
+        public static void Bunkatu(Seiseki seiseki, out Seiseki[] out_bunkatu, out string[] out_bunkatupartNames)
+        {
+            out_bunkatupartNames = new string[] { "(P1)", "(P2)" };
+            Seiseki seP2 = new Seiseki();
+
+            // 削除するキー
+            List<ulong> removeKeys = new List<ulong>();
+            foreach (KeyValuePair<ulong, SeisekiKyokumen> seKy in seiseki.KyItems)
+            {
+                if (seKy.Value.TbTaikyokusya == Taikyokusya.T2)
+                {
+                    removeKeys.Add(seKy.Key);
+
+                    foreach (KeyValuePair<Sasite, SeisekiSasite> seSs in seKy.Value.SsItems)
+                    {
+                        seP2.AddSasite(
+                            seKy.Value.Fen,
+                            seKy.Key,
+                            seKy.Value.TbTaikyokusya,
+                            seSs.Key,
+                            seSs.Value.version,
+                            seSs.Value.kati,
+                            seSs.Value.hikiwake,
+                            seSs.Value.make
+                        );
+                    }
+                }
+            }
+
+            foreach (ulong key in removeKeys)
+            {
+                seiseki.KyItems.Remove(key);
+            }
+
+            out_bunkatu = new Seiseki[] { seiseki,//[0]はthisにしろだぜ☆（＾▽＾）
+                seP2 };
+        }
+
+        /// <summary>
+        /// 分けたファイルを吸収するぜ☆ｗｗｗ（＾▽＾）
+        /// 重複したデータは、どちらを残すか自動的に判断するぜ☆（＾▽＾）
+        /// </summary>
+        public static void Merge(Seiseki seiseki)
+        {
+            foreach (KeyValuePair<ulong, SeisekiKyokumen> seKy in seiseki.KyItems)
+            {
+                foreach (KeyValuePair<Sasite, SeisekiSasite> seSs in seKy.Value.SsItems)
+                {
+                    seiseki.AddSasite(
+                        seKy.Value.Fen,
+                        seKy.Key,
+                        seKy.Value.TbTaikyokusya,
+                        seSs.Key,
+                        seSs.Value.version,
+                        seSs.Value.kati,
+                        seSs.Value.hikiwake,
+                        seSs.Value.make
+                        );
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+using kifuwarabe_shogithink.pure.genkyoku;
+using kifuwarabe_shogithink.pure.ikkyoku;
+using kifuwarabe_shogithink.pure.ky;
+using kifuwarabe_shogithink.pure.listen.gakusyu.seiseki;
+using kifuwarabe_shogithink.pure.logger;
+using kifuwarabe_shogithink.pure.genkyoku.play;
+using System;
+using System.Collections.Generic;
+
+namespace kifuwarabe_shogithink.pure.gakusyu.seiseki
+{
+    public class SeisekiSasite
+    {
+        public SeisekiSasite(Sasite sasite, Sasite ousyu, int version, int kati, int hikiwake, int make, SeisekiKyokumen owner)
+        {
+            this.owner = owner;
+            this.sasite = sasite;
+            this.ousyu = ousyu;
+            this.version = version;
+            this.kati = kati;
+            this.hikiwake = hikiwake;
+            this.make = make;
+        }
+
+        public SeisekiKyokumen owner { get; private set; }
+        /// <summary>
+        /// 指し手
+        /// </summary>
+        public Sasite sasite { get; }
+        /// <summary>
+        /// 応手
+        /// </summary>
+        public Sasite ousyu { get; }
+        /// <summary>
+        /// 成績を登録したソフトのバージョン
+        /// </summary>
+        public int version { get { return this.m_version_; } set { this.m_version_ = value; this.owner.Owner.Edited = true; } }
+        private int m_version_;
+        /// <summary>
+        /// 勝った回数
+        /// </summary>
+        public int kati { get { return this.m_kati_; } set { this.m_kati_ = value; this.owner.Owner.Edited = true; } }
+        private int m_kati_;
+        /// <summary>
+        /// 引き分けた回数
+        /// </summary>
+        public int hikiwake { get { return this.m_hikiwake_; } set { this.m_hikiwake_ = value; this.owner.Owner.Edited = true; } }
+        private int m_hikiwake_;
+        /// <summary>
+        /// 負けた回数
+        /// </summary>
+        public int make { get { return this.m_make_; } set { this.m_make_ = value; this.owner.Owner.Edited = true; } }
+        private int m_make_;
+
+
+        /// <summary>
+        /// 勝率☆
+        /// </summary>
+        /// <returns></returns>
+        public float GetSyoritu()
+        {
+            return (float)this.kati / (float)(this.kati + this.hikiwake + this.make);
+        }
+
+    }
+
+    /// <summary>
+    /// 定跡の１局面だぜ☆（＾▽＾）
+    /// </summary>
+    public class SeisekiKyokumen
+    {
+        public SeisekiKyokumen(string fen, Taikyokusya tb, Seiseki owner)
+        {
+            this.Owner = owner;
+            this.Fen = fen;
+            this.TbTaikyokusya = tb;
+            this.SsItems = new Dictionary<Sasite, SeisekiSasite>();
+        }
+
+        public Seiseki Owner { get; private set; }
+        /// <summary>
+        /// 記録されている合法手一覧☆（＾▽＾）
+        /// </summary>
+        public Dictionary<Sasite, SeisekiSasite> SsItems { get; private set; }
+
+        /// <summary>
+        /// 改造Fen
+        /// 例： fen kr1/1h1/1H1/1R1 K2z 1
+        /// </summary>
+        public string Fen { get; private set; }
+        public Taikyokusya TbTaikyokusya { get; private set; }
+
+        public bool Try_AddSasite(out SeisekiSasite out_seisekiSasite, Kyokumen.YomiKy kymS,string sasiteRecordStr
+#if DEBUG
+            , IDebugMojiretu reigai1
+#endif
+            )
+        {
+            int caret = 0;
+            if (!LisSeisekiSasite.Try_Parse(kymS, sasiteRecordStr, ref caret, out out_seisekiSasite, this
+#if DEBUG
+                , reigai1
+#endif
+                ))
+            {
+                //エラー
+                return false;
+            }
+
+            if (!this.SsItems.ContainsKey(out_seisekiSasite.sasite))
+            {
+                this.SsItems.Add(out_seisekiSasite.sasite, out_seisekiSasite);
+                this.Owner.Edited = true;
+            }
+            else
+            {
+                out_seisekiSasite = this.SsItems[out_seisekiSasite.sasite];
+            }
+
+            return true;
+        }
+        public SeisekiSasite AddSasite(Taikyokusya tb, Sasite bestSasite, int version, int kati, int hikiwake, int make)
+        {
+            SeisekiSasite seisekiSs = null;
+
+            if (!this.SsItems.ContainsKey(bestSasite))
+            {
+                // 無ければ問答無用で追加☆（＾▽＾）
+                seisekiSs = new SeisekiSasite(bestSasite, Sasite.Toryo, version, kati, hikiwake, make, this);
+
+                if (null!= seisekiSs)
+                {
+                    this.SsItems.Add(bestSasite, seisekiSs);
+                    this.Owner.Edited = true;
+                }
+            }
+            else
+            {
+                // 既存なら、上書き（加算）☆
+                seisekiSs = this.SsItems[bestSasite];
+                seisekiSs.version = version;
+
+                seisekiSs.kati += kati;
+                seisekiSs.hikiwake += hikiwake;
+                seisekiSs.make += make;
+            }
+
+            return seisekiSs;
+        }
+    }
+
+    /// <summary>
+    /// 定跡ファイルだぜ☆（＾▽＾）
+    /// 
+    /// 出典
+    /// やねうら王　「将棋ソフト用の標準定跡ファイルフォーマットの提案」
+    /// http://yaneuraou.yaneu.com/2016/02/05/%E5%B0%86%E6%A3%8B%E3%82%BD%E3%83%95%E3%83%88%E7%94%A8%E3%81%AE%E6%A8%99%E6%BA%96%E5%AE%9A%E8%B7%A1%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%88%E3%81%AE/
+    /// </summary>
+    public class Seiseki
+    {
+        public Seiseki()
+        {
+            this.KyItems = new Dictionary<ulong, SeisekiKyokumen>();
+        }
+
+        /// <summary>
+        /// 分割ファイルを全部マージしたと考えたときの目安の最大容量だぜ☆（＾～＾）
+        /// ちょっとオーバーしたりするぜ☆（＾▽＾）
+        /// 文字数換算だぜ☆（＾▽＾）
+        /// </summary>
+        public const int Capacity = 64 * 1000 * 1000;// 64 Mega ascii characters
+
+        /// <summary>
+        /// ハッシュを使うので、データが消えるかも……☆（＾～＾）
+        /// </summary>
+        public Dictionary<ulong, SeisekiKyokumen> KyItems { get; }
+
+        public void Clear()
+        {
+            this.KyItems.Clear();
+            this.Edited = true;
+        }
+        public bool Edited { get; set; }
+
+        /// <summary>
+        /// データを追加するぜ☆（＾▽＾） 指しながら定跡を追加していくときだぜ☆
+        /// </summary>
+        /// <param name="ky_before"></param>
+        public SeisekiKyokumen AddSasite(string kyFen_before, ulong kyHash_before, Taikyokusya kyTb_before, Sasite bestSasite, int version, int kati, int hikiwake, int make)
+        {
+            SeisekiKyokumen seisekiKy = this.Parse_AddKyLine(kyFen_before, kyHash_before, kyTb_before);
+
+            seisekiKy.AddSasite(kyTb_before, bestSasite,　version, kati, hikiwake, make);
+            return seisekiKy;
+        }
+        /// <summary>
+        /// データを追加するぜ☆（＾▽＾）
+        /// </summary>
+        /// <param name="fen_before">指す前の局面の改造fen</param>
+        /// <param name="kyHash_before">指す前の局面のハッシュ</param>
+        /// <param name="tb_before">指す前の局面の手番</param>
+        /// <returns></returns>
+        public SeisekiKyokumen Parse_AddKyLine(string fen_before, ulong kyHash_before, Taikyokusya tb_before)
+        {
+            SeisekiKyokumen seisekiKy;
+            if (this.KyItems.ContainsKey(kyHash_before))
+            {
+                // 既存☆
+                seisekiKy = this.KyItems[kyHash_before];
+            }
+            else
+            {
+                seisekiKy = new SeisekiKyokumen(fen_before, tb_before,this);
+                this.KyItems.Add(kyHash_before, seisekiKy);
+                this.Edited = true;
+            }
+
+            return seisekiKy;
+        }
+
+        /// <summary>
+        /// 定跡局面の中で、勝率が一番高い指し手を返すぜ☆（＾▽＾）
+        /// </summary>
+        /// <param name="ky"></param>
+        /// <returns>なければ投了☆</returns>
+        public Sasite GetSasite_Winest(Genkyoku ky, out float out_bestSyoritu)
+        {
+            Sasite bestSasite = Sasite.Toryo;
+            out_bestSyoritu = float.MinValue;
+            int minMake = int.MaxValue;
+
+            //Util_Machine.Assert_KyokumenSeigosei_SabunKosin("ゲット指し手 #鯨",true);
+            ulong hash = ky.kyokumenHash.value;
+            if (this.KyItems.ContainsKey(hash))
+            {
+                SeisekiKyokumen josekyKy = this.KyItems[hash];
+                foreach (KeyValuePair<Sasite, SeisekiSasite> entry in josekyKy.SsItems)
+                {
+                    if (out_bestSyoritu < entry.Value.GetSyoritu())// 勝率が高い指し手を選ぶぜ☆（＾▽＾）
+                    {
+                        bestSasite = entry.Key;
+                        out_bestSyoritu = entry.Value.GetSyoritu();
+                        minMake = entry.Value.make;
+                    }
+                    else if (out_bestSyoritu == entry.Value.GetSyoritu() &&//勝率が同じ場合は、
+                        entry.Value.make < minMake//負けが少ない指し手を選ぶぜ☆（＾▽＾）
+                        )
+                    {
+                        bestSasite = entry.Key;
+                        out_bestSyoritu = entry.Value.GetSyoritu();
+                        minMake = entry.Value.make;
+                    }
+                }
+            }
+
+            return bestSasite;
+        }
+
+        /// <summary>
+        /// 定跡局面の中で、勝率が一番高い指し手を返すぜ☆（＾▽＾）
+        /// </summary>
+        /// <param name="ky"></param>
+        /// <returns>指し手が登録されていれば真☆</returns>
+        public bool GetSasite_Syoritu(Genkyoku ky, Sasite ss, out float out_syoritu)
+        {
+            out_syoritu = float.MinValue;
+
+            ulong hash = ky.kyokumenHash.value;
+            if (this.KyItems.ContainsKey(hash))
+            {
+                SeisekiKyokumen josekyKy = this.KyItems[hash];
+                if (josekyKy.SsItems.ContainsKey(ss))
+                {
+                    SeisekiSasite seSs = josekyKy.SsItems[ss];
+                    out_syoritu = seSs.GetSyoritu();
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    }
+
+    public abstract class Conv_Seiseki
+    {
+        public static void ResultToCount(Taikyokusya tb, TaikyokuKekka gameResult, out int kati, out int hikiwake, out int make)
+        {
+            switch (gameResult)
+            {
+                case TaikyokuKekka.Taikyokusya1NoKati:
+                    switch (tb)
+                    {
+                        case Taikyokusya.T1: kati = 1; hikiwake = 0; make = 0; return;
+                        case Taikyokusya.T2: kati = 0; hikiwake = 0; make = 1; return;
+                        default: throw new Exception("未対応の手番");
+                    }
+                case TaikyokuKekka.Taikyokusya2NoKati:
+                    switch (tb)
+                    {
+                        case Taikyokusya.T1: kati = 0; hikiwake = 0; make = 1; return;
+                        case Taikyokusya.T2: kati = 1; hikiwake = 0; make = 0; return;
+                        default: throw new Exception("未対応の手番");
+                    }
+                case TaikyokuKekka.Hikiwake://thru
+                case TaikyokuKekka.Sennitite:
+                    kati = 0; hikiwake = 1; make = 0;
+                    break;
+                case TaikyokuKekka.Karappo://thru
+                default:
+                    throw new Exception("未対応の対局結果");
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+namespace kifuwarabe_shogithink.pure.gakusyu.seiseki
+{
+    /// <summary>
+    /// スマホで外部ファイルを読込む方法が分からないので、埋め込むならこれを使うんだぜ☆（＾▽＾）
+    /// </summary>
+    public abstract class Face_Seiseki
+    {
+        //public static void LoadSeiseki(IViewMojiretu syuturyoku) { Util_Machine.Load_Seiseki(syuturyoku); }
+
+        #region 組み込み成績ファイル
+        /// <summary>
+        /// 外部ファイルを読めない場合、ここに直書きしておくぜ☆（＾▽＾）
+        /// </summary>
+        /// <returns></returns>
+        public static string[] GetKumikomiSeiseki()
+        {
+            // TODO: 最新の seiseki.txt の内容を貼りつけること☆
+            return @"
+                ".Split('\n');
+        }
+        #endregion
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+            //──────────
+            // 成績
+            //──────────
+            ComSettei.seisekiRec = false;// 成績は記録しない
+
+
+
+
+
+
+
+
+
+
+
+
+
+#if DEBUG
+using kifuwarabe_shogithink.pure.gakusyu.seiseki;
+using kifuwarabe_shogithink.pure.genkyoku;
+using kifuwarabe_shogithink.pure.ky;
+using kifuwarabe_shogithink.pure.listen.genkyoku;
+using kifuwarabe_shogithink.pure.listen.ky_info;
+using kifuwarabe_shogithink.pure.listen.play;
+using kifuwarabe_shogithink.pure.logger;
+using kifuwarabe_shogithink.pure.genkyoku.play;
+using System;
+#else
+using kifuwarabe_shogithink.pure.gakusyu.seiseki;
+using kifuwarabe_shogithink.pure.genkyoku;
+using kifuwarabe_shogithink.pure.ky;
+using kifuwarabe_shogithink.pure.listen.genkyoku;
+using kifuwarabe_shogithink.pure.listen.ky_info;
+using kifuwarabe_shogithink.pure.listen.play;
+using kifuwarabe_shogithink.pure.genkyoku.play;
+using System;
+#endif
+
+namespace kifuwarabe_shogithink.pure.listen.gakusyu.seiseki
+{
+    public static class LisSeisekiSasite
+    {
+        public static bool Try_Parse(Kyokumen.YomiKy kymS, string commandline, ref int caret, out SeisekiSasite out_result, SeisekiKyokumen owner
+#if DEBUG
+            , IDebugMojiretu reigai1
+#endif
+            )
+        {
+            bool successfule = true;
+            // 指し手☆
+            Sasite ss;
+            if (!LisPlay.Try_FenSasite(PureSettei.usi, commandline, ref caret, out ss
+#if DEBUG
+                , kymS
+#endif
+                ))
+            {
+                successfule = false;
+            }
+
+            // 応手☆
+            Sasite ss2;
+            if (!LisPlay.Try_FenSasite(PureSettei.usi, commandline, ref caret, out ss2
+#if DEBUG
+                , kymS
+#endif
+                ))
+            {
+                successfule = false;
+            }
+
+            // バージョン（これは無いこともある☆ 評価値のパーサーを使いまわし）
+            int version;
+            if (!LisHyokati.TryParse(commandline, ref caret, out version
+#if DEBUG
+                , reigai1
+#endif
+                ))
+            {
+                version = 0;
+                //successfule = false;
+            }
+
+            // 勝った回数（評価値のパーサーを使いまわし）
+            int kati;
+            if (!LisHyokati.TryParse(commandline, ref caret, out kati
+#if DEBUG
+                , reigai1
+#endif
+                ))
+            {
+                successfule = false;
+            }
+
+            // 引き分けた回数
+            int hikiwake;
+            if (!LisHyokati.TryParse(commandline, ref caret, out hikiwake
+#if DEBUG
+                , reigai1
+#endif
+                ))
+            {
+                successfule = false;
+            }
+
+            // 負けた回数
+            int make;
+            if (!LisHyokati.TryParse(commandline, ref caret, out make
+#if DEBUG
+                , reigai1
+#endif
+                ))
+            {
+                successfule = false;
+            }
+
+            out_result = new SeisekiSasite(ss, ss2, version, kati, hikiwake, make, owner);
+            return successfule;
+        }
+    }
+
+    public static class LisSeiseki
+    {
+        public static bool Parse(Seiseki sk, bool isSfen, string[] lines
+#if DEBUG
+            , IDebugMojiretu reigai1
+#endif
+            )
+        {
+            sk.Clear();
+            Genkyoku gky2 = new Genkyoku();
+            int caret;
+            SeisekiKyokumen seisekiKy = null;
+
+            int gyoBango = 1;
+            foreach (string commandline in lines)
+            {
+                caret = 0;
+                if (caret == commandline.IndexOf("fen ", caret))// fen で始まれば局面データ☆（＾▽＾）
+                {
+                    // キャレットは進めずに続行だぜ☆（＾▽＾）
+                    string moves;
+                    if (LisGenkyoku.TryFail_ParsePositionvalue(gky2, isSfen, commandline, ref caret, false, false, out moves
+#if DEBUG
+                        , reigai1
+#endif
+                        ))
+                    {
+#if DEBUG
+                        string msg = "パースに失敗だぜ☆（＾～＾）！ #寒鰤 定跡ファイル解析失敗 [" + gyoBango + "]行目";
+                        reigai1.AppendLine(msg);
+#endif
+                        return false;
+                    }
+
+                    {
+                        gky2.Tekiyo(false
+#if DEBUG
+                            , reigai1
+#endif
+                            ); // とりあえず全部作り直し☆（＾～＾）ルールは変わらないものとするぜ☆（＾～＾）
+                               //ky2.KyokumenHash = ky2.CreateKyokumenHash();//必要最低限、ハッシュだけ適用しておくぜ☆（＾▽＾）
+                    }
+
+                    seisekiKy = sk.Parse_AddKyLine(commandline, gky2.kyokumenHash.value, gky2.yomiKy.teban);
+                }
+                else if (commandline.Trim().Length < 1)
+                {
+                    // 空行は無視☆
+                    // 半角空白とか、全角空白とか、タブとか　入れてるやつは考慮しないぜ☆（＾～＾）！
+                }
+                else
+                {
+                    // それ以外は手筋☆（＾▽＾）
+                    if (null == seisekiKy)
+                    {
+                        throw new Exception("定跡ファイル解析失敗 定跡局面の指定なし☆");
+                    }
+
+                    SeisekiSasite out_seisekiSasite;
+                    if (!seisekiKy.Try_AddSasite(out out_seisekiSasite, gky2.yomiKy, commandline
+#if DEBUG
+                            , reigai1
+#endif
+                        ))
+                    {
+#if DEBUG
+                        reigai1.AppendLine("成績のパース失敗か？");
+#endif
+                        return false;
+                    }
+                }
+
+                gyoBango++;
+            }
+            return true;
+        }
+    }
+}
+
+
+
+
+
+
+            seisekiRec = false;// 成績は記録しない
+            seiseki = new Seiseki();
+
+
+        /// <summary>
+        /// 成績の記録をするなら真☆
+        /// </summary>
+        public static bool seisekiRec { get; set; }
+
+
+
+
+        /// <summary>
+        /// 成績
+        /// </summary>
+        public static Seiseki seiseki { get; set; }
+
+
+
+
+
+
+        #region 成績更新
+        public static void Begin_SeisekiKosin(IHyojiMojiretu hyoji)
+        {
+            // 成績ファイルを更新するぜ☆（＾～＾）
+            if (ComSettei.seisekiRec)
+            {
+                hyoji.Append("成績更新中");
+                Util_Machine.Flush(hyoji);
+            }
+        }
+        public static void InLoop_SeisekiKosin(Sasite ss_after, Genkyoku gky, IHyojiMojiretu hyoji)
+        {
+            if (ComSettei.seisekiRec)// 今回指した手全てに、成績を付けたいぜ☆（＾～＾）
+            {
+                int teme = gky.yomiGky.yomiKonoteme.ScanNantemadeBango();
+                if (Util_Taikyoku.nantedumeTeme_playerN[(int)gky.yomiKy.teban] <= teme)
+                {
+                    // 何手詰め、何手詰められ　の表記が出て以降の成績を記録するぜ☆（＾～＾）
+
+                    // 一手前の局面と、指したあとの指し手で成績更新☆（＾▽＾）
+                    Conv_Seiseki.ResultToCount(gky.yomiKy.teban, gky.kekka, out int kati, out int hikiwake, out int make);
+
+                    ICommandMojiretu kyMojiretu = new MojiretuImpl();
+                    SpkGenkyokuOpe.AppendFenTo(gky.yomiKy, PureSettei.usi, kyMojiretu);
+                    ComSettei.seiseki.AddSasite(
+                        kyMojiretu.ToContents(),
+                        gky.kyokumenHash.value,
+                        gky.yomiKy.teban,
+                        ss_after,
+                        PureAppli.VERSION,
+                        kati,
+                        hikiwake,
+                        make
+                    );
+                    hyoji.Append("|");
+                    Util_Machine.Flush(hyoji);
+                }
+                else
+                {
+                    hyoji.Append(".");
+                    Util_Machine.Flush(hyoji);
+                }
+            }//成績の記録☆
+        }
+        public static void End_SeisekiKosin(IHyojiMojiretu hyoji)
+        {
+            if (ComSettei.seisekiRec)
+            {
+                hyoji.AppendLine("☆");
+                Util_Machine.Flush(hyoji);
+            }
+        }
+        #endregion
+
+
+
+
+
+
+        public static void FlushAll1(IHyojiMojiretu hyoji)
+        {
+            // 保存間隔調整をしていて、保存をスルーすることはあるぜ☆（＾～＾）
+            if (Console02.IsOk_SavefileTimeSpan())
+            {
+                Util_Machine.Flush_Seiseki(hyoji);// 成績ファイルを更新するぜ☆（＾～＾）
+                Console02.Restart_SavefileTimeSpan();// 保存間隔の再調整だぜ☆（＾▽＾）
+            }
+        }
+
+
+            // 保存間隔を調整している外部ファイルがあれば強制保存だぜ☆（＾▽＾）
+            {
+                Util_Machine.Flush_Seiseki(hyoji);// 成績を書き出し
+            }
+
+
+
+
+
+        /// <summary>
+        /// 成績ファイル名　拡張子抜き（without extension）
+        /// </summary>
+        public const string SEISEKI_FILE_WOE = "_auto_seiseki";
+        /// <summary>
+        /// 成績ファイル名の拡張子
+        /// </summary>
+        public const string SEISEKI_FILE_EXT = ".txt";
+
+
+
+        /// <summary>
+        /// 成績を読込むぜ☆（＾▽＾）
+        /// </summary>
+        public static void Load_Seiseki(IHyojiMojiretu hyoji)
+        {
+            if (IsEnableBoardSize())
+            {
+                hyoji.Append("成績ファイル読込中");
+                Util_Machine.Flush(hyoji);
+
+                // まず、既存ファイル名を列挙するぜ☆（＾▽＾）
+                string filenamePattern = Util_Machine.SEISEKI_FILE_WOE + (PureSettei.sagareruHiyoko ? Util_Machine.LOCALRULE_SAGARERUHIYOKO : Util_Machine.LOCALRULE_HONSHOGI) + "*";
+                string[] filepaths = Directory.GetFiles(".", filenamePattern);
+
+                // どんどんマージしていくぜ☆（＾▽＾）
+                ComSettei.seiseki.Clear();
+                for (int index = 0; index < filepaths.Length; index++)
+                {
+                    hyoji.Append(".");
+                    Util_Machine.Flush(hyoji);
+
+                    if(!Util_Machine.Try_Load_Seiseki_1file(out Seiseki se, filepaths[index]
+#if DEBUG
+                        , (IDebugMojiretu)hyoji
+#endif
+                        ))
+                    {
+                        throw new Exception(hyoji.ToContents());
+                    }
+
+                    if (null != se)
+                    {
+                        SeisekiIo.Merge(se);
+                    }
+                }
+
+                hyoji.AppendLine("☆");
+                Util_Machine.Flush(hyoji);
+            }
+        }
+        /// <summary>
+        /// 成績を読込むぜ☆（＾▽＾）
+        /// </summary>
+        public static bool Try_Load_Seiseki_1file(out Seiseki out_seiseki, string filepath
+#if DEBUG
+            , IDebugMojiretu reigai1
+#endif
+        )
+        {
+            out_seiseki = null;
+
+            if (File.Exists(filepath))//定跡ファイルがある場合のみ、定跡を使うぜ☆（＾▽＾）
+            {
+                out_seiseki = new Seiseki();
+                if(!LisSeiseki.Parse(out_seiseki, PureSettei.usi, System.IO.File.ReadAllLines(filepath)
+#if DEBUG
+                        , reigai1
+#endif
+                    ))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        /// <summary>
+        /// 成績を書き出すぜ☆（＾▽＾）
+        /// </summary>
+        public static void Flush_Seiseki(IHyojiMojiretu hyoji)
+        {
+            if (IsEnableBoardSize() && ComSettei.seisekiRec && ComSettei.seiseki.Edited)
+            {
+                hyoji.Append("成績ファイル書出中");
+                Util_Machine.Flush(hyoji);
+
+                // 容量がでかくなったので、複数のファイルに分割して保存するぜ☆（＾▽＾）
+                SeisekiIo.Bunkatu(ComSettei.seiseki, out Seiseki[] bunkatu, out string[] bunkatupartNames);
+
+                // 残すべきファイル名一覧☆（＾▽＾）
+                List<string> expectedFiles = new List<string>();
+                {
+                    foreach (string bunkatupartName in bunkatupartNames)
+                    {
+                        expectedFiles.Add(Util_Machine.SEISEKI_FILE_WOE + (PureSettei.sagareruHiyoko ? Util_Machine.LOCALRULE_SAGARERUHIYOKO : Util_Machine.LOCALRULE_HONSHOGI) + bunkatupartName + Util_Machine.SEISEKI_FILE_EXT);
+                    }
+                }
+
+                // ファイル名パターンに合致しない定跡ファイルはゴミになるので削除するぜ☆（＾～＾）
+                // バックアップを残したかったらファイル名の先頭を変えることだぜ☆（＾▽＾）
+                List<string> removeFilepaths = new List<string>();
+                {
+                    // まず、既存ファイル名を列挙するぜ☆（＾▽＾）
+                    string filenamePattern = Util_Machine.SEISEKI_FILE_WOE + (PureSettei.sagareruHiyoko ? Util_Machine.LOCALRULE_SAGARERUHIYOKO : Util_Machine.LOCALRULE_HONSHOGI) + "*";
+                    string[] filepaths = Directory.GetFiles(".", filenamePattern);
+
+                    foreach (string filepath in filepaths)
+                    {
+                        string filename = Path.GetFileName(filepath);
+                        if (!expectedFiles.Contains(filename))
+                        {
+                            Util_Machine.Flush(hyoji);
+                            removeFilepaths.Add(filepath);
+                        }
+                    }
+                }
+
+                int index = 0;
+                foreach (Seiseki se in bunkatu)
+                {
+                    Util_Machine.Flush_Seiseki_1file(se, expectedFiles[index], hyoji);
+                    index++;
+                }
+
+                // 紛らわしい名前のファイルを削除するぜ☆（＾▽＾）
+                foreach (string filepath in removeFilepaths)
+                {
+                    File.Delete(filepath);
+                    hyoji.AppendLine(filepath + "を削除したぜ☆（＾～＾）");
+                }
+
+                hyoji.Append(".");
+                Util_Machine.Flush(hyoji);
+
+                // 分割したファイルをマージするぜ☆（＾▽＾）
+                for (int i = 1;//[0]にマージしていくぜ☆（＾▽＾）
+                    i < bunkatu.Length; i++)
+                {
+                    SeisekiIo.Merge(bunkatu[i]);
+                }
+
+                hyoji.AppendLine("☆");
+                Util_Machine.Flush(hyoji);
+                ComSettei.seiseki.Edited = false;
+            }
+        }
+        /// <summary>
+        /// 成績を書き出すぜ☆（＾▽＾）
+        /// </summary>
+        public static void Flush_Seiseki_1file(Seiseki se, string file, IHyojiMojiretu hyoji)
+        {
+            if (!File.Exists(file))
+            {
+                // 定跡ファイルが無ければ作成します。
+                FileStream fs = File.Create(file);
+                fs.Close(); // File.Create したあとは、必ず Close() しないと、ロックがかかったままになる☆（＾▽＾）
+            }
+
+            hyoji.Append(".");
+            Util_Machine.Flush(hyoji);
+
+            // 成績の文字列化☆
+            string seisekiStr = SpkSeiseki_SDT5.ToContents_NotUnity(se, PureSettei.usi);
+
+            hyoji.Append(".");
+            Util_Machine.Flush(hyoji);
+
+            // 容量を制限するぜ☆
+            if (Seiseki.Capacity < seisekiStr.Length)
+            {
+                hyoji.AppendLine("seiseki removed bytes = " + SeisekiIo.DownSizeing(se, seisekiStr.Length - Seiseki.Capacity));
+
+                hyoji.Append(".");
+                Util_Machine.Flush(hyoji);
+
+                // もう１回取得☆
+                seisekiStr = SpkSeiseki_SDT5.ToContents_NotUnity(se, PureSettei.usi);
+            }
+
+            // 上書き☆
+            System.IO.File.WriteAllText(file, seisekiStr);
+        }
+
+
+
+                        Util_Machine.Flush_Seiseki(hyoji);// 成績を書き出し（あとで読込むので、書き込み強制）
+
+                        Util_Machine.Load_Seiseki(hyoji);// 成績を読込み
+
+
+#region SeisekiRec
+            else if (Util_String.MatchAndNext("SeisekiRec ", line, ref caret))
+            {
+                // うしろに続く文字は☆（＾▽＾）
+                string rest = line.Substring(caret);
+
+                if (bool.TryParse(rest, out bool val))
+                {
+                    ComSettei.seisekiRec = val;
+                }
+            }
+#endregion
+
+
+
+
+            else if (caret == cmdline.IndexOf("seiseki", caret)) { CommandS.Seiseki(PureSettei.usi, cmdline, hyoji); }
+
+
+                hyoji.AppendLine("SeisekiRec               = " + ComSettei.seisekiRec);
+
+
+
+
+
+        public static void Seiseki(bool isSfen, string line, IHyojiMojiretu hyoji)
+        {
+            if (line == "seiseki")
+            {
+                UtilSeiseki.Seiseki_cmd(out int kyokumenSu, out int sasiteSu);
+                hyoji.AppendLine("成績ファイル　局面数[" + kyokumenSu + "]　指し手数[" + sasiteSu + "]");
+                return;
+            }
+
+            // うしろに続く文字は☆（＾▽＾）
+            int caret = 0;
+            Util_String.TobasuTangoToMatubiKuhaku(line, ref caret, "seiseki ");
+
+            if (Util_String.MatchAndNext("cleanup", line, ref caret))
+            {
+                //────────────────────────────────────────
+                // 指せない手は除去するぜ☆
+                //────────────────────────────────────────
+#region 指せない手は除去するぜ☆
+                int countKy_all = 0;
+                int countSs_all = 0;
+                int countKy_bad = 0;
+                int countSs_bad = 0;
+                List<ulong> removeListKy = new List<ulong>();
+                Genkyoku gky2 = new Genkyoku();//局面データを使いまわすぜ☆
+                int caret2;
+                foreach (KeyValuePair<ulong, SeisekiKyokumen> kyEntry in ComSettei.seiseki.KyItems)
+                {
+                    caret2 = 0;
+                    if (LisGenkyoku.TryFail_ParsePositionvalue(gky2, isSfen, kyEntry.Value.Fen, ref caret2, false, false, out string moves
+#if DEBUG
+                        , (IDebugMojiretu)hyoji
+#endif
+                        ))
+                    {
+                        string msg = "パースに失敗だぜ☆（＾～＾）！ #虎";
+                        hyoji.AppendLine(msg);
+                        Util_Machine.Flush(hyoji);
+                        throw new Exception(hyoji.ToContents());
+                    }
+
+                    List<Sasite> removeListSs = new List<Sasite>();
+                    foreach (KeyValuePair<Sasite, SeisekiSasite> ssEntry in kyEntry.Value.SsItems)
+                    {
+                        Sasite ss = ssEntry.Value.sasite;//指し手データ
+
+                        // 合法手かどうか調べるぜ☆
+                        if (!GenkyokuOpe.CanDoSasite(gky2.yomiGky, ss, out SasiteMatigaiRiyu reason)// 指せない手☆
+                                                                                                    //||
+                                                                                                    //Sasite.Toryo == ss
+    )
+                        {
+                            // 削除リストに入れるぜ☆
+                            removeListSs.Add(ss);
+                            countSs_bad++;
+                        }
+                        countSs_all++;
+                    }
+
+                    foreach (Sasite ss in removeListSs)
+                    {
+                        kyEntry.Value.SsItems.Remove(ss);
+                    }
+
+                    if (kyEntry.Value.SsItems.Count < 1)
+                    {
+                        removeListKy.Add(kyEntry.Key);
+                    }
+
+                    countKy_all++;
+                }
+
+                foreach (ulong key in removeListKy)
+                {
+                    ComSettei.seiseki.KyItems.Remove(key);
+                    countKy_bad++;
+                }
+
+                hyoji.AppendLine("成績ファイルの中の指せない手を 削除したぜ☆（＾～＾）保存はまだ☆");
+                hyoji.AppendLine("　局面数　　　残った数　／　削除した数　／　　全体の数　（　削除した率）");
+                hyoji.AppendLine("　　　　　　" + string.Format("{0,10}", countKy_all - countKy_bad) + "　／　" + string.Format("{0,10}", countKy_bad) + "　／　" + string.Format("{0,10}", countKy_all) + "　（" + string.Format("{0,10}", (float)countKy_bad / (float)countKy_all * 100.0f) + "％）");
+                hyoji.AppendLine("　指し手数　　残った数　／　削除した数　／　　全体の数　（　削除した率）");
+                hyoji.AppendLine("　　　　　　" + string.Format("{0,10}", countSs_all - countSs_bad) + "　／　" + string.Format("{0,10}", countSs_bad) + "　／　" + string.Format("{0,10}", countSs_all) + "　（" + string.Format("{0,10}", (float)countSs_bad / (float)countSs_all * 100.0f) + "％）");
+#endregion
+            }
+        }
+
+
+                Console02.InLoop_SeisekiKosin(ss_after, ky, hyoji);// 成績更新☆（＾▽＾）
+
+
+
+
+
+
+using kifuwarabe_shogithink.pure.com;
+using kifuwarabe_shogithink.pure.gakusyu.seiseki;
+using kifuwarabe_shogithink.pure.genkyoku.play;
+using System.Collections.Generic;
+
+namespace kifuwarabe_shogithink.pure.ikkyoku
+{
+    public static class UtilSeiseki
+    {
+        /// <summary>
+        /// 成績ファイルの内容量を返すぜ☆（＾▽＾）
+        /// </summary>
+        /// <param name="out_kyokumenSu"></param>
+        /// <param name="out_sasiteSu"></param>
+        public static void Seiseki_cmd(out int out_kyokumenSu, out int out_sasiteSu)
+        {
+            out_kyokumenSu = 0;
+            out_sasiteSu = 0;
+            foreach (KeyValuePair<ulong, SeisekiKyokumen> entryKy in ComSettei.seiseki.KyItems)
+            {
+                out_kyokumenSu++;
+                foreach (KeyValuePair<Sasite, SeisekiSasite> entrySs in entryKy.Value.SsItems)
+                {
+                    out_sasiteSu++;
+                }
+            }
+        }
+
+    }
+}
+
+
+
+
+
+            Console02.Begin_SeisekiKosin(hyoji);
+
+
+
+            Console02.End_SeisekiKosin(hyoji);
+
+
+
+            // 保存していないものを保存だぜ☆（＾▽＾）
+            Console02.FlushAll1(hyoji);
+
+
+
+using kifuwarabe_shogithink.pure.gakusyu.seiseki;
+using kifuwarabe_shogithink.pure.logger;
+using kifuwarabe_shogithink.pure.genkyoku.play;
+using kifuwarabe_shogithink.pure.speak.play;
+using System.Collections.Generic;
+
+namespace kifuwarabe_shogithink.pure.speak.gakusyu.seiseki
+{
+    public static class SpkSeisekiSasite
+    {
+        public static void ToContents_NotUnity(SeisekiSasite ss, bool isSfen, ICommandMojiretu syuturyoku)
+        {
+            SpkSasite.AppendFenTo(isSfen, ss.sasite, syuturyoku);
+            syuturyoku.Append(" ");
+
+            if (ss.ousyu == Sasite.Toryo)
+            {
+                syuturyoku.Append("none");// FIXME: toryo と none の区別に未対応
+            }
+            else
+            {
+                SpkSasite.AppendFenTo(isSfen, ss.ousyu, syuturyoku);
+            }
+
+            syuturyoku.Append(" ");
+            syuturyoku.Append(ss.version.ToString());
+            syuturyoku.Append(" ");
+            syuturyoku.Append(ss.kati.ToString());
+            syuturyoku.Append(" ");
+            syuturyoku.Append(ss.hikiwake.ToString());
+            syuturyoku.Append(" ");
+            syuturyoku.AppendLine(ss.make.ToString());
+        }
+    }
+
+    public static class SpkSeisekiKyokumen
+    {
+        /// <summary>
+        /// 定跡ファイル
+        /// </summary>
+        /// <returns></returns>
+        public static void ToContents_NotUnity(SeisekiKyokumen sk, bool isSfen, ICommandMojiretu syuturyoku)
+        {
+            // 局面
+            syuturyoku.AppendLine(sk.Fen);
+
+            // 指し手
+            foreach (KeyValuePair<Sasite, SeisekiSasite> entry2 in sk.SsItems)
+            {
+                SpkSeisekiSasite.ToContents_NotUnity(entry2.Value, isSfen, syuturyoku);
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+using kifuwarabe_shogithink.pure.gakusyu.seiseki;
+using kifuwarabe_shogithink.pure.logger;
+using kifuwarabe_shogithink.pure.speak.gakusyu.seiseki;
+using System.Collections.Generic;
+
+namespace kifuwarabe_shogiwin.speak
+{
+    public static class SpkSeiseki_SDT5
+    {
+        /// <summary>
+        /// 定跡ファイル
+        /// </summary>
+        /// <returns></returns>
+        public static string ToContents_NotUnity(Seiseki sk, bool isSfen)
+        {
+            ICommandMojiretu mojiretu = new MojiretuImpl();
+
+            foreach (KeyValuePair<ulong, SeisekiKyokumen> entry1 in sk.KyItems)
+            {
+                SpkSeisekiKyokumen.ToContents_NotUnity(entry1.Value, isSfen, mojiretu);
+            }
+
+            return mojiretu.ToContents();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

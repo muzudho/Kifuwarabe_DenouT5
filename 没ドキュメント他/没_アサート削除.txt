@@ -1,0 +1,2377 @@
+#if DEBUG
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Pre-DoSasite-5", (IDebugMojiretu)hyoji))
+                {
+                    toBreak = true;
+                    return;
+                }
+#endif
+
+#if DEBUG
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Pre-DoSasite-4", (IDebugMojiretu)hyoji))
+                {
+                    toBreak = true;
+                    return;
+                }
+#endif
+
+#if DEBUG
+                // デバッグ
+                if (PureMemory.ssssDbg_isEnabledAssertSabunKiki)
+                {
+                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_Utikiri-1", reigai1))
+                    {
+                        return Pure.FailTrue(
+                            "TryFail_Assert_Sabun_Kiki"
+                                                , reigai1
+                                                );
+                    }
+                }
+#endif
+
+#if DEBUG
+            if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Begin-GenerateSasite_01-1",  reigai1))
+            {
+                return Pure.FailTrue("error Begin-GenerateSasite_01-1"
+                            , reigai1
+                                        );
+            }
+#endif
+
+//#if DEBUG
+//            if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error After-MaeJunbi-1", reigai1))
+//            {
+//                return Pure.FailTrue(
+//                    "TryFail_Assert_Sabun_Kiki"
+//                                        , reigai1
+//                                    );
+//            }
+//#endif
+
+#if DEBUG
+                if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_Utikiri-15",  reigai1))
+                {
+                    return Pure.FailTrue(
+                        "TryFail_Assert_Sabun_Kiki"
+                                        , reigai1
+                                    );
+                }
+                PureMemory.ssss_sasitePickerWoNuketaBasho1 = "詰んでた";
+#endif
+
+#if DEBUG
+            if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error After-TundeirebaOwari-1",  reigai1))
+            {
+                return Pure.FailTrue(
+                    "TryFail_Assert_Sabun_Kiki"
+                , reigai1
+                );
+            }
+#endif
+
+#if DEBUG
+        /// <summary>
+        /// デバッグの有無
+        /// </summary>
+        public static bool ssssDbg_isEnabledAssertSabunKiki = true;
+#endif
+#if DEBUG
+                if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error After-GenerateSasite_FinalMarge",  reigai1))
+                {
+                    return Pure.FailTrue(
+                        "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                }
+#endif
+
+#if DEBUG
+                if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Before-GenerateSasite_FinalMarge",  reigai1))
+                {
+                    return Pure.FailTrue(
+                        "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                }
+#endif
+
+            //#if DEBUG
+            //            syuturyoku.AppendLine("ビットボードのデバッグ中(GenerateSasite_01 最後のマージ後)");
+            //            CommandK.Koma_cmd("koma", syuturyoku);
+            //#endif
+
+
+#if DEBUG
+                if (PureMemory.ssssDbg_isEnabledAssertSabunKiki)
+                {
+                    PureMemory.ssss_snapshotBb_idosakiBase_hippakuKaeriutiTe.Set(PureMemory.ssss_bbBase_idosaki01_8kinboChecker);
+                }
+#endif
+
+                //#if DEBUG
+                //                if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_Utikiri-13",  reigai1))
+                //                {
+                //                    return Pure.FailTrue(
+                //                        "TryFail_Assert_Sabun_Kiki"
+                //                    , reigai1
+                //                    );
+                //                }
+                //#endif
+
+#if DEBUG
+            if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error After-HippakuKaeriutiTe-1",  reigai1))
+            {
+                return Pure.FailTrue(
+                    "TryFail_Assert_Sabun_Kiki"
+                , reigai1
+                );
+            }
+#endif
+
+#if DEBUG
+            if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error After-YoyuKaeriutiTe-1",  reigai1))
+            {
+                return Pure.FailTrue(
+                    "TryFail_Assert_Sabun_Kiki"
+                , reigai1
+                );
+            }
+#endif
+
+#if DEBUG
+                                if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_Utikiri-10",  reigai1))
+                                {
+                                    return Pure.FailTrue(
+                                        "TryFail_Assert_Sabun_Kiki"
+                                    , reigai1
+                                    );
+                                }
+#endif
+
+#if DEBUG
+            if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error After-RaionCatch-1",  reigai1))
+            {
+                return Pure.FailTrue(
+                    "TryFail_Assert_Sabun_Kiki"
+                , reigai1
+                );
+            }
+#endif
+
+#if DEBUG
+                if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_Utikiri-9",  reigai1))
+                {
+                    return Pure.FailTrue(
+                        "TryFail_Assert_Sabun_Kiki"
+                    , reigai1
+                    );
+                }
+                PureMemory.ssss_sasitePickerWoNuketaBasho1 = "逃げろ手";
+#endif
+
+#if DEBUG
+            if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error After-NigeroTe-1",  reigai1))
+            {
+                return Pure.FailTrue(
+                    "TryFail_Assert_Sabun_Kiki"
+                , reigai1
+                );
+            }
+#endif
+
+#if DEBUG
+            if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error After-Try-1",  reigai1))
+            {
+                return Pure.FailTrue(
+                    "TryFail_Assert_Sabun_Kiki"
+                , reigai1
+                );
+            }
+#endif
+
+#if DEBUG
+                if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_KomaWoToruTe-a-8",  reigai1))
+                {
+                    return Pure.FailTrue(
+                        "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                }
+#endif
+
+#if DEBUG
+                            if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_Utikiri-7",  reigai1))
+                            {
+                                return Pure.FailTrue(
+                                    "TryFail_Assert_Sabun_Kiki"
+                                , reigai1
+                                );
+                            }
+#endif
+
+#if DEBUG
+                    if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_KomaWoToruTe-a-1",  reigai1))
+                    {
+                        return Pure.FailTrue(
+                            "TryFail_Assert_Sabun_Kiki"
+                        , reigai1
+                        );
+                    }
+#endif
+
+#if DEBUG
+                                if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_Utikiri-6",  reigai1))
+                                {
+                                    return Pure.FailTrue(
+                                        "TryFail_Assert_Sabun_Kiki"
+                                    , reigai1
+                                    );
+                                }
+                                PureMemory.ssss_sasitePickerWoNuketaBasho1 = "駒を取る手";
+#endif
+
+#if DEBUG
+                            if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_KomaWoToruTe-a-4",  reigai1))
+                            {
+                                return Pure.FailTrue(
+                                    "TryFail_Assert_Sabun_Kiki"
+                                , reigai1
+                                );
+                            }
+                            //────────────────────
+                            // デバッグ
+                            //────────────────────
+                            string dbg_preDump = DbgInterproject.project.Dump( "指し手ピッカー01");
+#endif
+
+#if DEBUG
+                                        if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_KomaWoToruTe-a-R★",  reigai1))
+                                        {
+                                            return Pure.FailTrue(
+                                                "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                                        }
+#endif
+
+#if DEBUG
+                                        if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_KomaWoToruTe-a-Z",  reigai1))
+                                        {
+                                            return Pure.FailTrue(
+                                                "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                                        }
+#endif
+
+#if DEBUG
+                                        if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_KomaWoToruTe-a-PZ",  reigai1))
+                                        {
+                                            return Pure.FailTrue(
+                                                "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                                        }
+#endif
+
+#if DEBUG
+                                        if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_KomaWoToruTe-a-K",  reigai1))
+                                        {
+                                            return Pure.FailTrue(
+                                                "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                                        }
+#endif
+
+#if DEBUG
+                                        if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_KomaWoToruTe-a-PK",  reigai1))
+                                        {
+                                            return Pure.FailTrue(
+                                                "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                                        }
+#endif
+
+#if DEBUG
+                                        if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_KomaWoToruTe-a-H",  reigai1))
+                                        {
+                                            return Pure.FailTrue(
+                                                "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                                        }
+#endif
+
+#if DEBUG
+                                        if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_KomaWoToruTe-a-PH",  reigai1))
+                                        {
+                                            return Pure.FailTrue(
+                                                "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                                        }
+#endif
+
+#if DEBUG
+                                        if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_KomaWoToruTe-a-I",  reigai1))
+                                        {
+                                            return Pure.FailTrue(
+                                                "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                                        }
+#endif
+
+#if DEBUG
+                                        if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_KomaWoToruTe-a-N",  reigai1))
+                                        {
+                                            return Pure.FailTrue(
+                                                "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                                        }
+#endif
+
+#if DEBUG
+                                        if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_KomaWoToruTe-a-PN",  reigai1))
+                                        {
+                                            return Pure.FailTrue(
+                                                "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                                        }
+#endif
+
+#if DEBUG
+                                        if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_KomaWoToruTe-a-U",  reigai1))
+                                        {
+                                            return Pure.FailTrue(
+                                                "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                                        }
+#endif
+
+#if DEBUG
+                                        if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_KomaWoToruTe-a-PU",  reigai1))
+                                        {
+                                            return Pure.FailTrue(
+                                                "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                                        }
+#endif
+
+#if DEBUG
+                                        if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_KomaWoToruTe-a-S",  reigai1))
+                                        {
+                                            return Pure.FailTrue(
+                                                "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                                        }
+#endif
+
+#if DEBUG
+                                        if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_KomaWoToruTe-a-PS",  reigai1))
+                                        {
+                                            return Pure.FailTrue(
+                                                "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                                        }
+#endif
+
+#if DEBUG
+                            if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite01_KomaWoToruTe-a-5★",  reigai1))
+                            {
+                                return Pure.FailTrue(
+                                    "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                            }
+#endif
+
+#if DEBUG
+                if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error After-HimotukiKanmanDa-1",  reigai1))
+                {
+                    return Pure.FailTrue(
+                        "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                }
+#endif
+
+#if DEBUG
+            if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error After-HimotukiKanmanZasi-1",  reigai1))
+            {
+                return Pure.FailTrue(
+                    "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+            }
+#endif
+
+#if DEBUG
+            if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error After-BocchiKanmanZasi-1",  reigai1))
+            {
+                return Pure.FailTrue(
+                    "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+            }
+#endif
+
+#if DEBUG
+                if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error After-BottiKanmanDa-1",  reigai1))
+                {
+                    return Pure.FailTrue(
+                        "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                }
+#endif
+
+#if DEBUG
+            if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error After-GoodBadMargeBocchiKanmanZasi-1",  reigai1))
+            {
+                return Pure.FailTrue(
+                    "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+            }
+#endif
+
+#if DEBUG
+            if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error After-SuteKanmanZasi-1",  reigai1))
+            {
+                return Pure.FailTrue(
+                    "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+            }
+#endif
+
+#if DEBUG
+                if (PureMemory.ssssDbg_isEnabledAssertSabunKiki && DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error After-SuteKanmanDa-1",  reigai1))
+                {
+                    return Pure.FailTrue(
+                        "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                }
+#endif
+
+
+
+#if DEBUG
+                                        //────────────────────
+                                        // デバッグ
+                                        //────────────────────
+                                        if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                                            string.Format(
+                                                "error GenerateSasite01-Loop 紐付き緩慢指しS2 km={0} ms={1} sasiteType={2}"
+                                                , km_teban, ms, sasiteType
+                                                ),
+                                             reigai1))
+                                        {
+                                            reigai1.AppendLine("事前ダンプ：");
+                                            reigai1.AppendLine(dbg_preDump);
+
+                                            return Pure.FailTrue(
+                                                "TryFail_Assert_Sabun_Kiki"
+                                                            , reigai1
+                                                            );
+                                        }
+#endif
+
+
+        /// <summary>
+        /// 診断。利き。現行と再計算の一致
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="isAssert">診断しないときは偽</param>
+        /// <param name="isKyoseiSyuturyoku">出力を強制するときは真</param>
+        /// <param name="reigai1"></param>
+        //[Conditional("DEBUG")]
+        public override bool TryFail_Assert_Sabun_Kiki(
+            string message, IDebugMojiretu reigai1)
+        {
+            return Pure.SUCCESSFUL_FALSE;//未実装
+        }
+
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error undo-tj2s-3", dbg_reigai))
+                {
+                    return Pure.FailTrue("error undo-tj2s-3"
+                        , dbg_reigai
+                            );
+                }
+
+                //SpkShogiban.HyojiKomanoKiki(gky.ky.shogiban, syuturyoku);//BB_KikiZenbu
+                //Util_Machine.Flush(syuturyoku);
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Undo-Ta-6★", reigai1))
+                {
+                    return Pure.FailTrue("error Undo-Ta-6★", reigai1);
+                }
+
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Undo-Ta-4x", reigai1))
+                {
+                    return Pure.FailTrue("error Undo-Ta-4x", reigai1);
+                }
+
+        /// <summary>
+        /// 診断。利き。現行と再計算の一致
+        /// </summary>
+        /// <param name="dbg_hint"></param>
+        /// <param name="isAssert">診断しないときは偽</param>
+        /// <param name="isKyoseiSyuturyoku">出力を強制するときは真</param>
+        /// <param name="reigai1"></param>
+        //[Conditional("DEBUG")]
+        public override bool TryFail_Assert_Sabun_Kiki(
+            string dbg_hint, IDebugMojiretu reigai1)
+        {
+            //// 駒の利き☆
+            //bool safe = true;
+
+            //// FIXME: 再計算は一旦廃止☆（＾～＾）
+            ////Kyokumen saikeisanKy = new Kyokumen();
+            ////// TODO: 駒の配置をコピーしたい
+            ////saikeisanKy.shogiban.Tukurinaosi_Copy(PureMemory.gky_ky.shogiban);
+            ////// 利きを作り直し
+            ////saikeisanKy.shogiban.Tukurinaosi_RemakeKiki();
+
+            //foreach (Taikyokusya tai in Conv_Taikyokusya.itiran)// 対局者１、対局者２
+            //{
+            //    Koma errKm = Koma.Yososu;
+            //    int iKm = 0;//どの駒でエラーがあったか
+            //    foreach (Koma km in Conv_Koma.itiranTai[(int)tai])
+            //    {
+            //        if (!PureMemory.gky_ky.yomiKy.EqualsKiki(km, saikeisanKy.shogiban))//現行版と、再計算版の比較
+            //        {
+            //            errKm = km;
+            //            safe = false;
+            //            break;
+            //        }
+            //        iKm++;
+            //    }
+
+            //    // ダイアログボックスに収まるように分けるぜ☆            
+            //    if (!safe)
+            //    {
+            //        reigai1.AppendLine(
+            //            string.Format(
+            //                "【エラー】{0} {1}\n" +
+            //                "差分更新に失敗している駒=[{2}]\n" +
+            //                "利き：（再計算）\n",
+            //                dbg_hint,
+            //                SpkTaikyokusya.ToSetumeiName(tai),
+            //                SpkKoma.ToSetumei(errKm)
+            //            ));
+
+            //        //// 再計算して表示
+            //        //SpkBan_1Column.AppendKomaNoIbashoTo(dbg_hint, saikeisanGky.ky.shogiban.yomiIbashoBan_yoko, reigai1);
+
+            //        //SpkBan_MultiColumn.Setumei_Bitboard(
+            //        //    Med_Koma.GetKomasyuruiNamaeItiran(tai),
+            //        //    saikeisanGky.ky.shogiban.yomiShogiban.yomiKikiBan.GetBB_WhereKiki(tai),
+            //        //    " ＋ ", "　　",
+            //        //    reigai1
+            //        //    );
+
+            //        //// 現行を表示（いじったりしている）
+            //        //SpkBan_Ex.Setumei_GenkoKiki(gky.yomiKy, tai, reigai1);
+
+            //        SpkDump.TryFail_Dump(
+            //            reigai1
+            //            ,dbg_hint
+            //            );
+
+            //        return Pure.FailTrue("error TryFail_Assert_Sabun_Kiki-SDT5", reigai1);
+            //    }
+            //}
+            return Pure.SUCCESSFUL_FALSE;
+        }
+
+                /*
+#if DEBUG
+                // FIXME: 現局面の利きの更新を忘れている？
+                if (Develop.assert.TryFail_Assert_Sabun_Kiki("kyコマンドの直後4", gky.yomiKy, (IDebugMojiretu)hyoji))
+                {
+                    return Pure.FailTrue("TryFail_Assert_Sabun_Kiki"
+#if DEBUG
+                                        , (IDebugMojiretu)hyoji
+#endif
+                        );
+                }
+#endif
+                */
+
+                /*
+#if DEBUG
+                if (Develop.assert.TryFail_Assert_Sabun_Kiki("kyコマンドの直前3", gky.yomiKy, (IDebugMojiretu)hyoji))
+                {
+                    return Pure.FailTrue("TryFail_Assert_Sabun_Kiki"
+#if DEBUG
+                        , (IDebugMojiretu)hyoji
+#endif
+                    );
+                }
+#endif
+                */
+#if DEBUG
+                        if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("飛び利き増やす2", (IDebugMojiretu)hyoji))
+                        {
+                            return Pure.FailTrue("oku(4)"
+#if DEBUG
+                    , (IDebugMojiretu)hyoji
+#endif
+                    );
+                        }
+#endif
+
+#if DEBUG
+                        if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("飛び利き増やす1",  (IDebugMojiretu)hyoji))
+                        {
+                            return Pure.FailTrue("oku(2)"
+#if DEBUG
+                    , (IDebugMojiretu)hyoji
+#endif
+                    );
+                        }
+#endif
+
+#if DEBUG
+            if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("アプリケーション始30",  reigai1))
+            {
+                return Pure.FailTrue(
+                    "TryFail_Assert_Sabun_Kiki"
+#if DEBUG
+                , reigai1
+#endif
+                    );
+            }
+#endif
+
+#if DEBUG
+            //────────────────────────────────────────
+            // 利きを更新する場合のみ、利きの整合性チェック
+            //────────────────────────────────────────
+            if (PureDebugFlag.SHOGIBAN_KOMAWO_TORINOZOKU_MIZUGIWA)
+            {
+                if (updateKiki)
+                {
+                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error End-TryFail_Torinozoku", reigai1))
+                    {
+                        // FIXME: エラーになる
+                        return Pure.FailTrue("error End-TryFail_Torinozoku", reigai1);
+                    }
+                }
+            }
+#endif
+
+#if DEBUG
+            //────────────────────────────────────────
+            // 利きを更新する場合のみ、利きの整合性チェック
+            //────────────────────────────────────────
+            if (PureDebugFlag.SHOGIBAN_KOMAWO_TORINOZOKU_MIZUGIWA)
+            {
+                if (updateKiki)
+                {
+                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Begin-TryFail_Torinozoku", reigai1))
+                    {
+                        // FIXME: エラーになる
+                        return Pure.FailTrue("error Begin-TryFail_Torinozoku", reigai1);
+                    }
+                }
+            }
+#endif
+
+            // ここで、現行の利きは変更されているぜ☆（＾～＾）駒は移動していないので、再計算の駒配置は　現行の利きと異なるぜ☆（＾～＾）
+            //#if DEBUG
+            //            //────────────────────
+            //            // デバッグ
+            //            //────────────────────
+            //            if (Develop.assert.TryFail_Assert_Sabun_Kiki(
+            //                string.Format(
+            //                    "error TryFail_N100_FuyasuKiki_Pop 101 hint={0}",
+            //                    hint
+            //                    ),
+            //                gky, reigai1))
+            //            {
+            //                reigai1.AppendLine("事前ダンプ：");
+            //                reigai1.AppendLine(dbg_preDump);
+
+            //                return Pure.FailTrue(
+            //                    "TryFail_Assert_Sabun_Kiki"
+            //                                , reigai1
+            //                                );
+            //            }
+            //#endif
+
+#if DEBUG
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Pre-DoSasite-3", dbg_reigai))
+                {
+                    return false;
+                }
+#endif
+
+#if DEBUG
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Pre-DoSasite-2", dbg_reigai))
+                {
+                    return false;
+                }
+#endif
+
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(sindan4.ToContents(),  dbg_reigai))
+                {
+                    return Pure.FailTrue("Try_Assert_Sabun_Kiki"
+#if DEBUG
+                        , dbg_reigai
+#endif
+                            );
+                }
+
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Undo-Begin-1",  dbg_reigai))
+                {
+                    return Pure.FailTrue("error Undo-Begin-1"
+#if DEBUG
+                        , dbg_reigai
+#endif
+                            );
+                }
+
+                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Undo-Te-1",  syuturyoku))
+                    {
+                        return Pure.FailTrue("error Undo-Te-1"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                    }
+
+                        if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Undo-Tu-1",  dbg_reigai))
+                        {
+                            return Pure.FailTrue("error Undo-Tu-1"
+#if DEBUG
+                        , dbg_reigai
+#endif
+                            );
+                        }
+
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error undo-tj2u-3",  syuturyoku))
+                {
+                    return Pure.FailTrue("error undo-tj2u-3"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                }
+
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(sindan2.ToContents(),  syuturyoku))
+                {
+                    return Pure.FailTrue("undo-tj2u Try_Assert_Sabun_Kiki"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                }
+
+#if DEBUG
+                if (!isAssertYokusei)
+                {
+                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error undo-tj2s-2 ms_t0=[" + ms_t0 + "] km_t0=[" + km_t0 + "]",  reigai1))
+                    {
+                        return Pure.FailTrue("undo-tj2s Try_Assert_Sabun_Kiki"
+#if DEBUG
+                        , reigai1
+#endif
+                            );
+                    }
+                }
+#endif
+
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(sindan2.ToContents(),  reigai1))
+                {
+                    return Pure.FailTrue("undo-tj2s Try_Assert_Sabun_Kiki"
+#if DEBUG
+                        , reigai1
+#endif
+                            );
+                }
+
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(sindan1.ToContents(), dbg_reigai))
+                {
+                    return Pure.FailTrue("PureAssert.Try_Assert_Sabun_Kiki"
+#if DEBUG
+                        , dbg_reigai
+#endif
+                            );
+                }
+
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Undo-Ta-1(1)",  dbg_reigai))
+                {
+                    return Pure.FailTrue("error Undo-Ta-1(1)"
+#if DEBUG
+                        , dbg_reigai
+#endif
+                            );
+                }
+
+//#if DEBUG
+//            if (!isAssertYokusei)
+//            {
+//                if (Develop.assert.TryFail_Assert_Sabun_Kiki("error Do-T2-c-6", gky, reigai1))
+//                {
+//                    return Pure.FailTrue("error Do-T2-c-6", reigai1);
+//                }
+//            }
+//#endif
+
+#if DEBUG
+            if (!isAssertYokusei)
+            {
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Do-T2-c-5", dbg_reigai))
+                {
+                    return Pure.FailTrue("error Do-T2-c-5", dbg_reigai);
+                }
+            }
+#endif
+
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Do-T2-c-1", dbg_reigai))
+                {
+                    return Pure.FailTrue("error Do-T2-c-1", dbg_reigai);
+                }
+
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error do-tj3s-a-1", dbg_reigai))
+                {
+                    return Pure.FailTrue("error do-tj3s-a-1", dbg_reigai);
+                }
+
+#if DEBUG
+                if (!isAssertYokusei)
+                {
+                    // エラー・チェック
+                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Do-MK-b-1", dbg_reigai))
+                    {
+                        return Pure.FailTrue("error Do-MK-b-1", dbg_reigai);
+                    }
+                }
+#endif
+
+#if DEBUG
+                    if (!isAssertYokusei)
+                    {
+                        if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Do-C-a-1", dbg_reigai))
+                        {
+                            // FIXME:エラーになる
+                            return Pure.FailTrue("error Do-C-a-1", dbg_reigai);
+                        }
+                    }
+#endif
+
+#if DEBUG
+            if (!isAssertYokusei)
+            {
+                // エラー・チェック
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Do-B-b-1", dbg_reigai))
+                {
+                    return Pure.FailTrue("error Do-B-b-1", dbg_reigai);
+                }
+            }
+#endif
+
+#if DEBUG
+            if (!isAssertYokusei)
+            {
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Do-B-a-3", dbg_reigai))
+                {
+                    return Pure.FailTrue("error Do-B-a-3", dbg_reigai);
+                }
+            }
+#endif
+
+#if DEBUG
+            if (!isAssertYokusei)
+            {
+
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                    "error Do-B-a-(222)",
+                    dbg_reigai))
+                {
+                    // FIXME: 2017/11/03 エラーになる
+                    return Pure.FailTrue(
+                        string.Format("ms_t1={0} km_c={1} ks_c={2}",
+                        ms_t1,
+                        km_c,
+                        ks_c
+                        ),
+                        dbg_reigai
+                        );
+                }
+            }
+#endif
+
+#if DEBUG
+            if (!isAssertYokusei)
+            {
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Do-B-a-1", dbg_reigai))
+                {
+                    // FIXME: エラーになる
+                    return Pure.FailTrue("error Do-B-a-1", dbg_reigai);
+                }
+            }
+#endif
+
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Do-T2C-1", dbg_reigai))
+                {
+                    // FIXME: エラーになる
+                    return Pure.FailTrue("error Do-T2C-1", dbg_reigai);
+                }
+
+#if DEBUG
+            if (!isAssertYokusei)
+            {
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error do-tj3u-b-1", dbg_reigai))
+                {
+                    return Pure.FailTrue("error do-tj3u-b-1", dbg_reigai);
+                }
+                // ビットボードの図形は新旧一致しないからチェックしないぜ☆
+            }
+#endif
+
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error do-tj3u-a-1", dbg_reigai))
+                {
+                    return Pure.FailTrue("error do-tj3u-a-1", dbg_reigai);
+                }
+
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Do-Begin-B-1", reigai1))
+                {
+                    // FIXME:エラーになる
+                    return Pure.FailTrue("error Do-Begin-B-1", reigai1);
+                }
+
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(string.Format("error Do-Begin-A-1 hint={0}",hint), reigai1))
+                {
+                    // FIXME:エラーになる
+                    return Pure.FailTrue("error Do-Begin-A-1", reigai1);
+                }
+
+#if DEBUG
+                if(DbgInterproject.project.TryFail_Assert_Sabun_Kiki("アプリケーション始20",  reigai1))
+                {
+                    return Pure.FailTrue("TryFail_Assert_Sabun_Kiki"
+#if DEBUG
+                        , reigai1
+#endif
+                                                );
+                }
+#endif
+
+#if DEBUG
+            if (PureDebugFlag.NIGEMITI_WATASU_KANSYU_MIZUGIWA)
+            {
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error End-IsNigemitiWoAkeru(10)★",  dbg_reigai))
+                {
+                    out_bad = false;//エラー
+                    return Pure.FailTrue("error Begin-IsNigemitiWoAkeru_End-IsNigemitiWoAkeru(11)", dbg_reigai);
+                }
+            }
+#endif
+
+#if DEBUG
+            if (PureDebugFlag.NIGEMITI_WATASU_KANSYU_MIZUGIWA)
+            {
+                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Begin-IsNigemitiWoAkeru(1)",  dbg_reigai))
+                {
+                    out_bad = false;//エラー
+                    return Pure.FailTrue("error Begin-IsNigemitiWoAkeru(1)", dbg_reigai);
+                }
+            }
+#endif
+
+        /// <summary>
+        /// 診断。利き。現行と再計算の一致
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="isAssert">診断しないときは偽</param>
+        /// <param name="isKyoseiSyuturyoku">出力を強制するときは真</param>
+        /// <param name="reigai1"></param>
+        //[Conditional("DEBUG")]
+        public virtual bool TryFail_Assert_Sabun_Kiki(
+            string message, IDebugMojiretu reigai1)
+        {
+            return Pure.FailTrue("未実装", reigai1);
+        }
+
+#if DEBUG
+            if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Pre-DoSasite-1", dbg_reigai))
+            {
+                return false;
+            }
+#endif
+
+#if DEBUG
+            if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Before-Steelmate-1",  (IDebugMojiretu)hyoji))
+            {
+                // 探索時にエラーが起こった場合は強制終了☆（＾～＾）
+                throw new Exception(hyoji.ToContents());
+            }
+#endif
+
+                        if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Do-C-b-1", dbg_reigai))
+                        {
+                            // FIXME:エラーになる
+                            return Pure.FailTrue("error Do-C-b-1", dbg_reigai);
+                        }
+
+#if DEBUG
+            if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Before-GenerateSasite-1",  (IDebugMojiretu)hyoji))
+            {
+                // 探索時にエラーが起こった場合は強制終了☆（＾～＾）
+                throw new Exception(hyoji.ToContents());
+            }
+#endif
+
+#if DEBUG
+            //────────────────────
+            // デバッグ
+            //────────────────────
+            if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                string.Format(
+                    "error TryFail_Ittedume_BanjoKoma 105"
+                    ),
+                reigai1))
+            {
+                reigai1.AppendLine("事前ダンプ：");
+                reigai1.AppendLine(dbg_preDump);
+
+                out_isTume1 = false;//ダミー値
+                return Pure.FailTrue(
+                    "TryFail_Assert_Sabun_Kiki"
+                                , reigai1
+                                );
+            }
+#endif
+
+                    //#if DEBUG
+                    //                    //────────────────────
+                    //                    // デバッグ
+                    //                    //────────────────────
+                    //                    if (Develop.assert.TryFail_Assert_Sabun_Kiki(
+                    //                        string.Format(
+                    //                            "error TryFail_Ittedume_BanjoKoma 104"
+                    //                            ),
+                    //                        gky, reigai1))
+                    //                    {
+                    //                        reigai1.AppendLine("事前ダンプ：");
+                    //                        reigai1.AppendLine(dbg_preDump);
+
+                    //                        out_isIttedume = false;//ダミー値
+                    //                        return Pure.FailTrue(
+                    //                            "TryFail_Assert_Sabun_Kiki"
+                    //                                        , reigai1
+                    //                                        );
+                    //                    }
+                    //#endif
+
+                //#if DEBUG
+                //                //────────────────────
+                //                // デバッグ
+                //                //────────────────────
+                //                if (Develop.assert.TryFail_Assert_Sabun_Kiki(
+                //                    string.Format(
+                //                        "error TryFail_Ittedume_BanjoKoma 103 TryFail_N100_FuyasuKiki_Pop後"
+                //                        ),
+                //                    gky, reigai1))
+                //                {
+                //                    reigai1.AppendLine("事前ダンプ：");
+                //                    reigai1.AppendLine(dbg_preDump);
+
+                //                    out_isIttedume = false;//ダミー値
+                //                    return Pure.FailTrue(
+                //                        "TryFail_Assert_Sabun_Kiki"
+                //                                    , reigai1
+                //                                    );
+                //                }
+                //#endif
+
+#if DEBUG
+            //────────────────────
+            // デバッグ
+            //────────────────────
+            if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                string.Format(
+                    "error TryFail_Ittedume_BanjoKoma 101"
+                    ),
+                reigai1))
+            {
+                reigai1.AppendLine("事前ダンプ：");
+                reigai1.AppendLine(dbg_preDump);
+
+                out_isTume1 = false;//ダミー値
+                return Pure.FailTrue(
+                    "TryFail_Assert_Sabun_Kiki"
+                                , reigai1
+                                );
+            }
+#endif
+
+#if DEBUG
+            //────────────────────
+            // デバッグ
+            //────────────────────
+            if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                string.Format(
+                    "error GenerateSasite02-Hiyoko 紐付き緩慢指し 123"
+                    ),
+                reigai1))
+            {
+                reigai1.AppendLine("事前ダンプ：");
+                reigai1.AppendLine(dbg_preDump);
+
+                return Pure.FailTrue(
+                    "TryFail_Assert_Sabun_Kiki"
+                                , reigai1
+                                );
+            }
+#endif
+
+#if DEBUG
+                    //────────────────────
+                    // デバッグ
+                    //────────────────────
+                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                        string.Format(
+                            "error GenerateSasite02-Hiyoko 紐付き緩慢指し 124"
+                            ),
+                        reigai1))
+                    {
+                        reigai1.AppendLine("事前ダンプ：");
+                        reigai1.AppendLine(dbg_preDump);
+
+                        return Pure.FailTrue(
+                            "TryFail_Assert_Sabun_Kiki"
+                                        , reigai1
+                                        );
+                    }
+#endif
+
+#if DEBUG
+                    //────────────────────
+                    // デバッグ
+                    //────────────────────
+                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                        string.Format(
+                            "error GenerateSasite02-Hiyoko 紐付き緩慢指し 122"
+                            ),
+                        reigai1))
+                    {
+                        reigai1.AppendLine("事前ダンプ：");
+                        reigai1.AppendLine(dbg_preDump);
+
+                        return Pure.FailTrue(
+                            "TryFail_Assert_Sabun_Kiki"
+                                        , reigai1
+                                        );
+                    }
+#endif
+
+#if DEBUG
+                        //────────────────────
+                        // デバッグ
+                        //────────────────────
+                        if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                            string.Format(
+                                "error GenerateSasite02-Hiyoko 紐付き緩慢指し km={0}"
+                                , km_teban
+                                ),
+                            reigai1))
+                        {
+                            reigai1.AppendLine("事前ダンプ：");
+                            reigai1.AppendLine(dbg_preDump);
+
+                            return Pure.FailTrue(
+                                "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                        }
+#endif
+
+#if DEBUG
+                                    //────────────────────
+                                    // デバッグ
+                                    //────────────────────
+                                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                                        string.Format(
+                                            "error GenerateSasite02-Hiyoko 紐付き緩慢指し 130 一手詰め"
+                                            ),
+                                        reigai1))
+                                    {
+                                        reigai1.AppendLine("事前ダンプ：");
+                                        reigai1.AppendLine(dbg_preDump);
+
+                                        return Pure.FailTrue(
+                                            "TryFail_Assert_Sabun_Kiki"
+                                                        , reigai1
+                                                        );
+                                    }
+#endif
+
+#if DEBUG
+                                    //────────────────────
+                                    // デバッグ
+                                    //────────────────────
+                                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                                        string.Format(
+                                            "error GenerateSasite02-Hiyoko 紐付き緩慢指し 129"
+                                            ),
+                                        reigai1))
+                                    {
+                                        reigai1.AppendLine("事前ダンプ：");
+                                        reigai1.AppendLine(dbg_preDump);
+
+                                        return Pure.FailTrue(
+                                            "TryFail_Assert_Sabun_Kiki"
+                                                        , reigai1
+                                                        );
+                                    }
+#endif
+
+#if DEBUG
+                                //────────────────────
+                                // デバッグ
+                                //────────────────────
+                                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                                    string.Format(
+                                        "error GenerateSasite02-Hiyoko 紐付き緩慢指し 200"
+                                        ),
+                                    reigai1))
+                                {
+                                    reigai1.AppendLine("事前ダンプ：");
+                                    reigai1.AppendLine(dbg_preDump);
+
+                                    return Pure.FailTrue(
+                                        "TryFail_Assert_Sabun_Kiki"
+                                                    , reigai1
+                                                    );
+                                }
+#endif
+
+#if DEBUG
+                                    //────────────────────
+                                    // デバッグ
+                                    //────────────────────
+                                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                                        string.Format(
+                                            "error GenerateSasite02-Hiyoko 紐付き緩慢指し 128"
+                                            ),
+                                        reigai1))
+                                    {
+                                        reigai1.AppendLine("事前ダンプ：");
+                                        reigai1.AppendLine(dbg_preDump);
+
+                                        return Pure.FailTrue(
+                                            "TryFail_Assert_Sabun_Kiki"
+                                                        , reigai1
+                                                        );
+                                    }
+#endif
+
+#if DEBUG
+                                //────────────────────
+                                // デバッグ
+                                //────────────────────
+                                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                                    string.Format(
+                                        "error GenerateSasite02-Hiyoko 紐付き緩慢指し 201"
+                                        ),
+                                    reigai1))
+                                {
+                                    reigai1.AppendLine("事前ダンプ：");
+                                    reigai1.AppendLine(dbg_preDump);
+
+                                    return Pure.FailTrue(
+                                        "TryFail_Assert_Sabun_Kiki"
+                                                    , reigai1
+                                                    );
+                                }
+#endif
+
+#if DEBUG
+                                    //────────────────────
+                                    // デバッグ
+                                    //────────────────────
+                                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                                        string.Format(
+                                            "error GenerateSasite02-Hiyoko 紐付き緩慢指し 127"
+                                            ),
+                                        reigai1))
+                                    {
+                                        reigai1.AppendLine("事前ダンプ：");
+                                        reigai1.AppendLine(dbg_preDump);
+
+                                        return Pure.FailTrue(
+                                            "TryFail_Assert_Sabun_Kiki"
+                                                        , reigai1
+                                                        );
+                                    }
+#endif
+
+#if DEBUG
+                                //────────────────────
+                                // デバッグ
+                                //────────────────────
+                                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                                    string.Format(
+                                        "error GenerateSasite02-Hiyoko 紐付き緩慢指し 202 TryFail_IsTume1_BanjoKoma 後"
+                                        ),
+                                    reigai1))
+                                {
+                                    reigai1.AppendLine("事前ダンプ：");
+                                    reigai1.AppendLine(dbg_preDump);
+
+                                    return Pure.FailTrue(
+                                        "TryFail_Assert_Sabun_Kiki"
+                                                    , reigai1
+                                                    );
+                                }
+#endif
+
+#if DEBUG
+                                    //────────────────────
+                                    // デバッグ
+                                    //────────────────────
+                                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                                        string.Format(
+                                            "error GenerateSasite02-Hiyoko 紐付き緩慢指し 126"
+                                            ),
+                                        reigai1))
+                                    {
+                                        reigai1.AppendLine("事前ダンプ：");
+                                        reigai1.AppendLine(dbg_preDump);
+
+                                        return Pure.FailTrue(
+                                            "TryFail_Assert_Sabun_Kiki"
+                                                        , reigai1
+                                                        );
+                                    }
+#endif
+
+#if DEBUG
+                                //────────────────────
+                                // デバッグ
+                                //────────────────────
+                                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                                    string.Format(
+                                        "error GenerateSasite02-Hiyoko 紐付き緩慢指し 203"
+                                        ),
+                                    reigai1))
+                                {
+                                    reigai1.AppendLine("事前ダンプ：");
+                                    reigai1.AppendLine(dbg_preDump);
+
+                                    return Pure.FailTrue(
+                                        "TryFail_Assert_Sabun_Kiki"
+                                                    , reigai1
+                                                    );
+                                }
+#endif
+
+#if DEBUG
+                            //────────────────────
+                            // デバッグ
+                            //────────────────────
+                            if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                                string.Format(
+                                    "error GenerateSasite02-Hiyoko 紐付き緩慢指し 101"
+                                    ),
+                                reigai1))
+                            {
+                                reigai1.AppendLine("事前ダンプ：");
+                                reigai1.AppendLine(dbg_preDump);
+
+                                return Pure.FailTrue(
+                                    "TryFail_Assert_Sabun_Kiki"
+                                                , reigai1
+                                                );
+                            }
+#endif
+
+#if DEBUG
+                        //────────────────────
+                        // デバッグ
+                        //────────────────────
+                        if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                            string.Format(
+                                "error GenerateSasite02-Hiyoko 紐付き緩慢指し 125"
+                                ),
+                            reigai1))
+                        {
+                            reigai1.AppendLine("事前ダンプ：");
+                            reigai1.AppendLine(dbg_preDump);
+
+                            return Pure.FailTrue(
+                                "TryFail_Assert_Sabun_Kiki"
+                                            , reigai1
+                                            );
+                        }
+#endif
+
+#if DEBUG
+                    //────────────────────
+                    // デバッグ
+                    //────────────────────
+                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                        string.Format(
+                            "error GenerateSasite02-Hiyoko 紐付き緩慢指し 121"
+                            ),
+                        reigai1))
+                    {
+                        reigai1.AppendLine("事前ダンプ：");
+                        reigai1.AppendLine(dbg_preDump);
+
+                        return Pure.FailTrue(
+                            "TryFail_Assert_Sabun_Kiki"
+                                        , reigai1
+                                        );
+                    }
+#endif
+
+#if DEBUG
+                                //────────────────────
+                                // デバッグ
+                                //────────────────────
+                                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                                    string.Format(
+                                        "error GenerateSasite02-Hiyoko 紐付き緩慢指し 120"
+                                        ),
+                                    reigai1))
+                                {
+                                    reigai1.AppendLine("事前ダンプ：");
+                                    reigai1.AppendLine(dbg_preDump);
+
+                                    return Pure.FailTrue(
+                                        "TryFail_Assert_Sabun_Kiki"
+                                                    , reigai1
+                                                    );
+                                }
+#endif
+
+#if DEBUG
+                    //────────────────────
+                    // デバッグ
+                    //────────────────────
+                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                        string.Format(
+                            "error GenerateSasite02-Hiyoko 紐付き緩慢指し 109"
+                            ),
+                        reigai1))
+                    {
+                        reigai1.AppendLine("事前ダンプ：");
+                        reigai1.AppendLine(dbg_preDump);
+
+                        return Pure.FailTrue(
+                            "TryFail_Assert_Sabun_Kiki"
+                                        , reigai1
+                                        );
+                    }
+#endif
+
+#if DEBUG
+                                //────────────────────
+                                // デバッグ
+                                //────────────────────
+                                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                                        string.Format(
+                                            "error GenerateSasite02-Hiyoko 紐付き緩慢指し 108"
+                                            ),
+                                        reigai1))
+                                    {
+                                        reigai1.AppendLine("事前ダンプ：");
+                                        reigai1.AppendLine(dbg_preDump);
+
+                                        return Pure.FailTrue(
+                                            "TryFail_Assert_Sabun_Kiki"
+                                                        , reigai1
+                                                        );
+                                    }
+#endif
+
+#if DEBUG
+                    //────────────────────
+                    // デバッグ
+                    //────────────────────
+                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                        string.Format(
+                            "error GenerateSasite02-Hiyoko 紐付き緩慢指し 106"
+                            ),
+                        reigai1))
+                    {
+                        reigai1.AppendLine("事前ダンプ：");
+                        reigai1.AppendLine(dbg_preDump);
+
+                        return Pure.FailTrue(
+                            "TryFail_Assert_Sabun_Kiki"
+                                        , reigai1
+                                        );
+                    }
+#endif
+
+#if DEBUG
+                    //────────────────────
+                    // デバッグ
+                    //────────────────────
+                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                        string.Format(
+                            "error GenerateSasite02-Hiyoko 紐付き緩慢指し 105"
+                            ),
+                        reigai1))
+                    {
+                        reigai1.AppendLine("事前ダンプ：");
+                        reigai1.AppendLine(dbg_preDump);
+
+                        return Pure.FailTrue(
+                            "TryFail_Assert_Sabun_Kiki"
+                                        , reigai1
+                                        );
+                    }
+#endif
+
+#if DEBUG
+                                //────────────────────
+                                // デバッグ
+                                //────────────────────
+                                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                                    string.Format(
+                                        "error GenerateSasite02-Hiyoko 紐付き緩慢指し 104"
+                                        ),
+                                    reigai1))
+                                {
+                                    reigai1.AppendLine("事前ダンプ：");
+                                    reigai1.AppendLine(dbg_preDump);
+
+                                    return Pure.FailTrue(
+                                        "TryFail_Assert_Sabun_Kiki"
+                                                    , reigai1
+                                                    );
+                                }
+#endif
+
+#if DEBUG
+                    //────────────────────
+                    // デバッグ
+                    //────────────────────
+                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                        string.Format(
+                            "error GenerateSasite02-Hiyoko 紐付き緩慢指し 103"
+                            ),
+                        reigai1))
+                    {
+                        reigai1.AppendLine("事前ダンプ：");
+                        reigai1.AppendLine(dbg_preDump);
+
+                        return Pure.FailTrue(
+                            "TryFail_Assert_Sabun_Kiki"
+                                        , reigai1
+                                        );
+                    }
+#endif
+
+#if DEBUG
+                    //────────────────────
+                    // デバッグ
+                    //────────────────────
+                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                        string.Format(
+                            "error GenerateSasite02-Hiyoko 紐付き緩慢指し 102"
+                            ),
+                        reigai1))
+                    {
+                        reigai1.AppendLine("事前ダンプ：");
+                        reigai1.AppendLine(dbg_preDump);
+
+                        return Pure.FailTrue(
+                            "TryFail_Assert_Sabun_Kiki"
+                                        , reigai1
+                                        );
+                    }
+#endif
+
+#if DEBUG
+            if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error End-GenerateSasite_02Raion-1", reigai1))
+            {
+                return Pure.FailTrue("error End-GenerateSasite_02Raion-1"
+            , reigai1
+                    );
+            }
+#endif
+
+#if DEBUG
+                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite_02Raion-ぼっち緩慢指(2)", reigai1))
+                    {
+                        return Pure.FailTrue("error GenerateSasite_02Raion-ぼっち緩慢指(2)"
+#if DEBUG
+            , reigai1
+#endif
+                    );
+                    }
+#endif
+
+#if DEBUG
+                        if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite_02Raion-駒を取る手(2)★", reigai1))
+                        {
+                            return Pure.FailTrue("error GenerateSasite_02Raion-駒を取る手(2)★", reigai1);
+                        }
+#endif
+
+#if DEBUG
+                            if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite_02Raion-駒を取る手(3)", reigai1))
+                            {
+                                return Pure.FailTrue("error GenerateSasite_02Raion-駒を取る手(3)", reigai1);
+                            }
+#endif
+
+#if DEBUG
+                                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite_02Raion-駒を取る手(1)", reigai1))
+                                {
+                                    return Pure.FailTrue("error GenerateSasite_02Raion-駒を取る手(1)"
+#if DEBUG
+            , reigai1
+#endif
+                    );
+                                }
+#endif
+
+#if DEBUG
+                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite_02Raion-トライ", reigai1))
+                    {
+                        return Pure.FailTrue("error GenerateSasite_02Raion-トライ"
+#if DEBUG
+            , reigai1
+#endif
+                    );
+                    }
+#endif
+
+#if DEBUG
+                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite_02Raion-らいおんキャッチ調査(2)", reigai1))
+                    {
+                        return Pure.FailTrue("error GenerateSasite_02Raion-らいおんキャッチ調査(2)"
+#if DEBUG
+            , reigai1
+#endif
+                    );
+                    }
+#endif
+
+#if DEBUG
+                                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite_02Raion-らいおんキャッチ調査(1)", reigai1))
+                                {
+                                    return Pure.FailTrue("error GenerateSasite_02Raion-らいおんキャッチ調査(1)"
+#if DEBUG
+            , reigai1
+#endif
+                    );
+                                }
+#endif
+
+#if DEBUG
+                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite_02Raion-余裕返討手", reigai1))
+                    {
+                        return Pure.FailTrue("error GenerateSasite_02Raion-余裕返討手"
+#if DEBUG
+            , reigai1
+#endif
+                    );
+                    }
+#endif
+
+#if DEBUG
+                    if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite_02Raion-逼迫返討手", reigai1))
+                    {
+                        return Pure.FailTrue("error GenerateSasite_02Raion-逼迫返討手"
+#if DEBUG
+            , reigai1
+#endif
+                    );
+                    }
+#endif
+
+#if DEBUG
+            if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error Begin-GenerateSasite_02Raion-1", reigai1))
+            {
+                return Pure.FailTrue("error Begin-GenerateSasite_02Raion-1"
+#if DEBUG
+            , reigai1
+#endif
+                    );
+            }
+#endif
+
+#if DEBUG
+            if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error End-GenerateSasite_01-1",  reigai1))
+            {
+                return Pure.FailTrue(
+                    "TryFail_Assert_Sabun_Kiki"
+#if DEBUG
+                                                , reigai1
+#endif
+                                                );
+            }
+#endif
+
+
+#if DEBUG
+                            //────────────────────
+                            // デバッグ
+                            //────────────────────
+                            if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki(
+                                string.Format(
+                                    "error GenerateSasite01-Loop 紐付き緩慢指し km={0} ms={1} sasiteType={2}"
+                                    , km_teban,ms, sasiteType
+                                    ),
+                                 reigai1))
+                            {
+                                reigai1.AppendLine("事前ダンプ：");
+                                reigai1.AppendLine(dbg_preDump);
+
+                                return Pure.FailTrue(
+                                    "TryFail_Assert_Sabun_Kiki"
+                                                , reigai1
+                                                );
+                            }
+#endif
+
+
+#if DEBUG
+                                if (DbgInterproject.project.TryFail_Assert_Sabun_Kiki("error GenerateSasite_02Raion-ぼっち緩慢指(1)", reigai1))
+                                {
+                                    return Pure.FailTrue("error GenerateSasite_02Raion-ぼっち緩慢指(1)"
+#if DEBUG
+            , reigai1
+#endif
+                    );
+                                }
+#endif
+
+
+//#if DEBUG
+//            if (!PureAssert.Try_Assert_Sabun_Kiki("error Begin-GenerateSasite_02ZouKirinNado-1", gky.roKy, reigai1))
+//            {
+//                return false;
+//            }
+//#endif
+
+//#if DEBUG
+//            if (!PureAssert.Try_Assert_Sabun_Kiki("error End-GenerateSasite_02ZouKirinNado-1", gky.roKy, reigai1))
+//            {
+//                return false;
+//            }
+//#endif
+
+            //#if DEBUG
+            //            if (!changing)
+            //            {
+            //                if (!PureAssert.Try_Assert_Sabun_Kiki(string.Format("error Begin-N100_HerasuKiki : hint={0}", hint), sindanM, reigai1))
+            //                {
+            //                    return false;
+            //                }
+            //            }
+            //#endif
+
+            //#if DEBUG
+            //            if (!PureAssert.Try_Assert_Sabun_Kiki("error End-Try_MisuteruUgoki-1", gky.roKy, reigai1))
+            //            {
+            //                out_ret = false;//エラー
+            //                return false;
+            //            }
+            //#endif
+
+            //#if DEBUG
+            //            if (!PureAssert.Try_Assert_Sabun_Kiki("error Begin-Try_MisuteruUgoki", gky.roKy, reigai1))
+            //            {
+            //                out_ret = false;//エラー
+            //                return false;
+            //            }
+            //#endif
+
+//#if DEBUG
+//            if (!PureAssert.Try_Assert_Sabun_Kiki("error End-GenerateSasite_02NiwatoriNado-1", gky.roKy, reigai1))
+//            {
+//                return false;
+//            }
+//#endif
+
+//#if DEBUG
+//            if (!PureAssert.Try_Assert_Sabun_Kiki("error Begin-GenerateSasite_02NiwatoriNado-1", gky.roKy, reigai1))
+//            {
+//                return false;
+//            }
+//#endif
+
+            //#if DEBUG
+            //            if (!PureAssert.Try_Assert_Sabun_Kiki("error End-AddSasiteBadOrGood", gky.roKy, reigai1))
+            //            {
+            //                return false;
+            //            }
+            //#endif
+
+            //#if DEBUG
+            //            if (!PureAssert.Try_Assert_Sabun_Kiki("error Begin-AddSasiteBadOrGood_AfterClearSasitelist", gky.roKy, reigai1))
+            //            {
+            //                return false;
+            //            }
+            //#endif
+
+            //#if DEBUG
+            //            if (!PureAssert.Try_Assert_Sabun_Kiki("error Begin-AddSasiteBadOrGood", gky.roKy, reigai1))
+            //            {
+            //                return false;
+            //            }
+            //#endif
+
+
+
+
+        public override bool TryFail_UndoSasite_End(
+            Sasite ss,
+            Masu ms_t0,
+            Komasyurui ks_t0,
+            long komaSuOld,
+            //long komaSuNew,
+            bool isAssertYokusei,
+            FenSyurui f,
+            IDebugMojiretu reigai1
+            )
+        {
+            return Pure.SUCCESSFUL_FALSE;//未実装
+        }
+
+        public override bool TryFail_UndoSasite_End(
+            Sasite ss,
+            Masu ms_t0,
+            Komasyurui ks_t0,
+            long komaSuOld,
+            //long komaSuNew,
+            bool isAssertYokusei,
+            FenSyurui f,
+            IDebugMojiretu dbg_reigai
+            )
+        {
+            if (!isAssertYokusei)
+            {
+                long komaSuNew;
+
+                if (!DbgInterproject.project.Try_Assert_Genkou_IbashoBBYoko("error undo-tj2s-7 #吹雪", dbg_reigai))
+                {
+                    return Pure.FailTrue("error undo-tj2s-7 #吹雪"
+                        , dbg_reigai
+                            );
+                }
+
+                komaSuNew = PureMemory.gky_ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(PureMemory.kifu_teban).PopCnt();
+                Debug.Assert(komaSuOld + 1 == komaSuNew, "error undo-tj2s-8 #嵐");
+
+                IHyojiMojiretu sindan3 = new MojiretuImpl();
+                sindan3.Append("error undo-tj2s-9 盤上_駒戻しＢ 現局面");
+                SpkBan_1Column.Setumei_Kyokumen(PureMemory.kifu_endTeme, sindan3);
+                sindan3.Append("ss=["); SpkSasite.AppendFenTo(f, ss, sindan3); sindan3.Append(sindan3.ToContents()); sindan3.AppendLine("]");
+                sindan3.Append("tb1=["); SpkTaikyokusya.AppendSetumeiName(PureMemory.kifu_teban, sindan3); sindan3.AppendLine("]");
+                sindan3.Append("ms=["); SpkMasu.AppendSetumei(ms_t0, sindan3); sindan3.AppendLine("]");
+                sindan3.Append("ks1=["); SpkKomasyurui.GetNingenyoMijikaiFugo(ks_t0, sindan3); sindan3.AppendLine("]");
+                if (!DbgInterproject.project.Try_Assert_Genkou_IbashoBBYoko(sindan3.ToContents(), dbg_reigai))
+                {
+                    return Pure.FailTrue("Try_Assert_Genkou_Bitboard"
+                        , dbg_reigai
+                            );
+                }
+            }
+            return Pure.SUCCESSFUL_FALSE;
+        }
+
+#if DEBUG
+            // ここらへん、全部デバッグ用☆（＾～＾）
+            if(DbgInterproject.project.TryFail_UndoSasite_End(
+                ss,
+                ms_t0,
+                ks_t0,
+                komaSuOld,
+                isAssertYokusei,
+                f,
+                reigai1
+                ))
+            {
+                return Pure.FailTrue("TryFail_UndoSasite_End", reigai1);
+            }
+#endif
+
+        public virtual bool TryFail_UndoSasite_End(
+            Sasite ss,
+            Masu ms_t0,
+            Komasyurui ks_t0,
+            long komaSuOld,
+            //long komaSuNew,
+            bool isAssertYokusei,
+            FenSyurui f,
+            IDebugMojiretu reigai1
+            )
+        {
+            return Pure.FailTrue("未実装", reigai1);
+        }
+
+        /// <summary>
+        /// 診断。ビットボード。現行版の中だけの整合性
+        /// </summary>
+        //[Conditional("DEBUG")]
+        public override bool Try_Assert_Genkou_IbashoBBYoko(
+            string message, IDebugMojiretu reigai1)
+        {
+            return true;//未実装
+        }
+
+        /// <summary>
+        /// 診断。ビットボード。現行版の中だけの整合性
+        /// </summary>
+        //[Conditional("DEBUG")]
+        public override bool Try_Assert_Genkou_IbashoBBYoko(
+            string hint, IDebugMojiretu reigai1)
+        {
+            bool safe = PureMemory.gky_ky.shogiban.ibashoBan_yk00.Assert();
+            if (!safe)
+            {
+                reigai1.Append(hint); reigai1.AppendLine(" ビットボード診断");
+                SpkBan_1Column.ToHyojiIbasho(hint, reigai1);
+                reigai1.AppendLine("Util_Tansaku.TansakuTyakusyuEdas=[" + Util_Tansaku.tansakuTyakusyuEdas + "]");
+                return false;
+            }
+            return true;
+        }
+
+#if DEBUG
+            if (!dbg_isAssertYokusei)
+            {
+                if (!DbgInterproject.project.Try_Assert_Genkou_IbashoBBYoko("error Undo-End-3",  dbg_reigai))
+                {
+                    return Pure.FailTrue("error Undo-End-3"
+#if DEBUG
+                        , dbg_reigai
+#endif
+                            );
+                }
+            }
+#endif
+
+#if DEBUG
+            if (!dbg_isAssertYokusei)
+            {
+                if (!DbgInterproject.project.Try_Assert_Genkou_IbashoBBYoko("error Undo-Begin-5",  dbg_reigai))
+                {
+                    return Pure.FailTrue("error Undo-Begin-5"
+#if DEBUG
+                        , dbg_reigai
+#endif
+                            );
+                }
+            }
+#endif
+
+#if DEBUG
+                if (!isAssertYokusei)
+                {
+                    if (!DbgInterproject.project.Try_Assert_Genkou_IbashoBBYoko("error Undo-Te-5 #鷹",  syuturyoku))
+                    {
+                        return Pure.FailTrue("error Undo-Te-5 #鷹"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                    }
+                    // 相手番の駒
+                    komaSuNew = PureMemory.gky_ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(PureMemory.kifu_aiteban).PopCnt();
+                    Debug.Assert(komaSuOld + 1 == komaSuNew, "error Undo-Te-6 #露");
+                }
+#endif
+
+#if DEBUG
+                    if (!isAssertYokusei)
+                    {
+                        if (!DbgInterproject.project.Try_Assert_Genkou_IbashoBBYoko("error Undo-Tu-5 #颱風",  dbg_reigai))
+                        {
+                            return Pure.FailTrue("error Undo-Tu-5 #颱風"
+#if DEBUG
+                        , dbg_reigai
+#endif
+                            );
+                        }
+                    }
+#endif
+
+#if DEBUG
+            if (!isAssertYokusei)
+            {
+                if (!DbgInterproject.project.Try_Assert_Genkou_IbashoBBYoko("error undo-tj2u-7 #吹雪",  syuturyoku))
+                {
+                    return Pure.FailTrue("error undo-tj2u-7 #吹雪"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                }
+
+            }
+#endif
+
+                if (!DbgInterproject.project.Try_Assert_Genkou_IbashoBBYoko(sindan2.ToContents(),  syuturyoku))
+                {
+                    return Pure.FailTrue("undo-tj2u Try_Assert_Genkou_Bitboard"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                }
+
+                if (!DbgInterproject.project.Try_Assert_Genkou_IbashoBBYoko(sindan2.ToContents(),  reigai1))
+                {
+                    return Pure.FailTrue("undo-tj2s Try_Assert_Genkou_Bitboard"
+#if DEBUG
+                        , reigai1
+#endif
+                            );
+                }
+
+                if (!DbgInterproject.project.Try_Assert_Genkou_IbashoBBYoko(sindan1.ToContents(), dbg_reigai))
+                {
+                    return Pure.FailTrue("Try_Assert_Genkou_Bitboard"
+#if DEBUG
+                        , dbg_reigai
+#endif
+                            );
+                }
+
+
+
+
+#if DEBUG
+            if (!isAssertYokusei)
+            {
+                if (!DbgInterproject.project.Try_Assert_Genkou_IbashoBBYoko("error Undo-Ta-1(5)",  dbg_reigai))
+                {
+                    return Pure.FailTrue("error Undo-Ta-1(5)"
+#if DEBUG
+                        , dbg_reigai
+#endif
+                            );
+                }
+
+                // 後で使う変数。駒が減る前に一時退避
+                komaSuOld = PureMemory.gky_ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(PureMemory.kifu_teban).PopCnt();
+            }
+#endif
+
+#if DEBUG
+                    if (!isAssertYokusei)
+                    {
+                        if (!DbgInterproject.project.Try_Assert_Genkou_IbashoBBYoko("error Do-C-b-5", dbg_reigai))
+                        {
+                            return Pure.FailTrue("error Do-C-b-5", dbg_reigai);
+                        }
+                    }
+#endif
+
+#if DEBUG
+            if (!isAssertYokusei)
+            {
+                if (!DbgInterproject.project.Try_Assert_Genkou_IbashoBBYoko("error Do-Begin-B-5", reigai1))
+                {
+                    return Pure.FailTrue("error Do-Begin-B-5", reigai1);
+                }
+            }
+#endif
+
+#if DEBUG
+            if (!isAssertYokusei)
+            {
+                // エラー・チェック
+                if (!DbgInterproject.project.Try_Assert_Genkou_IbashoBBYoko("error Do-Begin-A-5", reigai1))
+                {
+                    return Pure.FailTrue("error Do-Begin-A-5", reigai1);
+                }
+            }
+#endif
+
+        /// <summary>
+        /// 診断。ビットボード。現行版の中だけの整合性
+        /// </summary>
+        //[Conditional("DEBUG")]
+        public virtual bool Try_Assert_Genkou_IbashoBBYoko(string message, IDebugMojiretu reigai1)
+        {
+            return false;// Pure.FailTrue("未実装", reigai1);
+        }
+
+            long komaSuNew;
+
+
+
+
+
+                    , isAssertYokusei // 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+
+            , bool isAssertYokusei // 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+#if DEBUG
+            int komaSuJibunOld = 0;
+            Bitboard bb_komaJibunOld = null;
+#endif
+
+#if DEBUG
+            if (!isAssertYokusei)
+            {
+                // 自分の駒の数を、減らす前に覚えておく
+                komaSuJibunOld = PureMemory.gky_ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(PureMemory.kifu_teban).PopCnt();
+                bb_komaJibunOld = PureMemory.gky_ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(PureMemory.kifu_teban);
+            }
+#endif
+
+
+                        , false// 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+
+
+
+
+                , dbg_isAssertYokusei // 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+                , dbg_isAssertYokusei // 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+                , dbg_isAssertYokusei // 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+                , dbg_isAssertYokusei // 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+
+
+#if DEBUG
+            if (!dbg_isAssertYokusei)
+            {
+                if (!PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.ExistsKomaZenbu(ms_t1))
+                {
+                    dbg_reigai.Append("指し手に該当する戻せる駒が無かったぜ☆（＾～＾） sasite=");
+                    SpkSasite.AppendFenTo(dbg_f, ss, dbg_reigai);
+                    dbg_reigai.AppendLine();
+
+                    //syuturyoku.AppendLine("駒全部");
+                    //CommandK.Koma_cmd(isSfen, "koma", gky, str_sasite);
+
+                    return Pure.FailTrue("error Undo-Begin-5"
+                        , dbg_reigai
+                            );
+                }
+            }
+#endif
+
+
+            , bool isAssertYokusei // 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+
+            , bool isAssertYokusei // 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+
+            , bool isAssertYokusei // 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+
+            , bool isAssertYokusei // 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+
+#if DEBUG
+            if (!isAssertYokusei)
+            {
+                komaSuNew = PureMemory.gky_ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(PureMemory.kifu_teban).PopCnt();
+                Debug.Assert(komaSuOld - 1 == komaSuNew, "error Undo-Ta-7 移動先_綺麗さっぱり消す #雪");
+
+                IHyojiMojiretu sindan1 = new MojiretuImpl();
+                sindan1.AppendLine("error Undo-Ta-8");
+                sindan1.Append("tb1=["); SpkTaikyokusya.AppendSetumeiName(PureMemory.kifu_teban, sindan1); sindan1.AppendLine("]");
+                sindan1.Append("km2=["); SpkKoma.AppendSetumei(km_t1, sindan1); sindan1.AppendLine("]");
+                sindan1.Append("ms2=["); SpkMasu.AppendSetumei(ms_t1, sindan1); sindan1.AppendLine("]");
+            }
+#endif
+
+#if DEBUG
+            if (!isAssertYokusei)
+            {
+                IHyojiMojiretu sindan2 = new MojiretuImpl();
+                sindan2.AppendLine("error undo-tj2s-1");
+                sindan2.Append("tb1=["); SpkTaikyokusya.AppendSetumeiName(PureMemory.kifu_teban, sindan2); sindan2.AppendLine("]");
+                sindan2.Append("ms =["); SpkMasu.AppendSetumei(ms_t0, sindan2); sindan2.AppendLine("]");
+                sindan2.Append("ks1=["); SpkKomasyurui.GetNingenyoMijikaiFugo(ks_t0, sindan2); sindan2.AppendLine("]");
+
+                // 後で使う変数。駒が増える前に一時退避
+                komaSuOld = PureMemory.gky_ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(PureMemory.kifu_teban).PopCnt();
+            }
+#endif
+
+#if DEBUG
+                if (!isAssertYokusei)
+                {
+                    // 後で使う変数。駒が増える前に一時退避
+                    // 相手番の駒
+                    komaSuOld = PureMemory.gky_ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(PureMemory.kifu_aiteban).PopCnt();
+                }
+#endif
+
+#if DEBUG
+            long komaSuOld = 0;
+#endif
+
+#if DEBUG
+            long komaSuOld = 0;
+            long komaSuNew;
+#endif
+
+#if DEBUG
+            long komaSuOld = 0;
+            //long komaSuNew;
+#endif
+
+            , bool isAssertYokusei // 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+
+#if DEBUG
+            if (!dbg_isAssertYokusei)
+            {
+                IHyojiMojiretu sindan4 = new MojiretuImpl();
+                sindan4.AppendLine("error Undo-End-1");
+                sindan4.Append("tb1=["); SpkTaikyokusya.AppendSetumeiName(PureMemory.kifu_teban, sindan4); sindan4.AppendLine("]");
+                sindan4.Append("ms2=["); SpkMasu.AppendSetumei(ms_t1, sindan4); sindan4.AppendLine("]");
+            }
+#endif
+
+, dbg_isAssertYokusei // 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+
+#if DEBUG
+            dbg_isAssertYokusei = false;//FIXME:
+#endif
+
+            , bool dbg_isAssertYokusei // 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+
+#if DEBUG
+            if (!isAssertYokusei)
+            {
+                IHyojiMojiretu sindan2 = new MojiretuImpl();
+                sindan2.AppendLine("error undo-tj2u-1");
+                sindan2.Append("tb1=["); SpkTaikyokusya.AppendSetumeiName(PureMemory.kifu_teban, sindan2); sindan2.AppendLine("]");
+                sindan2.Append("ms =["); SpkMasu.AppendSetumei(ms_t0, sindan2); sindan2.AppendLine("]");
+                sindan2.Append("ks1=["); SpkKomasyurui.GetNingenyoMijikaiFugo(ks_t0, sindan2); sindan2.AppendLine("]");
+
+                // 後で使う変数。駒が増える前に一時退避
+                komaSuOld = PureMemory.gky_ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(PureMemory.kifu_teban).PopCnt();
+            }
+#endif
+
+            , bool isAssertYokusei // 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+
+#if DEBUG
+            long komaSuOld = 0;
+#endif
+
+#if DEBUG
+            if (!isAssertYokusei)
+            {
+                // ビットボードの数は合ってないのでチェックしないぜ☆
+
+                // 自分の駒が増える前に、覚えておく
+                komaJibunSuOld = PureMemory.gky_ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(PureMemory.kifu_teban).PopCnt();
+                bb_komaJibunOld = PureMemory.gky_ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(PureMemory.kifu_teban);
+            }
+#endif
+
+            , bool isAssertYokusei // 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+
+#if DEBUG
+            int komaJibunSuOld = 0;
+            Bitboard bb_komaJibunOld = null;
+#endif
+
+#if DEBUG
+            if (!isAssertYokusei)
+            {
+                // 自分の駒の数を、減らす前に覚えておく
+                komaJibunSuOld = PureMemory.gky_ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(PureMemory.kifu_teban).PopCnt();
+                bb_komaJibunOld = PureMemory.gky_ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(PureMemory.kifu_teban);
+            }
+#endif
+
+#if DEBUG
+            int komaJibunSuOld = 0;
+            Bitboard bb_komaJibunOld = null;
+#endif
+
+            , bool isAssertYokusei // 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+
+#if DEBUG
+            if (!isAssertYokusei)
+            {
+                // 相手の駒の数と配置を覚えておく
+                komaSuAiteOld = PureMemory.gky_ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(PureMemory.kifu_aiteban).PopCnt();
+                bb_komaAiteOld = PureMemory.gky_ky.shogiban.ibashoBan_yk00.RefBB_KomaZenbu(PureMemory.kifu_aiteban);
+            }
+#endif
+
+//#if DEBUG
+//            if (!isAssertYokusei)
+//            {
+//                reigai1.Append(DbgInterproject.project.Dump(ky2, "dstOff"));
+//            }
+//#endif
+
+            , bool isAssertYokusei // 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+
+                , isAssertYokusei // 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+
+                    , isAssertYokusei // 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+
+                        , isAssertYokusei // 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+
+                        , isAssertYokusei // 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+
+                        , false// 駒の取り合いは呼び出し回数が多いので、アサートを抑制したいときに真
+
+
+#if DEBUG
+            int komaSuAiteOld = 0;
+            Bitboard bb_komaAiteOld = null;
+#endif
+
+
+        public bool Assert()
+        {
+            for (int iTai = 0; iTai < Conv_Taikyokusya.itiran.Length; iTai++)
+            {
+                Taikyokusya tai = Conv_Taikyokusya.itiran[iTai];
+
+                for (int iKs = 0; iKs < Conv_Komasyurui.itiran.Length; iKs++)
+                {
+                    Komasyurui ks = Conv_Komasyurui.itiran[iKs];
+
+                    // にわとりはいないこともある。
+
+                    if (!BBItiran_Komabetu.RefBBKoma(Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, tai)).Clone().Sitdown(
+                        BBItiran_Komazenbu.RefBBKomaZenbu(tai)).IsEmpty()) { return false; }
+                }
+            }
+            return true;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

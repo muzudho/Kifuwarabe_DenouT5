@@ -1,0 +1,302 @@
+        /// <summary>
+        /// 利き割り☆（＾～＾）
+        /// 手番から見た評価値☆（＾～＾）
+        /// </summary>
+        /// <param name="gky"></param>
+        /// <returns></returns>
+        public static int TukurinaosiKikiwari_Remake()
+        {
+            return (int)(PureMemory.gky_ky.yomiKy.yomiShogiban.yomiKikiBan.CountKikisuTotalZenbu(PureMemory.kifu_aiteban) - PureMemory.gky_ky.yomiKy.yomiShogiban.yomiKikiBan.CountKikisuTotalZenbu(PureMemory.kifu_teban));
+        }
+
+
+#if DEBUG
+                    hyoji.AppendLine(
+                        string.Format(
+                            "内訳 ( okimari={1} 紐割り={2} 利き受け={3})",
+                            PureMemory.gky_hyokaSu.dbg_okimari.ToString(),// SpkHyokati.ToContents(),
+                            Conv_Hyokachi.TukurinaosiHimowari_Remake(),
+                            Conv_Hyokachi.TukurinaosiKikiuke_Remake()
+                            )
+                        );
+#endif
+
+
+        /// <summary>
+        /// 利きを受けている数
+        /// </summary>
+        /// <param name="gky"></param>
+        /// <returns></returns>
+        public static int TukurinaosiKikiuke_Remake()
+        {
+            int kikisu = 0;
+
+            // 手番の駒があるところへの、相手からの利きを全部引くぜ☆（＾～＾）
+            PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.ScanKomaZenbu((Masu ms) =>
+            {
+                kikisu -= PureMemory.gky_ky.yomiKy.yomiShogiban.yomiKikiBan.CountKikisuZenbu(PureMemory.kifu_aiteban, ms);
+            }, PureMemory.kifu_teban);
+
+
+            // 相手番の駒があるところへの、自分からの利きを全部足すぜ☆（＾～＾）
+            PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.ScanKomaZenbu((Masu ms) =>
+            {
+                kikisu += PureMemory.gky_ky.yomiKy.yomiShogiban.yomiKikiBan.CountKikisuZenbu(PureMemory.kifu_teban, ms);
+            }, PureMemory.kifu_aiteban);
+
+
+            return (int)kikisu;
+        }
+
+
+        /// <summary>
+        /// 紐割り評価値☆（＾～＾）
+        /// </summary>
+        /// <param name="gky"></param>
+        /// <returns></returns>
+        public static int TukurinaosiHimowari_Remake()
+        {
+            int kikisu = 0;
+
+            // 手番の駒があるところへの、味方からの利きを全部足すぜ☆（＾～＾）
+            PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.ScanKomaZenbu((Masu ms) =>
+            {
+                kikisu += PureMemory.gky_ky.yomiKy.yomiShogiban.yomiKikiBan.CountKikisuZenbu(PureMemory.kifu_teban, ms);
+            }, PureMemory.kifu_teban);
+
+
+            // 相手番の駒があるところへの、味方からの利きを全部引くぜ☆（＾～＾）
+            PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.ScanKomaZenbu((Masu ms) =>
+            {
+                kikisu -= PureMemory.gky_ky.yomiKy.yomiShogiban.yomiKikiBan.CountKikisuZenbu(PureMemory.kifu_aiteban, ms);
+            }, PureMemory.kifu_aiteban);
+
+
+            return (int)kikisu;
+        }
+
+
+
+        /// <summary>
+        /// 評価値の変域内なら真だぜ☆（＾▽＾）
+        /// </summary>
+        /// <returns></returns>
+        public bool InHyokati()
+        {
+            return Conv_Hyokachi.Hyokati_Saisyo <= hyokaTen && hyokaTen <= Conv_Hyokachi.Hyokati_Saidai;
+        }
+
+        public bool IsSonota()
+        {
+            return Conv_Hyokachi.Sonota <= hyokaTen;
+        }
+
+        /// <summary>
+        /// 得点の最小（評価値の変域を　らいおん２枚　で埋め尽くす程度）
+        /// </summary>
+        public const int Hyokati_Saisyo = -30000;
+
+        /// <summary>
+        /// らいおん（負け）
+        /// 目安：　らいおん　＝　らいおん以外の全駒　＋　二駒関係評価値最大
+        /// </summary>
+        public const int Hyokati_FuNoSu_Raion = -15000;
+
+        /// <summary>
+        /// ひよこ程度の基準
+        /// </summary>
+        public const int Hyokati_Kijun = 3;
+
+        /// <summary>
+        /// らいおん（勝ち）
+        /// 目安：　らいおん　＝　らいおん以外の全駒　＋　二駒関係評価値最大
+        /// </summary>
+        public const int Hyokati_SeiNoSu_Raion = 15000;
+
+        /// <summary>
+        /// 得点の最大（評価値の変域を　らいおん２枚　で埋め尽くす程度）
+        /// </summary>
+        public const int Hyokati_Saidai = 30000;
+
+        /// <summary>
+        /// これ以降、その他だぜ☆（＾▽＾）
+        /// </summary>
+        public const int Sonota = 32001;
+
+        /// <summary>
+        /// 最大何手詰めまで数えるか☆
+        /// </summary>
+        public const int SAIDAI_TUME = 100;
+
+        /// <summary>
+        /// 勝負無しで、評価を付けられない場合☆（＾～＾）
+        /// </summary>
+        public const int Sonota_SyobuNasi = 32002;
+
+        public bool IsSyobuNasi()
+        {
+            return hyokaTen==Conv_Hyokachi.Sonota_SyobuNasi;
+        }
+
+            else if (hyokaSu.IsSyobuNasi())
+            {
+                hyoji.Append("[SyobuNasi] ");
+                hyoji.Append(hyokaSu.ToString_Ten());
+            }
+
+        //SaseruTeNasi3,
+        //SaseruTeNasi4_TansakuKaisi,
+        /// <summary>
+        /// 探索中に起こったエラーにより中断
+        /// </summary>
+        //ErrorChudan_TansakuChu,
+        /// <summary>
+        /// 葉の静的局面評価値☆
+        /// </summary>
+        //Happa,
+
+        ///// <summary>
+        ///// 葉の静的局面評価値☆（駒を取る手、詰められ　が見えている）
+        ///// </summary>
+        //HappaKomatoriTumerare,
+
+        ///// <summary>
+        ///// ランダム局面で勝負なしの場合
+        ///// </summary>
+        //RandomKyokumenSyobuNasi,
+        ///// <summary>
+        ///// 局面評価し直した
+        ///// </summary>
+        //KyokumenHyokaSinaosi,
+        /// <summary>
+        /// 最大手数指定での打ち切りだぜ☆（＾～＾）デバッグ用☆（＾～＾）
+        /// </summary>
+        SaidaiTesuUtikiri,
+
+        /// <summary>
+        /// らいおんを捕まえたか、トライした指し手☆（*＾～＾*）
+        /// </summary>
+        RaionCatchOrTrySasite,
+
+
+        /// <summary>
+        /// 葉の静的局面評価値☆（駒を取る手、詰めが見えている）
+        /// </summary>
+        HappaKomatoriTumi,
+
+        /// <summary>
+        /// 葉の静的局面評価値☆（駒を取る手、詰めは見えていない）
+        /// </summary>
+        HappaKomatori,
+
+        /// <summary>
+        /// 指せる手がなくて評価値が付いていないとき☆
+        /// </summary>
+        SaseruTeNasi1_Go,
+        SaseruTeNasi2_TansakuBegin,
+
+        /// <summary>
+        /// 内訳。紐割り評価値☆ 差分更新用☆
+        /// </summary>
+        public int dbg_himowari;
+        /// <summary>
+        /// 利き割り評価値☆ 差分更新用☆
+        /// </summary>
+        public int dbg_kikiwari;
+
+            dbg_himowari = src.dbg_himowari;
+            dbg_kikiwari = src.dbg_kikiwari;
+
+            this.dbg_himowari = dbg_himowari;
+            this.dbg_kikiwari = dbg_kikiwari;
+
+            src.dbg_himowari = dbg_himowari;
+            src.dbg_kikiwari = dbg_kikiwari;
+
+            this.dbg_himowari = dbg_himowari;
+            this.dbg_kikiwari = dbg_kikiwari;
+
+            dbg_himowari = 0;
+            dbg_kikiwari = 0;
+
+        public void AddHimowari(int val)
+        {
+            hyokaTen += val;
+#if DEBUG
+            dbg_himowari += val;
+#endif
+        }
+
+        public void FuyasuHimowari( Taikyokusya tai, Masu ms)
+        {
+            // 駒にひも付いていた利きの数を増やすぜ☆（＾～＾）
+            this.AddHimowari(PureMemory.gky_ky.yomiKy.yomiShogiban.yomiKikiBan.CountKikisuZenbu(tai, ms));
+        }
+
+        public void HerasuHimowari( Taikyokusya tai, Masu ms)
+        {
+            // 駒にひも付いていた利きの数を減らすぜ☆（＾～＾）
+            this.AddHimowari(-PureMemory.gky_ky.yomiKy.yomiShogiban.yomiKikiBan.CountKikisuZenbu(tai, ms));
+        }
+
+                , -dbg_himowari
+                , -dbg_kikiwari
+            , int dbg_himowari
+            , int dbg_kikiwari
+
+
+                PureMemory.gky_hyokaSu.FuyasuHimowari( tai_put, ms_t1);
+
+                PureMemory.gky_hyokaSu.HerasuHimowari( tai_removed, ms_ibasho);
+
+                hyoji.Append(string.Format("utiwake<okimari={0} himowari={1} kikiwari={2} dbg_riyu={3} hosoku={4}>",
+                    hyokaSu.dbg_okimari,
+                    hyokaSu.dbg_himowari,
+                    hyokaSu.dbg_kikiwari,
+                    hyokaSu.dbg_riyu,
+                    hyokaSu.dbg_riyuHosoku
+                    ));
+
+
+
+
+
+#if DEBUG
+        public void SetOkimari(int val)
+        {
+            dbg_okimari = val;
+        }
+#endif
+
+        /// <summary>
+        /// 内訳１
+        /// </summary>
+        public int dbg_okimari;
+
+            dbg_okimari = src.dbg_okimari;
+
+            this.dbg_okimari = dbg_okimari;
+
+            dbg_okimari = 0;
+
+            src.dbg_okimari = dbg_okimari;
+
+            this.dbg_okimari = dbg_okimari;
+
+                , -dbg_okimari
+
+            , int dbg_okimari
+
+
+        //public void SetTen(int ten)
+        //{
+        //    hyokaTen_ = ten;
+        //}
+
+
+
+
+
+
+
+

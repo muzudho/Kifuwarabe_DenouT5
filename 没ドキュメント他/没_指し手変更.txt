@@ -1,0 +1,48 @@
+//            // 指し手が無かった場合の評価値を初期値として設定
+//            out_hyokasuToBack = new HyokaSu(
+//                Conv_HyokaSu.Hyokati_Rei,
+//                Conv_Tumesu.Stalemate// 合法手が無ければ、詰められ☆
+//#if DEBUG
+//                , Conv_HyokaSu.Hyokati_Rei
+//                , Conv_HyokaSu.Hyokati_Rei
+//                , Conv_HyokaSu.Hyokati_Rei
+//                , HyokaRiyu.SaseruTeNasi2_TansakuBegin// 合法手が無いとき☆
+//                ,""
+//#endif
+//                );
+
+//#region らいおん捕獲＜探索打ち切り＞
+//                //────────────────────────────────────────
+//                // らいおん捕獲＜探索打ち切り＞
+//                //────────────────────────────────────────
+//                if (eda_sasiteType == SasiteType.N12_RaionCatch || eda_sasiteType == SasiteType.N16_Try)
+//                {
+//                    // らいおんを捕まえる手か、トライする手なら、ここより奥を探索する必要はないぜ☆（＾▽＾）
+                    
+//                    out_hyokasuToBack = new HyokaSu(
+//                        Conv_HyokaSu.Hyokati_Rei,
+//                        Conv_Tumesu.CatchRaion// この枝にこれるようなら、勝ち宣言だぜ☆（＾▽＾）
+//#if DEBUG
+//                        , Conv_HyokaSu.Hyokati_Rei
+//                        , Conv_HyokaSu.Hyokati_Rei
+//                        , Conv_HyokaSu.Hyokati_Rei
+//                        , HyokaRiyu.RaionCatchOrTrySasite
+//                        ,""
+//#endif
+//                        );
+
+//                    // らいおん捕獲で情報表示
+//                    Util_Joho.JohoMatome(
+//                        fukasa,
+//                        out_hyokasuToBack,
+//                        hyoji
+//#if DEBUG
+//                        , alpha
+//                        , "RCatch"
+//#endif
+//                        );
+
+//                    goto gt_updateAlpha;//アルファ値の更新を通す方へ☆（＾～＾）
+//                }
+//#endregion
+

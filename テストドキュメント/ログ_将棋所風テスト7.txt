@@ -1,0 +1,26 @@
+# 後手番でアンドゥしたとき、先手駒が、後手駒に変わっていく☆（＾～＾）
+
+usi
+isready
+
+set USI false
+ky
+kifu
+tansaku
+kifu teban
+
+position startpos moves 2g2f
+
+prego
+kifu
+tansaku
+kifu teban
+
+set SikoJikan 20000
+go btime 179000 wtime 180000 byoyomi 0
+
+<2:bestmove 2h5h
+>1:gameover win
+>1:quit
+>2:gameover lose
+>2:quit

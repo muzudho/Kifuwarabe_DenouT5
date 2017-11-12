@@ -1,0 +1,318 @@
+using System;
+
+namespace kifuwarabe_shogi_agarutha.pure.ky.tobikiki
+{
+    /// <summary>
+    /// お邪魔置換表
+    /// 
+    /// 長い利きのハッシュキーを作るためのもの
+    /// </summary>
+    public class OjamaChikanHyo
+    {
+        public class YomiOjamaChikanHyo
+        {
+            public YomiOjamaChikanHyo(OjamaChikanHyo hontai)
+            {
+                hontai_ = hontai;
+            }
+            OjamaChikanHyo hontai_;
+        }
+
+        public OjamaChikanHyo(OjamaChikanHyoSyurui ochSyurui)
+        {
+            Tukurinaosi(ochSyurui);
+        }
+
+        /// <summary>
+        /// マス番号置換表
+        /// </summary>
+        public Masu[] chikanHyo;
+        /// <summary>
+        /// ナナメ段の幅
+        /// </summary>
+        public int[] habaHairetu;
+        /// <summary>
+        /// ナナメ段の先頭列のマス番号
+        /// </summary>
+        public int[] atamaHairetu;
+
+        public Masu Trans(Masu ms)
+        {
+            return chikanHyo[(int)ms];
+        }
+
+        /// <summary>
+        /// 作り直し
+        /// 計算式：http://seiga.nicovideo.jp/watch/mg256957?ct_now
+        /// </summary>
+        public void Tukurinaosi(OjamaChikanHyoSyurui ochSyurui)
+        {
+            int yoko = PureSettei.banYokoHaba;
+            int tate = PureSettei.banTateHaba;
+            int mijikaiHen = Math.Min(yoko, tate);//短い辺
+            int nagaiHen = Math.Max(yoko, tate);//長い辺
+            int heimen = PureSettei.banHeimen;
+
+            // 新規作成 or 既存のものをクリアーして再利用
+            if (null== chikanHyo || chikanHyo.Length != heimen)
+            {
+                chikanHyo = new Masu[heimen];
+
+                switch (ochSyurui)
+                {
+                    case OjamaChikanHyoSyurui.Ht90c:
+                        {
+                            habaHairetu = new int[yoko];
+                            atamaHairetu = new int[yoko];
+                        }
+                        break;
+                    case OjamaChikanHyoSyurui.Ha45c://thru
+                    case OjamaChikanHyoSyurui.Hs45c:
+                        {
+                            habaHairetu = new int[yoko + tate - 1];
+                            atamaHairetu = new int[yoko + tate - 1];
+                        }
+                        break;
+                }
+            }
+            else
+            {
+                Array.Clear(chikanHyo, 0, chikanHyo.Length);
+                Array.Clear(habaHairetu, 0, habaHairetu.Length);
+                Array.Clear(atamaHairetu, 0, atamaHairetu.Length);
+            }
+
+            switch (ochSyurui)
+            {
+                case OjamaChikanHyoSyurui.Ha45c:
+                    {
+                        for (int iMs = 0; iMs < heimen; iMs++)
+                        {
+                            // 縦－１－升÷横＋(升％横)×縦
+                            // × ibashoChikanhyo_migikataSagari45.chikanHyo[iMs] = (Masu)(yoko - iMs / tate + (iMs % yoko) * tate);
+                            chikanHyo[iMs] = (Masu)(
+                                // 本将棋なら、上の段から横一段に ８、７、６、５、４、３、２、１、０
+                                tate - 1 - iMs / yoko
+                                //
+                                + (iMs % yoko) * tate
+                                //
+                                );
+                        }
+
+                        // ナナメ段の幅と頭をリセット
+                        ResetHabaAtama(mijikaiHen);
+
+                        // 置換表をリセット
+                        ResetHa45c();
+                    }
+                    break;
+                case OjamaChikanHyoSyurui.Hs45c:
+                    {
+                        //for (int iMs = 0; iMs < heimen; iMs++)
+                        //{
+                        //    //× ibashoChikanhyo_hidarikataSagari45.chikanHyo[iMs] = (Masu)(iMs / yoko + (yoko - (iMs % yoko)) * 2 + yoko - (iMs / yoko + (iMs % tate) + 1) / tate * yoko);
+                        //    // （升÷縦）＋（(縦－升％縦－１)×横）＋（升％縦）－（（（升÷縦）＋（升％縦＋１））÷縦×横）
+                        //    chikanHyo[iMs] = (Masu)(
+                        //        // ００００、１１１１、２２２２
+                        //        // （升÷縦）
+                        //        (iMs / tate)
+                        //        //
+                        //        +
+                        //        // ９６３０、９６３０、９６３０
+                        //        // （(縦－升％縦－１)×横）
+                        //        ((tate - iMs % tate - 1) * yoko)
+                        //        //
+                        //        +
+                        //        // ０１２３、０１２３、０１２３
+                        //        // （升％縦）
+                        //        (iMs % tate)
+                        //        //
+                        //        -
+                        //        // ０００３、００３３、０３３３
+                        //        // （（（升÷縦）＋（升％縦＋１））÷縦×横）
+                        //        (((iMs / tate) + ((iMs % tate + 1))) / tate * yoko)
+                        //        );
+                        //    // ０００３、００３３、０３３３
+                        //    // × (iMs / tate + ((iMs+tate+1) % tate) + 1) / tate * yoko
+                        //}
+
+                        // ナナメ段の幅と頭をリセット
+                        ResetHabaAtama(mijikaiHen);
+
+                        // 置換表をリセット
+                        ResetHs45c();
+                    }
+                    break;
+                case OjamaChikanHyoSyurui.Ht90c:
+                    {
+                        // 反時計回り９０°回転
+
+                        // ナナメ段の幅と頭をリセット
+                        for (int i = 0; i < atamaHairetu.Length; i++)
+                        {
+                            habaHairetu[i] = tate;
+                            if (0 < i)
+                            {
+                                atamaHairetu[i] = atamaHairetu[i - 1] + habaHairetu[i - 1];
+                            }
+                        }
+
+                        // 置換表をリセット
+                        ResetHt90c();
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// ナナメ段の幅と頭をリセット
+        /// </summary>
+        void ResetHabaAtama(int mijikaiHen)
+        {
+            for (int i = 0; i < atamaHairetu.Length; i++)
+            {
+                if (i < mijikaiHen)
+                {
+                    habaHairetu[i] = i + Pure.ORIGIN1;
+                }
+                else if (atamaHairetu.Length - i < mijikaiHen)
+                {
+                    habaHairetu[i] = atamaHairetu.Length - i;
+                }
+                else
+                {
+                    habaHairetu[i] = mijikaiHen;
+                }
+
+                if (0 < i)
+                {
+                    atamaHairetu[i] = atamaHairetu[i - 1] + habaHairetu[i - 1];
+                }
+            }
+        }
+
+        /// <summary>
+        /// 置換表をリセット
+        /// 参考：http://seiga.nicovideo.jp/watch/mg278865
+        /// </summary>
+        void ResetHa45c()
+        {
+            int w = PureSettei.banYokoHaba;// 横幅（width）
+            int h = PureSettei.banTateHaba;// 縦幅（height）
+            int d = PureSettei.banNanameDanLen;// ナナメ段高さ（diagonal）
+
+            int dst = 0;// 書き込む数字（destination）
+            for (int iD=0; iD<d; iD++)
+            {
+                int rx = iD; // リバースｘ
+                for (int y = 0; y < h; y++,rx--)
+                {
+                    int x = -rx + (w - Pure.KATAGAWA1);//正x
+                    //int x = w - Pure.ORIGIN1 - rx;//正x
+
+                    if (-1<rx && rx<w)
+                    {
+                        int index = y * w + x;// 固定のインデックス
+                        // 値をセット
+                        chikanHyo[index] = (Masu)dst;
+                        dst++;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 置換表をリセット
+        /// ooox
+        /// ooxo
+        /// oxoo
+        /// xooo
+        /// 参考：http://seiga.nicovideo.jp/watch/mg278865
+        /// </summary>
+        void ResetHs45c()
+        {
+            int w = PureSettei.banYokoHaba; // 横幅（width）
+            int h = PureSettei.banTateHaba; // 縦幅（height）
+            int d = PureSettei.banNanameDanLen;// ナナメ段高さ（diagonal）// w + h - 1;
+
+            int dst = 0;// 書き込む数字（destination）
+            for (int iD = 0; iD<d; iD++)// ナナメ段は左から右へ
+            {
+                int x = iD - h + 1; // 正x（縦幅-1だけマイナス方向に戻したところからスタート）
+                for (int iY = h-1; -1<iY; iY--, x++)//最下段から最上段へ。（カーソルは右上に進んでいく）
+                {
+                    if (-1 < x && x < w)
+                    {
+                        int index = iY * w + x;// 固定のインデックス
+
+                        // 値をセット
+                        chikanHyo[index] = (Masu)dst;
+                        dst++;
+                    }
+                }
+            }
+            /*
+            int yoko = PureSettei.banYokoHaba;
+            int tate = PureSettei.banTateHaba;
+            int all = yoko + tate - 1;
+
+            int iStep = 0;
+            for (int nanameDan = 0; nanameDan < all; nanameDan++)
+            {
+                int x = nanameDan;
+                for (int y = 0; y < tate; y++, x--)
+                {
+                    int index = y * yoko + x;
+
+                    if (-1 < x && x < yoko)
+                    {
+                        // 値をセット
+                        chikanHyo[index] = (Masu)iStep;
+                        iStep++;
+                    }
+                }
+            }
+             */
+        }
+
+        void ResetHt90c()
+        {
+            int w = PureSettei.banYokoHaba; // 横幅（width）
+            int h = PureSettei.banTateHaba; // 縦幅（height）
+
+            int dst = 0; // 書き込む数字（destination）
+            for (int rx = 0; rx<w; rx++) // 逆x（reverse x）
+            {
+                int x = -rx + (w - Pure.KATAGAWA1); // 正x（逆順にして、横幅から「０」の分を減らした数だけずらす）
+                for(int y=0; y<h; y++)
+                {
+                    int index = y * w + x; // 固定のインデックス
+
+                    // 値をセット
+                    chikanHyo[index] = (Masu)dst;
+                    dst++;
+                }
+            }
+
+            //for (int iMs = 0; iMs < heimen; iMs++)
+            //{
+            //    chikanHyo[iMs] = (Masu)(
+            //        //（平面－升＋縦－１）％縦×横＋升÷縦
+            //        (heimen - iMs + tate - 1) % tate * yoko
+            //        //
+            //        + iMs / tate
+            //        //
+            //        );
+            //    //ibashoChikanhyo_tokei90.chikanHyo[iMs] = (Masu)(
+            //    //    //
+            //    //    tate * (yoko - 1) + 1
+            //    //    //
+            //    //    + iMs / tate
+            //    //    //
+            //    //    - (iMs % tate) * yoko
+            //    //    //
+            //    //    );
+            //}
+        }
+    }
+}

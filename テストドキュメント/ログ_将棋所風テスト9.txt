@@ -1,0 +1,17 @@
+usi
+isready
+
+set USI false
+
+
+
+position startpos moves 7g7f
+
+kifu
+tansaku
+kifu teban
+
+
+go btime 179000 wtime 180000 byoyomi 0
+
+

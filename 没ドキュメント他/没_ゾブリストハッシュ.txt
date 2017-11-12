@@ -1,0 +1,566 @@
+using System;
+using System.Diagnostics;
+
+namespace kifuwarabe_shogithink.pure.ky.tt
+{
+    /// <summary>
+    /// ゾブリスト・ハッシュ・テーブルを作成します。
+    /// 千日手の検出や、反復深化探索に使うものです。
+    /// </summary>
+    public abstract class Util_ZobristHashing
+    {
+        static Util_ZobristHashing()
+        {
+            Dirty = true;
+        }
+
+        /// <summary>
+        /// 真ならリメイクすること。
+        /// 真にするタイミングとしては、盤のサイズや、駒の数が変わった時など。
+        /// 偽にするタイミングは、リメイクした時など。
+        /// </summary>
+        public static bool Dirty { get; set; }
+
+        /// <summary>
+        /// [升,駒]
+        /// </summary>
+        static ulong[,] m_banjoKeys_ = null;
+
+        /// <summary>
+        /// ハッシュ。[持駒種類][その持駒の数]
+        /// </summary>
+        static ulong[][] m_motiKeys_ = null;
+
+        /// <summary>
+        /// 対局者
+        /// </summary>
+        static ulong[] m_tbTaikyokusya_ = null;
+
+        /// <summary>
+        /// 現局面の盤上、駒台に置いてある駒を　駒の種類別に数え、
+        /// 片方の対局者の駒台に全部乗れるよう、拡張する。
+        /// </summary>
+        public static void Tukurinaosi(Kyokumen.YomiKy yomiKy)
+        {
+            // 盤上
+            m_banjoKeys_ = new ulong[PureSettei.banHeimen, Conv_Koma.itiran.Length];
+            for (int iMs = 0; iMs < PureSettei.banHeimen; iMs++)
+            {
+                foreach (Komasyurui ks in Conv_Komasyurui.itiran)
+                {
+                    // 対局者１
+                    m_banjoKeys_[iMs, (int)Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks,Taikyokusya.T1)] = (ulong)(PureSettei.random.NextDouble() * ulong.MaxValue);
+                    // 対局者２
+                    m_banjoKeys_[iMs, (int)Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks,Taikyokusya.T2)] = (ulong)(PureSettei.random.NextDouble() * ulong.MaxValue);
+                }
+            }
+
+            // 持ち駒
+            {
+                m_motiKeys_ = new ulong[Conv_Motigoma.itiran.Length][];
+
+                int[] counts = yomiKy.CountMotikomaHashSize();
+                foreach (Motigoma mk in Conv_Motigoma.itiran)
+                {
+                    MotiKomasyurui mks = Med_Koma.MotiKomaToMotiKomasyrui(mk);
+                    m_motiKeys_[(int)mk] = new ulong[counts[(int)mks]];
+                    for (int iCount = 0; iCount < counts[(int)mks]; iCount++)
+                    {
+                        m_motiKeys_[(int)mk][iCount] = (ulong)(PureSettei.random.NextDouble() * ulong.MaxValue);
+                    }
+                }
+            }
+
+            // 手番
+            m_tbTaikyokusya_ = new ulong[Conv_Taikyokusya.itiran.Length];
+            foreach (Taikyokusya iTb in Conv_Taikyokusya.itiran)
+            {
+                m_tbTaikyokusya_[(int)iTb] = (ulong)(PureSettei.random.NextDouble() * ulong.MaxValue);
+            }
+
+            Dirty = false;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ms">どの（0～80）升に</param>
+        /// <param name="km">先後付きの駒</param>
+        /// <returns></returns>
+        public static ulong GetBanjoKey(Masu ms, Koma km, Kyokumen.YomiKy yomiKy)
+        {
+            Debug.Assert(Conv_Koma.IsOk(km), "");
+
+            if (Dirty)
+            {
+                Tukurinaosi(yomiKy);
+            }
+
+            if (!Conv_Koma.IsOk(km))
+            {
+                throw new Exception("エラー☆（＞＿＜） 盤上の駒じゃないぜ☆");
+            }
+            else if (Conv_Masu.IsBanjo(ms))
+            {
+                return m_banjoKeys_[(int)ms, (int)km];
+            }
+            else
+            {
+                throw new Exception("エラー☆（＞＿＜） 盤上のどこに置いてある駒なんだぜ☆");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static ulong GetMotiKey(Kyokumen.YomiKy sindanM, Motigoma mk)
+        {
+            if (Util_ZobristHashing.Dirty)
+            {
+                Util_ZobristHashing.Tukurinaosi(sindanM);
+            }
+
+            return Util_ZobristHashing.m_motiKeys_[(int)mk][sindanM.yomiMotigomaItiran.Count(mk)];
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static ulong GetTaikyokusyaKey(Taikyokusya tai, Kyokumen.YomiKy kymS)
+        {
+            if (Util_ZobristHashing.Dirty)
+            {
+                Util_ZobristHashing.Tukurinaosi(kymS);
+            }
+
+            return Util_ZobristHashing.m_tbTaikyokusya_[(int)tai];
+        }
+    }
+}
+
+
+
+
+
+
+
+
+using kifuwarabe_shogithink.pure.ky.bb;
+
+namespace kifuwarabe_shogithink.pure.ky.tt
+{
+    /// <summary>
+    /// 局面ハッシュ
+    /// </summary>
+    public class KyokumenHash
+    {
+        /// <summary>
+        /// 局面をハッシュ値にしたものだぜ☆（＾▽＾）差分更新するぜ☆（＾▽＾）
+        /// </summary>
+        public ulong value { get; set; }
+
+        /// <summary>
+        /// 局面ハッシュを再計算するぜ☆（＾▽＾）
+        /// </summary>
+        /// <returns></returns>
+        public void Tukurinaosi(Kyokumen ky)
+        {
+            ulong hash = 0;
+
+            // 盤上
+            Bitboard komaBB_work = new Bitboard();
+            for (int iTai = 0; iTai < Conv_Taikyokusya.itiran.Length; iTai++)
+            {
+                Taikyokusya tai = Conv_Taikyokusya.itiran[iTai];
+                for (int iKs = 0; iKs < Conv_Komasyurui.itiran.Length; iKs++)
+                {
+                    Komasyurui ks = Conv_Komasyurui.itiran[iKs];
+                    Koma km = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, tai);
+
+                    ky.shogiban.yomiIbashoBan_yoko.ToSet_Koma(km, komaBB_work);
+                    Masu ms;
+                    while (komaBB_work.Ref_PopNTZ(out ms))
+                    {
+                        hash ^= Util_ZobristHashing.GetBanjoKey(ms, km, ky.yomiKy);
+                    }
+                }
+            }
+
+            // 持ち駒
+            foreach (Motigoma mk in Conv_Motigoma.itiran)
+            {
+                hash ^= Util_ZobristHashing.GetMotiKey(ky.yomiKy, mk);
+            }
+
+
+            // 手番
+            hash ^= Util_ZobristHashing.GetTaikyokusyaKey(ky.teban, ky.yomiKy);
+
+            value = hash;
+        }
+
+        /// <summary>
+        /// 加工したい場合
+        /// </summary>
+        /// <param name="value"></param>
+        public void SetXor(ulong value)
+        {
+            this.value ^= value;
+        }
+
+    }
+}
+
+
+
+
+                gky.kyokumenHash.SetXor(Util_ZobristHashing.GetTaikyokusyaKey(gky.yomiKy.teban, gky.yomiKy));
+                gky.kyokumenHash.SetXor(Util_ZobristHashing.GetTaikyokusyaKey(gky.yomiKy.teban, gky.yomiKy));
+
+
+                gky.kyokumenHash.SetXor(Util_ZobristHashing.GetBanjoKey(ms_t1, km_c, gky.yomiKy));
+
+                    gky.kyokumenHash.SetXor(Util_ZobristHashing.GetMotiKey(gky.yomiKy, mk_c));
+
+
+                    gky.kyokumenHash.SetXor(Util_ZobristHashing.GetMotiKey(gky.yomiKy, mk_c));
+
+
+                gky.kyokumenHash.SetXor(Util_ZobristHashing.GetMotiKey(gky.yomiKy, mk_t0));
+
+                gky.kyokumenHash.SetXor(Util_ZobristHashing.GetMotiKey(gky.yomiKy, mk_t0));
+
+
+
+                gky.kyokumenHash.SetXor(Util_ZobristHashing.GetBanjoKey(ms_t0, km_t0, gky.yomiKy));
+
+
+            gky.kyokumenHash.SetXor(Util_ZobristHashing.GetBanjoKey(ms_t1, km_t1, gky.yomiKy));
+
+
+
+
+
+            gky.kyokumenHash.SetXor(Util_ZobristHashing.GetTaikyokusyaKey(gky.yomiKy.teban, gky.yomiKy));
+            gky.kyokumenHash.SetXor(Util_ZobristHashing.GetTaikyokusyaKey(gky.yomiKy.teban, gky.yomiKy));
+
+
+            gky.kyokumenHash.SetXor(Util_ZobristHashing.GetBanjoKey(ms_t1, km_t1, gky.yomiKy));
+
+
+                gky.kyokumenHash.SetXor(Util_ZobristHashing.GetBanjoKey(ms_t0, km_t0, gky.yomiKy));
+
+
+                    gky.kyokumenHash.SetXor(Util_ZobristHashing.GetMotiKey(gky.yomiKy, mk_c));
+                    gky.kyokumenHash.SetXor(Util_ZobristHashing.GetMotiKey(gky.yomiKy, mk_c));
+
+
+
+
+            gky.kyokumenHash.SetXor(Util_ZobristHashing.GetBanjoKey(ms_t1, km_c, gky.yomiKy));
+
+
+                gky.kyokumenHash.SetXor(Util_ZobristHashing.GetMotiKey(gky.yomiKy, mk_t0));
+
+
+                gky.kyokumenHash.SetXor(Util_ZobristHashing.GetMotiKey(gky.yomiKy, mk_t0));//持ち駒が減る前のハッシュを消す
+
+
+
+
+
+                // （４）盤を作ったので、これでゾブリスト・ハッシュも作れるぜ☆（＾～＾）
+                Util_ZobristHashing.Tukurinaosi(gky.yomiKy);
+
+
+
+
+
+
+
+            // Util_ZobristHashing.Dirty = true;
+
+
+
+            // ゾブリストハッシュを作り直し
+            Util_ZobristHashing.Dirty = true;
+            // 局面ハッシュも作り直し☆ 駒ビットボードを作ったあとで☆（＾～＾）
+            kyokumenHash.Tukurinaosi(ky);
+
+
+        /// <summary>
+        /// 局面をハッシュ値にしたものだぜ☆（＾▽＾）差分更新するぜ☆（＾▽＾）
+        /// </summary>
+        public KyokumenHash kyokumenHash { get; set; }
+
+
+            kyokumenHash = new KyokumenHash();
+
+
+        /// <summary>
+        /// 局面ハッシュを再計算し、画面に表示するぜ☆（＾～＾）
+        /// </summary>
+        /// <param name="hyoji"></param>
+        public static void Hash(Genkyoku ky, IHyojiMojiretu hyoji)
+        {
+            ulong saikeisanMae = ky.kyokumenHash.value;//現行（古いの）
+            ky.kyokumenHash.Tukurinaosi(ky.ky);//再計算
+            hyoji.Append("Kyokumen Hash 再計算前=["); hyoji.Append(saikeisanMae); hyoji.AppendLine("]");
+            hyoji.Append(" 再計算後-=["); hyoji.Append(ky.kyokumenHash.value); hyoji.AppendLine("]");
+        }
+
+
+            else if (caret == cmdline.IndexOf("hash", caret)) { CommandH.Hash(gky, hyoji); }
+
+
+
+            // 盤のサイズや、駒の種類、駒の数が変わるというレベルで変化したとき☆（＾～＾）
+            Util_ZobristHashing.Dirty = true;
+
+
+
+        //        if (!Develop.assert.Try_Assert_Sabun_KyHash("error do-tj3s-b-4", gky, reigai1))
+        //        {
+        //            return Pure.FailTrue("error do-tj3s-b-4", reigai1);
+        //        }
+                if (!Develop.assert.Try_Assert_Sabun_KyHash("error Do-T2-d-4", gky, reigai1))
+                {
+                    return Pure.FailTrue("error Do-T2-d-4", reigai1);
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_KyHash(sindan3.ToContents(), gky, reigai1))
+                {
+                    return Pure.FailTrue("Try_Assert_Sabun_KyHash"
+                        , reigai1
+                            );
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_KyHash("error undo-tj2s-6 #吹雪", gky, reigai1))
+                {
+                    return Pure.FailTrue("error undo-tj2s-6 #吹雪"
+                        , reigai1
+                            );
+                }
+
+        public static ulong KyHash_before { get; set; }
+
+
+
+
+
+                bb_koma_forMotikomaHash = new Bitboard();
+            /// <summary>
+            /// 局面ハッシュの再生成のために使用。
+            /// </summary>
+            /// <returns>[持駒種類]</returns>
+            public int[] CountMotikomaHashSize()
+            {
+                int[] counts = new int[(int)MotiKomasyurui.Yososu];
+
+                // 持ち駒を持っていないことを 1 と数える。
+                for (int i = 0; i < counts.Length; i++)
+                {
+                    counts[i] = 1;
+                }
+
+                // 盤上
+                bb_koma_forMotikomaHash.Clear();
+                for (int iTai = 0; iTai < Conv_Taikyokusya.itiran.Length; iTai++)
+                {
+                    Taikyokusya tai = Conv_Taikyokusya.itiran[iTai];
+                    for (int iKs = 0; iKs < Conv_Komasyurui.itiran.Length; iKs++)
+                    {
+                        Komasyurui ks = Conv_Komasyurui.itiran[iKs];
+                        bb_koma_forMotikomaHash.Set(hontai_.shogiban.ibashoBan_yk00.RefBB_Koma(Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, tai)));
+                        Masu ms;
+                        while (bb_koma_forMotikomaHash.Ref_PopNTZ(out ms))
+                        {
+                            MotiKomasyurui mks = Med_Koma.MotiKomaToMotiKomasyrui(Med_Koma.BanjoKomaToMotiKoma(Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, tai)));
+                            if (MotiKomasyurui.Yososu != mks) // らいおんなど、持ち駒にできないものを除く
+                            {
+                                counts[(int)mks]++;
+                            }
+                        }
+                    }
+                }
+
+                // 駒台
+                foreach (Motigoma mk in Conv_Motigoma.itiran)
+                {
+                    counts[(int)Med_Koma.MotiKomaToMotiKomasyrui(mk)] += hontai_.yomiKy.yomiMotigomaItiran.Count(mk);
+                }
+
+                return counts;
+            }
+            Bitboard bb_koma_forMotikomaHash;
+
+
+
+
+
+
+
+                if (!PureAssert.Try_Assert_Sabun_KyHash(sindan3.ToContents(), gky, syuturyoku))
+                {
+                    return Pure.FailTrue("undo-tj2u Try_Assert_Sabun_KyHash"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                }
+
+
+                if (!Develop.assert.Try_Assert_Sabun_KyHash(sindan2.ToContents(), gky, syuturyoku))
+                {
+                    return Pure.FailTrue("undo-tj2u Try_Assert_Sabun_KyHash"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_KyHash("error Undo-End-2", gky, syuturyoku))
+                {
+                    return Pure.FailTrue("error Undo-End-2"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_KyHash("error Undo-Begin-4", gky, syuturyoku))
+                {
+                    return Pure.FailTrue("error Undo-Begin-4"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                }
+
+                    if (!Develop.assert.Try_Assert_Sabun_KyHash("error Undo-Te-4 #鷹", gky, syuturyoku))
+                    {
+                        return Pure.FailTrue("error Undo-Te-4 #鷹"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                    }
+
+                        if (!Develop.assert.Try_Assert_Sabun_KyHash("error Undo-Tu-4 #颱風", gky, syuturyoku))
+                        {
+                            return Pure.FailTrue("error Undo-Tu-4 #颱風"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                        }
+
+                if (!Develop.assert.Try_Assert_Sabun_KyHash("error undo-tj2u-6 #吹雪", gky, syuturyoku))
+                {
+                    return Pure.FailTrue("error undo-tj2u-6 #吹雪"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                }
+
+
+                if (!Develop.assert.Try_Assert_Sabun_KyHash(sindan2.ToContents(), gky, reigai1))
+                {
+                    return Pure.FailTrue("undo-tj2s Try_Assert_Sabun_KyHash"
+#if DEBUG
+                        , reigai1
+#endif
+                            );
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_KyHash(sindan1.ToContents(), gky, syuturyoku))
+                {
+                    return Pure.FailTrue("Try_Assert_Sabun_KyHash"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_KyHash("error Undo-Ta-1(4)", gky, syuturyoku))
+                {
+                    return Pure.FailTrue("error Undo-Ta-1(4)"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_KyHash("error Do-T2-c-4", gky, reigai1))
+                {
+                    return Pure.FailTrue("error Do-T2-c-4", reigai1);
+                }
+
+                    if (!Develop.assert.Try_Assert_Sabun_KyHash("error Do-B-b-4", gky, reigai1))
+                    {
+                        return Pure.FailTrue("error Do-MK-b-4", reigai1);
+                    }
+
+                        if (!Develop.assert.Try_Assert_Sabun_KyHash("error Do-C-b-4", gky, reigai1))
+                        {
+                            return Pure.FailTrue("error Do-C-b-4", reigai1);
+                        }
+
+                if (!Develop.assert.Try_Assert_Sabun_KyHash("error Do-B-b-4", gky, reigai1))
+                {
+                    return Pure.FailTrue("error Do-B-b-4", reigai1);
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_KyHash("error Do-B-a-6", gky, reigai1))
+                {
+                    return Pure.FailTrue("error Do-B-a-6", reigai1);
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_KyHash("error do-tj3u-b-4", gky, reigai1))
+                {
+                    return Pure.FailTrue("error do-tj3u-b-4", reigai1);
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_KyHash("error Do-Begin-B-4", gky, reigai1))
+                {
+                    return Pure.FailTrue("error Do-Begin-B-4", reigai1);
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_KyHash("error Do-Begin-A-4", gky, reigai1))
+                {
+                    return Pure.FailTrue("error Do-Begin-A-4", reigai1);
+                }
+
+        /// <summary>
+        /// 診断。局面ハッシュ。現行と再計算の一致
+        /// </summary>
+        //[Conditional("DEBUG")]
+        public bool Try_Assert_Sabun_KyHash(string message, Genkyoku gky, IDebugMojiretu reigai1)
+        {
+            ulong saikeisanMae = gky.kyokumenHash.value;//再計算前
+            gky.kyokumenHash.Tukurinaosi(gky.ky);//再計算
+            bool safe = saikeisanMae == gky.kyokumenHash.value;
+            if (!safe)
+            {
+                reigai1.Append(message); reigai1.AppendLine(" 局面ハッシュ");
+                return false;
+            }
+            return true;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

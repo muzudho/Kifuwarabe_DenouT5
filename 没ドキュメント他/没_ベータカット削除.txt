@@ -1,0 +1,100 @@
+                    int beta = Conv_HyokaSu.Syokiti_Beta;
+
+int beta,
+
+
+
+
+                beta,
+
+
+                    beta,
+
+
+                            beta,
+
+
+
+            int beta,
+
+
+            int beta,
+
+
+
+        /// <param name="beta"></param>
+            int beta,
+
+
+                    Conv_HyokaSu.Hyokati_Rei,// ここでベータ無いんで
+                    , beta
+
+            , int beta
+
+
+                    beta,
+
+                    , beta
+
+
+                        , beta
+
+
+                    -beta,
+
+                        , beta
+
+
+
+
+                //────────────────────────────────────────
+                // ベータ・カット
+                //────────────────────────────────────────
+#region ベータ・カット
+                // アルファ・ベータ探索をやっていて、ベータ・カットができるから嬉しいんだぜ☆（＾▽＾）
+                if (beta < best_mattanHyokasu.hyokaTen)
+                {
+                    // 次の「子の弟」要素はもう読みません。
+
+
+                    //────────────────────────────────────────
+                    // 3秒おきに、情報
+                    //────────────────────────────────────────
+                    Util_Utikiri.JohoMatome(
+                        eda_sasite,
+                        eda_sasiteType,
+                        out out_yomisujiToBack,
+                        gky,
+                        fukasa,
+                        out_hyokasuToBack,
+                        hyoji
+#if DEBUG
+                        , alpha
+                        , beta
+                        , "BetaCut"
+#endif
+                        );
+                    return;//枝を戻る（正常終了）
+                }
+#endregion
+
+
+
+
+                        , beta
+
+
+
+            int beta,
+
+
+                beta = -beta;
+
+
+            hyoji.Append(string.Format(" alpha {0} beta {1}",
+                alpha.ToString(),
+                beta.ToString()
+                ));
+
+
+

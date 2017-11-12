@@ -1,0 +1,85 @@
+            #region HanpukuSinkaTansakuTukau
+            else if (Util_String.MatchAndNext("HanpukuSinkaTansakuTukau ", line, ref caret))
+            {
+                // うしろに続く文字は☆（＾▽＾）
+                string rest = line.Substring(caret);
+
+                if (bool.TryParse(rest, out bool val))
+                {
+                    ComSettei.hanpukuSinkaTansakuTukau = val;
+                }
+            }
+#endregion
+
+
+
+
+                hyoji.AppendLine("HanpukuSinkaTansakuTukau = " + ComSettei.hanpukuSinkaTansakuTukau);
+
+
+
+            hyoji.AppendLine("set HanpukuSinkaTansakuTukau true: 反復深化探索を使うぜ☆");
+            hyoji.AppendLine("                                 : トランスポジション・テーブルを使う必要あり☆");
+
+
+
+            //Option_Application.Optionlist.HanpukuSinkaTansakuTukau = true;
+
+
+
+
+                else
+                {
+                    // 反復深化探索を使わない場合☆
+
+                    // 読み筋情報出力を一旦オフ
+                    YomisujiJohoSettei.Dlgt_CreateJoho oldDlgt = PureAppli.dlgt_CreateJoho;
+                    PureAppli.dlgt_CreateJoho = YomisujiJohoSettei.Dlgt_IgnoreJoho;
+                    HyokaSu best_mattanHyokatiAb;
+                    TansakuKaisi_(
+                        gky,
+                        Conv_HyokaSu.Syokiti_Alpha,// 合法手が無かった場合、この点数になるぜ☆（＾～＾）
+                        Conv_HyokaSu.Syokiti_Beta,
+                        ComSettei.saidaiFukasa,
+                        out best_yomisuji_orNull,
+                        // 現局面の手番の指し手の評価値が入っているぜ☆（＾～＾）
+                        out best_mattanHyokatiAb,
+                        hyoji);
+                    PureAppli.dlgt_CreateJoho = oldDlgt;
+
+
+                    if (PureCom.mattanKyokumenHyokaSu.hyokaTen < best_mattanHyokatiAb.hyokaTen)
+                    {
+                        PureCom.mattanKyokumenHyokaSu.Set(best_mattanHyokatiAb);
+                    }
+#if DEBUG
+                    tansakuSyuryoRiyu = TansakuSyuryoRiyu.HanpukuSinkaTukawanai;
+#endif
+                }
+
+
+
+
+
+            hanpukuSinkaTansakuTukau = true;
+            if (hanpukuSinkaTansakuTukau)
+            {
+            }
+
+
+
+
+        /// <summary>
+        /// 反復深化探索を使うなら真だぜ☆（＾▽＾）
+        /// トランスポジション・テーブルを使うことが必要だぜ☆（＾▽＾）
+        /// </summary>
+        public static bool hanpukuSinkaTansakuTukau { get; set; }
+
+
+
+ComSettei.hanpukuSinkaTansakuTukau && 
+
+
+
+
+

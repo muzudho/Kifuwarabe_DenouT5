@@ -1,0 +1,1 @@
+joho jikan 2806 fukasa -/8 eda 40136 hyokati cp -239(cp 0 cp 0 cp -239 jibun_p2 TranspositionTable best=[2104] beta=[-239]) (aspi) yomisuji B2B3 A4B3 H*A2 C3C2 A2A3

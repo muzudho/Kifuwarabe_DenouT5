@@ -1,0 +1,344 @@
+                        //logger.AppendLine("トランスポジション・カット☆");
+                        //Util_Logger.AppendLine("トランスポジション・カット☆ beta=[" + beta + "]＜tt=[" + ttEntry.Hyokati + "]点 ttEntry=" + ttEntry.Setumei_Description());
+
+                        //────────────────────────────────────────
+                        // トランスポジション・テーブルでの、情報
+                        //────────────────────────────────────────
+
+//                        if (Util_TimeManager.CanShowJoho())
+//                        {
+//                            IHyojiMojiretu yomisuji = new MojiretuImpl();
+//                            gky.konoteme.ScanYomisuji(PureSettei.usi,
+//                                Util_Tansaku.kaisiNantemade + 1, // 現局面の次の手から☆
+//                                yomisuji);
+
+//                            PureAppli.dlgt_CreateJoho(
+//                                gky.yomiKy.teban,
+//#if DEBUG
+//                                alpha,
+//                                beta,
+//#endif
+//                                out_hyokasuToBack,
+//                                fukasa + 1,// 深さは 0 になっているので、Tansaku していない状態（＝+1 して）に戻すぜ☆
+//                                HanpukuSinka.happaenoFukasa,
+//                                yomisuji.ToContents(),//読み筋☆
+//                                //false,
+//                                gky,
+//                                hyoji
+//#if DEBUG
+//                            ,"TT"
+//#endif
+//                            );
+//                            Util_TimeManager.DoneShowJoho();
+//                        }
+
+
+
+
+
+
+
+            //Option_Application.Optionlist.TranspositionTableTukau = false; // トランスポジション・テーブルは使わないぜ☆（＾▽＾）ｗｗｗｗ
+
+
+
+
+#region TranspositionTableTukau
+            else if (Util_String.MatchAndNext("TranspositionTableTukau ", line, ref caret))
+            {
+                // うしろに続く文字は☆（＾▽＾）
+                string rest = line.Substring(caret);
+
+                if (bool.TryParse(rest, out bool val))
+                {
+                    PureSettei.transpositionTableTukau = val;
+                }
+            }
+#endregion
+
+
+
+
+
+
+
+#if DEBUG
+using kifuwarabe_shogithink.pure.ky.tt;
+using kifuwarabe_shogithink.pure.logger;
+#else
+using kifuwarabe_shogithink.pure.ky.tt;
+using kifuwarabe_shogithink.pure.logger;
+#endif
+
+namespace kifuwarabe_shogithink.pure.speak.ikkyoku
+{
+    public static class SpkTranspositionTable
+    {
+        public static void Setumei_Description(TTEntry tte, bool isSfen, IHyojiMojiretu hyoji)
+        {
+            hyoji.Append(string.Format(
+                "key=[{0}] fukasa=[{1}] hyokati=[{2}] tumeSu=[{3}]",
+                tte.kyokumenHash.ToString(),
+                tte.happaenoFukasa.ToString(),
+                ((int)tte.hyokaSu.hyokaTen).ToString(),
+                ((int)tte.hyokaSu.tumeSu).ToString()
+                ));
+        }
+
+    }
+}
+
+
+
+
+
+
+
+            transpositionTableTukau = true;
+
+
+
+
+
+
+                                             //Option_Application.Optionlist.TranspositionTableTukau = true;
+
+
+
+
+
+
+        /// <summary>
+        /// トランスポジション・テーブルだぜ☆（＾▽＾）
+        /// </summary>
+        public static TTable transpositionTable { get; set; }
+
+
+
+
+            // FIXME: 決め打ちでいいのか☆（＾～＾）？
+            // 2のN乗 にする必要があるぜ☆（＾▽＾）
+            transpositionTable = new TTable(1048576);//1048576=2の20乗
+
+
+
+
+
+
+        /// <summary>
+        /// トランスポジション・テーブルはデフォルトで使う☆（＾～＾）
+        /// デバッグ目的で使わないなら偽だぜ☆（＾▽＾）
+        /// </summary>
+        public static bool transpositionTableTukau { get; set; }
+
+
+
+            if (PureSettei.transpositionTableTukau && null!= out_yomisujiToBack)
+            {
+                //────────────────────────────────────────
+                // トランスポジション・テーブル
+                //────────────────────────────────────────
+                if (null == ttEntry)
+                {
+                    ttEntry = new TTEntry();
+                }
+                ttEntry.Save(
+                    gky.kyokumenHash.value,
+                    fukasa,
+                    out_hyokasuToBack
+                    );
+                PureAppli.transpositionTable.Put(ttEntry);
+            }
+
+
+
+
+                if (PureSettei.transpositionTableTukau)
+                {
+                    // トランスポジション・テーブルをクリアーするぜ☆（＾▽＾）
+                    PureAppli.transpositionTable.Clear();
+                }
+
+
+
+
+
+            //────────────────────────────────────────
+            // トランスポジション・テーブル（前向き探索打ち切り）
+            //────────────────────────────────────────
+#region トランスポジション・テーブル
+            TTEntry ttEntry = null;
+            if (PureSettei.transpositionTableTukau)
+            {
+                if (Sasite.Toryo != eranda_sasite)
+                {
+                    // 投了をしたあとの局面、というのを
+                    // トランスポジション・テーブルから探すのは間違いだぜ☆（＾～＾）
+
+                    ttEntry = PureAppli.transpositionTable.Probe(gky.kyokumenHash.value);
+
+                    // 現在の局面はすでに　末端局面に近い方で訪問済みだった場合、
+                    // その評価値をすぐ返すぜ☆（＾▽＾）
+                    if (
+                        // 既存の局面に合流した☆（＾～＾）
+                        null != ttEntry &&
+                        // 覚えてある深さより、今の深さの方が深かったか、同じ場合☆（＾～＾）
+                        //fukasa <= ttEntry.happaenoFukasa &&
+                        ttEntry.happaenoFukasa <= fukasa &&
+                        // 覚えてあった評価値が、ベータを超えていた場合、βカット☆（＾～＾）
+                        beta < ttEntry.hyokaSu.hyokaTen
+                        )
+                    {
+                        // 読み筋を返して、探索を前に進めない。
+                        out_hyokasuToBack.Set(ttEntry.hyokaSu);
+#if DEBUG
+                        out_hyokasuToBack.dbg_riyu = HyokaRiyu.TranspositionTable;
+                        out_hyokasuToBack.dbg_riyuHosoku = "";
+#endif
+
+                        Util_Utikiri.JohoMatome(
+                            eranda_sasite,
+                            eranda_sasiteType,
+                            out out_yomisujiToBack,
+
+                            gky,
+                            fukasa + 1,// 深さは 0 になっているので、Tansaku していない状態（＝+1 して）に戻すぜ☆
+                            out_hyokasuToBack,
+                            hyoji
+#if DEBUG
+                            , alpha
+                            , beta
+                            , "TT"
+#endif
+                            );
+                        return;//枝を戻る（正常終了）
+                    }
+                }
+            }
+#endregion
+
+
+
+            hyoji.AppendLine("set TranspositionTableTukau true: トランスポジション・テーブル使うぜ☆");
+
+
+
+
+                hyoji.AppendLine("TranspositionTableTukau  = " + PureSettei.transpositionTableTukau);
+
+
+
+
+
+            //// トランスポジション・テーブルをクリアーするぜ☆（＾▽＾）
+            //PureAppli.transpositionTable.Clear();
+
+
+
+        /// <summary>
+        /// トランスポジション・テーブルによるカット☆
+        /// </summary>
+        TranspositionTable,
+
+
+#if DEBUG
+using kifuwarabe_shogithink.pure.com.hyoka;
+using System;
+#else
+using kifuwarabe_shogithink.pure.com.hyoka;
+using System;
+#endif
+
+namespace kifuwarabe_shogithink.pure.ky.tt
+{
+    /// <summary>
+    /// 合流局面と、深さと評価値
+    /// </summary>
+    public class TTEntry
+    {
+        public TTEntry()
+        {
+            hyokaSu = new HyokaSu();
+        }
+
+        public void Save(
+            ulong kyokumenHash,
+            int happaenoFukasa,
+            HyokaSu hyokaSu
+            )
+        {
+            this.kyokumenHash = kyokumenHash;
+            this.happaenoFukasa = happaenoFukasa;
+            this.hyokaSu.Set(hyokaSu);
+//#if DEBUG
+//            okimariHyokati_forJoho = hyokatiUtiwake.okimari;
+//#endif
+        }
+//#region プロパティ―
+//        public int okimariHyokati_forJoho { get; private set; }
+//#endregion
+
+        public ulong kyokumenHash { get; private set; }
+
+        /// <summary>
+        /// 葉っぱへの深さ☆（＾～＾）
+        /// 深いところほど数字が小さいぜ☆（＾～＾）
+        /// </summary>
+        public int happaenoFukasa { get; private set; }
+
+        public HyokaSu hyokaSu { get; private set; }
+    }
+
+    /// <summary>
+    /// 合流局面と評価値
+    /// </summary>
+    public class TTable
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="elementCount_as_hashtableSize">きふわらべのお父んには、ハッシュテーブルの容量をMB（メガバイト）で指定することができないので、要素数で指定するぜ☆２のＮ乗にすること☆</param>
+        public TTable(int elementCount_as_hashtableSize)
+        {
+            entries = new TTEntry[elementCount_as_hashtableSize];
+        }
+
+        public TTEntry[] entries { get; set; }
+
+        /// <summary>
+        /// 探索開始時にクリアーしろだぜ☆（＾～＾）
+        /// また、探索を開始したら　盤サイズなどの変更はしない前提だぜ☆（＾▽＾）
+        /// </summary>
+        public void Clear()
+        {
+            // ヌル・クリアー
+            Array.Clear(entries, 0, entries.Length);
+        }
+
+        /// <summary>
+        /// 新規局面でまず既存か確認だぜ☆（＾▽＾）
+        /// プローブは「調べる」ぐらいの意味だぜ☆（＾～＾）
+        /// </summary>
+        /// <param name="kyokumenHash"></param>
+        /// <returns>該当がなければヌル</returns>
+        public TTEntry Probe(ulong kyokumenHash)
+        {
+            // 局面ハッシュを配列サイズに縮めているぜ☆（＾～＾）
+            // entries.Length は 2のN乗 にすること☆（＾▽＾）
+            ulong hashKey = kyokumenHash & (ulong)(entries.Length - 1);
+            return entries[hashKey];
+        }
+
+        /// <summary>
+        /// 葉局面からのバックトラック時に、突っ込めだぜ☆（＾▽＾）
+        /// </summary>
+        /// <param name="out_ttEntry"></param>
+        public void Put(TTEntry out_ttEntry)
+        {
+            // 局面ハッシュを配列サイズに縮めているぜ☆（＾～＾）
+            // entries.Length は 2のN乗 にすること☆（＾▽＾）
+            ulong hashKey = out_ttEntry.kyokumenHash & (ulong)(entries.Length - 1);
+            entries[hashKey] = out_ttEntry;
+        }
+    }
+}

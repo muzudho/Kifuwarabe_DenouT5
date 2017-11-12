@@ -1,0 +1,261 @@
+#if DEBUG
+using kifuwarabe_shogithink.pure.com.sasiteorder;
+using kifuwarabe_shogithink.pure.genkyoku.play;
+using System;
+#else
+using kifuwarabe_shogithink.pure.com.sasiteorder;
+using kifuwarabe_shogithink.pure.genkyoku.play;
+using System;
+#endif
+
+namespace kifuwarabe_shogithink.pure.com.yomisuji
+{
+    /// <summary>
+    /// “Ç‚İ‹Ø
+    /// </summary>
+    public class Yomisuji
+    {
+        public Yomisuji()
+        {
+            sasiteItiran = new Sasite[Conv_Yomisuji.MAX_PLY];
+            sasiteTypeItiran = new SasiteType[Conv_Yomisuji.MAX_PLY];
+        }
+
+        public int size { get; set; }
+        public Sasite[] sasiteItiran { get; set; }
+        public SasiteType[] sasiteTypeItiran { get; set; }
+
+        public void Clear()
+        {
+            // ”z—ñ‚Ì’†‚Í‘|œ‚¹‚¸‚ÉAƒTƒCƒY‚¾‚¯k‚ß‚é‚º™iO`Oj
+            size = 0;
+        }
+
+        public void Add(Sasite ss, SasiteType ssType)
+        {
+            // FIXME: “Ç‚İ‹Ø‚É“Š—¹‚ª“ü‚Á‚Ä‚¢‚é‚Æ‚È‚ºƒ_ƒ‚È‚Ì‚©™iO`OjH
+            //if (Sasite.Toryo == ss)
+            //{
+            //    throw new Exception("“Š—¹‚ğ’Ç‰Á‚µ‚Ä‚Í‚¢‚¯‚È‚¢‚º™i„Qƒj");
+            //}
+
+            sasiteItiran[size] = ss;
+            sasiteTypeItiran[size] = ssType;
+            size++;
+        }
+
+        public Sasite GetBestSasite()
+        {
+            if (size<1)
+            {
+                return Sasite.Toryo;
+            }
+            return sasiteItiran[0];
+        }
+        public SasiteType GetBestSasiteType()
+        {
+            if (size < 1)
+            {
+                return SasiteType.N00_Karappo;
+            }
+            return sasiteTypeItiran[0];
+        }
+
+        public void Insert(Yomisuji child)
+        {
+            Array.Copy(child.sasiteItiran, 0, sasiteItiran, 1, child.size); // æ“ª‚ğ‹ó‚¯‚ÄAŒã‚ë‚Éq—v‘f‚Ìw‚µè‚ğ’u‚­‚º™
+            size += child.size;
+        }
+    }
+
+    public abstract class Conv_Yomisuji
+    {
+        public const int MAX_PLY = 256;
+    }
+
+}
+
+
+
+
+
+            // ˆê”Ô—Ç‚©‚Á‚½ŒZ’í‚Í™iO¤Oj
+            if (Sasite.Toryo != bestSasite && null!= best_yomisujiChild_orNull)
+            {
+                out_yomisujiToBack = new Yomisuji();
+                Debug.Assert(Sasite.Toryo != bestSasite);
+                out_yomisujiToBack.Add(bestSasite, bestSasiteType); // æ“ª‚É¡‰ñ‚Ìw‚µè‚ğ’u‚­‚º™
+                out_yomisujiToBack.Insert(best_yomisujiChild_orNull); // Œã‚ë‚Éq—v‘f‚Ìw‚µè‚ğ’u‚­‚º™
+            }
+
+
+            Yomisuji temp_yomisujiChild_orNull = null;
+            Yomisuji best_yomisujiChild_orNull;
+
+
+                best_yomisujiChild_orNull = new Yomisuji();
+                best_yomisujiChild_orNull.Add(
+                    eranda_sasite,
+                    eranda_sasiteType
+                    );
+
+                best_yomisujiChild_orNull = null;
+
+
+
+
+
+            out Yomisuji out_yomisujiToBack
+
+
+            out_yomisujiToBack = null;
+
+
+                out_yomisujiToBack = new Yomisuji();// “Ç‚İ‹Ø‚Æ‚µ‚Ä’Ç‰Á‚·‚é‚à‚Ì‚Í–³‚¢‚º™iO`Oj
+
+            out Yomisuji out_yomisujiToBack,
+
+
+                SpkSasite.AppendFenTo(PureSettei.usi, ss, yomisuji);// ‚±‚Ìƒ‹[ƒv‚Åw‚µ‚½è‚¾‚º™
+
+
+            out_yomisujiToBack = new Yomisuji();
+            // æ“ª‚É¡‰ñ‚Ìw‚µè‚ğ’u‚­‚º™
+            out_yomisujiToBack.Add(
+                ss,
+                ssType
+                );
+
+            string yomisuji,
+
+            string yomisuji,
+
+
+            out Yomisuji out_yomisuji_orNull,
+
+
+null!= temp_yomisujiChild_orNull
+                    &&
+                    
+
+
+                        out out_yomisujiToBack,
+
+
+                    out temp_yomisujiChild_orNull,
+
+
+
+                    best_yomisujiChild_orNull = temp_yomisujiChild_orNull;
+
+
+                out out_yomisuji_orNull,
+
+
+                        out out_yomisujiToBack,
+
+
+
+                    out out_yomisujiToBack,
+
+
+
+                        out out_yomisujiToBack,
+
+                out_yomisujiToBack = new Yomisuji();// “Ç‚İ‹Ø‚Æ‚µ‚Ä’Ç‰Á‚·‚é‚à‚Ì‚Í–³‚¢‚º™iO`Oj
+
+                    out out_yomisujiToBack,
+
+
+                IHyojiMojiretu yomisuji = new MojiretuImpl();
+
+
+                if (null != best_yomisuji_orNull)
+                {
+                    SpkYomisuji.Setumei(best_yomisuji_orNull, PureSettei.usi, yomisuji);// B3B2 B1B2
+                }
+                else
+                {
+                    yomisuji.Append("null");
+
+                }
+
+                    yomisuji.ToContents(),
+
+
+
+                            IHyojiMojiretu yomisuji = new MojiretuImpl();
+                            if (null != best_yomisuji_orNull)
+                            {
+                                SpkYomisuji.Setumei(best_yomisuji_orNull, PureSettei.usi, yomisuji);// B3B2 B1B2
+                            }
+                            else
+                            {
+                                yomisuji.Append("null");
+                            }
+
+                                yomisuji.ToContents(),
+
+
+
+
+                        Yomisuji child_yomisuji_orNull;
+
+
+            Yomisuji best_yomisuji_orNull = null;
+
+                            out child_yomisuji_orNull,// ’Tõ‚ğ‘Å‚¿Ø‚Á‚½ê‡‚ÍA––’[‚Ì yomisuji ‚ÍÌ‚Ä‚é‚º™iO`Oj
+                                                      // Œ»‹Ç–Ê‚Ìè”Ô‚Ìw‚µè‚Ì•]‰¿’l‚ª“ü‚Á‚Ä‚¢‚é‚º™iO`Oj
+
+
+                        if (null == child_yomisuji_orNull)
+                        {
+                            // [‚³‚P‚à“Ç‚ß‚Ä‚¢‚È‚¢
+                            // “Š—¹‚É‚È‚é‚º™
+#if DEBUG
+                            tansakuSyuryoRiyu = TansakuSyuryoRiyu.ItteMoYomenakatta;
+                            hyoji.AppendLine("[‚³‚P‚à“Ç‚ß‚Ä‚È‚¢‚©‚ç“Š—¹‚¾‚º™iO`Oj");
+#endif
+                            break;// “Ç‚İ‚ğI—¹‚µ‚æ‚¤‚È‚ñ‚¾‚º™
+                        }
+                        else
+
+
+                        if (child_yomisuji_orNull.sasiteItiran.Length < 1)
+                        {
+                            // w‚µè‚ğ‚P‚Â‚à“Ç‚ß‚Ä‚¢‚È‚¢
+                            // “Š—¹‚É‚È‚é‚º™
+#if DEBUG
+                            tansakuSyuryoRiyu = TansakuSyuryoRiyu.ItteMoYomenakatta;
+                            hyoji.AppendLine("w‚µè‚ğ‚P‚Â‚à“Ç‚ß‚Ä‚È‚¢‚©‚ç“Š—¹‚¾‚º™iO`Oj");
+#endif
+                            break;// “Ç‚İ‚ğI—¹‚µ‚æ‚¤‚È‚ñ‚¾‚º™
+                        }
+                        else
+
+                            best_yomisuji_orNull = child_yomisuji_orNull;
+
+
+
+ null != best_yomisuji_orNull ? best_yomisuji_orNull.GetBestSasite() : Sasite.Toryo;
+
+            string yomisuji,
+
+
+
+                IHyojiMojiretu yomisuji = new MojiretuImpl();
+                SpkYomisuji.Setumei(PureSettei.usi, yomisuji);
+
+                    yomisuji.ToContents(),//“Ç‚İ‹Ø™
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,378 @@
+        /// <summary>
+        /// 読み筋を返すぜ☆（＾～＾）
+        /// </summary>
+        /// <param name="sentoNantemade">初期局面からのリンクリストなので、どの「図はn手まで」戻すか☆</param>
+        /// <returns></returns>
+        public void ScanYomisuji(bool isSfen, int sentoNantemade, IHyojiMojiretu hyoji)
+        {
+            // 先頭（投了、初期局面、図は0手まで）まで戻るぜ☆
+            Nanteme nanteme = this;
+            for (; null != nanteme.ittemae; nanteme = nanteme.ittemae)
+            {
+            }
+
+            // 先頭から今までの読み筋をつなげるぜ☆（＾▽＾）
+            int zuhaNantemade = 0; // 図はn手まで
+            for (;
+                null != nanteme;// 一番最後まで回すぜ☆（＾▽＾）
+                nanteme = nanteme.ittego)
+            {
+                if (sentoNantemade <= zuhaNantemade)
+                {
+                    hyoji.Append("(");
+                    hyoji.Append(zuhaNantemade.ToString());// 「図はn手まで」の数字
+                    hyoji.Append(")");
+
+                    SpkSasite.AppendFenTo(isSfen, nanteme.sasite, hyoji);
+                    hyoji.Append(" ");
+
+                    // おまけ
+                    Conv_SasiteType.Setumei(nanteme.sasiteType, hyoji);
+                    hyoji.Append(" ");
+                }
+                zuhaNantemade++;
+            }
+        }
+
+
+        /// <summary>
+        /// 一手後だぜ☆（＾▽＾）
+        /// </summary>
+        public Nanteme ittego { get; set; }
+        /// <summary>
+        /// 一手前だぜ☆（＾▽＾）
+        /// </summary>
+        public Nanteme ittemae { get; set; }
+
+
+        public void Clear()
+        {
+            ittego = null; // リンクを切るぜ☆（＾▽＾）
+            ittemae = null; // リンクを切るぜ☆（＾▽＾）
+        }
+
+
+            /// <summary>
+            /// 何手目かを数えるぜ☆（＾～＾）
+            /// </summary>
+            /// <returns></returns>
+            public int ScanNantemadeBango()
+            {
+                int nantemeBango = 0;
+
+                // 先頭には投了（初期局面）が入っているぜ☆（＾▽＾）
+                // 先頭の一手前はヌルだぜ☆
+
+                // 先頭の投了（初期局面）まで戻るぜ☆
+                Nanteme nanteme = hontai_;
+                for (; null != nanteme.ittemae; nanteme = nanteme.ittemae)
+                {
+                    nantemeBango++;
+                }
+                // 初期局面は 0 手目と表示される計算だぜ☆（＾▽＾）
+
+                return nantemeBango;
+            }
+
+
+
+#if DEBUG
+using kifuwarabe_shogithink.pure.com.sasiteorder;
+using kifuwarabe_shogithink.pure.genkyoku.play;
+using kifuwarabe_shogithink.pure.ky;
+using kifuwarabe_shogithink.pure.logger;
+using kifuwarabe_shogithink.pure.speak.play;
+#else
+using kifuwarabe_shogithink.pure.com;
+using kifuwarabe_shogithink.pure.com.sasiteorder;
+using kifuwarabe_shogithink.pure.ky;
+using kifuwarabe_shogithink.pure.logger;
+using kifuwarabe_shogithink.pure.genkyoku.play;
+using kifuwarabe_shogithink.pure.speak.play;
+#endif
+
+namespace kifuwarabe_shogithink.pure.genkyoku
+{
+    /// <summary>
+    /// 局面状況。１方向のリンクリストになっているぜ☆（＾▽＾）
+    /// 
+    /// 役目☆
+    /// ・取られた駒を覚えている☆
+    /// ・千日手判定用の局面ハッシュを覚えている☆
+    /// ・指し手別の勝率の成績表を作るために、指し手を覚えている☆
+    /// </summary>
+    public class Nanteme
+    {
+        public class YomiNanteme
+        {
+            public YomiNanteme(Nanteme hontai)
+            {
+                hontai_ = hontai;
+            }
+            Nanteme hontai_;
+
+
+        }
+
+
+        public Nanteme()
+        {
+            yoimNanteme = new YomiNanteme(this);
+        }
+        public YomiNanteme yoimNanteme;
+
+
+
+        /// <summary>
+        /// 前の手目から引き継ぎたいものをここでコピーするぜ☆（＾▽＾）
+        /// </summary>
+        /// <param name="nanteme"></param>
+        public void CopyPropertyFrom(Nanteme nanteme)
+        {
+        }
+
+
+
+    }
+}
+
+
+
+
+            Nanteme nanteme = new Nanteme();
+
+
+
+            ref Nanteme konoTeme
+
+            // 何手目データの更新
+            {
+                konoTeme.Clear();
+                konoTeme.CopyPropertyFrom(gky.konoteme);
+                gky.konoteme.ittego = konoTeme; // 「いままでの　この手目」の、一手後は「この手目」だぜ☆（＾▽＾）
+                konoTeme.ittemae = gky.konoteme; // 「いままでの　この手目」は、一手前にするぜ☆（＾▽＾）
+                gky.konoteme = konoTeme; // この手目
+            }
+
+
+
+
+            Nanteme nanteme = new Nanteme();// 使いまわしてメモリの省エネを計るぜ☆（＾▽＾）
+
+
+, ref nanteme
+
+
+, ref nanteme
+
+
+                Nanteme nanteme = new Nanteme();
+
+
+
+
+                Nanteme nanteme = new Nanteme();
+
+
+
+, ref nanteme
+
+
+
+, ref nanteme
+
+
+
+                Nanteme nanteme = new Nanteme();
+
+
+
+, ref nanteme
+
+
+
+                Nanteme nanteme = new Nanteme();
+
+
+, ref nanteme
+
+
+            Nanteme konoTeme = new Nanteme();// 使いまわさないだろう☆（＾～＾）ここで作ってしまおう☆
+
+
+
+
+, ref konoTeme
+
+
+            public Nanteme.YomiNanteme yomiKonoteme
+            {
+                get
+                {
+                    return hontai_.konoteme.yoimNanteme;
+                }
+            }
+
+
+
+            // 初手のさらに一手前だぜ☆（＾▽＾）
+            konoteme = new Nanteme();
+
+
+
+        /// <summary>
+        /// この手目で起こっていることを記録しておくものだぜ☆（＾▽＾）
+        /// </summary>
+        public Nanteme konoteme { get; set; }
+
+
+
+            if (null == konoteme)// アンドゥしまくると、ここでヌルだぜ☆
+            {
+                // 初手のさらに一手前だぜ☆（＾▽＾）
+                konoteme = new Nanteme();
+            }
+            else
+            {
+                konoteme.Clear();
+            }
+
+
+
+                Nanteme nanteme = new Nanteme();
+
+
+
+, ref nanteme
+
+yomiGky.yomiKonoteme.ScanNantemadeBango()
+
+yomiGky.yomiKonoteme.ScanNantemadeBango()
+
+ gky.yomiGky.yomiKonoteme.ScanNantemadeBango();
+ 
+ 
+  gky.yomiGky.yomiKonoteme.ScanNantemadeBango()
+ 
+ 
+ 
+             // 何手目データの更新
+            gky.konoteme = gky.konoteme.ittemae; // 「今の一手前」が、「この手目」にやってくるぜ☆（＾▽＾）
+            gky.konoteme.ittego = null; // 「一手後」のリンクを切るぜ☆（＾～＾）
+
+ 
+  gky.konoteme.toraretaKs
+ 
+ 
+         /// <summary>
+        /// 手目だぜ☆（＾▽＾）
+        /// </summary>
+        public int teme { get; set; }
+
+
+                gky.konoteme.ScanYomisuji(
+                    PureSettei.usi,
+                    Util_Tansaku.kaisiNantemade + 1, // 現局面の次の手から☆
+                    yomisuji
+                    );
+
+
+            gky.konoteme.toraretaKs = ks_c;
+ 
+             gky.teme++;
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+
+            gky.konoteme.sasite = ss;// 指し手の成績表を作るために、指し手を覚えておくぜ☆（＾▽＾）
+            gky.konoteme.sasiteType = ssType;// 読み筋に指し手タイプを出すことで、デバッグに使うために覚えておくぜ☆（＾▽＾）
+
+
+
+
+            Nanteme konoTeme = new Nanteme();// 使いまわさないだろう☆（＾～＾）ここで作ってしまおう☆
+
+
+
+, ref konoTeme
+
+
+
+
+
+
+using kifuwarabe_shogithink.pure;
+using kifuwarabe_shogithink.pure.genkyoku;
+using kifuwarabe_shogithink.pure.ikkyoku;
+using kifuwarabe_shogithink.pure.logger;
+using kifuwarabe_shogithink.pure.genkyoku.play;
+using kifuwarabe_shogithink.pure.com;
+
+namespace kifuwarabe_shogiwin.consolegame.console
+{
+    public abstract class Med_Kyokumen
+    {
+        /// <summary>
+        /// 終局後に棋譜を作る場合☆（＾～＾）感想戦用だぜ☆（＾▽＾）
+        /// 
+        /// ・成績
+        /// 
+        /// の作成も混ざっている☆（＾～＾）
+        /// </summary>
+        public static bool Try_TukuruKifu(bool isSfen, Genkyoku ky, IHyojiMojiretu hyoji)
+        {
+            // 指した後の手☆（成績　登録用）
+            Sasite ss_after = Sasite.Toryo; // 未使用時の初期値
+
+            // 決着から初期局面まで、逆順で戻しながら棋譜を記録するぜ☆（＾▽＾）
+            int fukasa = 0;
+            while (null != ky.konoteme.ittemae)//アンドゥできなくなるまで戻すぜ☆（＾▽＾）
+            {
+                ss_after = ky.konoteme.sasite;// アンドゥする前に指し手を残しておくぜ☆（＾▽＾）
+                PureAppli.kifu.AddFirst(ss_after);
+                if (UndoSasiteOpe.TryFail_UndoSasite(ky, ss_after
+#if DEBUG
+                    , isSfen
+                    , (IDebugMojiretu)hyoji
+                    , false
+#endif
+                    ))
+                {
+                    // 指し手を頼りにアンドゥするぜ☆（＾▽＾）
+                    return false;
+                }
+                fukasa++;
+            }
+            return true;
+        }
+    }
+}
+
+
+
+
+
+            // 決着から初期局面まで、逆順で戻しながら棋譜を記録するぜ☆（＾▽＾）
+            if (!Med_Kyokumen.Try_TukuruKifu(PureSettei.usi, gky, hyoji))
+            {
+                Util_Machine.Flush(hyoji);
+                throw new Exception(hyoji.ToContents());
+            }
+
+
+
+
+
+
+
+
+

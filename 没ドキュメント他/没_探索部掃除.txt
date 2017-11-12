@@ -1,0 +1,169 @@
+            ///// <summary>
+            ///// 実践でよく見かけるのは、深さ２での「２手詰められ」☆　負けなのだろう☆
+            ///// </summary>
+            //Fukasa2DeTumerare,
+
+
+            //out HyokatiAb out_best_hyokatiAb,
+
+
+//                            else if (Conv_Tumesu.TumeTesu_FuNoSu_NiteTumerare == PureCom.mattanKyokumenHyokaSu.tumeSu)
+//                            {
+//                                // 実践でよく見かけるのは、深さ２での「２手詰められ」☆　負けなのだろう☆
+//#if DEBUG
+//                                tansakuSyuryoRiyu = TansakuSyuryoRiyu.Fukasa2DeTumerare;
+//#endif
+//                                break;// 読みを終了して、指そうぜ☆（＾▽＾）投了でもいいんだが☆
+//                            }
+
+
+
+                            //Util_Machine.Append(syuturyoku.ToContents());
+
+
+            //gt_DoSasite:
+            /*
+#if DEBUG
+            if(null!= best_yomisuji_orNull)
+            {
+                Masu ms_dst = Conv_Sasite.GetDstMasu(best_yomisuji_orNull.GetBestSasite()); // 移動先升
+                Masu ms_src = Conv_Sasite.GetSrcMasu(best_yomisuji_orNull.GetBestSasite()); //打のときは指定なしだぜ☆
+
+                String2 str2 = new String2Impl();
+                str2.Append("探索最後 DoSasiteの前に yomisuji.GetBestSasite()=[");
+                Conv_Sasite.Setumei(best_yomisuji_orNull.GetBestSasite(),str2);
+                str2.AppendLine("]");
+                str2.Append("ms_src=[");
+                Conv_Masu.Setumei(ms_src,str2);
+                str2.Append("] ms_dst=[");
+                Conv_Masu.Setumei(ms_dst,str2);
+                str2.AppendLine("]");
+                //
+                Koma km_src = Koma.Yososu;
+                Komasyurui ks_src = Komasyurui.Yososu;
+                if (ms_src != Masu.Yososu)
+                {
+                    // 盤上のとき☆
+                    km_src = ky.Komas[(int)ms_src];
+                    ks_src = Med_Koma.KomaToKomasyurui(km_src);//移動元の駒の種類
+                                                               // 打のときは、この２つは設定されていないぜ☆
+                }
+
+                String2 str1 = new String2Impl();
+                str1.Append(str2.ToContents());
+                str1.Append("kaisi-対局者=[");
+                Conv_Taikyokusya.Setumei_Nagame(Util_Tansaku.KaisiTaikyokusya,str1);
+                str1.Append("] 自分=[");
+                Conv_Taikyokusya.Setumei_Nagame(ky.TbTaikyokusya, str1);
+                str1.AppendLine("]");
+                str1.Append("ks_src=[");
+                Conv_Komasyurui.Setumei(ks_src,str1);
+                str1.AppendLine("]");
+                str1.Append("現局面（");
+                ky.AppendFenTo(str1);
+                str1.AppendLine("）");
+                ky.Setumei(str1);
+                Debug.Assert(
+                    (ms_src != Masu.Yososu && (km_src != Koma.Yososu) && ks_src != Komasyurui.Yososu)//盤上
+                    ||
+                    (ms_src == Masu.Yososu && ks_src == Komasyurui.Yososu)//打
+                    , str1.ToContents());
+            }
+#endif
+*/
+
+
+                //Util_Machine.Append(syuturyoku.ToContents());
+
+
+
+
+//            // 指し手が無かった場合の評価値を初期値として設定
+//            out_bestHyokatiAb = new HyokatiAb(
+//                HyokaNumber.TumeTesu_GohosyuNasi,// 合法手が無ければ、詰められ☆
+//                HyokaNumber.TumeTesu_GohosyuNasi
+//#if DEBUG
+//                ,HyokaRiyu.SaseruTeNasi4_TansakuKaisi// 合法手が無いとき☆
+//                ,""
+//#endif
+//                );
+
+
+            //#if DEBUG
+            //            if (!PureAssert.Try_Assert_Sabun_Kiki("error Pre-Tansaku-1", gky.roKy, (IDebugMojiretu)syuturyoku))
+            //            {
+            //                out_yomisuji_orNull = null;//エラー
+            //                out_hyokatiUtiwake = null;//エラー
+            //                return false;
+            //            }
+            //#endif
+
+            //HyokatiAb best_mattanHyokatiAb;
+
+
+
+            // 現局面から見て、「相手番」というのは「手番」のことだぜ☆（＾～＾）
+            // その指し手の評価値を　そのまま使うんだぜ☆（＾▽＾）
+            //
+            //// 手番の指し手評価値に変換するぜ☆（＾▽＾）符号を逆にするだけだぜ☆（＾～＾）
+            //// 手目詰めのカウントアップもしないと、整合性が取れないぜ☆（＾▽＾）
+            //out_tebanSasiteHyokatiUtiwake.CountUpTume();
+            //out_tebanSasiteHyokatiUtiwake = out_tebanSasiteHyokatiUtiwake.ToHanten();
+
+
+//            // 手番の指し手の評価値
+//            HyokatiAb eda_tebanSasiteHyokatiAb = new HyokatiAb(
+//                (HyokaNumber)10,//適当なあたい
+//                (HyokaNumber)10
+//#if DEBUG
+//                ,HyokaRiyu.SaseruTeNasi3// 合法手が無いとき☆
+//                ,""
+//#endif
+//                );
+
+
+
+
+//                    out_bestHyokatiAb1.Set(
+//                        beta,
+//                        beta
+//#if DEBUG
+//                        ,eda_tebanSasiteHyokatiAb.dbg_riyu
+//                        ,"best=["+ eda_tebanSasiteHyokatiAb.total + "] beta=["+ beta + "]"
+//#endif
+//                        );
+
+
+
+
+
+
+//#if DEBUG
+//            if (!PureAssert.Try_Assert_Sabun_Kiki("error Pre-DoSasite-7", gky.roKy, (IDebugMojiretu)syuturyoku))
+//            {
+//                out_sasite = Sasite.Toryo;//エラー
+//                return false;
+//            }
+//#endif
+
+
+
+,
+
+
+
+//#if DEBUG
+//            if (Develop.assert.TryFail_Assert_Sabun_Kiki("error Pre-DoSasite-9", PureAppli.genkyokumen.yomiKy, PureAppli.syuturyoku1))
+//            {
+//                throw new Exception(PureAppli.syuturyoku1.ToContents());
+//            }
+//#endif
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,198 @@
+                if (Util_String.MatchAndNext("clear", line, ref caret)) // 局面のクリアー☆
+                {
+                    SasiteSeiseiAccessor.BackTemeToFirst_AndClear1Teme();
+                    PureMemory.gky_ky.Tukurinaosi_ClearKyokumen();
+                    Genkyoku.Tekiyo(
+#if DEBUG
+                    hyoji
+                        , "ky clear"
+#endif
+                    );
+                }
+
+            hyoji.AppendLine("ky clear        : 将棋盤をクリアーするぜ☆");
+
+
+
+        public static void Tukurinaosi_ClearKyokumen()
+        {
+            PureMemory.gky_kekka = TaikyokuKekka.Karappo;
+            SasiteSeiseiAccessor.BackTemeToFirst_AndClear1Teme();
+            PureMemory.gky_ky.Tukurinaosi_ClearKyokumen();
+        }
+
+
+                //────────────────────────────────────────
+                // 局面ハッシュ、ビットボード等の更新
+                //────────────────────────────────────────
+                if (isRuleChanged)
+                {
+                    Util_Control.UpdateRule(
+#if DEBUG
+                    "SetNaiyo"
+#endif
+                    );
+                }
+
+
+                // （１）駒の利きを作るぜ☆（＾～＾）
+                // 駒の利きが変わるわけではないのでは☆（＾～＾）？
+                // FIXME: BitboardsOmatome.Tukurinaosi("TryFail_DoHirate_34Shogi");
+
+
+        /*
+        /// <summary>
+        /// ２回目移行の局面の設定はシンプルだぜ☆（＾～＾）
+        /// </summary>
+        public static void SetKyokumen(
+            Koma[] komaHairetu,
+            Dictionary<Motigoma, int> motigomaKaisiSettei
+            )
+        {
+            Genkyoku gky = PureAppli.genkyokumen;
+            IViewMojiretu syuturyoku = PureAppli.syuturyoku1;
+
+            gky.Clear(
+#if DEBUG
+                syuturyoku
+#endif
+                );
+
+            string banmen = SpkKyokumen.ToZen1Mojiretu(komaHairetu);
+
+            if (!LisGenkyokuOpe.Try_SetBanjo(
+                gky,
+                PureSettei.usi,
+                banmen,
+                false
+#if DEBUG
+                        , PureAppli.syuturyoku1
+#endif
+                        ))
+            {
+                throw new Exception(PureAppli.syuturyoku1.ToContents());
+            }
+
+            // 持駒の枚数をセット☆（＾～＾）
+            foreach (KeyValuePair<Motigoma, int> entry in motigomaKaisiSettei)
+            {
+                if (Shogi34.TryFail_SetMotiKoma(entry.Key, entry.Value
+#if DEBUG
+                    , (IDebugMojiretu)PureAppli.syuturyoku1
+#endif
+                    ))
+                {
+                    throw new Exception(PureAppli.syuturyoku1.ToContents());
+                }
+            }
+
+
+            // 最後に、適用を呼び出そうぜ☆（＾～＾）
+            PureAppli.genkyokumen.Tekiyo(
+                true // 新規ルール
+#if DEBUG
+                , PureAppli.syuturyoku1
+#endif
+                );
+        }
+        */
+
+
+        /*
+        /// <summary>
+        /// 盤サイズや、駒の枚数が変わったのでなければ、軽めの適用しようぜ☆（＾～＾）
+        /// 盤サイズや、駒の枚数を最初に決める１回は、強めの適用をしようぜ☆（＾～＾）
+        /// </summary>
+        public static void Tekiyo(bool isRuleChange)
+        {
+            PureAppli.genkyokumen.Tekiyo(
+                isRuleChange
+#if DEBUG
+                , PureAppli.syuturyoku1
+#endif
+                );
+        }
+
+        /// <summary>
+        /// 持ち駒をクリアー☆（＾～＾）
+        /// </summary>
+        public static void ClearMotiKoma()
+        {
+            PureAppli.genkyokumen.ky.motigomaItiran.Clear();
+        }
+        */
+
+
+        /*
+            // （５）２回目以降の局面の作成は　いくつか省略できるぜ☆（＾з＾）～☆
+            Shogi34.SetKyokumen(
+                // 盤面
+                new Koma[]
+                {
+                    Koma.r, Koma.k, Koma.z,
+                    Koma.h, Koma.Kuhaku, Koma.Kuhaku,
+                    Koma.Kuhaku, Koma.Kuhaku, Koma.H,
+                    Koma.Z, Koma.K, Koma.R,
+                },
+                // 持ち駒☆（＾～＾）
+                new Dictionary<Motigoma, int>()
+                {
+                    { Motigoma.K,1 },
+                    { Motigoma.Z,2 },
+                    { Motigoma.H,1 },
+                    { Motigoma.k,2 },
+                    { Motigoma.z,1 },
+                    { Motigoma.h,2 },
+                }
+            );
+         */
+
+//            // クリアー
+//            SasiteSeiseiAccessor.BackTemeToFirst_AndClear1Teme();
+//            PureMemory.gky_ky.Tukurinaosi_ClearKyokumen();
+
+//            // ゾブリスト・ハッシュのサイズを先に準備
+//            {
+//                // （２）駒を置くだけ☆（＾～＾）（利きを作ると、利きを先に作るか、駒を先に並べるか、という循環が発生）
+//                // 先に盤上に駒を置くだけ。利きは更新しない☆
+//                if (TryFail_DoHirate_KomaNarabe(
+//                    f
+//#if DEBUG
+//                    , reigai1
+//#endif
+//                    ))
+//                {
+//                    return Pure.FailTrue("TryFail_DoHirate_KomaNarabe"
+//#if DEBUG
+//                        , reigai1
+//#endif
+//                                                );
+//                }
+
+
+//                // （３）初回だけのもろもろの設定だぜ☆（＾～＾）
+//                {
+//                    // 駒が配置されたはず☆（＾～＾）
+//                    PureMemory.gky_ky.shogiban.Tukurinaosi_RemakeKiki();
+//                }
+
+//            }
+//            //#if DEBUG
+//            //            syuturyoku.AppendLine("Option_Application.Optionlist.BanYokoHaba=[" + Option_Application.Optionlist.BanYokoHaba + "]");
+//            //#endif
+
+//            // （６）最後に適用☆（＾～＾）
+//            // 駒を配置したあとで使えだぜ☆（＾～＾）
+//            PureMemory.gky_ky.shogiban.Tukurinaosi_RemakeKiki();
+//            //#if DEBUG
+//            //            CommandK.Kiki("kiki", this, syuturyoku);
+//            //#endif
+
+
+
+
+
+
+
+
+

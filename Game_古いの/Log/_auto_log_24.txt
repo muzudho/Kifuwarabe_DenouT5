@@ -1,0 +1,449 @@
+joho jikan 703 fukasa -/4 eda 26 hyokati cp -2728(cp -2200 cp 0 cp -528 jibun_p2 Happa) yomisuji C1B2 B3B2 C2B2 Z*C3
+joho jikan 1030 fukasa -/5 eda 65 hyokati [makeru 5] -31095(cp 0 cp 0 [makeru 0] -31100 jibun_p2 HappaKomatoriTumi) yomisuji C1B2 B3B2 C2B2 A4B3 B2B3
+joho jikan 1389 fukasa -/6 eda 149 hyokati [makeru 5] -31095(cp 0 cp 0 [makeru 0] -31100 jibun_p2 RaionTukamaeta) yomisuji C1B2 B3B2 C2B2 A4B3 B2B3 B4B3
+joho jikan 1762 fukasa -/7 eda 156 hyokati cp -30995(cp 0 cp 0 cp -30995 jibun_p2 HappaKomatori best=[Hyokati_Saisyo] beta=[-30995]) (aspi) yomisuji C1B2
+joho jikan 2074 fukasa -/8 eda 165 hyokati cp -30995(cp 0 cp 0 cp -30995 jibun_p2 HappaKomatori best=[Hyokati_Saisyo] beta=[-30995]) (aspi) yomisuji C1B2
+joho jikan 2412 fukasa -/9 eda 174 hyokati cp -30995(cp 0 cp 0 cp -30995 jibun_p2 HappaKomatori best=[Hyokati_Saisyo] beta=[-30995]) (aspi) yomisuji C1B2
+joho jikan 2778 fukasa -/10 eda 185 hyokati cp -30995(cp 0 cp 0 cp -30995 jibun_p2 HappaKomatori best=[Hyokati_Saisyo] beta=[-30995]) (aspi) yomisuji C1B2
+joho jikan 3158 fukasa -/11 eda 196 hyokati cp -30995(cp 0 cp 0 cp -30995 jibun_p2 HappaKomatori best=[Hyokati_Saisyo] beta=[-30995]) (aspi) yomisuji C1B2
+joho jikan 3553 fukasa -/12 eda 211 hyokati cp -30995(cp 0 cp 0 cp -30995 jibun_p2 HappaKomatori best=[Hyokati_Saisyo] beta=[-30995]) (aspi) yomisuji C1B2
+joho jikan 3886 fukasa -/13 eda 224 hyokati cp -30995(cp 0 cp 0 cp -30995 jibun_p2 HappaKomatori best=[Hyokati_Saisyo] beta=[-30995]) (aspi) yomisuji C1B2
+joho jikan 4201 fukasa -/13 eda 224 hyokati cp -30995(cp 0 cp 0 cp -30995 jibun_p2 HappaKomatori best=[Hyokati_Saisyo] beta=[-30995]) (aspi) yomisuji C1B2
+
+図は  4手まで 対局者１の番
+ひ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│　　│
+  ├──┼──┼──┤
+２│　　│▽ぞ│▽ら│
+  ├──┼──┼──┤
+３│　　│▲ひ│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│▲き│
+  └──┴──┴──┘
+
+指し手を入力してください。一例　do B3B2　※ do b3b2 も同じ
+> do b3b2
+
+図は  5手まで 対局者２の番
+ひ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│　　│
+  ├──┼──┼──┤
+２│　　│▲ひ│▽ら│
+  ├──┼──┼──┤
+３│　　│　　│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│▲き│
+  └──┴──┴──┘
+ぞ1
+対局者２（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 1 hyokati cp -2182(cp -2200 cp 0 cp 18 jibun_p2 HappaKomatori) yomisuji C2B2
+joho jikan 294 fukasa -/2 eda 10 hyokati cp -2728(cp -2200 cp 0 cp -528 jibun_p2 Happa) yomisuji C2B2 Z*C3
+joho jikan 573 fukasa -/3 eda 39 hyokati [makeru 3] -31097(cp 0 cp 0 [makeru 0] -31100 jibun_p2 HappaKomatoriTumi) yomisuji C2B2 A4B3 B2B3
+joho jikan 915 fukasa -/4 eda 111 hyokati [makeru 3] -31097(cp 0 cp 0 [makeru 0] -31100 jibun_p2 RaionTukamaeta) yomisuji C2B2 A4B3 B2B3 B4B3
+joho jikan 1201 fukasa -/5 eda 468 hyokati [makeru 4] -31096(cp 0 cp 0 [makeru 0] -31100 jibun_p2 TansakuIttedume) yomisuji C2B2 A4B3 B2B3 B4B3
+joho jikan 1557 fukasa -/6 eda 1868 hyokati [makeru 4] -31096(cp 0 cp 0 [makeru 0] -31100 jibun_p2 TansakuIttedume) yomisuji C2B2 A4B3 B2B3 B4B3
+joho jikan 1821 fukasa -/7 eda 1875 hyokati cp -30996(cp 0 cp 0 cp -30996 jibun_p2 HappaKomatori best=[Hyokati_Saisyo] beta=[-30996]) (aspi) yomisuji C2B2
+joho jikan 2109 fukasa -/8 eda 1885 hyokati cp -30996(cp 0 cp 0 cp -30996 jibun_p2 HappaKomatori best=[Hyokati_Saisyo] beta=[-30996]) (aspi) yomisuji C2B2
+joho jikan 2407 fukasa -/9 eda 1894 hyokati cp -30996(cp 0 cp 0 cp -30996 jibun_p2 HappaKomatori best=[Hyokati_Saisyo] beta=[-30996]) (aspi) yomisuji C2B2
+joho jikan 2722 fukasa -/10 eda 1906 hyokati cp -30996(cp 0 cp 0 cp -30996 jibun_p2 HappaKomatori best=[Hyokati_Saisyo] beta=[-30996]) (aspi) yomisuji C2B2
+joho jikan 3028 fukasa -/11 eda 1917 hyokati cp -30996(cp 0 cp 0 cp -30996 jibun_p2 HappaKomatori best=[Hyokati_Saisyo] beta=[-30996]) (aspi) yomisuji C2B2
+joho jikan 3365 fukasa -/12 eda 1932 hyokati cp -30996(cp 0 cp 0 cp -30996 jibun_p2 Happa best=[Hyokati_Saisyo] beta=[-30996]) (aspi) yomisuji C2B2
+joho jikan 3708 fukasa -/13 eda 1945 hyokati cp -30996(cp 0 cp 0 cp -30996 jibun_p2 HappaKomatori best=[Hyokati_Saisyo] beta=[-30996]) (aspi) yomisuji C2B2
+joho jikan 4024 fukasa -/13 eda 1945 hyokati cp -30996(cp 0 cp 0 cp -30996 jibun_p2 HappaKomatori best=[Hyokati_Saisyo] beta=[-30996]) (aspi) yomisuji C2B2
+
+図は  6手まで 対局者１の番
+ひ2
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│　　│
+  ├──┼──┼──┤
+２│　　│▽ら│　　│
+  ├──┼──┼──┤
+３│　　│　　│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│▲き│
+  └──┴──┴──┘
+ぞ1
+指し手を入力してください。一例　do B3B2　※ do b3b2 も同じ
+> do c4c3
+
+図は  7手まで 対局者２の番
+ひ2
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│　　│
+  ├──┼──┼──┤
+２│　　│▽ら│　　│
+  ├──┼──┼──┤
+３│　　│　　│▲き│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+ぞ1
+対局者２（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 15 hyokati cp -1399(cp -2200 cp 0 cp 801 jibun_p2 HappaKomatori) yomisuji H*C2
+joho jikan 319 fukasa -/2 eda 111 hyokati cp -2529(cp -2200 cp 0 cp -329 jibun_p2 HappaKomatori) yomisuji H*A3 C3C4
+joho jikan 703 fukasa -/3 eda 350 hyokati cp -1882(cp -2200 cp 0 cp 318 jibun_p2 HappaKomatori) yomisuji B2A2 Z*B3 A2B1
+joho jikan 1061 fukasa -/4 eda 1556 hyokati cp -2728(cp -2200 cp 0 cp -528 jibun_p2 Happa) yomisuji B2B1 C3C4 B1B2 Z*C3
+joho jikan 1532 fukasa -/5 eda 6133 hyokati cp -1878(cp -2200 cp 0 cp 322 jibun_p2 HappaKomatori) yomisuji A1B1 C3C4 H*A1 Z*C3 B2A2
+joho jikan 2322 fukasa -/6 eda 19806 hyokati cp -1007(cp -2200 cp 0 cp 1193 jibun_p2 HappaKomatori) yomisuji B2C1 Z*C4 C1B2 C4B3 H*C4 B3A2
+joho jikan 4145 fukasa -/7 eda 59859 hyokati cp -907(cp 0 cp 0 cp -907 jibun_p2 TranspositionTable best=[1107] beta=[-907]) yomisuji H*A3 C3B3 B2B1 B4A3 H*A2
+joho jikan 5096 fukasa -/7 eda 78110 hyokati cp -607(cp 0 cp 0 cp -607 jibun_p2 TranspositionTable best=[2394] beta=[-607]) yomisuji H*A3 C3B3 B2C1 B4A3 H*B1
+joho jikan 5606 fukasa -/7 eda 87852 hyokati cp -26(cp -400 cp 0 cp 374 jibun_p2 HappaKomatori) (aspi) yomisuji H*C1 C3B3 B2B1 B3B2 B1B2 Z*C4 K*A2
+joho jikan 6290 fukasa -/7 eda 99533 hyokati cp -26(cp -400 cp 0 cp 374 jibun_p2 HappaKomatori) (aspi) yomisuji H*C1 C3B3 B2B1 B3B2 B1B2 Z*C4 K*A2
+
+図は  8手まで 対局者１の番
+ひ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ひ│
+  ├──┼──┼──┤
+２│　　│▽ら│　　│
+  ├──┼──┼──┤
+３│　　│　　│▲き│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+ぞ1
+指し手を入力してください。一例　do B3B2　※ do b3b2 も同じ
+> do Z*z3
+doコマンドのパラメーターの書式が間違っていました。
+指し手を入力してください。一例　do B3B2　※ do b3b2 も同じ
+> do Z*a3
+
+図は  9手まで 対局者２の番
+ひ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ひ│
+  ├──┼──┼──┤
+２│　　│▽ら│　　│
+  ├──┼──┼──┤
+３│▲ぞ│　　│▲き│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+
+対局者２（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 4 hyokati cp -1880(cp -2200 cp 0 cp 320 jibun_p2 HappaKomatori) yomisuji B2B1
+joho jikan 305 fukasa -/2 eda 9 hyokati cp -2590(cp -2200 cp 0 cp -390 jibun_p2 HappaKomatori) yomisuji B2B1 A4B3
+joho jikan 628 fukasa -/3 eda 24 hyokati cp -789(cp -2200 cp 0 cp 1411 jibun_p2 HappaKomatori) yomisuji B2B1 A4B3 H*A2
+joho jikan 974 fukasa -/4 eda 73 hyokati cp -1262(cp -2400 cp 0 cp 1138 jibun_p2 HappaKomatori) yomisuji B2B1 A4B3 H*B2 A3B2
+joho jikan 1453 fukasa -/5 eda 218 hyokati cp 306(cp 0 cp 0 cp 306 jibun_p2 HappaKomatori) yomisuji B2B1 A4B3 H*A2 B3A2 B1A2
+joho jikan 1852 fukasa -/6 eda 752 hyokati cp -645(cp 0 cp 0 cp -645 jibun_p2 Happa) yomisuji B2B1 A4B3 H*A2 B3A2 B1A2 C3B3
+joho jikan 2278 fukasa -/7 eda 2261 hyokati cp -545(cp 0 cp 0 cp -545 jibun_p2 HappaKomatori best=[811] beta=[-545]) yomisuji B2B1 A4B3 H*A2 B3A2 A1A2 H*B2 A2B2
+joho jikan 2668 fukasa -/7 eda 2307 hyokati cp -245(cp 0 cp 0 cp -245 jibun_p2 HappaKomatori best=[811] beta=[-245]) yomisuji B2B1 A4B3 H*A2 B3A2 A1A2 H*B2 A2B2
+joho jikan 3043 fukasa -/7 eda 2354 hyokati cp 811(cp 200 cp 0 cp 611 jibun_p2 HappaKomatori) (aspi) yomisuji B2B1 A4B3 H*A2 B3A2 A1A2 H*B2 A2B2
+joho jikan 3591 fukasa -/8 eda 6790 hyokati cp -545(cp 0 cp 0 cp -545 jibun_p2 HappaKomatori best=[-439] beta=[-545]) (aspi) yomisuji B2B1 A4B3 H*A2 B3A2 A1A2 H*B2 A2B2
+joho jikan 3897 fukasa -/8 eda 6796 hyokati cp -545(cp 0 cp 0 cp -545 jibun_p2 TranspositionTable) (aspi) yomisuji B2B1 A4B3
+joho jikan 4281 fukasa -/8 eda 7721 hyokati cp -439(cp 200 cp 0 cp -639 jibun_p2 HappaKomatori) (aspi) yomisuji B2B1 A4B3 H*A2 B3A2 A1A2 H*B2 A2B2 C3B3
+joho jikan 5188 fukasa -/9 eda 26622 hyokati cp 711(cp 0 cp 0 cp 711 jibun_p2 HappaKomatori best=[-623] beta=[-711]) (aspi) yomisuji B2B1 A4B3 H*A2 B3A2 A1A2 H*C2 A2A3 B4A3
+joho jikan 5507 fukasa -/9 eda 26622 hyokati cp 711(cp 0 cp 0 cp 711 jibun_p2 HappaKomatori best=[-623] beta=[-711]) (aspi) yomisuji B2B1 A4B3 H*A2 B3A2 A1A2 H*C2 A2A3 B4A3
+
+図は 10手まで 対局者１の番
+ひ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ら│▽ひ│
+  ├──┼──┼──┤
+２│　　│　　│　　│
+  ├──┼──┼──┤
+３│▲ぞ│　　│▲き│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+
+指し手を入力してください。一例　do B3B2　※ do b3b2 も同じ
+> do c3b3
+
+図は 11手まで 対局者２の番
+ひ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ら│▽ひ│
+  ├──┼──┼──┤
+２│　　│　　│　　│
+  ├──┼──┼──┤
+３│▲ぞ│▲き│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+
+対局者２（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 6 hyokati cp -1880(cp -2200 cp 0 cp 320 jibun_p2 HappaKomatori) yomisuji C1C2
+joho jikan 329 fukasa -/2 eda 19 hyokati cp -2394(cp -2200 cp 0 cp -194 jibun_p2 Happa) yomisuji H*A2 B3B2
+joho jikan 623 fukasa -/3 eda 72 hyokati cp -728(cp 200 cp 0 cp -928 jibun_p2 HappaKomatori) yomisuji A1A2 B4C3 A2A3
+joho jikan 922 fukasa -/4 eda 157 hyokati cp -1235(cp -2400 cp 0 cp 1165 jibun_p2 HappaKomatori) yomisuji A1A2 B3C3 H*B2 A3B2
+joho jikan 1212 fukasa -/5 eda 555 hyokati cp 179(cp 200 cp 0 cp -21 jibun_p2 HappaKomatori) yomisuji A1A2 B4C3 B1A1 B3B2 A2A3
+joho jikan 1583 fukasa -/6 eda 1730 hyokati cp -1368(cp -2400 cp 0 cp 1032 jibun_p2 HappaKomatori) yomisuji A1A2 B3C3 A2A1 A4B3 H*A2 B3A2
+joho jikan 2070 fukasa -/7 eda 6267 hyokati cp -1268(cp 0 cp 0 cp -1268 jibun_p2 TranspositionTable best=[151] beta=[-1268]) yomisuji C1C2 B3B2 B1C1 A4B3 A1B1
+joho jikan 2414 fukasa -/7 eda 6852 hyokati cp -968(cp 0 cp 0 cp -968 jibun_p2 HappaKomatori best=[489] beta=[-968]) yomisuji C1C2 B3B2 B1C1 A4B3 H*B1 B3C2 B1B2
+joho jikan 2758 fukasa -/7 eda 7352 hyokati cp 232(cp 0 cp 0 cp 232 jibun_p2 TranspositionTable best=[1268] beta=[232]) yomisuji C1C2 B3B2 B1C1 A4B3 A1A2
+joho jikan 3078 fukasa -/7 eda 7840 hyokati cp 304(cp 0 cp 0 cp 304 jibun_p2 HappaKomatori) (aspi) yomisuji C1C2 A3B2 A1A2 B4C4 H*B4 C4B4 A2B2
+joho jikan 3918 fukasa -/8 eda 25310 hyokati cp -1268(cp 0 cp 0 cp -1268 jibun_p2 TranspositionTable best=[-968] beta=[-1268]) (aspi) yomisuji C1C2 B3B2 B1C1 A4B3 A1B1
+joho jikan 4289 fukasa -/8 eda 27784 hyokati cp 704(cp 0 cp 0 cp 704 jibun_p2 TranspositionTable best=[1268] beta=[704]) (aspi) yomisuji C1C2 B3B2 B1C1 A4B3 H*B1
+joho jikan 4609 fukasa -/8 eda 27927 hyokati cp -610(cp -600 cp 0 cp -10 jibun_p2 HappaKomatori) (aspi) yomisuji C1C2 B3B2 B1C1 A4B3 H*B1 B3C2 B1B2 B4C3
+joho jikan 7159 fukasa -/9 eda 108397 hyokati cp 404(cp 0 cp 0 cp 404 jibun_p2 TranspositionTable best=[1268] beta=[404]) (aspi) yomisuji C1C2 B3B2 B1C1 A4B3 C2C3 B4C3 H*B4
+joho jikan 7552 fukasa -/9 eda 108397 hyokati cp 404(cp 0 cp 0 cp 404 jibun_p2 TranspositionTable) (aspi) yomisuji C1C2
+joho jikan 7871 fukasa -/9 eda 108397 hyokati cp 404(cp 0 cp 0 cp 404 jibun_p2 TranspositionTable) (aspi) yomisuji C1C2
+
+図は 12手まで 対局者１の番
+ひ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ら│　　│
+  ├──┼──┼──┤
+２│　　│　　│▽ひ│
+  ├──┼──┼──┤
+３│▲ぞ│▲き│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+
+指し手を入力してください。一例　do B3B2　※ do b3b2 も同じ
+> do b3b2
+
+図は 13手まで 対局者２の番
+ひ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ら│　　│
+  ├──┼──┼──┤
+２│　　│▲き│▽ひ│
+  ├──┼──┼──┤
+３│▲ぞ│　　│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+
+対局者２（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 1 hyokati cp -2208(cp -2200 cp 0 cp -8 jibun_p2 HappaKomatori) yomisuji B1C1
+joho jikan 309 fukasa -/2 eda 3 hyokati cp -2579(cp -2200 cp 0 cp -379 jibun_p2 HappaKomatori) yomisuji B1C1 A4B3
+joho jikan 615 fukasa -/3 eda 13 hyokati cp -1415(cp -2200 cp 0 cp 785 jibun_p2 HappaKomatori) yomisuji B1C1 A4B3 H*B1
+joho jikan 959 fukasa -/4 eda 27 hyokati cp -2475(cp -2400 cp 0 cp -75 jibun_p2 HappaKomatori) yomisuji B1C1 A4B3 C2C3 B4C3
+joho jikan 1293 fukasa -/5 eda 67 hyokati cp 489(cp -600 cp 0 cp 1089 jibun_p2 HappaKomatori) yomisuji B1C1 A4B3 H*B1 B3C2 B1B2
+joho jikan 1616 fukasa -/6 eda 134 hyokati cp -610(cp -600 cp 0 cp -10 jibun_p2 HappaKomatori) yomisuji B1C1 A4B3 H*B1 B3C2 B1B2 B4C3
+joho jikan 1951 fukasa -/7 eda 253 hyokati cp -510(cp 0 cp 0 cp -510 jibun_p2 HappaKomatori best=[35] beta=[-510]) yomisuji B1C1 A4B3 H*B1 B3C2 B1B2 B4C3 K*B1
+joho jikan 2240 fukasa -/7 eda 272 hyokati cp -210(cp 0 cp 0 cp -210 jibun_p2 HappaKomatori best=[35] beta=[-210]) yomisuji B1C1 A4B3 H*B1 B3C2 B1B2 B4C3 K*B1
+joho jikan 2517 fukasa -/7 eda 298 hyokati cp 35(cp -600 cp 0 cp 635 jibun_p2 HappaKomatori) (aspi) yomisuji B1C1 A4B3 H*B1 B3C2 B1B2 B4C3 K*B1
+joho jikan 2856 fukasa -/8 eda 504 hyokati cp -510(cp 0 cp 0 cp -510 jibun_p2 HappaKomatori best=[247] beta=[-510]) (aspi) yomisuji B1C1 A4B3 H*B1 B3C2 B1B2 B4C3 K*A2
+joho jikan 3181 fukasa -/8 eda 505 hyokati cp -510(cp 0 cp 0 cp -510 jibun_p2 TranspositionTable) (aspi) yomisuji B1C1 A4B3
+joho jikan 3466 fukasa -/8 eda 537 hyokati cp 247(cp -800 cp 0 cp 1047 jibun_p2 HappaKomatori) (aspi) yomisuji B1C1 A4B3 H*B1 B3C2 B1B2 B4C3 K*A2 A3B2
+joho jikan 3792 fukasa -/9 eda 961 hyokati cp 135(cp 0 cp 0 cp 135 jibun_p2 HappaKomatori best=[320] beta=[135]) (aspi) yomisuji B1C1 A4B3 H*B1 B3C2 B1B2 B4C3 K*B1 C2B1 A1B1
+joho jikan 4162 fukasa -/9 eda 1042 hyokati cp 320(cp 0 cp 0 cp 320 jibun_p2 HappaKomatori) (aspi) yomisuji B1C1 A4B3 H*B1 B3C2 B1B2 B4C3 K*B1 C2B1 A1B1
+joho jikan 4517 fukasa -/10 eda 2815 hyokati cp 347(cp 0 cp 0 cp 347 jibun_p2 HappaKomatoriTumi best=[31098] beta=[347]) (aspi) yomisuji B1C1 A4B3 H*B1 B3C2 B1B2 B4C3 K*B3 C2B3 B2B3
+joho jikan 4812 fukasa -/10 eda 2922 hyokati cp 720(cp 0 cp 0 cp 720 jibun_p2 HappaKomatori best=[850] beta=[720]) (aspi) yomisuji B1C1 A4B3 H*B1 B3C2 B1B2 B4C3 K*B1 C2B1 A1B1
+joho jikan 5163 fukasa -/10 eda 2971 hyokati cp 1920(cp 0 cp 0 cp 1920 jibun_p2 HappaKomatoriTumi best=[31098] beta=[1920]) (aspi) yomisuji B1C1 A4B3 H*B1 B3C2 B1B2 B4C3 A1B1 C2B1 K*B4
+joho jikan 5482 fukasa -/10 eda 3020 hyokati cp 6720(cp 0 cp 0 cp 6720 jibun_p2 HappaKomatoriTumi best=[31098] beta=[6720]) (aspi) yomisuji B1C1 A4B3 H*B1 B3C2 B1B2 B4C3 A1B1 C2B1 K*B4
+joho jikan 5835 fukasa -/10 eda 3020 hyokati cp 6720(cp 0 cp 0 cp 6720 jibun_p2 HappaKomatoriTumi best=[31098] beta=[6720]) (aspi) yomisuji B1C1 A4B3 H*B1 B3C2 B1B2 B4C3 A1B1 C2B1 K*B4
+
+図は 14手まで 対局者１の番
+ひ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│　　│▲き│▽ひ│
+  ├──┼──┼──┤
+３│▲ぞ│　　│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+
+指し手を入力してください。一例　do B3B2　※ do b3b2 も同じ
+> do a4b3
+
+図は 15手まで 対局者２の番
+ひ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│　　│▲き│▽ひ│
+  ├──┼──┼──┤
+３│▲ぞ│▲ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲ら│　　│
+  └──┴──┴──┘
+
+対局者２（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 6 hyokati cp -1415(cp -2200 cp 0 cp 785 jibun_p2 HappaKomatori) yomisuji H*B1
+joho jikan 293 fukasa -/2 eda 18 hyokati cp -2444(cp -2400 cp 0 cp -44 jibun_p2 HappaKomatori) yomisuji H*A2 B3A2
+joho jikan 598 fukasa -/3 eda 59 hyokati cp 489(cp -600 cp 0 cp 1089 jibun_p2 HappaKomatori) yomisuji H*B1 B3C2 B1B2
+joho jikan 896 fukasa -/4 eda 129 hyokati cp -310(cp 0 cp 0 cp -310 jibun_p2 HappaKomatori) yomisuji H*A2 B3A2 A1A2 B4B3
+joho jikan 1228 fukasa -/5 eda 290 hyokati cp 1332(cp 2400 cp 0 cp -1068 jibun_p2 HappaKomatori) yomisuji H*A2 B3A2 A1A2 B4B3 A2A3
+joho jikan 1538 fukasa -/6 eda 630 hyokati cp 592(cp 600 cp 0 cp -8 jibun_p2 HappaKomatori) yomisuji H*A2 B3A2 A1A2 B4B3 A2A3 B3A3
+joho jikan 1853 fukasa -/7 eda 1236 hyokati cp 692(cp 0 cp 0 cp 692 jibun_p2 Happa best=[1585] beta=[692]) yomisuji H*B1 B3C2 B1B2 B4C3 K*A2 A3B2 A2B2
+joho jikan 2125 fukasa -/7 eda 1368 hyokati cp 992(cp 0 cp 0 cp 992 jibun_p2 Happa best=[1585] beta=[992]) yomisuji H*B1 B3C2 B1B2 B4C3 K*A2 A3B2 A2B2
+joho jikan 2427 fukasa -/7 eda 1440 hyokati cp 1585(cp 1600 cp 0 cp -15 jibun_p2 Happa) (aspi) yomisuji H*B1 B3C2 B1B2 B4C3 K*A2 A3B2 A2B2
+joho jikan 2792 fukasa -/8 eda 2801 hyokati cp 692(cp 0 cp 0 cp 692 jibun_p2 HappaKomatoriTumi best=[31098] beta=[692]) (aspi) yomisuji H*B1 B3C2 B1B2 B4C3 K*B3 C2B3 B2B3
+joho jikan 3085 fukasa -/8 eda 2807 hyokati cp 692(cp 0 cp 0 cp 692 jibun_p2 TranspositionTable) (aspi) yomisuji H*B1 B3C2
+joho jikan 3384 fukasa -/8 eda 3097 hyokati cp 3185(cp 0 cp 0 cp 3185 jibun_p2 HappaKomatoriTumi best=[31098] beta=[3185]) (aspi) yomisuji H*B1 B3C2 B1B2 B4C3 A1B1 C2B1 K*B4
+joho jikan 3669 fukasa -/8 eda 3143 hyokati cp 7985(cp 0 cp 0 cp 7985 jibun_p2 HappaKomatoriTumi best=[31098] beta=[7985]) (aspi) yomisuji H*B1 B3C2 B1B2 B4C3 A1B1 C2B1 K*B4
+joho jikan 3951 fukasa -/8 eda 3189 hyokati cp 27185(cp 0 cp 0 cp 27185 jibun_p2 HappaKomatoriTumi best=[31098] beta=[27185]) (aspi) yomisuji H*B1 B3C2 B1B2 B4C3 A1B1 C2B1 K*B4
+joho jikan 4266 fukasa -/8 eda 3241 hyokati [katu 8] 31092(cp 0 cp 0 [katu 0] 31100 jibun_p2 HappaKomatoriTumi) (aspi) yomisuji H*B1 B3C2 B1B2 B4C3 A1B1 C2B1 K*B4 C3B2
+joho jikan 4623 fukasa -/9 eda 5841 hyokati [katu 8] 31092(cp 0 cp 0 [katu 0] 31100 jibun_p2 RaionTukamaeta) (aspi) yomisuji H*B1 B3C2 B1B2 B4C3 K*A2 A3B2 A2B2 C3B2 C1B2
+joho jikan 5042 fukasa -/10 eda 9567 hyokati [katu 8] 31092(cp 0 cp 0 [katu 0] 31100 jibun_p2 RaionTukamaeta) (aspi) yomisuji H*B1 B3C2 B1B2 B4C3 K*A2 A3B2 A2B2 C3B2 C1B2
+joho jikan 5697 fukasa -/11 eda 20914 hyokati [katu 8] 31092(cp 0 cp 0 [katu 0] 31100 jibun_p2 RaionTukamaeta) (aspi) yomisuji H*B1 B3C2 B1B2 B4C3 K*A2 A3B2 A2B2 C3B2 C1B2
+joho jikan 6475 fukasa -/12 eda 34641 hyokati [katu 8] 31092(cp 0 cp 0 [katu 0] 31100 jibun_p2 RaionTukamaeta) (aspi) yomisuji H*B1 B3C2 B1B2 B4C3 K*A2 A3B2 A2B2 C3B2 C1B2
+joho jikan 8006 fukasa -/13 eda 79471 hyokati [katu 8] 31092(cp 0 cp 0 [katu 0] 31100 jibun_p2 RaionTukamaeta) (aspi) yomisuji H*B1 B3C2 B1B2 B4C3 K*A2 A3B2 A2B2 C3B2 C1B2
+joho jikan 8349 fukasa -/13 eda 79471 hyokati [katu 8] 31092(cp 0 cp 0 [katu 0] 31100 jibun_p2 RaionTukamaeta) (aspi) yomisuji H*B1 B3C2 B1B2 B4C3 K*A2 A3B2 A2B2 C3B2 C1B2
+
+図は 16手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ひ│▽ら│
+  ├──┼──┼──┤
+２│　　│▲き│▽ひ│
+  ├──┼──┼──┤
+３│▲ぞ│▲ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲ら│　　│
+  └──┴──┴──┘
+
+指し手を入力してください。一例　do B3B2　※ do b3b2 も同じ
+> do b2c2
+
+図は 17手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ひ│▽ら│
+  ├──┼──┼──┤
+２│　　│　　│▲き│
+  ├──┼──┼──┤
+３│▲ぞ│▲ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲ら│　　│
+  └──┴──┴──┘
+ひ1
+対局者２（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 0 hyokati [makeru 0] -31100(cp 0 cp 0 [makeru 0] -31100 jibun_p2 Stalemate) yomisuji 
+決着図
+
+図は 18手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ひ│▽ら│
+  ├──┼──┼──┤
+２│　　│　　│▲き│
+  ├──┼──┼──┤
+３│▲ぞ│▲ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲ら│　　│
+  └──┴──┴──┘
+ひ1
+まいったぜ☆（＞＿＜）
+┌─────────────────結　果─────────────────┐
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│　　　　　　　　　　　　　　　対局者１の勝ち　　　　　　　　　　　　　　　│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+└─────────────────────────────────────┘
+終わったぜ☆（＾▽＾）
+感想戦を行う場合は kansosen と打てだぜ☆（＾▽＾）　そのあと kifu 1 とか打て☆（＾▽＾）
+終わるときは hirate な☆（＾▽＾）
+> quit
+
+┌─────────────────────────────────────┐
+│ら　ぞ　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　き　ぞ│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│ぞ　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　き│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│　　　　　　　　し　ょ　う　ぎ　　　　さ　ん　　　　よ　ん　　　　　　　　│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│　　　　　　　　　　　　かいはつしゃ　　　むずでょ　　　　　　　　　　　　│
+│　　　　　　　　　　　　さーくる　　ぐれーすけーる　　　　　　　　　　　　│
+│ひ　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　に│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│き　ひ　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　に　ひ│
+└─────────────────────────────────────┘
+……ようこそ、将棋３４へ☆（＾▽＾）ｗｗｗ
+
+
+　　　　　　　　[Enter]　　　　……　対局開始
+　　　　　　　　man [Enter]　　……　コマンド説明
+　　　　　　　　quit [Enter]　　……　終了
+
+
+
+**デバッグ・モード**> 
+
+図は  0手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ら│▽ぞ│
+  ├──┼──┼──┤
+２│　　│▽ひ│　　│
+  ├──┼──┼──┤
+３│　　│▲ひ│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│▲き│
+  └──┴──┴──┘
+
+指し手を入力してください。一例　do B3B2　※ do b3b2 も同じ
+> @kiki1
+kiki1> # らいおんが利きに飛び込まないテスト（１Ｐ）
+kiki1> 
+kiki1> # 　ラ　
+kiki1> # 　キ　
+kiki1> # 　ゾ　
+kiki1> # 　ら　
+kiki1> ky fen 1r1/1k1/1z1/1R1 kz2h 1
+kiki1> ky
+図は  0手まで 対局者１の番
+ぞ1き1ひ2
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽ら│　　│
+  ├──┼──┼──┤
+２│　　│▽き│　　│
+  ├──┼──┼──┤
+３│　　│▽ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲ら│　　│
+  └──┴──┴──┘
+
+指し手を入力してください。一例　do B3B2　※ do b3b2 も同じ
+> go
+joho Debug[Fukasa] jikan 660 fukasa -/1 eda 2 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati cp -4421(cp -4400 cp 0 cp -21 jibun_p1 HappaKomatori) yomisuji B4A3
+SEE>らいおん捕まえた☆
+SEE>らいおん捕まえた☆
+SEE>らいおん捕まえた☆
+SEE>らいおん捕まえた☆
+【エラー】error Undo-Ta-6 対局者２
+差分更新に失敗している駒=[▽き]
+利き：（再計算）
+
+ライオン            ゾウ                パワーゾウ          キリン              パワーキリン        ヒヨコ              ニワトリ            イヌ                ネコ                パワーネコ          ウサギ              パワーウサギ        イノシシ            パワーイノシシ      
+┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐
+│ 〇 │　　│ 〇 ││　　│　　│　　││　　│　　│　　││　　│ 〇 │　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　│
+├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤
+│ 〇 │ 〇 │ 〇 ││ 〇 │　　│ 〇 ││　　│　　│　　││ 〇 │　　│ 〇 ││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　│
+├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤
+│　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│ 〇 │　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　│
+├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤
+│　　│　　│　　││ 〇 │　　│ 〇 ││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　│
+└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘
+利き：（現行）
+ライオン            ゾウ                パワーゾウ          キリン              パワーキリン        ヒヨコ              ニワトリ            イヌ                ネコ                パワーネコ          ウサギ              パワーウサギ        イノシシ            パワーイノシシ      
+┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐┌──┬──┬──┐
+│ 〇 │　　│ 〇 ││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　│
+├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤
+│ 〇 │ 〇 │ 〇 ││ 〇 │　　│ 〇 ││　　│　　│　　││ 〇 │　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　│
+├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤
+│　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│ 〇 │　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　│
+├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤├──┼──┼──┤
+│　　│　　│　　││ 〇 │　　│ 〇 ││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　││　　│　　│　　│
+└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘└──┴──┴──┘
+error TryFail_Assert_Sabun_Kiki-1
+PureAssert.Try_Assert_Sabun_Kiki
+TryFail_Tejun1_IdosakiNoTebanNoKomaWoTorinozoku
+Try_UndoSasite
+Try_Tansaku_
+Try_TansakuKaisi_(1)
+Util_Tansaku.Try_Go
+PurePlay.Try_Go
+Try_Go
+Try_DoCommandline

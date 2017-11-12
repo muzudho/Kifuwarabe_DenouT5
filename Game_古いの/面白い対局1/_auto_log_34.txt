@@ -1,0 +1,1067 @@
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 24 fukasa -/1 eda 3 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 0(0 0 0 jibun_p2 Happa) yomisuji A1A2
+joho Fukasa jikan 126 fukasa -/2 eda 15 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 0(0 0 0 jibun_p2 HappaKomatori) yomisuji A1A2 A3B3
+joho Fukasa jikan 270 fukasa -/3 eda 38 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 200(200 0 0 jibun_p2 Happa) yomisuji A1A2 A3B3 A2B2
+joho Fukasa jikan 1036 fukasa -/4 eda 175 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 200(200 0 0 jibun_p2 HappaKomatori) yomisuji A1A2 A3B3 A2B2 B3A3
+joho fin jikan 1630 fukasa -/4 eda 270 alpha 0 beta 0 hyokati 200(200 0 0 jibun_p2 HappaKomatori) yomisuji A1A2 A3B3 A2B2 B3A3
+
+図は 42手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽ぞ│▽ら│
+  ├──┼──┼──┤
+２│▽き│▲ひ│▽ひ│
+  ├──┼──┼──┤
+３│▲ら│　　│　　│
+  ├──┼──┼──┤
+４│▲ぞ│　　│▲き│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 6 fukasa -/1 eda 2 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 0(0 0 0 jibun_p1 HappaKomatori) yomisuji A3B3
+joho Fukasa jikan 95 fukasa -/2 eda 12 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -200(-200 0 0 jibun_p1 Happa) yomisuji A3B3 A2B2
+joho Fukasa jikan 267 fukasa -/3 eda 34 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -200(-200 0 0 jibun_p1 HappaKomatori) yomisuji A3B3 A2B2 B3A3
+joho Fukasa jikan 769 fukasa -/4 eda 103 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -900(-200 0 -700 jibun_p1 HappaKomatori) yomisuji A3B3 A2B2 B3B4 H*C3
+joho fin jikan 1487 fukasa -/4 eda 243 alpha 0 beta 0 hyokati -900(-200 0 -700 jibun_p1 HappaKomatori) yomisuji A3B3 A2B2 B3B4 H*C3
+
+図は 43手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽ぞ│▽ら│
+  ├──┼──┼──┤
+２│▽き│▲ひ│▽ひ│
+  ├──┼──┼──┤
+３│　　│▲ら│　　│
+  ├──┼──┼──┤
+４│▲ぞ│　　│▲き│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 14 fukasa -/1 eda 3 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 200(200 0 0 jibun_p2 Happa) yomisuji A2B2
+joho Fukasa jikan 50 fukasa -/2 eda 10 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 200(200 0 0 jibun_p2 HappaKomatori) yomisuji A2B2 B3A3
+joho Fukasa jikan 252 fukasa -/3 eda 40 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 900(200 0 700 jibun_p2 HappaKomatori) yomisuji A2B2 B3B4 H*C3
+joho Fukasa jikan 914 fukasa -/4 eda 164 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 300(0 0 300 jibun_p2 HappaKomatori) yomisuji A2B2 B3A3 H*B3 A4B3
+joho fin jikan 1132 fukasa -/4 eda 200 alpha 0 beta 0 hyokati 300(0 0 300 jibun_p2 HappaKomatori) yomisuji A2B2 B3A3 H*B3 A4B3
+
+図は 44手まで 対局者１の番
+ひ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽ぞ│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│　　│▲ら│　　│
+  ├──┼──┼──┤
+４│▲ぞ│　　│▲き│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 4 fukasa -/1 eda 2 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -200(-200 0 0 jibun_p1 HappaKomatori) yomisuji B3A3
+joho Fukasa jikan 156 fukasa -/2 eda 20 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -900(-200 0 -700 jibun_p1 HappaKomatori) yomisuji B3B4 H*C3
+joho Fukasa jikan 309 fukasa -/3 eda 48 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -300(0 0 -300 jibun_p1 HappaKomatori) yomisuji B3A3 H*B3 A4B3
+joho fin jikan 1023 fukasa -/3 eda 166 alpha 0 beta 0 hyokati -300(0 0 -300 jibun_p1 HappaKomatori) yomisuji B3A3 H*B3 A4B3
+
+図は 45手まで 対局者２の番
+ひ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽ぞ│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ら│　　│　　│
+  ├──┼──┼──┤
+４│▲ぞ│　　│▲き│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 75 fukasa -/1 eda 9 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1000(200 0 800 jibun_p2 HappaKomatori) yomisuji H*C3
+joho Fukasa jikan 170 fukasa -/2 eda 29 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 300(0 0 300 jibun_p2 HappaKomatori) yomisuji H*B3 A4B3
+joho fin jikan 605 fukasa -/2 eda 95 alpha 0 beta 0 hyokati 300(0 0 300 jibun_p2 HappaKomatori) yomisuji H*B3 A4B3
+
+図は 46手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽ぞ│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ら│▽ひ│　　│
+  ├──┼──┼──┤
+４│▲ぞ│　　│▲き│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 18 fukasa -/1 eda 2 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -300(0 0 -300 jibun_p1 HappaKomatori) yomisuji A4B3
+joho Fukasa jikan 85 fukasa -/2 eda 9 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1500(-2400 0 900 jibun_p1 HappaKomatori) yomisuji A4B3 B2B3
+joho Fukasa jikan 173 fukasa -/3 eda 22 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -600(-600 0 0 jibun_p1 HappaKomatori) yomisuji A4B3 B2B3 A3B3
+joho Fukasa jikan 613 fukasa -/4 eda 91 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -600(-600 0 0 jibun_p1 Happa) yomisuji A4B3 B2B3 A3B3 Z*A2
+joho fin jikan 1364 fukasa -/4 eda 219 alpha 0 beta 0 hyokati -600(-600 0 0 jibun_p1 Happa) yomisuji A4B3 B2B3 A3B3 Z*A2
+
+図は 47手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽ぞ│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ら│▲ぞ│　　│
+  ├──┼──┼──┤
+４│　　│　　│▲き│
+  └──┴──┴──┘
+ひ1
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 43 fukasa -/1 eda 4 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1500(2400 0 -900 jibun_p2 HappaKomatori) yomisuji B2B3
+joho Fukasa jikan 116 fukasa -/2 eda 13 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 600(600 0 0 jibun_p2 HappaKomatori) yomisuji B2B3 A3B3
+joho Fukasa jikan 271 fukasa -/3 eda 36 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 600(600 0 0 jibun_p2 Happa) yomisuji B2B3 A3B3 Z*A2
+joho Fukasa jikan 1613 fukasa -/4 eda 263 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 600(600 0 0 jibun_p2 HappaKomatori) yomisuji B2B3 A3B3 Z*A2 B3A3
+joho fin jikan 1972 fukasa -/4 eda 314 alpha 0 beta 0 hyokati 600(600 0 0 jibun_p2 HappaKomatori) yomisuji B2B3 A3B3 Z*A2 B3A3
+
+図は 48手まで 対局者１の番
+ぞ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽ぞ│▽ら│
+  ├──┼──┼──┤
+２│　　│　　│▽ひ│
+  ├──┼──┼──┤
+３│▲ら│▽き│　　│
+  ├──┼──┼──┤
+４│　　│　　│▲き│
+  └──┴──┴──┘
+ひ1
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 6 fukasa -/1 eda 2 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -600(-600 0 0 jibun_p1 HappaKomatori) yomisuji A3B3
+joho Fukasa jikan 82 fukasa -/2 eda 11 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -600(-600 0 0 jibun_p1 Happa) yomisuji A3B3 Z*A2
+joho Fukasa jikan 212 fukasa -/3 eda 33 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -600(-600 0 0 jibun_p1 HappaKomatori) yomisuji A3B3 Z*A2 B3A3
+joho fin jikan 1489 fukasa -/3 eda 233 alpha 0 beta 0 hyokati -600(-600 0 0 jibun_p1 HappaKomatori) yomisuji A3B3 Z*A2 B3A3
+
+図は 49手まで 対局者２の番
+ぞ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽ぞ│▽ら│
+  ├──┼──┼──┤
+２│　　│　　│▽ひ│
+  ├──┼──┼──┤
+３│　　│▲ら│　　│
+  ├──┼──┼──┤
+４│　　│　　│▲き│
+  └──┴──┴──┘
+き1ひ1
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 66 fukasa -/1 eda 6 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 600(600 0 0 jibun_p2 Happa) yomisuji Z*A2
+joho Fukasa jikan 149 fukasa -/2 eda 20 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 600(600 0 0 jibun_p2 HappaKomatori) yomisuji Z*A2 B3A3
+joho Fukasa jikan 1028 fukasa -/3 eda 143 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 600(600 0 0 jibun_p2 Happa) yomisuji Z*A1 H*A2 A1B2
+joho fin jikan 1957 fukasa -/3 eda 285 alpha 0 beta 0 hyokati 600(600 0 0 jibun_p2 Happa) yomisuji Z*A1 H*A2 A1B2
+
+図は 50手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽ぞ│▽ぞ│▽ら│
+  ├──┼──┼──┤
+２│　　│　　│▽ひ│
+  ├──┼──┼──┤
+３│　　│▲ら│　　│
+  ├──┼──┼──┤
+４│　　│　　│▲き│
+  └──┴──┴──┘
+き1ひ1
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 117 fukasa -/1 eda 17 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 500(-600 0 1100 jibun_p1 HappaKomatori) yomisuji H*A2
+joho Fukasa jikan 450 fukasa -/2 eda 68 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -600(-600 0 0 jibun_p1 Happa) yomisuji H*A2 A1B2
+joho fin jikan 673 fukasa -/2 eda 103 alpha 0 beta 0 hyokati -600(-600 0 0 jibun_p1 Happa) yomisuji H*A2 A1B2
+
+図は 51手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽ぞ│▽ぞ│▽ら│
+  ├──┼──┼──┤
+２│▲ひ│　　│▽ひ│
+  ├──┼──┼──┤
+３│　　│▲ら│　　│
+  ├──┼──┼──┤
+４│　　│　　│▲き│
+  └──┴──┴──┘
+き1
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 22 fukasa -/1 eda 3 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 600(600 0 0 jibun_p2 Happa) yomisuji A1B2
+joho Fukasa jikan 148 fukasa -/2 eda 23 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 300(600 0 -300 jibun_p2 HappaKomatori) yomisuji A1B2 K*A1
+joho Fukasa jikan 536 fukasa -/3 eda 77 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 500(600 0 -100 jibun_p2 HappaKomatori) yomisuji A1B2 K*A4 C2C3
+joho fin jikan 887 fukasa -/3 eda 147 alpha 0 beta 0 hyokati 500(600 0 -100 jibun_p2 HappaKomatori) yomisuji A1B2 K*A4 C2C3
+
+図は 52手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽ぞ│▽ら│
+  ├──┼──┼──┤
+２│▲ひ│▽ぞ│▽ひ│
+  ├──┼──┼──┤
+３│　　│▲ら│　　│
+  ├──┼──┼──┤
+４│　　│　　│▲き│
+  └──┴──┴──┘
+き1
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 79 fukasa -/1 eda 11 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -300(-600 0 300 jibun_p1 HappaKomatori) yomisuji K*A1
+joho Fukasa jikan 369 fukasa -/2 eda 45 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -500(-600 0 100 jibun_p1 HappaKomatori) yomisuji K*A4 C2C3
+joho Fukasa jikan 1054 fukasa -/3 eda 174 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 0(0 0 0 jibun_p1 HappaKomatori) yomisuji K*A1 B2A1 A2A1
+joho fin jikan 1888 fukasa -/3 eda 294 alpha 0 beta 0 hyokati 0(0 0 0 jibun_p1 HappaKomatori) yomisuji K*A1 B2A1 A2A1
+
+図は 53手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▲き│▽ぞ│▽ら│
+  ├──┼──┼──┤
+２│▲ひ│▽ぞ│▽ひ│
+  ├──┼──┼──┤
+３│　　│▲ら│　　│
+  ├──┼──┼──┤
+４│　　│　　│▲き│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 58 fukasa -/1 eda 5 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1200(2400 0 -1200 jibun_p2 HappaKomatori) yomisuji B2A1
+joho Fukasa jikan 162 fukasa -/2 eda 23 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 0(0 0 0 jibun_p2 HappaKomatori) yomisuji B2A1 A2A1
+joho Fukasa jikan 559 fukasa -/3 eda 75 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 0(0 0 0 jibun_p2 Happa) yomisuji B2A1 A2A1 K*B2
+joho Fukasa jikan 1470 fukasa -/4 eda 242 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 0(0 0 0 jibun_p2 HappaKomatori) yomisuji B2A1 A2A1 K*B2 B3A3
+joho fin jikan 2030 fukasa -/4 eda 316 alpha 0 beta 0 hyokati 0(0 0 0 jibun_p2 HappaKomatori) yomisuji B2A1 A2A1 K*B2 B3A3
+
+図は 54手まで 対局者１の番
+き1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽ぞ│▽ぞ│▽ら│
+  ├──┼──┼──┤
+２│▲ひ│　　│▽ひ│
+  ├──┼──┼──┤
+３│　　│▲ら│　　│
+  ├──┼──┼──┤
+４│　　│　　│▲き│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 33 fukasa -/1 eda 6 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 0(0 0 0 jibun_p1 HappaKomatori) yomisuji A2A1
+joho Fukasa jikan 174 fukasa -/2 eda 22 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 0(0 0 0 jibun_p1 Happa) yomisuji A2A1 K*B2
+joho Fukasa jikan 442 fukasa -/3 eda 74 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 0(0 0 0 jibun_p1 HappaKomatori) yomisuji A2A1 K*B2 B3A3
+joho fin jikan 1092 fukasa -/3 eda 186 alpha 0 beta 0 hyokati 0(0 0 0 jibun_p1 HappaKomatori) yomisuji A2A1 K*B2 B3A3
+
+図は 55手まで 対局者２の番
+き1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▲ひ│▽ぞ│▽ら│
+  ├──┼──┼──┤
+２│　　│　　│▽ひ│
+  ├──┼──┼──┤
+３│　　│▲ら│　　│
+  ├──┼──┼──┤
+４│　　│　　│▲き│
+  └──┴──┴──┘
+ぞ1
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 43 fukasa -/1 eda 5 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 0(0 0 0 jibun_p2 Happa) yomisuji K*B2
+joho Fukasa jikan 179 fukasa -/2 eda 25 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 0(0 0 0 jibun_p2 HappaKomatori) yomisuji K*B2 B3A3
+joho Fukasa jikan 520 fukasa -/3 eda 85 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 200(200 0 0 jibun_p2 HappaKomatori) yomisuji K*A2 Z*A4 A2A1
+joho fin jikan 927 fukasa -/3 eda 165 alpha 0 beta 0 hyokati 200(200 0 0 jibun_p2 HappaKomatori) yomisuji K*A2 Z*A4 A2A1
+
+図は 56手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▲ひ│▽ぞ│▽ら│
+  ├──┼──┼──┤
+２│▽き│　　│▽ひ│
+  ├──┼──┼──┤
+３│　　│▲ら│　　│
+  ├──┼──┼──┤
+４│　　│　　│▲き│
+  └──┴──┴──┘
+ぞ1
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 51 fukasa -/1 eda 9 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 0(0 0 0 jibun_p1 HappaKomatori) yomisuji Z*A4
+joho Fukasa jikan 241 fukasa -/2 eda 41 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -200(-200 0 0 jibun_p1 HappaKomatori) yomisuji Z*A4 A2A1
+joho Fukasa jikan 758 fukasa -/3 eda 151 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -200(-200 0 0 jibun_p1 HappaKomatori) yomisuji Z*A4 A2A1 C4B4
+joho fin jikan 1328 fukasa -/3 eda 231 alpha 0 beta 0 hyokati -200(-200 0 0 jibun_p1 HappaKomatori) yomisuji Z*A4 A2A1 C4B4
+
+図は 57手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▲ひ│▽ぞ│▽ら│
+  ├──┼──┼──┤
+２│▽き│　　│▽ひ│
+  ├──┼──┼──┤
+３│　　│▲ら│　　│
+  ├──┼──┼──┤
+４│▲ぞ│　　│▲き│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 19 fukasa -/1 eda 3 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 200(200 0 0 jibun_p2 HappaKomatori) yomisuji A2A1
+joho Fukasa jikan 87 fukasa -/2 eda 12 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 200(200 0 0 jibun_p2 HappaKomatori) yomisuji A2A1 C4B4
+joho Fukasa jikan 398 fukasa -/3 eda 47 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 200(200 0 0 jibun_p2 Happa) yomisuji A2A1 C4B4 H*B2
+joho Fukasa jikan 1185 fukasa -/4 eda 192 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 200(200 0 0 jibun_p2 HappaKomatori) yomisuji A2A1 C4B4 H*B2 B3A3
+joho fin jikan 1200 fukasa -/4 eda 192 alpha 0 beta 0 hyokati 200(200 0 0 jibun_p2 HappaKomatori) yomisuji A2A1 C4B4 H*B2 B3A3
+
+図は 58手まで 対局者１の番
+ひ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ぞ│▽ら│
+  ├──┼──┼──┤
+２│　　│　　│▽ひ│
+  ├──┼──┼──┤
+３│　　│▲ら│　　│
+  ├──┼──┼──┤
+４│▲ぞ│　　│▲き│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 17 fukasa -/1 eda 4 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -200(-200 0 0 jibun_p1 HappaKomatori) yomisuji C4B4
+joho Fukasa jikan 198 fukasa -/2 eda 28 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -200(-200 0 0 jibun_p1 Happa) yomisuji C4B4 H*B2
+joho Fukasa jikan 594 fukasa -/3 eda 120 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -200(-200 0 0 jibun_p1 HappaKomatori) yomisuji C4B4 H*B2 B3A3
+joho fin jikan 958 fukasa -/3 eda 181 alpha 0 beta 0 hyokati -200(-200 0 0 jibun_p1 HappaKomatori) yomisuji C4B4 H*B2 B3A3
+
+図は 59手まで 対局者２の番
+ひ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ぞ│▽ら│
+  ├──┼──┼──┤
+２│　　│　　│▽ひ│
+  ├──┼──┼──┤
+３│　　│▲ら│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲き│　　│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 71 fukasa -/1 eda 7 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 200(200 0 0 jibun_p2 Happa) yomisuji H*B2
+joho Fukasa jikan 177 fukasa -/2 eda 26 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 200(200 0 0 jibun_p2 HappaKomatori) yomisuji H*B2 B3A3
+joho Fukasa jikan 658 fukasa -/3 eda 102 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 200(200 0 0 jibun_p2 Happa) yomisuji H*B2 B3A3 A1A2
+joho Fukasa jikan 1507 fukasa -/4 eda 268 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1000(200 0 800 jibun_p2 HappaKomatori) yomisuji H*B2 B3C4 A1A2 B4B3
+joho fin jikan 1945 fukasa -/4 eda 343 alpha 0 beta 0 hyokati 1000(200 0 800 jibun_p2 HappaKomatori) yomisuji H*B2 B3C4 A1A2 B4B3
+
+図は 60手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ぞ│▽ら│
+  ├──┼──┼──┤
+２│　　│▽ひ│▽ひ│
+  ├──┼──┼──┤
+３│　　│▲ら│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲き│　　│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 5 fukasa -/1 eda 2 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -200(-200 0 0 jibun_p1 HappaKomatori) yomisuji B3A3
+joho Fukasa jikan 64 fukasa -/2 eda 11 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -200(-200 0 0 jibun_p1 Happa) yomisuji B3A3 A1A2
+joho Fukasa jikan 149 fukasa -/3 eda 22 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1000(-200 0 -800 jibun_p1 HappaKomatori) yomisuji B3C4 A1A2 B4B3
+joho Fukasa jikan 272 fukasa -/4 eda 45 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1900(-2000 0 100 jibun_p1 HappaKomatori) yomisuji B3C4 A1A2 B4B3 B2B3
+joho Fukasa jikan 591 fukasa -/5 eda 97 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji B3C4 A1A2 B4B3 B2B3 A4B3
+joho Fukasa jikan 1397 fukasa -/6 eda 260 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1900(-2000 0 100 jibun_p1 HappaKomatori) yomisuji B3C4 B1A2 A4B3 A2B3 B4B3 B2B3
+この深さからアスピレーション窓探索開始な☆（＾▽＾）　根からの深さ7　確定評価値-1900　α-2000　β-1800
+joho fin jikan 1456 fukasa -/6 eda 260 alpha 0 beta 0 hyokati -1900(-2000 0 100 jibun_p1 HappaKomatori) yomisuji B3C4 B1A2 A4B3 A2B3 B4B3 B2B3 (aspi)
+
+図は 61手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ぞ│▽ら│
+  ├──┼──┼──┤
+２│　　│▽ひ│▽ひ│
+  ├──┼──┼──┤
+３│　　│　　│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲き│▲ら│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 13 fukasa -/1 eda 3 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 200(200 0 0 jibun_p2 HappaKomatori) yomisuji A1A2
+joho Fukasa jikan 125 fukasa -/2 eda 11 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1000(200 0 800 jibun_p2 HappaKomatori) yomisuji A1A2 B4B3
+joho Fukasa jikan 287 fukasa -/3 eda 31 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1900(2000 0 -100 jibun_p2 HappaKomatori) yomisuji A1A2 B4B3 B2B3
+joho Fukasa jikan 566 fukasa -/4 eda 80 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji A1A2 B4B3 B2B3 A4B3
+joho Fukasa jikan 1409 fukasa -/5 eda 240 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1900(2000 0 -100 jibun_p2 HappaKomatori) yomisuji B1A2 A4B3 A2B3 B4B3 B2B3
+joho fin jikan 1421 fukasa -/5 eda 240 alpha 0 beta 0 hyokati 1900(2000 0 -100 jibun_p2 HappaKomatori) yomisuji B1A2 A4B3 A2B3 B4B3 B2B3
+
+図は 62手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│▽ぞ│▽ひ│▽ひ│
+  ├──┼──┼──┤
+３│　　│　　│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲き│▲ら│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 38 fukasa -/1 eda 2 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1000(-200 0 -800 jibun_p1 HappaKomatori) yomisuji B4B3
+joho Fukasa jikan 106 fukasa -/2 eda 10 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1900(-2000 0 100 jibun_p1 HappaKomatori) yomisuji B4B3 A2B3
+joho Fukasa jikan 216 fukasa -/3 eda 25 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1000(-200 0 -800 jibun_p1 HappaKomatori) yomisuji A4B3 A2B3 B4B3
+joho Fukasa jikan 538 fukasa -/4 eda 75 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1900(-2000 0 100 jibun_p1 HappaKomatori) yomisuji A4B3 A2B3 B4B3 B2B3
+joho fin jikan 1658 fukasa -/4 eda 261 alpha 0 beta 0 hyokati -1900(-2000 0 100 jibun_p1 HappaKomatori) yomisuji A4B3 A2B3 B4B3 B2B3
+
+図は 63手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│▽ぞ│▽ひ│▽ひ│
+  ├──┼──┼──┤
+３│　　│▲ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲き│▲ら│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 14 fukasa -/1 eda 1 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 2200(2600 0 -400 jibun_p2 HappaKomatori) yomisuji A2B3
+joho Fukasa jikan 50 fukasa -/2 eda 3 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1000(200 0 800 jibun_p2 HappaKomatori) yomisuji A2B3 B4B3
+joho Fukasa jikan 119 fukasa -/3 eda 14 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1900(2000 0 -100 jibun_p2 HappaKomatori) yomisuji A2B3 B4B3 B2B3
+joho Fukasa jikan 273 fukasa -/4 eda 39 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji A2B3 B4B3 B2B3 C4B3
+joho fin jikan 624 fukasa -/4 eda 92 alpha 0 beta 0 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji A2B3 B4B3 B2B3 C4B3
+
+図は 64手まで 対局者１の番
+ぞ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│　　│▽ひ│▽ひ│
+  ├──┼──┼──┤
+３│　　│▽ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲き│▲ら│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 10 fukasa -/1 eda 1 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1000(-200 0 -800 jibun_p1 HappaKomatori) yomisuji B4B3
+joho Fukasa jikan 82 fukasa -/2 eda 11 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1900(-2000 0 100 jibun_p1 HappaKomatori) yomisuji B4B3 B2B3
+joho Fukasa jikan 258 fukasa -/3 eda 35 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji B4B3 B2B3 C4B3
+joho fin jikan 737 fukasa -/3 eda 119 alpha 0 beta 0 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji B4B3 B2B3 C4B3
+
+図は 65手まで 対局者２の番
+ぞ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│　　│▽ひ│▽ひ│
+  ├──┼──┼──┤
+３│　　│▲き│　　│
+  ├──┼──┼──┤
+４│　　│　　│▲ら│
+  └──┴──┴──┘
+ぞ1
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 43 fukasa -/1 eda 9 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1900(2000 0 -100 jibun_p2 HappaKomatori) yomisuji B2B3
+joho Fukasa jikan 195 fukasa -/2 eda 32 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji B2B3 C4B3
+joho fin jikan 780 fukasa -/2 eda 136 alpha 0 beta 0 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji B2B3 C4B3
+
+図は 66手まで 対局者１の番
+ぞ1き1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│　　│　　│▽ひ│
+  ├──┼──┼──┤
+３│　　│▽ひ│　　│
+  ├──┼──┼──┤
+４│　　│　　│▲ら│
+  └──┴──┴──┘
+ぞ1
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 50 fukasa -/1 eda 6 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji C4B3
+joho Fukasa jikan 228 fukasa -/2 eda 29 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 Happa) yomisuji C4B3 K*B2
+joho Fukasa jikan 844 fukasa -/3 eda 145 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji C4B3 K*B2 B3A3
+joho fin jikan 1250 fukasa -/3 eda 212 alpha 0 beta 0 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji C4B3 K*B2 B3A3
+
+図は 67手まで 対局者２の番
+ぞ1き1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│　　│　　│▽ひ│
+  ├──┼──┼──┤
+３│　　│▲ら│　　│
+  ├──┼──┼──┤
+４│　　│　　│　　│
+  └──┴──┴──┘
+ぞ1ひ1
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 83 fukasa -/1 eda 12 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 Happa) yomisuji K*B2
+joho Fukasa jikan 625 fukasa -/2 eda 112 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji K*B2 B3A3
+joho fin jikan 2046 fukasa -/2 eda 350 alpha 0 beta 0 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji K*B2 B3A3
+
+図は 68手まで 対局者１の番
+ぞ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│　　│▲ら│　　│
+  ├──┼──┼──┤
+４│　　│　　│　　│
+  └──┴──┴──┘
+ぞ1ひ1
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 11 fukasa -/1 eda 4 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji B3A3
+joho Fukasa jikan 267 fukasa -/2 eda 53 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 Happa) yomisuji B3A3 A1A2
+joho fin jikan 1666 fukasa -/2 eda 298 alpha 0 beta 0 hyokati -1800(-1800 0 0 jibun_p1 Happa) yomisuji B3A3 A1A2
+
+図は 69手まで 対局者２の番
+ぞ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ら│　　│　　│
+  ├──┼──┼──┤
+４│　　│　　│　　│
+  └──┴──┴──┘
+ぞ1ひ1
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 57 fukasa -/1 eda 11 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 Happa) yomisuji A1A2
+joho Fukasa jikan 506 fukasa -/2 eda 70 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji A1A2 A3A4
+joho fin jikan 1107 fukasa -/2 eda 170 alpha 0 beta 0 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji A1A2 A3A4
+
+図は 70手まで 対局者１の番
+ぞ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│　　│▽ら│
+  ├──┼──┼──┤
+２│▽き│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ら│　　│　　│
+  ├──┼──┼──┤
+４│　　│　　│　　│
+  └──┴──┴──┘
+ぞ1ひ1
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 5 fukasa -/1 eda 2 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji A3A4
+joho Fukasa jikan 139 fukasa -/2 eda 25 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 Happa) yomisuji A3A4 Z*B3
+joho Fukasa jikan 596 fukasa -/3 eda 103 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji A3A4 Z*B3 A4B4
+joho fin jikan 781 fukasa -/3 eda 140 alpha 0 beta 0 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji A3A4 Z*B3 A4B4
+
+図は 71手まで 対局者２の番
+ぞ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│　　│▽ら│
+  ├──┼──┼──┤
+２│▽き│▽き│▽ひ│
+  ├──┼──┼──┤
+３│　　│　　│　　│
+  ├──┼──┼──┤
+４│▲ら│　　│　　│
+  └──┴──┴──┘
+ぞ1ひ1
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 44 fukasa -/1 eda 11 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 Happa) yomisuji Z*B3
+joho Fukasa jikan 289 fukasa -/2 eda 49 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji Z*B3 A4B4
+joho fin jikan 1448 fukasa -/2 eda 285 alpha 0 beta 0 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji Z*B3 A4B4
+
+図は 72手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│　　│▽ら│
+  ├──┼──┼──┤
+２│▽き│▽き│▽ひ│
+  ├──┼──┼──┤
+３│　　│▽ぞ│　　│
+  ├──┼──┼──┤
+４│▲ら│　　│　　│
+  └──┴──┴──┘
+ぞ1ひ1
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 2 fukasa -/1 eda 1 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji A4B4
+joho Fukasa jikan 64 fukasa -/2 eda 8 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji A4B4 B2B1
+joho Fukasa jikan 548 fukasa -/3 eda 62 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -700(-1800 0 1100 jibun_p1 HappaKomatori) yomisuji A4B4 C1B1 H*A4
+joho Fukasa jikan 1310 fukasa -/4 eda 212 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji A4B4 C1B1 H*A3 A2A1
+joho fin jikan 1338 fukasa -/4 eda 212 alpha 0 beta 0 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji A4B4 C1B1 H*A3 A2A1
+
+図は 73手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│　　│▽ら│
+  ├──┼──┼──┤
+２│▽き│▽き│▽ひ│
+  ├──┼──┼──┤
+３│　　│▽ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲ら│　　│
+  └──┴──┴──┘
+ぞ1ひ1
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 27 fukasa -/1 eda 6 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji B2B1
+joho Fukasa jikan 483 fukasa -/2 eda 59 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 700(1800 0 -1100 jibun_p2 HappaKomatori) yomisuji C1B1 H*A4
+joho Fukasa jikan 1257 fukasa -/3 eda 208 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji C1B1 H*A3 A2A1
+joho fin jikan 1289 fukasa -/3 eda 208 alpha 0 beta 0 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji C1B1 H*A3 A2A1
+
+図は 74手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽ら│　　│
+  ├──┼──┼──┤
+２│▽き│▽き│▽ひ│
+  ├──┼──┼──┤
+３│　　│▽ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲ら│　　│
+  └──┴──┴──┘
+ぞ1ひ1
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 98 fukasa -/1 eda 10 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -700(-1800 0 1100 jibun_p1 HappaKomatori) yomisuji H*A4
+joho Fukasa jikan 289 fukasa -/2 eda 45 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji H*A3 A2A1
+joho fin jikan 1349 fukasa -/2 eda 175 alpha 0 beta 0 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji H*A3 A2A1
+
+図は 75手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽ら│　　│
+  ├──┼──┼──┤
+２│▽き│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│▽ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲ら│　　│
+  └──┴──┴──┘
+ぞ1
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 61 fukasa -/1 eda 6 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji A2A1
+joho Fukasa jikan 242 fukasa -/2 eda 26 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji A2A1 Z*A4
+joho Fukasa jikan 683 fukasa -/3 eda 102 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 2000(2000 0 0 jibun_p2 HappaKomatori) yomisuji A2A1 A3A2 A1A2
+joho fin jikan 1360 fukasa -/3 eda 214 alpha 0 beta 0 hyokati 2000(2000 0 0 jibun_p2 HappaKomatori) yomisuji A2A1 A3A2 A1A2
+
+図は 76手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ら│　　│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│▽ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲ら│　　│
+  └──┴──┴──┘
+ぞ1
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 49 fukasa -/1 eda 5 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji Z*A4
+joho Fukasa jikan 197 fukasa -/2 eda 24 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -2000(-2000 0 0 jibun_p1 HappaKomatori) yomisuji A3A2 A1A2
+joho Fukasa jikan 684 fukasa -/3 eda 103 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji Z*A4 B3A4 B4A4
+joho fin jikan 1720 fukasa -/3 eda 270 alpha 0 beta 0 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji Z*A4 B3A4 B4A4
+
+図は 77手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ら│　　│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│▽ぞ│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 81 fukasa -/1 eda 7 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 3000(4200 0 -1200 jibun_p2 HappaKomatori) yomisuji B3A4
+joho Fukasa jikan 189 fukasa -/2 eda 23 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji B3A4 B4A4
+joho Fukasa jikan 593 fukasa -/3 eda 89 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 Happa) yomisuji B3A4 B4A4 Z*B3
+joho fin jikan 606 fukasa -/3 eda 89 alpha 0 beta 0 hyokati 1800(1800 0 0 jibun_p2 Happa) yomisuji B3A4 B4A4 Z*B3
+
+図は 78手まで 対局者１の番
+ぞ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ら│　　│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│　　│　　│
+  ├──┼──┼──┤
+４│▽ぞ│▲ら│　　│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 13 fukasa -/1 eda 3 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji B4A4
+joho Fukasa jikan 137 fukasa -/2 eda 18 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 Happa) yomisuji B4A4 Z*B3
+joho Fukasa jikan 564 fukasa -/3 eda 67 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji B4A4 Z*B3 A4B4
+joho fin jikan 1822 fukasa -/3 eda 243 alpha 0 beta 0 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji B4A4 Z*B3 A4B4
+
+図は 79手まで 対局者２の番
+ぞ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ら│　　│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│　　│　　│
+  ├──┼──┼──┤
+４│▲ら│　　│　　│
+  └──┴──┴──┘
+ぞ1
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 58 fukasa -/1 eda 10 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 Happa) yomisuji Z*B3
+joho Fukasa jikan 360 fukasa -/2 eda 51 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji Z*B3 A4B4
+joho fin jikan 1415 fukasa -/2 eda 202 alpha 0 beta 0 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji Z*B3 A4B4
+
+図は 80手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ら│　　│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│▽ぞ│　　│
+  ├──┼──┼──┤
+４│▲ら│　　│　　│
+  └──┴──┴──┘
+ぞ1
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 2 fukasa -/1 eda 1 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji A4B4
+joho Fukasa jikan 67 fukasa -/2 eda 8 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji A4B4 B1C1
+joho Fukasa jikan 304 fukasa -/3 eda 36 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji A4B4 B1C1 Z*A4
+joho Fukasa jikan 877 fukasa -/4 eda 125 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -2000(-2000 0 0 jibun_p1 HappaKomatori) yomisuji A4B4 B1C1 A3A2 A1A2
+joho fin jikan 893 fukasa -/4 eda 125 alpha 0 beta 0 hyokati -2000(-2000 0 0 jibun_p1 HappaKomatori) yomisuji A4B4 B1C1 A3A2 A1A2
+
+図は 81手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ら│　　│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│▽ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲ら│　　│
+  └──┴──┴──┘
+ぞ1
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 64 fukasa -/1 eda 6 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji B1C1
+joho Fukasa jikan 305 fukasa -/2 eda 33 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji B1C1 Z*A4
+joho fin jikan 814 fukasa -/2 eda 109 alpha 0 beta 0 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji B1C1 Z*A4
+
+図は 82手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│▽ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲ら│　　│
+  └──┴──┴──┘
+ぞ1
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 60 fukasa -/1 eda 6 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji Z*A4
+joho Fukasa jikan 224 fukasa -/2 eda 31 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -2000(-2000 0 0 jibun_p1 HappaKomatori) yomisuji A3A2 A1A2
+joho Fukasa jikan 743 fukasa -/3 eda 118 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji Z*A4 B3A4 B4A4
+joho fin jikan 2029 fukasa -/3 eda 323 alpha 0 beta 0 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji Z*A4 B3A4 B4A4
+
+図は 83手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│▽ぞ│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 38 fukasa -/1 eda 7 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 3000(4200 0 -1200 jibun_p2 HappaKomatori) yomisuji B3A4
+joho Fukasa jikan 176 fukasa -/2 eda 23 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji B3A4 B4A4
+joho Fukasa jikan 593 fukasa -/3 eda 86 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 Happa) yomisuji B3A4 B4A4 Z*B3
+joho fin jikan 1234 fukasa -/3 eda 201 alpha 0 beta 0 hyokati 1800(1800 0 0 jibun_p2 Happa) yomisuji B3A4 B4A4 Z*B3
+
+図は 84手まで 対局者１の番
+ぞ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│　　│　　│
+  ├──┼──┼──┤
+４│▽ぞ│▲ら│　　│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 13 fukasa -/1 eda 3 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji B4A4
+joho Fukasa jikan 145 fukasa -/2 eda 20 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 Happa) yomisuji B4A4 Z*B3
+joho Fukasa jikan 593 fukasa -/3 eda 89 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji B4A4 Z*B3 A4B4
+joho fin jikan 1055 fukasa -/3 eda 148 alpha 0 beta 0 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji B4A4 Z*B3 A4B4
+
+図は 85手まで 対局者２の番
+ぞ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│　　│　　│
+  ├──┼──┼──┤
+４│▲ら│　　│　　│
+  └──┴──┴──┘
+ぞ1
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 62 fukasa -/1 eda 12 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 Happa) yomisuji Z*B3
+joho Fukasa jikan 500 fukasa -/2 eda 73 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji Z*B3 A4B4
+joho fin jikan 1376 fukasa -/2 eda 201 alpha 0 beta 0 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji Z*B3 A4B4
+
+図は 86手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│▽ぞ│　　│
+  ├──┼──┼──┤
+４│▲ら│　　│　　│
+  └──┴──┴──┘
+ぞ1
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 2 fukasa -/1 eda 1 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji A4B4
+joho Fukasa jikan 87 fukasa -/2 eda 8 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji A4B4 A1B1
+joho Fukasa jikan 271 fukasa -/3 eda 29 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji A4B4 A1B1 Z*A4
+joho Fukasa jikan 729 fukasa -/4 eda 99 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -2000(-2000 0 0 jibun_p1 HappaKomatori) yomisuji A4B4 A1B1 A3A2 B2A2
+joho fin jikan 891 fukasa -/4 eda 121 alpha 0 beta 0 hyokati -2000(-2000 0 0 jibun_p1 HappaKomatori) yomisuji A4B4 A1B1 A3A2 B2A2
+
+図は 87手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│▽ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲ら│　　│
+  └──┴──┴──┘
+ぞ1
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 32 fukasa -/1 eda 6 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji A1B1
+joho Fukasa jikan 225 fukasa -/2 eda 26 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji A1B1 Z*A4
+joho Fukasa jikan 652 fukasa -/3 eda 95 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 2000(2000 0 0 jibun_p2 HappaKomatori) yomisuji A1B1 A3A2 B2A2
+joho fin jikan 1911 fukasa -/3 eda 296 alpha 0 beta 0 hyokati 2000(2000 0 0 jibun_p2 HappaKomatori) yomisuji A1B1 A3A2 B2A2
+
+図は 88手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽き│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│▽ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲ら│　　│
+  └──┴──┴──┘
+ぞ1
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 63 fukasa -/1 eda 5 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji Z*A4
+joho Fukasa jikan 216 fukasa -/2 eda 23 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -2000(-2000 0 0 jibun_p1 HappaKomatori) yomisuji A3A2 B2A2
+joho Fukasa jikan 616 fukasa -/3 eda 88 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji Z*A4 B3A4 B4A4
+joho fin jikan 1505 fukasa -/3 eda 211 alpha 0 beta 0 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji Z*A4 B3A4 B4A4
+
+図は 89手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽き│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│▽ぞ│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 43 fukasa -/1 eda 6 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 3000(4200 0 -1200 jibun_p2 HappaKomatori) yomisuji B3A4
+joho Fukasa jikan 151 fukasa -/2 eda 20 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji B3A4 B4A4
+joho Fukasa jikan 527 fukasa -/3 eda 70 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 Happa) yomisuji B3A4 B4A4 Z*B3
+joho fin jikan 845 fukasa -/3 eda 114 alpha 0 beta 0 hyokati 1800(1800 0 0 jibun_p2 Happa) yomisuji B3A4 B4A4 Z*B3
+
+図は 90手まで 対局者１の番
+ぞ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽き│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│　　│　　│
+  ├──┼──┼──┤
+４│▽ぞ│▲ら│　　│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 14 fukasa -/1 eda 3 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji B4A4
+joho Fukasa jikan 121 fukasa -/2 eda 17 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 Happa) yomisuji B4A4 Z*B3
+joho Fukasa jikan 445 fukasa -/3 eda 67 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji B4A4 Z*B3 A4B4
+joho fin jikan 1968 fukasa -/3 eda 335 alpha 0 beta 0 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji B4A4 Z*B3 A4B4
+
+図は 91手まで 対局者２の番
+ぞ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽き│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│　　│　　│
+  ├──┼──┼──┤
+４│▲ら│　　│　　│
+  └──┴──┴──┘
+ぞ1
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 54 fukasa -/1 eda 9 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 Happa) yomisuji Z*B3
+joho Fukasa jikan 368 fukasa -/2 eda 51 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji Z*B3 A4B4
+joho fin jikan 773 fukasa -/2 eda 122 alpha 0 beta 0 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji Z*B3 A4B4
+
+図は 92手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽き│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│▽ぞ│　　│
+  ├──┼──┼──┤
+４│▲ら│　　│　　│
+  └──┴──┴──┘
+ぞ1
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 2 fukasa -/1 eda 1 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji A4B4
+joho Fukasa jikan 80 fukasa -/2 eda 7 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji A4B4 B1A1
+joho Fukasa jikan 356 fukasa -/3 eda 39 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji A4B4 B1A1 Z*A4
+joho fin jikan 769 fukasa -/3 eda 94 alpha 0 beta 0 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji A4B4 B1A1 Z*A4
+
+図は 93手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽き│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│▽ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲ら│　　│
+  └──┴──┴──┘
+ぞ1
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 34 fukasa -/1 eda 5 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji B1A1
+joho Fukasa jikan 285 fukasa -/2 eda 36 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji B1A1 Z*A4
+joho Fukasa jikan 866 fukasa -/3 eda 125 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 2000(2000 0 0 jibun_p2 HappaKomatori) yomisuji B1A1 A3A2 A1A2
+joho fin jikan 1456 fukasa -/3 eda 236 alpha 0 beta 0 hyokati 2000(2000 0 0 jibun_p2 HappaKomatori) yomisuji B1A1 A3A2 A1A2
+同一局面反復 2 回目
+図は 94手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│▽ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲ら│　　│
+  └──┴──┴──┘
+ぞ1
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 56 fukasa -/1 eda 6 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji Z*A4
+joho Fukasa jikan 241 fukasa -/2 eda 31 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -2000(-2000 0 0 jibun_p1 HappaKomatori) yomisuji A3A2 A1A2
+joho Fukasa jikan 769 fukasa -/3 eda 118 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji Z*A4 B3A4 B4A4
+joho fin jikan 1543 fukasa -/3 eda 231 alpha 0 beta 0 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji Z*A4 B3A4 B4A4
+同一局面反復 2 回目
+図は 95手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│▽ぞ│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 40 fukasa -/1 eda 7 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 3000(4200 0 -1200 jibun_p2 HappaKomatori) yomisuji B3A4
+joho Fukasa jikan 166 fukasa -/2 eda 23 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji B3A4 B4A4
+joho fin jikan 550 fukasa -/2 eda 79 alpha 0 beta 0 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji B3A4 B4A4
+同一局面反復 2 回目
+図は 96手まで 対局者１の番
+ぞ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│　　│　　│
+  ├──┼──┼──┤
+４│▽ぞ│▲ら│　　│
+  └──┴──┴──┘
+
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 13 fukasa -/1 eda 3 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji B4A4
+joho Fukasa jikan 132 fukasa -/2 eda 20 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 Happa) yomisuji B4A4 Z*B3
+joho fin jikan 557 fukasa -/2 eda 87 alpha 0 beta 0 hyokati -1800(-1800 0 0 jibun_p1 Happa) yomisuji B4A4 Z*B3
+同一局面反復 2 回目
+図は 97手まで 対局者２の番
+ぞ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│　　│　　│
+  ├──┼──┼──┤
+４│▲ら│　　│　　│
+  └──┴──┴──┘
+ぞ1
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 61 fukasa -/1 eda 12 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 Happa) yomisuji Z*B3
+joho Fukasa jikan 439 fukasa -/2 eda 73 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji Z*B3 A4B4
+joho fin jikan 1194 fukasa -/2 eda 192 alpha 0 beta 0 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji Z*B3 A4B4
+同一局面反復 2 回目
+図は 98手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│▽ぞ│　　│
+  ├──┼──┼──┤
+４│▲ら│　　│　　│
+  └──┴──┴──┘
+ぞ1
+**デバッグ・モード** 対局者１（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 2 fukasa -/1 eda 1 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji A4B4
+joho Fukasa jikan 65 fukasa -/2 eda 8 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji A4B4 A1B1
+joho Fukasa jikan 232 fukasa -/3 eda 29 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -1800(-1800 0 0 jibun_p1 HappaKomatori) yomisuji A4B4 A1B1 Z*A4
+joho Fukasa jikan 663 fukasa -/4 eda 99 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati -2000(-2000 0 0 jibun_p1 HappaKomatori) yomisuji A4B4 A1B1 A3A2 B2A2
+joho fin jikan 1707 fukasa -/4 eda 286 alpha 0 beta 0 hyokati -2000(-2000 0 0 jibun_p1 HappaKomatori) yomisuji A4B4 A1B1 A3A2 B2A2
+同一局面反復 2 回目
+図は 99手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│　　│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│▽ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲ら│　　│
+  └──┴──┴──┘
+ぞ1
+**デバッグ・モード** 対局者２（HyokatiYusen）の思考中（＾～＾）joho Fukasa jikan 31 fukasa -/1 eda 6 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji A1B1
+joho Fukasa jikan 210 fukasa -/2 eda 26 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 1800(1800 0 0 jibun_p2 HappaKomatori) yomisuji A1B1 Z*A4
+joho Fukasa jikan 632 fukasa -/3 eda 95 alpha [α未設定] -31101 beta [β未設定] 31101 hyokati 2000(2000 0 0 jibun_p2 HappaKomatori) yomisuji A1B1 A3A2 B2A2
+joho fin jikan 898 fukasa -/3 eda 130 alpha 0 beta 0 hyokati 2000(2000 0 0 jibun_p2 HappaKomatori) yomisuji A1B1 A3A2 B2A2
+同一局面反復 2 回目
+図は100手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽き│▽ら│
+  ├──┼──┼──┤
+２│　　│▽き│▽ひ│
+  ├──┼──┼──┤
+３│▲ひ│▽ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲ら│　　│
+  └──┴──┴──┘
+ぞ1

@@ -1,0 +1,983 @@
+namespace kifuwarabe_shogithink.pure.com.hyoka
+{
+    /// <summary>
+    /// 評価値☆
+    /// 
+    /// 評価値と、詰め手数と、その他の　３種類があるぜ☆（＾▽＾）
+    /// 
+    /// 名前は、代表的な駒の点数を並べただけ☆（＾～＾）
+    /// </summary>
+    public enum Hyokati
+    {
+#if DEBUG
+        //〇 Syokiti_Alpha = -598,
+        //Syokiti_Alpha = -1,//〇
+        //Syokiti_Alpha = 0,//〇
+        //× Syokiti_Alpha = 1,
+        //Syokiti_Alpha = 598,//こうやりたい//×
+        Syokiti_Alpha = -31101,
+#else
+        /// <summary>
+        /// アルファの初期値として使う、下限だぜ☆　零手詰められ　と見分けるために分けるんだぜ☆（＾▽＾）ｗｗｗ
+        /// </summary>
+        Syokiti_Alpha = -31101,
+#endif
+
+        /// <summary>
+        /// ０手詰められ☆　評価値の－３１１００～－３１０００を、何手詰められかの数字に利用☆
+        /// </summary>
+        TumeTesu_FuNoSu_ReiTeTumerare = -31100,
+        /// <summary>
+        /// 合法手なし（０手詰められの別名）
+        /// </summary>
+        TumeTesu_GohosyuNasi = TumeTesu_FuNoSu_ReiTeTumerare,
+        TumeTesu_Stalemate = TumeTesu_FuNoSu_ReiTeTumerare,
+        /// <summary>
+        /// １手詰められ☆
+        /// </summary>
+        TumeTesu_FuNoSu_ItteTumerare = -31099,
+        /// <summary>
+        /// ２手詰められ☆
+        /// </summary>
+        TumeTesu_FuNoSu_NiteTumerare = -31098,
+        /// <summary>
+        /// １００手詰められ☆
+        /// </summary>
+        TumeTesu_FuNoSu_HyakuTeTumerare = -31000,
+        /// <summary>
+        /// 得点の最小（評価値の変域を　らいおん２枚　で埋め尽くす程度）
+        /// </summary>
+        Hyokati_Saisyo = -30000,
+        /// <summary>
+        /// らいおん（負け）
+        /// 目安：　らいおん　＝　らいおん以外の全駒　＋　二駒関係評価値最大
+        /// </summary>
+        Hyokati_FuNoSu_Raion = -15000,
+        /// <summary>
+        /// パワーアップきりん
+        /// </summary>
+        Hyokati_FuNoSu_PowerupKirin = -200,
+        /// <summary>
+        /// パワーアップぞう
+        /// </summary>
+        Hyokati_FuNoSu_PowerupZou = -200,
+        /// <summary>
+        /// 千日手を打開すると、損をすると思われる想定の、点数差だぜ☆（＾▽＾）ｗｗｗ
+        /// 
+        /// 例：ひよこ　＋　きりん　を損しても打開の方が良いとき☆（＾▽＾）
+        /// </summary>
+        Hyokati_FuNoSu_SennititeDakai = Hyokati_FuNoSu_Hiyoko + Hyokati_FuNoSu_Kirin,
+        /// <summary>
+        /// きりん
+        /// </summary>
+        Hyokati_FuNoSu_Kirin = -160,
+        /// <summary>
+        /// ぞう
+        /// </summary>
+        Hyokati_FuNoSu_Zou = -160,
+        /// <summary>
+        /// いのしし（利き８マス扱い）FIXME:時価にしたい
+        /// </summary>
+        Hyokati_FuNoSu_Inosisi = -80,
+        /// <summary>
+        /// にわとり
+        /// </summary>
+        Hyokati_FuNoSu_Niwatori = -60,
+        /// <summary>
+        /// いぬ
+        /// </summary>
+        Hyokati_FuNoSu_Inu = -60,
+        /// <summary>
+        /// ねこ
+        /// </summary>
+        Hyokati_FuNoSu_Neko = -50,
+        /// <summary>
+        /// うさぎ
+        /// </summary>
+        Hyokati_FuNoSu_Usagi = -20,
+        /// <summary>
+        /// ひよこ
+        /// </summary>
+        Hyokati_FuNoSu_Hiyoko = -10,
+        /// <summary>
+        /// ０点
+        /// </summary>
+        Hyokati_Rei = 0,
+
+        /// <summary>
+        /// ひよこ
+        /// </summary>
+        Hyokati_SeiNoSu_Hiyoko = 10,
+        /// <summary>
+        /// うさぎ
+        /// </summary>
+        Hyokati_SeiNoSu_Usagi = 20,
+        /// <summary>
+        /// ねこ
+        /// </summary>
+        Hyokati_SeiNoSu_Neko = 50,
+        /// <summary>
+        /// いぬ
+        /// </summary>
+        Hyokati_SeiNoSu_Inu = 60,
+        /// <summary>
+        /// にわとり
+        /// </summary>
+        Hyokati_SeiNoSu_Niwatori = 60,
+        /// <summary>
+        /// いのしし
+        /// </summary>
+        Hyokati_SeiNoSu_Inosisi = 80,
+        /// <summary>
+        /// ぞう
+        /// </summary>
+        Hyokati_SeiNoSu_Zou = 160,
+        /// <summary>
+        /// きりん
+        /// </summary>
+        Hyokati_SeiNoSu_Kirin = 160,
+        /// <summary>
+        /// 千日手を打開すると、損をすると思われる想定の、点数差だぜ☆（＾▽＾）ｗｗｗ
+        /// 
+        /// 例：ひよこ　＋　きりん　を損しても打開の方が良いとき☆（＾▽＾）
+        /// </summary>
+        Hyokati_SeiNoSu_SennititeDakai = Hyokati_SeiNoSu_Hiyoko + Hyokati_SeiNoSu_Kirin,
+        /// <summary>
+        /// パワーアップぞう
+        /// </summary>
+        Hyokati_SeiNoSu_PowerupZou = 200,
+        /// <summary>
+        /// パワーアップきりん
+        /// </summary>
+        Hyokati_SeiNoSu_PowerupKirin = 200,
+        /// <summary>
+        /// らいおん（勝ち）
+        /// 目安：　らいおん　＝　らいおん以外の全駒　＋　二駒関係評価値最大
+        /// </summary>
+        Hyokati_SeiNoSu_Raion = 15000,
+        /// <summary>
+        /// 得点の最大（評価値の変域を　らいおん２枚　で埋め尽くす程度）
+        /// </summary>
+        Hyokati_Saidai = 30000,
+        /// <summary>
+        /// １００手詰め☆
+        /// </summary>
+        TumeTesu_SeiNoSu_HyakuTeDume = 31000,
+        /// <summary>
+        /// １手詰め☆
+        /// </summary>
+        TumeTesu_SeiNoSu_ItteDume = 31099,
+        /// <summary>
+        /// ０手詰め☆　評価値の３１１００～３１０００を、何手詰めかの数字に利用☆
+        /// </summary>
+        TumeTesu_SeiNoSu_ReiTeDume = 31100,
+
+#if DEBUG
+        //Syokiti_Beta = -1,//〇
+        //Syokiti_Beta = 0,//〇
+        //Syokiti_Beta = 599,//〇
+        Syokiti_Beta = 31101,
+#else
+        /// <summary>
+        /// ベータの初期値として使う、上限だぜ☆　零手詰めと見分けるために分けるんだぜ☆（＾▽＾）ｗｗｗ
+        /// </summary>
+        Syokiti_Beta = 31101,
+#endif
+
+
+        /// <summary>
+        /// これ以降、その他だぜ☆（＾▽＾）
+        /// </summary>
+        Sonota = 32001,
+        /// <summary>
+        /// 勝負無しで、評価を付けられない場合☆（＾～＾）
+        /// </summary>
+        Sonota_SyobuNasi = 32002,
+    }
+
+    /// <summary>
+    /// 評価理由（読み筋情報　用）
+    /// </summary>
+    public enum HyokaRiyu
+    {
+        /// <summary>
+        /// 指せる手がなくて評価値が付いていないとき☆
+        /// </summary>
+        SaseruTeNasi1,
+        SaseruTeNasi2,
+        SaseruTeNasi3,
+        /// <summary>
+        /// トランスポジション・テーブルによるカット☆
+        /// </summary>
+        TranspositionTable,
+        /// <summary>
+        /// 葉の静的局面評価値☆
+        /// </summary>
+        Happa,
+        /// <summary>
+        /// 葉の静的局面評価値☆（駒を取る手、詰めは見えていない）
+        /// </summary>
+        HappaKomatori,
+        /// <summary>
+        /// 葉の静的局面評価値☆（駒を取る手、詰めが見えている）
+        /// </summary>
+        HappaKomatoriTumi,
+        ///// <summary>
+        ///// 葉の静的局面評価値☆（駒を取る手、詰められ　が見えている）
+        ///// </summary>
+        //HappaKomatoriTumerare,
+        /// <summary>
+        /// らいおん捕まえたなど☆
+        /// </summary>
+        RaionTukamaeta,
+        /// <summary>
+        /// 負けてるときの千日手受け入れ☆
+        /// </summary>
+        Friend_MaketeruTokinoSennititeUkeire,
+        /// <summary>
+        /// 勝ってるときの千日手拒否☆
+        /// </summary>
+        Friend_KatteruTokinoSennititeKyohi,
+        /// <summary>
+        /// 負けてるときの千日手渡し☆
+        /// </summary>
+        Opponent_MaketeruTokinoSennititeWatasi,
+        /// <summary>
+        /// 勝ってるときの千日手渡さず☆
+        /// </summary>
+        Opponent_KatteruTokinoSennititeWatasazu,
+        /// <summary>
+        /// ステイルメイトだぜ☆（＾▽＾）
+        /// </summary>
+        Stalemate,
+        /// <summary>
+        /// 探索で一手詰めを発見したから打ち切りだぜ☆（＾▽＾）
+        /// </summary>
+        TansakuIttedume,
+        /// <summary>
+        /// 最大手数指定での打ち切りだぜ☆（＾～＾）デバッグ用☆（＾～＾）
+        /// </summary>
+        SaidaiTesuUtikiri,
+        ///// <summary>
+        ///// ランダム局面で勝負なしの場合
+        ///// </summary>
+        //RandomKyokumenSyobuNasi,
+        ///// <summary>
+        ///// 局面評価し直した
+        ///// </summary>
+        //KyokumenHyokaSinaosi,
+        /// <summary>
+        /// この列挙型の要素数
+        /// </summary>
+        Yososu
+    }
+
+    public abstract class Const_Hyokati
+    {
+        /// <summary>
+        /// 最大何手詰めまで数えるか☆
+        /// </summary>
+        public const int SAIDAI_TUME = 100;
+    }
+
+    public abstract class Conv_Hyokati
+    {
+        /// <summary>
+        /// [駒]
+        /// 駒割り評価値
+        /// </summary>
+        public static Hyokati[] komawariHyokati = new Hyokati[]
+        {
+            // らいおん（対局者１、対局者２）
+            Hyokati.Hyokati_SeiNoSu_Raion, // R
+            Hyokati.Hyokati_SeiNoSu_Raion, // r
+
+            // ぞう
+            Hyokati.Hyokati_SeiNoSu_Zou, // Z
+            Hyokati.Hyokati_SeiNoSu_Zou, // z
+
+            // パワーアップぞう
+            Hyokati.Hyokati_SeiNoSu_PowerupZou,
+            Hyokati.Hyokati_SeiNoSu_PowerupZou,
+
+            // きりん
+            Hyokati.Hyokati_SeiNoSu_Kirin, // K
+            Hyokati.Hyokati_SeiNoSu_Kirin, // k
+
+            // パワーアップきりん
+            Hyokati.Hyokati_SeiNoSu_PowerupKirin,
+            Hyokati.Hyokati_SeiNoSu_PowerupKirin,
+
+            // ひよこ
+            Hyokati.Hyokati_SeiNoSu_Hiyoko, // H
+            Hyokati.Hyokati_SeiNoSu_Hiyoko, // h
+
+            // にわとり
+            Hyokati.Hyokati_SeiNoSu_Niwatori, // PH
+            Hyokati.Hyokati_SeiNoSu_Niwatori, // ph
+
+            // いぬ
+            Hyokati.Hyokati_SeiNoSu_Inu, // I
+            Hyokati.Hyokati_SeiNoSu_Inu, // i
+
+            // ねこ
+            Hyokati.Hyokati_SeiNoSu_Neko, // Neko
+            Hyokati.Hyokati_SeiNoSu_Neko, // neko
+
+            // パワーアップねこ
+            Hyokati.Hyokati_SeiNoSu_Niwatori, // PNeko
+            Hyokati.Hyokati_SeiNoSu_Niwatori, // pneko
+
+            // うさぎ
+            Hyokati.Hyokati_SeiNoSu_Usagi,
+            Hyokati.Hyokati_SeiNoSu_Usagi,
+
+            // パワーアップうさぎ
+            Hyokati.Hyokati_SeiNoSu_Niwatori,
+            Hyokati.Hyokati_SeiNoSu_Niwatori,
+
+            // いのしし
+            Hyokati.Hyokati_SeiNoSu_Inosisi,
+            Hyokati.Hyokati_SeiNoSu_Inosisi,
+
+            // パワーアップいのしし
+            Hyokati.Hyokati_SeiNoSu_Niwatori,
+            Hyokati.Hyokati_SeiNoSu_Niwatori,
+
+            Hyokati.Hyokati_Rei, // 空白
+            Hyokati.Hyokati_Rei, // 要素数
+        };
+
+        /// <summary>
+        /// 詰みの場合、数字をカウントアップするぜ☆（＾▽＾）
+        /// </summary>
+        /// <returns></returns>
+        public static Hyokati CountUpTume(Hyokati hyokati)
+        {
+            if (Hyokati.TumeTesu_SeiNoSu_HyakuTeDume < hyokati)
+            {
+                hyokati = hyokati - 1; // 何手詰めの数字が大きくなるぜ☆
+            }
+            else if (hyokati < Hyokati.TumeTesu_FuNoSu_HyakuTeTumerare)
+            {
+                hyokati = hyokati + 1; // 何手詰められの数字が大きくなるぜ☆
+            }
+            return hyokati;
+        }
+
+        /// <summary>
+        /// 評価値の変域内なら真だぜ☆（＾▽＾）
+        /// </summary>
+        /// <returns></returns>
+        public static bool InHyokati(Hyokati hyokati)
+        {
+            return Hyokati.Hyokati_Saisyo <= hyokati && hyokati <= Hyokati.Hyokati_Saidai;
+        }
+
+        /// <summary>
+        /// 詰め手数を示していれば、真だぜ☆（＾▽＾）
+        /// </summary>
+        /// <param name="hyokati"></param>
+        /// <returns></returns>
+        public static bool InTumeTesu(Hyokati hyokati)
+        {
+            return
+                (Hyokati.TumeTesu_FuNoSu_ReiTeTumerare <= hyokati && hyokati <= Hyokati.TumeTesu_FuNoSu_HyakuTeTumerare)
+                ||
+                (Hyokati.TumeTesu_SeiNoSu_HyakuTeDume <= hyokati && hyokati <= Hyokati.TumeTesu_SeiNoSu_ReiTeDume)
+                ;
+        }
+
+        /// <summary>
+        /// 評価値、または　詰め手数を示していれば、真だぜ☆（＾▽＾）
+        /// </summary>
+        /// <param name="hyokati"></param>
+        /// <returns></returns>
+        public static bool InHyokatiOrTumeTesu(Hyokati hyokati)
+        {
+            return
+                // ０手詰められ　～　評価値　～　０手詰め
+                Hyokati.TumeTesu_FuNoSu_ReiTeTumerare <= hyokati
+                &&
+                hyokati <= Hyokati.TumeTesu_SeiNoSu_ReiTeDume
+                ;
+        }
+
+        /// <summary>
+        /// 反転できるものは反転するぜ☆（＾▽＾）
+        /// </summary>
+        /// <param name="ref_hyokati"></param>
+        /// <returns></returns>
+        public static void Hanten(ref Hyokati ref_hyokati)
+        {
+            if (InHyokatiOrTumeTesu(ref_hyokati))
+            {
+                ref_hyokati = (Hyokati)(-(int)ref_hyokati);
+            }
+        }
+
+        /// <summary>
+        /// 初期値なら、真だぜ☆（＾▽＾）説明用☆（＾▽＾）
+        /// </summary>
+        /// <param name="hyokati"></param>
+        /// <returns></returns>
+        public static bool InSyokiti(Hyokati hyokati)
+        {
+            return Hyokati.Syokiti_Alpha == hyokati || Hyokati.Syokiti_Beta == hyokati ;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+        /// <summary>
+        /// [駒]
+        /// 駒割り評価値
+        /// </summary>
+        public static Tumesu[] komawariHyokati = new Tumesu[]
+        {
+            // らいおん（対局者１、対局者２）
+            Tumesu.Hyokati_SeiNoSu_Raion, // R
+            Tumesu.Hyokati_SeiNoSu_Raion, // r
+
+            // ぞう
+            Tumesu.Hyokati_Rei, // Z
+            Tumesu.Hyokati_Rei, // z
+
+            // パワーアップぞう
+            Tumesu.Hyokati_Rei,
+            Tumesu.Hyokati_Rei,
+
+            // きりん
+            Tumesu.Hyokati_Rei, // K
+            Tumesu.Hyokati_Rei, // k
+
+            // パワーアップきりん
+            Tumesu.Hyokati_Rei,
+            Tumesu.Hyokati_Rei,
+
+            // ひよこ
+            Tumesu.Hyokati_Rei, // H
+            Tumesu.Hyokati_Rei, // h
+
+            // にわとり
+            Tumesu.Hyokati_Rei, // PH
+            Tumesu.Hyokati_Rei, // ph
+
+            // いぬ
+            Tumesu.Hyokati_Rei, // I
+            Tumesu.Hyokati_Rei, // i
+
+            // ねこ
+            Tumesu.Hyokati_Rei, // Neko
+            Tumesu.Hyokati_Rei, // neko
+
+            // パワーアップねこ
+            Tumesu.Hyokati_Rei, // PNeko
+            Tumesu.Hyokati_Rei, // pneko
+
+            // うさぎ
+            Tumesu.Hyokati_Rei,
+            Tumesu.Hyokati_Rei,
+
+            // パワーアップうさぎ
+            Tumesu.Hyokati_Rei,
+            Tumesu.Hyokati_Rei,
+
+            // いのしし
+            Tumesu.Hyokati_Rei,
+            Tumesu.Hyokati_Rei,
+
+            // パワーアップいのしし
+            Tumesu.Hyokati_Rei,
+            Tumesu.Hyokati_Rei,
+
+            Tumesu.Hyokati_Rei, // 空白
+            Tumesu.Hyokati_Rei, // 要素数
+        };
+
+
+
+
+            // 持ち駒
+            foreach (Motigoma mk in Conv_Motigoma.itiran)
+            {
+                Taikyokusya tai = Med_Koma.MotiKomaToTaikyokusya(mk);
+                MotiKomasyurui mks = Med_Koma.MotiKomaToMotiKomasyrui(mk);
+                Tumesu komaHyokati = Conv_Hyokati.komawariHyokati[(int)Med_Koma.MotiKomasyuruiAndTaikyokusyaToKoma(mks, tai)];
+
+                hyokati[(int)tai] += (int)komaHyokati * sindanW.yomiKy.yomiMotigomaItiran.Count(mk);
+            }
+
+
+ Conv_Hyokati.komawariHyokati[(int)km];
+ 
+ 
+ Conv_Hyokati.komawariHyokati[(int)km];
+ 
+  Conv_Hyokati.komawariHyokati[(int)Med_Koma.KomasyuruiAndTaikyokusyaToKoma(tottaKomasyurui, tai)];// Util_Hyokati.HyokaKomawari(tottaKomasyurui);
+
+ 
+  ((float)Conv_Hyokati.komawariHyokati[(int)km_teban] / (float)Tumesu.Hyokati_Kijun) * (float)gky.ky.shogiban.kikiBan.yomiKikiBan.CountKikisuZenbu(teban, ms_ibasho);
+
+ 
+ 
+  ((float)Conv_Hyokati.komawariHyokati[(int)km_aiteban] / (float)Tumesu.Hyokati_Kijun) * (float)gky.ky.shogiban.kikiBan.yomiKikiBan.CountKikisuZenbu(aiteban, ms_ibasho);
+
+
+
+
+((float)Conv_Hyokati.komawariHyokati[(int)km_teban] / (float)Tumesu.Hyokati_Kijun) * (float)(gky.ky.shogiban.kikiBan.yomiKikiBan.CountKikisuZenbu(teban, ms_ibasho) - gky.ky.shogiban.kikiBan.yomiKikiBan.CountKikisuZenbu(aiteban, ms_ibasho));
+
+
+
+
+
+
+((float)Conv_Hyokati.komawariHyokati[(int)km_aiteban] / (float)Tumesu.Hyokati_Kijun) * (float)(gky.ky.shogiban.kikiBan.yomiKikiBan.CountKikisuZenbu(teban, ms_ibasho) - gky.ky.shogiban.kikiBan.yomiKikiBan.CountKikisuZenbu(aiteban, ms_ibasho));
+
+
+
+
+
+
+
+        public Tumesu komawari { get; private set; }
+
+, Tumesu komawari
+
+            this.komawari = komawari;
+
+            komawari = src.komawari;
+
+, Tumesu komawari
+
+            this.komawari = komawari;
+
+            Tumesu komawari2 = komawari; Conv_Hyokati.Hanten(ref komawari2);
+
+, komawari2
+
+(int)komawari + 
+
+                    "hyokatiUtiwake.Komawari=[" + komawari + "]\n" +
+
+
+                            out_tebanSasiteHyokatiUtiwake.komawari,
+
+                        eda_tebanSasiteHyokatiUtiwake.komawari,
+
+                        SpkHyokati.ToContents(hyokatiUtiwake.komawari),
+
+                gky.komawari_old.Get(gky.yomiKy.teban),
+
+
+                            ttEntry.komawariHyokati_forJoho,
+
+        /// <summary>
+        /// 駒割り評価値☆ 差分更新用☆
+        /// </summary>
+        public KomawariHyokatiSabunItiran komawari_old { get; set; }
+
+
+
+        public static Tumesu Hyoka(Genkyoku gkw, out Tumesu out_komawariHyokati)
+        {
+            out_komawariHyokati = gkw.komawari_old.Get(gkw.yomiKy.teban);
+            return out_komawariHyokati;
+        }
+
+                    // もう指して、千日手が起こった局面（手番）になっているぜ☆
+                    Tumesu sennititeKomawariHyokati;
+
+                    // 手番はもう相手に回っているので、点数は相手の点数☆
+                    sennititeKomawariHyokati = gky.komawari_old.Get(gky.yomiKy.teban);
+                    Tumesu sennititeHyokati = sennititeKomawariHyokati;
+
+            public Tumesu GetKomawari(Taikyokusya tai)
+            {
+                return hontaiGky.komawari_old.Get(tai);
+            }
+
+            komawari_old = new KomawariHyokatiSabunItiran();
+
+gky.komawari_old.Get(gky.yomiKy.teban) + 
+
+                gky.komawari_old.Herasu(aite, km_c);
+
+                    gky.komawari_old.Fuyasu(jibun, mk_c);// 駒１個被って増えるぜ☆（＾～＾）
+
+
+                gky.komawari_old.Herasu(jibun, km_t0);// 馬に成った場合、角の点数を引く
+
+                gky.komawari_old.Hetta(jibun, mk_t0); // １つ被って増えた自分の駒を減らすぜ☆（＾▽＾）
+
+            gky.komawari_old.Fuyasu(jibun, km_t1);
+
+            gky.komawari_old.Herasu(jibun, km_t1);
+
+                gky.komawari_old.Fuyasu(jibun, km_t0);
+
+                gky.komawari_old.Fuyasu(jibun, mk_t0);
+
+                    gky.komawari_old.Hetta(jibun, mk_c);
+
+                gky.komawari_old.Fuyasu(aite, km_c);
+
+            // うしろに続く文字は☆（＾▽＾）
+            int caret = 0;
+            Util_String.TobasuTangoToMatubiKuhaku(commandline, ref caret, "hyoka ");
+
+            if (caret == commandline.IndexOf("komawari", caret))
+            {
+                Tumesu hyokati = gky.komawari_old.Get(gky.yomiKy.teban);
+                hyoji.AppendLine("komawari hyokati = " + (int)hyokati);
+            }
+
+            komawari_old.Tukurinaosi(yomiGky);// 再計算
+
+                    if (!Develop.assert.Try_Assert_Sabun_Komawari("error Undo-Te-2", gky.yomiGky, syuturyoku))
+                    {
+                        return Pure.FailTrue("error Undo-Te-2"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                    }
+
+        /// <summary>
+        /// 診断。駒割り。現行と再計算の一致
+        /// </summary>
+        //[Conditional("DEBUG")]
+        public bool Try_Assert_Sabun_Komawari(string message, Genkyoku.YomiGky roGky, IDebugMojiretu reigai1)
+        {
+            KomawariHyokatiSabunItiran saikeisan = new KomawariHyokatiSabunItiran();
+            saikeisan.Tukurinaosi(roGky);
+            Hyokati hyokati1 = roGky.GetKomawari(Taikyokusya.T1);
+            Hyokati hyokati2 = roGky.GetKomawari(Taikyokusya.T2);
+            bool safe =
+                hyokati1 == saikeisan.Get(Taikyokusya.T1)
+                &&
+                hyokati2 == saikeisan.Get(Taikyokusya.T2)
+                ;
+            if (!safe)
+            {
+                reigai1.AppendLine(message +
+                "#河馬 診断 駒割り評価値\n" +
+                "P1差分  =[" + hyokati1 + "]\n" +
+                "  再計算=[" + saikeisan.Get(Taikyokusya.T1) + "]\n" +
+                "P2差分  =[" + hyokati2 + "]\n" +
+                "  再計算=[" + saikeisan.Get(Taikyokusya.T2) + "]\n" +
+                "");
+                return false;
+            }
+            return true;
+        }
+
+
+                if (!Develop.assert.Try_Assert_Sabun_Komawari(sindan4.ToContents(), gky.yomiGky, syuturyoku))
+                {
+                    return Pure.FailTrue("Try_Assert_Sabun_Komawari"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                }
+
+
+                if (!Develop.assert.Try_Assert_Sabun_Komawari("error Undo-Ta-1(2)", gky.yomiGky, syuturyoku))
+                {
+                    return Pure.FailTrue("error Undo-Ta-1(2)"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_Komawari(sindan1.ToContents(), gky.yomiGky, syuturyoku))
+                {
+                    return Pure.FailTrue("Try_Assert_Sabun_Komawari"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_Komawari(sindan2.ToContents(), gky.yomiGky, reigai1))
+                {
+                    return Pure.FailTrue("undo-tj2s Try_Assert_Sabun_Komawari"
+#if DEBUG
+                        , reigai1
+#endif
+                            );
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_Komawari(sindan2.ToContents(), gky.yomiGky, syuturyoku))
+                {
+                    return Pure.FailTrue("undo-tj2u Try_Assert_Sabun_Komawari"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_Komawari("error undo-tj2u-4", gky.yomiGky, syuturyoku))
+                {
+                    return Pure.FailTrue("error undo-tj2u-4"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                }
+
+                        if (!Develop.assert.Try_Assert_Sabun_Komawari("error Undo-Tu-2", gky.yomiGky, syuturyoku))
+                        {
+                            return Pure.FailTrue("error Undo-Tu-2"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                        }
+
+                if (!Develop.assert.Try_Assert_Sabun_Komawari("error Undo-Begin-2", gky.yomiGky, syuturyoku))
+                {
+                    return Pure.FailTrue("error Undo-Begin-2"
+#if DEBUG
+                        , syuturyoku
+#endif
+                            );
+                }
+
+                    if (!Develop.assert.Try_Assert_Sabun_Komawari("error Do-B-a-4", gky.yomiGky, reigai1))
+                    {
+                        return Pure.FailTrue("error Do-B-a-4", reigai1);
+                    }
+
+                    if (!Develop.assert.Try_Assert_Sabun_Komawari("error Do-B-b-2", gky.yomiGky, reigai1))
+                    {
+                        return Pure.FailTrue("error Do-B-b-2", reigai1);
+                    }
+
+                        if (!Develop.assert.Try_Assert_Sabun_Komawari("error Do-C-b-2", gky.yomiGky, reigai1))
+                        {
+                            return Pure.FailTrue("error Do-C-b-2", reigai1);
+                        }
+
+                    if (!Develop.assert.Try_Assert_Sabun_Komawari("error Do-B-b-2", gky.yomiGky, reigai1))
+                    {
+                        return Pure.FailTrue("error Do-MK-b-2", reigai1);
+                    }
+
+                if (!Develop.assert.Try_Assert_Sabun_Komawari("error do-tj3u-b-2", gky.yomiGky, reigai1))
+                {
+                    return Pure.FailTrue("error do-tj3u-b-2", reigai1);
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_Komawari("error Do-T2-c-2", gky.yomiGky, reigai1))
+                {
+                    return Pure.FailTrue("error Do-T2-c-2", reigai1);
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_Komawari("error Do-Begin-A-2", gky.yomiGky, reigai1))
+                {
+                    return Pure.FailTrue("error Do-Begin-A-2", reigai1);
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_Komawari("error Do-Begin-B-2", gky.yomiGky, reigai1))
+                {
+                    return Pure.FailTrue("error Do-Begin-B-2", reigai1);
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_Komawari("error Do-End-4", gky.yomiGky, reigai1))
+                {
+                    return Pure.FailTrue("error Do-End-4", reigai1);
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_Komawari("error undo-tj2s-4", gky.yomiGky, reigai1))
+                {
+                    return Pure.FailTrue("error undo-tj2s-4"
+                        , reigai1
+                            );
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_Komawari(sindan3.ToContents(), gky.yomiGky, reigai1))
+                {
+                    return Pure.FailTrue("Try_Assert_Sabun_Komawari"
+                        , reigai1
+                            );
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_Komawari("error Do-T2-d-2", gky.yomiGky, reigai1))
+                {
+                    return Pure.FailTrue("error Do-T2-d-2", reigai1);
+                }
+
+                if (!Develop.assert.Try_Assert_Sabun_Komawari("error do-tj3s-b-2", gky.yomiGky, reigai1))
+                {
+                    return Pure.FailTrue("error do-tj3s-b-2", reigai1);
+                }
+
+                    SpkHyokati.Setumei(hyokatiUtiwake.komawari, hyoji);
+                    hyoji.Append(" ");
+
+        public Tumesu komawariHyokati_forJoho { get; private set; }
+
+
+            komawariHyokati_forJoho = hyokatiUtiwake.komawari;
+
+            hyoji.Append(((int)tte.komawariHyokati_forJoho).ToString());
+
+
+
+
+
+
+
+
+
+
+#if DEBUG
+using kifuwarabe_shogithink.pure.genkyoku;
+using kifuwarabe_shogithink.pure.ky;
+using kifuwarabe_shogithink.pure.ky.bb;
+#else
+using kifuwarabe_shogithink.pure.genkyoku;
+using kifuwarabe_shogithink.pure.ky;
+using kifuwarabe_shogithink.pure.ky.bb;
+using kifuwarabe_shogithink.pure.com.hyoka;
+#endif
+
+namespace kifuwarabe_shogithink.pure.com.hyoka
+{
+    /// <summary>
+    /// 駒割り評価値差分一覧
+    /// </summary>
+    public class KomawariHyokatiSabunItiran
+    {
+        /// <summary>
+        /// 評価値を算出するぜ☆（＾▽＾）ひよこ１点だぜ☆ｗｗ
+        /// 
+        /// 駒割りだけ見るぜ☆（＾▽＾）
+        /// 
+        /// らいおん　２９点　（内訳：　２×（２×ぞう　＋　２×きりん　＋　２×にわとり）　＋　１）
+        /// ぞう　　　　２点
+        /// きりん　　　２点
+        /// ひよこ　　　１点
+        /// にわとり　　３点
+        /// 
+        /// で、どうだぜ☆（＾▽＾）
+        /// －らいおんより低いか、＋らいおんより高い点数が出ていれば、勝ち負けが決まっているぜ☆（＾▽＾）
+        /// 
+        /// 手番の対局者から見て、良ければ正の値、悪ければ負の値に　寄っているとするぜ☆（＾▽＾）
+        /// </summary>
+        public KomawariHyokatiSabunItiran()
+        {
+            komawariHyokati_Sabun = new HyokaNumber[] { HyokaNumber.Hyokati_Rei, HyokaNumber.Hyokati_Rei };
+        }
+
+        /// <summary>
+        /// [手番]
+        /// 駒割り評価値☆ 差分更新用☆
+        /// </summary>
+        public HyokaNumber[] komawariHyokati_Sabun { get; set; }
+
+        /// <summary>
+        /// 局面に点数を付けるぜ☆（＾▽＾）
+        /// 
+        /// どちらの対局者でも、自分に有利と思っていれば正の数の方向に点数が付くぜ☆（＾▽＾）
+        /// </summary>
+        /// <param name="ky_base"></param>
+        /// <returns></returns>
+        public void Tukurinaosi(Genkyoku.YomiGky sindanW)
+        {
+            HyokaNumber[] hyokati = new HyokaNumber[] { HyokaNumber.Hyokati_Rei, HyokaNumber.Hyokati_Rei
+                , HyokaNumber.Hyokati_Rei // 空白は手番なしで　ここに入れるぜ☆（＾～＾）
+            };
+
+            // 盤上
+            Bitboard komaBB = new Bitboard();
+            for (int iTai = 0; iTai < Conv_Taikyokusya.itiran.Length; iTai++)
+            {
+                Taikyokusya tai = Conv_Taikyokusya.itiran[iTai];
+                for (int iKs = 0; iKs < Conv_Komasyurui.itiran.Length; iKs++)
+                {
+                    Komasyurui ks = Conv_Komasyurui.itiran[iKs];
+
+                    sindanW.yomiKy.ToSetIbasho_yoko(Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, tai), komaBB);
+                    Masu ms_jissai;
+                    while (komaBB.Ref_PopNTZ(out ms_jissai))
+                    {
+                        hyokati[iTai] += Conv_Koma.banjoKomaHyokatiNumber[(int)Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, tai)];
+                    }
+                }
+            }
+
+            // 手番 - 相手番
+            HyokaNumber hyokatiP1 = hyokati[(int)Taikyokusya.T1];
+            hyokati[(int)Taikyokusya.T1] -= hyokati[(int)Taikyokusya.T2];
+            hyokati[(int)Taikyokusya.T2] -= hyokatiP1;
+            komawariHyokati_Sabun = hyokati;
+        }
+
+        public HyokaNumber Get(Taikyokusya tai)
+        {
+            return komawariHyokati_Sabun[(int)tai];
+        }
+        public void Increase(Taikyokusya tai, HyokaNumber henkaRyo)
+        {
+            komawariHyokati_Sabun[(int)tai] += (int)henkaRyo;
+        }
+        /// <summary>
+        /// 差分更新で使う☆（＾▽＾）駒取り☆
+        /// </summary>
+        public void Fuyasu(Taikyokusya tai, Koma km)
+        {
+            HyokaNumber henkaRyo = 0;//TODO:持駒評価値削除
+            Increase(tai, henkaRyo);
+            Increase(Conv_Taikyokusya.Hanten(tai), (HyokaNumber)(-(int)henkaRyo));
+        }
+        /// <summary>
+        /// 差分更新で使う☆（＾▽＾）駒取り☆
+        /// </summary>
+        public void Fuyasu(Taikyokusya tai, Motigoma mk)
+        {
+            HyokaNumber henkaRyo = Conv_Motigoma.motigomaHyokati[(int)mk];
+            Increase(tai, henkaRyo);
+            Increase(Conv_Taikyokusya.Hanten(tai), (HyokaNumber)(-(int)henkaRyo));
+        }
+        /// <summary>
+        /// 差分更新で使う☆（＾▽＾）駒取り☆
+        /// </summary>
+        public void Herasu(Taikyokusya tai, Koma km)
+        {
+            HyokaNumber henkaRyo = 0;//TODO:持ち駒評価値削除
+            Increase(tai, (HyokaNumber)(-(int)henkaRyo));
+            Increase(Conv_Taikyokusya.Hanten(tai), henkaRyo);
+        }
+        /// <summary>
+        /// 差分更新で使う☆（＾▽＾）駒取り☆
+        /// </summary>
+        public void Hetta(Taikyokusya tai, Motigoma mk)
+        {
+            HyokaNumber henkaRyo = Conv_Motigoma.motigomaHyokati[(int)mk];
+            Increase(tai, (HyokaNumber)(-(int)henkaRyo));
+            Increase(Conv_Taikyokusya.Hanten(tai), henkaRyo);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

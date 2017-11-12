@@ -1,0 +1,42 @@
+//#if DEBUG
+//                            //────────────────────
+//                            // デバッグ
+//                            //────────────────────
+//                            string dbg_preDump = DbgInterproject.project.Dump(ky, "指し手ピッカー01");
+//#endif
+
+#if DEBUG
+                            //────────────────────
+                            // デバッグ
+                            //────────────────────
+                            string dbg_preDump = Interproject.project.Dump("指し手ピッカー01");
+#endif
+
+#if DEBUG
+                            //────────────────────
+                            // デバッグ
+                            //────────────────────
+                            string dbg_preDump = Interproject.project.Dump("指し手ピッカー01");
+#endif
+
+#if DEBUG
+                        //────────────────────
+                        // デバッグ
+                        //────────────────────
+                        string dbg_preDump = Interproject.project.Dump( "指し手ピッカー01");
+#endif
+
+#if DEBUG
+                            //────────────────────
+                            // デバッグ
+                            //────────────────────
+                            string dbg_preDump = Interproject.project.Dump( "指し手ピッカー01");
+#endif
+
+#if DEBUG
+                            //────────────────────
+                            // デバッグ
+                            //────────────────────
+                            string dbg_preDump = Interproject.project.Dump( "指し手ピッカー01");
+#endif
+

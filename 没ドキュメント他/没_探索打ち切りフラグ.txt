@@ -1,0 +1,16 @@
+        ///// <summary>
+        ///// ŠÔØ‚ê‚Å’Tõ‚ğ‘Å‚¿Ø‚Á‚½‚Æ‚«A^
+        ///// </summary>
+        //public static bool tnsk_timeoverUtikiri;
+
+            tnsk_timeoverUtikiri = false;
+
+            if (isTimeOver)
+            {
+                PureMemory.tnsk_timeoverUtikiri = true;
+            }
+
+            if (isTimeOver)
+            {
+                PureMemory.tnsk_timeoverUtikiri = true;
+            }

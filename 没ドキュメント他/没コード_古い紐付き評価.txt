@@ -1,0 +1,88 @@
+            // 紐付き評価
+            // 駒割りよりは小さく評価したい。
+            float himodukiHyoka = 0.0f;
+            if (ComSettei.himodukiHyokaTukau)
+            {
+                {
+                    Taikyokusya teban = gky.yomiKy.teban;
+                    Taikyokusya aiteban = Conv_Taikyokusya.Hanten(teban);
+
+                    // 手番の駒が、手番の駒の利きに飛び込んでいて加点
+                    foreach (Komasyurui ks in Conv_Komasyurui.itiran)
+                    {
+                        Koma km_teban = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, teban);
+
+                        Bitboard bb_ibasho = gky.ky.shogiban.yomiIbashoBan_yoko.CloneKoma(km_teban);
+                        Masu ms_ibasho;
+                        while (bb_ibasho.Ref_PopNTZ(out ms_ibasho))// 立っているビットを降ろすぜ☆
+                        {
+                            himodukiHyoka += 0;//TODO:持ち駒評価値削除
+                        }
+                    }
+
+                    // 相手番の駒が、相手番の駒の利きに飛び込んでいて減点
+                    foreach (Komasyurui ks in Conv_Komasyurui.itiran)
+                    {
+                        Koma km_aiteban = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, aiteban);
+
+                        Bitboard bb_ibasho = gky.ky.shogiban.yomiIbashoBan_yoko.CloneKoma(km_aiteban);
+                        Masu ms_ibasho;
+                        while (bb_ibasho.Ref_PopNTZ(out ms_ibasho))// 立っているビットを降ろすぜ☆
+                        {
+                            himodukiHyoka -= 0;//TODO:持ち駒評価値削除
+                        }
+                    }
+
+                    // 手番の駒が、相手番の駒の利きに飛び込んでいて減点
+                    foreach (Komasyurui ks in Conv_Komasyurui.itiran)
+                    {
+                        Koma km_teban = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, teban);
+
+                        Bitboard bb_ibasho = gky.ky.shogiban.yomiIbashoBan_yoko.CloneKoma(km_teban);
+                        Masu ms_ibasho;
+                        while (bb_ibasho.Ref_PopNTZ(out ms_ibasho))// 立っているビットを降ろすぜ☆
+                        {
+                            himodukiHyoka -= 0;//TODO:持ち駒評価値削除
+                        }
+                    }
+
+                    // 相手番の駒が、手番の駒の利きに飛び込んでいて加点
+                    foreach (Komasyurui ks in Conv_Komasyurui.itiran)
+                    {
+                        Koma km_aiteban = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, aiteban);
+
+                        Bitboard bb_ibasho = gky.ky.shogiban.yomiIbashoBan_yoko.CloneKoma(km_aiteban);
+                        Masu ms_ibasho;
+                        while (bb_ibasho.Ref_PopNTZ(out ms_ibasho))// 立っているビットを降ろすぜ☆
+                        {
+                            himodukiHyoka += 0;//TODO:持ち駒評価値削除
+                        }
+                    }
+                }
+            }
+
+            out_hyokatiUtiwake = new HyokatiUtiwake(
+                (HyokatiAb)(((int)HyokatiAb.Hyokati_Rei + (int)himodukiHyoka)),
+                (HyokatiAb)((int)HyokatiAb.Hyokati_Rei + (int)himodukiHyoka),
+                hyokaRiyu,
+                ""
+                );
+
+        [Conditional("DEBUG")]
+        void Assert()
+        {
+            if (Conv_Hyokati.InHyokati(total))
+            {
+                Debug.Assert((int)total == (int)okimari,
+                    "評価値の整合性エラー☆\n" +
+                    "hyokatiUtiwake.EdaBest =[" + total + "]\n" +
+                    "hyokatiUtiwake.Okimari =[" + okimari + "]\n" +
+                    "riyu                   =[" + riyu + "]\n" +
+                    "riyuHosoku             =[" + riyuHosoku + "]\n"
+                    );
+            }
+        }
+
+
+
+

@@ -1,0 +1,928 @@
+定跡ファイル読込中..☆
+成績ファイル読込中..☆
+二駒関係ファイル読込中.☆
+┌─────────────────────────────────────┐
+│ら　ぞ　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　き　ぞ│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│ぞ　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　き│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│　　　　　　　　し　ょ　う　ぎ　　　　さ　ん　　　　よ　ん　　　　　　　　│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│　　　　　　　　　　　　かいはつしゃ　　　むずでょ　　　　　　　　　　　　│
+│　　　　　　　　　　　　さーくる　　ぐれーすけーる　　　　　　　　　　　　│
+│ひ　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　に│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│き　ひ　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　に　ひ│
+└─────────────────────────────────────┘
+……ようこそ、将棋３４へ☆（＾▽＾）ｗｗｗ
+
+
+　　　　　　　　[Enter]　　　　……　対局開始
+　　　　　　　　man [Enter]　　……　コマンド説明
+　　　　　　　　quit [Enter]　　……　終了
+
+
+
+> set P1Com true
+> 
+
+図は  0手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ら│▽ぞ│
+  ├──┼──┼──┤
+２│　　│▽ひ│　　│
+  ├──┼──┼──┤
+３│　　│▲ひ│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│▲き│
+  └──┴──┴──┘
+
+指し手全部
+┌──────────┐
+B3B2
+C4C3
+B4C3
+B4A3
+└──────────┘
+
+対局者１（HyokatiYusen）の思考中（＾～＾）joho jikan 23 fukasa -/1 eda 4 hyokati 100(200 0 -100 jibun_p1 HappaKomatori) yomisuji B3B2
+joho jikan 39 fukasa -/2 eda 14 hyokati 0(0 0 0 jibun_p1 HappaKomatori) yomisuji B3B2 C1B2
+joho jikan 53 fukasa -/3 eda 64 hyokati 200(200 0 0 jibun_p1 Happa) yomisuji B3B2 B1A2 H*A3
+joho jikan 71 fukasa -/4 eda 223 hyokati 0(0 0 0 jibun_p1 HappaKomatori) yomisuji B3B2 C1B2 H*A3 H*C1
+joho jikan 94 fukasa -/5 eda 752 hyokati 100(-200 0 300 jibun_p1 HappaKomatori) yomisuji B3B2 C1B2 H*A2 A1A2 C4C3
+joho jikan 168 fukasa -/6 eda 3562 hyokati 0(0 0 0 jibun_p1 HappaKomatori) yomisuji B3B2 C1B2 C4C3 H*C1 C3B3 C1C2
+joho jikan 431 fukasa -/7 eda 16612 hyokati 0(0 0 0 jibun_p1 HappaKomatori) yomisuji B3B2 C1B2 H*A3 B2C1 C4C3 H*B2 C3C4 (aspi)
+joho jikan 1192 fukasa -/8 eda 64135 hyokati 0(0 0 0 jibun_p1 HappaKomatori) yomisuji B3B2 C1B2 H*B3 B2C1 C4C3 H*A2 C3C4 B1C2 (aspi)
+joho jikan 1362 fukasa -/8 eda 73305 hyokati 0(0 0 0 jibun_p1 HappaKomatori) yomisuji B3B2 C1B2 H*B3 B2C1 C4C3 H*A2 C3C4 B1C2 (aspi)
+
+図は  1手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ら│▽ぞ│
+  ├──┼──┼──┤
+２│　　│▲ひ│　　│
+  ├──┼──┼──┤
+３│　　│　　│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│▲き│
+  └──┴──┴──┘
+ひ1
+指し手全部
+┌──────────┐
+C1B2
+B1A2
+B1C2
+└──────────┘
+
+対局者２（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 3 hyokati 0(0 0 0 jibun_p2 HappaKomatori) yomisuji C1B2
+joho jikan 12 fukasa -/2 eda 35 hyokati -200(-200 0 0 jibun_p2 Happa) yomisuji B1A2 H*A3
+joho jikan 29 fukasa -/3 eda 96 hyokati 0(0 0 0 jibun_p2 HappaKomatori) yomisuji C1B2 H*A3 H*C1
+joho jikan 51 fukasa -/4 eda 418 hyokati -100(200 0 -300 jibun_p2 HappaKomatori) yomisuji C1B2 H*A2 A1A2 C4C3
+joho jikan 97 fukasa -/5 eda 1837 hyokati 0(0 0 0 jibun_p2 HappaKomatori) yomisuji C1B2 C4C3 H*C1 C3B3 C1C2
+joho jikan 215 fukasa -/6 eda 7338 hyokati 0(0 0 0 jibun_p2 HappaKomatori) yomisuji C1B2 H*A3 B2C1 C4C3 H*B2 C3C4
+joho jikan 573 fukasa -/7 eda 28703 hyokati 0(0 0 0 jibun_p2 Happa) yomisuji C1B2 H*C3 H*C1 A4B3 A1A2 B3A4 B2A3 (aspi)
+joho jikan 1390 fukasa -/7 eda 75763 hyokati 0(0 0 0 jibun_p2 Happa) yomisuji C1B2 H*C3 H*C1 A4B3 A1A2 B3A4 B2A3 (aspi)
+
+図は  2手まで 対局者１の番
+ひ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ら│　　│
+  ├──┼──┼──┤
+２│　　│▽ぞ│　　│
+  ├──┼──┼──┤
+３│　　│　　│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│▲き│
+  └──┴──┴──┘
+ひ1
+指し手全部
+┌──────────┐
+H*A3
+H*B3
+H*C3
+C4C3
+A4B3
+B4C3
+B4A3
+H*C1
+H*A2
+H*C2
+└──────────┘
+
+対局者１（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 10 hyokati 1100(0 0 1100 jibun_p1 HappaKomatori) yomisuji H*A3
+joho jikan 11 fukasa -/2 eda 64 hyokati 0(0 0 0 jibun_p1 HappaKomatori) yomisuji H*A3 H*C1
+joho jikan 25 fukasa -/3 eda 377 hyokati 100(-200 0 300 jibun_p1 HappaKomatori) yomisuji H*A2 A1A2 C4C3
+joho jikan 54 fukasa -/4 eda 1782 hyokati 0(0 0 0 jibun_p1 HappaKomatori) yomisuji C4C3 H*C1 C3B3 C1C2
+joho jikan 149 fukasa -/5 eda 7277 hyokati 0(0 0 0 jibun_p1 HappaKomatori) yomisuji H*A3 B2C1 C4C3 H*B2 C3C4
+joho jikan 426 fukasa -/6 eda 26726 hyokati 0(0 0 0 jibun_p1 HappaKomatori) yomisuji C4C3 H*C1 C3B3 A1A2 H*C4 C1C2
+joho jikan 848 fukasa -/6 eda 54424 hyokati 0(0 0 0 jibun_p1 HappaKomatori) yomisuji C4C3 H*C1 C3B3 A1A2 H*C4 C1C2 (aspi)
+
+図は  3手まで 対局者２の番
+ひ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ら│　　│
+  ├──┼──┼──┤
+２│　　│▽ぞ│　　│
+  ├──┼──┼──┤
+３│　　│　　│▲き│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+ひ1
+指し手全部
+┌──────────┐
+B2C3
+H*B3
+B2A3
+H*C1
+H*A2
+H*C2
+A1A2
+B2C1
+B1C1
+B1A2
+B1C2
+H*B3
+H*C4
+└──────────┘
+
+対局者２（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 13 hyokati 800(0 0 800 jibun_p2 HappaKomatori) yomisuji H*C2
+joho jikan 13 fukasa -/2 eda 85 hyokati 0(0 0 0 jibun_p2 HappaKomatori) yomisuji H*A2 H*B3
+joho jikan 35 fukasa -/3 eda 520 hyokati 0(0 0 0 jibun_p2 HappaKomatori) yomisuji H*C1 C3B3 C1C2
+joho jikan 74 fukasa -/4 eda 2461 hyokati 0(0 0 0 jibun_p2 HappaKomatori) yomisuji A1A2 H*B3 B2A3 B4C4
+joho jikan 194 fukasa -/5 eda 9565 hyokati 0(0 0 0 jibun_p2 HappaKomatori) yomisuji A1A2 C3B3 H*C1 H*C4 C1C2
+joho jikan 765 fukasa -/6 eda 45082 hyokati 0(0 0 0 jibun_p2 HappaKomatori) yomisuji H*C1 H*A3 C1C2 C3B3 B2C1 B4C4
+joho jikan 1125 fukasa -/6 eda 69057 hyokati 0(0 0 0 jibun_p2 HappaKomatori) yomisuji H*C1 H*A3 C1C2 C3B3 B2C1 B4C4 (aspi)
+
+図は  4手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ら│▽ひ│
+  ├──┼──┼──┤
+２│　　│▽ぞ│　　│
+  ├──┼──┼──┤
+３│　　│　　│▲き│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+ひ1
+指し手全部
+┌──────────┐
+H*A3
+H*B3
+H*C4
+C3B3
+C3C4
+A4B3
+B4C4
+B4A3
+C3C2
+H*A2
+└──────────┘
+
+対局者１（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 10 hyokati 1100(0 0 1100 jibun_p1 HappaKomatori) yomisuji H*A3
+joho jikan 12 fukasa -/2 eda 55 hyokati 0(0 0 0 jibun_p1 HappaKomatori) yomisuji C3B3 C1C2
+joho jikan 28 fukasa -/3 eda 219 hyokati 1500(2400 0 -900 jibun_p1 HappaKomatori) yomisuji C3B3 C1C2 B3B2
+joho jikan 51 fukasa -/4 eda 908 hyokati 600(600 0 0 jibun_p1 Happa) yomisuji H*B3 B2C3 B4C3 C1C2
+joho jikan 100 fukasa -/5 eda 3164 hyokati 1400(600 0 800 jibun_p1 HappaKomatori) yomisuji C3B3 A1A2 B3B2 A2B2 H*B3
+joho jikan 270 fukasa -/6 eda 11802 hyokati 600(600 0 0 jibun_p1 HappaKomatori) yomisuji C3B3 A1A2 B3B2 A2B2 H*A3 K*A1
+joho jikan 652 fukasa -/7 eda 39933 hyokati 600(600 0 0 jibun_p1 HappaKomatori) yomisuji C3B3 A1A2 B3B2 A2B2 Z*C3 K*B3 B4C4 (aspi)
+joho jikan 1656 fukasa -/7 eda 110850 hyokati 600(600 0 0 jibun_p1 HappaKomatori) yomisuji C3B3 A1A2 B3B2 A2B2 Z*C3 K*B3 B4C4 (aspi)
+
+図は  5手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽き│▽ら│▽ひ│
+  ├──┼──┼──┤
+２│　　│▽ぞ│　　│
+  ├──┼──┼──┤
+３│　　│▲き│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+ひ1
+指し手全部
+┌──────────┐
+B2A3
+B2C3
+C1C2
+A1A2
+B1A2
+B1C2
+└──────────┘
+
+対局者２（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 6 hyokati 0(0 0 0 jibun_p2 HappaKomatori) yomisuji C1C2
+joho jikan 13 fukasa -/2 eda 64 hyokati -1500(-2400 0 900 jibun_p2 HappaKomatori) yomisuji C1C2 B3B2
+joho jikan 26 fukasa -/3 eda 157 hyokati -600(-600 0 0 jibun_p2 HappaKomatori) yomisuji A1A2 B3B2 A2B2
+joho jikan 47 fukasa -/4 eda 651 hyokati -1500(-2400 0 900 jibun_p2 HappaKomatori) yomisuji A1A2 H*A3 A2A1 B3B2
+joho jikan 106 fukasa -/5 eda 2872 hyokati -600(-600 0 0 jibun_p2 HappaKomatori) yomisuji A1A2 B3B2 A2B2 H*A3 K*A1
+joho jikan 308 fukasa -/6 eda 12254 hyokati -600(-600 0 0 jibun_p2 HappaKomatori) yomisuji A1A2 B3B2 A2B2 H*A3 K*A1 Z*C3
+joho jikan 672 fukasa -/7 eda 33339 hyokati -600(-600 0 0 jibun_p2 HappaKomatori) yomisuji A1A2 B3B2 A2B2 H*C3 B2B3 B4C4 K*A1 (aspi)
+joho jikan 1785 fukasa -/7 eda 114703 hyokati -600(-600 0 0 jibun_p2 HappaKomatori) yomisuji A1A2 B3B2 A2B2 H*C3 B2B3 B4C4 K*A1 (aspi)
+
+図は  6手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽ら│▽ひ│
+  ├──┼──┼──┤
+２│▽き│▽ぞ│　　│
+  ├──┼──┼──┤
+３│　　│▲き│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+ひ1
+指し手全部
+┌──────────┐
+B3B2
+H*A3
+H*C3
+H*C4
+B3A3
+B3C3
+B4A3
+B4C3
+B4C4
+H*A1
+H*C2
+└──────────┘
+
+対局者１（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 11 hyokati 1500(2400 0 -900 jibun_p1 HappaKomatori) yomisuji B3B2
+joho jikan 10 fukasa -/2 eda 42 hyokati 600(600 0 0 jibun_p1 HappaKomatori) yomisuji B3B2 A2B2
+joho jikan 24 fukasa -/3 eda 245 hyokati 1500(2400 0 -900 jibun_p1 HappaKomatori) yomisuji H*A3 A2A1 B3B2
+joho jikan 47 fukasa -/4 eda 1045 hyokati 1300(400 0 900 jibun_p1 HappaKomatori) yomisuji H*A3 B2A3 B3A3 A2A3
+joho jikan 111 fukasa -/5 eda 4659 hyokati 1500(2400 0 -900 jibun_p1 HappaKomatori) yomisuji H*A3 A2A1 B4C4 C1C2 B3B2
+joho jikan 364 fukasa -/6 eda 20665 hyokati 600(600 0 0 jibun_p1 HappaKomatori) yomisuji B3B2 A2B2 H*A3 K*A1 Z*C3 C1C2
+joho jikan 775 fukasa -/6 eda 49998 hyokati 600(600 0 0 jibun_p1 HappaKomatori) yomisuji B3B2 A2B2 H*A3 K*A1 Z*C3 C1C2 (aspi)
+
+図は  7手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽ら│▽ひ│
+  ├──┼──┼──┤
+２│▽き│▲き│　　│
+  ├──┼──┼──┤
+３│　　│　　│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+ぞ1ひ1
+指し手全部
+┌──────────┐
+A2B2
+B1A1
+B1C2
+└──────────┘
+
+対局者２（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 3 hyokati -600(-600 0 0 jibun_p2 HappaKomatori) yomisuji A2B2
+joho jikan 11 fukasa -/2 eda 26 hyokati -1400(-600 0 -800 jibun_p2 HappaKomatori) yomisuji A2B2 H*B3
+joho jikan 26 fukasa -/3 eda 185 hyokati -600(-600 0 0 jibun_p2 HappaKomatori) yomisuji A2B2 H*A3 K*A1
+joho jikan 55 fukasa -/4 eda 1109 hyokati -600(-600 0 0 jibun_p2 HappaKomatori) yomisuji A2B2 H*A3 K*A1 Z*C3
+joho jikan 183 fukasa -/5 eda 6285 hyokati -600(-600 0 0 jibun_p2 HappaKomatori) yomisuji A2B2 H*A3 K*A1 Z*C3 C1C2
+joho jikan 544 fukasa -/6 eda 26479 hyokati -100(-400 0 300 jibun_p2 HappaKomatori) yomisuji A2B2 H*B3 B2B3 B4C4 K*B2 Z*C3
+joho jikan 949 fukasa -/6 eda 57615 hyokati -100(-400 0 300 jibun_p2 HappaKomatori) yomisuji A2B2 H*B3 B2B3 B4C4 K*B2 Z*C3 (aspi)
+
+図は  8手まで 対局者１の番
+き1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽ら│▽ひ│
+  ├──┼──┼──┤
+２│　　│▽き│　　│
+  ├──┼──┼──┤
+３│　　│　　│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+ぞ1ひ1
+指し手全部
+┌──────────┐
+H*A3
+H*B3
+H*C3
+H*C4
+Z*A3
+Z*B3
+Z*C3
+Z*C4
+A4B3
+B4A3
+B4C3
+B4C4
+H*A1
+H*A2
+H*C2
+Z*A1
+Z*A2
+Z*C2
+└──────────┘
+
+対局者１（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 18 hyokati 1400(600 0 800 jibun_p1 HappaKomatori) yomisuji H*B3
+joho jikan 15 fukasa -/2 eda 170 hyokati 600(600 0 0 jibun_p1 HappaKomatori) yomisuji H*A3 K*A1
+joho jikan 37 fukasa -/3 eda 913 hyokati 600(600 0 0 jibun_p1 HappaKomatori) yomisuji H*A3 K*A1 Z*C3
+joho jikan 111 fukasa -/4 eda 5122 hyokati 600(600 0 0 jibun_p1 HappaKomatori) yomisuji H*A3 K*A1 Z*C3 C1C2
+joho jikan 344 fukasa -/5 eda 20954 hyokati 100(400 0 -300 jibun_p1 HappaKomatori) yomisuji H*B3 B2B3 B4C4 K*B2 Z*B4
+joho jikan 935 fukasa -/6 eda 64978 hyokati 200(400 0 -200 jibun_p1 HappaKomatori) yomisuji H*B3 B2A2 B3B2 A2B2 Z*C3 H*B3
+joho jikan 945 fukasa -/6 eda 64978 hyokati 200(400 0 -200 jibun_p1 HappaKomatori) yomisuji H*B3 B2A2 B3B2 A2B2 Z*C3 H*B3 (aspi)
+
+図は  9手まで 対局者２の番
+き1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽ら│▽ひ│
+  ├──┼──┼──┤
+２│　　│▽き│　　│
+  ├──┼──┼──┤
+３│　　│▲ひ│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+ぞ1
+指し手全部
+┌──────────┐
+B2B3
+K*A1
+K*A2
+K*C2
+C1C2
+B2A2
+B2C2
+B1A2
+B1C2
+B1A1
+K*A3
+K*C3
+K*C4
+└──────────┘
+
+対局者２（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 13 hyokati -600(-600 0 0 jibun_p2 HappaKomatori) yomisuji K*A1
+joho jikan 10 fukasa -/2 eda 60 hyokati -600(-600 0 0 jibun_p2 HappaKomatori) yomisuji B2A2 Z*C3
+joho jikan 23 fukasa -/3 eda 269 hyokati -600(-600 0 0 jibun_p2 HappaKomatori) yomisuji B2A2 Z*C3 K*A1
+joho jikan 65 fukasa -/4 eda 2045 hyokati -600(-600 0 0 jibun_p2 HappaKomatori) yomisuji B2A2 Z*C3 K*A1 B4C4
+joho jikan 165 fukasa -/5 eda 8731 hyokati -600(-600 0 0 jibun_p2 HappaKomatori) yomisuji B2A2 Z*C3 K*A1 B4C4 C1C2
+joho jikan 600 fukasa -/6 eda 37205 hyokati -400(-400 0 0 jibun_p2 HappaKomatori) yomisuji B2B3 A4B3 H*B2 K*A1 B1A1 Z*A4
+joho jikan 612 fukasa -/6 eda 37205 hyokati -400(-400 0 0 jibun_p2 HappaKomatori) yomisuji B2B3 A4B3 H*B2 K*A1 B1A1 Z*A4 (aspi)
+
+図は 10手まで 対局者１の番
+き1ひ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽ら│▽ひ│
+  ├──┼──┼──┤
+２│　　│　　│　　│
+  ├──┼──┼──┤
+３│　　│▽き│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+ぞ1
+指し手全部
+┌──────────┐
+A4B3
+B4A3
+B4C3
+B4C4
+└──────────┘
+
+対局者１（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 4 hyokati 2200(2200 0 0 jibun_p1 HappaKomatori) yomisuji A4B3
+joho jikan 13 fukasa -/2 eda 32 hyokati 1100(2200 0 -1100 jibun_p1 HappaKomatori) yomisuji A4B3 H*A2
+joho jikan 29 fukasa -/3 eda 254 hyokati 2200(2200 0 0 jibun_p1 HappaKomatori) yomisuji A4B3 H*A1 K*A3
+joho jikan 58 fukasa -/4 eda 1158 hyokati 2000(2200 0 -200 jibun_p1 HappaKomatori) yomisuji A4B3 H*B2 B3A4 K*B3
+joho jikan 189 fukasa -/5 eda 13074 hyokati 2200(2200 0 0 jibun_p1 HappaKomatori) yomisuji A4B3 H*B2 B3A4 K*A1 K*A3
+joho jikan 631 fukasa -/6 eda 37448 hyokati 200(400 0 -200 jibun_p1 HappaKomatori) yomisuji A4B3 H*B2 K*A1 B1A1 B3A4 K*B3
+joho jikan 1947 fukasa -/6 eda 134698 hyokati 200(400 0 -200 jibun_p1 HappaKomatori) yomisuji A4B3 H*B2 K*A1 B1A1 B3A4 K*B3 (aspi)
+
+図は 11手まで 対局者２の番
+き1ひ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽ら│▽ひ│
+  ├──┼──┼──┤
+２│　　│　　│　　│
+  ├──┼──┼──┤
+３│　　│▲ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲ら│　　│
+  └──┴──┴──┘
+ぞ1き1
+指し手全部
+┌──────────┐
+H*A1
+H*A2
+H*B2
+H*C2
+K*A1
+K*A2
+K*B2
+K*C2
+C1C2
+B1C2
+B1A1
+B1A2
+H*A3
+H*C3
+H*A4
+H*C4
+K*A3
+K*C3
+K*A4
+K*C4
+└──────────┘
+
+対局者２（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 20 hyokati -1100(-2200 0 1100 jibun_p2 HappaKomatori) yomisuji H*A2
+joho jikan 11 fukasa -/2 eda 203 hyokati -2200(-2200 0 0 jibun_p2 HappaKomatori) yomisuji H*A1 K*A3
+joho jikan 29 fukasa -/3 eda 830 hyokati -2000(-2200 0 200 jibun_p2 HappaKomatori) yomisuji H*B2 B3A4 K*B3
+joho jikan 177 fukasa -/4 eda 11823 hyokati -2200(-2200 0 0 jibun_p2 HappaKomatori) yomisuji H*B2 B3A4 K*A1 K*A3
+joho jikan 455 fukasa -/5 eda 31567 hyokati -200(-400 0 200 jibun_p2 HappaKomatori) yomisuji H*B2 K*A1 B1A1 B3A4 K*B3
+joho jikan 1494 fukasa -/5 eda 122970 hyokati -200(-400 0 200 jibun_p2 HappaKomatori) yomisuji H*B2 K*A1 B1A1 B3A4 K*B3
+
+図は 12手まで 対局者１の番
+き1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽ら│▽ひ│
+  ├──┼──┼──┤
+２│　　│▽ひ│　　│
+  ├──┼──┼──┤
+３│　　│▲ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲ら│　　│
+  └──┴──┴──┘
+ぞ1き1
+指し手全部
+┌──────────┐
+B3A2
+B3C2
+K*A3
+K*C3
+K*A4
+K*C4
+Z*A3
+Z*C3
+Z*A4
+Z*C4
+B3A4
+B4A4
+B4C4
+B4A3
+B4C3
+K*A1
+Z*A1
+└──────────┘
+
+対局者１（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 17 hyokati 2200(2200 0 0 jibun_p1 HappaKomatori) yomisuji K*A3
+joho jikan 11 fukasa -/2 eda 147 hyokati 2000(2200 0 -200 jibun_p1 HappaKomatori) yomisuji B3A4 K*B3
+joho jikan 26 fukasa -/3 eda 581 hyokati 2200(2200 0 0 jibun_p1 HappaKomatori) yomisuji B3A4 K*A1 K*A3
+joho jikan 73 fukasa -/4 eda 3305 hyokati 2200(2200 0 0 jibun_p1 HappaKomatori) yomisuji B3A4 K*B3 B4C4 C1C2
+joho jikan 281 fukasa -/5 eda 18662 hyokati 600(600 0 0 jibun_p1 HappaKomatori) yomisuji B3A4 C1C2 K*B3 B2B3 A4B3
+joho jikan 783 fukasa -/5 eda 55267 hyokati 600(600 0 0 jibun_p1 HappaKomatori) yomisuji B3A4 C1C2 K*B3 B2B3 A4B3
+
+図は 13手まで 対局者２の番
+き1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│▽ら│▽ひ│
+  ├──┼──┼──┤
+２│　　│▽ひ│　　│
+  ├──┼──┼──┤
+３│　　│　　│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+ぞ1き1
+指し手全部
+┌──────────┐
+K*B3
+B2B3
+K*A1
+K*A2
+K*C2
+C1C2
+B1C2
+B1A1
+B1A2
+K*A3
+K*C3
+K*C4
+└──────────┘
+
+対局者２（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 12 hyokati -2000(-2200 0 200 jibun_p2 HappaKomatori) yomisuji K*B3
+joho jikan 12 fukasa -/2 eda 151 hyokati -2200(-2200 0 0 jibun_p2 HappaKomatori) yomisuji K*A1 K*A3
+joho jikan 33 fukasa -/3 eda 610 hyokati -2200(-2200 0 0 jibun_p2 HappaKomatori) yomisuji K*B3 B4C4 C1C2
+joho jikan 120 fukasa -/4 eda 4541 hyokati -2200(-2200 0 0 jibun_p2 HappaKomatori) yomisuji K*B3 B4C4 B3A3 K*C3
+joho jikan 276 fukasa -/5 eda 12799 hyokati -1600(-1600 0 0 jibun_p2 Happa) yomisuji K*B3 A4B3 B2B3 B4A3 Z*B2
+joho jikan 818 fukasa -/6 eda 55575 hyokati -1000(-2200 0 1200 jibun_p2 HappaKomatori) yomisuji B1A2 B4A3 A2A1 K*B3 K*B4 Z*C4
+joho jikan 827 fukasa -/6 eda 55575 hyokati -1000(-2200 0 1200 jibun_p2 HappaKomatori) yomisuji B1A2 B4A3 A2A1 K*B3 K*B4 Z*C4 (aspi)
+
+図は 14手まで 対局者１の番
+き1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│　　│▽ひ│
+  ├──┼──┼──┤
+２│▽ら│▽ひ│　　│
+  ├──┼──┼──┤
+３│　　│　　│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+ぞ1き1
+指し手全部
+┌──────────┐
+K*A3
+Z*B3
+A4B3
+K*B3
+K*C3
+K*C4
+Z*A3
+Z*C3
+Z*C4
+B4A3
+B4C3
+B4C4
+K*A1
+K*B1
+K*C2
+Z*A1
+Z*B1
+Z*C2
+└──────────┘
+
+対局者１（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 18 hyokati 2200(2200 0 0 jibun_p1 Happa) yomisuji K*A3
+joho jikan 11 fukasa -/2 eda 68 hyokati 2200(2200 0 0 jibun_p1 HappaKomatori) yomisuji K*A3 A2A1
+joho jikan 30 fukasa -/3 eda 749 hyokati 2200(2200 0 0 jibun_p1 HappaKomatori) yomisuji K*A3 A2A1 Z*C3
+joho jikan 81 fukasa -/4 eda 3102 hyokati 2200(2200 0 0 jibun_p1 HappaKomatori) yomisuji K*A3 A2A1 Z*C3 K*B1
+joho jikan 264 fukasa -/5 eda 15724 hyokati 2200(2200 0 0 jibun_p1 HappaKomatori) yomisuji K*A3 A2A1 Z*C3 K*B1 B4C4
+joho jikan 675 fukasa -/6 eda 41195 hyokati 1400(2200 0 -800 jibun_p1 HappaKomatori) yomisuji B4C4 A2B1 C4B4 K*A1 K*C3 C1C2
+joho jikan 1465 fukasa -/6 eda 101481 hyokati 1400(2200 0 -800 jibun_p1 HappaKomatori) yomisuji B4C4 A2B1 C4B4 K*A1 K*C3 C1C2 (aspi)
+
+図は 15手まで 対局者２の番
+き1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│　　│　　│▽ひ│
+  ├──┼──┼──┤
+２│▽ら│▽ひ│　　│
+  ├──┼──┼──┤
+３│　　│　　│　　│
+  ├──┼──┼──┤
+４│▲ぞ│　　│▲ら│
+  └──┴──┴──┘
+ぞ1き1
+指し手全部
+┌──────────┐
+K*A1
+K*B1
+K*C2
+K*B3
+C1C2
+A2A1
+A2B1
+B2B3
+K*C3
+K*B4
+└──────────┘
+
+対局者２（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 10 hyokati -1900(-2200 0 300 jibun_p2 HappaKomatori) yomisuji K*B3
+joho jikan 11 fukasa -/2 eda 118 hyokati -2200(-2200 0 0 jibun_p2 HappaKomatori) yomisuji K*A1 K*C3
+joho jikan 24 fukasa -/3 eda 339 hyokati -1600(-1600 0 0 jibun_p2 Happa) yomisuji K*B3 A4B3 B2B3
+joho jikan 78 fukasa -/4 eda 3370 hyokati -2200(-2200 0 0 jibun_p2 HappaKomatori) yomisuji K*A1 K*A3 A2B1 Z*B4
+joho jikan 174 fukasa -/5 eda 9886 hyokati -1700(-1600 0 -100 jibun_p2 HappaKomatori) yomisuji K*B3 K*C3 A2A1 A4B3 B2B3
+joho jikan 589 fukasa -/6 eda 45020 hyokati -1200(-2400 0 1200 jibun_p2 HappaKomatori) yomisuji A2A1 C4C3 B2B3 A4B3 K*B1 Z*B2
+joho jikan 1196 fukasa -/6 eda 89139 hyokati -1200(-2400 0 1200 jibun_p2 HappaKomatori) yomisuji A2A1 C4C3 B2B3 A4B3 K*B1 Z*B2 (aspi)
+
+図は 16手まで 対局者１の番
+き1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽ら│　　│▽ひ│
+  ├──┼──┼──┤
+２│　　│▽ひ│　　│
+  ├──┼──┼──┤
+３│　　│　　│　　│
+  ├──┼──┼──┤
+４│▲ぞ│　　│▲ら│
+  └──┴──┴──┘
+ぞ1き1
+指し手全部
+┌──────────┐
+K*A3
+K*B3
+K*C3
+K*B4
+Z*A3
+Z*B3
+Z*C3
+Z*B4
+A4B3
+C4C3
+C4B4
+K*B1
+K*A2
+K*C2
+Z*B1
+Z*A2
+Z*C2
+└──────────┘
+
+対局者１（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 17 hyokati 2200(2200 0 0 jibun_p1 HappaKomatori) yomisuji K*A3
+joho jikan 11 fukasa -/2 eda 85 hyokati 2200(2200 0 0 jibun_p1 HappaKomatori) yomisuji K*A3 K*B1
+joho jikan 36 fukasa -/3 eda 772 hyokati 2200(2200 0 0 jibun_p1 HappaKomatori) yomisuji K*A3 K*B1 Z*C3
+joho jikan 101 fukasa -/4 eda 3546 hyokati 2200(2200 0 0 jibun_p1 HappaKomatori) yomisuji K*A3 K*A2 A3A2 A1A2
+joho jikan 356 fukasa -/5 eda 17125 hyokati 2200(2200 0 0 jibun_p1 HappaKomatori) yomisuji K*A3 K*B1 Z*C3 C1C2 C3B4
+joho jikan 750 fukasa -/6 eda 46299 hyokati 800(800 0 0 jibun_p1 HappaKomatori) yomisuji C4B4 B2B3 B4C3 B3B4+ K*B1 A1A2
+joho jikan 759 fukasa -/6 eda 46299 hyokati 800(800 0 0 jibun_p1 HappaKomatori) yomisuji C4B4 B2B3 B4C3 B3B4+ K*B1 A1A2 (aspi)
+
+図は 17手まで 対局者２の番
+き1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽ら│　　│▽ひ│
+  ├──┼──┼──┤
+２│　　│▽ひ│　　│
+  ├──┼──┼──┤
+３│　　│　　│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+ぞ1き1
+指し手全部
+┌──────────┐
+K*B3
+B2B3
+K*B1
+K*A2
+K*C2
+C1C2
+A1B1
+A1A2
+K*A3
+K*C3
+K*C4
+└──────────┘
+
+対局者２（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 11 hyokati -2000(-2200 0 200 jibun_p2 HappaKomatori) yomisuji K*B3
+joho jikan 11 fukasa -/2 eda 133 hyokati -2200(-2200 0 0 jibun_p2 HappaKomatori) yomisuji K*B1 K*A3
+joho jikan 26 fukasa -/3 eda 502 hyokati -2200(-2200 0 0 jibun_p2 HappaKomatori) yomisuji K*B3 B4C4 C1C2
+joho jikan 74 fukasa -/4 eda 3411 hyokati -2200(-2200 0 0 jibun_p2 HappaKomatori) yomisuji K*B3 B4C4 B3A3 K*C3
+joho jikan 210 fukasa -/5 eda 10361 hyokati -1600(-1600 0 0 jibun_p2 Happa) yomisuji K*B3 A4B3 B2B3 B4A3 Z*B2
+joho jikan 636 fukasa -/5 eda 43164 hyokati -1600(-1600 0 0 jibun_p2 Happa) yomisuji K*B3 A4B3 B2B3 B4A3 Z*B2
+
+図は 18手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽ら│　　│▽ひ│
+  ├──┼──┼──┤
+２│　　│▽ひ│　　│
+  ├──┼──┼──┤
+３│　　│▽き│　　│
+  ├──┼──┼──┤
+４│▲ぞ│▲ら│　　│
+  └──┴──┴──┘
+ぞ1き1
+指し手全部
+┌──────────┐
+A4B3
+B4A3
+B4C3
+B4C4
+└──────────┘
+
+対局者１（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 4 hyokati 2900(4000 0 -1100 jibun_p1 HappaKomatori) yomisuji A4B3
+joho jikan 10 fukasa -/2 eda 19 hyokati 2200(2200 0 0 jibun_p1 HappaKomatori) yomisuji B4C4 C1C2
+joho jikan 20 fukasa -/3 eda 73 hyokati 2200(2200 0 0 jibun_p1 HappaKomatori) yomisuji B4C4 B3A3 K*C3
+joho jikan 32 fukasa -/4 eda 252 hyokati 1600(1600 0 0 jibun_p1 Happa) yomisuji A4B3 B2B3 B4A3 Z*B2
+joho jikan 70 fukasa -/5 eda 1960 hyokati 1600(1600 0 0 jibun_p1 HappaKomatori) yomisuji A4B3 B2B3 B4A3 Z*B2 A3A4
+joho jikan 194 fukasa -/6 eda 8742 hyokati 1600(1600 0 0 jibun_p1 HappaKomatori) yomisuji A4B3 B2B3 B4A3 Z*B2 A3A4 C1C2
+joho jikan 775 fukasa -/7 eda 52278 hyokati 1600(1600 0 0 jibun_p1 HappaKomatori) yomisuji A4B3 B2B3 B4A4 Z*B2 K*C4 C1C2 Z*A3 (aspi)
+joho jikan 995 fukasa -/7 eda 69510 hyokati 1600(1600 0 0 jibun_p1 HappaKomatori) yomisuji A4B3 B2B3 B4A4 Z*B2 K*C4 C1C2 Z*A3 (aspi)
+
+図は 19手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽ら│　　│▽ひ│
+  ├──┼──┼──┤
+２│　　│▽ひ│　　│
+  ├──┼──┼──┤
+３│　　│▲ぞ│　　│
+  ├──┼──┼──┤
+４│　　│▲ら│　　│
+  └──┴──┴──┘
+ぞ1き2
+指し手全部
+┌──────────┐
+B2B3
+C1C2
+A1B1
+A1A2
+└──────────┘
+
+対局者２（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 4 hyokati -1700(-1600 0 -100 jibun_p2 HappaKomatori) yomisuji B2B3
+joho jikan 10 fukasa -/2 eda 15 hyokati -1600(-1600 0 0 jibun_p2 HappaKomatori) yomisuji B2B3 B4A3
+joho jikan 20 fukasa -/3 eda 82 hyokati -1600(-1600 0 0 jibun_p2 Happa) yomisuji B2B3 B4A3 Z*B2
+joho jikan 42 fukasa -/4 eda 1082 hyokati -1600(-1600 0 0 jibun_p2 HappaKomatori) yomisuji B2B3 B4A3 Z*B2 A3A4
+joho jikan 111 fukasa -/5 eda 4887 hyokati -1600(-1600 0 0 jibun_p2 HappaKomatori) yomisuji B2B3 B4A3 Z*B2 A3A4 C1C2
+joho jikan 558 fukasa -/6 eda 37588 hyokati -1600(-1600 0 0 jibun_p2 HappaKomatori) yomisuji B2B3 B4A3 Z*B2 A3A4 A1A2 Z*C4
+joho jikan 1343 fukasa -/6 eda 85400 hyokati -1600(-1600 0 0 jibun_p2 HappaKomatori) yomisuji B2B3 B4A3 Z*B2 A3A4 A1A2 Z*C4 (aspi)
+
+図は 20手まで 対局者１の番
+ぞ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽ら│　　│▽ひ│
+  ├──┼──┼──┤
+２│　　│　　│　　│
+  ├──┼──┼──┤
+３│　　│▽ひ│　　│
+  ├──┼──┼──┤
+４│　　│▲ら│　　│
+  └──┴──┴──┘
+ぞ1き2
+指し手全部
+┌──────────┐
+B4A3
+B4C3
+B4A4
+B4C4
+└──────────┘
+
+対局者１（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 4 hyokati 1600(1600 0 0 jibun_p1 HappaKomatori) yomisuji B4A3
+joho jikan 63 fukasa -/2 eda 47 hyokati 1600(1600 0 0 jibun_p1 Happa) yomisuji B4A3 Z*B2
+joho jikan 128 fukasa -/3 eda 488 hyokati 1600(1600 0 0 jibun_p1 HappaKomatori) yomisuji B4A3 Z*B2 A3A4
+joho jikan 243 fukasa -/4 eda 2159 hyokati 1600(1600 0 0 jibun_p1 HappaKomatori) yomisuji B4A3 Z*B2 A3A4 C1C2
+joho jikan 494 fukasa -/5 eda 14007 hyokati 1600(1600 0 0 jibun_p1 HappaKomatori) yomisuji B4A3 Z*B2 A3A4 A1A2 Z*C4
+joho jikan 541 fukasa -/5 eda 14007 hyokati 1600(1600 0 0 jibun_p1 HappaKomatori) yomisuji B4A3 Z*B2 A3A4 A1A2 Z*C4
+
+図は 21手まで 対局者２の番
+ぞ1
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽ら│　　│▽ひ│
+  ├──┼──┼──┤
+２│　　│　　│　　│
+  ├──┼──┼──┤
+３│▲ら│▽ひ│　　│
+  ├──┼──┼──┤
+４│　　│　　│　　│
+  └──┴──┴──┘
+ぞ1き2
+指し手全部
+┌──────────┐
+Z*B2
+Z*B1
+Z*A2
+Z*C2
+C1C2
+A1B1
+A1A2
+B3B4+
+B3B4
+Z*A4
+└──────────┘
+
+対局者２（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 10 hyokati -1600(-1600 0 0 jibun_p2 Happa) yomisuji Z*B2
+joho jikan 69 fukasa -/2 eda 97 hyokati -1600(-1600 0 0 jibun_p2 HappaKomatori) yomisuji Z*B2 A3A4
+joho jikan 143 fukasa -/3 eda 418 hyokati -1600(-1600 0 0 jibun_p2 HappaKomatori) yomisuji Z*B2 A3A4 C1C2
+joho jikan 188 fukasa -/4 eda 2836 hyokati -1600(-1600 0 0 jibun_p2 HappaKomatori) yomisuji Z*B2 A3A4 A1A2 K*C4
+joho jikan 311 fukasa -/5 eda 10853 hyokati -1600(-1600 0 0 jibun_p2 HappaKomatori) yomisuji Z*B2 A3A4 C1C2 Z*C4 C2C3
+joho jikan 676 fukasa -/6 eda 35733 hyokati 200(200 0 0 jibun_p2 HappaKomatori) yomisuji Z*B2 A3A4 A1A2 K*A3 B2A3 K*C3
+joho jikan 1679 fukasa -/6 eda 109289 hyokati 200(200 0 0 jibun_p2 HappaKomatori) yomisuji Z*B2 A3A4 A1A2 K*A3 B2A3 K*C3 (aspi)
+
+図は 22手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽ら│　　│▽ひ│
+  ├──┼──┼──┤
+２│　　│▽ぞ│　　│
+  ├──┼──┼──┤
+３│▲ら│▽ひ│　　│
+  ├──┼──┼──┤
+４│　　│　　│　　│
+  └──┴──┴──┘
+ぞ1き2
+指し手全部
+┌──────────┐
+A3A4
+A3B4
+└──────────┘
+
+対局者１（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 2 hyokati 1600(1600 0 0 jibun_p1 HappaKomatori) yomisuji A3A4
+joho jikan 10 fukasa -/2 eda 11 hyokati 1600(1600 0 0 jibun_p1 HappaKomatori) yomisuji A3A4 C1C2
+joho jikan 23 fukasa -/3 eda 71 hyokati 1600(1600 0 0 jibun_p1 HappaKomatori) yomisuji A3A4 A1A2 K*C4
+joho jikan 42 fukasa -/4 eda 251 hyokati 1600(1600 0 0 jibun_p1 HappaKomatori) yomisuji A3A4 C1C2 Z*C4 C2C3
+joho jikan 85 fukasa -/5 eda 1610 hyokati 800(1600 0 -800 jibun_p1 HappaKomatori) yomisuji A3A4 A1A2 K*C4 C1C2 K*B4
+joho jikan 159 fukasa -/6 eda 5690 hyokati 400(400 0 0 jibun_p1 HappaKomatori) yomisuji A3A4 C1C2 K*A3 C2C3 A3B3 C3C4+
+joho jikan 540 fukasa -/6 eda 32495 hyokati 400(400 0 0 jibun_p1 HappaKomatori) yomisuji A3A4 C1C2 K*A3 C2C3 A3B3 C3C4+ (aspi)
+
+図は 23手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽ら│　　│▽ひ│
+  ├──┼──┼──┤
+２│　　│▽ぞ│　　│
+  ├──┼──┼──┤
+３│　　│▽ひ│　　│
+  ├──┼──┼──┤
+４│▲ら│　　│　　│
+  └──┴──┴──┘
+ぞ1き2
+指し手全部
+┌──────────┐
+C1C2
+A1B1
+A1A2
+B3B4+
+B3B4
+B2A3
+└──────────┘
+
+対局者２（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 6 hyokati -1600(-1600 0 0 jibun_p2 HappaKomatori) yomisuji C1C2
+joho jikan 11 fukasa -/2 eda 63 hyokati -1600(-1600 0 0 jibun_p2 HappaKomatori) yomisuji A1A2 K*C4
+joho jikan 24 fukasa -/3 eda 240 hyokati -1600(-1600 0 0 jibun_p2 HappaKomatori) yomisuji C1C2 Z*C4 C2C3
+joho jikan 53 fukasa -/4 eda 1596 hyokati -800(-1600 0 800 jibun_p2 HappaKomatori) yomisuji A1A2 K*C4 C1C2 K*B4
+joho jikan 126 fukasa -/5 eda 5685 hyokati -400(-400 0 0 jibun_p2 HappaKomatori) yomisuji C1C2 K*A3 C2C3 A3B3 C3C4+
+joho jikan 596 fukasa -/6 eda 50442 hyokati -1800(-1800 0 0 jibun_p2 Happa) yomisuji C1C2 K*A3 B2C1 A3B3 A1A2 H*A3
+joho jikan 1430 fukasa -/6 eda 115744 hyokati -1800(-1800 0 0 jibun_p2 Happa) yomisuji C1C2 K*A3 B2C1 A3B3 A1A2 H*A3 (aspi)
+
+図は 24手まで 対局者１の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽ら│　　│　　│
+  ├──┼──┼──┤
+２│　　│▽ぞ│▽ひ│
+  ├──┼──┼──┤
+３│　　│▽ひ│　　│
+  ├──┼──┼──┤
+４│▲ら│　　│　　│
+  └──┴──┴──┘
+ぞ1き2
+指し手全部
+┌──────────┐
+K*A3
+K*C3
+K*B4
+K*C4
+Z*A3
+Z*C3
+Z*B4
+Z*C4
+A4A3
+A4B4
+K*B1
+K*C1
+K*A2
+Z*B1
+Z*C1
+Z*A2
+└──────────┘
+
+対局者１（HyokatiYusen）の思考中（＾～＾）joho jikan 0 fukasa -/1 eda 16 hyokati 1900(1600 0 300 jibun_p1 HappaKomatori) yomisuji K*A3
+joho jikan 11 fukasa -/2 eda 61 hyokati 1600(1600 0 0 jibun_p1 HappaKomatori) yomisuji Z*C4 C2C3
+joho jikan 27 fukasa -/3 eda 391 hyokati 1800(1800 0 0 jibun_p1 HappaKomatori) yomisuji K*A3 C2C3 A3B3
+joho jikan 66 fukasa -/4 eda 1540 hyokati 600(-600 0 1200 jibun_p1 HappaKomatori) yomisuji Z*A3 B3B4+ A4B4 B2A3
+joho jikan 257 fukasa -/5 eda 11330 hyokati 1800(1800 0 0 jibun_p1 Happa) yomisuji K*A3 B2C1 A3B3 A1A2 H*A3
+joho jikan 854 fukasa -/6 eda 49803 hyokati 1800(1800 0 0 jibun_p1 HappaKomatori) yomisuji K*A3 B2C1 A3B3 A1A2 H*A3 A2A1
+joho jikan 1689 fukasa -/6 eda 122793 hyokati 1800(1800 0 0 jibun_p1 HappaKomatori) yomisuji K*A3 B2C1 A3B3 A1A2 H*A3 A2A1 (aspi)
+
+図は 25手まで 対局者２の番
+
+     Ａ    Ｂ    Ｃ    
+  ┌──┬──┬──┐
+１│▽ら│　　│　　│
+  ├──┼──┼──┤
+２│　　│▽ぞ│▽ひ│
+  ├──┼──┼──┤
+３│▲き│▽ひ│　　│
+  ├──┼──┼──┤
+４│▲ら│　　│　　│
+  └──┴──┴──┘
+ぞ1き1
+指し手全部
+┌──────────┐
+B2A3
+C2C3
+B2C3
+B2C1
+A1B1
+A1A2
+B3B4+
+B3B4
+└──────────┘
+

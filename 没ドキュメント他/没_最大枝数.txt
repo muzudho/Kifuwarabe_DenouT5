@@ -1,0 +1,63 @@
+        /// <summary>
+        /// 何枝まで読むか☆ 負数で未指定扱い☆ テスト用☆（＾～＾）
+        /// </summary>
+        public static int saidaiEda { get; set; }
+
+
+            saidaiEda = -1; // 負数なら未指定☆
+
+
+
+
+                //────────────────────────────────────────
+                // 最大手数を超えているか☆？（デバッグ用）
+                //────────────────────────────────────────
+                if (-1< ComSettei.saidaiEda && ComSettei.saidaiEda + 1 < Util_Tansaku.tansakuTyakusyuEdas)
+                {
+                    // 打ち切り
+                    out_bestSasite = Sasite.Toryo;
+                    out_bestHyokasu = new HyokaSu(
+                        Conv_HyokaSu.Hyokati_Saisyo,
+                        Conv_Tumesu.None
+#if DEBUG
+                        , Conv_HyokaSu.Hyokati_Saisyo
+                        , Conv_HyokaSu.Hyokati_Rei
+                        , Conv_HyokaSu.Hyokati_Rei
+                        , HyokaRiyu.SaidaiTesuUtikiri
+                        , ""
+#endif
+                        );
+                    // らいおん捕獲で情報表示
+                    Util_Joho.JohoMatome(
+                        fukasa,
+                        out_bestHyokasu,
+                        hyoji
+#if DEBUG
+                        , alpha
+                        , "SaidaiTesuUtikiri"
+#endif
+                        );
+
+                    break;//手のループから抜けるぜ☆（＾～＾）
+                }
+
+
+                hyoji.AppendLine("SaidaiEda                = " + ComSettei.saidaiEda);
+
+
+                #region SaidaiEda
+                else if (Util_String.MatchAndNext("SaidaiEda", line, ref caret))
+                {
+                    // うしろに続く文字は☆（＾▽＾）
+                    string rest = line.Substring(caret);
+                    if (int.TryParse(rest, out int val))
+                    {
+                        ComSettei.saidaiEda = val;
+                    }
+                }
+                #endregion
+
+
+
+
+

@@ -1,0 +1,14 @@
+usi
+usiok
+set USI false
+set SikoJikan 2000000
+> isready
+readyok
+> usinewgame
+> position startpos
+> go btime 180000 wtime 180000 byoyomi 0
+bestmove 1g1f
+> position startpos moves 1g1f 4a3b
+> go btime 179000 wtime 179000 byoyomi 0
+bestmove 2h5h
+> position startpos moves 1g1f 4a3b 2h5h 6a5b

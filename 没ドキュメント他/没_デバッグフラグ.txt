@@ -1,0 +1,401 @@
+#if DEBUG
+namespace kifuwarabe_shogithink.pure.dbg
+{
+    public static class PureDebugFlag
+    {
+        //────────────────────────────────────────
+        // const にすると、到達できないコードという判定になるので、変数にしておくぜ☆（＾～＾）
+        //────────────────────────────────────────
+
+        /// <summary>
+        /// 逃げ道を渡す緩手
+        /// 水際
+        /// </summary>
+        public static bool NIGEMITI_WATASU_KANSYU_MIZUGIWA = false;
+        /// <summary>
+        /// 逃げ道を渡す緩手
+        /// 段落
+        /// </summary>
+        public static bool NIGEMITI_WATASU_KANSYU_DANRAKU = false;
+
+        /// <summary>
+        /// 将棋盤：駒を取り除く
+        /// 水際
+        /// </summary>
+        public static bool SHOGIBAN_KOMAWO_TORINOZOKU_MIZUGIWA = false;
+        public static bool SHOGIBAN_KOMAWO_TORINOZOKU_DANRAKU = false;
+
+        /// <summary>
+        /// アンドゥ
+        /// 段落
+        /// </summary>
+        public static bool UNDO_DANRAKU = false;
+    }
+}
+#endif
+
+
+#if DEBUG
+            if (PureDebugFlag.UNDO_DANRAKU)
+            {
+                if (!PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.ExistsKoma(PureMemory.kifu_teban, ms_t1))
+                {
+                    dbg_reigai.AppendLine(string.Format("error Undo-Begin(90) 自分の駒が無い升を指しているんじゃないか☆（＾～＾）！？ ms_t1={0}",
+                        SpkMasu.ToSetumei_New(ms_t1)
+                        ));
+                    return Pure.FailTrue("error Undo-Begin(90)", dbg_reigai);
+                }
+            }
+#endif
+
+#if DEBUG
+            if (PureDebugFlag.UNDO_DANRAKU)
+            {
+                dbg_reigai.AppendLine(string.Format("Undo-Ta-4x アンドゥする駒の進んでいる場所を確認するぜ☆（＾～＾） km_t1={0} ms_t1={1}",
+                    SpkKoma.ToSetumei(km_t1),// 消す駒
+                    SpkMasu.ToSetumei_New(ms_t1)// 駒の居場所 ※全然ずれていることがある？
+                    ));
+                if (!PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.ExistsKoma(km_t1, ms_t1))
+                {
+                    dbg_reigai.AppendLine("error Undo-Ta-4x 自分の駒が無い升を指しているんじゃないか☆（＾～＾）！？");
+                    return Pure.FailTrue("error Undo-Ta-4x", dbg_reigai);
+                }
+                else
+                {
+                    dbg_reigai.AppendLine("Undo-Ta-4x ＯＫ☆（＾～＾）");
+                }
+            }
+#endif
+
+
+        public override void BeforeChangeKiki(
+            Masu ms_ibasho,
+            Koma km_remove,
+            Masu ms_mirainihaKomagaAru,
+            Taikyokusya tai,
+            IDebugMojiretu reigai1
+            )
+        {
+            //未実装
+        }
+
+        public override void BeforeChangeKiki(
+            Masu ms_ibasho,
+            Koma km_remove,
+            Masu ms_mirainihaKomagaAru,
+            Taikyokusya tai,
+            IDebugMojiretu reigai1
+            )
+        {
+            if (PureDebugFlag.SHOGIBAN_KOMAWO_TORINOZOKU_DANRAKU)
+            {
+                reigai1.AppendLine(string.Format("（１）利き表をいじる前☆（＾▽＾） ms_ibasho={0} ms_mirainihaKomagaAru={1} km_remove={2} tai={3}",
+                    SpkMasu.ToSetumei_New(ms_ibasho),
+                    SpkMasu.ToSetumei_New(ms_mirainihaKomagaAru),
+                    SpkKoma.ToSetumei(km_remove),
+                    SpkTaikyokusya.ToSetumeiName(tai)
+                    ));
+                SpkBan_Ex.Setumei_GenkoKiki( tai, reigai1);
+                SpkBan_1Column.Setumei_Kyokumen(PureMemory.kifu_endTeme, reigai1);
+            }
+        }
+
+#if DEBUG
+            DbgInterproject.project.BeforeChangeKiki(
+                ms_ibasho,
+                km_remove,
+                ms_mirainihaKomagaAru,
+                tai_removed,
+                reigai1
+                );
+#endif
+
+        public virtual void BeforeChangeKiki(
+            Masu ms_ibasho,
+            Koma km_remove,
+            Masu ms_mirainihaKomagaAru,
+            Taikyokusya tai,
+            IDebugMojiretu reigai1
+            )
+        {
+
+        }
+
+        public virtual bool TryFail_UndoSasite_Danraku1(
+            Masu ms_t1,
+            Koma km_t1,
+            IDebugMojiretu reigai1
+            )
+        {
+            return Pure.FailTrue("未実装", reigai1);
+        }
+
+#if DEBUG
+            if(DbgInterproject.project.TryFail_UndoSasite_Danraku1(ms_t1, km_t1, dbg_reigai))
+            {
+                return Pure.FailTrue("TryFail_UndoSasite_Danraku1", dbg_reigai);
+            }
+#endif
+
+        public override bool TryFail_UndoSasite_Danraku1(
+            Masu ms_t1,
+            Koma km_t1,
+            IDebugMojiretu reigai1
+            )
+        {
+            if (PureDebugFlag.UNDO_DANRAKU)
+            {
+                reigai1.AppendLine(string.Format("取り除く前に、デバッグ出力☆（＾▽＾） Undo-Ta-4x self={0} ms_ibasho={1} km_remove={2}",
+                    SpkTaikyokusya.ToSetumeiName(PureMemory.kifu_teban),
+                    SpkMasu.ToSetumei_New(ms_t1),// 駒の居場所 ※全然ずれていることがある？
+                    SpkKoma.ToSetumei(km_t1)// 消す駒
+                                            //SpkMasu.ToSetumei_New(ms_t0, gky.yomiKy) // ms_t0={3}
+                    ));
+                SpkBan_1Column.Setumei_Kyokumen(PureMemory.kifu_endTeme, reigai1);
+                SpkBan_Ex.Setumei_GenkoKiki(PureMemory.kifu_teban, reigai1);
+            }
+            return Pure.SUCCESSFUL_FALSE;
+        }
+
+        public override bool TryFail_UndoSasite_Danraku1(
+            Masu ms_t1,
+            Koma km_t1,
+            IDebugMojiretu reigai1
+            )
+        {
+            return Pure.SUCCESSFUL_FALSE;//未実装
+        }
+
+
+        public override bool TryFail_UndoSasite_Danraku2(
+            IDebugMojiretu reigai1
+            )
+        {
+            return Pure.SUCCESSFUL_FALSE;//未実装
+        }
+
+        public override bool TryFail_UndoSasite_Danraku2(
+            IDebugMojiretu reigai1
+            )
+        {
+            if (PureDebugFlag.UNDO_DANRAKU)
+            {
+                reigai1.AppendLine(string.Format("取り除いたあとに、デバッグ出力☆（＾▽＾） Undo-Ta-6 teban={0}",
+                    SpkTaikyokusya.ToSetumeiName(PureMemory.kifu_teban)
+                    ));
+                SpkBan_Ex.Setumei_GenkoKiki(PureMemory.kifu_teban, reigai1);
+                SpkBan_1Column.Setumei_Kyokumen(PureMemory.kifu_endTeme, reigai1);
+            }
+            return Pure.SUCCESSFUL_FALSE;
+        }
+
+#if DEBUG
+            if(DbgInterproject.project.TryFail_UndoSasite_Danraku2(dbg_reigai))
+            {
+                return Pure.FailTrue("TryFail_UndoSasite_Danraku2", dbg_reigai);
+            }
+#endif
+
+        public virtual bool TryFail_UndoSasite_Danraku2(
+            IDebugMojiretu reigai1
+            )
+        {
+            return Pure.FailTrue("未実装", reigai1);
+        }
+
+        public override void Nigemiti1(
+            Komasyurui ks_teban,
+            Masu ms0_teban,
+            Masu ms1_teban,
+            Koma km0_teban,
+            IDebugMojiretu reigai1
+            )
+        {
+            // 未実装
+        }
+
+        public override void Nigemiti1(
+            Komasyurui ks_teban,
+            Masu ms0_teban,
+            Masu ms1_teban,
+            Koma km0_teban,
+            IDebugMojiretu reigai1
+            )
+        {
+            if (PureDebugFlag.NIGEMITI_WATASU_KANSYU_DANRAKU)
+            {
+                reigai1.AppendLine(string.Format("（１）利き表をいじる前☆（＾▽＾） ks_teban={0} ms0_teban={1} ms1_teban={2} teban={3} opponent={4} km0_teban={5}",
+                    SpkKomasyurui.ToFen(PureSettei.fenSyurui, ks_teban), SpkMasu.ToSetumei_New(ms0_teban), SpkMasu.ToSetumei_New(ms1_teban),
+                    SpkTaikyokusya.ToSetumeiName(PureMemory.kifu_teban), SpkTaikyokusya.ToSetumeiName(PureMemory.kifu_aiteban), SpkKoma.ToSetumei(km0_teban)
+                    ));
+                SpkBan_Ex.Setumei_GenkoKiki(PureMemory.kifu_teban, reigai1);
+                SpkBan_1Column.Setumei_Kyokumen(PureMemory.kifu_endTeme, reigai1);
+            }
+        }
+
+#if DEBUG
+            DbgInterproject.project.Nigemiti1(
+                ks_teban,
+                ms0_teban,
+                ms1_teban,
+                km0_teban,
+                dbg_reigai
+                );
+#endif
+
+        public virtual void Nigemiti1(
+            Komasyurui ks_teban,
+            Masu ms0_teban,
+            Masu ms1_teban,
+            Koma km0_teban,
+            IDebugMojiretu reigai1
+            )
+        {
+        }
+
+        public virtual void Nigemiti2(
+            IDebugMojiretu reigai1
+            )
+        {
+        }
+
+#if DEBUG
+                DbgInterproject.project.Nigemiti2(
+                    dbg_reigai
+                );
+#endif
+
+        public override void Nigemiti2(
+            IDebugMojiretu reigai1
+            )
+        {
+            if (PureDebugFlag.NIGEMITI_WATASU_KANSYU_DANRAKU)
+            {
+                reigai1.AppendLine("（２）動く前の、駒の利きを、利き表から減らしたあとだぜ☆（＾▽＾）");
+                SpkBan_Ex.Setumei_GenkoKiki(PureMemory.kifu_teban, reigai1);
+            }
+        }
+
+        public override void Nigemiti2(
+            IDebugMojiretu reigai1
+            )
+        {
+            // 未実装
+        }
+
+        public override void Nigemiti3(
+            Komasyurui ks_teban,
+            IDebugMojiretu reigai1
+            )
+        {
+            // 未実装
+        }
+
+        public override void Nigemiti3(
+            Komasyurui ks_teban,
+            IDebugMojiretu reigai1
+            )
+        {
+            if (PureDebugFlag.NIGEMITI_WATASU_KANSYU_DANRAKU)
+            {
+                reigai1.AppendLine(string.Format("（３）動いた後の、駒の動きを、利き表へ足したあとだぜ☆（＾▽＾） ks={0}", SpkKomasyurui.ToFen(PureSettei.fenSyurui, ks_teban)));
+                SpkBan_Ex.Setumei_GenkoKiki(PureMemory.kifu_teban, reigai1);
+            }
+        }
+
+#if DEBUG
+                DbgInterproject.project.Nigemiti3(
+                    ks_teban,
+                    dbg_reigai
+                );
+#endif
+
+        public virtual void Nigemiti3(
+            Komasyurui ks_teban,
+            IDebugMojiretu reigai1
+            )
+        {
+        }
+
+
+        public override void Nigemiti4(
+            Komasyurui ks_teban,
+            IDebugMojiretu reigai1
+            )
+        {
+            // 未実装
+        }
+
+        public override void Nigemiti4(
+            Komasyurui ks_teban,
+            IDebugMojiretu reigai1
+            )
+        {
+            if (PureDebugFlag.NIGEMITI_WATASU_KANSYU_DANRAKU)
+            {
+                reigai1.AppendLine(string.Format("（４）増やした重ね利きの数を減らして、元に戻したあとだぜ☆（＾▽＾） ks={0}", SpkKomasyurui.ToFen(PureSettei.fenSyurui, ks_teban)));
+                SpkBan_Ex.Setumei_GenkoKiki(PureMemory.kifu_teban, reigai1);
+            }
+        }
+
+#if DEBUG
+                DbgInterproject.project.Nigemiti4(
+                    ks_teban,
+                    dbg_reigai
+                );
+#endif
+
+        public virtual void Nigemiti4(
+            Komasyurui ks_teban,
+            IDebugMojiretu reigai1
+            )
+        {
+        }
+
+        public override void Nigemiti5(
+            Komasyurui ks_teban,
+            IDebugMojiretu reigai1
+            )
+        {
+            // 未実装
+        }
+
+        public override void Nigemiti5(
+            Komasyurui ks_teban,
+            IDebugMojiretu reigai1
+            )
+        {
+            if (PureDebugFlag.NIGEMITI_WATASU_KANSYU_DANRAKU)
+            {
+                reigai1.AppendLine(string.Format("（５）減らした重ね利きの数を増やして、元に戻したあとだぜ☆（＾▽＾） ks={0}", SpkKomasyurui.ToFen(PureSettei.fenSyurui, ks_teban)));
+                SpkBan_Ex.Setumei_GenkoKiki(PureMemory.kifu_teban, reigai1);
+            }
+        }
+
+#if DEBUG
+                DbgInterproject.project.Nigemiti5(
+                    ks_teban,
+                    dbg_reigai
+                );
+#endif
+
+        public virtual void Nigemiti5(
+            Komasyurui ks_teban,
+            IDebugMojiretu reigai1
+            )
+        {
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

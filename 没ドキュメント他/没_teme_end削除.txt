@@ -1,0 +1,24 @@
+        /// <summary>
+        /// “Š—¹‹Ç–Ê‚¾‚º™iO`Oj
+        /// </summary>
+        public static int kifu_end { get { return kifu_end_; } }
+        public static void SetKifuEnd(int val)
+        {
+            kifu_end_ = val;
+        }
+        public static int kifu_end_;
+
+            // I’[‚Í i<end ‚Æ‚¢‚Á‚½g‚¢•û‚ğ‚·‚é‚Ì‚Å 1‘½‚ß‚É‚·‚é‚º™iO`Oj
+            kifu_end_ = 1;
+
+            // i<end ‚Ì‚æ‚¤‚Ég‚¤‚Ì‚Å 1 ‘½‚ß‚É‚·‚é‚º™iO`Oj
+            kifu_end_ = kifu_teme + 1;
+
+            // i<end ‚Ì‚æ‚¤‚Ég‚¤‚Ì‚Å 1 ‘½‚ß‚É‚·‚é‚º™iO`Oj
+            kifu_end_ = kifu_teme + 1;
+
+,
+                PureMemory.kifu_end
+            //PureMemory.kifu_end
+
+                

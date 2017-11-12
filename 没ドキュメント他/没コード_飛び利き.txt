@@ -1,0 +1,648 @@
+#if DEBUG
+using kifuwarabe_shogi_agarutha.pure.ky.bb;
+#else
+using kifuwarabe_shogi_agarutha.pure.ky.bb;
+#endif
+
+namespace kifuwarabe_shogi_agarutha.pure.ky.tobikiki
+{
+    public static class TobikikiOld
+    {
+        /// <summary>
+        /// 角の飛び利きを調べる。
+        /// 自分にしろ、相手にしろ、最初にぶつかった駒も　利きに含めることとする。（ディスカバード・アタック、カバー判定）
+        /// 
+        /// (2017-05-02 21:51)
+        /// これから動かそうという駒は　持ち上げていて盤上にいないし、移動先にもまだ置いていないので、
+        /// ms_mirainihaKomagaAru 引数で、移動先の位置をあらかじめ指定すること☆（＾～＾）
+        /// 無ければ、盤外のエラー値を指定しておけだぜ☆（*＾～＾*）
+        /// </summary>
+        public static void N050_StandupTobikikiKaku_KomaSetteiNoAto(
+            Masu ms_ibasho,
+            Masu ms_mirainihaKomagaAru,// FIXME:何これ☆（＾～＾）？
+            Kyokumen.YomiKy yomiKy,
+            Bitboard update_BB
+            )
+        {
+            if (PureSettei.tobikikiTukau)
+            {
+                // 点対象なので、対局者１視点で駒の動きを作れば、対局者２も同じ☆（＾～＾）
+
+                // 隣接は普通の利きと被るので、１つ飛んだ先の利きから見るぜ☆（＾～＾）
+                int tobi;
+
+                // 右上方向へ
+                Masu ms_kiki = ms_ibasho;
+                tobi = 0;
+                while (!yomiKy.IsIntersect_UeHajiDan(ms_kiki) && !yomiKy.IsIntersect_MigiHajiSuji(ms_kiki))
+                {
+                    ms_kiki -= PureSettei.banYokoHaba - 1; tobi++;
+                    if (1 < tobi) { update_BB.Standup(ms_kiki); }
+                    if (yomiKy.yomiIbashoBan_yoko.ExistsBBKomaZenbu(ms_kiki) || ms_kiki == ms_mirainihaKomagaAru) { break; } // Ｄｏ指し手、Ｕｎｄｏ指し手で　駒全部が先に設定されていること
+                }
+                // 右下方向へ
+                ms_kiki = ms_ibasho;
+                tobi = 0;
+                while (!yomiKy.IsIntersect_SitaHajiDan(ms_kiki) && !yomiKy.IsIntersect_MigiHajiSuji(ms_kiki))
+                {
+                    ms_kiki += PureSettei.banYokoHaba + 1; tobi++;
+                    if (1 < tobi) { update_BB.Standup(ms_kiki); }
+                    if (yomiKy.yomiIbashoBan_yoko.ExistsBBKomaZenbu(ms_kiki) || ms_kiki == ms_mirainihaKomagaAru) { break; }
+                }
+                // 左下方向へ
+                ms_kiki = ms_ibasho;
+                tobi = 0;
+                while (!yomiKy.IsIntersect_SitaHajiDan(ms_kiki) && !yomiKy.IsIntersect_HidariHajiSuji(ms_kiki))
+                {
+                    ms_kiki += PureSettei.banYokoHaba - 1; tobi++;
+                    if (1 < tobi) { update_BB.Standup(ms_kiki); }
+                    if (yomiKy.yomiIbashoBan_yoko.ExistsBBKomaZenbu(ms_kiki) || ms_kiki == ms_mirainihaKomagaAru) { break; }
+                }
+                // 左上方向へ
+                ms_kiki = ms_ibasho;
+                tobi = 0;
+                while (!yomiKy.IsIntersect_UeHajiDan(ms_kiki) && !yomiKy.IsIntersect_HidariHajiSuji(ms_kiki))
+                {
+                    ms_kiki -= PureSettei.banYokoHaba + 1; tobi++;
+                    if (1 < tobi) { update_BB.Standup(ms_kiki); }
+                    if (yomiKy.yomiIbashoBan_yoko.ExistsBBKomaZenbu(ms_kiki) || ms_kiki == ms_mirainihaKomagaAru) { break; }
+                }
+            }
+        }
+        /// <summary>
+        /// 飛車の飛び利きを調べる
+        /// 自分にしろ、相手にしろ、最初にぶつかった駒も　利きに含めることとする。（ディスカバード・アタック、カバー判定）
+        /// 
+        /// (2017-05-02 21:51)
+        /// これから動かそうという駒は　持ち上げていて盤上にいないし、移動先にもまだ置いていないので、
+        /// ms_mirainihaKomagaAru 引数で、移動先の位置をあらかじめ指定すること☆（＾～＾）
+        /// 無ければ、盤外のエラー値を指定しておけだぜ☆（*＾～＾*）
+        /// </summary>
+        public static void N050_StandupTobikikiHisya_KomaSetteiNoAto(
+            Masu ms_ibasho, Masu ms_mirainihaKomagaAru, Kyokumen.YomiKy yomiKy, Bitboard update_BB)
+        {
+            if (PureSettei.tobikikiTukau)
+            {
+                // 点対象なので、対局者１視点で駒の動きを作れば、対局者２も同じ☆（＾～＾）
+
+                // 隣接は普通の利きと被るので、１つ飛んだ先の利きから見るぜ☆（＾～＾）
+                int tobi;
+
+                // 上方向へ
+                Masu ms_kiki = ms_ibasho;
+                tobi = 0;
+                while (!yomiKy.IsIntersect_UeHajiDan(ms_kiki))
+                {
+                    ms_kiki -= PureSettei.banYokoHaba; tobi++;
+                    if (1 < tobi) { update_BB.Standup(ms_kiki); }
+                    if (yomiKy.yomiIbashoBan_yoko.ExistsBBKomaZenbu(ms_kiki) || ms_kiki == ms_mirainihaKomagaAru) { break; } // Ｄｏ指し手、Ｕｎｄｏ指し手で　駒全部が先に設定されていること
+                }
+                // 右方向へ
+                ms_kiki = ms_ibasho;
+                tobi = 0;
+                while (!yomiKy.IsIntersect_MigiHajiSuji(ms_kiki))
+                {
+                    ms_kiki += 1; tobi++;
+                    if (1 < tobi) { update_BB.Standup(ms_kiki); }
+                    if (yomiKy.yomiIbashoBan_yoko.ExistsBBKomaZenbu(ms_kiki) || ms_kiki == ms_mirainihaKomagaAru) { break; }
+                }
+                // 下方向へ
+                tobi = 0;
+                ms_kiki = ms_ibasho;
+                while (!yomiKy.IsIntersect_SitaHajiDan(ms_kiki))
+                {
+                    ms_kiki += PureSettei.banYokoHaba; tobi++;
+                    if (1 < tobi) { update_BB.Standup(ms_kiki); }
+                    if (yomiKy.yomiIbashoBan_yoko.ExistsBBKomaZenbu(ms_kiki) || ms_kiki == ms_mirainihaKomagaAru) { break; }
+                }
+                // 左方向へ
+                tobi = 0;
+                ms_kiki = ms_ibasho;
+                while (!yomiKy.IsIntersect_HidariHajiSuji(ms_kiki))
+                {
+                    ms_kiki -= 1; tobi++;
+                    if (1 < tobi) { update_BB.Standup(ms_kiki); }
+                    if (yomiKy.yomiIbashoBan_yoko.ExistsBBKomaZenbu(ms_kiki) || ms_kiki == ms_mirainihaKomagaAru) { break; }
+                }
+            }
+        }
+        /// <summary>
+        /// 香車の飛び利きを調べる
+        /// 自分にしろ、相手にしろ、最初にぶつかった駒も　利きに含めることとする。（ディスカバード・アタック、カバー判定）
+        /// 
+        /// (2017-05-02 21:51)
+        /// これから動かそうという駒は　持ち上げていて盤上にいないし、移動先にもまだ置いていないので、
+        /// ms_mirainihaKomagaAru 引数で、移動先の位置をあらかじめ指定すること☆（＾～＾）
+        /// 無ければ、盤外のエラー値を指定しておけだぜ☆（*＾～＾*）
+        /// </summary>
+        public static void N050_StandupTobikikiKyosya_KomaSetteiNoAto(
+            Taikyokusya tai, Masu ms_ibasho, Masu ms_mirainihaKomagaAru, Kyokumen.YomiKy yomiKy, Bitboard update_BB)
+        {
+            if (PureSettei.tobikikiTukau)
+            {
+                // 点対象なので、対局者１視点で駒の動きを作れば、対局者２も同じ☆（＾～＾）
+
+                // 隣接は普通の利きと被るので、１つ飛んだ先の利きから見るぜ☆（＾～＾）
+                int tobi;
+
+                if (Taikyokusya.T1 == tai)
+                {
+                    // 上方向へ
+                    Masu ms_kiki = ms_ibasho;
+                    tobi = 0;
+                    while (!yomiKy.IsIntersect_UeHajiDan(ms_kiki))
+                    {
+                        ms_kiki -= PureSettei.banYokoHaba; tobi++;
+                        if (1 < tobi) { update_BB.Standup(ms_kiki); }
+                        if (yomiKy.yomiIbashoBan_yoko.ExistsBBKomaZenbu(ms_kiki) || ms_kiki == ms_mirainihaKomagaAru) { break; } // Ｄｏ指し手、Ｕｎｄｏ指し手で　駒全部が先に設定されていること
+                    }
+                }
+                else
+                {
+                    // 下方向へ
+                    Masu ms_kiki = ms_ibasho;
+                    tobi = 0;
+                    while (!yomiKy.IsIntersect_SitaHajiDan(ms_kiki))
+                    {
+                        ms_kiki += PureSettei.banYokoHaba; tobi++;
+                        if (1 < tobi) { update_BB.Standup(ms_kiki); }
+                        if (yomiKy.yomiIbashoBan_yoko.ExistsBBKomaZenbu(ms_kiki) || ms_kiki == ms_mirainihaKomagaAru) { break; }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+        /// <summary>
+        /// 減らす
+        /// </summary>
+        /// <param name="km_remove"></param>
+        /// <param name="ms_ibasho"></param>
+        /// <param name="ms_mirainihaKomagaAru"></param>
+        /// <param name="yomiKy"></param>
+        /// <param name="reigai1"></param>
+        /// <returns></returns>
+        public bool TryFail_N150_HerasuTonarikikiTobikiki(
+              Masu ms_mirainihaKomagaAru,
+            )
+        {
+            Debug.Assert(Conv_Koma.IsOk(km_remove), "");
+            Debug.Assert(yomiKy.IsBanjo(ms_ibasho), "");
+            Taikyokusya jibun = Med_Koma.KomaToTaikyokusya(km_remove);
+
+            // ★↓作るデータが悪い☆（＾～＾）
+            switch (Med_Koma.KomaToKomasyurui(km_remove))
+            {
+                // bb_var に、 Sitdown させたいビットを立てている☆（＾～＾）
+                case Komasyurui.Z: TobikikiOld.N050_StandupTobikikiKaku_KomaSetteiNoAto(ms_ibasho, ms_mirainihaKomagaAru, yomiKy, bb_var); break;
+                case Komasyurui.K: TobikikiOld.N050_StandupTobikikiHisya_KomaSetteiNoAto(ms_ibasho, ms_mirainihaKomagaAru, yomiKy, bb_var); break;
+                case Komasyurui.S: TobikikiOld.N050_StandupTobikikiKyosya_KomaSetteiNoAto(jibun, ms_ibasho, ms_mirainihaKomagaAru, yomiKy, bb_var); break;
+                default: break;
+            }
+            // ★↑作るデータが悪い☆（＾～＾）
+
+            if (!bb_var.IsEmpty())
+            {
+                // ★こいつは悪くない☆（＾～＾）　bb_var が間違ったデータなんだぜ☆（＾～＾）
+                SitdownKomanoUgokikata(km_remove, ms_ibasho, bb_var);
+            }
+
+            // ここでまた立てている☆（＾～＾）？
+            //#if DEBUG
+            //            SpkShogiban.Setumei_1Bitboard("減らしたい利き", bb_oekaki, syuturyoku);
+            //            Util_Machine.Flush(syuturyoku);
+            //#endif
+            // 元升に駒があるうちに、利きを減らそうぜ☆（＾▽＾）
+            if (!bb_var.IsEmpty())
+            {
+//#if DEBUG
+//                if (!PureAssert.Try_Assert_Sabun_Kiki("error Try_N150_HerasuTonarikikiTobikiki-1", sindanM, reigai1))
+//                {
+//                    return false;
+//                }
+//#endif
+
+            }
+
+            return Pure.SUCCESSFUL_FALSE;
+        }
+
+
+
+
+
+        public void N150_FuyasuHajimetenoKiki_1(
+            Masu ms_mirainihaKomagaAru,
+            )
+        {
+            Debug.Assert(Conv_Koma.IsOk(km_t1), "");
+            Debug.Assert(kymS.IsBanjo(ms_t1), "");
+            Komasyurui ks = Med_Koma.KomaToKomasyurui(km_t1);
+            Taikyokusya tai = Med_Koma.KomaToTaikyokusya(km_t1);
+
+            // ★↓作るデータが悪い☆（＾～＾）
+            switch (ks)
+            {
+                case Komasyurui.Z: TobikikiOld.N050_StandupTobikikiKaku_KomaSetteiNoAto(ms_t1, ms_mirainihaKomagaAru, kymS, bb_oekaki); break;
+                case Komasyurui.K: TobikikiOld.N050_StandupTobikikiHisya_KomaSetteiNoAto(ms_t1, ms_mirainihaKomagaAru, kymS, bb_oekaki); break;
+                case Komasyurui.S: TobikikiOld.N050_StandupTobikikiKyosya_KomaSetteiNoAto(tai, ms_t1, ms_mirainihaKomagaAru, kymS, bb_oekaki); break;
+                default: break;
+            }
+            // ★↑作るデータが悪い☆（＾～＾）
+
+            if (!bb_oekaki.IsEmpty())
+            {
+//#if DEBUG
+//                syuturyoku.AppendLine("ms_t1=[" + ms_t1 + "]");
+//                syuturyoku.AppendLine("ms_mirainihaKomagaAru=["+ ms_mirainihaKomagaAru + "]");
+//                //SpkShogiban.Setumei_NingenGameYo(kys.sindanM.hontaiM, syuturyoku);
+//                SpkShogiban.Setumei_1Bitboard("増やしたい利き(0) 飛び利き", bb_oekaki, syuturyoku);
+//                Util_Machine.Flush(syuturyoku);
+//#endif
+
+                // ★こいつは悪くない☆（＾～＾）　bb_oekaki が間違ったデータなんだぜ☆（＾～＾）
+                StandupKomanoUgokikata(km_t1, ms_t1, bb_oekaki);
+
+                //#if DEBUG
+                //                syuturyoku.AppendLine("駒の動きを拡張したぜ☆（＾～＾）");
+                //                SpkShogiban.HyojiKomanoUgoki(this, kys.MASU_YOSOSU, syuturyoku);
+                //                Util_Machine.Flush(syuturyoku);
+                //#endif
+            }
+            //#if DEBUG
+            //            SpkShogiban.Setumei_1Bitboard("増やしたい利き(1) 飛び利き", bb_oekaki, syuturyoku);
+            //            Util_Machine.Flush(syuturyoku);
+            //#endif
+            //#if DEBUG
+            //            syuturyoku.AppendLine("増やしたい利き(2) 隣接利き km=[" + km_t1 + "] ms_ibasho=[" + ms_t1 + "]");
+            //            SpkShogiban.Setumei_1Bitboard("増やしたい利き(2)", bb_oekaki, syuturyoku);
+            //            Util_Machine.Flush(syuturyoku);
+            //#endif
+        }
+
+
+
+        /// <summary>
+        /// 駒を置くか除けたことで、飛び利きが切れそう、伸びそうな駒の利きを再計算するぜ☆（＾～＾）
+        /// </summary>
+        public bool TryFail_N230_TukurinaosiTonarikikiTobikiki_Discovered(
+            Masu ms_korekaraInakunaru,
+            Masu ms_mirainihaKomagaAru,
+            Kyokumen.YomiKy yomiKy,
+            Koma[] kmHairetu_control,
+            Bitboard[] bbHairetu_tobikikiKomaIbasho
+#if DEBUG
+            , bool isSfen
+            , IDebugMojiretu reigai1
+#endif
+            )
+        {
+            //N230_TukurinaosiTonarikikiTobikiki_Discovered_1( isSfen,  ms_moved,  kys,  syuturyoku, out kmHairetu_control, out bbHairetu_tobikikiKomaIbasho);
+
+            for (int i = 0; i < kmHairetu_control.Length; i++)
+            {
+                Koma km_tobikiki = kmHairetu_control[i];
+
+                if (Koma.Yososu == km_tobikiki) { break; }
+
+                //↓★こんなん、しない方がいいのでは？
+                // 飛び利き駒の升を調べて、その利きを変更する
+                Masu ms_tobikikiKomaIbasho;
+                while (bbHairetu_tobikikiKomaIbasho[i].Ref_PopNTZ(out ms_tobikikiKomaIbasho))
+                {
+                    // 新たに　隣利き、飛び利き　を増やす
+                    Bitboard bb_var;
+                    N150_FuyasuHajimetenoKiki_1(
+                        km_tobikiki,
+                        ms_tobikikiKomaIbasho,
+                        ms_mirainihaKomagaAru,
+                        yomiKy,
+                        out bb_var
+#if DEBUG
+                        , reigai1
+#endif
+                        );
+
+                    if(TryFail_N150_FuyasuHajimetenoKiki_Pop(km_tobikiki, ms_tobikikiKomaIbasho, yomiKy
+                        , bb_var
+#if DEBUG
+                        , reigai1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("TryFail_N150_FuyasuHajimetenoKiki_Pop"
+#if DEBUG
+                        , reigai1
+#endif
+                            );
+                    }
+
+                    if (!TryFail_N150_FuyasuHajimetenoKiki_2(km_tobikiki, ms_tobikikiKomaIbasho, yomiKy
+#if DEBUG
+                        , reigai1
+#endif
+                        ))
+                    {
+                        return Pure.FailTrue("TryFail_N150_FuyasuHajimetenoKiki_2"
+#if DEBUG
+                        , reigai1
+#endif
+                            );
+                    }
+                }
+
+                ////#if DEBUG
+                //syuturyoku.AppendLine("(TryDis5)隣利き、飛び利きを増やした後");
+                //SpkShogiban.HyojiKomanoKikiSu(update_shogiban, syuturyoku);
+                //Util_Machine.Flush(syuturyoku);
+                ////#endif
+            }
+
+            return Pure.SUCCESSFUL_FALSE;
+        }
+
+
+
+
+
+
+
+            //──────────
+            // 現状の駒の利きを取り除く（これは飛び利き用）
+            //──────────
+            if (updateKiki)
+            {
+                if(kikiBan.TryFail_N150_HerasuTonarikikiTobikiki(km_remove, ms_ibasho, yomiGky.yomiKy.masu_error, yomiGky.yomiKy
+#if DEBUG
+                    , reigai1
+#endif
+                    ))
+                {
+                    return Pure.FailTrue("error Try_N150_HerasuTonarikikiTobikiki-1"
+#if DEBUG
+                    , reigai1
+#endif
+                        );
+                }
+            }
+
+
+                // この下の TukurinaosiTonarikikiTobikiki_Discovered で指し手件数が大きく変わるようだ。
+
+                //  駒を除外したので、ディスカバード・アタックが発生することがあるぜ☆（＾▽＾）
+                if (kikiBan.TryFail_N230_TukurinaosiTonarikikiTobikiki_Discovered(
+                    ms_ibasho,
+                    ms_mirainihaKomagaAru,// (2017-05-02 22:30 Add) ここに将来の駒を指定することが必要☆（＾～＾） //  kys.MASU_ERROR,// FIXME: TODO:あとで設計し直すこと ms_mirainihaKomagaAru,
+                    yomiGky.yomiKy,
+                    kmHairetu_control, bbHairetu_tobikikiKomaIbasho
+#if DEBUG
+                    , isSfen
+                    , reigai1
+#endif
+                    ))
+                {
+                    return Pure.FailTrue("error Try_N230_TukurinaosiTonarikikiTobikiki_Discovered-1"
+#if DEBUG
+                    , reigai1
+#endif
+                        );
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                if(kikiBan.TryFail_N230_TukurinaosiTonarikikiTobikiki_Discovered(ms_t1, sindanM.masu_error, sindanM
+                    , kmHairetu_control, bbHairetu_tobikikiKomaIbasho
+#if DEBUG
+                    , isSfen
+                    , reigai1
+#endif
+                    ))
+                {
+                    return Pure.FailTrue("TryFail_N230_TukurinaosiTonarikikiTobikiki_Discovered"
+#if DEBUG
+                    , reigai1
+#endif
+                        );
+                }
+
+
+
+
+
+
+
+        public bool TryFail_N150_FuyasuHajimetenoKiki_2(Koma km_t1, Masu ms_t1, Kyokumen.YomiKy kymS
+#if DEBUG
+            , IViewMojiretu syuturyoku
+#endif
+            )
+        {
+            return true;
+        }
+
+
+                if (!kikiBan.TryFail_N150_FuyasuHajimetenoKiki_2(km_t1, ms_t1, sindanM
+#if DEBUG
+                    , reigai1
+#endif
+                    ))
+                {
+                    return Pure.FailTrue("TryFail_N150_FuyasuHajimetenoKiki_2"
+#if DEBUG
+                    , reigai1
+#endif
+                        );
+                }
+                //Util_Machine.Assert_Sabun_Kiki("飛び利き増やす2", Sindan, syuturyoku);
+//#if DEBUG
+//                SpkKyokumen.Setumei_GenkoKiki(kymS, jibun, syuturyoku); // 利き：（現行）
+//                Util_Machine.Flush(syuturyoku);
+//#endif
+
+
+
+
+
+
+
+
+
+
+        public void N230_TukurinaosiTonarikikiTobikiki_Discovered_1(
+            Masu ms_moved, Kyokumen.YomiKy kymS
+            , out Koma[] kmHairetu_control, out Bitboard[] bbHairetu_tobikikiKomaIbasho
+#if DEBUG
+            , bool isSfen
+            , IViewMojiretu syuturyoku
+#endif
+            )
+        {
+            // 置いたか除けた駒を指定して、関連する飛び利き駒を探すぜ☆（＾～＾）
+            kymS.TryInControl(ms_moved, out kmHairetu_control);
+
+            bbHairetu_tobikikiKomaIbasho = new Bitboard[kmHairetu_control.Length];
+
+//#if DEBUG
+//            // 関連する飛び利き駒
+//            SpkShogiban.HyojiKomaHairetuYososuMade(ms_moved, kmHairetu_control, syuturyoku);
+//            Util_Machine.Flush(syuturyoku);
+//#endif
+
+            // 飛び利きを計算し直す
+            int i = 0;
+            foreach (Koma km_tobikiki in kmHairetu_control)
+            {
+                if (Koma.Yososu == km_tobikiki) { break; }
+
+                ////#if DEBUG
+                //                // 飛び利きを再計算する駒
+                //                syuturyoku.AppendLine("(TryDis1)飛び利きを再計算する駒=["+km_tobikiki+"]");
+                //                Util_Machine.Flush(syuturyoku);
+                //                //#endif
+
+                // 再計算する駒をクリアー
+
+                ////#if DEBUG
+                //syuturyoku.AppendLine("(TryDis2)利きの引き算する前");
+                //SpkShogiban.HyojiKomanoKikiSu(update_shogiban, syuturyoku);
+                //Util_Machine.Flush(syuturyoku);
+                ////#endif
+                // 全体のカウントから、駒別のカウントを　引き算します。駒別のカウントは　ゼロにします。
+                SubstructFromKikisuZenbu(km_tobikiki);
+
+                ////#if DEBUG
+                //syuturyoku.AppendLine("(TryDis3)利きを引き算した後");
+                //SpkShogiban.HyojiKomanoKikiSu(update_shogiban, syuturyoku);
+                //Util_Machine.Flush(syuturyoku);
+                ////#endif
+
+                // 飛び利き駒駒の居場所
+                bbHairetu_tobikikiKomaIbasho[i] = new Bitboard();
+                kymS.ToSetIbasho_yoko(km_tobikiki, bbHairetu_tobikikiKomaIbasho[i]);
+
+                ////#if DEBUG
+                //syuturyoku.AppendLine("(TryDis4)駒の居場所");
+                //SpkShogiban.Setumei_1Bitboard(km_tobikiki.ToString(), bb_tobikikiKomaIbasho, syuturyoku);
+                //Util_Machine.Flush(syuturyoku);
+                ////#endif
+
+                i++;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                Koma[] kmHairetu_control;
+                Bitboard[] bbHairetu_tobikikiKomaIbasho;
+                kikiBan.N230_TukurinaosiTonarikikiTobikiki_Discovered_1(ms_ibasho, yomiGky.yomiKy
+                    , out kmHairetu_control, out bbHairetu_tobikikiKomaIbasho
+#if DEBUG
+                    , isSfen
+                    , reigai1
+#endif
+                    );
+
+
+
+
+
+
+
+
+
+
+                // 盤上にはまだ利きがないが、初めての利きを付けるぜ☆（*＾～＾*）
+                Bitboard bb_var;
+                kikiBan.N150_FuyasuHajimetenoKiki_1(km_t1, ms_t1,
+                    ms_t1,//(2017-05-02 22:59 Add) kys.MASU_ERROR,
+                    sindanM
+                    , out bb_var
+#if DEBUG
+                    , reigai1
+#endif
+                    );
+
+
+
+                Koma[] kmHairetu_control;
+                Bitboard[] bbHairetu_tobikikiKomaIbasho;
+                kikiBan.N230_TukurinaosiTonarikikiTobikiki_Discovered_1(ms_t1, sindanM
+                    , out kmHairetu_control, out bbHairetu_tobikikiKomaIbasho
+#if DEBUG
+                    , isSfen
+                    , reigai1
+#endif
+                    );
+
+
+
+
+
+                                    //bb_kiki.Clear();
+                                    //TobikikiOld.N050_StandupTobikikiKaku_KomaSetteiNoAto(ms_ibasho, yomiKy.masu_error, yomiKy, bb_kiki);
+                                    //Standup(km, ms_ibasho, bb_kiki);
+
+
+                                    //bb_kiki.Clear();
+                                    //TobikikiOld.N050_StandupTobikikiKaku_KomaSetteiNoAto(ms_ibasho, yomiKy.masu_error, yomiKy, bb_kiki);
+                                    //Standup(km, ms_ibasho, bb_kiki);
+
+
+                                    //bb_kiki.Clear();
+                                    //TobikikiOld.N050_StandupTobikikiHisya_KomaSetteiNoAto(ms_ibasho, yomiKy.masu_error, yomiKy, bb_kiki);
+                                    //Standup(km, ms_ibasho, bb_kiki);
+
+
+                                    //bb_kiki.Clear();
+                                    //TobikikiOld.N050_StandupTobikikiHisya_KomaSetteiNoAto(ms_ibasho, yomiKy.masu_error, yomiKy, bb_kiki);
+                                    //Standup(km, ms_ibasho, bb_kiki);
+
+
+                                    //bb_kiki.Clear();
+                                    //TobikikiOld.N050_StandupTobikikiKyosya_KomaSetteiNoAto(Med_Koma.KomaToTaikyokusya(km), ms_ibasho, yomiKy.masu_error, yomiKy, bb_kiki);
+                                    //Standup(km, ms_ibasho, bb_kiki);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

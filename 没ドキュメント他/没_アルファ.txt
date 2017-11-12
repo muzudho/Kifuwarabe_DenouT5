@@ -1,0 +1,260 @@
+            int alpha,
+
+                    , alpha
+
+
+
+
+            , int alpha
+
+
+#if DEBUG
+                    alpha,
+#endif
+
+#if DEBUG
+            int alpha,
+#endif
+
+#if DEBUG
+            int alpha,
+#endif
+
+                        alpha,//プラス・マイナスはそのままで☆
+
+                            , alpha,
+
+
+                    , alpha
+
+                    -alpha,// ここはアルファ☆（葉っぱからの最大値）
+
+                        , alpha
+
+                //────────────────────────────────────────
+                // アップデート・アルファ
+                //────────────────────────────────────────
+#region アップデート・アルファ
+                if (alpha < out_bestHyokasu.hyokaTen)
+                {
+#if DEBUG
+                    hyoji.AppendLine("アップデート・アルファだぜ☆（＾～＾）");
+#endif
+                    // アルファを更新☆
+                    int old_alpha = alpha;
+                    alpha = out_bestHyokasu.hyokaTen;
+
+                    // アルファ値更新で情報表示
+                    Util_Joho.JohoMatome(
+                        fukasa,
+                        out_bestHyokasu,
+                        hyoji
+#if DEBUG
+                        , alpha
+                        , "UpAlpha"
+#endif
+                        );
+                    // 打ち切りではないぜ☆（＾～＾）
+                }
+#endregion
+
+
+                    , alpha
+
+
+                // アルファ・ベータ探索
+                int alpha = Conv_HyokaSu.Syokiti_Alpha;// 合法手が無かった場合、この点数になるぜ☆（＾～＾）
+
+
+            if (hyokaSu.InSyokiti())
+            {
+                switch (PureSettei.fenSyurui)
+                {
+                    case FenSyurui.sfe_n:
+                        {
+                            // USI
+                            hyoji.Append(hyokaSu.ToString_Ten());
+                        }
+                        break;
+                    case FenSyurui.dfe_n:
+                        {
+                            if (hyokaSu.IsAlphaSyokiti())
+                            {
+                                hyoji.Append("[α未設定] ");
+                                hyoji.Append(hyokaSu.ToString_Ten());
+                            }
+                            else if (hyokaSu.IsBetaSyokiti())
+                            {
+                                hyoji.Append("[β未設定] ");
+                                hyoji.Append(hyokaSu.ToString_Ten());
+                            }
+                            else
+                            {
+                                throw new Exception("予期しない初期値だぜ☆（＾～＾）");
+                            }
+                        }
+                        break;
+                    default:
+                        throw new Exception(string.Format("未定義 {0}", PureSettei.fenSyurui));
+                }
+                return;
+            }
+            else
+
+        /// <summary>
+        /// 初期値なら、真だぜ☆（＾▽＾）説明用☆（＾▽＾）
+        /// </summary>
+        /// <param name="hyokaSu"></param>
+        /// <returns></returns>
+        public bool InSyokiti()
+        {
+            return Conv_HyokaSu.Syokiti_Alpha == hyokaTen || Conv_HyokaSu.Syokiti_Beta == hyokaTen;
+        }
+
+        /// <summary>
+        /// アルファの初期値として使う、下限だぜ☆　零手詰められ　と見分けるために分けるんだぜ☆（＾▽＾）ｗｗｗ
+        /// </summary>
+        public const int Syokiti_Alpha = -31101;
+
+        public bool IsAlphaSyokiti()
+        {
+            return Conv_HyokaSu.Syokiti_Alpha == hyokaTen;
+        }
+        public bool IsBetaSyokiti()
+        {
+            return Conv_HyokaSu.Syokiti_Beta == hyokaTen;
+        }
+
+#if DEBUG
+            int alpha,
+#endif
+
+#if DEBUG
+                alpha = -alpha;
+#endif
+
+            //──────────
+            // アルファベータ値
+            //──────────
+#if DEBUG
+            hyoji.Append(string.Format(" alpha {0}",
+                alpha.ToString()
+                ));
+#endif
+
+
+
+
+
+            betaCutPer = 100;
+
+        /// <summary>
+        /// 説明は「定跡パーセント」参照☆（＾▽＾）
+        /// ベータ・カットを採用する確率☆
+        /// </summary>
+        public static int betaCutPer { get; set; }
+
+        ///// <summary>
+        ///// 初期値なら、真だぜ☆（＾▽＾）説明用☆（＾▽＾）
+        ///// </summary>
+        ///// <param name="hyokaSu"></param>
+        ///// <returns></returns>
+        //public static bool InSyokiti(int hyokaTen)
+        //{
+        //    return Conv_HyokaSu.Syokiti_Alpha == hyokaTen || Conv_HyokaSu.Syokiti_Beta == hyokaTen;
+        //}
+
+        //        /// <summary>
+        //        /// 呼出個所
+        //        /// （１）葉っぱ
+        //        /// （２）定跡
+        //        /// （３）hyokaコマンド
+        //        /// </summary>
+        //        /// <param name="gky"></param>
+        //        /// <param name="out_hyokatiAb"></param>
+        //        /// <param name="randomNaKyokumen"></param>
+        //        public static void Hyoka_Remake(
+        //            Genkyoku gky,
+        //            out HyokatiAb out_hyokatiAb,
+        //            bool randomNaKyokumen
+        //#if DEBUG
+        //            , HyokaRiyu hyokaRiyu
+        //#endif
+        //        )
+        //        {
+        //            if (randomNaKyokumen)// ランダムな局面を評価する場合は、平手初期局面からは到達できない局面も存在するので弾くぜ☆（＾▽＾）
+        //            {
+        //                if (GenkyokuOpe.IsSyobuNasi(gky))//勝負無しな局面の場合☆（＾▽＾）
+        //                {
+        //                    out_hyokatiAb = new HyokatiAb(
+        //                        HyokaNumber.Sonota_SyobuNasi,
+        //                        HyokaNumber.Sonota_SyobuNasi
+        //#if DEBUG
+        //                        ,hyokaRiyu
+        //                        ,""
+        //#endif
+        //                        );
+        //                    return;
+        //                }
+        //            }
+
+
+        //            out_hyokatiAb = new HyokatiAb(
+        //                HyokaNumber.Hyokati_Rei,
+        //                HyokaNumber.Hyokati_Rei
+        //#if DEBUG
+        //                ,hyokaRiyu
+        //                ,""
+        //#endif
+        //                );
+        //            return;
+        //        }
+
+#if DEBUG
+        //〇 Syokiti_Alpha = -598,
+        //Syokiti_Alpha = -1,//〇
+        //Syokiti_Alpha = 0,//〇
+        //× Syokiti_Alpha = 1,
+        //Syokiti_Alpha = 598,//こうやりたい//×
+#endif
+
+
+#if DEBUG
+        //Syokiti_Beta = -1,//〇
+        //Syokiti_Beta = 0,//〇
+        //Syokiti_Beta = 599,//〇
+#endif
+
+
+        /// <summary>
+        /// ベータの初期値として使う、上限だぜ☆　零手詰めと見分けるために分けるんだぜ☆（＾▽＾）ｗｗｗ
+        /// </summary>
+        public const int Syokiti_Beta = 31101;
+
+            //Option_Application.Optionlist.BetaCutPer = 100;
+
+            hyoji.AppendLine("set BetaCutPer 100      : 100%の確率でベータ・カットを使うぜ☆ 0～100");
+
+                hyoji.AppendLine("BetaCutPer               = " + ComSettei.betaCutPer);
+
+                #region BetaCutPer
+                else if (Util_String.MatchAndNext("BetaCutPer", line, ref caret))
+                {
+                    // うしろに続く文字は☆（＾▽＾）
+                    string rest = line.Substring(caret);
+                    if (int.TryParse(rest, out int val))
+                    {
+                        if (val < 0) { val = 0; }
+                        else if (100 < val) { val = 100; }
+                        ComSettei.betaCutPer = val;
+                    }
+                }
+                #endregion
+
+            //Option_Application.Optionlist.BetaCutPer = 0; // ベータ・カットは使わないぜ☆（＾▽＾）ｗｗｗｗ
+
+
+
+
+
+

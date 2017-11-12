@@ -1,0 +1,19 @@
+usi
+isready
+usinewgame
+position startpos
+go btime 180000 wtime 180000 byoyomi 0
+<1:bestmove 2h7h
+position startpos moves 2h7h 7a6b
+
+set USI false
+kifu
+ky
+
+
+go btime 179000 wtime 179000 byoyomi 0
+<1:bestmove 6h7h
+>1:gameover lose
+>1:quit
+>2:gameover win
+>2:quit

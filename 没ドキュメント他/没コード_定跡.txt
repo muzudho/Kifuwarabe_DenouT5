@@ -1,0 +1,3568 @@
+            if ('n' == line[caret])// none の頭文字
+            {
+                if (Util_String.MatchAndNext("none", line, ref caret))//定跡ファイルの応手が無いときに利用☆
+                {
+                    out_sasite = Sasite.Toryo;
+                    return true;
+                }
+            }
+            else
+
+
+
+
+
+        public static Regex GetJosekiKyPattern(bool isSfen)
+        {
+            if (isSfen)
+            {
+                if (null == josekiKyPattern_sfen_)
+                {
+                    // ファイルを丸ごと読んでパターンマッチすると、2GBとかメモリを消費して強制終了してしまうようだ☆（＞＿＜）
+                    // 行ごとにパターンマッチしようぜ☆（＾～＾）
+                    josekiKyPattern_sfen_ = new Regex(
+                        Sfen.position +// とりあえず　ごっそりマッチ。123～はスペース数。+は成りゴマ。
+                        @"( moves.*)?"//棋譜
+                        , RegexOptions.Compiled
+                    );
+                }
+                return josekiKyPattern_sfen_;
+            }
+            else
+            {
+                if (null == josekiKyPattern_dfen_)
+                {
+                    // ファイルを丸ごと読んでパターンマッチすると、2GBとかメモリを消費して強制終了してしまうようだ☆（＞＿＜）
+                    // 行ごとにパターンマッチしようぜ☆（＾～＾）
+                    josekiKyPattern_dfen_ = new Regex(
+                        Dfen.position +// とりあえず　ごっそりマッチ。123～はスペース数。+は成りゴマ。
+                        @"( moves.*)?"//棋譜
+                        , RegexOptions.Compiled
+                    );
+                }
+                return josekiKyPattern_dfen_;
+            }
+        }
+        static Regex josekiKyPattern_sfen_;
+        static Regex josekiKyPattern_dfen_;
+
+
+
+        public static Regex GetJosekiSsPattern(bool isSfen)
+        {
+            if (isSfen)
+            {
+                if (null == josekiSsPattern_sfen_)
+                {
+                    josekiSsPattern_sfen_ = new Regex(
+                        // 指し手 (1:グループ,2:指し手全体,3～7:指し手各部,8:投了)
+                        @"((([" + Sfen.suji + Sfen.motigomaT1 + @"])([" + Sfen.dan + @"\*])([" + Sfen.suji + @"])([" + Sfen.dan + @"])(\+)?)|("+Sfen.toryo+")) " +
+                        // 応手 (9:グループ,10:none,11:指し手全体,12～16:指し手各部,17:投了)
+                        @"((none)|(([" + Sfen.suji + Sfen.motigomaT1 + @"])([" + Sfen.dan + @"\*])([" + Sfen.suji + @"])([" + Sfen.dan + @"])(\+)?)|(" + Sfen.toryo + ")) " +
+                        // 評価値 (18)
+                        @"(-?\d+) " +
+                        // 深さ (19)
+                        @"(\d+) " +
+                        // バージョン (20)
+                        @"(\d+)"
+                        , RegexOptions.Compiled
+                    );
+                }
+                return josekiSsPattern_sfen_;
+            }
+            else
+            {
+                if (null == josekiSsPattern_dfen_)
+                {
+                    josekiSsPattern_dfen_ = new Regex(
+                        // 指し手 (1:グループ,2:指し手全体,3～7:指し手各部,8:投了)
+                        @"((([" + Dfen.suji + Dfen.motigomaT1 + @"])([" + Dfen.dan + @"\*])([" + Dfen.suji + @"])([" + Dfen.dan + @"])(\+)?)|(" + Sfen.toryo + ")) " +
+                        // 応手 (9:グループ,10:none,11:指し手全体,12～16:指し手各部,17:投了)
+                        @"((none)|(([" + Dfen.suji + Dfen.motigomaT1 + @"])([" + Dfen.dan + @"\*])([" + Dfen.suji + @"])([" + Dfen.dan + @"])(\+)?)|(" + Sfen.toryo + ")) " +
+                        // 評価値 (18)
+                        @"(-?\d+) " +
+                        // 深さ (19)
+                        @"(\d+) " +
+                        // バージョン (20)
+                        @"(\d+)"
+                        , RegexOptions.Compiled
+                    );
+                }
+                return josekiSsPattern_dfen_;
+            }
+        }
+        static Regex josekiSsPattern_sfen_;
+        static Regex josekiSsPattern_dfen_;
+
+
+                hyoji.AppendLine("JosekiPer                = " + ComSettei.josekiPer);
+                hyoji.AppendLine("JosekiRec                = " + ComSettei.josekiRec);
+
+
+            else if (caret == cmdline.IndexOf("joseki", caret)) { CommandJ.Joseki(PureSettei.usi, cmdline, hyoji); }
+
+
+                Util_Machine.Flush_Joseki(hyoji);// 定跡を書き出し
+
+            hyoji.AppendLine("joseki          : 定跡ファイルの情報表示☆");
+            hyoji.AppendLine("joseki bunkatu  : 定跡メモリを分割するぜ☆");
+            hyoji.AppendLine("joseki cleanup  : 定跡ファイルの中の指せない手を削除するぜ☆");
+
+            hyoji.AppendLine("set JosekiPer 50        : 50%の確率で定跡を使うぜ☆ 0～100");
+            hyoji.AppendLine("set JosekiRec true      : 定跡の登録を行うぜ☆");
+
+
+#region JosekiPer
+            else if (Util_String.MatchAndNext("JosekiPer ", line, ref caret))
+            {
+                // うしろに続く文字は☆（＾▽＾）
+                string rest = line.Substring(caret);
+
+                if (int.TryParse(rest, out int val))
+                {
+                    if (val < 0) { val = 0; }
+                    else if (100 < val) { val = 100; }
+                    ComSettei.josekiPer = val;
+                }
+            }
+#endregion
+
+#region JosekiRec
+            else if (Util_String.MatchAndNext("JosekiRec ", line, ref caret))
+            {
+                // うしろに続く文字は☆（＾▽＾）
+                string rest = line.Substring(caret);
+
+                if (bool.TryParse(rest, out bool val))
+                {
+                    ComSettei.josekiRec = val;
+                }
+            }
+#endregion
+
+
+                        Util_Machine.Flush_Joseki(hyoji);// 定跡を書き出し（あとで読込むので、書き込み強制）
+
+
+
+
+
+                        Util_Machine.Load_Joseki(hyoji);// 定跡を読込み
+
+
+
+        public static void Joseki(bool isSfen, string commandline, IHyojiMojiretu hyoji)
+        {
+            if (commandline == "joseki")
+            {
+                PureSettei.joseki.Joho(out int kyokumenSu, out int sasiteSu);
+                hyoji.AppendLine("定跡ファイル　局面数[" + kyokumenSu + "]　指し手数[" + sasiteSu + "]");
+                return;
+            }
+
+            // うしろに続く文字は☆（＾▽＾）
+            int caret_1 = 0;
+            Util_String.TobasuTangoToMatubiKuhaku(commandline, ref caret_1, "joseki ");
+
+            if (false)
+            {
+
+            }
+            else if (caret_1 == commandline.IndexOf("bunkatu", caret_1))
+            {
+                //────────────────────────────────────────
+                // 定跡を分割するぜ☆（＾～＾）
+                //────────────────────────────────────────
+                int out_kyokumenSu;
+                int out_sasiteSu;
+                {
+                    PureSettei.joseki.Joho(out out_kyokumenSu, out out_sasiteSu);
+                    hyoji.AppendLine("定跡ファイル（分割前）　局面数[" + out_kyokumenSu + "]　指し手数[" + out_sasiteSu + "]");
+                }
+
+                JosekiIo.Bunkatu(PureSettei.joseki, out Joseki[] bunkatu, out string[] bunkatupartNames
+#if DEBUG
+                    , (IDebugMojiretu)hyoji
+#endif
+                    );
+
+                for (int i = 0; i < bunkatu.Length; i++)
+                {
+                    bunkatu[i].Joho(out out_kyokumenSu, out out_sasiteSu);
+                    hyoji.AppendLine("定跡ファイル（分割[" + i + "][" + bunkatupartNames[i] + "]）　局面数[" + out_kyokumenSu + "]　指し手数[" + out_sasiteSu + "]");
+                }
+
+                //────────────────────────────────────────
+                // 定跡をマージするぜ☆（＾～＾）
+                //────────────────────────────────────────
+                for (int i = 1;//[0]にマージしていくぜ☆（＾▽＾）
+                    i < bunkatu.Length; i++)
+                {
+                    JosekiIo.Merge(bunkatu[i]
+#if DEBUG
+                        , (IDebugMojiretu)hyoji
+#endif
+                        );
+                }
+
+                {
+                    PureSettei.joseki.Joho(out out_kyokumenSu, out out_sasiteSu);
+                    hyoji.AppendLine("定跡ファイル（マージ後）　局面数[" + out_kyokumenSu + "]　指し手数[" + out_sasiteSu + "]");
+                }
+            }
+            else if (caret_1 == commandline.IndexOf("cleanup", caret_1))
+            {
+                //────────────────────────────────────────
+                // 指せない手は除去するぜ☆
+                //────────────────────────────────────────
+                #region 指せない手は除去するぜ☆
+                int countKy_all = 0;
+                int countSs_all = 0;
+                int countKy_bad = 0;
+                int countSs_bad = 0;
+                List<ulong> removeListKy = new List<ulong>();
+                Genkyoku gky2 = new Genkyoku();//局面データを使いまわすぜ☆
+                int caret_2;
+                foreach (KeyValuePair<ulong, JosekiKyokumen> kyEntry in PureSettei.joseki.KyItems)
+                {
+                    caret_2 = 0;
+                    if (LisGenkyoku.TryFail_ParsePositionvalue(gky2, isSfen, kyEntry.Value.Fen, ref caret_2, false, false, out string moves
+#if DEBUG
+                        , (IDebugMojiretu)hyoji
+#endif
+                        ))
+                    {
+                        string msg = "パースに失敗だぜ☆（＾～＾）！ #鯱";
+                        hyoji.AppendLine(msg);
+                        Util_Machine.Flush(hyoji);
+                        throw new Exception(hyoji.ToContents());
+                    }
+
+                    List<Sasite> removeListSs = new List<Sasite>();
+                    foreach (KeyValuePair<Sasite, JosekiSasite> ssEntry in kyEntry.Value.SsItems)
+                    {
+                        Sasite ss = ssEntry.Value.Sasite;//指し手データ
+
+                        // 合法手かどうか調べるぜ☆
+                        if (!GenkyokuOpe.CanDoSasite(gky2.yomiGky, ss, out SasiteMatigaiRiyu reason)// 指せない手☆
+                                                                                                    //||
+                                                                                                    //Sasite.Toryo == ss
+                        )
+                        {
+                            // 削除リストに入れるぜ☆
+                            removeListSs.Add(ss);
+                            countSs_bad++;
+                        }
+                        countSs_all++;
+                    }
+
+                    foreach (Sasite ss in removeListSs)
+                    {
+                        kyEntry.Value.SsItems.Remove(ss);
+                    }
+
+                    if (kyEntry.Value.SsItems.Count < 1)
+                    {
+                        removeListKy.Add(kyEntry.Key);
+                    }
+
+                    countKy_all++;
+                }
+
+                foreach (ulong key in removeListKy)
+                {
+                    PureSettei.joseki.KyItems.Remove(key);
+                    countKy_bad++;
+                }
+
+                hyoji.AppendLine("定跡ファイルの中の指せない手を 削除したぜ☆（＾～＾）保存はまだ☆");
+                hyoji.AppendLine("　局面数　　　残った数　／　削除した数　／　　全体の数　（　削除した率）");
+                hyoji.AppendLine("　　　　　　" + string.Format("{0,10}", countKy_all - countKy_bad) + "　／　" + string.Format("{0,10}", countKy_bad) + "　／　" + string.Format("{0,10}", countKy_all) + "　（" + string.Format("{0,10}", (float)countKy_bad / (float)countKy_all * 100.0f) + "％）");
+                hyoji.AppendLine("　指し手数　　残った数　／　削除した数　／　　全体の数　（　削除した率）");
+                hyoji.AppendLine("　　　　　　" + string.Format("{0,10}", countSs_all - countSs_bad) + "　／　" + string.Format("{0,10}", countSs_bad) + "　／　" + string.Format("{0,10}", countSs_all) + "　（" + string.Format("{0,10}", (float)countSs_bad / (float)countSs_all * 100.0f) + "％）");
+                #endregion
+            }
+        }
+
+
+#if DEBUG
+            PureCom.isJosekiTraced = isJosekiTraced;
+#endif
+
+
+
+
+
+
+                                           // &&// 以下はおまけの条件☆（＾▽＾）
+                                           // Option_Application.Random.Next(100) < Option_Application.Optionlist.JosekiPer
+
+
+            out bool out_isJosekiNoTouri,
+
+            out_isJosekiNoTouri = false;
+
+
+                //────────────────────────────────────────
+                // 定跡
+                //────────────────────────────────────────
+#region 定跡、成績
+                // 探索が始まる前に定跡、成績を使うぜ☆（＾▽＾）
+                // まず、定跡を使う、使わないの判断だぜ☆（＾～＾）
+                bool useJoseki = false;
+                switch (PureSettei.char_playerN[(int)gky.yomiKy.teban])
+                {
+                    // 「探索のみ」のやつは定跡を使わないんだぜ☆（＾▽＾）
+                    case SasiteCharacter.TansakuNomi: goto gt_NotUseJoseki;
+                    // 「勝率のみ」、「新手のみ」のやつは必ず成績を使うんだぜ☆（＾▽＾）
+                    case SasiteCharacter.SyorituNomi://thru
+                    case SasiteCharacter.SinteNomi:
+                        useJoseki = true;
+                        break;
+                    default:// それ以外のやつは、定跡採用率によるんだぜ☆（＾▽＾）
+                        useJoseki = PureSettei.random.Next(100) < ComSettei.josekiPer;
+                        break;
+                }
+
+                if (useJoseki)
+                {
+                    // ストップウォッチ
+                    ComSettei.timeManager.RestartStopwatch_Tansaku();
+                    ComSettei.timeManager.lastJohoTime = 0;
+
+                    Sasite josekiSs = Sasite.Toryo;
+#if DEBUG
+                    string fen_forTest = "未設定";
+#endif
+                    // 定跡の中には、負けるのが入っているぜ☆（＾～＾）
+                    // 勝率も見た方がいいのでは☆（＾～＾）？
+                    switch (PureSettei.char_playerN[(int)gky.yomiKy.teban])
+                    {
+                        case SasiteCharacter.SinteYusen://thru
+                        case SasiteCharacter.SinteNomi:
+                            {
+                                List<Sasite> josekiSasites = PureSettei.joseki.GetSasites(gky);
+                                // この局面の合法手を取得☆（＾▽＾）
+                                int fukasa = 0;
+
+                                // グローバル変数 Util_SasiteSeisei.Sasitelist[fukasa].Sslist に指し手がセットされるぜ☆（＾▽＾）
+                                if (SasitePicker01.TryFail_SasitePicker_01(fukasa, gky, SasiteType.N21_All, true
+#if DEBUG
+                                    , (IDebugMojiretu)hyoji
+#endif
+                                    ))
+                                {
+                                    out_sasite = Sasite.Toryo;//エラー
+                                    return Pure.FailTrue("Try_GenerateSasite_01"
+#if DEBUG
+                                        , (IDebugMojiretu)hyoji
+#endif
+                                        );
+                                }
+                                List<Sasite> gohosyu = new List<Sasite>( PureMemory.sasitelist[fukasa].list_Sasite);
+                                foreach (Sasite ss in josekiSasites)
+                                {
+                                    if (gohosyu.Contains(ss))
+                                    {
+                                        gohosyu.Remove(ss);
+                                    }
+                                }
+
+                                if (0<gohosyu.Count)
+                                {
+                                    josekiSs = gohosyu[0];
+                                }
+                                else
+                                {
+                                    // 新手が無かったので、定跡を使わないことにするぜ☆（＾～＾）
+                                    goto gt_NotUseJoseki;
+                                }
+                            }
+                            break;
+                        case SasiteCharacter.SyorituYusen://thru
+                        case SasiteCharacter.SyorituNomi:
+                            {
+                                float bestSyoritu;
+                                josekiSs = ComSettei.seiseki.GetSasite_Winest(gky, out bestSyoritu);
+                            }
+                            break;
+                        case SasiteCharacter.HyokatiYusen://thru
+                        case SasiteCharacter.Yososu://thru
+                        default:
+                            {
+                                // 評価値で選ぶぜ☆（＾～＾）
+                                HyokaNumber bestHyokati;
+                                 if (! PureSettei.joseki.Try_GetSasite(out josekiSs, PureSettei.usi, gky, out bestHyokati
+#if DEBUG
+                                    , (IDebugMojiretu)hyoji
+                                    , out fen_forTest
+#endif
+                                    ))
+                                {
+                                    out_sasite = Sasite.Toryo;//エラー
+                                    return Pure.FailTrue("PureSettei.joseki.Try_GetSasite"
+#if DEBUG
+                                        , (IDebugMojiretu)hyoji
+#endif
+                                        );
+                                }
+                            }
+                            break;
+                    }
+
+                    // とはいえ、負け定跡を選ぶのは嫌だぜ☆（＾～＾）
+                    if (Sasite.Toryo != josekiSs)
+                    {
+                        float syoritu;
+                        if (!ComSettei.seiseki.GetSasite_Syoritu(gky, josekiSs, out syoritu))
+                        {
+                            // 成績が登録されていなければ無視するぜ☆（＾～＾）
+                            josekiSs = Sasite.Toryo;
+                        }
+                        else if (syoritu < 0.5)
+                        {
+                            // 成績が登録されていても、勝率が５割を切っていれば無視するぜ☆（＾～＾）
+                            josekiSs = Sasite.Toryo;
+                        }
+                    }
+
+                    if (Sasite.Toryo != josekiSs)
+                    {
+                        // 定跡用の 読み筋情報 を作るぜ☆（＾▽＾）
+                        best_yomisuji_orNull = new Yomisuji();
+                        Debug.Assert(Sasite.Toryo != josekiSs);
+                        best_yomisuji_orNull.Add(josekiSs,SasiteType.N00_Karappo); // 先頭に今回の指し手を置くぜ☆
+                        out_isJosekiNoTouri = true;// 定跡の通り指したとき☆
+                        goto gt_DoSasite;
+                    }
+                }
+            gt_NotUseJoseki:
+                ;
+#endregion
+
+
+
+                                out_isJosekiNoTouri,
+                    out_isJosekiNoTouri,
+
+
+            bool isJosekiTraced;
+
+, out isJosekiTraced
+
+
+
+        /// <summary>
+        /// 定跡を書き出すぜ☆（＾▽＾）
+        /// </summary>
+        public static void Flush_Joseki(IHyojiMojiretu hyoji)
+        {
+            if (IsEnableBoardSize() && ComSettei.josekiRec && PureSettei.joseki.Edited)
+            {
+                hyoji.Append("定跡ファイル書出中");
+                Util_Machine.Flush(hyoji);
+
+                // 容量がでかくなったので、複数のファイルに分割して保存するぜ☆（＾▽＾）
+                JosekiIo.Bunkatu(PureSettei.joseki, out Joseki[] bunkatu, out string[] bunkatupartNames
+#if DEBUG
+                    , (IDebugMojiretu)hyoji
+#endif
+                    );
+
+                // 残すべきファイル名一覧☆（＾▽＾）
+                List<string> expectedFiles = new List<string>();
+                {
+                    foreach (string bunkatupartName in bunkatupartNames)
+                    {
+                        expectedFiles.Add(Util_Machine.JOSEKI_FILE_WOE + (PureSettei.sagareruHiyoko ? Util_Machine.LOCALRULE_SAGARERUHIYOKO : Util_Machine.LOCALRULE_HONSHOGI) + bunkatupartName + Util_Machine.JOSEKI_FILE_EXT);
+                    }
+                }
+
+                // ファイル名パターンに合致しない定跡ファイルはゴミになるので削除するぜ☆（＾～＾）
+                // バックアップを残したかったらファイル名の先頭を変えることだぜ☆（＾▽＾）
+                List<string> removeFilepaths = new List<string>();
+                {
+                    // まず、既存ファイル名を列挙するぜ☆（＾▽＾）
+                    string filenamePattern = Util_Machine.JOSEKI_FILE_WOE + (PureSettei.sagareruHiyoko ? Util_Machine.LOCALRULE_SAGARERUHIYOKO : Util_Machine.LOCALRULE_HONSHOGI) + "*";
+                    string[] filepaths = Directory.GetFiles(".", filenamePattern);
+
+                    foreach (string filepath in filepaths)
+                    {
+                        string filename = Path.GetFileName(filepath);
+                        if (!expectedFiles.Contains(filename))
+                        {
+                            Util_Machine.Flush(hyoji);
+                            removeFilepaths.Add(filepath);
+                        }
+                    }
+                }
+
+                int index = 0;
+                foreach (Joseki jo in bunkatu)
+                {
+                    Util_Machine.Flush_Joseki_1file(jo, expectedFiles[index], hyoji);
+                    index++;
+                }
+
+                // 紛らわしい名前のファイルを削除するぜ☆（＾▽＾）
+                foreach (string filepath in removeFilepaths)
+                {
+                    File.Delete(filepath);
+                    hyoji.AppendLine(filepath + "を削除したぜ☆（＾～＾）");
+                }
+
+                hyoji.Append(".");
+                Util_Machine.Flush(hyoji);
+
+                // 分割したファイルをマージするぜ☆（＾▽＾）
+                for (int i=1;//[0]にマージしていくぜ☆（＾▽＾）
+                    i<bunkatu.Length; i++)
+                {
+                    JosekiIo.Merge(bunkatu[i]
+#if DEBUG
+                        , (IDebugMojiretu)hyoji
+#endif
+                        );
+                }
+
+                hyoji.AppendLine("☆");
+                Util_Machine.Flush(hyoji);
+                PureSettei.joseki.Edited = false;
+            }
+        }
+        /// <summary>
+        /// 定跡を書き出すぜ☆（＾▽＾）
+        /// </summary>
+        public static void Flush_Joseki_1file(Joseki jo, string file, IHyojiMojiretu hyoji)
+        {
+            if (!File.Exists(file))
+            {
+                // 定跡ファイルが無ければ作成します。
+                FileStream fs = File.Create(file);
+                fs.Close(); // File.Create したあとは、必ず Close() しないと、ロックがかかったままになる☆（＾▽＾）
+            }
+
+            hyoji.Append(".");
+            Util_Machine.Flush(hyoji);
+
+            // 定跡の文字列化☆
+            string josekiStr = JosekiIo.ToContents(jo, PureSettei.usi, PureSettei.banYokoHaba);
+
+            hyoji.Append(".");
+            Util_Machine.Flush(hyoji);
+
+            // 容量を制限するぜ☆
+            if (Joseki.Capacity < josekiStr.Length)
+            {
+                hyoji.AppendLine("joseki removed ( ascii characters size ) = " + JosekiIo.DownSizeing(jo, josekiStr.Length - Joseki.Capacity));
+                Util_Machine.Flush(hyoji);
+
+                hyoji.Append(".");
+                Util_Machine.Flush(hyoji);
+
+                // もう１回取得☆
+                josekiStr = JosekiIo.ToContents(jo, PureSettei.usi, PureSettei.banYokoHaba);
+            }
+
+            // 上書き☆
+            System.IO.File.WriteAllText(file, josekiStr);
+        }
+
+
+
+        /// <summary>
+        /// 定跡ファイル名　拡張子抜き（without extension）
+        /// </summary>
+        public const string JOSEKI_FILE_WOE = "_auto_joseki";
+        /// <summary>
+        /// 定跡ファイル名の拡張子
+        /// </summary>
+        public const string JOSEKI_FILE_EXT = ".txt";
+
+
+        /// <summary>
+        /// 定跡を読込むぜ☆（＾▽＾）
+        /// </summary>
+        public static void Load_Joseki(IHyojiMojiretu hyoji)
+        {
+            if (IsEnableBoardSize())
+            {
+                hyoji.Append("定跡ファイル読込中");
+                Util_Machine.Flush(hyoji);
+
+                // まず、既存ファイル名を列挙するぜ☆（＾▽＾）
+                string filenamePattern = Util_Machine.JOSEKI_FILE_WOE + (PureSettei.sagareruHiyoko ? Util_Machine.LOCALRULE_SAGARERUHIYOKO : Util_Machine.LOCALRULE_HONSHOGI) + "*";
+                string[] filepaths = Directory.GetFiles(".", filenamePattern);
+
+                // どんどんマージしていくぜ☆（＾▽＾）
+                PureSettei.joseki.Clear();
+                for (int index = 0; index < filepaths.Length; index++)
+                {
+                    hyoji.Append(".");
+                    Util_Machine.Flush(hyoji);// これが重たいのは仕方ないぜ☆（＾～＾）
+
+                    if(!Util_Machine.Try_Load_Joseki_1file(out Joseki jo, filepaths[index]
+#if DEBUG
+                        , (IDebugMojiretu)hyoji
+#endif
+                        ))
+                    {
+                        throw new Exception(hyoji.ToContents());
+                    }
+
+                    if (null != jo)
+                    {
+                        JosekiIo.Merge(jo
+#if DEBUG
+                            , (IDebugMojiretu)hyoji
+#endif
+                            );
+                    }
+                }
+
+                hyoji.AppendLine("☆");
+                Util_Machine.Flush(hyoji);
+            }
+        }
+        /// <summary>
+        /// 定跡を読込むぜ☆（＾▽＾）
+        /// </summary>
+        public static bool Try_Load_Joseki_1file(out Joseki out_joseki, string filepath
+#if DEBUG
+            , IDebugMojiretu reigai1
+#endif
+            )
+        {
+            out_joseki = null;
+
+            if (File.Exists(filepath))//定跡ファイルがある場合のみ、定跡を使うぜ☆（＾▽＾）
+            {
+                out_joseki = new Joseki();
+                if(!LisJoseki.Parse(out_joseki, PureSettei.usi, System.IO.File.ReadAllLines(filepath)
+#if DEBUG
+                        , reigai1
+#endif
+                    ))
+                {
+                    return false;
+                }
+
+                //#if DEBUG
+                //                // ロードした直後にダンプして中身を目視確認だぜ☆（＾～＾）
+                //                Util_Machine.AppendLine(
+                //                        "以下、定跡メモリのダンプ\n" +
+                //                        "┌──────────┐\n" +
+                //                        Option_Application.Joseki.ToString() +
+                //                        "└──────────┘\n" +
+                //                        ""
+                //                    );
+                //                Util_Machine.Flush();
+                //#endif
+            }
+
+            return true;
+        }
+
+
+                Util_Machine.Flush_Joseki(hyoji);// 定跡ファイルを更新するぜ☆（＾～＾）
+
+
+
+
+
+
+
+
+        /// <summary>
+        /// 定跡更新（ゲームセクション内）
+        /// </summary>
+        public static void Update1_JosekiToroku(Sasite inputSasite, Genkyoku ky
+#if DEBUG
+            , IDebugMojiretu reigai1
+#endif
+            )
+        {
+            if (Util_Machine.IsEnableBoardSize() && ComSettei.josekiRec)
+            {
+                Conv_HyokatiAb.Hyoka_Remake(
+                    ky,
+                    out HyokatiAb hyokatiUtiwake,
+                    true//ランダムな局面の可能性もあるぜ☆（＾～＾）
+#if DEBUG
+                    ,HyokaRiyu.Yososu
+#endif
+                    );
+
+                // 定跡更新☆（＾▽＾）
+                PureSettei.joseki.AddSasite(KyFen_before, KyHash_before, KyTaikyokusya_before, inputSasite,
+                    hyokatiUtiwake.total,// 指した直後の局面の点数
+                    1,//人間は１手読み扱いで☆
+                    PureAppli.VERSION
+#if DEBUG
+                    , reigai1
+#endif
+                    );
+            }
+        }
+
+
+        /// <summary>
+        /// 定跡更新（ゲームセクション内）
+        /// </summary>
+        public static void Update2_JosekiToroku(Sasite bestSasite, HyokaNumber bestHyokati, Genkyoku gky
+#if DEBUG
+            , IDebugMojiretu reigai1
+#endif
+            )
+        {
+            if (Util_Machine.IsEnableBoardSize() && ComSettei.josekiRec)
+            {
+                if (!PureCom.isJosekiTraced)// 定跡を使った指し手ではない場合に限り
+                {
+#if DEBUG
+                    // 指し手の整合性をチェックしておきたいぜ☆（＾▽＾）
+                    {
+                        Genkyoku gky_forAssert = new Genkyoku();
+                        int caret_2 = 0;
+                        if (LisGenkyoku.TryFail_ParsePositionvalue(gky_forAssert, PureSettei.usi, KyFen_before, ref caret_2, true, false, out string moves, reigai1)) // ビットボードを更新したいので、適用する
+                        {
+                            string msg = "パースに失敗だぜ☆（＾～＾）！ #鯰";
+                            reigai1.AppendLine(msg);
+                            Util_Machine.Flush(reigai1);
+                            throw new Exception(msg);
+                        }
+
+                        if (!GenkyokuOpe.CanDoSasite(gky_forAssert.yomiGky, bestSasite, out SasiteMatigaiRiyu riyu))
+                        {
+                            reigai1.AppendLine("指せない指し手を定跡に登録しようとしたぜ☆（＾～＾）！：");
+                            reigai1.Append("理由:"); SpkSasite.AppendSetumeiLine(riyu, reigai1);
+                            reigai1.Append("指し手:"); SpkSasite.AppendSetumeiLine(PureSettei.usi, bestSasite, reigai1);
+                            reigai1.Append("定跡にする１手前の局面　（"); reigai1.Append(KyFen_before); reigai1.AppendLine("）");
+                            SpkBan_1Column.Setumei_Kyokumen(gky_forAssert.yomiGky, reigai1);
+                            reigai1.AppendLine();
+                            reigai1.Append("１手後は、現局面");
+                            SpkBan_1Column.Setumei_Kyokumen(gky.yomiGky, reigai1);
+                            reigai1.AppendLine(reigai1.ToContents());
+                            Util_Machine.Flush(reigai1);
+                            throw new Exception(reigai1.ToContents());
+                        }
+                    }
+#endif
+
+                    PureSettei.joseki.AddSasite(KyFen_before, KyHash_before, KyTaikyokusya_before, bestSasite, bestHyokati, HanpukuSinka.happaenoFukasa, PureAppli.VERSION
+#if DEBUG
+                        , reigai1
+#endif
+                        );
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// 定跡登録　初期化（ゲームセクション内）
+        /// </summary>
+        public static void Init_JosekiToroku(Genkyoku gky )
+        {
+            PureCom.isJosekiTraced = false;//毎回リセット☆（＾▽＾）
+            KyFen_before = null;
+            KyHash_before = 0;
+            KyTaikyokusya_before = Taikyokusya.Yososu;
+            if (Util_Machine.IsEnableBoardSize() && ComSettei.josekiRec)
+            {
+                ICommandMojiretu fenMojiretu = new MojiretuImpl();
+                SpkGenkyokuOpe.AppendFenTo(gky.yomiKy, PureSettei.usi, fenMojiretu);
+                KyFen_before = fenMojiretu.ToContents();
+                KyHash_before = gky.kyokumenHash.value;
+                KyTaikyokusya_before = gky.yomiKy.teban;
+            }
+        }
+
+
+
+
+
+
+
+#if DEBUG
+using kifuwarabe_shogithink.pure.com.hyoka;
+using kifuwarabe_shogithink.pure.genkyoku;
+using kifuwarabe_shogithink.pure.genkyoku.play;
+using kifuwarabe_shogithink.pure.ikkyoku.joseki;
+using kifuwarabe_shogithink.pure.listen.genkyoku;
+using kifuwarabe_shogithink.pure.listen.ky;
+using kifuwarabe_shogithink.pure.listen.play;
+using kifuwarabe_shogithink.pure.logger;
+using System;
+using System.Text.RegularExpressions;
+#else
+using kifuwarabe_shogithink.pure.com.hyoka;
+using kifuwarabe_shogithink.pure.genkyoku;
+using kifuwarabe_shogithink.pure.genkyoku.play;
+using kifuwarabe_shogithink.pure.ikkyoku.joseki;
+using kifuwarabe_shogithink.pure.listen.genkyoku;
+using kifuwarabe_shogithink.pure.listen.ky;
+using kifuwarabe_shogithink.pure.listen.play;
+using System;
+using System.Text.RegularExpressions;
+#endif
+
+namespace kifuwarabe_shogithink.pure.listen.gakusyu.joseki
+{
+    public static class LisJoseki
+    {
+        /// <summary>
+        /// 定跡ファイルの解析☆（＾～＾）
+        /// </summary>
+        /// <param name="lines"></param>
+        public static bool Parse(Joseki js, bool isSfen, string[] lines
+#if DEBUG
+            , IDebugMojiretu reigai1
+#endif
+            )
+        {
+            js.Clear();
+            Genkyoku ky_forJoseki = new Genkyoku();//使いまわすぜ☆（＾▽＾）
+            JosekiKyokumen josekiKy = null;
+            JosekiSasite josekiSs;
+            Match m;
+            string commandline;
+            for (int iGyoBango = 0; iGyoBango < lines.Length; iGyoBango++)
+            {
+                commandline = lines[iGyoBango];
+
+                if (commandline.Length < 1)
+                {
+                    // 空行は無視☆
+                    // 半角空白とか、全角空白とか、タブとか　入れてるやつは考慮しないぜ☆（＾～＾）！
+                }
+                else if ('f' == commandline[0])// fen で始まれば局面データ☆（＾▽＾）// caret == commandline.IndexOf("fen ", caret)
+                {
+                    // キャレットは進めずに続行だぜ☆（＾▽＾）
+                    m = Itiran_FenParser.GetJosekiKyPattern(PureSettei.usi).Match(commandline);//, caret
+                    if (!m.Success)
+                    {
+#if DEBUG
+                        reigai1.AppendLine("パースに失敗だぜ☆（＾～＾）！ #寿 定跡ファイル解析失敗");
+                        reigai1.AppendLine("commandline=[" + commandline + "]");
+                        reigai1.Append(" [");
+                        reigai1.Append(iGyoBango.ToString());
+                        reigai1.Append("]行目");
+#endif
+                        return false;
+                    }
+
+                    // .Value は、該当しないときは空文字列か☆
+                    // .Value は、該当しないときは空文字列か☆
+                    if (Itiran_FenParser.STARTPOS_LABEL == m.Groups[1].Value)
+                    {
+                        Joseki.DanStrings = Itiran_FenParser.GetStartpos(PureSettei.usi).Split('/');
+                    }
+                    else
+                    {
+                        Joseki.DanStrings = m.Groups[1].Value.Split('/');   // N段目
+                    }
+
+
+                    if(LisGenkyoku.TryFail_SetNaiyo(
+                        ky_forJoseki,
+                        isSfen,
+                        true,//適用
+                        false,
+                        Joseki.DanStrings,  //1～N 段目
+                        m.Groups[2].Value,
+                        m.Groups[3].Value
+
+#if DEBUG
+                        , reigai1
+#endif
+                    //手番
+                    ))
+                    {
+                        return false;
+                    }
+
+                    /*
+#if DEBUG
+                {
+                    Kyokumen ky3 = new KyokumenImpl();
+                    int caret = 0;
+                    ky3.ParseFen(commandline, ref caret, false, syuturyoku);
+                    ulong newHash = ky3.CreateKyokumenHash();
+                    if (newHash != ky2.KyokumenHash)
+                    {
+                        Mojiretu reigai1 = new MojiretuImpl();
+                        reigai1.Append("局面ハッシュが異なるぜ☆（＾～＾）！ commandline=[");
+                        reigai1.Append(commandline);
+                        reigai1.Append("] ky3.AppendFenTo=[");
+                        ky3.AppendFenTo(reigai1);
+                        reigai1.Append("] dan1[");
+                        reigai1.Append(JosekiImpl.DanStrings[0]);
+                        reigai1.Append("] dan2[");
+                        reigai1.Append(JosekiImpl.DanStrings[1]);
+                        reigai1.Append("] dan3[");
+                        reigai1.Append(JosekiImpl.DanStrings[2]);
+                        reigai1.Append("] dan4[");
+                        reigai1.Append(JosekiImpl.DanStrings[3]);
+                        reigai1.Append("] newHash=[");
+                        reigai1.Append(newHash.ToString());
+                        reigai1.Append("] ky2.KyokumenHash=[");
+                        reigai1.Append(ky2.KyokumenHash.ToString());
+                        reigai1.Append("]");
+                        syuturyoku.AppendLine(reigai1.ToContents());
+                        Util_Machine.Flush(syuturyoku);
+                        throw new Exception(reigai1.ToContents());
+                    }
+                }
+#endif
+                    */
+
+                    josekiKy = js.ParseKyokumenLine(commandline, ky_forJoseki.kyokumenHash.value, ky_forJoseki.yomiKy.teban
+#if DEBUG
+                        , reigai1
+#endif
+                        );
+                }
+                else
+                {
+                    // それ以外は手筋☆（＾▽＾）
+                    if (null == josekiKy)
+                    {
+                        throw new Exception("定跡ファイル解析失敗 定跡局面の指定なし☆");
+                    }
+
+                    // 指し手、指し手、数字、数字、数字　と並んでいるぜ☆（＾▽＾）
+                    m = Itiran_FenParser.GetJosekiSsPattern(PureSettei.usi).Match(commandline);
+                    if (!m.Success)
+                    {
+                        //*
+                        // FIXME:
+#if DEBUG
+                        string msg = "パースに失敗だぜ☆（＾～＾）！ #鮪 commandline=[" + commandline + "]";
+                        reigai1.AppendLine(msg);
+#endif
+                        return false;
+                        // */
+                    }
+
+                    // 高速化のために、ローカル変数を減らして、詰め込んだコードにしているぜ☆（＞＿＜）            
+
+                    // 第１引数 B1C1 や toryo のような指し手の解析。
+                    josekiSs = new JosekiSasite(
+                        // １列目：指し手☆ (1:グループ,2:指し手全体,3～7:指し手各部,8:投了)
+                        m.Groups[8].Success ? Sasite.Toryo : // "toryo" が入っている場合☆
+                            LisPlay.TryFen_Sasite2(PureSettei.usi,
+                                m.Groups[3].Value,
+                                m.Groups[4].Value,
+                                m.Groups[5].Value,
+                                m.Groups[6].Value,
+                                m.Groups[7].Value
+#if DEBUG
+                                , ky_forJoseki.yomiKy
+#endif
+                            ),
+
+                        // ２列目：応手☆ none とか。(9:グループ,10:none,11:指し手全体,12～16:指し手各部,17:投了)
+                        m.Groups[10].Success || m.Groups[17].Success ? Sasite.Toryo :// [10]"none" または[17]"toryo" が入っている場合☆ FIXME: none と toryo を区別してないぜ☆（＾～＾）
+                        LisPlay.TryFen_Sasite2(PureSettei.usi,
+                            m.Groups[12].Value,
+                            m.Groups[13].Value,
+                            m.Groups[14].Value,
+                            m.Groups[15].Value,
+                            m.Groups[16].Value
+#if DEBUG
+                            , ky_forJoseki.yomiKy
+#endif
+                        ),
+
+                        (HyokaNumber)int.Parse(m.Groups[18].Value),//hyokati (18) 解析はokなはず☆
+                        int.Parse(m.Groups[19].Value),//fukasa (19) 解析はokなはず☆
+                        int.Parse(m.Groups[20].Value),//version (20) 解析はokなはず☆（旧版ではバージョンは無いこともある☆）
+                        josekiKy
+                        );
+
+
+                    // 定跡ファイルの局面には、重複指し手データがないようにしてくれだぜ☆（＾～＾）チェックは省くぜ☆
+                    /*
+                    if (josekiKy.SsItems.ContainsKey(josekiSs.Sasite))
+                    {
+                            // FIXME:
+                            String2 str = new String2Impl();
+                            str.Append("局面データに重複の指し手があるぜ☆（＾～＾）！ 局面=[");
+                            str.Append(josekiKy.Fen);
+                            str.Append("] 指し手=[");
+                            Conv_Sasite.Setumei(josekiSs.Sasite,str);
+                            str.Append("]");
+                            Util_Machine.AppendLine(str.ToContents());
+                            Util_Machine.Flush();
+                            throw new Exception(str.ToContents());
+                    }
+                    else
+                    {
+                    // */
+                    // 新規
+
+                    //#if DEBUG
+                    //                // 指し手の整合性をチェックしておきたいぜ☆（＾▽＾）
+                    //                {
+                    //                    Kyokumen ky2 = new KyokumenImpl();
+                    //                    if (!ky2.ParseFen(ky.ToFen(), false))
+                    //                    {
+                    //                        string msg = "新規：　パースに失敗だぜ☆（＾～＾）！";
+                    //                        Face_Application.MessageLine(msg);
+                    //                        Face_Application.Write();
+                    //                        throw new Exception(msg);
+                    //                    }
+
+                    //                    Sasite bestSasite;
+                    //                    int caret_test = 0;
+                    //                    Conv_Sasite.TryParse(commandline, ref caret_test, ky2, out bestSasite);
+
+                    //                    SasiteError reason;
+                    //                    if (!ky2.CanDoSasite( bestSasite, out reason))
+                    //                    {
+                    //                        throw new Exception("新規：　指せない指し手を定跡に登録しようとしたぜ☆（＾～＾）！：" + Conv_Sasite.Setumei(reason));
+                    //                    }
+                    //                }
+                    //#endif
+
+                    josekiKy.SsItems.Add(josekiSs.Sasite, josekiSs);
+                    js.Edited = true;
+                    //}
+                }
+            }
+            return true;
+        }
+    }
+}
+
+
+
+                    // 指す前の局面☆（定跡　登録用）
+                    Util_ConsoleGame.Init_JosekiToroku(gky);
+
+
+
+
+                            Util_ConsoleGame.Update1_JosekiToroku(inputSasite, gky
+#if DEBUG
+                                , (IDebugMojiretu)hyoji
+#endif
+                                );// やるなら、定跡更新☆（＾▽＾）
+
+
+
+                        Util_ConsoleGame.Update2_JosekiToroku(bestSasite, best_hyokatiUTiwake.total, gky
+#if DEBUG
+                            , (IDebugMojiretu)hyoji
+#endif
+                            );// やるなら、定跡更新☆（＾▽＾）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#if DEBUG
+using kifuwarabe_shogithink.pure.com.hyoka;
+using kifuwarabe_shogithink.pure.genkyoku.play;
+using kifuwarabe_shogithink.pure.ikkyoku.joseki;
+using kifuwarabe_shogithink.pure.ky;
+using kifuwarabe_shogithink.pure.logger;
+using System.Collections.Generic;
+#else
+using kifuwarabe_shogithink.pure.com.hyoka;
+using kifuwarabe_shogithink.pure.genkyoku.play;
+using kifuwarabe_shogithink.pure.ikkyoku.joseki;
+using kifuwarabe_shogithink.pure.ky;
+using kifuwarabe_shogithink.pure.logger;
+using System.Collections.Generic;
+#endif
+
+namespace kifuwarabe_shogiwin.consolegame.io
+{
+    public static class JosekiIo
+    {
+        /// <summary>
+        /// 定跡ファイルの容量を小さくしたいときに、定跡を削っていくぜ☆（＾～＾）
+        /// </summary>
+        /// <param name="removeBytes">減らしたいバイトサイズ☆（＾▽＾）</param>
+        public static long DownSizeing(Joseki joseki, long removeBytes)
+        {
+            long removed = 0;
+
+            if (removeBytes < 1)
+            {
+                return removed;
+            }
+
+            // 削る優先順
+            // （１）バージョンが古い順、
+            // （２）深さが浅い順、
+            // （３）１つの局面の中で、２つ以上の指し手があり、評価値が一番悪い手、
+            // （４）あとは泣く泣く適当に削る☆
+            //
+            // 最後に、指し手を持たない局面を削っておくぜ☆
+
+            //────────────────────────────────────────
+            // （１）バージョンが古い順
+            //────────────────────────────────────────
+            while (true)
+            {
+                // 全ての手を走査し、一番バージョン番号が古いもの☆（＾▽＾）
+                int oldest = int.MaxValue;
+                int newest = int.MinValue;
+                foreach (JosekiKyokumen josekiKy in joseki.KyItems.Values)
+                {
+                    foreach (JosekiSasite josekiSs in josekiKy.SsItems.Values)
+                    {
+                        if (josekiSs.Version < oldest)
+                        {
+                            oldest = josekiSs.Version;
+                        }
+                        else if (newest < josekiSs.Version)
+                        {
+                            newest = josekiSs.Version;
+                        }
+                    }
+                }
+
+                if (oldest == newest || newest < oldest)
+                {
+                    break;
+                }
+
+                foreach (JosekiKyokumen josekiKy in joseki.KyItems.Values)
+                {
+                    // バージョン番号が古いキーを列挙☆（＾▽＾）
+                    List<Sasite> removee = new List<Sasite>();
+                    foreach (KeyValuePair<Sasite, JosekiSasite> entry in josekiKy.SsItems)
+                    {
+                        if (oldest == entry.Value.Version)
+                        {
+                            removee.Add(entry.Key);
+                        }
+                    }
+
+                    // 列挙したキーに従って削除だぜ☆（＾▽＾）
+                    foreach (Sasite key in removee)
+                    {
+                        int size = josekiKy.SsItems[key].ToString().Length;
+                        josekiKy.SsItems.Remove(key);
+                        removeBytes -= size;
+                        removed += size;
+                        if (removeBytes < 1)
+                        {
+                            goto gt_FinishRemove;
+                        }
+                    }
+                }
+            }
+
+            //────────────────────────────────────────
+            // （２）深さが浅い順、
+            //────────────────────────────────────────
+            while (true)
+            {
+                // 全ての手を走査し、一番深さが浅いもの☆（＾▽＾）
+                int shallowest = int.MaxValue;
+                int deepest = int.MinValue;
+                foreach (JosekiKyokumen josekiKy in joseki.KyItems.Values)
+                {
+                    foreach (JosekiSasite josekiSs in josekiKy.SsItems.Values)
+                    {
+                        if (josekiSs.Fukasa < shallowest)
+                        {
+                            shallowest = josekiSs.Fukasa;
+                        }
+                        else if (deepest < josekiSs.Fukasa)
+                        {
+                            deepest = josekiSs.Fukasa;
+                        }
+                    }
+                }
+
+                if (shallowest == deepest || deepest < shallowest)
+                {
+                    break;
+                }
+
+                // 深さが該当する手は消すぜ☆（＾▽＾）
+                foreach (JosekiKyokumen josekiKy in joseki.KyItems.Values)
+                {
+                    // 浅いキーを列挙☆（＾▽＾）
+                    List<Sasite> removee = new List<Sasite>();
+                    foreach (KeyValuePair<Sasite, JosekiSasite> entry in josekiKy.SsItems)
+                    {
+                        if (shallowest == entry.Value.Fukasa)
+                        {
+                            removee.Add(entry.Key);
+                        }
+                    }
+
+                    // 列挙したキーに従って削除だぜ☆（＾▽＾）
+                    foreach (Sasite key in removee)
+                    {
+                        int size = josekiKy.SsItems[key].ToString().Length;
+                        josekiKy.SsItems.Remove(key);
+                        removeBytes -= size;
+                        removed += size;
+                        if (removeBytes < 1)
+                        {
+                            goto gt_FinishRemove;
+                        }
+                    }
+                }
+            }
+
+            //────────────────────────────────────────
+            // （３）１つの局面の中で、２つ以上の指し手があり、評価値が一番悪い手
+            //────────────────────────────────────────
+            foreach (JosekiKyokumen josekiKy in joseki.KyItems.Values)
+            {
+                if (2 <= josekiKy.SsItems.Count)
+                {
+                    // 全ての手を走査し、一番評価が悪いもの☆（＾▽＾）
+                    HyokaNumber badest = HyokaNumber.TumeTesu_SeiNoSu_ReiTeDume;
+                    HyokaNumber goodest = HyokaNumber.TumeTesu_FuNoSu_ReiTeTumerare;
+
+                    foreach (JosekiSasite josekiSs in josekiKy.SsItems.Values)
+                    {
+                        if (josekiSs.Hyokati < badest)
+                        {
+                            badest = josekiSs.Hyokati;
+                        }
+                        else if (goodest < josekiSs.Hyokati)
+                        {
+                            goodest = josekiSs.Hyokati;
+                        }
+                    }
+
+                    if (badest == goodest || goodest < badest)
+                    {
+                        break;
+                    }
+
+                    // 評価が悪いキーを列挙☆（＾▽＾）
+                    List<Sasite> removee = new List<Sasite>();
+                    foreach (KeyValuePair<Sasite, JosekiSasite> entry in josekiKy.SsItems)
+                    {
+                        if (badest == entry.Value.Hyokati)
+                        {
+                            removee.Add(entry.Key);
+                        }
+                    }
+
+                    // 列挙したキーに従って削除だぜ☆（＾▽＾）
+                    foreach (Sasite key in removee)
+                    {
+                        int size = josekiKy.SsItems[key].ToString().Length;
+                        josekiKy.SsItems.Remove(key);
+                        removeBytes -= size;
+                        removed += size;
+                        if (removeBytes < 1)
+                        {
+                            goto gt_FinishRemove;
+                        }
+                    }
+                }
+            }
+
+            //────────────────────────────────────────
+            // （４）あとは泣く泣く適当に削る☆
+            //────────────────────────────────────────
+            {
+                // 全部のキーを列挙☆（＾▽＾）
+                List<ulong> removee = new List<ulong>();
+                foreach (KeyValuePair<ulong, JosekiKyokumen> entry in joseki.KyItems)
+                {
+                    removee.Add(entry.Key);
+                }
+
+                // 列挙したキーに従って削除だぜ☆（＾▽＾）
+                foreach (ulong key in removee)
+                {
+                    int size = joseki.KyItems[key].ToString().Length;
+                    joseki.KyItems.Remove(key);
+                    removeBytes -= size;
+                    removed += size;
+                    if (removeBytes < 1)
+                    {
+                        goto gt_FinishRemove;
+                    }
+                }
+            }
+
+            gt_FinishRemove:
+            //────────────────────────────────────────
+            // （最後に）指し手を持たない局面を削る☆
+            //────────────────────────────────────────
+            {
+                // 指し手を持たない局面のキーを列挙☆（＾▽＾）
+                List<ulong> removee = new List<ulong>();
+                foreach (KeyValuePair<ulong, JosekiKyokumen> entry in joseki.KyItems)
+                {
+                    if (entry.Value.SsItems.Count < 1)
+                    {
+                        removee.Add(entry.Key);
+                    }
+                }
+
+                // 列挙したキーに従って削除だぜ☆（＾▽＾）
+                foreach (ulong key in removee)
+                {
+                    joseki.KyItems.Remove(key);
+                }
+            }
+
+            if (0 < removed)
+            {
+                joseki.Edited = true;
+            }
+
+            return removed;
+        }
+
+        /// <summary>
+        /// ファイルの容量が大きくなったので、分割するぜ☆（＾～＾）
+        /// 低速にはなるが、たくさん記憶するためのものだぜ☆
+        /// </summary>
+        /// <returns>分けた残りの定跡</returns>
+        public static void Bunkatu(Joseki joseki, out Joseki[] out_bunkatu, out string[] out_bunkatupartNames
+#if DEBUG
+            , IDebugMojiretu reigai1
+#endif
+            )
+        {
+            out_bunkatupartNames = new string[] { "(P1)", "(P2)" };
+            Joseki joP2 = new Joseki();
+
+            // 削除するキー
+            List<ulong> removeKeys = new List<ulong>();
+            foreach (KeyValuePair<ulong, JosekiKyokumen> joKy in joseki.KyItems)
+            {
+                if (joKy.Value.TbTaikyokusya == Taikyokusya.T2)
+                {
+                    removeKeys.Add(joKy.Key);
+
+                    foreach (KeyValuePair<Sasite, JosekiSasite> joSs in joKy.Value.SsItems)
+                    {
+                        joP2.AddSasite(
+                            joKy.Value.Fen,
+                            joKy.Key,
+                            joKy.Value.TbTaikyokusya,
+                            joSs.Key,
+                            joSs.Value.Hyokati,
+                            joSs.Value.Fukasa,
+                            joSs.Value.Version
+#if DEBUG
+                            , reigai1
+#endif
+                        );
+                    }
+                }
+            }
+
+            foreach (ulong key in removeKeys)
+            {
+                joseki.KyItems.Remove(key);
+            }
+
+            out_bunkatu = new Joseki[] { joseki,//[0]はthisにしろだぜ☆（＾▽＾）
+                joP2 };
+        }
+
+        /// <summary>
+        /// 分けたファイルを吸収するぜ☆ｗｗｗ（＾▽＾）
+        /// 重複したデータは、どちらを残すか自動的に判断するぜ☆（＾▽＾）
+        /// </summary>
+        public static void Merge(Joseki joseki
+#if DEBUG
+            , IDebugMojiretu reigai1
+#endif
+            )
+        {
+            foreach (KeyValuePair<ulong, JosekiKyokumen> joKy in joseki.KyItems)
+            {
+                foreach (KeyValuePair<Sasite, JosekiSasite> joSs in joKy.Value.SsItems)
+                {
+                    joseki.AddSasite(
+                        joKy.Value.Fen,
+                        joKy.Key,
+                        joKy.Value.TbTaikyokusya,
+                        joSs.Key,
+                        joSs.Value.Hyokati,
+                        joSs.Value.Fukasa,
+                        joSs.Value.Version
+#if DEBUG
+                        , reigai1
+#endif
+                        );
+                }
+            }
+        }
+
+        /// <summary>
+        /// 定跡ファイル
+        /// </summary>
+        /// <returns></returns>
+        public static string ToContents(Joseki joseki, bool isSfen, int banYokohaba)
+        {
+            IHyojiMojiretu mojiretu1 = new MojiretuImpl();
+
+            foreach (KeyValuePair<ulong, JosekiKyokumen> entry1 in joseki.KyItems)
+            {
+                entry1.Value.ToContentsLine(isSfen, banYokohaba, mojiretu1);
+            }
+
+            return mojiretu1.ToContents();
+        }
+
+    }
+}
+
+
+
+
+
+
+        public override void Joseki(
+            bool isSfen,
+            Sasite bestSasite,
+            Genkyoku gky_forAssert,
+            SasiteMatigaiRiyu riyu,
+            IDebugMojiretu reigai1
+            )
+        {
+            IHyojiMojiretu sindan2 = new MojiretuImpl();
+            sindan2.Append("取得：　指せない指し手を定跡から取り出そうとしたぜ☆（＾～＾）！：");
+            sindan2.Append("理由:"); SpkSasite.AppendSetumeiLine(riyu, sindan2);
+            sindan2.Append("指し手:"); SpkSasite.AppendSetumeiLine(isSfen, bestSasite, sindan2);
+            sindan2.Append("定跡局面　（"); SpkGenkyokuOpe.AppendFenTo(gky_forAssert.yomiKy, PureSettei.usi, sindan2); sindan2.AppendLine("）");
+            SpkBan_1Column.Setumei_Kyokumen(gky_forAssert.yomiGky, sindan2);
+
+            //str2.AppendLine("以下、定跡メモリのダンプ");
+            //str2.AppendLine("┌──────────┐");
+            //str2.Append(this.ToString());
+            //str2.AppendLine("└──────────┘");
+
+            reigai1.AppendLine(sindan2.ToContents());
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#if DEBUG
+using kifuwarabe_shogithink.pure.com.hyoka;
+using kifuwarabe_shogithink.pure.genkyoku;
+using kifuwarabe_shogithink.pure.genkyoku.play;
+using kifuwarabe_shogithink.pure.ky;
+using kifuwarabe_shogithink.pure.listen.genkyoku;
+using kifuwarabe_shogithink.pure.logger;
+using kifuwarabe_shogithink.pure.speak.genkyoku;
+using kifuwarabe_shogithink.pure.speak.play;
+using System.Collections.Generic;
+#else
+using kifuwarabe_shogithink.pure.genkyoku;
+using kifuwarabe_shogithink.pure.genkyoku.play;
+using kifuwarabe_shogithink.pure.ky;
+using kifuwarabe_shogithink.pure.com.hyoka;
+using kifuwarabe_shogithink.pure.logger;
+using kifuwarabe_shogithink.pure.speak.play;
+using System.Collections.Generic;
+#endif
+
+namespace kifuwarabe_shogithink.pure.ikkyoku.joseki
+{
+    public class JosekiSasite
+    {
+        public JosekiSasite(Sasite sasite, Sasite ousyu, HyokaNumber hyokati, int fukasa, int version, JosekiKyokumen owner)
+        {
+            this.Owner = owner;
+            this.Sasite = sasite;
+            this.Ousyu = ousyu;
+            this.Hyokati = hyokati;
+            this.Fukasa = fukasa;
+            this.Version = version;
+        }
+
+        public JosekiKyokumen Owner { get; private set; }
+        /// <summary>
+        /// 指し手
+        /// </summary>
+        public Sasite Sasite { get; private set; }
+        /// <summary>
+        /// 応手
+        /// </summary>
+        public Sasite Ousyu { get; private set; }
+        /// <summary>
+        /// 評価値
+        /// </summary>
+        public HyokaNumber Hyokati { get { return this.m_hyokati_; } set { this.m_hyokati_ = value; this.Owner.Owner.Edited = true; } }
+        HyokaNumber m_hyokati_;
+        /// <summary>
+        /// 深さ
+        /// </summary>
+        public int Fukasa { get; private set; }
+        /// <summary>
+        /// 定跡を登録したソフトのバージョン
+        /// </summary>
+        public int Version { get; private set; }
+
+        /// <summary>
+        /// 定跡ファイル
+        /// </summary>
+        /// <returns></returns>
+        public void ToContentsLine_NotUnity(bool isSfen, int banYokohaba, IHyojiMojiretu hyoji)
+        {
+            SpkSasite.AppendFenTo(isSfen, this.Sasite, hyoji);
+            hyoji.Append(" ");
+
+            if (this.Ousyu == Sasite.Toryo)
+            {
+                hyoji.Append("none");// FIXME: toryo と none の区別に未対応
+            }
+            else
+            {
+                SpkSasite.AppendFenTo(isSfen, this.Ousyu, hyoji);
+            }
+            hyoji.Append(" ");
+            hyoji.Append(((int)this.Hyokati).ToString());// enum型の変数名で出力されないように、int型に変換してから文字列にするぜ☆（＾▽＾）
+            hyoji.Append(" ");
+            hyoji.Append(this.Fukasa.ToString());
+            hyoji.Append(" ");
+            hyoji.AppendLine(this.Version.ToString());
+        }
+    }
+
+    /// <summary>
+    /// 定跡の１局面だぜ☆（＾▽＾）
+    /// </summary>
+    public class JosekiKyokumen
+    {
+        public JosekiKyokumen(string fen, Taikyokusya tb, Joseki owner)
+        {
+            this.Owner = owner;
+            this.Fen = fen;
+            this.TbTaikyokusya = tb;
+            this.SsItems = new Dictionary<Sasite, JosekiSasite>();
+        }
+
+        public Joseki Owner { get; private set; }
+
+        /// <summary>
+        /// 記録されている合法手一覧☆（＾▽＾）
+        /// </summary>
+        public Dictionary<Sasite, JosekiSasite> SsItems { get; private set; }
+
+        /// <summary>
+        /// 指し手データを返すぜ☆（＾▽＾）
+        /// </summary>
+        /// <param name="ss">指し手</param>
+        /// <returns>無ければヌル☆</returns>
+        public JosekiSasite GetSasite(Sasite ss)
+        {
+            if (this.SsItems.ContainsKey(ss))
+            {
+                return this.SsItems[ss];
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 改造Fen
+        /// 例： kr1/1h1/1H1/1R1 K2z 1
+        /// </summary>
+        public string Fen { get; private set; }
+        public Taikyokusya TbTaikyokusya { get; private set; }
+
+        public JosekiSasite AddSasite(Sasite bestSasite, HyokaNumber hyokati, int fukasa, int version)
+        {
+            JosekiSasite josekiSs;
+
+            if (!this.SsItems.ContainsKey(bestSasite))
+            {
+                // 無ければ問答無用で追加☆（＾▽＾）
+                josekiSs = new JosekiSasite(bestSasite, Sasite.Toryo, hyokati, fukasa, version, this);
+                this.SsItems.Add(bestSasite, josekiSs);
+                this.Owner.Edited = true;
+            }
+            else
+            {
+                // 既存なら
+                josekiSs = this.SsItems[bestSasite];
+
+                if (josekiSs.Version < version) // 新しいソフトの評価を優先☆
+                {
+                    josekiSs = new JosekiSasite(bestSasite, Sasite.Toryo, hyokati, fukasa, version, this);
+                    this.SsItems[bestSasite] = josekiSs;
+                    this.Owner.Edited = true;
+                }
+                // バージョンが同じなら
+                else if (josekiSs.Fukasa < fukasa)// 深い探索の方を優先☆（＾▽＾）
+                {
+                    josekiSs = new JosekiSasite(bestSasite, Sasite.Toryo, hyokati, fukasa, version, this);
+                    this.SsItems[bestSasite] = josekiSs;
+                    this.Owner.Edited = true;
+                }
+                // 深さが同じなら
+                // 無視☆
+            }
+
+            return josekiSs;
+        }
+
+        /// <summary>
+        /// 定跡ファイル
+        /// </summary>
+        /// <returns></returns>
+        public void ToContentsLine(bool isSfen, int banYokohaba, IHyojiMojiretu hyoji)
+        {
+            // 局面
+            hyoji.AppendLine(this.Fen);
+
+            // 指し手
+            foreach (KeyValuePair<Sasite, JosekiSasite> entry2 in this.SsItems)
+            {
+                entry2.Value.ToContentsLine_NotUnity(isSfen, banYokohaba, hyoji);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 定跡ファイルだぜ☆（＾▽＾）
+    /// 
+    /// 出典
+    /// やねうら王　「将棋ソフト用の標準定跡ファイルフォーマットの提案」
+    /// http://yaneuraou.yaneu.com/2016/02/05/%E5%B0%86%E6%A3%8B%E3%82%BD%E3%83%95%E3%83%88%E7%94%A8%E3%81%AE%E6%A8%99%E6%BA%96%E5%AE%9A%E8%B7%A1%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%88%E3%81%AE/
+    /// </summary>
+    public class Joseki
+    {
+        static Joseki()
+        {
+            Joseki.DanStrings = new string[4]; // 1段目～4段目,1筋～3筋
+        }
+
+        public Joseki()
+        {
+            this.KyItems = new Dictionary<ulong, JosekiKyokumen>();
+        }
+
+        /// <summary>
+        /// 分割ファイルを全部マージしたと考えたときの目安の最大容量だぜ☆（＾～＾）
+        /// ちょっとオーバーしたりするぜ☆（＾▽＾）
+        /// 文字数換算だぜ☆（＾▽＾）
+        /// </summary>
+        public const int Capacity = 64 * 1000 * 1000;// 64 Mega ascii characters
+        public static string[] DanStrings { get; set; }
+
+        /// <summary>
+        /// ハッシュを使うので、データが消えるかも……☆（＾～＾）
+        /// </summary>
+        public Dictionary<ulong,JosekiKyokumen> KyItems { get; }
+
+        public void Clear()
+        {
+            this.KyItems.Clear();
+            this.Edited = true;
+        }
+        /// <summary>
+        /// 編集済みフラグ（未保存フラグ）だぜ☆（＾～＾）
+        /// </summary>
+        public bool Edited { get; set; }
+
+        /// <summary>
+        /// データを追加するぜ☆（＾▽＾） 指しながら定跡を追加していくときだぜ☆
+        /// </summary>
+        /// <param name="ky_before"></param>
+        public JosekiKyokumen AddSasite(string kyFen_before, ulong kyHash_before, Taikyokusya kyTb_before, Sasite bestSasite, HyokaNumber hyokati, int fukasa, int version
+#if DEBUG
+            , IDebugMojiretu reigai1
+#endif
+            )
+        {
+            JosekiKyokumen josekiKy = this.ParseKyokumenLine(kyFen_before, kyHash_before, kyTb_before
+#if DEBUG
+                , reigai1
+#endif
+                );
+
+            //#if DEBUG
+            //            //────────────────────────────────────────
+            //            // データを追加する前に
+            //            //────────────────────────────────────────
+            //            //
+            //            // 指し手の整合性をチェックして、不正なデータを弾くことは必要だぜ☆（＾▽＾）
+            //            // 
+            //            {
+            //                Kyokumen ky2 = new KyokumenImpl();
+            //                if(!ky2.ParseFen(kyFen_before, false))
+            //                {
+            //                    string msg = "パースに失敗だぜ☆（＾～＾）！";
+            //                    Face_Application.MessageLine(msg);
+            //                    Face_Application.Write();
+            //                    throw new Exception(msg);
+            //                }
+
+            //                SasiteError reason;
+            //                if (!ky2.CanDoSasite(bestSasite, out reason))
+            //                {
+            //                    throw new Exception("指せない指し手を定跡に登録しようとしたぜ☆（＾～＾）！："+Conv_Sasite.Setumei(reason));
+            //                }
+            //            }
+
+            //            // これから登録する指し手を、ログに書き出しておきたいぜ☆（＾▽＾）マージのとき、うるさい☆（＾～＾）
+            //            {
+            //                // 定跡登録
+            //                //     fen .../.../.../ - 1 
+            //                //     B1A1 .....
+            //                Util_Machine.AppendLine("定跡登録");
+            //                Util_Machine.AppendLine("    " + kyFen_before);
+            //                Util_Machine.AppendLine("    " + Conv_Sasite.ToFen(bestSasite));
+            //            }
+            //#endif
+
+            josekiKy.AddSasite(bestSasite, hyokati, fukasa, version);
+
+//#if DEBUG
+//            // 定跡を追加した直後にダンプして中身を目視確認だぜ☆（＾～＾）
+//            Util_Machine.AppendLine(
+//                    "定跡を追加した直後にダンプして中身を目視確認だぜ☆（＾～＾）\n" +
+//                    "┌──────────┐\n" +
+//                    this.ToString() +
+//                    "└──────────┘\n" +
+//                    ""
+//                );
+//            Util_Machine.Flush();
+//#endif
+
+            return josekiKy;
+        }
+        /// <summary>
+        /// 局面データだけを追加するぜ☆（＾▽＾）
+        /// ファイルを行単位にパースしているときに使う☆（＾▽＾）
+        /// </summary>
+        /// <param name="kyFen_before">指す前の局面の改造fen</param>
+        /// <param name="kyHash_before">指す前の局面のハッシュ</param>
+        /// <param name="kyTb_before">指す前の局面の手番</param>
+        /// <returns></returns>
+        public JosekiKyokumen ParseKyokumenLine(string kyFen_before, ulong kyHash_before, Taikyokusya kyTb_before
+#if DEBUG
+            , IDebugMojiretu reigai1
+#endif
+            )
+        {
+            JosekiKyokumen josekiKy;
+            if (this.KyItems.ContainsKey(kyHash_before))
+            {
+                // 既存☆
+                josekiKy = this.KyItems[kyHash_before];
+            }
+            else
+            {
+                // 新規☆
+                /*
+#if DEBUG
+                {
+                    Kyokumen ky2 = new KyokumenImpl();
+                    int caret = 0;
+                    ky2.ParseFen(kyFen_before, ref caret, false, syuturyoku);
+                    ulong newHash = ky2.CreateKyokumenHash();
+                    if (newHash != kyHash_before)
+                    {
+                        Mojiretu reigai = new MojiretuImpl();
+                        reigai.Append("局面ハッシュが異なるぜ☆（＾～＾）！ kyFen_before=[");
+                        reigai.Append(kyFen_before);
+                        reigai.Append("] newHash=[");
+                        reigai.Append(newHash.ToString());
+                        reigai.Append("] kyHash_before=[");
+                        reigai.Append(kyHash_before.ToString());
+                        reigai.Append("]");
+                        syuturyoku.AppendLine(reigai.ToContents());
+                        Util_Machine.Flush(syuturyoku);
+                        throw new Exception(reigai.ToContents());
+                    }
+                }
+#endif
+                */
+
+                josekiKy = new JosekiKyokumen(kyFen_before, kyTb_before, this);
+                this.KyItems.Add(kyHash_before, josekiKy);
+                this.Edited = true;
+            }
+
+            return josekiKy;
+        }
+
+
+        /// <summary>
+        /// 定跡局面の中で、評価値が一番高い指し手を返すぜ☆（＾▽＾）
+        /// </summary>
+        /// <param name="gky"></param>
+        /// <returns>なければ投了☆</returns>
+        public bool Try_GetSasite(out Sasite out_sasite,
+            bool isSfen, Genkyoku gky, out HyokaNumber out_bestHyokati
+#if DEBUG
+            , IDebugMojiretu reigai1
+            , out string fen_forTest
+#endif
+            )
+        {
+            Sasite bestSasite = Sasite.Toryo;
+            out_bestHyokati = HyokaNumber.TumeTesu_GohosyuNasi;
+            int bestFukasa = 0;
+#if DEBUG
+            fen_forTest = "";
+#endif
+
+            //Util_Machine.Assert_KyokumenSeigosei_SabunKosin("ゲット指し手 #鯨",true);
+            ulong hash = gky.kyokumenHash.value;
+            if (this.KyItems.ContainsKey(hash))
+            {
+                JosekiKyokumen josekyKy = this.KyItems[hash];
+                // 整合性の確認用だぜ☆（＾～＾）
+#if DEBUG
+                fen_forTest = josekyKy.Fen;
+#endif
+                foreach (KeyValuePair<Sasite, JosekiSasite> entry in josekyKy.SsItems)
+                {
+                    if (out_bestHyokati < entry.Value.Hyokati)// 評価値が高い指し手を選ぶぜ☆（＾▽＾）
+                    {
+                        bestSasite = entry.Key;
+                        out_bestHyokati = entry.Value.Hyokati;
+                        bestFukasa = entry.Value.Fukasa;
+                    }
+                    else if (out_bestHyokati == entry.Value.Hyokati &&//評価値が同じ場合は、
+                        bestFukasa < entry.Value.Fukasa//深く読んでいる指し手を選ぶぜ☆（＾▽＾）
+                        )
+                    {
+                        bestSasite = entry.Key;
+                        out_bestHyokati = entry.Value.Hyokati;
+                        bestFukasa = entry.Value.Fukasa;
+                    }
+                }
+            }
+
+#if DEBUG
+            // 指し手の整合性をチェックしておきたいぜ☆（＾▽＾）
+            {
+                Genkyoku gky_forAssert = new Genkyoku();
+                int caret = 0;
+                IHyojiMojiretu sindan1 = new MojiretuImpl();
+                SpkGenkyokuOpe.AppendFenTo(gky.yomiKy, PureSettei.usi, sindan1);
+                //if (!ky2.ParseFen(sindan1.ToContents(), ref caret, false, syuturyoku))
+                string moves;
+                if (LisGenkyoku.TryFail_ParsePositionvalue(gky_forAssert, isSfen, sindan1.ToContents(),ref caret, true, false, out moves, reigai1))// ビットボードを更新したいので、適用する
+                {
+                    string msg = "取得：　パースに失敗だぜ☆（＾～＾）！ #鰯";
+                    reigai1.AppendLine(msg);
+                    out_sasite = Sasite.Toryo;//エラー
+                    return false;
+                }
+
+                SasiteMatigaiRiyu riyu;
+                if (!GenkyokuOpe.CanDoSasite(gky_forAssert.yomiGky, bestSasite, out riyu))
+                {
+                    Develop.assert.Joseki(isSfen, bestSasite, gky_forAssert, riyu, reigai1);
+                    out_sasite = Sasite.Toryo;//エラー
+                    return false;
+                }
+            }
+#endif
+            out_sasite = bestSasite;
+            return true;
+        }
+
+        /// <summary>
+        /// 指定の局面に対応するデータを返すぜ☆（＾▽＾）
+        /// </summary>
+        /// <param name="kyHash">局面のハッシュ☆</param>
+        /// <returns>データ☆ なければヌル☆</returns>
+        public JosekiKyokumen GetKyokumen(ulong kyHash)
+        {
+            if (this.KyItems.ContainsKey(kyHash))
+            {
+                return this.KyItems[kyHash];
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 定跡に登録されている指し手一覧。
+        /// </summary>
+        /// <param name="ky"></param>
+        /// <returns></returns>
+        public List<Sasite> GetSasites(Genkyoku ky)
+        {
+            List<Sasite> sasites = new List<Sasite>();
+
+            ulong hash = ky.kyokumenHash.value;
+            if (this.KyItems.ContainsKey(hash))
+            {
+                JosekiKyokumen josekyKy = this.KyItems[hash];
+
+                foreach (KeyValuePair<Sasite, JosekiSasite> entry in josekyKy.SsItems)
+                {
+                    sasites.Add(entry.Key);
+                }
+            }
+            return sasites;
+        }
+
+        /// <summary>
+        /// 定跡ファイルの内容量を返すぜ☆（＾▽＾）
+        /// </summary>
+        public void Joho(out int out_kyokumenSu, out int out_sasiteSu)
+        {
+            out_kyokumenSu = 0;
+            out_sasiteSu = 0;
+            foreach (KeyValuePair<ulong, JosekiKyokumen> entryKy in this.KyItems)
+            {
+                out_kyokumenSu++;
+                foreach (KeyValuePair<Sasite, JosekiSasite> entrySs in entryKy.Value.SsItems)
+                {
+                    out_sasiteSu++;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+            bool isJoseki,
+            bool isJoseki,
+
+        public virtual void Joseki(
+            bool isSfen,
+            Sasite bestSasite,
+            Genkyoku gky_forAssert,
+            SasiteMatigaiRiyu riyu,
+            IDebugMojiretu reigai1
+            )
+        {
+
+        }
+
+
+        /// <summary>
+        /// 定跡の記録をするなら真☆
+        /// </summary>
+        public static bool josekiRec { get; set; }
+
+
+
+        /// <summary>
+        /// 定跡パーセント☆
+        /// 100以上で必ず定跡を使用☆（＾▽＾）
+        /// 0以下で必ず定跡を不使用☆（＾▽＾）
+        /// 1～99で定跡を1%～99%の確率で使用☆（＾▽＾）
+        /// </summary>
+        public static int josekiPer { get; set; }
+
+
+            josekiRec = false;// 定跡は記録しない
+
+            josekiPer = 50;
+
+
+
+            //──────────
+            // 定跡
+            //──────────
+            ComSettei.josekiPer = 0;// 定跡を利用する確率。0～100。
+            ComSettei.josekiRec = false;// 定跡は記録しない
+
+
+
+
+        /// <summary>
+        /// 定跡
+        /// </summary>
+        public static Joseki joseki { get; set; }
+
+            joseki = new Joseki();
+
+
+
+
+        public override void Joseki(
+            bool isSfen,
+            Sasite bestSasite,
+            Genkyoku gky_forAssert,
+            SasiteMatigaiRiyu riyu,
+            IDebugMojiretu reigai1
+            )
+        {
+            //未実装
+        }
+
+
+            ComSettei.josekiPer = 0; // 定跡は使わないぜ☆（＾▽＾）
+
+
+            ComSettei.josekiPer = motonoJosekiPer;
+
+            int motonoJosekiPer = ComSettei.josekiPer;// 定跡通り指すと千日手になることがあるので、切っておくぜ☆（／＿＼）
+            ComSettei.josekiPer = 0;
+
+        /// <summary>
+        /// 前回　“定跡”　を読み書きした時間☆（単位はミリ秒）
+        /// </summary>
+        public long lastJosekiTime { get; set; }
+
+
+
+
+namespace kifuwarabe_shogithink.pure.com
+{
+    public static class PureCom
+    {
+        /// <summary>
+        /// 定跡の通り指したとき、真☆
+        /// </summary>
+        public static bool isJosekiTraced { get; set; }
+
+    }
+}
+
+
+            /*
+            Util_Application.LoadJoseki(syuturyoku);// 定跡ファイルの読込み
+            Util_Application.LoadSeiseki(syuturyoku);// 成績ファイルの読込み
+             */
+
+
+
+namespace kifuwarabe_shogithink.pure.ikkyoku.joseki
+{
+    /// <summary>
+    /// スマホで外部ファイルを読込む方法が分からないので、埋め込むならこれを使うんだぜ☆（＾▽＾）
+    /// </summary>
+    public abstract class Face_Joseki
+    {
+        /// <summary>
+        /// 定跡
+        /// </summary>
+        public static Joseki Joseki { get { return PureSettei.joseki; } }
+        //public static void LoadJoseki(IViewMojiretu syuturyoku) { Util_Machine.Load_Joseki(syuturyoku); }
+
+
+        #region 組み込み定跡ファイル
+        /// <summary>
+        /// 外部ファイルを読めない場合、ここに直書きしておくぜ☆（＾▽＾）
+        /// </summary>
+        /// <returns></returns>
+        public static string[] GetKumikomiJoseki()
+        {
+            // TODO: 最新の joseki.txt の内容を貼りつけること☆
+            return @"".Split('\n');
+            /*
+                        return @"
+            fen krz/1h1/1H1/ZRK - 1
+            B3B2 none 2 9 102
+            fen krz/1H1/3/ZRK H 2
+            B1B2 none 0 6 0
+            B1A2 none 0 9 0
+            C1B2 none 0 9 0
+            fen k1z/1r1/3/ZRK Hh 1
+            A4B3 none 2 12 101
+            fen k1z/1r1/1Z1/1RK Hh 2
+            A1B1 none 0 5 0
+            B2B1 none 2 8 0
+            H*C2 none 0 8 0
+            A1A2 none 2 8 100
+            fen 1kz/1r1/1Z1/1RK Hh 1
+            H*C2 none 6 5 0
+            fen 1kz/1rH/1Z1/1RK h 2
+            B1A1 none 0 6 0
+            B2A1 none 0 6 0
+            H*A3 none 0 13 101
+            fen k1z/1rH/1Z1/1RK h 1
+            C2C1 none 6 12 100
+            fen k1H/1r1/1Z1/1RK Zh 2
+            A1B1 none 0 0 0
+            fen 1kH/1r1/1Z1/1RK Zh 1
+            B3A4 none 4 12 100
+            Z*A3 none 4 8 100
+            fen 1kH/1r1/3/ZRK Zh 2
+            B1A1 none 0 0 0
+            fen k1H/1r1/3/ZRK Zh 1
+            A4B3 none 4 12 100
+            fen rkz/2H/1Z1/1RK h 1
+            C2C1 none 6 5 0
+            fen rkH/3/1Z1/1RK Zh 2
+            A1B2 none 0 0 0
+            fen k1z/rH1/3/ZRK H 1
+            C4C3 none 4 8 102
+            fen k1z/rH1/2K/ZR1 H 2
+            C1B2 none 0 7 102
+            fen k2/rz1/2K/ZR1 Hh 1
+            C3C2 none 2 8 0
+            fen k2/rzK/3/ZR1 Hh 2
+            B2A3 none 0 6 102
+            fen k2/r1K/z2/ZR1 Hh 1
+            B4C3 none 2 9 0
+            fen k2/r1K/z1R/Z2 Hh 2
+            A2B1 none 0 7 102
+            fen kr1/2K/z1R/Z2 Hh 1
+            H*B2 none 2 8 0
+            fen kr1/1HK/z1R/Z2 h 2
+            A3B2 none 2 9 0
+            fen kr1/1zK/2R/Z2 2h 1
+            C2B2 none 87 8 0
+            fen kr1/1K1/2R/Z2 Z2h 2
+            B1C1 none 0 0 0
+            fen k1r/1K1/2R/Z2 Z2h 1
+            A4B3 none 87 8 0
+            fen k1r/1K1/1ZR/3 Z2h 2
+            H*A2 none 0 0 0
+            fen k1r/hK1/1ZR/3 Zh 1
+            B2C2 none 87 8 0
+            fen k1r/h1K/1ZR/3 Zh 2
+            C1B1 none 0 0 0
+            fen kr1/h1K/1ZR/3 Zh 1
+            B3A2 none 87 14 102
+            fen kr1/Z1K/2R/3 ZHh 2
+            A1A2 none 0 7 0
+            B1A2 none 0 6 102
+            fen 1r1/k1K/2R/3 ZHzh 1
+            H*B2 none 2 7 0
+            fen 1r1/kHK/2R/3 Zzh 2
+            B1A1 none 2 8 0
+            fen r2/kHK/2R/3 Zzh 1
+            C2C1 none 2 7 0
+            fen r1K/kH1/2R/3 Zzh 2
+            A2B2 none 2 8 0
+            fen r1K/1k1/2R/3 Zz2h 1
+            Z*A3 none 0 7 0
+            fen r1K/1k1/Z1R/3 z2h 2
+            A1A2 none 2 8 0
+            fen 2K/rk1/Z1R/3 z2h 1
+            A3B2 none 2 8 0
+            fen 2K/rZ1/2R/3 Kz2h 2
+            Z*B4 none 0 7 0
+            fen 2K/rZ1/2R/1z1 K2h 1
+            C3C2 none 87 8 0
+            fen 2K/rZR/3/1z1 K2h 2
+            H*A1 none 0 0 0
+            fen h1K/rZR/3/1z1 Kh 1
+            C1B1 none 87 8 0
+            fen hK1/rZR/3/1z1 Kh 2
+            B4A3 none 0 0 0
+            fen hK1/rZR/z2/3 Kh 1
+            B1A1 none 87 14 0
+            fen K2/rZR/z2/3 KHh 2
+            toryo none 0 0 0
+            fen kr1/1z1/3/ZRK Hh 1
+            A4B3 none 0 8 0
+            C4C3 none 0 8 0
+            fen kr1/1z1/1Z1/1RK Hh 2
+            A1A2 none 2 8 0
+            fen 1r1/kz1/1Z1/1RK Hh 1
+            B3A2 none 4 8 0
+            C4C3 none 0 1 0
+            fen 1r1/Zz1/3/1RK KHh 2
+            B1A2 none 0 8 0
+            fen 3/rz1/3/1RK KHzh 1
+            K*B3 none 2 7 0
+            fen 3/rz1/1K1/1RK Hzh 2
+            A2A1 none 0 8 0
+            fen r2/1z1/1K1/1RK Hzh 1
+            B3B2 none 4 7 0
+            fen r2/1K1/3/1RK ZHzh 2
+            A1B2 none 0 7 0
+            fen 3/1r1/3/1RK ZHzkh 1
+            C4C3 none 0 7 0
+            fen 3/1r1/2K/1R1 ZHzkh 2
+            B2B1 none 87 6 0
+            fen 1r1/3/2K/1R1 ZHzkh 1
+            Z*C2 none 2 7 0
+            fen 1r1/2Z/2K/1R1 Hzkh 2
+            B1A1 none 0 8 0
+            fen r2/2Z/2K/1R1 Hzkh 1
+            C2B3 none 0 7 0
+            fen r2/3/1ZK/1R1 Hzkh 2
+            H*A3 none 2 7 0
+            fen r2/3/hZK/1R1 Hzk 1
+            B3C2 none 2 7 0
+            fen r2/2Z/h1K/1R1 Hzk 2
+            A1A2 none 2 8 0
+            fen 3/r1Z/h1K/1R1 Hzk 1
+            C2B3 none 0 8 0
+            fen 3/r2/hZK/1R1 Hzk 2
+            A2A1 none 2 8 0
+            fen krz/3/1Z1/1RK Hh 1
+            B4A3 none 0 1 0
+            fen krz/3/RZ1/2K Hh 2
+            C1B2 none 0 9 0
+            fen kr1/1z1/RZ1/2K Hh 1
+            A3B4 none 0 1 0
+            fen 1r1/kz1/1ZK/1R1 Hh 2
+            B1A1 none 4 7 0
+            fen r2/kz1/1ZK/1R1 Hh 1
+            B4C4 none 0 1 0
+            fen r2/kz1/1ZK/2R Hh 2
+            A1B1 none 4 7 0
+            fen 1r1/kz1/1ZK/2R Hh 1
+            C3C2 none 0 1 0
+            fen 1r1/kzK/1Z1/2R Hh 2
+            A2A1 none 2 8 0
+            fen kr1/1zK/1Z1/2R Hh 1
+            H*A2 none 0 1 0
+            fen kr1/HzK/1Z1/2R h 2
+            H*C3 none 2 8 0
+            fen kr1/HzK/1Zh/2R - 1
+            C4B4 none 0 1 0
+            fen kr1/HzK/1Zh/1R1 - 2
+            A1A2 none 2 8 0
+            fen 1r1/kzK/1Zh/1R1 h 1
+            C2B2 none 0 0 0
+            fen 1r1/kK1/1Zh/1R1 Zh 2
+            A2B2 none 4 7 0
+            fen 1r1/1k1/1Zh/1R1 Zkh 1
+            B4C3 none 0 1 0
+            fen 1r1/1k1/1ZR/3 ZHkh 2
+            H*C2 none 4 7 0
+            fen 1r1/1kh/1ZR/3 ZHk 1
+            C3B4 none 0 1 0
+            fen 1r1/1kh/1Z1/1R1 ZHk 2
+            K*C3 none 4 7 0
+            fen 1r1/1kh/1Zk/1R1 ZH 1
+            Z*A2 none 0 1 0
+            fen 1r1/Zkh/1Zk/1R1 H 2
+            B1A1 none 4 8 0
+            fen r2/Zkh/1Zk/1R1 H 1
+            B4A3 none 0 1 0
+            fen r2/Zkh/RZk/3 H 2
+            B2B1 none 4 8 0
+            fen rk1/Z1h/RZk/3 H 1
+            A2B1 none 0 0 0
+            fen rZ1/2h/RZk/3 KH 2
+            C3B3 none 0 8 0
+            fen rZ1/2h/Rk1/3 KHz 1
+            A3B3 none 0 0 0
+            fen rZ1/2h/1R1/3 2KHz 2
+            C2C3 none 0 7 0
+            fen rZ1/3/1Rh/3 2KHz 1
+            H*A2 none 0 0 0
+            fen rZ1/H2/1Rh/3 2Kz 2
+            A1B1 none 0 8 0
+            fen 1r1/H2/1Rh/3 2K2z 1
+            K*B2 none 0 1 0
+            fen 1r1/HK1/1Rh/3 K2z 2
+            B1C1 none 0 9 0
+            fen 2r/HK1/1Rh/3 K2z 1
+            K*C2 none 0 1 0
+            fen 2r/HKK/1Rh/3 2z 2
+            toryo none 0 0 0
+            fen k1z/1rh/1Z1/1RK H 1
+            H*C3 none 2 9 0
+            fen k1z/1rh/1ZH/1RK - 2
+            C2C3 none 2 9 0
+            fen k1z/1r1/1Zh/1RK h 1
+            C4C3 none 2 9 0
+            fen k1z/1r1/1ZK/1R1 Hh 2
+            A1A2 none 2 10 100
+            C3C2 none 4 9 100
+            B3C2 none 4 8 101
+            fen 2z/kr1/1ZK/1R1 Hh 1
+            B3A2 none 4 8 0
+            B2A1 none 0 8 100
+            fen 2z/Zr1/2K/1R1 KHh 2
+            B2A2 none 0 7 0
+            fen 2z/r2/2K/1R1 KHzh 1
+            C3C2 none 0 7 0
+            C3B3 none 0 6 0
+            fen 2z/r1K/3/1R1 KHzh 2
+            C1B2 none 2 7 0
+            fen 3/rzK/3/1R1 KHzh 1
+            K*B3 none 4 7 0
+            C2B2 none 4 7 0
+            fen 3/rzK/1K1/1R1 Hzh 2
+            Z*C1 none 0 7 0
+            B2A3 none 0 7 0
+            fen 2z/rzK/1K1/1R1 Hh 1
+            C2B2 none 4 7 0
+            fen 2z/rK1/1K1/1R1 ZHh 2
+            C1B2 none 0 7 0
+            fen 3/rz1/1K1/1R1 ZHkh 1
+            H*A3 none 4 7 0
+            fen 3/rz1/HK1/1R1 Zkh 2
+            A2A1 none 2 8 0
+            fen r2/1z1/HK1/1R1 Zkh 1
+            B3B2 none 4 7 0
+            fen r2/1K1/H2/1R1 2Zkh 2
+            A1B2 none 0 7 0
+            fen 3/1r1/H2/1R1 2Z2kh 1
+            Z*C1 none 0 7 0
+            fen 2Z/1r1/H2/1R1 Z2kh 2
+            B2C1 none 4 8 0
+            fen 2r/3/H2/1R1 Zz2kh 1
+            A3A2 none 0 0 0
+            fen 2r/H2/3/1R1 Zz2kh 2
+            C1B1 none 4 6 0
+            fen 1r1/H2/3/1R1 Zz2kh 1
+            B4C3 none 0 0 0
+            fen 1r1/H2/2R/3 Zz2kh 2
+            B1C1 none 6 6 0
+            fen 2r/H2/2R/3 Zz2kh 1
+            Z*B2 none 87 7 0
+            fen 2r/HZ1/2R/3 z2kh 2
+            C1B1 none 4 8 0
+            fen 1r1/HZ1/2R/3 z2kh 1
+            A2A1+ none 87 7 0
+            fen Nr1/1Z1/2R/3 z2kh 2
+            toryo none 0 0 0
+            fen kr1/1z1/2K/ZR1 Hh 2
+            A1A2 none 4 8 0
+            fen 1r1/kz1/2K/ZR1 Hh 1
+            C3C2 none 0 7 0
+            fen 1r1/kzK/3/ZR1 Hh 2
+            B1C2 none 4 8 0
+            fen 3/kzr/3/ZR1 Hkh 1
+            A4B3 none 0 8 0
+            fen 3/kzr/1Z1/1R1 Hkh 2
+            C2B1 none 4 8 0
+            fen 1r1/kz1/1Z1/1R1 Hkh 1
+            B3A4 none 0 7 0
+            fen 1r1/kz1/3/ZR1 Hkh 2
+            B1A1 none 6 7 0
+            fen r2/kz1/3/ZR1 Hkh 1
+            A4B3 none 0 0 0
+            fen r2/kz1/1Z1/1R1 Hkh 2
+            B2A3 none 4 7 0
+            fen r2/k2/zZ1/1R1 Hkh 1
+            B4C3 none 0 0 0
+            fen r2/k2/zZR/3 Hkh 2
+            A2B2 none 6 8 0
+            fen r2/1k1/zZR/3 Hkh 1
+            H*A2 none 0 0 0
+            fen r2/Hk1/zZR/3 kh 2
+            A1B1 none 10 8 0
+            fen 1r1/Hk1/zZR/3 kh 1
+            A2A1+ none 0 0 0
+            fen Nr1/1k1/zZR/3 kh 2
+            B1A1 none 87 9 0
+            fen r2/1k1/zZR/3 k2h 1
+            B3C2 none 0 0 0
+            fen r2/1kZ/z1R/3 k2h 2
+            A1A2 none 87 8 0
+            fen 3/rkZ/z1R/3 k2h 1
+            C2B1 none 0 0 0
+            fen 1Z1/rk1/z1R/3 k2h 2
+            A2A1 none 87 9 0
+            fen rZ1/1k1/z1R/3 k2h 1
+            B1C2 none 87 9 0
+            fen 3/r1K/zK1/1R1 Hzh 1
+            B3A3 none 4 8 0
+            fen 3/r1K/K2/1R1 ZHzh 2
+            A2B1 none 0 0 0
+            fen 1r1/2K/K2/1R1 ZHzh 1
+            C2C3 none 4 6 0
+            fen 1r1/3/K1K/1R1 ZHzh 2
+            Z*B2 none 0 7 0
+            fen 1r1/1z1/K1K/1R1 ZHh 1
+            B4B3 none 4 7 0
+            C3B3 none 4 6 0
+            fen 1r1/1z1/KRK/3 ZHh 2
+            H*A1 none 0 7 0
+            fen hr1/1z1/KRK/3 ZH 1
+            C3C2 none 4 8 0
+            fen hr1/1zK/KR1/3 ZH 2
+            B2A3 none 0 8 0
+            fen hr1/2K/zR1/3 ZHk 1
+            Z*C3 none 4 7 0
+            fen hr1/2K/zRZ/3 Hk 2
+            A1A2 none 0 8 0
+            fen 1r1/h1K/zRZ/3 Hk 1
+            C2C1 none 2 8 0
+            fen 1rK/h2/zRZ/3 Hk 2
+            B1C1 none 4 9 0
+            fen 2r/h2/zRZ/3 H2k 1
+            B3A2 none 2 8 0
+            fen 2r/R2/z1Z/3 2H2k 2
+            K*B1 none 2 9 0
+            fen 1kr/R2/z1Z/3 2Hk 1
+            A2A3 none 2 8 0
+            fen 1kr/3/R1Z/3 Z2Hk 2
+            K*C4 none 0 7 0
+            fen 1kr/3/R1Z/2k Z2H 1
+            A3B3 none 2 8 0
+            fen 1kr/3/1RZ/2k Z2H 2
+            C4C3 none 2 8 0
+            fen 1kr/3/1Rk/3 Z2Hz 1
+            B3C3 none 2 7 0
+            fen 1kr/3/2R/3 ZK2Hz 2
+            B1A1 none 0 0 0
+            fen k1r/3/2R/3 ZK2Hz 1
+            C3B3 none 6 6 0
+            fen k1r/3/1R1/3 ZK2Hz 2
+            Z*A2 none 0 0 0
+            fen k1r/z2/1R1/3 ZK2H 1
+            B3C3 none 10 8 0
+            fen k1r/z2/2R/3 ZK2H 2
+            A2B3 none 0 0 0
+            fen k1r/3/1zR/3 ZK2H 1
+            C3B3 none 6 6 0
+            fen k1r/3/1R1/3 2ZK2H 2
+            C1B1 none 0 0 0
+            fen kr1/3/1R1/3 2ZK2H 1
+            Z*B2 none 87 7 0
+            fen kr1/1Z1/1R1/3 ZK2H 2
+            A1A2 none 0 0 0
+            fen 1r1/kZ1/1R1/3 ZK2H 1
+            Z*C2 none 87 7 0
+            fen 1r1/kZZ/1R1/3 K2H 2
+            toryo none 0 0 0
+            fen krz/3/1ZK/1R1 Hh 1
+            H*A2 none 4 7 0
+            fen krz/H2/1ZK/1R1 h 2
+            A1A2 none 2 8 0
+            fen 1rz/k2/1ZK/1R1 2h 1
+            C3C2 none 2 8 0
+            fen 1rz/k1K/1Z1/1R1 2h 2
+            C1B2 none 2 8 0
+            fen 1r1/kzK/1Z1/1R1 2h 1
+            C2C1 none 2 8 0
+            fen 1rK/kz1/1Z1/1R1 2h 2
+            B1A1 none 6 8 0
+            fen r1K/kz1/1Z1/1R1 2h 1
+            C1B1 none 2 8 0
+            fen rK1/kz1/1Z1/1R1 2h 2
+            A1B1 none 6 8 0
+            fen 1r1/kz1/1Z1/1R1 k2h 1
+            B3A2 none 0 0 0
+            fen 1r1/Zz1/3/1R1 Kk2h 2
+            B1A2 none 6 8 0
+            fen 3/rz1/3/1R1 Kzk2h 1
+            K*B3 none 0 0 0
+            fen 3/rz1/1K1/1R1 zk2h 2
+            A2A1 none 6 7 0
+            fen r2/1z1/1K1/1R1 zk2h 1
+            B4C4 none 0 0 0
+            fen r2/1z1/1K1/2R zk2h 2
+            B2C1 none 6 7 0
+            fen r1z/3/1K1/2R zk2h 1
+            B3A3 none 0 0 0
+            fen r1z/3/K2/2R zk2h 2
+            A1B1 none 6 7 0
+            fen 1rz/3/K2/2R zk2h 1
+            A3B3 none 87 12 0
+            fen 1rz/3/1K1/2R zk2h 2
+            B1A1 none 6 8 0
+            fen k1z/1rZ/3/1RK 2H 2
+            B2C2 none 2 9 0
+            fen k1z/2r/3/1RK 2Hz 1
+            C4C3 none 0 8 0
+            fen k1z/2r/2K/1R1 2Hz 2
+            C2B1 none 2 8 0
+            fen krz/3/2K/1R1 2Hz 1
+            C3B3 none 2 8 0
+            fen krz/3/1K1/1R1 2Hz 2
+            A1A2 none 2 8 0
+            fen 1rz/k2/1K1/1R1 2Hz 1
+            B4A4 none 0 7 0
+            fen 1rz/k2/1K1/R2 2Hz 2
+            B1A1 none 2 8 0
+            fen r1z/k2/1K1/R2 2Hz 1
+            H*B1 none 0 7 0
+            fen rHz/k2/1K1/R2 Hz 2
+            A1B1 none 4 8 0
+            fen 1rz/k2/1K1/R2 Hzh 1
+            B3A3 none 0 0 0
+            fen 1rz/k2/K2/R2 Hzh 2
+            A2A3 none 8 7 0
+            fen 1rz/3/k2/R2 Hzkh 1
+            A4A3 none 0 0 0
+            fen 1rz/3/R2/3 KHzkh 2
+            C1B2 none 4 6 0
+            fen 1r1/1z1/R2/3 KHzkh 1
+            A3A4 none 0 0 0
+            fen 1r1/1z1/3/R2 KHzkh 2
+            K*A3 none 4 6 0
+            fen 1r1/1z1/k2/R2 KHzh 1
+            A4B4 none 0 0 0
+            fen 1r1/1z1/k2/1R1 KHzh 2
+            Z*C3 none 6 6 0
+            fen 1r1/1z1/k1z/1R1 KHh 1
+            B4C4 none 0 0 0
+            fen 1r1/1z1/k1z/2R KHh 2
+            H*B3 none 6 7 0
+            fen 1r1/1z1/khz/2R KH 1
+            K*C1 none 0 0 0
+            fen 1rK/1z1/khz/2R H 2
+            B1C1 none 87 9 0
+            fen 2r/1z1/khz/2R Hk 1
+            H*A1 none 0 0 0
+            fen H1r/1z1/khz/2R k 2
+            C1B1 none 87 10 0
+            fen Hr1/1z1/khz/2R k 1
+            toryo none 0 0 0
+            fen 3/rK1/3/1R1 ZKHzh 2
+            A2B2 none 0 7 0
+            fen 3/1r1/3/1R1 ZKHzkh 1
+            Z*C1 none 0 6 0
+            fen 2Z/1r1/3/1R1 KHzkh 2
+            B2C1 none 4 7 0
+            B2A1 none 4 7 100
+            fen 2r/3/3/1R1 KH2zkh 1
+            H*C2 none 0 0 0
+            fen 2r/2H/3/1R1 K2zkh 2
+            C1B1 none 6 8 0
+            fen 1r1/2H/3/1R1 K2zkh 1
+            C2C1+ none 0 0 0
+            fen 1rN/3/3/1R1 K2zkh 2
+            B1C1 none 6 7 0
+            fen 2r/3/3/1R1 K2zk2h 1
+            B4A3 none 0 0 0
+            fen 2r/3/R2/3 K2zk2h 2
+            C1B1 none 6 6 0
+            fen 1r1/3/R2/3 K2zk2h 1
+            A3B3 none 0 0 0
+            fen 1r1/3/1R1/3 K2zk2h 2
+            B1A1 none 6 6 0
+            fen r2/3/1R1/3 K2zk2h 1
+            B3C2 none 0 0 0
+            fen r2/2R/3/3 K2zk2h 2
+            K*B1 none 6 8 0
+            fen rk1/2R/3/3 K2z2h 1
+            C2B3 none 0 0 0
+            fen rk1/3/1R1/3 K2z2h 2
+            B1B2 none 6 6 0
+            fen r2/1k1/1R1/3 K2z2h 1
+            B3C3 none 0 0 0
+            fen r2/1k1/2R/3 K2z2h 2
+            A1B1 none 8 7 0
+            fen 1r1/1k1/2R/3 K2z2h 1
+            C3B4 none 0 0 0
+            fen 1r1/1k1/3/1R1 K2z2h 2
+            B1A1 none 8 6 0
+            fen r2/1k1/3/1R1 K2z2h 1
+            B4C3 none 87 11 0
+            fen 2r/3/3/2R KH2zkh 2
+            C1B1 none 4 6 0
+            fen 1r1/3/3/2R KH2zkh 1
+            C4B3 none 0 0 0
+            fen 1r1/3/1R1/3 KH2zkh 2
+            B1A1 none 4 6 0
+            fen r2/3/1R1/3 KH2zkh 1
+            K*B2 none 0 6 0
+            fen r2/1K1/1R1/3 H2zkh 2
+            Z*A4 none 4 7 0
+            fen r2/1K1/1R1/z2 Hzkh 1
+            B3C2 none 87 7 0
+            fen r2/1KR/3/z2 Hzkh 2
+            K*B1 none 4 9 0
+            fen rk1/1KR/3/z2 Hzh 1
+            B2B1 none 87 8 0
+            fen rK1/2R/3/z2 KHzh 2
+            A1A2 none 0 14 0
+            fen 1K1/r1R/3/z2 KHzh 1
+            C2C1 none 87 14 0
+            fen 1KR/r2/3/z2 KHzh 2
+            A2A3 none 87 8 0
+            fen rz1/1k1/2R/3 Kz2h 1
+            K*A3 none 0 0 0
+            fen rz1/1k1/K1R/3 z2h 2
+            B1C2 none 8 8 0
+            fen r2/1kz/K1R/3 z2h 1
+            C3B4 none 0 0 0
+            fen r2/1kz/K2/1R1 z2h 2
+            A1B1 none 6 8 0
+            fen 1r1/1kz/K2/1R1 z2h 1
+            B4C3 none 0 0 0
+            fen 1r1/1kz/K1R/3 z2h 2
+            Z*C1 none 8 8 0
+            fen 1rz/1kz/K1R/3 2h 1
+            C3C4 none 0 0 0
+            fen 1rz/1kz/K2/2R 2h 2
+            H*B3 none 8 8 0
+            fen 1rz/1kz/Kh1/2R h 1
+            C4C3 none 0 0 0
+            fen 1rz/1kz/KhR/3 h 2
+            H*A1 none 8 8 0
+            fen hrz/1kz/KhR/3 - 1
+            C3C4 none 0 0 0
+            fen hrz/1kz/Kh1/2R - 2
+            A1A2 none 8 10 0
+            fen 1rz/hkz/Kh1/2R - 1
+            A3A4 none 0 0 0
+            fen 1rz/hkz/1h1/K1R - 2
+            B1A1 none 8 10 0
+            fen r1z/hkz/1h1/K1R - 1
+            C4C3 none 0 0 0
+            fen r1z/hkz/1hR/K2 - 2
+            A1B1 none 8 10 0
+            A2A3 none 8 10 0
+            fen 1rz/hkz/1hR/K2 - 1
+            C3C4 none 0 0 0
+            fen r1z/1kz/hhR/K2 - 1
+            A4A3 none 0 0 0
+            fen r1z/1kz/KhR/3 H 2
+            A1B1 none 6 9 0
+            fen 1rz/1kz/KhR/3 H 1
+            C3C4 none 0 0 0
+            fen 1rz/1kz/Kh1/2R H 2
+            B1A1 none 6 9 0
+            fen r1z/1kz/Kh1/2R H 1
+            H*C3 none 0 9 0
+            fen r1z/1kz/KhH/2R - 2
+            B2A2 none 6 9 0
+            fen r1z/k1z/KhH/2R - 1
+            C3C2 none 2 9 0
+            fen r1z/k1H/Kh1/2R Z 2
+            A2A3 none 4 8 0
+            fen r1z/2H/kh1/2R Zk 1
+            C2C1+ none 2 8 0
+            fen r1N/3/kh1/2R 2Zk 2
+            A1B2 none 2 8 0
+            fen 2N/1r1/kh1/2R 2Zk 1
+            Z*C3 none 2 8 0
+            fen 2N/1r1/khZ/2R Zk 2
+            B2A1 none 2 8 0
+            fen r1N/3/khZ/2R Zk 1
+            C3B2 none 6 8 0
+            fen r1N/1Z1/kh1/2R Zk 2
+            A1B2 none 6 9 0
+            fen 2N/1r1/kh1/2R Zzk 1
+            C1B1 none 0 0 0
+            fen 1N1/1r1/kh1/2R Zzk 2
+            B2B1 none 8 8 0
+            fen 1r1/3/kh1/2R Zzkh 1
+            C4C3 none 0 0 0
+            fen 1r1/3/khR/3 Zzkh 2
+            Z*B2 none 87 7 0
+            fen 1r1/1z1/khR/3 Zkh 1
+            C3C4 none 0 0 0
+            fen 1r1/1z1/kh1/2R Zkh 2
+            A3A4 none 87 8 0
+            fen 1r1/1z1/1h1/k1R Zkh 1
+            C4B3 none 0 0 0
+            fen 1r1/1z1/1R1/k2 ZHkh 2
+            K*A3 none 87 7 0
+            fen 1r1/1z1/kR1/k2 ZHh 1
+            B3C4 none 0 0 0
+            fen 1r1/1z1/k2/k1R ZHh 2
+            H*C2 none 87 8 0
+            fen 1r1/1zh/k2/k1R ZH 1
+            Z*A2 none 0 0 0
+            fen 1r1/Zzh/k2/k1R H 2
+            B1A1 none 87 10 0
+            fen r2/Zzh/k2/k1R H 1
+            A2B1 none 0 0 0
+            fen rZ1/1zh/k2/k1R H 2
+            C2C3 none 87 14 0
+            fen rZ1/1z1/k1h/k1R H 1
+            toryo none 0 0 0
+            fen 2z/r2/1K1/1R1 KHzh 2
+            C1B2 none 0 7 0
+            fen 3/rz1/1K1/1R1 KHzh 1
+            B3B2 none 4 7 0
+            fen 1r1/1z1/KK1/1R1 ZHh 2
+            B2A3 none 0 7 0
+            fen 1r1/3/zK1/1R1 ZHkh 1
+            B3A3 none 4 6 0
+            fen 1r1/3/K2/1R1 2ZHkh 2
+            B1C1 none 0 0 0
+            fen 2r/3/K2/1R1 2ZHkh 1
+            A3B3 none 4 6 0
+            fen 2r/3/1K1/1R1 2ZHkh 2
+            C1B1 none 0 0 0
+            fen 1r1/3/1K1/1R1 2ZHkh 1
+            Z*B2 none 4 6 0
+            fen 1r1/1Z1/1K1/1R1 ZHkh 2
+            B1C2 none 0 0 0
+            fen 3/1Zr/1K1/1R1 ZHkh 1
+            H*C3 none 4 6 0
+            fen 3/1Zr/1KH/1R1 Zkh 2
+            C2B1 none 0 0 0
+            fen 1r1/1Z1/1KH/1R1 Zkh 1
+            B2A3 none 4 7 0
+            fen 1r1/3/ZKH/1R1 Zkh 2
+            K*C4 none 0 7 0
+            fen 1r1/3/ZKH/1Rk Zh 1
+            B4C4 none 8 8 0
+            fen 1r1/3/ZKH/2R ZKh 2
+            H*C2 none 0 0 0
+            fen 1r1/2h/ZKH/2R ZK 1
+            B3B2 none 87 8 0
+            fen 1r1/1Kh/Z1H/2R ZK 2
+            B1A1 none 0 0 0
+            fen r2/1Kh/Z1H/2R ZK 1
+            B2C2 none 87 8 0
+            fen r2/2K/Z1H/2R ZKH 2
+            A1A2 none 0 0 0
+            fen 3/r1K/Z1H/2R ZKH 1
+            A3B2 none 87 8 0
+            fen 3/rZK/2H/2R ZKH 2
+            A2B1 none 0 0 0
+            fen 1r1/1ZK/2H/2R ZKH 1
+            B2A3 none 87 8 0
+            C4B3 none 87 8 0
+            fen 1r1/2K/Z1H/2R ZKH 2
+            B1A2 none 0 0 0
+            fen 1r1/1ZK/1RH/3 ZKH 2
+            toryo none 0 0 0
+            fen 2z/kr1/1Z1/1RK Hh 1
+            B3A2 none 4 9 100
+            fen 2z/Zr1/3/1RK KHh 2
+            B2A2 none 0 7 100
+            fen 2z/r2/3/1RK KHzh 1
+            K*A3 none 2 7 100
+            fen 2z/r2/K2/1RK Hzh 2
+            A2A1 none 0 12 100
+            fen r1z/3/K2/1RK Hzh 1
+            A3B3 none 2 7 100
+            fen r1z/3/1K1/1RK Hzh 2
+            A1B1 none 2 7 100
+            fen 1rz/3/1K1/1RK Hzh 1
+            B3A3 none 2 7 100
+            fen 1rz/3/K2/1RK Hzh 2
+            B1A1 none 0 8 100
+            B1B2 none 0 7 100
+            fen 1rz/3/2K/1RK Hzh 2
+            H*B2 none 2 7 100
+            fen 1rz/1h1/2K/1RK Hz 1
+            B4A3 none 2 8 100
+            fen 1rz/1h1/R1K/2K Hz 2
+            B1A1 none 0 9 100
+            fen r1z/1h1/R1K/2K Hz 1
+            H*C2 none 4 8 100
+            fen r1z/1hH/R1K/2K z 2
+            B2B3 none 0 9 100
+            fen r1z/2H/RhK/2K z 1
+            C3B3 none 8 8 100
+            fen r1z/2H/RK1/2K Hz 2
+            A1B1 none 0 0 0
+            fen 1rz/2H/RK1/2K Hz 1
+            H*A2 none 10 8 100
+            fen 1rz/H1H/RK1/2K z 2
+            Z*B4 none 0 10 100
+            fen 1rz/H1H/RK1/1zK - 1
+            C4B4 none 87 9 100
+            fen 1rz/H1H/RK1/1K1 Z 2
+            B1C2 none 0 0 0
+            fen 2z/H1r/RK1/1K1 Zh 1
+            Z*B1 none 87 8 100
+            fen 1Zz/H1r/RK1/1K1 h 2
+            C2B1 none 0 14 100
+            fen 1rz/H2/RK1/1K1 zh 1
+            B3B2 none 87 14 100
+            fen 1rz/HK1/R2/1K1 zh 2
+            C1B2 none 87 8 100
+            fen 1r1/Hz1/R2/1K1 zkh 1
+            A3B3 none 0 0 0
+            fen 1r1/Hz1/1R1/1K1 zkh 2
+            Z*C2 none 87 7 100
+            fen 1r1/Hzz/1R1/1K1 kh 1
+            B3A4 none 0 0 0
+            fen 1r1/Hzz/3/RK1 kh 2
+            K*A3 none 87 8 100
+            fen 1r1/Hzz/k2/RK1 h 1
+            toryo none 0 0 0
+            fen 2z/1r1/K2/1RK Hzh 1
+            B4A4 none 2 7 100
+            fen 2z/1r1/K2/R1K Hzh 2
+            B2C2 none 0 8 100
+            fen 2z/2r/K2/R1K Hzh 1
+            A3B3 none 2 8 100
+            fen 2z/2r/1K1/R1K Hzh 2
+            C2B1 none 0 8 100
+            fen 1rz/3/1K1/R1K Hzh 1
+            B3A3 none 2 7 100
+            fen 1rz/3/K2/R1K Hzh 2
+            B1A1 none 0 7 100
+            fen r1z/3/K2/R1K Hzh 1
+            H*A2 none 2 7 100
+            fen r1z/H2/K2/R1K zh 2
+            A1B1 none 0 9 100
+            fen 1rz/H2/K2/R1K zh 1
+            C4C3 none 2 8 100
+            fen 1rz/H2/K1K/R2 zh 2
+            B1B2 none 2 11 100
+            fen 2z/Hr1/K1K/R2 zh 1
+            C3B3 none 2 8 100
+            fen 2z/Hr1/KK1/R2 zh 2
+            B2B1 none 0 9 100
+            fen 1rz/H2/KK1/R2 zh 1
+            B3C3 none 2 8 100
+            fen 1rz/H2/K2/RK1 zh 2
+            C1B2 none 2 8 100
+            fen 1r1/Hz1/K2/RK1 zh 1
+            A2A1 none 2 8 100
+            fen Hr1/1z1/K2/RK1 zh 2
+            B2A1 none 4 8 100
+            fen zr1/3/K2/RK1 z2h 1
+            A3B3 none 0 0 0
+            fen zr1/3/1K1/RK1 z2h 2
+            Z*C2 none 4 8 100
+            fen zr1/2z/1K1/RK1 2h 1
+            B4C4 none 0 0 0
+            fen zr1/2z/1K1/R1K 2h 2
+            A1B2 none 6 8 100
+            fen 1r1/1zz/1K1/R1K 2h 1
+            B3B2 none 2 8 100
+            fen 1r1/1Kz/3/R1K Z2h 2
+            B1B2 none 2 8 100
+            fen 3/1rz/3/R1K Zk2h 1
+            Z*A1 none 0 0 0
+            fen Z2/1rz/3/R1K k2h 2
+            B2A1 none 6 8 100
+            fen r2/2z/3/R1K zk2h 1
+            C4C3 none 0 0 0
+            fen r2/2z/2K/R2 zk2h 2
+            A1B2 none 6 7 100
+            fen 3/1rz/2K/R2 zk2h 1
+            C3C2 none 0 0 0
+            fen 3/1rK/3/R2 Zzk2h 2
+            B2C2 none 6 7 100
+            fen 3/2r/3/R2 Zz2k2h 1
+            A4A3 none 0 0 0
+            fen 3/2r/R2/3 Zz2k2h 2
+            C2B1 none 10 6 100
+            fen 1r1/3/R2/3 Zz2k2h 1
+            A3B3 none 0 0 0
+            fen 1r1/3/1R1/3 Zz2k2h 2
+            B1A1 none 6 6 100
+            fen r2/3/1R1/3 Zz2k2h 1
+            Z*C1 none 0 0 0
+            fen r1Z/3/1R1/3 z2k2h 2
+            A1B1 none 6 10 100
+            fen 1rZ/3/1R1/3 z2k2h 1
+            C1B2 none 0 0 0
+            fen 1r1/1Z1/1R1/3 z2k2h 2
+            Z*A1 none 8 6 100
+            fen zr1/1Z1/1R1/3 2k2h 1
+            B2A1 none 0 0 0
+            fen Zr1/3/1R1/3 Z2k2h 2
+            B1A1 none 6 6 100
+            fen 1rz/1Z1/1R1/3 2k2h 1
+            B2C1 none 0 0 0
+            fen 1rZ/3/1R1/3 Z2k2h 2
+            B1C1 none 6 6 100
+            fen 2r/3/1R1/3 Zz2k2h 1
+            Z*A1 none 0 0 0
+            fen Z1r/3/1R1/3 z2k2h 2
+            Z*C2 none 6 7 100
+            fen Z1r/2z/1R1/3 2k2h 1
+            B3A2 none 0 0 0
+            fen Z1r/R1z/3/3 2k2h 2
+            C2B1 none 6 8 100
+            fen Zzr/R2/3/3 2k2h 1
+            A2B3 none 87 11 100
+            fen Zzr/3/1R1/3 2k2h 2
+            B1C2 none 6 8 100
+            fen k1H/1rh/1Z1/1RK Z 1
+            B3A4 none 6 9 100
+            B4A4 none 6 9 100
+            fen k1H/1rh/3/ZRK Z 2
+            A1A2 none 0 9 100
+            fen 2H/krh/3/ZRK Z 1
+            A4B3 none 6 10 100
+            fen 2H/krh/1Z1/1RK Z 2
+            A2A1 none 0 9 100
+            fen 1kH/1rh/3/ZRK Z 1
+            C4C3 none 4 9 100
+            fen 1kH/1rh/2K/ZR1 Z 2
+            B1C1 none 2 9 100
+            fen 2k/1rh/2K/ZR1 Zh 1
+            C3C2 none 4 8 100
+            fen 2k/1rK/3/ZR1 ZHh 2
+            C1C2 none 0 8 100
+            fen 3/1rk/3/ZR1 ZHkh 1
+            A4B3 none 0 7 100
+            fen 3/1rk/1Z1/1R1 ZHkh 2
+            B2A1 none 0 7 100
+            fen r2/2k/1Z1/1R1 ZHkh 1
+            B3C2 none 4 7 100
+            fen r2/2Z/3/1R1 ZKHkh 2
+            A1B2 none 0 7 100
+            fen 3/1rZ/3/1R1 ZKHkh 1
+            C2B1 none 4 7 100
+            fen 1Z1/1r1/3/1R1 ZKHkh 2
+            K*B3 none 87 7 100
+            fen 1Z1/1r1/1k1/1R1 ZKHh 1
+            B4A4 none 4 8 100
+            fen 1Z1/1r1/1k1/R2 ZKHh 2
+            H*A3 none 87 7 100
+            fen 1Z1/1r1/hk1/R2 ZKH 1
+            toryo none 0 0 0
+            fen 1kH/1r1/ZZ1/1RK h 2
+            B2A1 none 0 10 100
+            fen rkH/3/ZZ1/1RK h 1
+            B4C3 none 4 10 100
+            fen rkH/3/ZZR/2K h 2
+            B1C1 none 0 0 0
+            fen r1k/3/ZZR/2K 2h 1
+            A3B2 none 6 9 100
+            fen r1k/1Z1/1ZR/2K 2h 2
+            A1B1 none 0 0 0
+            fen 1rk/1Z1/1ZR/2K 2h 1
+            B2C1 none 6 13 100
+            fen 1rZ/3/1ZR/2K K2h 2
+            B1C1 none 0 0 0
+            fen 2r/3/1ZR/2K Kz2h 1
+            K*C2 none 2 11 100
+            fen 2r/2K/1ZR/2K z2h 2
+            C1B1 none 0 0 0
+            fen 1r1/2K/1ZR/2K z2h 1
+            C2B2 none 87 8 100
+            fen 1r1/1K1/1ZR/2K z2h 2
+            B1C1 none 0 0 0
+            fen 2r/1K1/1ZR/2K z2h 1
+            B3A2 none 87 8 100
+            fen 2r/ZK1/2R/2K z2h 2
+            Z*B4 none 0 0 0
+            fen 2r/ZK1/2R/1zK 2h 1
+            C3B3 none 87 10 100
+            fen 2r/ZK1/1R1/1zK 2h 2
+            B4A3 none 0 0 0
+            fen 2r/ZK1/zR1/2K 2h 1
+            B2B1 none 87 14 100
+            fen 1Kr/Z2/zR1/2K 2h 2
+            toryo none 0 0 0
+            fen 2k/1r1/3/ZRK Z2h 1
+            A4B3 none 2 8 100
+            fen 2k/1r1/1Z1/1RK Z2h 2
+            H*C2 none 0 8 100
+            fen 2k/1rh/1Z1/1RK Zh 1
+            B3C2 none 4 9 100
+            fen 2k/1rZ/3/1RK ZHh 2
+            C1C2 none 0 8 100
+            fen 3/1rk/3/1RK ZHzh 1
+            B4A4 none 0 8 100
+            fen 3/1rk/3/R1K ZHzh 2
+            B2A1 none 4 7 100
+            fen r2/2k/3/R1K ZHzh 1
+            A4A3 none 0 11 100
+            fen r2/2k/R2/2K ZHzh 2
+            A1B1 none 0 7 100
+            fen 1r1/2k/R2/2K ZHzh 1
+            A3B3 none 0 10 100
+            fen 1r1/2k/1R1/2K ZHzh 2
+            B1C1 none 0 7 100
+            fen 2r/2k/1R1/2K ZHzh 1
+            B3A2 none 87 8 100
+            fen 2r/R1k/3/2K ZHzh 2
+            Z*B2 none 0 10 100
+            fen 2r/Rzk/3/2K ZHh 1
+            Z*A1 none 87 14 100
+            fen Z1r/Rzk/3/2K Hh 2
+            C2C3 none 4 11 100
+            fen Z1r/Rz1/2k/2K Hh 1
+            A1B2 none 87 10 100
+            fen 2r/RZ1/2k/2K ZHh 2
+            C1C2 none 0 0 0
+            fen 3/RZr/2k/2K ZHh 1
+            A2A1 none 87 14 100
+            fen R2/1Zr/2k/2K ZHh 2
+            C2B3 none 87 8 100
+            fen 1kz/1r1/1ZK/1R1 Hh 2
+            B1A1 none 0 13 100
+            fen r1z/k2/1ZK/1R1 Hh 1
+            B3A2 none 4 8 100
+            fen r1z/Z2/2K/1R1 KHh 2
+            A1A2 none 0 8 100
+            fen r1Z/3/3/1R1 KHzkh 1
+            B4B3 none 0 7 100
+            fen r1Z/3/1R1/3 KHzkh 2
+            Z*A2 none 0 7 100
+            fen r1Z/z2/1R1/3 KHkh 1
+            B3C2 none 0 8 100
+            fen r1Z/z1R/3/3 KHkh 2
+            A2B1 none 0 9 100
+            fen rzZ/2R/3/3 KHkh 1
+            C2B3 none 0 9 100
+            fen rzZ/3/1R1/3 KHkh 2
+            B1A2 none 0 8 100
+            fen k1z/1rK/1Z1/1R1 Hh 2
+            B2B1 none 0 9 100
+            fen krz/2K/1Z1/1R1 Hh 1
+            B4C3 none 4 11 101
+            fen krz/2K/1ZR/3 Hh 2
+            A1A2 none 0 12 100
+            fen 1rz/k1K/1ZR/3 Hh 1
+            C2C1 none 4 9 100
+            fen 1rK/k2/1ZR/3 ZHh 2
+            B1C1 none 0 8 100
+            fen 2r/k2/1ZR/3 ZHkh 1
+            B3A2 none 4 10 101
+            fen 2r/Z2/2R/3 ZKHkh 2
+            H*C2 none 0 7 100
+            fen 2r/Z1h/2R/3 ZKHk 1
+            C3B3 none 4 15 101
+            fen 2r/Z1h/1R1/3 ZKHk 2
+            K*B2 none 0 9 100
+            fen 2r/Zkh/1R1/3 ZKH 1
+            B3A3 none 4 9 101
+            fen 2r/Zkh/R2/3 ZKH 2
+            C2C3 none 0 12 100
+            fen 2r/Zk1/R1h/3 ZKH 1
+            Z*B3 none 4 11 101
+            A3B4 none 4 8 101
+            A2B3 none 4 8 101
+            fen 2r/Zk1/RZh/3 KH 2
+            B2B3 none 0 9 100
+            fen 2r/Z2/Rkh/3 KHz 1
+            A3B3 none 87 8 100
+            fen 2r/Z2/1Rh/3 2KHz 2
+            Z*B1 none 0 0 0
+            Z*C2 none 0 0 0
+            fen 1zr/Z2/1Rh/3 2KH 1
+            H*B2 none 87 8 100
+            fen 1zr/ZH1/1Rh/3 2K 2
+            B1C2 none 0 9 100
+            fen 2r/ZHz/1Rh/3 2K 1
+            B3C3 none 87 10 100
+            fen 2r/ZHz/2R/3 2KH 2
+            C2B3 none 0 0 0
+            fen 2r/ZH1/1zR/3 2KH 1
+            A2B1 none 87 8 100
+            fen 1Zr/1H1/1zR/3 2KH 2
+            B3C4 none 0 0 0
+            fen 1Zr/1H1/2R/2z 2KH 1
+            B1A2 none 87 10 100
+            fen 2r/ZH1/2R/2z 2KH 2
+            C4B3 none 87 14 100
+            fen 2r/1HZ/2R/2z 2KH 2
+            C4B3 none 87 11 100
+            fen 2r/1HZ/1zR/3 2KH 1
+            B2B1+ none 87 8 100
+            fen 1Nr/2Z/1zR/3 2KH 2
+            toryo none 0 0 0
+            fen 2H/1rh/kZ1/1RK Z 1
+            Z*A1 none 6 9 100
+            fen Z1H/1rh/kZ1/1RK - 2
+            B2A1 none 0 9 100
+            fen r1H/2h/kZ1/1RK z 1
+            B4A3 none 4 9 100
+            fen r1H/2h/RZ1/2K Kz 2
+            Z*B2 none 0 0 0
+            fen r1H/1zh/RZ1/2K K 1
+            A3A4 none 4 10 100
+            fen r1H/1zh/1Z1/R1K K 2
+            A1B1 none 0 9 100
+            fen 1rH/1zh/1Z1/R1K K 1
+            K*A2 none 6 9 100
+            fen 1rH/Kzh/1Z1/R1K - 2
+            B1C1 none 0 9 100
+            fen 2r/Kzh/1Z1/R1K h 1
+            A4B4 none 6 9 100
+            fen 2r/Kzh/1Z1/1RK h 2
+            C2C3 none 0 9 100
+            fen 2r/Kz1/1Zh/1RK h 1
+            A2B2 none 6 8 100
+            fen 2r/1K1/1Zh/1RK Zh 2
+            C3C4+ none 0 8 100
+            fen 2r/1K1/1Z1/1Rn Zkh 1
+            B3C4 none 4 8 100
+            fen 2r/1K1/3/1RZ ZHkh 2
+            C1B2 none 0 7 100
+            fen 3/1r1/3/1RZ ZH2kh 1
+            C4B3 none 0 7 100
+            fen 3/1r1/1Z1/1R1 ZH2kh 2
+            B2A1 none 0 7 100
+            fen r2/3/1Z1/1R1 ZH2kh 1
+            B3C2 none 2 7 100
+            A1B1 none 0 7 100
+            fen r2/2Z/3/1R1 ZH2kh 2
+            A1A2 none 0 7 100
+            fen 3/r1Z/3/1R1 ZH2kh 1
+            C2B3 none 0 7 100
+            fen 3/r2/1Z1/1R1 ZH2kh 2
+            A2A1 none 0 7 100
+            A2B1 none 0 8 100
+            fen 1r1/3/1Z1/1R1 ZH2kh 1
+            B3A4 none 0 10 100
+            fen 1r1/3/3/ZR1 ZH2kh 2
+            B1A1 none 0 7 100
+            fen r2/3/3/ZR1 ZH2kh 1
+            A4B3 none 0 7 100
+            B4A3 none 0 7 100
+            fen r2/3/R2/Z2 ZH2kh 2
+            K*A2 none 0 7 100
+            fen r2/k2/R2/Z2 ZHkh 1
+            A3B3 none 0 8 100
+            fen r2/k2/1R1/Z2 ZHkh 2
+            A1B1 none 4 7 100
+            fen 1r1/k2/1R1/Z2 ZHkh 1
+            B3C3 none 0 7 100
+            fen 1r1/k2/2R/Z2 ZHkh 2
+            B1A1 none 0 7 100
+            fen r2/k2/2R/Z2 ZHkh 1
+            C3C2 none 0 7 100
+            fen r2/k1R/3/Z2 ZHkh 2
+            K*B1 none 0 9 100
+            fen rk1/k1R/3/Z2 ZHh 1
+            Z*C1 none 87 8 100
+            fen rkZ/k1R/3/Z2 Hh 2
+            A2A3 none 4 11 100
+            fen rkZ/2R/k2/Z2 Hh 1
+            C1B2 none 87 10 100
+            fen rk1/1ZR/k2/Z2 Hh 2
+            B1B2 none 4 14 100
+            fen r2/1kR/k2/Z2 Hzh 1
+            C2C1 none 87 14 100
+            fen r1R/1k1/k2/Z2 Hzh 2
+            Z*B1 none 87 8 100
+            fen k1r/3/1Z1/1RK Z2h 1
+            B3C2 none 2 8 100
+            fen k1r/2Z/3/1RK Z2h 2
+            C1C2 none 2 8 100
+            fen k2/2r/3/1RK Zz2h 1
+            B4A3 none 0 0 0
+            fen k2/2r/R2/2K Zz2h 2
+            Z*B2 none 87 8 100
+            fen k2/1zr/R2/2K Z2h 1
+            A3B4 none 0 0 0
+            fen k2/1zr/3/1RK Z2h 2
+            H*B3 none 87 8 100
+            fen k2/1zr/1h1/1RK Zh 1
+            B4A4 none 0 0 0
+            fen k2/1zr/1h1/R1K Zh 2
+            H*A3 none 87 8 100
+            fen k2/1zr/hh1/R1K Z 1
+            toryo none 0 0 0
+            fen k1H/1rh/1Z1/R1K Z 2
+            A1B1 none 0 9 100
+            fen 1kH/1rh/1Z1/R1K Z 1
+            B3C2 none 6 9 100
+            fen 1kH/1rZ/3/R1K ZH 2
+            B1C1 none 0 8 100
+            fen 2k/1rZ/3/R1K ZHh 1
+            C2B1 none 4 8 100
+            fen 1Zk/1r1/3/R1K ZHh 2
+            C1B1 none 0 8 100
+            fen 1k1/1r1/3/R1K ZHzh 1
+            A4B4 none 0 7 100
+            fen 1k1/1r1/3/1RK ZHzh 2
+            B1A1 none 2 7 100
+            fen k2/1r1/3/1RK ZHzh 1
+            B4A4 none 0 7 100
+            C4C3 none 0 7 100
+            fen k2/1r1/3/R1K ZHzh 2
+            A1B1 none 4 7 100
+            fen k2/1r1/2K/1R1 ZHzh 2
+            A1A2 none 0 7 100
+            fen 3/kr1/2K/1R1 ZHzh 1
+            C3C2 none 0 7 100
+            fen 3/krK/3/1R1 ZHzh 2
+            B2A1 none 4 8 100
+            fen r2/k1K/3/1R1 ZHzh 1
+            C2C1 none 0 8 100
+            fen r1K/k2/3/1R1 ZHzh 2
+            A1B2 none 0 7 100
+            fen 2K/kr1/3/1R1 ZHzh 1
+            C1C2 none 0 7 100
+            fen r1K/1k1/3/1R1 ZHzh 1
+            B4A3 none 0 7 100
+            fen r1K/1k1/R2/3 ZHzh 2
+            Z*C2 none 0 8 100
+            fen r1K/1kz/R2/3 ZHh 1
+            C1C2 none 4 8 100
+            fen r2/1kK/R2/3 2ZHh 2
+            B2C2 none 0 8 100
+            fen r2/2k/R2/3 2ZHkh 1
+            A3B3 none 2 7 100
+            fen r2/2k/1R1/3 2ZHkh 2
+            A1B1 none 0 7 100
+            fen 1r1/2k/1R1/3 2ZHkh 1
+            B3A3 none 0 7 100
+            B1C1 none 0 7 100
+            fen 1r1/2k/R2/3 2ZHkh 2
+            B1A1 none 0 7 100
+            A3B3 none 0 7 100
+            fen 1r1/2k/3/R2 2ZHkh 2
+            B1C1 none 0 7 100
+            fen 2r/2k/3/R2 2ZHkh 1
+            A4A3 none 0 7 100
+            fen 2r/2k/R2/3 2ZHkh 2
+            C1B1 none 0 7 100
+            fen 2r/2k/1R1/3 2ZHkh 1
+            B3A2 none 0 7 100
+            fen 2r/R1k/3/3 2ZHkh 2
+            K*B1 none 0 9 100
+            fen 1kr/R1k/3/3 2ZHh 1
+            Z*A1 none 4 8 100
+            fen Zkr/R1k/3/3 ZHh 2
+            C2C3 none 4 9 100
+            fen Zkr/R2/2k/3 ZHh 1
+            H*B2 none 87 8 100
+            fen Zkr/RH1/2k/3 Zh 2
+            C1C2 none 4 9 100
+            fen Zk1/RHr/2k/3 Zh 1
+            B2B1 none 87 9 100
+            fen ZH1/R1r/2k/3 ZKh 2
+            C2C1 none 0 0 0
+            fen ZHr/R2/2k/3 ZKh 1
+            A1B2 none 87 9 100
+            fen 1Hr/RZ1/2k/3 ZKh 2
+            C1C2 none 0 0 0
+            fen 1H1/RZr/2k/3 ZKh 1
+            A2A1 none 87 14 100
+            fen RH1/1Zr/2k/3 ZKh 2
+            C2B3 none 87 8 100
+            fen k1z/1rZ/2K/1R1 Hh 2
+            A1B1 none 0 9 100
+            A1A2 none 2 9 101
+            fen 1kz/1rZ/2K/1R1 Hh 1
+            C2B1 none 4 8 100
+            fen 1Zz/1r1/2K/1R1 KHh 2
+            B2B1 none 0 8 100
+            fen 1rz/3/2K/1R1 KHzh 1
+            C3B3 none 2 7 100
+            fen 1rz/3/1K1/1R1 KHzh 2
+            B1A1 none 0 9 100
+            fen r1z/3/1K1/1R1 KHzh 1
+            B3A3 none 0 7 100
+            fen r1z/3/K2/1R1 KHzh 2
+            A1B1 none 0 7 100
+            fen 1rz/3/K2/1R1 KHzh 1
+            A3B3 none 0 7 100
+            fen 1kz/1rH/hZ1/1RK - 1
+            C2C1 none 6 12 101
+            fen 1kH/1r1/hZ1/1RK Z 2
+            B1A1 none 0 9 101
+            fen k1H/1r1/hZ1/1RK Z 1
+            C4C3 none 4 16 101
+            fen k1H/1r1/hZK/1R1 Z 2
+            A1B1 none 0 0 0
+            fen 1kH/1r1/hZK/1R1 Z 1
+            C3C2 none 87 9 101
+            fen 1kH/1rK/hZ1/1R1 Z 2
+            B2A1 none 0 0 0
+            fen rkH/2K/hZ1/1R1 Z 1
+            B4A3 none 87 11 101
+            fen rkH/2K/RZ1/3 ZH 2
+            B1C1 none 0 0 0
+            fen r1k/2K/RZ1/3 ZHh 1
+            C2C1 none 87 8 101
+            fen r1K/3/RZ1/3 ZKHh 2
+            H*B2 none 0 0 0
+            fen r1K/1h1/RZ1/3 ZKH 1
+            C1C2 none 87 8 101
+            fen r2/1hK/RZ1/3 ZKH 2
+            A1B1 none 0 0 0
+            fen 1r1/1hK/RZ1/3 ZKH 1
+            C2C1 none 87 8 101
+            fen 1rK/1h1/RZ1/3 ZKH 2
+            B1C1 none 0 0 0
+            fen 2r/1h1/RZ1/3 ZKHk 1
+            A3A2 none 87 10 101
+            fen 2r/Rh1/1Z1/3 ZKHk 2
+            K*B1 none 0 14 101
+            fen 1kr/Rh1/1Z1/3 ZKH 1
+            B3C2 none 87 14 101
+            Z*A1 none 87 8 101
+            fen 1kr/RhZ/3/3 ZKH 2
+            C1C2 none 0 17 101
+            fen 1k1/Rhr/3/3 ZKHz 1
+            Z*B3 none 87 9 101
+            fen 1k1/Rhr/1Z1/3 KHz 2
+            B2B3 none 6 11 101
+            fen 1k1/R1r/1h1/3 KH2z 1
+            K*B2 none 87 8 101
+            fen 1k1/RKr/1h1/3 H2z 2
+            C2C1 none 8 13 101
+            fen 1kr/RK1/1h1/3 H2z 1
+            B2B1 none 87 15 101
+            fen 1Kr/R2/1h1/3 KH2z 2
+            C1C2 none 0 21 101
+            fen 1K1/R1r/1h1/3 KH2z 1
+            A2A1 none 87 21 101
+            fen 2r/Z1z/1Rh/3 2KH 1
+            B3A3 none 87 9 101
+            fen 2r/Z1z/R1h/3 2KH 2
+            C2B1 none 0 0 0
+            fen 1zr/Z2/R1h/3 2KH 1
+            K*B2 none 87 8 101
+            fen 1zr/ZK1/R1h/3 KH 2
+            C3C4+ none 0 13 101
+            fen 1zr/ZK1/R2/2n KH 1
+            A2B1 none 87 10 101
+            fen 1Zr/1K1/R2/2n ZKH 2
+            C4C3 none 0 0 0
+            fen 1Zr/1K1/R1n/3 ZKH 1
+            B1A2 none 87 16 101
+            fen 2r/ZK1/R1n/3 ZKH 2
+            C3C4 none 87 11 101
+            fen 2r/ZK1/R2/2n ZKH 1
+            A2B1 none 87 9 101
+            A2B3 none 87 9 101
+            fen Zkr/Rh1/1Z1/3 KH 2
+            B2B3 none 2 9 101
+            fen Zkr/R2/1h1/3 KHz 1
+            A1B2 none 87 8 101
+            fen 1kr/RZ1/1h1/3 KHz 2
+            C1C2 none 4 10 101
+            fen 1k1/RZr/1h1/3 KHz 1
+            K*C1 none 87 9 101
+            fen 1kK/RZr/1h1/3 Hz 2
+            B1C1 none 4 21 101
+            fen 2k/RZr/1h1/3 Hzk 1
+            A2A1 none 87 21 101
+            fen 2r/Zk1/2h/1R1 ZKH 2
+            B2A2 none 0 8 101
+            fen 2r/k2/2h/1R1 ZKHz 1
+            B4B3 none 2 7 101
+            fen 2r/k2/1Rh/3 ZKHz 2
+            A2B2 none 2 7 101
+            fen 2r/1k1/1Rh/3 ZKHz 1
+            B3A3 none 2 8 101
+            fen 2r/1k1/R1h/3 ZKHz 2
+            C1B1 none 2 7 101
+            fen 1r1/1k1/R1h/3 ZKHz 1
+            A3A4 none 0 7 101
+            fen 1r1/1k1/2h/R2 ZKHz 2
+            B1A1 none 2 7 101
+            fen r2/1k1/2h/R2 ZKHz 1
+            A4B4 none 0 7 101
+            fen r2/1k1/2h/1R1 ZKHz 2
+            B2B1 none 2 7 101
+            fen rk1/3/2h/1R1 ZKHz 1
+            B4C3 none 2 8 101
+            fen rk1/3/2R/3 ZK2Hz 2
+            A1A2 none 0 0 0
+            fen 1k1/r2/2R/3 ZK2Hz 1
+            Z*B3 none 87 7 101
+            fen 1k1/r2/1ZR/3 K2Hz 2
+            A2A1 none 0 0 0
+            fen rk1/3/1ZR/3 K2Hz 1
+            K*A2 none 87 8 101
+            fen rk1/K2/1ZR/3 2Hz 2
+            toryo none 0 0 0
+            fen 2r/1k1/RZh/3 ZKH 2
+            C1B1 none 0 8 101
+            fen 1r1/1k1/RZh/3 ZKH 1
+            A3A4 none 4 8 101
+            fen 1r1/1k1/1Zh/R2 ZKH 2
+            B1A1 none 0 7 101
+            fen r2/1k1/1Zh/R2 ZKH 1
+            K*C1 none 4 8 101
+            fen r1K/1k1/1Zh/R2 ZH 2
+            B2B3 none 0 9 101
+            fen r1K/3/1kh/R2 ZHz 1
+            A4B3 none 4 8 101
+            fen r1K/3/1Rh/3 ZKHz 2
+            Z*A2 none 0 0 0
+            fen r1K/z2/1Rh/3 ZKH 1
+            B3C2 none 87 8 101
+            fen r1K/z1R/2h/3 ZKH 2
+            A2B3 none 0 0 0
+            fen r1K/2R/1zh/3 ZKH 1
+            C2B3 none 87 10 101
+            fen r1K/3/1Rh/3 2ZKH 2
+            C3C4 none 0 0 0
+            fen r1K/3/1R1/2h 2ZKH 1
+            C1B1 none 87 9 101
+            fen rK1/3/1R1/2h 2ZKH 2
+            A1B1 none 0 0 0
+            fen 1r1/3/1R1/2h 2ZKHk 1
+            Z*A2 none 87 7 101
+            fen 1r1/Z2/1R1/2h ZKHk 2
+            B1A1 none 0 0 0
+            fen r2/Z2/1R1/2h ZKHk 1
+            B3C2 none 87 8 101
+            fen r2/Z1R/3/2h ZKHk 2
+            K*B1 none 0 9 101
+            fen rk1/Z1R/3/2h ZKH 1
+            A2B1 none 87 8 101
+            fen rZ1/2R/3/2h Z2KH 2
+            toryo none 0 0 0
+            fen 2z/krZ/2K/1R1 Hh 1
+            C2B3 none 0 9 101
+            fen 2z/kr1/1ZK/1R1 Hh 2
+            B2B1 none 0 8 101
+            fen 1rz/k2/1ZK/1R1 Hh 1
+            H*C2 none 4 8 101
+            fen 1rz/k1H/1ZK/1R1 h 2
+            C1B2 none 0 8 101
+            fen 1r1/kzH/1ZK/1R1 h 1
+            C2C1 none 4 9 101
+            fen 1rH/kz1/1ZK/1R1 h 2
+            B1A1 none 4 8 101
+            fen r1H/kz1/1ZK/1R1 h 1
+            B3A2 none 4 9 101
+            fen r1H/Zz1/2K/1R1 Kh 2
+            A1A2 none 2 8 101
+            fen 2H/rz1/2K/1R1 Kzh 1
+            C3B3 none 0 8 101
+            fen 2H/rz1/1K1/1R1 Kzh 2
+            A2A1 none 2 8 101
+            fen r1H/1z1/1K1/1R1 Kzh 1
+            B3B2 none 4 8 101
+            fen r1H/1K1/3/1R1 ZKzh 2
+            A1B2 none 0 8 101
+            fen 2H/1r1/3/1R1 ZKzkh 1
+            Z*C2 none 0 7 101
+            fen 2H/1rZ/3/1R1 Kzkh 2
+            Z*A3 none 87 8 101
+            fen 2H/1rZ/z2/1R1 Kkh 1
+            B4A4 none 0 9 101
+            fen 2H/1rZ/z2/R2 Kkh 2
+            K*B4 none 87 8 101
+            fen 2H/1rZ/z2/Rk1 Kh 1
+            toryo none 0 0 0
+            fen 2r/3/RZh/3 2KHz 2
+            C3C4+ none 0 0 0
+            fen 2r/3/RZ1/2n 2KHz 1
+            A3A2 none 87 8 101
+            fen 2r/R2/1Z1/2n 2KHz 2
+            Z*B2 none 0 0 0
+            fen 2r/Rz1/1Z1/2n 2KH 1
+            B3A4 none 87 9 101
+            fen 2r/Rz1/3/Z1n 2KH 2
+            C4B4 none 0 0 0
+            fen 2r/Rz1/3/Zn1 2KH 1
+            A4B3 none 87 10 101
+            fen 2r/Rz1/1Z1/1n1 2KH 2
+            B4B3 none 2 9 101
+            fen 2r/Rz1/1n1/3 2KHz 1
+            K*B1 none 87 8 101
+            fen 1Kr/Rz1/1n1/3 KHz 2
+            C1C2 none 2 11 101
+            fen 1K1/Rzr/1n1/3 KHz 1
+            B1C1 none 87 10 101
+            fen 2K/Rzr/1n1/3 KHz 2
+            C2C1 none 6 10 101
+            fen 2r/Rz1/1n1/3 KHzk 1
+            K*B1 none 87 8 101
+            fen 1Kr/Rz1/1n1/3 Hzk 2
+            C1C2 none 6 14 101
+            fen 1K1/Rzr/1n1/3 Hzk 1
+            B1B2 none 87 11 101
+            fen 3/RKr/1n1/3 ZHzk 2
+            B3B2 none 6 21 101
+            fen 3/Rnr/3/3 ZHz2k 1
+            A2A1 none 87 21 101
+            fen rK1/1h1/RZ1/3 ZKH 2
+            A1B1 none 0 0 0
+            fen 1r1/1h1/RZ1/3 ZKHk 1
+            Z*A2 none 87 8 101
+            fen 1r1/Zh1/RZ1/3 KHk 2
+            B1A1 none 0 0 0
+            fen r2/Zh1/RZ1/3 KHk 1
+            K*B1 none 87 8 101
+            fen rK1/Zh1/RZ1/3 Hk 2
+            toryo none 0 0 0
+            fen 2r/1K1/RZ1/2n ZKH 2
+            C4C3 none 87 10 101
+            fen 2r/1K1/RZn/3 ZKH 1
+            A3A2 none 87 8 101
+            fen 2r/RK1/1Zn/3 ZKH 2
+            C3B3 none 0 0 0
+            fen 2r/RK1/1n1/3 ZKHz 1
+            A2A1 none 87 21 101
+            fen k2/r1K/2R/3 ZHzh 1
+            C2C1 none 0 5 102
+            fen k1K/r2/2R/3 ZHzh 2
+            A1B1 none 0 5 102
+            fen 1kK/r2/2R/3 ZHzh 1
+            Z*B3 none 4 5 102
+            fen 1kK/r2/1ZR/3 Hzh 2
+            A2A3 none 0 7 102
+            fen 1kK/3/rZR/3 Hzh 1
+            H*A4 none 87 6 102
+            fen 1kK/3/rZR/H2 zh 2
+            toryo none -87 14 102
+                            ".Split('\n');
+            */
+        }
+        #endregion
+
+    }
+}
+
+
+
+            else if (Util_String.MatchAndNext("downSizing", line, ref caret))
+            {
+                //────────────────────────────────────────
+                // 定跡ファイルの中身を減らす
+                //────────────────────────────────────────
+                hyoji.AppendLine("removed bytes = " + JosekiIo.DownSizeing(PureSettei.joseki, 1000));
+            }
+
+            else if (Util_String.MatchAndNext("inflation", line, ref caret))
+            {
+                //────────────────────────────────────────
+                // 定跡の評価値を１００倍にするぜ☆（＾～＾）
+                //────────────────────────────────────────
+                foreach (KeyValuePair<ulong, JosekiKyokumen> entryKy in PureSettei.joseki.KyItems)
+                {
+                    foreach (KeyValuePair<Sasite, JosekiSasite> entrySs in entryKy.Value.SsItems)
+                    {
+                        if (entrySs.Value.Hyokati <= HyokaNumber.TumeTesu_FuNoSu_HyakuTeTumerare)
+                        {
+                            entrySs.Value.Hyokati = (HyokaNumber)(-20000 + ((int)entrySs.Value.Hyokati - HyokaNumber.TumeTesu_FuNoSu_ReiTeTumerare));
+                        }
+                        else if (HyokaNumber.TumeTesu_SeiNoSu_HyakuTeDume <= entrySs.Value.Hyokati)
+                        {
+                            entrySs.Value.Hyokati = (HyokaNumber)(20000 + ((int)entrySs.Value.Hyokati - HyokaNumber.TumeTesu_SeiNoSu_ReiTeDume));
+                        }
+                        else
+                        {
+                            entrySs.Value.Hyokati = (HyokaNumber)((int)entrySs.Value.Hyokati * 100);
+                        }
+                    }
+                }
+                hyoji.AppendLine("定跡の評価値を 100 倍、メートを 2万付近 にしたぜ☆（＾～＾）");
+            }
+
+
+            if (isJoseki)
+            {
+                //────────────────────
+                // 定跡のとき
+                //────────────────────
+                hyoji.Append(PureSettei.usi?"info ": "joho ");
+#if DEBUG
+                hyoji.Append("Debug["); hyoji.Append(hint); hyoji.Append("] ");
+#endif
+                hyoji.Append("joseki");
+                hyoji.Append(" jikan ");
+                hyoji.Append(Face_TimeManager.timeManager.stopwatch_Tansaku.ElapsedMilliseconds.ToString());
+                hyoji.Append(" yomisuji ");
+                hyoji.Append(yomisuji);
+                hyoji.AppendLine();
+            }
+            else
+
+
+
+
+
+
+
+
+
+
+
+
+

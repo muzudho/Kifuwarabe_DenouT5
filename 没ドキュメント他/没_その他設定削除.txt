@@ -1,0 +1,36 @@
+
+        /// <summary>
+        /// 将棋34用か（スマホ用か）
+        /// </summary>
+        public static bool forShogi34 { get; set; }
+
+            PureSettei.forShogi34 = true;
+
+
+
+
+
+            // TODO: 初期局面を表示すると、将棋盤を崩してしまうので、パス
+//            // 初期局面
+//            {
+//                Kyokumen ky2 = new Kyokumen();
+//                int caret = 0;
+//                string moves;
+//                if (LisGenkyoku.TryFail_ParsePositionvalue(PureSettei.usi,ky2,
+//                    PureMemory.kifu_syokiKyokumenFen, ref caret, false, false, out moves
+//#if DEBUG
+//                , (IDebugMojiretu)hyoji
+//#endif
+//                ))
+//                {
+//                    return false;
+//                }
+
+//                hyoji.AppendLine("初期局面");
+//                SpkBan_1Column.Setumei_NingenGameYo(ky2.yomiKy, hyoji);
+//            }
+
+
+
+
+
