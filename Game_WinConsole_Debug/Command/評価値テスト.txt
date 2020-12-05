@@ -1,5 +1,0 @@
-﻿# 読み筋をどんどん出すぜ☆（＾▽＾）
-
-set JohoJikan 0
-set SikoJikan 10000
-set SaidaiFukasa 2

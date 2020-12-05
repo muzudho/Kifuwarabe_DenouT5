@@ -1,0 +1,181 @@
+﻿# 可変サイズの盤チェック☆（＾～＾）
+
+# コンピューターが走り出すのを止めておくんだぜ☆（＾～＾）
+set P1Com false
+set P2Com false
+
+ky clear
+set BanYokoHaba 3
+set BanTateHaba 4
+
+ky set
+き　　
+　　　
+　　　
+　　　
+.
+
+ky tekiyo
+ky
+
+ojama ha45c
+ojama hs45c
+ojama ht90c
+
+ojama ha45
+ojama hs45
+ojama ht90
+
+ky set
+　き　
+　　　
+　　　
+　　　
+.
+
+ky tekiyo
+ky
+
+ojama ha45
+ojama hs45
+ojama ht90
+
+ky set
+　　き
+　　　
+　　　
+　　　
+.
+
+ky tekiyo
+ky
+
+ojama ha45
+ojama hs45
+ojama ht90
+
+ky set
+　　　
+き　　
+　　　
+　　　
+.
+
+ky tekiyo
+ky
+
+ojama ha45
+ojama hs45
+ojama ht90
+
+ky set
+　　　
+　き　
+　　　
+　　　
+.
+
+ky tekiyo
+ky
+
+ojama ha45
+ojama hs45
+ojama ht90
+
+ky set
+　　　
+　　き
+　　　
+　　　
+.
+
+ky tekiyo
+ky
+
+ojama ha45
+ojama hs45
+ojama ht90
+
+ky set
+　　　
+　　　
+き　　
+　　　
+.
+
+ky tekiyo
+ky
+
+ojama ha45
+ojama hs45
+ojama ht90
+
+ky set
+　　　
+　　　
+　き　
+　　　
+.
+
+ky tekiyo
+ky
+
+ojama ha45
+ojama hs45
+ojama ht90
+
+ky set
+　　　
+　　　
+　　き
+　　　
+.
+
+ky tekiyo
+ky
+
+ojama ha45
+ojama hs45
+ojama ht90
+
+ky set
+　　　
+　　　
+　　　
+き　　
+.
+
+ky tekiyo
+ky
+
+ojama ha45
+ojama hs45
+ojama ht90
+
+ky set
+　　　
+　　　
+　　　
+　き　
+.
+
+ky tekiyo
+ky
+
+ojama ha45
+ojama hs45
+ojama ht90
+
+ky set
+　　　
+　　　
+　　　
+　　き
+.
+
+ky tekiyo
+ky
+
+ojama ha45
+ojama hs45
+ojama ht90

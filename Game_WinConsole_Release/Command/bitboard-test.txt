@@ -1,4 +1,0 @@
-set HanpukuSinkaTansakuTukau false
-set SaidaiEda 1
-set SaidaiFukasa 1
-set P2Com false

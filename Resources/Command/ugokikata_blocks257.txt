@@ -1,0 +1,171 @@
+set BanYokoHaba 9
+set BanTateHaba 9
+set TobikikiTukau true
+# ‹î‚Ì“®‚«•û‚ğì‚è’¼‚µ
+updaterule
+
+# 257 (100000001)‚Í—¼’[‚È‚ñ‚Å@”ò‚Ñ—˜‚«‚Æ‚µ‚Ä‚ÍŠÖŒW‚È‚¢‚º™iO`Oj
+
+# ‚TŒÜ”òÔ
+ugokikata K 0 KT 257
+
+ugokikata K 1 KT 257
+
+ugokikata K 2 KT 257
+
+ugokikata K 3 KT 257
+
+ugokikata K 4 KT 257
+
+ugokikata K 5 KT 257
+
+ugokikata K 6 KT 257
+
+ugokikata K 7 KT 257
+
+ugokikata K 8 KT 257
+
+ugokikata K 9 KT 257
+
+ugokikata K 10 KT 257
+
+ugokikata K 11 KT 257
+
+ugokikata K 12 KT 257
+
+ugokikata K 13 KT 257
+
+ugokikata K 14 KT 257
+
+ugokikata K 15 KT 257
+
+ugokikata K 16 KT 257
+
+ugokikata K 17 KT 257
+
+ugokikata K 18 KT 257
+
+ugokikata K 19 KT 257
+
+ugokikata K 20 KT 257
+
+ugokikata K 21 KT 257
+
+ugokikata K 22 KT 257
+
+ugokikata K 23 KT 257
+
+ugokikata K 24 KT 257
+
+ugokikata K 25 KT 257
+
+ugokikata K 26 KT 257
+
+ugokikata K 27 KT 257
+
+ugokikata K 28 KT 257
+
+ugokikata K 29 KT 257
+
+ugokikata K 30 KT 257
+
+ugokikata K 31 KT 257
+
+ugokikata K 32 KT 257
+
+ugokikata K 33 KT 257
+
+ugokikata K 34 KT 257
+
+ugokikata K 35 KT 257
+
+ugokikata K 36 KT 257
+
+ugokikata K 37 KT 257
+
+ugokikata K 38 KT 257
+
+ugokikata K 39 KT 257
+
+ugokikata K 40 KT 257
+
+ugokikata K 41 KT 257
+
+ugokikata K 42 KT 257
+
+ugokikata K 43 KT 257
+
+ugokikata K 44 KT 257
+
+ugokikata K 45 KT 257
+
+ugokikata K 46 KT 257
+
+ugokikata K 47 KT 257
+
+ugokikata K 48 KT 257
+
+ugokikata K 49 KT 257
+
+ugokikata K 50 KT 257
+
+ugokikata K 51 KT 257
+
+ugokikata K 52 KT 257
+
+ugokikata K 53 KT 257
+
+ugokikata K 54 KT 257
+
+ugokikata K 55 KT 257
+
+ugokikata K 56 KT 257
+
+ugokikata K 57 KT 257
+
+ugokikata K 58 KT 257
+
+ugokikata K 59 KT 257
+
+ugokikata K 60 KT 257
+
+ugokikata K 61 KT 257
+
+ugokikata K 62 KT 257
+
+ugokikata K 63 KT 257
+
+ugokikata K 64 KT 257
+
+ugokikata K 65 KT 257
+
+ugokikata K 66 KT 257
+
+ugokikata K 67 KT 257
+
+ugokikata K 68 KT 257
+
+ugokikata K 69 KT 257
+
+ugokikata K 70 KT 257
+
+ugokikata K 71 KT 257
+
+ugokikata K 72 KT 257
+
+ugokikata K 73 KT 257
+
+ugokikata K 74 KT 257
+
+ugokikata K 75 KT 257
+
+ugokikata K 76 KT 257
+
+ugokikata K 77 KT 257
+
+ugokikata K 78 KT 257
+
+ugokikata K 79 KT 257
+
+ugokikata K 80 KT 257
+

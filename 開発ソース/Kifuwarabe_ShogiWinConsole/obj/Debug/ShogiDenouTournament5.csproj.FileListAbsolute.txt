@@ -1,7 +1,0 @@
-E:\MuzudhoSoftware(private)\コンピューター将棋\Kifuwarabe_WCSC27\Game_WinConsole\Kifuwarabe_SDT5.exe.config
-E:\MuzudhoSoftware(private)\コンピューター将棋\Kifuwarabe_WCSC27\Game_WinConsole\Kifuwarabe_SDT5.exe
-E:\MuzudhoSoftware(private)\コンピューター将棋\Kifuwarabe_WCSC27\Game_WinConsole\Kifuwarabe_SDT5.pdb
-E:\MuzudhoSoftware(private)\コンピューター将棋\Kifuwarabe_WCSC27\開発ソース\ShogiDenouTournament5\obj\Debug\ShogiDenouTournament5.csprojResolveAssemblyReference.cache
-E:\MuzudhoSoftware(private)\コンピューター将棋\Kifuwarabe_WCSC27\開発ソース\ShogiDenouTournament5\obj\Debug\ShogiDenouTournament5.csproj.CoreCompileInputs.cache
-E:\MuzudhoSoftware(private)\コンピューター将棋\Kifuwarabe_WCSC27\開発ソース\ShogiDenouTournament5\obj\Debug\Kifuwarabe_SDT5.exe
-E:\MuzudhoSoftware(private)\コンピューター将棋\Kifuwarabe_WCSC27\開発ソース\ShogiDenouTournament5\obj\Debug\Kifuwarabe_SDT5.pdb

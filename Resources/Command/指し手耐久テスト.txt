@@ -1,0 +1,15 @@
+﻿# とりあえず連続COM戦
+set JosekiPer 25
+set JosekiRec false
+set SeisekiRec false
+set Learn false
+set RenzokuTaikyoku true
+set SikoJikan 1100
+set SaidaiFukasa 7
+set RandomCharacter true
+set RandomSei true
+set RenzokuRandomRule true
+
+#コンピューターに設定するのは最後にしないと、コマンドの途中で指してくるぜ☆（＾▽＾）
+set P2Com true
+set P1Com true

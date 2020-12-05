@@ -1,0 +1,11 @@
+﻿# 最初にコンピューターを切っておかないと、コマンドの途中で指してくるぜ☆（＾▽＾）
+set P2Com false
+
+# 読み筋情報は全部出そうぜ☆（＾▽＾）
+# set JohoJikan 0
+
+# 定跡は使わないぜ☆（＾▽＾）
+set JosekiPer 0
+set P2Char TansakuNomi
+
+ky fen N1r/1h1/1Z1/1R1 ZKk 2

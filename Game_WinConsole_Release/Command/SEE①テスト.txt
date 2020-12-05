@@ -1,7 +1,0 @@
-﻿set P2Com false
-
-# ①
-ky fen zr1/1KK/HR1/1zh - 2
-ky
-
-see B2

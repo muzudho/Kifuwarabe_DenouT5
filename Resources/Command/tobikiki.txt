@@ -1,0 +1,58 @@
+﻿# UTF8 BOM有
+
+set P1Com false
+set P2Com false
+
+# 本将棋にするぜ☆（＾～＾）
+set GameRule HonShogi
+set BanYokoHaba 9
+set BanTateHaba 9
+set TobikikiTukau true
+# 駒の動き方を作り直し
+updaterule
+
+
+# ky clear
+ky set
+　　　　ラ　　　　
+　　　　　　　　　
+　　　　ヒ　　　　
+　　　　　　　　　
+　　　　　　　　　
+　　　　　　　　　
+　　　　　　　　　
+　　　　　　　　　
+　　　　ら　　　　
+.
+
+ky motu K 1
+
+ky tekiyo
+ky
+
+# do K*E5
+dosub daiOff K*E5
+ky
+kiki saikeisan
+
+# ナナメ段
+nanamedan masu E5
+nanamedan nukidasi KT 1 E5
+nanamedan nukidasi KT 2 E5
+
+# お邪魔
+ojama yk00
+ojama ht90
+ojama ha45
+ojama hs45
+
+
+dosub dstOn K* E5 K
+ky
+kiki saikeisan
+
+#dosub turnEnd K*E5 -
+#ky
+#kiki saikeisan
+
+

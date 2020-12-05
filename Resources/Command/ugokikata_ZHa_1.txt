@@ -1,0 +1,169 @@
+set BanYokoHaba 9
+set BanTateHaba 9
+set TobikikiTukau true
+# ‹î‚Ì“®‚«•û‚ğì‚è’¼‚µ
+updaterule
+
+# ‚TŒÜ‚¼‚¤
+ugokikata Z 0 ZHa 1
+
+ugokikata Z 1 ZHa 1
+
+ugokikata Z 2 ZHa 1
+
+ugokikata Z 3 ZHa 1
+
+ugokikata Z 4 ZHa 1
+
+ugokikata Z 5 ZHa 1
+
+ugokikata Z 6 ZHa 1
+
+ugokikata Z 7 ZHa 1
+
+ugokikata Z 8 ZHa 1
+
+ugokikata Z 9 ZHa 1
+
+ugokikata Z 10 ZHa 1
+
+ugokikata Z 11 ZHa 1
+
+ugokikata Z 12 ZHa 1
+
+ugokikata Z 13 ZHa 1
+
+ugokikata Z 14 ZHa 1
+
+ugokikata Z 15 ZHa 1
+
+ugokikata Z 16 ZHa 1
+
+ugokikata Z 17 ZHa 1
+
+ugokikata Z 18 ZHa 1
+
+ugokikata Z 19 ZHa 1
+
+ugokikata Z 20 ZHa 1
+
+ugokikata Z 21 ZHa 1
+
+ugokikata Z 22 ZHa 1
+
+ugokikata Z 23 ZHa 1
+
+ugokikata Z 24 ZHa 1
+
+ugokikata Z 25 ZHa 1
+
+ugokikata Z 26 ZHa 1
+
+ugokikata Z 27 ZHa 1
+
+ugokikata Z 28 ZHa 1
+
+ugokikata Z 29 ZHa 1
+
+ugokikata Z 30 ZHa 1
+
+ugokikata Z 31 ZHa 1
+
+ugokikata Z 32 ZHa 1
+
+ugokikata Z 33 ZHa 1
+
+ugokikata Z 34 ZHa 1
+
+ugokikata Z 35 ZHa 1
+
+ugokikata Z 36 ZHa 1
+
+ugokikata Z 37 ZHa 1
+
+ugokikata Z 38 ZHa 1
+
+ugokikata Z 39 ZHa 1
+
+ugokikata Z 40 ZHa 1
+
+ugokikata Z 41 ZHa 1
+
+ugokikata Z 42 ZHa 1
+
+ugokikata Z 43 ZHa 1
+
+ugokikata Z 44 ZHa 1
+
+ugokikata Z 45 ZHa 1
+
+ugokikata Z 46 ZHa 1
+
+ugokikata Z 47 ZHa 1
+
+ugokikata Z 48 ZHa 1
+
+ugokikata Z 49 ZHa 1
+
+ugokikata Z 50 ZHa 1
+
+ugokikata Z 51 ZHa 1
+
+ugokikata Z 52 ZHa 1
+
+ugokikata Z 53 ZHa 1
+
+ugokikata Z 54 ZHa 1
+
+ugokikata Z 55 ZHa 1
+
+ugokikata Z 56 ZHa 1
+
+ugokikata Z 57 ZHa 1
+
+ugokikata Z 58 ZHa 1
+
+ugokikata Z 59 ZHa 1
+
+ugokikata Z 60 ZHa 1
+
+ugokikata Z 61 ZHa 1
+
+ugokikata Z 62 ZHa 1
+
+ugokikata Z 63 ZHa 1
+
+ugokikata Z 64 ZHa 1
+
+ugokikata Z 65 ZHa 1
+
+ugokikata Z 66 ZHa 1
+
+ugokikata Z 67 ZHa 1
+
+ugokikata Z 68 ZHa 1
+
+ugokikata Z 69 ZHa 1
+
+ugokikata Z 70 ZHa 1
+
+ugokikata Z 71 ZHa 1
+
+ugokikata Z 72 ZHa 1
+
+ugokikata Z 73 ZHa 1
+
+ugokikata Z 74 ZHa 1
+
+ugokikata Z 75 ZHa 1
+
+ugokikata Z 76 ZHa 1
+
+ugokikata Z 77 ZHa 1
+
+ugokikata Z 78 ZHa 1
+
+ugokikata Z 79 ZHa 1
+
+ugokikata Z 80 ZHa 1
+

@@ -1,0 +1,11 @@
+﻿# 読み筋情報は全部出そうぜ☆（＾▽＾）
+set JohoJikan 0
+
+set P2Com false
+
+# 一手詰めが見えているか確かめるために、探索の深さは１だぜ☆（＾▽＾）！
+set SaidaiFukasa 1
+
+# 一手で詰めてみろだぜ☆（＾▽＾） b3b2 だぜ☆（＾▽＾）ｖ
+ky fen 1r1/K1K/1NR/ZHZ - 1
+

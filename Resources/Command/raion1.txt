@@ -1,0 +1,28 @@
+﻿# らいおんの利き飛び込みテスト☆（＾～＾）
+
+# コンピューターが走り出すのを止めておくんだぜ☆（＾～＾）
+set P1Com false
+set P2Com false
+
+ky clear
+set BanYokoHaba 3
+set BanTateHaba 4
+
+ky set
+キ　ゾ
+　ラ　
+　ら　
+ぞ　き
+.
+
+ky tekiyo
+ky
+
+# 飛び利きをオフ
+set TobikikiTukau false
+
+# 平手初期局面として登録します
+hirate toroku
+
+# set P1Com true
+set P2Com true

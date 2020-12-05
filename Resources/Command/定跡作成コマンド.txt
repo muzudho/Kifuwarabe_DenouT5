@@ -1,0 +1,18 @@
+﻿# 機械学習を使わない、定跡の更新☆
+#set JosekiPer 50
+set JosekiPer 95
+set RandomCharacter true
+#set RandomNikoma true
+set RenzokuTaikyoku true
+#set SaidaiFukasa 256
+set SaidaiFukasa 6
+#set SikoJikan 20000
+set SikoJikan 700
+set RenzokuRandomRule true
+
+#以下はデフォルト設定
+set RandomSei true
+
+#コンピューターに設定するのは最後にしないと、コマンドの途中で指してくるぜ☆（＾▽＾）
+set P2Com true
+set P1Com true
