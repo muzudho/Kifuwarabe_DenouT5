@@ -35,16 +35,6 @@ namespace kifuwarabe_shogithink.pure
         }
 
         /// <summary>
-        /// SFENに対応したエンジン名
-        /// 将棋所や、フラッドゲートで表示されるかもしれない
-        /// </summary>
-        public const string IdName = "Kifuwarabe SDT5"; // Kifuwarabe ShogiAgarutha // Kifuwarabe Dobutu9x9
-        /// <summary>
-        /// SFENに対応したエンジン作者名
-        /// </summary>
-        public const string IdAuthor = "Satoshi TAKAHASHI";
-
-        /// <summary>
         /// きふわらべのバージョン。
         /// 定跡登録で必要になるぜ☆（＾▽＾）
         /// 

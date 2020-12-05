@@ -1,0 +1,9 @@
+[Engine]
+
+# 将棋ソフトの表示名です。
+# 開発中の仮称 "Kifuwarabe ShogiAgarutha", "Kifuwarabe Dobutu9x9"
+# 出場時 "Kifuwarabe SDT5"
+Name = "Kifuwarabi Bld4"
+
+# 将棋ソフトの制作者名です。
+Author = "Satoshi TAKAHASHI"

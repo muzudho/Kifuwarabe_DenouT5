@@ -11,6 +11,9 @@ using kifuwarabe_shogithink.pure.logger;
 using kifuwarabe_shogiwin.consolegame.machine;
 using kifuwarabe_shogiwin.speak.ban;
 using System;
+using System.Configuration;
+using System.IO;
+using Nett;
 #else
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.control;
@@ -24,6 +27,9 @@ using kifuwarabe_shogithink.pure.logger;
 using kifuwarabe_shogiwin.consolegame.machine;
 using kifuwarabe_shogiwin.speak.ban;
 using System;
+using System.Configuration;
+using System.IO;
+using Nett;
 #endif
 
 namespace kifuwarabe_shogiwin.consolegame.console.command
@@ -141,8 +147,13 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
         public static void Usi(string line, IHyojiMojiretu hyoji)
         {
             Util_Machine.Flush(hyoji);
-            hyoji.AppendLine("id name " + PureAppli.IdName);
-            hyoji.AppendLine("id author " + PureAppli.IdAuthor);
+
+            var profilePath = System.Configuration.ConfigurationManager.AppSettings["Profile"];
+            var toml = Toml.ReadFile(Path.Combine(profilePath, "Engine.toml"));
+            var engineName = toml.Get<TomlTable>("Engine").Get<string>("Name");
+            var engineAuthor = toml.Get<TomlTable>("Engine").Get<string>("Author");
+            hyoji.AppendLine($"id name {engineName}");
+            hyoji.AppendLine($"id author {engineAuthor}");
             hyoji.AppendLine("option name SikoJikan type spin default 500 min 100 max 10000000");
             hyoji.AppendLine("option name SikoJikanRandom type spin default 1000 min 0 max 10000000");
             hyoji.AppendLine("option name Comment type string default Jikan is milli seconds.");
