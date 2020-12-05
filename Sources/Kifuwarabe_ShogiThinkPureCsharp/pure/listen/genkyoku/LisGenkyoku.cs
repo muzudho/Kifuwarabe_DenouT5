@@ -8,6 +8,7 @@ using kifuwarabe_shogithink.pure.speak.genkyoku;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using kifuwarabe_shogithink.fen;
 #else
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ky;
@@ -18,6 +19,7 @@ using kifuwarabe_shogithink.pure.speak.genkyoku;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using kifuwarabe_shogithink.fen;
 #endif
 
 namespace kifuwarabe_shogithink.pure.listen.genkyoku

@@ -6,6 +6,7 @@ using kifuwarabe_shogithink.pure.listen.ky;
 using kifuwarabe_shogithink.pure.sasite;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using kifuwarabe_shogithink.fen;
 #else
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.conv.genkyoku.play;
@@ -14,6 +15,7 @@ using kifuwarabe_shogithink.pure.listen.ky;
 using kifuwarabe_shogithink.pure.sasite;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using kifuwarabe_shogithink.fen;
 #endif
 
 namespace kifuwarabe_shogithink.pure.listen.play

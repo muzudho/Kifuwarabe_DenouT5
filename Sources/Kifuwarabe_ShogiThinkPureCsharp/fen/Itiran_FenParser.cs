@@ -5,15 +5,21 @@ using kifuwarabe_shogithink.pure.protocol;
 using System.Text.RegularExpressions;
 using kifuwarabe_shogithink.pure.control;
 using System;
+using kifuwarabe_shogithink.pure.listen.ky;
+using kifuwarabe_shogithink.pure;
+using kifuwarabe_shogithink.pure.listen;
 #else
 using System;
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.protocol;
 using System.Text.RegularExpressions;
+using kifuwarabe_shogithink.pure.listen.ky;
+using kifuwarabe_shogithink.pure;
+using kifuwarabe_shogithink.pure.listen;
 #endif
 
-namespace kifuwarabe_shogithink.pure.listen.ky
+namespace kifuwarabe_shogithink.fen
 {
     /// <summary>
     /// FEN のパーサー一覧。

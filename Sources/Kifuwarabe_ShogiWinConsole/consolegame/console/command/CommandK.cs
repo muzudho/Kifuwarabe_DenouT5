@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using kifuwarabe_shogithink.fen;
 #else
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.accessor;
@@ -39,6 +40,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using kifuwarabe_shogithink.fen;
 #endif
 
 namespace kifuwarabe_shogiwin.consolegame.console.command

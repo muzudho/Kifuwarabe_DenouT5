@@ -10,6 +10,7 @@ using kifuwarabe_shogithink.pure.logger;
 using kifuwarabe_shogithink.pure.sasite;
 using kifuwarabe_shogiwin.project.speak;
 using kifuwarabe_shogiwin.speak.ban;
+using kifuwarabe_shogithink.fen;
 #else
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.accessor;
@@ -21,6 +22,7 @@ using kifuwarabe_shogithink.pure.listen.play;
 using kifuwarabe_shogithink.pure.logger;
 using kifuwarabe_shogithink.pure.sasite;
 using kifuwarabe_shogiwin.speak.ban;
+using kifuwarabe_shogithink.fen;
 #endif
 
 namespace kifuwarabe_shogiwin.consolegame.console.command

@@ -117,7 +117,7 @@
     <Compile Include="pure\speak\ky\bb\SpkBan_Hisigata.cs" />
     <Compile Include="pure\speak\ky\bb\SpkBitboard.cs" />
     <Compile Include="EnumExtensions.cs" />
-    <Compile Include="pure\listen\ky\Itiran_FenParser.cs" />
+    <Compile Include="fen\Itiran_FenParser.cs" />
     <Compile Include="pure\listen\ikkyoku\LisSasiteCharacter.cs" />
     <Compile Include="pure\listen\ky\LisBitboard.cs" />
     <Compile Include="pure\listen\ky\LisKoma.cs" />

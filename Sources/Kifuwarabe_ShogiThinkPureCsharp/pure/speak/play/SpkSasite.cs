@@ -8,6 +8,7 @@ using kifuwarabe_shogithink.pure.sasite;
 using kifuwarabe_shogithink.pure.speak.ky;
 using kifuwarabe_shogithink.pure.control;
 using System;
+using kifuwarabe_shogithink.fen;
 #else
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.conv;
@@ -18,6 +19,7 @@ using kifuwarabe_shogithink.pure.logger;
 using kifuwarabe_shogithink.pure.sasite;
 using kifuwarabe_shogithink.pure.speak.ky;
 using System;
+using kifuwarabe_shogithink.fen;
 #endif
 
 namespace kifuwarabe_shogithink.pure.speak.play

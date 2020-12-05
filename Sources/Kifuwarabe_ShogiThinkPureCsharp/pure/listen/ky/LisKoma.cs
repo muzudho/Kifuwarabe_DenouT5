@@ -2,10 +2,12 @@
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.control;
 using System;
+using kifuwarabe_shogithink.fen;
 #else
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.control;
 using System;
+using kifuwarabe_shogithink.fen;
 #endif
 
 namespace kifuwarabe_shogithink.pure.listen.ky

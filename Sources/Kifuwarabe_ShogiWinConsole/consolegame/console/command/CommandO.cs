@@ -9,6 +9,7 @@ using kifuwarabe_shogithink.pure.logger;
 using kifuwarabe_shogithink.pure.speak.ky.bb;
 using kifuwarabe_shogiwin.listen;
 using System.Text;
+using kifuwarabe_shogithink.fen;
 #else
 using kifuwarabe_shogithink.pure.speak.ky.bb;
 using kifuwarabe_shogithink.pure;
@@ -22,6 +23,7 @@ using kifuwarabe_shogithink.pure.logger;
 using kifuwarabe_shogiwin.listen;
 using kifuwarabe_shogiwin.speak.ban;
 using System.Text;
+using kifuwarabe_shogithink.fen;
 #endif
 
 namespace kifuwarabe_shogiwin.consolegame.console.command

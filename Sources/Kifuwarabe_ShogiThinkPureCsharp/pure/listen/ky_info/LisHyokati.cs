@@ -1,8 +1,8 @@
 ﻿using kifuwarabe_shogithink.pure.listen.ky;
 using kifuwarabe_shogithink.pure.logger;
-//using kifuwarabe_shogiwin.consolegame.machine;
 using System;
 using System.Text.RegularExpressions;
+using kifuwarabe_shogithink.fen;
 
 namespace kifuwarabe_shogithink.pure.listen.ky_info
 {
