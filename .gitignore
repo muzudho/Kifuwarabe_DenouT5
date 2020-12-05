@@ -1,5 +1,5 @@
 ## (^q^)
-Game/*.exe
+Game_ShogiApi_Release/*.exe
 **/*.exe
 
 ## Ignore Visual Studio temporary files, build results, and
