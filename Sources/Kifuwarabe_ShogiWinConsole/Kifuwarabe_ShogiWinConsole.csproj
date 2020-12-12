@@ -8,7 +8,7 @@
     <ProjectGuid>{C163CDA8-78F8-4A4F-B88B-969CB7C5DD19}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>kifuwarabe_shogiwin</RootNamespace>
-    <AssemblyName>Kifuwarabe_ShogiWinConsole2017</AssemblyName>
+    <AssemblyName>Grayscale.Kifuwarabi.Engine</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -21,7 +21,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Game_WinConsole_Debug\</OutputPath>
+    <OutputPath>..\..\Game_Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -31,7 +31,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Game_WinConsole_Release\</OutputPath>
+    <OutputPath>..\..\Game_Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
