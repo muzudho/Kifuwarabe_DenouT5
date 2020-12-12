@@ -7,11 +7,13 @@
 | ソース                  | `Kifuwarabe_DenouT5/Sources/Kifuwarabi.sln"`                                           |
 | 将棋エンジン ソース     | Kifuwarabe_ShogiWinConsole project                                                     |
 | GUI                     | なし                                                                                   |
-| 将棋エンジン ランタイム | `Kifuwarabe_DenouT5/Game_WinConsole_Release/Kifuwarabe_ShogiWinConsole2017.exe`        |
-| 設定ファイル1           | `Kifuwarabe_DenouT5/Game_WinConsole_Release/Kifuwarabe_ShogiWinConsole2017.exe.config` |
+| 将棋エンジン ランタイム 	 | `Kifuwarabe_DenouT5/Game_Release/Grayscale.Kifuwarabi.Engine.exe`        |
+| 設定ファイル1           | `Kifuwarabe_DenouT5/Game_Release/Grayscale.Kifuwarabi.Engine.exe.config` |
 | 設定ファイル2           | `Kifuwarabe_DenouT5/Profile/Engine.toml`                                               |
 
-設定ファイル1 の `Kifuwarabe_ShogiWinConsole2017.exe.config` の中にある `Profile` のパスを、 設定ファイル2 の親ディレクトリー `Profile` に合わせてください。  
+* `Kifuwarabe_DenouT5` のトップ・ディレクトリーに `Logs` ディレクトリーを作成してください。
+* `Kifuwarabi.sln` を `Release` モードで ビルドしてください。
+* 設定ファイル1 の中にある `Profile` のパスを、 設定ファイル2 の親ディレクトリー `Profile` に合わせてください。  
 
 ## Manual
 
