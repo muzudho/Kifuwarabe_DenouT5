@@ -39,7 +39,7 @@ namespace kifuwarabe_shogithink.pure.listen.ky
         //    // リスト作成
         //    //------------------------------------------------------------
 
-        //    Match m = Itiran_FenParser.GetMasuSasitePattern(Option_Application.Optionlist.USI).Match(commandline, caret);
+        //    Match m = Itiran_FenParser.GetMasuMovePattern(Option_Application.Optionlist.USI).Match(commandline, caret);
         //    if (m.Success)
         //    {
         //        Util_String.SkipMatch(commandline, ref caret, m);

@@ -140,7 +140,7 @@ namespace kifuwarabe_shogithink.pure
 
             //Option_Application.Optionlist.P1Com = false;
             PureSettei.p2Com = true;//対局者２はコンピューター☆
-            //Option_Application.Optionlist.PNChar = new SasiteCharacter[] { SasiteCharacter.HyokatiYusen, SasiteCharacter.HyokatiYusen };
+            //Option_Application.Optionlist.PNChar = new MoveCharacter[] { MoveCharacter.HyokatiYusen, MoveCharacter.HyokatiYusen };
             //Option_Application.Optionlist.PNName = new string[] { "対局者１", "対局者２" };
             ComSettei.saidaiFukasa = 13;// コンピューターの読みの最大深さ
 
