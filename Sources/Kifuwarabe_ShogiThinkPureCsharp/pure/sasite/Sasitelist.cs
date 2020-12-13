@@ -12,7 +12,7 @@ namespace kifuwarabe_shogithink.pure.sasite
         public Sasitelist()
         {
             // List<SasiteKakucho> では範囲外インデックスエラーが出るので、配列にしてみるぜ☆
-            list_sasite = new Sasite[PureMemory.SAIDAI_SASITE];
+            list_sasite = new Move[PureMemory.SAIDAI_SASITE];
             list_sasiteType = new SasiteType[PureMemory.SAIDAI_SASITE];
             listCount = 0;
         }
@@ -20,14 +20,14 @@ namespace kifuwarabe_shogithink.pure.sasite
         /// <summary>
         /// 指し手のリスト
         /// </summary>
-        public Sasite[] list_sasite { get; set; }
+        public Move[] list_sasite { get; set; }
         /// <summary>
         /// 指し手のリスト（理由）
         /// </summary>
         public SasiteType[] list_sasiteType { get; set; }
 
         public int listCount { get; set; }
-        public void AddList(Sasite ss, SasiteType ssType)
+        public void AddList(Move ss, SasiteType ssType)
         {
             try
             {

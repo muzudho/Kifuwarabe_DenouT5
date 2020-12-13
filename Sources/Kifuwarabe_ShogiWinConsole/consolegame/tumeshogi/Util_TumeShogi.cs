@@ -31,8 +31,8 @@ namespace kifuwarabe_shogiwin.consolegame.tumeshogi
             )
         {
             // FIXME: 終わったら元に戻したいが☆（＾～＾）
-            PureSettei.char_playerN[(int)Taikyokusya.T1] = SasiteCharacter.TansakuNomi;
-            PureSettei.char_playerN[(int)Taikyokusya.T2] = SasiteCharacter.TansakuNomi;
+            PureSettei.char_playerN[(int)Taikyokusya.T1] = MoveCharacter.TansakuNomi;
+            PureSettei.char_playerN[(int)Taikyokusya.T2] = MoveCharacter.TansakuNomi;
             ComSettei.sikoJikan = 60000; // とりあえず 60 秒ぐらい☆
             ComSettei.sikoJikanRandom = 0;
             ComSettei.johoJikan = 0; // 情報全部出すぜ☆

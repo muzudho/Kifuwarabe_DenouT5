@@ -34,13 +34,13 @@ namespace kifuwarabe_shogithink.pure.sasite
     /// 0 なら投了だぜ☆（＾▽＾）自升と至升と打った駒の種類が0に揃うことはないんで、被らないぜ☆（＾～＾）
     /// 1 0000 0001(2)=257(10) はパスにしようぜ☆（＾～＾）
     /// </summary>
-    public enum Sasite
+    public enum Move
     {
         Toryo = 0,
         //Pass = 257
     }
 
-    public abstract class SasiteShift
+    public abstract class MoveShift
     {
         /// <summary>
         /// 自升(8 bit)
@@ -63,7 +63,7 @@ namespace kifuwarabe_shogithink.pure.sasite
         public const int NATTA = UTTA_KOMASYURUI + 3;
     }
 
-    public abstract class SasiteMask
+    public abstract class MoveMask
     {
         /// <summary>
         /// 自升 11111111 = 0xff
@@ -73,23 +73,23 @@ namespace kifuwarabe_shogithink.pure.sasite
         /// <summary>
         /// 至升 11111111 = 0xff
         /// </summary>
-        public const int DST_MASU = 0xff << SasiteShift.DST_MASU;
+        public const int DST_MASU = 0xff << MoveShift.DST_MASU;
 
         /// <summary>
         /// 打った駒の種類 111 = 0x07
         /// </summary>
-        public const int UTTA_KOMASYURUI = 0x07 << SasiteShift.UTTA_KOMASYURUI;
+        public const int UTTA_KOMASYURUI = 0x07 << MoveShift.UTTA_KOMASYURUI;
 
         /// <summary>
         /// 成ったか☆ 1 = 0x01
         /// </summary>
-        public const int NATTA = 0x01 << SasiteShift.NATTA;
+        public const int NATTA = 0x01 << MoveShift.NATTA;
     }
 
     /// <summary>
     /// 指し手が間違っている理由☆
     /// </summary>
-    public enum SasiteMatigaiRiyu
+    public enum MoveMatigaiRiyu
     {
         /// <summary>
         /// エラーなし
@@ -144,7 +144,7 @@ namespace kifuwarabe_shogithink.pure.sasite
     /// <summary>
     /// 指し手のキャラクター付け
     /// </summary>
-    public enum SasiteCharacter
+    public enum MoveCharacter
     {
         /// <summary>
         /// 定跡の評価値の高いものを優先

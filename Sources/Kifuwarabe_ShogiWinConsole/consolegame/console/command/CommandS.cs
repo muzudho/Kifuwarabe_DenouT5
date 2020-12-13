@@ -113,7 +113,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                         else if (Util_String.MatchAndNext("hkt", line, ref caret))
                         {
                             PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                            SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N13_HippakuKaeriutiTe);
+                            MoveGenAccessor.DoSasitePickerBegin(SasiteType.N13_HippakuKaeriutiTe);
                             SasitePicker01.SasitePicker_01(SasiteType.N13_HippakuKaeriutiTe, NO_MERGE);
                             SpkSasiteList.Setumei(PureSettei.fenSyurui, "逼迫返討手", PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL], hyoji);
                             hyoji.AppendLine();
@@ -142,7 +142,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region 余裕返討手
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N14_YoyuKaeriutiTe);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N14_YoyuKaeriutiTe);
                                 SasitePicker01.SasitePicker_01(SasiteType.N14_YoyuKaeriutiTe, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "余裕返討手", PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -151,7 +151,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region らいおんキャッチ
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N12_RaionCatch);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N12_RaionCatch);
                                 SasitePicker01.SasitePicker_01(SasiteType.N12_RaionCatch, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "らいおんキャッチ", PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL], hyoji);
 #if DEBUG
@@ -163,7 +163,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region 逃げろ手
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N15_NigeroTe);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N15_NigeroTe);
                                 SasitePicker01.SasitePicker_01(SasiteType.N15_NigeroTe, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "逃げろ手", PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -172,7 +172,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region トライ
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N16_Try);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N16_Try);
                                 SasitePicker01.SasitePicker_01(SasiteType.N16_Try, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "トライ", PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -182,7 +182,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region 駒を取る手（逃げ道を開けない手）
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N01_KomaWoToruTe);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N01_KomaWoToruTe);
                                 SasitePicker01.SasitePicker_01(SasiteType.N01_KomaWoToruTe, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "駒を取る手（逃げ道を開けない手）", PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -191,7 +191,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region 駒を取る手（逃げ道を開ける手）
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N01_KomaWoToruTe);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N01_KomaWoToruTe);
                                 SasitePicker01.SasitePicker_01(SasiteType.N01_KomaWoToruTe, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "駒を取る手（逃げ道を開ける手）", PureMemory.ssss_sasitelistBad[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -203,7 +203,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region 紐付王手指（逃げ道を開けない手）
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N10_HimozukiOteZasi);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N10_HimozukiOteZasi);
                                 SasitePicker01.SasitePicker_01(SasiteType.N10_HimozukiOteZasi, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "紐付王手指（逃げ道を開けない手）", PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -212,7 +212,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region 捨て王手指（逃げ道を開けない手）
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N06_SuteOteZasi);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N06_SuteOteZasi);
                                 SasitePicker01.SasitePicker_01(SasiteType.N06_SuteOteZasi, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "捨て王手指（逃げ道を開けない手）", PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -221,7 +221,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region 捨て王手打（逃げ道を開けない手）
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N07_SuteOteDa);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N07_SuteOteDa);
                                 SasitePicker01.SasitePicker_01(SasiteType.N07_SuteOteDa, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "捨て王手打（逃げ道を開けない手）", PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -230,7 +230,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region 紐付王手打（逃げ道を開けない手）
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N11_HimodukiOteDa);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N11_HimodukiOteDa);
                                 SasitePicker01.SasitePicker_01(SasiteType.N11_HimodukiOteDa, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "紐付王手打（逃げ道を開けない手）", PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -240,7 +240,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region 紐付王手指（逃げ道を開ける手）
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N10_HimozukiOteZasi);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N10_HimozukiOteZasi);
                                 SasitePicker01.SasitePicker_01(SasiteType.N10_HimozukiOteZasi, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "紐付王手指（逃げ道を開ける手）", PureMemory.ssss_sasitelistBad[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -249,7 +249,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region 捨て王手指（逃げ道を開ける手）
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N06_SuteOteZasi);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N06_SuteOteZasi);
                                 SasitePicker01.SasitePicker_01(SasiteType.N06_SuteOteZasi, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "捨て王手指（逃げ道を開ける手）", PureMemory.ssss_sasitelistBad[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -258,7 +258,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region 捨て王手打（逃げ道を開ける手）
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N07_SuteOteDa);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N07_SuteOteDa);
                                 SasitePicker01.SasitePicker_01(SasiteType.N07_SuteOteDa, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "捨て王手打（逃げ道を開ける手）", PureMemory.ssss_sasitelistBad[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -267,7 +267,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region 紐付王手打（逃げ道を開ける手）
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N11_HimodukiOteDa);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N11_HimodukiOteDa);
                                 SasitePicker01.SasitePicker_01(SasiteType.N11_HimodukiOteDa, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "紐付王手打（逃げ道を開ける手）", PureMemory.ssss_sasitelistBad[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -277,7 +277,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region 紐付緩慢打
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N09_HimotukiKanmanDa);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N09_HimotukiKanmanDa);
                                 SasitePicker01.SasitePicker_01(SasiteType.N09_HimotukiKanmanDa, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "紐付緩慢打", PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -287,7 +287,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region 紐付緩慢指（仲間を見捨てない動き）
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N08_HimotukiKanmanSasi);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N08_HimotukiKanmanSasi);
                                 SasitePicker01.SasitePicker_01(SasiteType.N08_HimotukiKanmanSasi, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "紐付緩慢指（仲間を見捨てない動き）", PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -296,7 +296,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region ぼっち緩慢指（仲間を見捨てない動き）
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N02_BottiKanmanSasi);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N02_BottiKanmanSasi);
                                 SasitePicker01.SasitePicker_01(SasiteType.N02_BottiKanmanSasi, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "ぼっち緩慢指（仲間を見捨てない動き）", PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -305,7 +305,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region ぼっち緩慢打（仲間を見捨てない動き）
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N03_BottiKanmanDa);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N03_BottiKanmanDa);
                                 SasitePicker01.SasitePicker_01(SasiteType.N03_BottiKanmanDa, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "ぼっち緩慢打（仲間を見捨てない動き）", PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -315,7 +315,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region 紐付緩慢指（仲間を見捨てる動き）
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N08_HimotukiKanmanSasi);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N08_HimotukiKanmanSasi);
                                 SasitePicker01.SasitePicker_01(SasiteType.N08_HimotukiKanmanSasi, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "紐付緩慢指（仲間を見捨てる動き）", PureMemory.ssss_sasitelistBad[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -324,7 +324,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region ぼっち緩慢指（仲間を見捨てる動き）
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N02_BottiKanmanSasi);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N02_BottiKanmanSasi);
                                 SasitePicker01.SasitePicker_01(SasiteType.N02_BottiKanmanSasi, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "ぼっち緩慢指（仲間を見捨てる動き）", PureMemory.ssss_sasitelistBad[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -333,7 +333,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region ぼっち緩慢打（仲間を見捨てる動き）
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N03_BottiKanmanDa);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N03_BottiKanmanDa);
                                 SasitePicker01.SasitePicker_01(SasiteType.N03_BottiKanmanDa, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "ぼっち緩慢打（仲間を見捨てる動き）", PureMemory.ssss_sasitelistBad[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -343,7 +343,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region 捨て緩慢指し（タダ捨て指し）
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N04_SuteKanmanSasi);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N04_SuteKanmanSasi);
                                 SasitePicker01.SasitePicker_01(SasiteType.N04_SuteKanmanSasi, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "捨て緩慢指し（タダ捨て指し）", PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -352,7 +352,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             #region 捨て緩慢打（タダ捨て打）
                             {
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N05_SuteKanmanDa);
+                                MoveGenAccessor.DoSasitePickerBegin(SasiteType.N05_SuteKanmanDa);
                                 SasitePicker01.SasitePicker_01(SasiteType.N05_SuteKanmanDa, NO_MERGE);
                                 SpkSasiteList.Setumei(PureSettei.fenSyurui, "捨て緩慢打（タダ捨て打）", PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL], hyoji);
                                 hyoji.AppendLine();
@@ -363,7 +363,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                             {
                                 // マージを忘れるなだぜ☆（＾▽＾）
                                 PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-                                SasiteSeiseiAccessor.MergeSasitelistGoodBad(
+                                MoveGenAccessor.MergeSasitelistGoodBad(
 #if DEBUG
                                     "マージを忘れるなだぜ☆（＾▽＾）"
 #endif
@@ -374,7 +374,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                     #endregion
                     else
                     {
-                        if (!UtilSasite.Try_Sasite_cmd2(out Sasite ss, line))// sasite 912 とか☆
+                        if (!UtilSasite.Try_Sasite_cmd2(out Move ss, line))// sasite 912 とか☆
                         {
                             // パース・エラー時
                             hyoji.AppendLine("指し手文字列　解析失敗☆");

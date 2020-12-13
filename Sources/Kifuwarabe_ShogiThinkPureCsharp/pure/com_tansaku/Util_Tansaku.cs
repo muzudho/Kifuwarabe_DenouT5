@@ -55,7 +55,7 @@ namespace kifuwarabe_shogithink.pure.com
             PureMemory.tnsk_itibanFukaiNekkoKaranoFukasa_JohoNoTameni = 0; // 読み筋情報に表示するための、読み終わった、一番深い根っこからの深さを覚えておくものだぜ☆（＾▽＾）
             // カウンターをクリアだぜ☆（＾▽＾）
             PureMemory.tnsk_tyakusyuEdas = 0;
-            PureMemory.tnsk_kohoSasite = Sasite.Toryo;
+            PureMemory.tnsk_kohoSasite = Move.Toryo;
 
             // ストップウォッチ
             ComSettei.timeManager.RestartStopwatch_Tansaku();
@@ -89,7 +89,7 @@ namespace kifuwarabe_shogithink.pure.com
                 // 自分のらいおんがいない局面の場合、投了☆
 #if DEBUG
                 PureMemory.tnsk_syuryoRiyu = TansakuSyuryoRiyu.JibunRaionInai;
-                PureMemory.tnsk_kohoSasite = Sasite.Toryo;
+                PureMemory.tnsk_kohoSasite = Move.Toryo;
                 tmp_bestHyokaSu.tumeSu = Conv_Tumesu.Stalemate;
 #endif
             }
@@ -98,7 +98,7 @@ namespace kifuwarabe_shogithink.pure.com
                 //────────────────────────────────────────
                 // 反復深化ループ☆（＾～＾）
                 //────────────────────────────────────────
-                Sasite currSasite = Sasite.Toryo;
+                Move currSasite = Move.Toryo;
                 tmp_currHyokaSu.Clear();
                 for (HanpukuSinka.happaenoFukasa = 1;
                     // まだ思考に時間を使っていい
@@ -197,7 +197,7 @@ namespace kifuwarabe_shogithink.pure.com
                 return Pure.FailTrue("GenkyokuOpe.Try_DoSasite(1)");
             }
             // 手番を進めるぜ☆（＾～＾）
-            SasiteSeiseiAccessor.AddKifu(PureMemory.tnsk_kohoSasite, SasiteType.N00_Karappo, PureMemory.dmv_ks_c);
+            MoveGenAccessor.AddKifu(PureMemory.tnsk_kohoSasite, SasiteType.N00_Karappo, PureMemory.dmv_ks_c);
 #if DEBUG
             Util_Tansaku.Snapshot("Go(1)確定指し", PureMemory.tnsk_kohoSasite);
 #endif
@@ -239,7 +239,7 @@ namespace kifuwarabe_shogithink.pure.com
         }
 
 #if DEBUG
-        public static void Snapshot(string header, Sasite bestSasite)
+        public static void Snapshot(string header, Move bestSasite)
         {
             PureMemory.tnsk_hyoji.AppendLine(header);
             PureMemory.tnsk_hyoji.AppendLine(string.Format("fukasa={0} bestSasite={1} / kohoSasite={2}",
@@ -266,13 +266,13 @@ namespace kifuwarabe_shogithink.pure.com
         /// <param name="dlgt_CreateJoho"></param>
         /// <returns></returns>
         private static void Tansaku_(
-            out Sasite out_bestSasite,
+            out Move out_bestSasite,
             out Hyokati out_bestHyokasu // 手番側の指し手の評価値だぜ☆（＾～＾）
             )
         {
             Debug.Assert(0 <= PureMemory.tnsk_fukasa && PureMemory.tnsk_fukasa < PureMemory.ssss_sasitelist.Length, "");
 
-            out_bestSasite = Sasite.Toryo;
+            out_bestSasite = Move.Toryo;
             out_bestHyokasu = null;
 
             //────────────────────────────────────────
@@ -280,7 +280,7 @@ namespace kifuwarabe_shogithink.pure.com
             //────────────────────────────────────────
             if (ComSettei.timeManager.IsTimeOver_TansakuChu())
             {
-                out_bestSasite = Sasite.Toryo;
+                out_bestSasite = Move.Toryo;
                 out_bestHyokasu = new Hyokati(
                     Conv_Hyokati.Hyokati_Rei,
                     Conv_Tumesu.Stalemate,
@@ -343,7 +343,7 @@ namespace kifuwarabe_shogithink.pure.com
             // 指し手生成
             //────────────────────────────────────────
             // グローバル変数 Util_SasiteSeisei.Sslist に指し手がセットされるぜ☆（＾▽＾）
-            SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N21_All);
+            MoveGenAccessor.DoSasitePickerBegin(SasiteType.N21_All);
             SasitePicker01.SasitePicker_01(SasiteType.N21_All, true);
 
 #region ステイルメイト
@@ -353,7 +353,7 @@ namespace kifuwarabe_shogithink.pure.com
             if (PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].listCount<1)
             {
                 // 詰んでるぜ☆（＾～＾）
-                out_bestSasite = Sasite.Toryo;
+                out_bestSasite = Move.Toryo;
                 out_bestHyokasu = new Hyokati(
                     Conv_Hyokati.Hyokati_Rei,
                     Conv_Tumesu.Stalemate,
@@ -400,7 +400,7 @@ namespace kifuwarabe_shogithink.pure.com
 //                Util_Tansaku.Snapshot("ドゥ前", hyoji);
 //#endif
 
-                Sasite ss_jibun = PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].list_sasite[iSs];
+                Move ss_jibun = PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].list_sasite[iSs];
                 SasiteType ssType_jibun = PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].list_sasiteType[iSs];
 
                 if (DoSasiteOpe.TryFail_DoSasite_All(
@@ -418,7 +418,7 @@ namespace kifuwarabe_shogithink.pure.com
                     throw new Exception(PureMemory.tnsk_hyoji.ToContents());
                 }
                 // 手番を進めるぜ☆（＾～＾）
-                SasiteSeiseiAccessor.AddKifu(
+                MoveGenAccessor.AddKifu(
                     ss_jibun,
                     ssType_jibun,
                     PureMemory.dmv_ks_c);
@@ -426,7 +426,7 @@ namespace kifuwarabe_shogithink.pure.com
                 Util_Tansaku.Snapshot("ドゥ後・探索前", out_bestSasite);
 #endif
 
-                Sasite ss_aite;
+                Move ss_aite;
                 //SasiteType eda_sasiteType;
                 // goto文で飛ぶと未割当になるので、ヌルでも入れておくぜ☆（＾～＾）
                 Hyokati hyokasu_aiteToJibun = null;
@@ -560,7 +560,7 @@ namespace kifuwarabe_shogithink.pure.com
 
             if (null == out_bestHyokasu)
             {
-                out_bestSasite = Sasite.Toryo;
+                out_bestSasite = Move.Toryo;
                 out_bestHyokasu = new Hyokati(
                     Conv_Hyokati.Hyokati_Rei,
                     Conv_Tumesu.None,

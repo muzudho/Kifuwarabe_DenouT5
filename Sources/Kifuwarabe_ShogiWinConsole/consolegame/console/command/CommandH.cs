@@ -60,7 +60,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                     // 平手初期局面に戻します
                     //────────────────────────────────────────
                     // 棋譜カーソルを０にすれば、初期局面に戻るだろ☆ｗｗｗ（＾▽＾）
-                    SasiteSeiseiAccessor.BackTemeToFirst_AndClearTeme();
+                    MoveGenAccessor.BackTemeToFirst_AndClearTeme();
                     //// どうぶつしょうぎの平手初期局面に変更するぜ☆ｗｗｗ（＾▽＾）
                     //LisGenkyoku.SetRule(
                     //    GameRule.DobutuShogi, 3, 4,

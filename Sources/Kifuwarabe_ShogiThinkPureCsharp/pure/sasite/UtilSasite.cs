@@ -27,12 +27,12 @@ namespace kifuwarabe_shogithink.pure.sasite
         {
             //グローバル変数に指し手がセットされるぜ☆（＾▽＾）
             PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-            SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N21_All);
+            MoveGenAccessor.DoSasitePickerBegin(SasiteType.N21_All);
             SasitePicker01.SasitePicker_01(SasiteType.N21_All, true);
             return Pure.SUCCESSFUL_FALSE;
         }
 
-        public static bool Try_Sasite_cmd2(out Sasite out_sasite, string line)
+        public static bool Try_Sasite_cmd2(out Move out_sasite, string line)
         {
             // うしろに続く文字は☆（＾▽＾）
             int caret = 0;
@@ -43,14 +43,14 @@ namespace kifuwarabe_shogithink.pure.sasite
             int ssSuji;
             if (int.TryParse(line2, out ssSuji))
             {
-                out_sasite = (Sasite)ssSuji;
+                out_sasite = (Move)ssSuji;
                 return true;
             }
 
             // 数字でなければ、 sasite B2B3 といった文字列か☆（＾～＾）
             if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, line, ref caret, out out_sasite))
             {
-                out_sasite = Sasite.Toryo;
+                out_sasite = Move.Toryo;
                 return false;
             }
 

@@ -34,19 +34,19 @@ namespace kifuwarabe_shogithink.pure.listen.play
             FenSyurui f,
             string line,
             ref int caret,
-            out Sasite out_sasite
+            out Move out_sasite
             )
         {
             if (Util_String.MatchAndNext(Itiran_FenParser.GetToryo(f), line, ref caret))
             {
-                out_sasite = Sasite.Toryo;
+                out_sasite = Move.Toryo;
                 return true;
             }
 
             // 「toryo」でも「none」でもなければ、「B4B3」形式と想定して、１手だけ読込み
             // テキスト形式の符号「A4A3 C1C2 …」の最初の１要素を、切り取ってトークンに分解します。
 
-            Match m = Itiran_FenParser.GetSasitePattern(f).Match(line, caret);
+            Match m = Itiran_FenParser.GetMovePattern(f).Match(line, caret);
             if (!m.Success)
             {
                 //// 「B4B3」形式ではなかった☆（＾△＾）！？　次の一手が読めない☆
@@ -55,7 +55,7 @@ namespace kifuwarabe_shogithink.pure.listen.play
                 //Util_Machine.Flush();
                 //throw new Exception(msg);
 
-                out_sasite = Sasite.Toryo;
+                out_sasite = Move.Toryo;
                 return false;
             }
 
@@ -81,7 +81,7 @@ namespace kifuwarabe_shogithink.pure.listen.play
 
             return true;
         }
-        public static Sasite TryFen_Sasite2(
+        public static Move TryFen_Sasite2(
             FenSyurui f,
             string str1,
             string str2,

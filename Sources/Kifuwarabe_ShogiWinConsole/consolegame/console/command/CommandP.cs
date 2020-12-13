@@ -65,10 +65,10 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
 #endif
 
                     // 「手目」が最後まで進んでしまうぜ☆（＾～＾）
-                    SasiteSeiseiAccessor.Tukurinaosi_RemakeKifuByMoves(moves);
+                    MoveGenAccessor.Tukurinaosi_RemakeKifuByMoves(moves);
 
                     // 棋譜の通り指すぜ☆（＾～＾）
-                    if (!SasiteSeiseiAccessor.Try_PlayMoves_0ToPreTeme(f, hyoji))
+                    if (!MoveGenAccessor.Try_PlayMoves_0ToPreTeme(f, hyoji))
                     {
                         Util_Machine.Flush(hyoji);
                         throw new Exception(hyoji.ToContents());

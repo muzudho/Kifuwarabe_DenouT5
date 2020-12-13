@@ -592,9 +592,9 @@ namespace kifuwarabe_shogithink.pure.genkyoku
 
 
 
-        public static bool CanDoSasite( Sasite ss, out SasiteMatigaiRiyu reason)
+        public static bool CanDoSasite( Move ss, out MoveMatigaiRiyu reason)
         {
-            if (Sasite.Toryo == ss) { reason = SasiteMatigaiRiyu.Karappo; return true; }// 投了はＯＫだぜ☆（＾～＾）
+            if (Move.Toryo == ss) { reason = MoveMatigaiRiyu.Karappo; return true; }// 投了はＯＫだぜ☆（＾～＾）
 
             // 打つ駒調べ
             MotigomaSyurui mksUtta = Conv_Sasite.GetUttaKomasyurui(ss);// 打った駒の種類
@@ -605,7 +605,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                 if (!PureMemory.gky_ky.yomiKy.yomiMotigomaItiran.HasMotigoma(Med_Koma.MotiKomasyuruiAndTaikyokusyaToMotiKoma(mksUtta, PureMemory.kifu_teban)))
                 {
                     // 持駒が無いのに打とうとしたぜ☆（＞＿＜）
-                    reason = SasiteMatigaiRiyu.NaiMotiKomaUti;
+                    reason = MoveMatigaiRiyu.NaiMotiKomaUti;
                     return false;
                 }
             }
@@ -615,7 +615,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
             if (!Conv_Masu.IsBanjo(ms_dst))
             {
                 // 盤外に移動しようとしたぜ☆（＾～＾）
-                reason = SasiteMatigaiRiyu.BangaiIdo;
+                reason = MoveMatigaiRiyu.BangaiIdo;
                 return false;
             }
             Koma km_dst = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma(ms_dst);
@@ -623,13 +623,13 @@ namespace kifuwarabe_shogithink.pure.genkyoku
             if (km_dst != Koma.Kuhaku && PureMemory.kifu_teban == tai_dstKm)
             {
                 // 自分の駒を取ろうとするのは、イリーガル・ムーブだぜ☆（＾▽＾）
-                reason = SasiteMatigaiRiyu.TebanKomaNoTokoroheIdo;
+                reason = MoveMatigaiRiyu.TebanKomaNoTokoroheIdo;
                 return false;
             }
             else if (utta && km_dst != Koma.Kuhaku)
             {
                 // 駒があるところに打ち込んではいけないぜ☆（＾▽＾）
-                reason = SasiteMatigaiRiyu.KomaGaAruTokoroheUti;
+                reason = MoveMatigaiRiyu.KomaGaAruTokoroheUti;
                 return false;
             }
 
@@ -649,13 +649,13 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                 if (km_src == Koma.Kuhaku)
                 {
                     // 空き升に駒があると思って動かそうとするのは、イリーガル・ムーブだぜ☆（＾▽＾）
-                    reason = SasiteMatigaiRiyu.KuhakuWoIdo;
+                    reason = MoveMatigaiRiyu.KuhakuWoIdo;
                     return false;
                 }
                 else if (tai_srcKm != PureMemory.kifu_teban)
                 {
                     // 相手の駒を動かそうとするのは、イリーガル・ムーブだぜ☆（＾▽＾）
-                    reason = SasiteMatigaiRiyu.AiteNoKomaIdo;
+                    reason = MoveMatigaiRiyu.AiteNoKomaIdo;
                     return false;
                 }
 
@@ -672,7 +672,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                     
 //                    throw new Exception("その駒の種類からは、ありえない動きをしたぜ☆（＾▽＾） ms1=["+ ms_src + "] ms2=["+ ms_dst + "]");
 //#else
-                    reason = SasiteMatigaiRiyu.SonoKomasyuruiKarahaArienaiUgoki;
+                    reason = MoveMatigaiRiyu.SonoKomasyuruiKarahaArienaiUgoki;
                     return false;
 //#endif
                 }
@@ -689,7 +689,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                             if (Med_Koma.KomaToKomasyurui(km_src) != Komasyurui.H)
                             {
                                 // ひよこ以外が、にわとりになろうとしました☆
-                                reason = SasiteMatigaiRiyu.NarenaiNari;
+                                reason = MoveMatigaiRiyu.NarenaiNari;
                                 return false;
                             }
                         }
@@ -718,7 +718,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                                 default:
                                     {
                                         // 成れる駒以外が、成ろうとしました☆
-                                        reason = SasiteMatigaiRiyu.NarenaiNari;
+                                        reason = MoveMatigaiRiyu.NarenaiNari;
                                         return false;
                                     }
                             }
@@ -727,7 +727,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                 }
             }
 
-            reason = SasiteMatigaiRiyu.Karappo;
+            reason = MoveMatigaiRiyu.Karappo;
             return true;
         }
 

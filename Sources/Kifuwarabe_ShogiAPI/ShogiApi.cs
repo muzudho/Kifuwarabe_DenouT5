@@ -105,16 +105,16 @@ namespace kifuwarabe_shogiapi
         /// <summary>
         /// １手作るぜ☆（＾～＾）
         /// </summary>
-        public static void CreateSasite(string dfen, out Sasite out_sasite)
+        public static void CreateSasite(string dfen, out Move out_sasite)
         {
             int caret = 0;
             if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, dfen, ref caret, out out_sasite))
             {
-                out_sasite = Sasite.Toryo;//エラー
+                out_sasite = Move.Toryo;//エラー
             }
         }
 
-        public static bool CanDoSasite(Sasite inputSasite, out SasiteMatigaiRiyu out_riyu, out string out_setumei)
+        public static bool CanDoSasite(Move inputSasite, out MoveMatigaiRiyu out_riyu, out string out_setumei)
         {
             // 指し手の合否チェック
             bool ret = GenkyokuOpe.CanDoSasite( inputSasite, out out_riyu);
@@ -133,7 +133,7 @@ namespace kifuwarabe_shogiapi
         /// <summary>
         /// １手指すぜ☆（＾▽＾）
         /// </summary>
-        public static void DoSasite(Sasite ss)
+        public static void DoSasite(Move ss)
         {
             SasiteType ssType = SasiteType.N00_Karappo;
             if (DoSasiteOpe.TryFail_DoSasite_All( ss, ssType
@@ -147,7 +147,7 @@ namespace kifuwarabe_shogiapi
             {
                 throw new Exception(PureAppli.syuturyoku1.ToContents());
             }
-            SasiteSeiseiAccessor.AddKifu(ss, ssType,PureMemory.dmv_ks_c);
+            MoveGenAccessor.AddKifu(ss, ssType,PureMemory.dmv_ks_c);
 //#if DEBUG
 //            Util_Tansaku.Snapshot("Shogi34", dbg_reigai);
 //#endif

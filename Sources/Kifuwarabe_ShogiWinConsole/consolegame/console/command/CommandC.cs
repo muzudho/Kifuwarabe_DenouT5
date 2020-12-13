@@ -38,7 +38,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
             int caret = 0;
             if (Util_String.MatchAndNext("cando", line, ref caret))
             {
-                Sasite ss;
+                Move ss;
                 if (line.Length<=caret)
                 {
                     return;
@@ -48,7 +48,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                     throw new Exception("パースエラー [" + line + "]");
                 }
 
-                if (GenkyokuOpe.CanDoSasite( ss, out SasiteMatigaiRiyu riyu))
+                if (GenkyokuOpe.CanDoSasite( ss, out MoveMatigaiRiyu riyu))
                 {
                     hyoji.AppendLine("cando, true");
                 }

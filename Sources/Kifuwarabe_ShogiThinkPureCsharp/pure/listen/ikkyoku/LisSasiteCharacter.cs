@@ -4,35 +4,35 @@ namespace kifuwarabe_shogithink.pure.listen.ikkyoku
 {
     public static class LisSasiteCharacter
     {
-        public static SasiteCharacter Parse(string line, ref int caret)
+        public static MoveCharacter Parse(string line, ref int caret)
         {
             // うしろに続く文字は☆（＾▽＾）
             if (Util_String.MatchAndNext("HyokatiYusen", line, ref caret))
             {
-                return SasiteCharacter.HyokatiYusen;
+                return MoveCharacter.HyokatiYusen;
             }
             else if (Util_String.MatchAndNext("SyorituYusen", line, ref caret))
             {
-                return SasiteCharacter.SyorituYusen;
+                return MoveCharacter.SyorituYusen;
             }
             else if (Util_String.MatchAndNext("SyorituNomi", line, ref caret))
             {
-                return SasiteCharacter.SinteYusen;
+                return MoveCharacter.SinteYusen;
             }
             else if (Util_String.MatchAndNext("SinteYusen", line, ref caret))
             {
-                return SasiteCharacter.SinteYusen;
+                return MoveCharacter.SinteYusen;
             }
             else if (Util_String.MatchAndNext("SinteNomi", line, ref caret))
             {
-                return SasiteCharacter.SinteNomi;
+                return MoveCharacter.SinteNomi;
             }
             else if (Util_String.MatchAndNext("TansakuNomi", line, ref caret))
             {
-                return SasiteCharacter.TansakuNomi;
+                return MoveCharacter.TansakuNomi;
             }
 
-            return SasiteCharacter.Yososu;// パース・エラー☆（＾▽＾）
+            return MoveCharacter.Yososu;// パース・エラー☆（＾▽＾）
         }
     }
 }

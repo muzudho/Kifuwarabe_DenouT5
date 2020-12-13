@@ -146,13 +146,13 @@ namespace kifuwarabe_shogiapi
             // 先手がきりんを A2 に打つ場合は「do K*A2」
             // 先手が　ひよこ　を B1 で成る場合は末尾にプラスを付けて「do B2B1+」
             // 投了は 「toryo」
-            Sasite sasite;
+            Move sasite;
             ShogiApi.CreateSasite("do b3a4", out sasite);
 
             // 文字列を、sasite データに一度変換する☆（＾～＾）
 
             // その手を指せるかどうかは、 CanDoSasite メソッドでチェックしろだぜ☆（＾～＾）
-            SasiteMatigaiRiyu riyu;
+            MoveMatigaiRiyu riyu;
             string riyuSetumei;
             if (!ShogiApi.CanDoSasite(sasite, out riyu, out riyuSetumei))
             {

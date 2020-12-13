@@ -147,82 +147,82 @@ namespace kifuwarabe_shogithink.fen
         static Regex kyokumenPattern_sfen_;
         static Regex kyokumenPattern_dfen_;
 
-        public static Regex GetSasitePattern(FenSyurui f)
+        public static Regex GetMovePattern(FenSyurui f)
         {
             switch (f)
             {
                 case FenSyurui.sfe_n:
                     {
-                        if (null == sasitePattern_sfen_)
+                        if (null == movePattern_sfen_)
                         {
                             // 3×4 を最低限実装。
                             // 9×9 へも拡張。
                             // 1文字目の ZKH は打てる持ち駒だが、ひよこのHが、筋番号のHと区別できない
-                            sasitePattern_sfen_ = new Regex(
+                            movePattern_sfen_ = new Regex(
                                 @"([" + Sfen.suji + Sfen.motigomaT1 + @"])([" + Sfen.dan + @"\*])([" + Sfen.suji + @"])([" + Sfen.dan + @"])(\+)?"
                                 , RegexOptions.Compiled
                             );
                         }
-                        return sasitePattern_sfen_;
+                        return movePattern_sfen_;
                     }
                 case FenSyurui.dfe_n:
                     {
-                        if (null == sasitePattern_dfen_)
+                        if (null == movePattern_dfen_)
                         {
                             // 3×4 を最低限実装。
                             // 9×9 へも拡張。
                             // 1文字目の ZKH は打てる持ち駒だが、ひよこのHが、筋番号のHと区別できない
-                            sasitePattern_dfen_ = new Regex(
+                            movePattern_dfen_ = new Regex(
                                 @"([" + Dfen.suji + Dfen.motigomaT1 + @"])([" + Dfen.dan + @"\*])([" + Dfen.suji + @"])([" + Dfen.dan + @"])(\+)?"
                                 , RegexOptions.Compiled
                             );
                         }
-                        return sasitePattern_dfen_;
+                        return movePattern_dfen_;
                     }
                 default:
                     throw new Exception(string.Format("未定義 {0}", f));
             }
         }
-        static Regex sasitePattern_sfen_;
-        static Regex sasitePattern_dfen_;
+        static Regex movePattern_sfen_;
+        static Regex movePattern_dfen_;
 
         /// <summary>
         /// 指し手パターン
         /// </summary>
         /// <param name="isSfen"></param>
         /// <returns></returns>
-        public static Regex GetMasuSasitePattern(FenSyurui f)
+        public static Regex GetMasuMovePattern(FenSyurui f)
         {
             switch (f)
             {
                 case FenSyurui.sfe_n:
                     {
-                        if (null == masSasitePattern_sfen_)
+                        if (null == masMovePattern_sfen_)
                         {
-                            masSasitePattern_sfen_ = new Regex(
+                            masMovePattern_sfen_ = new Regex(
                             "([" + Sfen.suji + Sfen.motigomaT1 + "])([" + Sfen.dan + @"\*])"
                                 , RegexOptions.Compiled
                             );
                         }
-                        return masSasitePattern_sfen_;
+                        return masMovePattern_sfen_;
                     }
                 case FenSyurui.dfe_n:
                     {
-                        if (null == masSasitePattern_dfen_)
+                        if (null == masMovePattern_dfen_)
                         {
-                            masSasitePattern_dfen_ = new Regex(
+                            masMovePattern_dfen_ = new Regex(
                             "([" + Dfen.suji + Dfen.motigomaT1 + "])([" + Dfen.dan + @"\*])"
                                 , RegexOptions.Compiled
                             );
                         }
-                        return masSasitePattern_dfen_;
+                        return masMovePattern_dfen_;
                     }
                 default:
                     throw new Exception(string.Format("未定義 {0}", f));
             }
         }
-        static Regex masSasitePattern_sfen_;
-        static Regex masSasitePattern_dfen_;
+        static Regex masMovePattern_sfen_;
+        static Regex masMovePattern_dfen_;
 
         #region 升
         /// <summary>

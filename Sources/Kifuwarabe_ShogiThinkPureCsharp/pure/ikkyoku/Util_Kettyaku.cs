@@ -16,14 +16,14 @@ namespace kifuwarabe_shogithink.pure.ikkyoku
         /// 決着判定
         /// </summary>
         /// <param name="bestSasite">投了かどうか調べるだけだぜ☆（＾▽＾）</param>
-        public static bool Try_JudgeKettyaku(Sasite bestSasite
+        public static bool Try_JudgeKettyaku(Move bestSasite
 #if DEBUG
             , IHyojiMojiretu hyoji
 #endif
             )
         {
             Taikyokusya tb2 = Conv_Taikyokusya.Hanten(PureMemory.kifu_teban);
-            if (Sasite.Toryo == bestSasite)
+            if (Move.Toryo == bestSasite)
             {
                 switch (PureMemory.kifu_teban)// 投了した時点で、次の手番に移っているぜ☆
                 {

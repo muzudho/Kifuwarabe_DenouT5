@@ -88,7 +88,7 @@ namespace kifuwarabe_shogithink.pure.ky
             PureMemory.gky_hyokati.Clear();
 
             // 「手目」を０に戻すぜ☆（＾～＾）
-            SasiteSeiseiAccessor.BackTemeToFirst_AndClearTeme();
+            MoveGenAccessor.BackTemeToFirst_AndClearTeme();
 
             // 棋譜はリセットしないぜ☆（*＾～＾*）
             motigomaItiran.Clear();

@@ -125,7 +125,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                     if (LisInt.MatchInt(line, ref caret, out temeMade))// kifu goto 10 など☆
                     {
                         // 指定の手目まで進めるぜ☆（＾～＾）
-                        if (!SasiteSeiseiAccessor.Try_GoToTememade(f, temeMade, hyoji))
+                        if (!MoveGenAccessor.Try_GoToTememade(f, temeMade, hyoji))
                         {
                             Util_Machine.Flush(hyoji);
                             throw new Exception(hyoji.ToContents());

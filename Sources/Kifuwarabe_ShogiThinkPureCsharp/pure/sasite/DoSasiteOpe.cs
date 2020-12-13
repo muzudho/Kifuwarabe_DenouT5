@@ -29,7 +29,7 @@ namespace kifuwarabe_shogithink.pure.sasite
         /// </summary>
         /// <param name="ss">指し手☆</param>
         public static bool TryFail_DoSasite_All(
-            Sasite ss,
+            Move ss,
             SasiteType ssType
 #if DEBUG
             , FenSyurui f
@@ -46,12 +46,12 @@ namespace kifuwarabe_shogithink.pure.sasite
 
 
             // 投了なら、なにも更新せず終了☆（＾▽＾）
-            if (Sasite.Toryo == ss)
+            if (Move.Toryo == ss)
             {
                 PureMemory.dmv_ks_c = Komasyurui.Yososu;
                 goto gt_EndMethod;
             }
-            SasiteSeiseiAccessor.BunkaiSasite_Dmv(ss);
+            MoveGenAccessor.BunkaiSasite_Dmv(ss);
 
             Debug.Assert(Conv_Koma.IsOk(PureMemory.dmv_km_t0), string.Format("Ｄｏ km_t0={0}", PureMemory.dmv_km_t0));
             Debug.Assert(Conv_Koma.IsOk(PureMemory.dmv_km_t1), "Ｄｏ");
@@ -317,7 +317,7 @@ namespace kifuwarabe_shogithink.pure.sasite
         /// </summary>
         /// <returns></returns>
         public static bool TryFail_SrcOff(
-            Sasite ss,
+            Move ss,
             Masu ms_t0,
             Koma km_t0,
             Motigoma mk_t0,

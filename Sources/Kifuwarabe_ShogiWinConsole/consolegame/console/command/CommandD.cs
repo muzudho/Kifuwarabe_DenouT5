@@ -46,12 +46,12 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
             {
                 if (Util_String.MatchAndNext("daiOff", line, ref caret))
                 {
-                    if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, line, ref caret, out Sasite ss))
+                    if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, line, ref caret, out Move ss))
                     {
                         return Pure.FailTrue(string.Format("指し手のパースエラー [{0}]", line));
                     }
 
-                    SasiteSeiseiAccessor.BunkaiSasite_Dmv(ss);
+                    MoveGenAccessor.BunkaiSasite_Dmv(ss);
 
                     DoSasiteOpe.TryFail_DaiOff(
                         PureMemory.dmv_ms_t0,
@@ -67,12 +67,12 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                 // 取った駒を、駒台に置くぜ☆（＾▽＾）
                 else if (Util_String.MatchAndNext("daiOn", line, ref caret))
                 {
-                    if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, line, ref caret, out Sasite ss))
+                    if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, line, ref caret, out Move ss))
                     {
                         return Pure.FailTrue(string.Format("指し手のパースエラー [{0}]", line));
                     }
 
-                    SasiteSeiseiAccessor.BunkaiSasite_Dmv(ss);
+                    MoveGenAccessor.BunkaiSasite_Dmv(ss);
 
                     DoSasiteOpe.TryFail_DaiOn(
                         PureMemory.dmv_km_c,
@@ -87,12 +87,12 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                 // 移動先に駒があれば消すぜ☆（＾～＾）
                 else if (Util_String.MatchAndNext("dstOff", line, ref caret))
                 {
-                    if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, line, ref caret, out Sasite ss))
+                    if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, line, ref caret, out Move ss))
                     {
                         return Pure.FailTrue(string.Format("指し手のパースエラー [{0}]", line));
                     }
 
-                    SasiteSeiseiAccessor.BunkaiSasite_Dmv(ss);
+                    MoveGenAccessor.BunkaiSasite_Dmv(ss);
 
                     DoSasiteOpe.TryFail_DstOff(
                         PureMemory.dmv_ms_t1,
@@ -142,12 +142,12 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                 }
                 else if (Util_String.MatchAndNext("srcOff", line, ref caret))
                 {
-                    if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, line, ref caret, out Sasite ss))
+                    if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, line, ref caret, out Move ss))
                     {
                         return Pure.FailTrue(string.Format("指し手のパースエラー [{0}]", line));
                     }
 
-                    SasiteSeiseiAccessor.BunkaiSasite_Dmv(ss);
+                    MoveGenAccessor.BunkaiSasite_Dmv(ss);
 
                     DoSasiteOpe.TryFail_SrcOff(
                         ss,
@@ -166,7 +166,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                 {
                     // 「dosub addSasiteToKifu K*E5 -」
                     // 指し手、取った駒種類
-                    if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, line, ref caret, out Sasite ss))
+                    if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, line, ref caret, out Move ss))
                     {
                         return Pure.FailTrue(string.Format("指し手のパースエラー [{0}]", line));
                     }
@@ -184,7 +184,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                         return Pure.FailTrue(string.Format("指し手のパースエラー [{0}]", line));
                     }
 
-                    SasiteSeiseiAccessor.AddKifu(ss, SasiteType.N00_Karappo, PureMemory.dmv_ks_c);
+                    MoveGenAccessor.AddKifu(ss, SasiteType.N00_Karappo, PureMemory.dmv_ks_c);
 //#if DEBUG
 //                    Util_Tansaku.Snapshot("DoSub(1)", (IDebugMojiretu)hyoji);
 //#endif
@@ -205,7 +205,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
             if (Util_String.MatchAndNext("do", line, ref caret))//"do "
             {
                 // 一体型☆（＾～＾）
-                if (!LisPlay.MatchFenSasite(f, line, ref caret, out Sasite ss))
+                if (!LisPlay.MatchFenSasite(f, line, ref caret, out Move ss))
                 {
                     return Pure.FailTrue(string.Format( "指し手のパースエラー [{0}]", line));
                 }
@@ -225,7 +225,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                     return Pure.FailTrue("TryFail_DoSasite_All");
                 }
                 // 手番を進めるぜ☆（＾～＾）
-                SasiteSeiseiAccessor.AddKifu(ss, ssType, PureMemory.dmv_ks_c);
+                MoveGenAccessor.AddKifu(ss, ssType, PureMemory.dmv_ks_c);
 //#if DEBUG
 //                Util_Tansaku.Snapshot("Doコマンド", (IDebugMojiretu)hyoji);
 //#endif

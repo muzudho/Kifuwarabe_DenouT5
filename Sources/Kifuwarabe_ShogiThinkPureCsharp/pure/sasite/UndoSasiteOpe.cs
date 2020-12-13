@@ -257,9 +257,9 @@ namespace kifuwarabe_shogithink.pure.sasite
             //────────────────────────────────────────
             // グローバル変数に、結果を入れておくぜ☆（＾～＾）
             //────────────────────────────────────────
-            SasiteSeiseiAccessor.BunkaiSasite_Umv();
+            MoveGenAccessor.BunkaiSasite_Umv();
 
-            if (Sasite.Toryo == PureMemory.umv_ss) { goto gt_EndMethod; }// なにも更新せず終了☆（＾▽＾）
+            if (Move.Toryo == PureMemory.umv_ss) { goto gt_EndMethod; }// なにも更新せず終了☆（＾▽＾）
 
 
             if (TryFail_Tejun1_IdosakiNoTebanNoKomaWoTorinozoku(

@@ -45,7 +45,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     );
 
                     // チェッカーを取るような全ての手は、選択肢に入れるぜ☆（＾～＾）
-                    SasiteSeiseiAccessor.AddSasite_NarazuGood();
+                    MoveGenAccessor.AddSasite_NarazuGood();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -68,7 +68,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     );
 
                     // チェッカーを取るような全ての手は、選択肢に入れるぜ☆（＾～＾）
-                    SasiteSeiseiAccessor.AddSasite_NariGood();
+                    MoveGenAccessor.AddSasite_NariGood();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -82,7 +82,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     );
 
                     // チェッカーを取るような全ての手は、選択肢に入れるぜ☆（＾～＾）
-                    SasiteSeiseiAccessor.AddSasite_NarazuGood();
+                    MoveGenAccessor.AddSasite_NarazuGood();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -104,7 +104,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     );
 
                     // チェッカーを取るような全ての手は、選択肢に入れるぜ☆（＾～＾）
-                    SasiteSeiseiAccessor.AddSasite_NarazuGood();
+                    MoveGenAccessor.AddSasite_NarazuGood();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -132,7 +132,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     );
 
                     // チェッカーを取るような全ての手は、選択肢に入れるぜ☆（＾～＾）
-                    SasiteSeiseiAccessor.AddSasite_NarazuGood();
+                    MoveGenAccessor.AddSasite_NarazuGood();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -155,7 +155,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     );
 
                     // チェッカーを取るような全ての手は、選択肢に入れるぜ☆（＾～＾）
-                    SasiteSeiseiAccessor.AddSasite_NariGood();
+                    MoveGenAccessor.AddSasite_NariGood();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -169,7 +169,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     );
 
                     // チェッカーを取るような全ての手は、選択肢に入れるぜ☆（＾～＾）
-                    SasiteSeiseiAccessor.AddSasite_NarazuGood();
+                    MoveGenAccessor.AddSasite_NarazuGood();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -191,7 +191,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     );
 
                     // チェッカーを取るような全ての手は、選択肢に入れるぜ☆（＾～＾）
-                    SasiteSeiseiAccessor.AddSasite_NarazuGood();
+                    MoveGenAccessor.AddSasite_NarazuGood();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -215,7 +215,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     return;
                 }
 
-                SasiteSeiseiAccessor.AddSasite_NariGood();
+                MoveGenAccessor.AddSasite_NariGood();
                 PureMemory.SetTansakuUtikiri(TansakuUtikiri.RaionTukamaeta);
             }
 
@@ -235,7 +235,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     false,
                     NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                     );
-                SasiteSeiseiAccessor.AddSasite_NarazuGoodXorBad();
+                MoveGenAccessor.AddSasite_NarazuGoodXorBad();
                 PureMemory.SetTansakuUtikiri(TansakuUtikiri.RaionTukamaeta);
             }
         }
@@ -261,7 +261,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     false,
                     NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                     );
-                SasiteSeiseiAccessor.AddSasite_NarazuGoodXorBad();
+                MoveGenAccessor.AddSasite_NarazuGoodXorBad();
                 PureMemory.SetTansakuUtikiri(TansakuUtikiri.RaionTukamaeta);
             }
         }
@@ -280,7 +280,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
 
             if (trysakiBB.GetNTZ(out PureMemory.ssss_ugoki_ms_dst))// トライはどこか１つ行けばいい
             {
-                SasiteSeiseiAccessor.AddSasite_NarazuGood();
+                MoveGenAccessor.AddSasite_NarazuGood();
                 PureMemory.SetTansakuUtikiri(TansakuUtikiri.Try);
             }
         }
@@ -306,7 +306,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                     );
 
-                SasiteSeiseiAccessor.AddSasite_NarazuGoodXorBad();
+                MoveGenAccessor.AddSasite_NarazuGoodXorBad();
 
                 if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
             }
@@ -325,7 +325,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                     );
 
-                SasiteSeiseiAccessor.AddSasite_NariGoodXorBad();
+                MoveGenAccessor.AddSasite_NariGoodXorBad();
 
                 if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
             }
@@ -340,7 +340,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                     );
 
-                SasiteSeiseiAccessor.AddSasite_NarazuGoodXorBad();
+                MoveGenAccessor.AddSasite_NarazuGoodXorBad();
 
                 if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
             }
@@ -358,7 +358,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                     );
 
-                SasiteSeiseiAccessor.AddSasite_NarazuGoodXorBad();
+                MoveGenAccessor.AddSasite_NarazuGoodXorBad();
 
                 if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
             }
@@ -383,7 +383,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     false//逃げ道を開けて逃がすかどうかは判定しないぜ☆（＾～＾）
                     );
 
-                SasiteSeiseiAccessor.AddSasite_NarazuGoodXorBad();
+                MoveGenAccessor.AddSasite_NarazuGoodXorBad();
 
                 if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
             }
@@ -406,7 +406,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                         );
 
                     // 成らずの指しをまずリストへ☆（＾～＾）
-                    SasiteSeiseiAccessor.AddSasite_NarazuGoodXorBad();
+                    MoveGenAccessor.AddSasite_NarazuGoodXorBad();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -429,7 +429,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                         false//逃げ道を開けて逃がすかどうかは判定しないぜ☆（＾～＾）
                     );
 
-                    SasiteSeiseiAccessor.AddSasite_NariGood();
+                    MoveGenAccessor.AddSasite_NariGood();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -446,7 +446,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                         false//逃げ道を開けて逃がすかどうかは判定しないぜ☆（＾～＾）
                     );
 
-                    SasiteSeiseiAccessor.AddSasite_NarazuGoodXorBad();
+                    MoveGenAccessor.AddSasite_NarazuGoodXorBad();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -469,7 +469,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                         false//逃げ道を開けて逃がすかどうかは判定しないぜ☆（＾～＾）
                         );
 
-                    SasiteSeiseiAccessor.AddSasite_NarazuGoodXorBad();
+                    MoveGenAccessor.AddSasite_NarazuGoodXorBad();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -497,7 +497,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                         NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                         );
 
-                    SasiteSeiseiAccessor.AddSasite_NariGoodXorBad();
+                    MoveGenAccessor.AddSasite_NariGoodXorBad();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -513,7 +513,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                         NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                         );
 
-                    SasiteSeiseiAccessor.AddSasite_NarazuGoodXorBad();
+                    MoveGenAccessor.AddSasite_NarazuGoodXorBad();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -536,7 +536,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                         false,
                         NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                         );
-                    SasiteSeiseiAccessor.AddSasite_NarazuGoodXorBad();
+                    MoveGenAccessor.AddSasite_NarazuGoodXorBad();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -564,7 +564,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                         NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                         );
 
-                    SasiteSeiseiAccessor.AddSasite_NariGoodXorBad();
+                    MoveGenAccessor.AddSasite_NariGoodXorBad();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -580,7 +580,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                         NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                         );
 
-                    SasiteSeiseiAccessor.AddSasite_NarazuGoodXorBad();
+                    MoveGenAccessor.AddSasite_NarazuGoodXorBad();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -604,7 +604,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                         NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                         );
 
-                    SasiteSeiseiAccessor.AddSasite_NarazuGoodXorBad();
+                    MoveGenAccessor.AddSasite_NarazuGoodXorBad();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -630,7 +630,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                         false//逃げ道を開けて逃がすかどうかは判定しないぜ☆（＾～＾）
                         );
 
-                    SasiteSeiseiAccessor.AddSasite_NariGood();
+                    MoveGenAccessor.AddSasite_NariGood();
                 }
             }
 
@@ -644,7 +644,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                         false//逃げ道を開けて逃がすかどうかは判定しないぜ☆（＾～＾）
                         );
 
-                    SasiteSeiseiAccessor.AddSasite_NarazuGoodXorBad();
+                    MoveGenAccessor.AddSasite_NarazuGoodXorBad();
                 }
             }
         }
@@ -666,7 +666,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                         false//逃げ道を開けて逃がすかどうかは判定しないぜ☆（＾～＾）
                         );
 
-                    SasiteSeiseiAccessor.AddSasite_NarazuGoodXorBad();
+                    MoveGenAccessor.AddSasite_NarazuGoodXorBad();
                 }
             }
         }
@@ -690,7 +690,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     false // 持ち駒を打つのに、逃げ道を開けて逃がす動きも無いだろう☆（＾～＾）
                 );
 
-                SasiteSeiseiAccessor.AddSasite_UttaGood();
+                MoveGenAccessor.AddSasite_UttaGood();
 
                 if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
             }
@@ -714,7 +714,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                         false // 持ち駒を打つのに、逃げ道を開けて逃がす動きも無いだろう☆（＾～＾）
                     );
                     
-                    SasiteSeiseiAccessor.AddSasite_UttaGood();
+                    MoveGenAccessor.AddSasite_UttaGood();
                 }
             }
         }

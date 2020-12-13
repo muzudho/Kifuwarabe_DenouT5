@@ -19,17 +19,17 @@ namespace kifuwarabe_shogithink.pure.conv.genkyoku.play
         /// <returns></returns>
         public static Masu GetSrcMasu_WithoutErrorCheck(int ss)
         {
-            return (Masu)((ss & SasiteMask.SRC_MASU) >> SasiteShift.SRC_MASU);
+            return (Masu)((ss & MoveMask.SRC_MASU) >> MoveShift.SRC_MASU);
             // if (Sasite.Toryo == ss || Conv_Sasite.IsUtta(ss)) { return KyokumenImpl.MASU_ERROR; }// エラーチェック付き
         }
         public static Masu GetDstMasu_WithoutErrorCheck(int ss)
         {
-            return (Masu)((ss & SasiteMask.DST_MASU) >> SasiteShift.DST_MASU);
+            return (Masu)((ss & MoveMask.DST_MASU) >> MoveShift.DST_MASU);
         }
-        public static Masu GetDstMasu(Sasite ss)
+        public static Masu GetDstMasu(Move ss)
         {
             // エラーチェック付き
-            if (Sasite.Toryo == ss) { return Conv_Masu.masu_error; }
+            if (Move.Toryo == ss) { return Conv_Masu.masu_error; }
             return GetDstMasu_WithoutErrorCheck((int)ss);
         }
         /// <summary>
@@ -64,12 +64,12 @@ namespace kifuwarabe_shogithink.pure.conv.genkyoku.play
         public static void SetSrcMasu_WithoutErrorCheck(ref int ss, Masu ms_src)
         {
             // 筋と段☆（＾▽＾）盤外なら 0 なんだが、セットはせず無視だぜ☆（＾▽＾）
-            ss |= (int)ms_src << (int)SasiteShift.SRC_MASU;
+            ss |= (int)ms_src << (int)MoveShift.SRC_MASU;
             // if (Conv_Masu.IsBanjo(ms_src))
         }
         public static void SetDstMasu_WithoutErrorCheck(ref int ss, Masu ms_dst)
         {
-            ss |= (int)ms_dst << (int)SasiteShift.DST_MASU;
+            ss |= (int)ms_dst << (int)MoveShift.DST_MASU;
         }
 
 
@@ -82,7 +82,7 @@ namespace kifuwarabe_shogithink.pure.conv.genkyoku.play
         /// <param name="ms_dst"></param>
         /// <param name="natta"></param>
         /// <returns></returns>
-        public static Sasite ToSasite_01a_NarazuSasi(Masu ms_src, Masu ms_dst)
+        public static Move ToSasite_01a_NarazuSasi(Masu ms_src, Masu ms_dst)
         {
 #if DEBUG
             Debug.Assert(Conv_Masu.IsBanjoOrError(ms_src), "ms_src=["+ ms_src + "] kymS.masuYososu=[" + PureSettei.banHeimen + "]");
@@ -103,7 +103,7 @@ namespace kifuwarabe_shogithink.pure.conv.genkyoku.play
 
             // 成らない☆（＾▽＾）
 
-            return (Sasite)v;
+            return (Move)v;
         }
         /// <summary>
         /// 盤上の駒を指したぜ☆（＾▽＾）（打つ以外の指し手☆）
@@ -114,7 +114,7 @@ namespace kifuwarabe_shogithink.pure.conv.genkyoku.play
         /// <param name="ms_dst"></param>
         /// <param name="natta"></param>
         /// <returns></returns>
-        public static Sasite ToSasite_01b_NariSasi(Masu ms_src, Masu ms_dst)
+        public static Move ToSasite_01b_NariSasi(Masu ms_src, Masu ms_dst)
         {
 #if DEBUG
             Debug.Assert(Conv_Masu.IsBanjoOrError(ms_src), "");
@@ -134,9 +134,9 @@ namespace kifuwarabe_shogithink.pure.conv.genkyoku.play
             // 打った駒なし
 
             // 成った☆（＾▽＾）
-            v |= 1 << SasiteShift.NATTA;
+            v |= 1 << MoveShift.NATTA;
 
-            return (Sasite)v;
+            return (Move)v;
         }
         /// <summary>
         /// 駒を打った指し手☆（＾▽＾）
@@ -146,7 +146,7 @@ namespace kifuwarabe_shogithink.pure.conv.genkyoku.play
         /// <param name="mkUtta"></param>
         /// <param name="natta"></param>
         /// <returns></returns>
-        public static Sasite ToSasite_01c_Utta(Masu ms_dst, MotigomaSyurui mkUtta)
+        public static Move ToSasite_01c_Utta(Masu ms_dst, MotigomaSyurui mkUtta)
         {
             Debug.Assert(MotigomaSyurui.Yososu != mkUtta,"");
 
@@ -169,25 +169,25 @@ namespace kifuwarabe_shogithink.pure.conv.genkyoku.play
                 // いのしし 6 → 7
                 // なし 7 → 0
                 // 1 足して 8 で割った余り☆
-                v |= (((int)mkUtta+1)% Conv_MotigomaSyurui.SETS_LENGTH) << (int)SasiteShift.UTTA_KOMASYURUI;
+                v |= (((int)mkUtta+1)% Conv_MotigomaSyurui.SETS_LENGTH) << (int)MoveShift.UTTA_KOMASYURUI;
             }
 
             // 打ったときは成れないぜ☆（＾▽＾）
 
-            return (Sasite)v;
+            return (Move)v;
         }
 
-        public static bool IsNatta(Sasite ss)
+        public static bool IsNatta(Move ss)
         {
-            if (Sasite.Toryo == ss) { return false; }//解析不能☆
+            if (Move.Toryo == ss) { return false; }//解析不能☆
 
             int v = (int)ss;              // バリュー
 
             // 成ったか☆
             int natta;
             {
-                int m = (int)SasiteMask.NATTA;
-                int s = (int)SasiteShift.NATTA;
+                int m = (int)MoveMask.NATTA;
+                int s = (int)MoveShift.NATTA;
                 natta = (v & m) >> s;
             }
 
@@ -198,14 +198,14 @@ namespace kifuwarabe_shogithink.pure.conv.genkyoku.play
             return 0 != natta;
         }
 
-        public static MotigomaSyurui GetUttaKomasyurui(Sasite ss)
+        public static MotigomaSyurui GetUttaKomasyurui(Move ss)
         {
-            if (Sasite.Toryo == ss) { return MotigomaSyurui.Yososu; }//解析不能☆
+            if (Move.Toryo == ss) { return MotigomaSyurui.Yososu; }//解析不能☆
 
             // 式の形
             // (v & m) >> s;
             // v:バリュー、m:マスク、s:シフト☆
-            int kirinuki = (((int)ss) & SasiteMask.UTTA_KOMASYURUI) >> SasiteShift.UTTA_KOMASYURUI;
+            int kirinuki = (((int)ss) & MoveMask.UTTA_KOMASYURUI) >> MoveShift.UTTA_KOMASYURUI;
 
             // 「なし」を 0 にするか、7 にするかの違いで変換している☆（＾～＾）
             // 打った駒の種類と数値変換（ビット→列挙型）
@@ -220,7 +220,7 @@ namespace kifuwarabe_shogithink.pure.conv.genkyoku.play
                 (kirinuki + Conv_MotigomaSyurui.itiran.Length) % Conv_MotigomaSyurui.SETS_LENGTH
                 );
         }
-        public static bool IsUtta(Sasite ss)
+        public static bool IsUtta(Move ss)
         {
             // 打か☆？
             return MotigomaSyurui.Yososu != Conv_Sasite.GetUttaKomasyurui(ss);//指定があれば
@@ -229,14 +229,14 @@ namespace kifuwarabe_shogithink.pure.conv.genkyoku.play
 
     public abstract class Conv_SasiteCharacter
     {
-        public static readonly SasiteCharacter[] items = new SasiteCharacter[] {
+        public static readonly MoveCharacter[] items = new MoveCharacter[] {
             // enum の配列順にすること。
-            SasiteCharacter.HyokatiYusen,
-            SasiteCharacter.SyorituYusen,
-            SasiteCharacter.SyorituNomi,
-            SasiteCharacter.SinteYusen,
-            SasiteCharacter.SinteNomi,
-            SasiteCharacter.TansakuNomi,
+            MoveCharacter.HyokatiYusen,
+            MoveCharacter.SyorituYusen,
+            MoveCharacter.SyorituNomi,
+            MoveCharacter.SinteYusen,
+            MoveCharacter.SinteNomi,
+            MoveCharacter.TansakuNomi,
         };
     }
 }

@@ -95,7 +95,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                         PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.ToSet_Koma(PureMemory.ssss_ugoki_km, PureMemory.ssssTmp_bbVar_ibasho);
                         while (PureMemory.ssssTmp_bbVar_ibasho.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_src))
                         {
-                            if (SasiteSeiseiAccessor.CheckUtikiri())
+                            if (MoveGenAccessor.CheckUtikiri())
                             {
 #if DEBUG
                                 PureMemory.ssss_sasitePickerWoNuketaBasho1 = "逼迫返討手";
@@ -164,7 +164,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                         yomiIbashoBan.ToSet_Koma(PureMemory.ssss_ugoki_km, PureMemory.ssssTmp_bbVar_ibasho);
                         while (PureMemory.ssssTmp_bbVar_ibasho.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_src))
                         {
-                            if (SasiteSeiseiAccessor.CheckUtikiri())
+                            if (MoveGenAccessor.CheckUtikiri())
                             {
 #if DEBUG
                                 PureMemory.ssss_sasitePickerWoNuketaBasho1 = "余裕返討手";
@@ -239,7 +239,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                         yomiIbashoBan.ToSet_Koma(PureMemory.ssss_ugoki_km, PureMemory.ssssTmp_bbVar_ibasho);
                         while (PureMemory.ssssTmp_bbVar_ibasho.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_src))
                         {
-                            if (SasiteSeiseiAccessor.CheckUtikiri())
+                            if (MoveGenAccessor.CheckUtikiri())
                             {
 #if DEBUG
                                 PureMemory.ssss_sasitePickerWoNuketaBasho1 = "らいおんキャッチ";
@@ -314,7 +314,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
 
                         while (PureMemory.ssss_bbVar_idosaki_narazu.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_dst))
                         {
-                            Sasite ss = Conv_Sasite.ToSasite_01a_NarazuSasi(
+                            Move ss = Conv_Sasite.ToSasite_01a_NarazuSasi(
                                 PureMemory.hot_ms_raionAr[PureMemory.kifu_nTeban], PureMemory.ssss_ugoki_ms_dst
                                 );
                             PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].AddList(ss, SasiteType.N15_NigeroTe);
@@ -342,7 +342,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                     yomiIbashoBan.ToSet_Koma(Med_Koma.ToRaion(PureMemory.kifu_teban), PureMemory.ssssTmp_bbVar_ibasho);
                     while (PureMemory.ssssTmp_bbVar_ibasho.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_src))
                     {
-                        if (SasiteSeiseiAccessor.CheckUtikiri())
+                        if (MoveGenAccessor.CheckUtikiri())
                         {
 #if DEBUG
                             PureMemory.ssss_sasitePickerWoNuketaBasho1 = "トライ";
@@ -438,7 +438,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
             if (flag.HasFlag(SasiteType.N18_Option_MergeGoodBad))
             {
                 // マージをするぜ☆（＾▽＾）
-                SasiteSeiseiAccessor.MergeSasitelistGoodBad(
+                MoveGenAccessor.MergeSasitelistGoodBad(
 #if DEBUG
                     "マージ　盤上駒で紐付王手（逃げ道を開ける手）"
 #endif
@@ -463,7 +463,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                         yomiIbashoBan.ToSet_Koma(PureMemory.ssss_ugoki_km, PureMemory.ssssTmp_bbVar_ibasho);
                         while (PureMemory.ssssTmp_bbVar_ibasho.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_src))
                         {
-                            if (SasiteSeiseiAccessor.CheckUtikiri())
+                            if (MoveGenAccessor.CheckUtikiri())
                             {
 #if DEBUG
                                 PureMemory.ssss_sasitePickerWoNuketaBasho1 = "紐付王手指";
@@ -527,7 +527,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                         yomiIbashoBan.ToSet_Koma(PureMemory.ssss_ugoki_km, PureMemory.ssssTmp_bbVar_ibasho);
                         while (PureMemory.ssssTmp_bbVar_ibasho.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_src))
                         {
-                            if (SasiteSeiseiAccessor.CheckUtikiri())
+                            if (MoveGenAccessor.CheckUtikiri())
                             {
 #if DEBUG
                                 PureMemory.ssss_sasitePickerWoNuketaBasho1 = "捨て王手指";
@@ -652,7 +652,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
             if (flag.HasFlag(SasiteType.N18_Option_MergeGoodBad))
             {
                 // マージをするぜ☆（＾▽＾）
-                SasiteSeiseiAccessor.MergeSasitelistGoodBad(
+                MoveGenAccessor.MergeSasitelistGoodBad(
 #if DEBUG
                     "GoodBadマージ　紐付王手指（Good 逃げ道を開ける手、Bad 逃げ道を開けない手）"
 #endif
@@ -726,7 +726,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                         yomiIbashoBan.ToSet_Koma(PureMemory.ssss_ugoki_km, PureMemory.ssssTmp_bbVar_ibasho);
                         while (PureMemory.ssssTmp_bbVar_ibasho.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_src))
                         {
-                            if (SasiteSeiseiAccessor.CheckUtikiri())
+                            if (MoveGenAccessor.CheckUtikiri())
                             {
 #if DEBUG
                                 PureMemory.ssss_sasitePickerWoNuketaBasho1 = string.Format(
@@ -791,7 +791,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                         yomiIbashoBan.ToSet_Koma(PureMemory.ssss_ugoki_km, PureMemory.ssssTmp_bbVar_ibasho);
                         while (PureMemory.ssssTmp_bbVar_ibasho.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_src))
                         {
-                            if (SasiteSeiseiAccessor.CheckUtikiri())
+                            if (MoveGenAccessor.CheckUtikiri())
                             {
 #if DEBUG
                                 PureMemory.ssss_sasitePickerWoNuketaBasho1 = "ぼっち緩慢指";
@@ -871,7 +871,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
             if (flag.HasFlag(SasiteType.N18_Option_MergeGoodBad))
             {
                 // マージをするぜ☆（＾▽＾）
-                SasiteSeiseiAccessor.MergeSasitelistGoodBad(
+                MoveGenAccessor.MergeSasitelistGoodBad(
 #if DEBUG
                     "GoodBadマージ　緩慢な手☆（Good 仲間を見捨てない動き、Bad 仲間を見捨てる動き）"
 #endif
@@ -896,7 +896,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                         yomiIbashoBan.ToSet_Koma(PureMemory.ssss_ugoki_km, PureMemory.ssssTmp_bbVar_ibasho);
                         while (PureMemory.ssssTmp_bbVar_ibasho.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_src))
                         {
-                            if (SasiteSeiseiAccessor.CheckUtikiri())
+                            if (MoveGenAccessor.CheckUtikiri())
                             {
 #if DEBUG
                                 PureMemory.ssss_sasitePickerWoNuketaBasho1 = "捨て緩慢指";
@@ -986,7 +986,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
             if (sasitelistMerge)
             {
                 // マージを忘れるなだぜ☆（＾▽＾）
-                SasiteSeiseiAccessor.MergeSasitelistGoodBad(
+                MoveGenAccessor.MergeSasitelistGoodBad(
 #if DEBUG
                     "マージを忘れるなだぜ☆（＾▽＾）"
 #endif

@@ -31,7 +31,7 @@ namespace kifuwarabe_shogiwin.speak
                 PureMemory.kifu_teban
                 ));
 
-            SasiteSeiseiAccessor.ScanKifu_0ToPreTeme((int iKifu, ref bool toBreak) =>
+            MoveGenAccessor.ScanKifu_0ToPreTeme((int iKifu, ref bool toBreak) =>
             {
                 hyoji.AppendLine(ToString_ByTeme(iKifu));
             });

@@ -18,7 +18,7 @@ namespace kifuwarabe_shogithink.pure.speak.com
         public static void Setumei(FenSyurui f, IHyojiMojiretu hyoji)
         {
             bool isBelow = false;
-            SasiteSeiseiAccessor.ScanBestYomisuji((int iKifu, ref bool toBreak)=>
+            MoveGenAccessor.ScanBestYomisuji((int iKifu, ref bool toBreak)=>
             {
                 if (isBelow)
                 {

@@ -85,12 +85,12 @@ namespace kifuwarabe_shogithink.pure
             #endregion
 
             #region ムーブス
-            mvs_ssAr = new Sasite[KIFU_SIZE];
+            mvs_ssAr = new Move[KIFU_SIZE];
             #endregion
             #region 棋譜（コンピューター・プレイヤー同時に１つまで）
             kifu_syokiKyokumenFen = "";
             kifu_toraretaKsAr = new Komasyurui[KIFU_SIZE];
-            kifu_sasiteAr = new Sasite[KIFU_SIZE];
+            kifu_sasiteAr = new Move[KIFU_SIZE];
             kifu_sasiteTypeAr = new SasiteType[KIFU_SIZE];
             // 手番☆（＾～＾）
             kifu_tebanAr_ = new Taikyokusya[KIFU_SIZE];
@@ -120,7 +120,7 @@ namespace kifuwarabe_shogithink.pure
             #endregion
 
             #region 探索（tnsk）
-            tnsk_kohoSasite = Sasite.Toryo;
+            tnsk_kohoSasite = Move.Toryo;
             #endregion
         }
 
@@ -429,7 +429,7 @@ namespace kifuwarabe_shogithink.pure
         // 取られる駒を c と呼ぶとする。
         //      取られる駒の元位置は t1 、駒台は 3 と呼ぶとする。
         //
-        public static Sasite umv_ss;
+        public static Move umv_ss;
         public static Masu umv_ms_t1;
         public static Koma umv_km_t1;
         public static Komasyurui umv_ks_t1;
@@ -443,7 +443,7 @@ namespace kifuwarabe_shogithink.pure
         #endregion
 
         #region ムーブス「mvs」
-        public static readonly Sasite[] mvs_ssAr;
+        public static readonly Move[] mvs_ssAr;
         public static int mvs_endTeme;
         #endregion
 
@@ -499,7 +499,7 @@ namespace kifuwarabe_shogithink.pure
         /// <summary>
         /// 未確定の、探索中の指し手が入っているぜ☆（＾▽＾）
         /// </summary>
-        public static readonly Sasite[] kifu_sasiteAr;
+        public static readonly Move[] kifu_sasiteAr;
         /// <summary>
         /// 読み筋に指し手タイプを出すことで、デバッグに使うために覚えておくぜ☆（＾▽＾）
         /// </summary>
@@ -656,7 +656,7 @@ namespace kifuwarabe_shogithink.pure
         /// <summary>
         /// ベストムーブの候補になっている指し手だぜ☆（＾～＾）
         /// </summary>
-        public static Sasite tnsk_kohoSasite;
+        public static Move tnsk_kohoSasite;
         public static int tnsk_itibanFukaiNekkoKaranoFukasa_JohoNoTameni;
         /// <summary>
         /// 探索した枝数☆

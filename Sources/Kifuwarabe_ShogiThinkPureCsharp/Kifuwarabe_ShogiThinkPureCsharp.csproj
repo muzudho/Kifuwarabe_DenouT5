@@ -106,7 +106,7 @@
     <Compile Include="pure\listen\ky_info\LisHyokati.cs" />
     <Compile Include="pure\listen\play\LisPlay.cs" />
     <Compile Include="pure\med\ky\MedKyokumen.cs" />
-    <Compile Include="pure\accessor\SasiteSeiseiAccessor.cs" />
+    <Compile Include="pure\accessor\MoveGenAccessor.cs" />
     <Compile Include="pure\Pure.cs" />
     <Compile Include="pure\project\PureProject.cs" />
     <Compile Include="pure\PureMemory.cs" />
@@ -163,7 +163,7 @@
     <Compile Include="pure\ky\Shogiban.cs" />
     <Compile Include="pure\protocol\IFenProtocol.cs" />
     <Compile Include="pure\ikkyoku\TaikyokuKekka.cs" />
-    <Compile Include="pure\sasite\Sasite.cs" />
+    <Compile Include="pure\sasite\Move.cs" />
     <Compile Include="pure\ky\Komasyurui.cs" />
     <Compile Include="pure\ky\Koma.cs" />
     <Compile Include="pure\logger\Mojiretu.cs" />

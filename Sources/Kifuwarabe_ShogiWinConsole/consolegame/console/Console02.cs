@@ -68,7 +68,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
             Util_Taikyoku.Clear();
 
             // 棋譜カーソルを０にすれば、初期局面に戻るだろ☆ｗｗｗ（＾▽＾）
-            SasiteSeiseiAccessor.BackTemeToFirst_AndClearTeme();
+            MoveGenAccessor.BackTemeToFirst_AndClearTeme();
 
 
             if (Util_Machine.IsRenzokuTaikyokuStop())
@@ -104,7 +104,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
             }
         }
 
-        public static bool ParseDoSasite( out Sasite out_sasite)
+        public static bool ParseDoSasite( out Move out_sasite)
         {
             // コンソールからのキー入力を解析するぜ☆（＾▽＾）
             int caret = CommandlineState.caret;

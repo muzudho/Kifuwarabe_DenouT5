@@ -110,15 +110,15 @@ namespace kifuwarabe_shogiwin.consolegame.console
                             // do以外のコマンドであれば、コマンドラインを保持したまま、そのまま続行
                         }
                         // 以下、do コマンドの場合☆
-                        else if (!Console02.ParseDoSasite(out Sasite inputSasite))
+                        else if (!Console02.ParseDoSasite(out Move inputSasite))
                         {
                             // do コマンドのパースエラー表示（コンソール・ゲーム用）☆（＾～＾）
-                            SpkSasite.AppendSetumei(SasiteMatigaiRiyu.ParameterSyosikiMatigai, hyoji);
+                            SpkSasite.AppendSetumei(MoveMatigaiRiyu.ParameterSyosikiMatigai, hyoji);
                             hyoji.AppendLine();
                             Util_Machine.Flush(hyoji);
                             CommandlineState.CommentCommandline();// コマンドの誤発動防止
                         }
-                        else if (!GenkyokuOpe.CanDoSasite( inputSasite, out SasiteMatigaiRiyu reason))// 指し手の合否チェック
+                        else if (!GenkyokuOpe.CanDoSasite( inputSasite, out MoveMatigaiRiyu reason))// 指し手の合否チェック
                         {
                             // イリーガル・ムーブなどの、エラー理由表示☆（＾～＾）
                             SpkSasite.AppendSetumei(reason, hyoji);

@@ -57,7 +57,7 @@ namespace kifuwarabe_shogithink.pure.control
                     );
         }
 
-        public static bool Try_DoSasite_Input(Sasite ss
+        public static bool Try_DoSasite_Input(Move ss
 #if DEBUG
             , FenSyurui f
             , IDebugMojiretu dbg_reigai
@@ -78,7 +78,7 @@ namespace kifuwarabe_shogithink.pure.control
                 return false;
             }
             // 手番を進めるぜ☆（＾～＾）
-            SasiteSeiseiAccessor.AddKifu(ss, ssType, PureMemory.dmv_ks_c);
+            MoveGenAccessor.AddKifu(ss, ssType, PureMemory.dmv_ks_c);
 //#if DEBUG
 //            Util_Tansaku.Snapshot("Try_DoSasite_Input", dbg_reigai);
 //#endif

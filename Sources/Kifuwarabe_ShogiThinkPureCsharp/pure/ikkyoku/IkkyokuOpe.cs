@@ -21,12 +21,12 @@ namespace kifuwarabe_shogithink.pure.ikkyoku
         {
             //グローバル変数に指し手がセットされるぜ☆（＾▽＾）
             PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-            SasiteSeiseiAccessor.DoSasitePickerBegin(SasiteType.N21_All);
+            MoveGenAccessor.DoSasitePickerBegin(SasiteType.N21_All);
             SasitePicker01.SasitePicker_01(SasiteType.N21_All, true);
 
             if (PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL].listCount < 1)
             {
-                Sasite ss = Sasite.Toryo;
+                Move ss = Move.Toryo;
                 SasiteType ssType = SasiteType.N00_Karappo;
                 if (DoSasiteOpe.TryFail_DoSasite_All(ss, ssType
 #if DEBUG
@@ -40,7 +40,7 @@ namespace kifuwarabe_shogithink.pure.ikkyoku
                     return false;
                 }
                 // 手番を進めるぜ☆（＾～＾）
-                SasiteSeiseiAccessor.AddKifu(ss, ssType, PureMemory.dmv_ks_c);
+                MoveGenAccessor.AddKifu(ss, ssType, PureMemory.dmv_ks_c);
 //#if DEBUG
 //                Util_Tansaku.Snapshot("Rndコマンド", dbg_reigai);
 //#endif
@@ -48,7 +48,7 @@ namespace kifuwarabe_shogithink.pure.ikkyoku
             }
             else
             {
-                Sasite ss = PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL].list_sasite[PureSettei.random.Next(PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL].listCount)];
+                Move ss = PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL].list_sasite[PureSettei.random.Next(PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL].listCount)];
 
                 SasiteType ssType = SasiteType.N00_Karappo;
                 if (DoSasiteOpe.TryFail_DoSasite_All( ss, ssType
@@ -63,7 +63,7 @@ namespace kifuwarabe_shogithink.pure.ikkyoku
                     return false;
                 }
                 // 手番を進めるぜ☆（＾～＾）
-                SasiteSeiseiAccessor.AddKifu(ss, ssType, PureMemory.dmv_ks_c);
+                MoveGenAccessor.AddKifu(ss, ssType, PureMemory.dmv_ks_c);
 //#if DEBUG
 //                Util_Tansaku.Snapshot("Rnd(2)", dbg_reigai);
 //#endif

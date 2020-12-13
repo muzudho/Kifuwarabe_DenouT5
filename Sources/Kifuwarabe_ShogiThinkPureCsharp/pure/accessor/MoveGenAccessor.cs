@@ -42,10 +42,10 @@ namespace kifuwarabe_shogithink.pure.accessor
     /// 対局終了時の記録用だぜ☆
     /// (2017-04-27 08:37) USI用にも拡張するぜ☆（*＾～＾*）
     /// </summary>
-    public static class SasiteSeiseiAccessor
+    public static class MoveGenAccessor
     {
 #if DEBUG
-        public static void DumpSasiteSeisei(IHyojiMojiretu hyoji)
+        public static void DumpMoveGen(IHyojiMojiretu hyoji)
         {
             
             SpkBan_Hisigata.Setumei_yk00("チェッカー(手番へ)", PureMemory.hot_bb_checkerAr[PureMemory.kifu_nTeban], hyoji);
@@ -75,7 +75,7 @@ namespace kifuwarabe_shogithink.pure.accessor
         {
             ScanKifu_0ToPreTeme((int iKifu, ref bool toBreak) =>
             {
-                Sasite ss = PureMemory.kifu_sasiteAr[iKifu];
+                Move ss = PureMemory.kifu_sasiteAr[iKifu];
                 SpkSasite.AppendFenTo(f, ss, syuturyoku);
                 syuturyoku.Append(" ");
             });
@@ -139,7 +139,7 @@ namespace kifuwarabe_shogithink.pure.accessor
         {
             PureMemory.ClearTeme();
             // 最初の要素をリセットするぜ☆（＾～＾）
-            PureMemory.kifu_sasiteAr[PureMemory.kifu_endTeme] = Sasite.Toryo;
+            PureMemory.kifu_sasiteAr[PureMemory.kifu_endTeme] = Move.Toryo;
             PureMemory.kifu_sasiteTypeAr[PureMemory.kifu_endTeme] = SasiteType.N00_Karappo;
             PureMemory.kifu_toraretaKsAr[PureMemory.kifu_endTeme] = Komasyurui.Yososu;
         }
@@ -150,7 +150,7 @@ namespace kifuwarabe_shogithink.pure.accessor
         /// </summary>
         /// <param name="ss"></param>
         /// <param name="ssType"></param>
-        public static void AddKifu(Sasite ss, SasiteType ssType, Komasyurui toraretaKs)
+        public static void AddKifu(Move ss, SasiteType ssType, Komasyurui toraretaKs)
         {
             PureMemory.kifu_sasiteAr[PureMemory.kifu_endTeme] = ss;
             PureMemory.kifu_sasiteTypeAr[PureMemory.kifu_endTeme] = ssType;
@@ -175,7 +175,7 @@ namespace kifuwarabe_shogithink.pure.accessor
             foreach (string fugo in fugoItiran)
             {
                 int caret = 0;
-                Sasite sasite;
+                Move sasite;
                 if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, fugo, ref caret, out sasite))
                 {
                     throw new System.Exception("指し手のパースエラー fugo=[" + fugo + "]");
@@ -213,9 +213,9 @@ namespace kifuwarabe_shogithink.pure.accessor
                 return false;
             }
             // 指定の手目まで進めるぜ☆（＾～＾）
-            SasiteSeiseiAccessor.ScanKifu_0ToPreTeme((int iKifu, ref bool toBreak) =>
+            MoveGenAccessor.ScanKifu_0ToPreTeme((int iKifu, ref bool toBreak) =>
             {
-                Sasite ss = PureMemory.kifu_sasiteAr[iKifu];
+                Move ss = PureMemory.kifu_sasiteAr[iKifu];
                 if (temeMade < iKifu)
                 {
                     toBreak = true;
@@ -236,7 +236,7 @@ namespace kifuwarabe_shogithink.pure.accessor
                     return;
                 }
                 // 手番を進めるぜ☆（＾～＾）
-                SasiteSeiseiAccessor.AddKifu(ss, ssType, PureMemory.dmv_ks_c);
+                MoveGenAccessor.AddKifu(ss, ssType, PureMemory.dmv_ks_c);
 //#if DEBUG
 //                Util_Tansaku.Snapshot("GoToTememade", (IDebugMojiretu)hyoji);
 //#endif
@@ -255,8 +255,8 @@ namespace kifuwarabe_shogithink.pure.accessor
         public static bool Try_PlayMoves_0ToPreTeme(FenSyurui f, IHyojiMojiretu hyoji)
         {
             // 棋譜を元に、局面データを再現するぜ☆
-            SasiteSeiseiAccessor.ScanMoves_0ToPreTeme((int iTeme, ref bool toBreak) => {
-                Sasite ss = PureMemory.mvs_ssAr[iTeme];
+            MoveGenAccessor.ScanMoves_0ToPreTeme((int iTeme, ref bool toBreak) => {
+                Move ss = PureMemory.mvs_ssAr[iTeme];
 
 #if DEBUG
                 hyoji.AppendLine(string.Format("[{0}] 指すぜ☆（＾～＾） ss={1}",
@@ -281,7 +281,7 @@ namespace kifuwarabe_shogithink.pure.accessor
                     toBreak = true;
                     return;
                 }
-                SasiteSeiseiAccessor.AddKifu(ss, SasiteType.N00_Karappo, PureMemory.dmv_ks_c);
+                MoveGenAccessor.AddKifu(ss, SasiteType.N00_Karappo, PureMemory.dmv_ks_c);
 #if DEBUG
                 // 局面表示☆
                 Interproject.project.HyojiKyokumen(iTeme, hyoji);
@@ -297,7 +297,7 @@ namespace kifuwarabe_shogithink.pure.accessor
         /// 指し手情報を分解するぜ☆（＾～＾）
         /// 駒を動かす方を手番、相手を相手番と考えるぜ☆（＾～＾）
         /// </summary>
-        public static void BunkaiSasite_Dmv(Sasite ss)
+        public static void BunkaiSasite_Dmv(Move ss)
         {
             //
             // 動かす駒を t0 と呼ぶとする。
@@ -418,9 +418,9 @@ namespace kifuwarabe_shogithink.pure.accessor
         /// </summary>
         public static void DoSasitePickerBegin(SasiteType flag)
         {
-            SasiteSeiseiAccessor.Clear_SsssUtikiri();
+            MoveGenAccessor.Clear_SsssUtikiri();
             // 空っぽにしておくぜ☆　何か入れないと投了だぜ☆（＾▽＾）ｗｗｗ
-            SasiteSeiseiAccessor.Clear_Sasitelist();
+            MoveGenAccessor.Clear_Sasitelist();
 
             PureMemory.ssss_isSyobuNasi = GenkyokuOpe.IsSyobuNasi();
 
@@ -648,28 +648,28 @@ namespace kifuwarabe_shogithink.pure.accessor
 
         public static void AddSasite_NariGood()
         {
-            if (PureMemory.ssss_genk_tume1) { SasiteSeiseiAccessor.Clear_Sasitelist(); }//他の指し手を消し飛ばすぜ☆（＾▽＾）
+            if (PureMemory.ssss_genk_tume1) { MoveGenAccessor.Clear_Sasitelist(); }//他の指し手を消し飛ばすぜ☆（＾▽＾）
 
-            Sasite ss = Conv_Sasite.ToSasite_01b_NariSasi(PureMemory.ssss_ugoki_ms_src, PureMemory.ssss_ugoki_ms_dst);
-            Debug.Assert(Sasite.Toryo != ss, "");
+            Move ss = Conv_Sasite.ToSasite_01b_NariSasi(PureMemory.ssss_ugoki_ms_src, PureMemory.ssss_ugoki_ms_dst);
+            Debug.Assert(Move.Toryo != ss, "");
             PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].AddList(ss, PureMemory.ssss_ugoki_kakuteiSsType);
         }
         public static void AddSasite_NarazuGood()
         {
-            if (PureMemory.ssss_genk_tume1) { SasiteSeiseiAccessor.Clear_Sasitelist(); }//他の指し手を消し飛ばすぜ☆（＾▽＾）
+            if (PureMemory.ssss_genk_tume1) { MoveGenAccessor.Clear_Sasitelist(); }//他の指し手を消し飛ばすぜ☆（＾▽＾）
 
-            Sasite ss = Conv_Sasite.ToSasite_01a_NarazuSasi(PureMemory.ssss_ugoki_ms_src, PureMemory.ssss_ugoki_ms_dst);
-            Debug.Assert(Sasite.Toryo != ss, "");
+            Move ss = Conv_Sasite.ToSasite_01a_NarazuSasi(PureMemory.ssss_ugoki_ms_src, PureMemory.ssss_ugoki_ms_dst);
+            Debug.Assert(Move.Toryo != ss, "");
             PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].AddList(ss, PureMemory.ssss_ugoki_kakuteiSsType);
         }
 
         public static void AddSasite_NarazuGoodXorBad()
         {
-            Sasite ss = Conv_Sasite.ToSasite_01a_NarazuSasi(PureMemory.ssss_ugoki_ms_src, PureMemory.ssss_ugoki_ms_dst);
+            Move ss = Conv_Sasite.ToSasite_01a_NarazuSasi(PureMemory.ssss_ugoki_ms_src, PureMemory.ssss_ugoki_ms_dst);
 
-            if (PureMemory.ssss_genk_tume1) { SasiteSeiseiAccessor.Clear_Sasitelist(); }//他の指し手を消し飛ばすぜ☆（＾▽＾）
+            if (PureMemory.ssss_genk_tume1) { MoveGenAccessor.Clear_Sasitelist(); }//他の指し手を消し飛ばすぜ☆（＾▽＾）
 
-            Debug.Assert(Sasite.Toryo != ss, "");
+            Debug.Assert(Move.Toryo != ss, "");
             if (PureMemory.IsAkusyu_Ssss)
             {
                 PureMemory.ssss_sasitelistBad[PureMemory.tnsk_fukasa].AddList(ss, PureMemory.ssss_ugoki_kakuteiSsType | PureMemory.GetAkusyuType_Ssss());
@@ -678,11 +678,11 @@ namespace kifuwarabe_shogithink.pure.accessor
         }
         public static void AddSasite_NariGoodXorBad()
         {
-            Sasite ss = Conv_Sasite.ToSasite_01b_NariSasi(PureMemory.ssss_ugoki_ms_src, PureMemory.ssss_ugoki_ms_dst);
+            Move ss = Conv_Sasite.ToSasite_01b_NariSasi(PureMemory.ssss_ugoki_ms_src, PureMemory.ssss_ugoki_ms_dst);
 
-            if (PureMemory.ssss_genk_tume1) { SasiteSeiseiAccessor.Clear_Sasitelist(); }//他の指し手を消し飛ばすぜ☆（＾▽＾）
+            if (PureMemory.ssss_genk_tume1) { MoveGenAccessor.Clear_Sasitelist(); }//他の指し手を消し飛ばすぜ☆（＾▽＾）
 
-            Debug.Assert(Sasite.Toryo != ss, "");
+            Debug.Assert(Move.Toryo != ss, "");
             if (PureMemory.IsAkusyu_Ssss)
             {
                 PureMemory.ssss_sasitelistBad[PureMemory.tnsk_fukasa].AddList(ss, PureMemory.ssss_ugoki_kakuteiSsType | PureMemory.GetAkusyuType_Ssss());
@@ -694,10 +694,10 @@ namespace kifuwarabe_shogithink.pure.accessor
         /// </summary>
         public static void AddSasite_UttaGood()
         {
-            if (PureMemory.ssss_genk_tume1) { SasiteSeiseiAccessor.Clear_Sasitelist(); }//他の指し手を消し飛ばすぜ☆（＾▽＾）
+            if (PureMemory.ssss_genk_tume1) { MoveGenAccessor.Clear_Sasitelist(); }//他の指し手を消し飛ばすぜ☆（＾▽＾）
 
-            Sasite ss = Conv_Sasite.ToSasite_01c_Utta(PureMemory.ssss_ugoki_ms_dst, PureMemory.ssss_mot_mks);
-            Debug.Assert(Sasite.Toryo != ss, "");
+            Move ss = Conv_Sasite.ToSasite_01c_Utta(PureMemory.ssss_ugoki_ms_dst, PureMemory.ssss_mot_mks);
+            Debug.Assert(Move.Toryo != ss, "");
             PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].AddList(ss, PureMemory.ssss_ugoki_kakuteiSsType);
         }
     }

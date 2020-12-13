@@ -33,7 +33,7 @@ namespace kifuwarabe_shogithink.pure
             ittedumeTukau = true;
 //#endif
 
-            char_playerN = new SasiteCharacter[] { SasiteCharacter.HyokatiYusen, SasiteCharacter.HyokatiYusen };
+            char_playerN = new MoveCharacter[] { MoveCharacter.HyokatiYusen, MoveCharacter.HyokatiYusen };
             p1Com = false;
             p2Com = false;
         }
@@ -95,7 +95,7 @@ namespace kifuwarabe_shogithink.pure
         /// <summary>
         /// 対局者Ｎの指し手の性格☆（＾▽＾）
         /// </summary>
-        public static SasiteCharacter[] char_playerN { get; set; }
+        public static MoveCharacter[] char_playerN { get; set; }
         /// <summary>
         /// 対局者１はコンピューター☆（＾▽＾）
         /// </summary>
