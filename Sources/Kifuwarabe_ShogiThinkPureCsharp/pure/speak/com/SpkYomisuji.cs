@@ -30,7 +30,7 @@ namespace kifuwarabe_shogithink.pure.speak.com
                     isBelow = true;
                 }
 
-                SpkSasite.AppendFenTo(f, PureMemory.kifu_sasiteAr[iKifu], hyoji);
+                SpkMove.AppendFenTo(f, PureMemory.kifu_sasiteAr[iKifu], hyoji);
             });
         }
 

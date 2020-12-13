@@ -146,7 +146,7 @@ namespace kifuwarabe_shogiwin.consolegame.yomisuji
                 if (hint!="UpAlpha" && hint!="UpAlphaRnd")
                 {
                     //詰将棋のときの強力なデバッグ出力だぜ☆（＾▽＾）ｗｗｗ
-                    Face_Commandline.Sasite_cmd("sasite seisei", syuturyoku);
+                    Face_Commandline.Sasite_cmd("move seisei", syuturyoku);
                 }
 #endif
                 // */
@@ -161,11 +161,11 @@ namespace kifuwarabe_shogiwin.consolegame.yomisuji
                 //                        throw new Exception(hyoji.ToContents());
                 //                    }
 
-                //                    if(CommandS.TryFail_Sasite_cmd( "sasite", ky2, hyoji))
+                //                    if(CommandS.TryFail_Sasite_cmd( "move", ky2, hyoji))
                 //                    {
                 //                        throw new Exception(hyoji.ToContents());
                 //                    }
-                //                    if(CommandS.TryFail_Sasite_cmd( "sasite seisei", ky2, hyoji))
+                //                    if(CommandS.TryFail_Sasite_cmd( "move seisei", ky2, hyoji))
                 //                    {
                 //                        throw new Exception(hyoji.ToContents());
                 //                    }

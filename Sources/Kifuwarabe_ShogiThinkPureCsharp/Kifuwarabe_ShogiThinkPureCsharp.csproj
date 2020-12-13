@@ -78,7 +78,7 @@
     <Compile Include="pure\com_tansaku\sasiteorder\SasitePicker01.cs" />
     <Compile Include="pure\com_tansaku\sasiteorder\seisei\GenerateSasite03.cs" />
     <Compile Include="pure\logger\KarappoMojiretuImpl.cs" />
-    <Compile Include="pure\sasite\SasiteType.cs" />
+    <Compile Include="pure\sasite\MoveType.cs" />
     <Compile Include="pure\com_tansaku\Util_Joho.cs" />
     <Compile Include="pure\conv\ky\Conv_Kyokumen.cs" />
     <Compile Include="pure\Interproject.cs" />
@@ -146,7 +146,7 @@
     <Compile Include="pure\speak\ky\SpkMasu.cs" />
     <Compile Include="pure\speak\ky\SpkNinsyo.cs" />
     <Compile Include="pure\speak\ky\SpkTaikyokusya.cs" />
-    <Compile Include="pure\speak\play\SpkSasite.cs" />
+    <Compile Include="pure\speak\play\SpkMove.cs" />
     <Compile Include="pure\speak\ky\SpkMotiKoma.cs" />
     <Compile Include="pure\speak\com\SpkYomisuji.cs" />
     <Compile Include="pure\ky\KyokumenOperation.cs" />
@@ -158,7 +158,7 @@
     <Compile Include="pure\ky\Kyokumen.cs" />
     <Compile Include="pure\ky\bb\Bitboard.cs" />
     <Compile Include="pure\ky\MotigomaItiran.cs" />
-    <Compile Include="pure\sasite\Sasitelist.cs" />
+    <Compile Include="pure\sasite\MoveList.cs" />
     <Compile Include="pure\logger\MojiretuImpl.cs" />
     <Compile Include="pure\ky\Shogiban.cs" />
     <Compile Include="pure\protocol\IFenProtocol.cs" />
@@ -171,7 +171,7 @@
     <Compile Include="pure\ky\Masu.cs" />
     <Compile Include="pure\com_tansaku\jikan\Util_TimeManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="pure\conv\genkyoku\play\Conv_Sasite.cs" />
+    <Compile Include="pure\conv\genkyoku\play\AbstractConvMove.cs" />
     <Compile Include="pure\conv\Conv_Kihon.cs" />
     <Compile Include="pure\ky\Med_Koma.cs" />
     <Compile Include="pure\genkyoku\Genkyoku.cs" />

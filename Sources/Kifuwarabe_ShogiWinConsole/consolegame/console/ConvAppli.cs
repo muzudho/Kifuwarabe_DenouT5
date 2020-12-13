@@ -200,10 +200,10 @@ namespace kifuwarabe_shogiwin.consolegame.console
                     {
                         ComSettei.saidaiFukasa = val;
 
-                        if (PureMemory.SAIDAI_SASITE_FUKASA - 1 < ComSettei.saidaiFukasa)
+                        if (PureMemory.MaxMoveDepth - 1 < ComSettei.saidaiFukasa)
                         {
-                            ComSettei.saidaiFukasa = PureMemory.SAIDAI_SASITE_FUKASA - 1;
-                            hyoji.AppendLine("(^q^)実装の上限の [" + (PureMemory.SAIDAI_SASITE_FUKASA - 1) + "] に下げたぜ☆");
+                            ComSettei.saidaiFukasa = PureMemory.MaxMoveDepth - 1;
+                            hyoji.AppendLine("(^q^)実装の上限の [" + (PureMemory.MaxMoveDepth - 1) + "] に下げたぜ☆");
                         }
                     }
                 }

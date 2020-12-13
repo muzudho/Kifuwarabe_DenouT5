@@ -5,7 +5,7 @@ using kifuwarabe_shogithink.pure.com.sasiteorder;
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.logger;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.ky;
 using kifuwarabe_shogithink.pure.speak.play;
 using System;
@@ -17,7 +17,7 @@ using kifuwarabe_shogithink.pure.com.sasiteorder;
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.logger;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using System;
 using System.Diagnostics;
 #endif
@@ -185,7 +185,7 @@ namespace kifuwarabe_shogithink.pure.com
             // 何これ
             if (DoSasiteOpe.TryFail_DoSasite_All(
                 PureMemory.tnsk_kohoSasite,
-                SasiteType.N00_Karappo
+                MoveType.N00_Karappo
 #if DEBUG
                 , PureSettei.fenSyurui
                 , (IDebugMojiretu)hyoji
@@ -197,7 +197,7 @@ namespace kifuwarabe_shogithink.pure.com
                 return Pure.FailTrue("GenkyokuOpe.Try_DoSasite(1)");
             }
             // 手番を進めるぜ☆（＾～＾）
-            MoveGenAccessor.AddKifu(PureMemory.tnsk_kohoSasite, SasiteType.N00_Karappo, PureMemory.dmv_ks_c);
+            MoveGenAccessor.AddKifu(PureMemory.tnsk_kohoSasite, MoveType.N00_Karappo, PureMemory.dmv_ks_c);
 #if DEBUG
             Util_Tansaku.Snapshot("Go(1)確定指し", PureMemory.tnsk_kohoSasite);
 #endif
@@ -343,8 +343,8 @@ namespace kifuwarabe_shogithink.pure.com
             // 指し手生成
             //────────────────────────────────────────
             // グローバル変数 Util_SasiteSeisei.Sslist に指し手がセットされるぜ☆（＾▽＾）
-            MoveGenAccessor.DoSasitePickerBegin(SasiteType.N21_All);
-            SasitePicker01.SasitePicker_01(SasiteType.N21_All, true);
+            MoveGenAccessor.DoSasitePickerBegin(MoveType.N21_All);
+            SasitePicker01.SasitePicker_01(MoveType.N21_All, true);
 
 #region ステイルメイト
             //────────────────────────────────────────
@@ -400,8 +400,8 @@ namespace kifuwarabe_shogithink.pure.com
 //                Util_Tansaku.Snapshot("ドゥ前", hyoji);
 //#endif
 
-                Move ss_jibun = PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].list_sasite[iSs];
-                SasiteType ssType_jibun = PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].list_sasiteType[iSs];
+                Move ss_jibun = PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].moveList[iSs];
+                MoveType ssType_jibun = PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].moveTypeList[iSs];
 
                 if (DoSasiteOpe.TryFail_DoSasite_All(
                     ss_jibun,

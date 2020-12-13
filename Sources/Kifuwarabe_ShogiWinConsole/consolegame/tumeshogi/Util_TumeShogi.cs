@@ -5,7 +5,7 @@ using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen.genkyoku;
 using kifuwarabe_shogithink.pure.logger;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using System.Collections.Generic;
 #else
 using kifuwarabe_shogithink.pure;
@@ -13,7 +13,7 @@ using kifuwarabe_shogithink.pure.com;
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen.genkyoku;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using System.Collections.Generic;
 #endif
 

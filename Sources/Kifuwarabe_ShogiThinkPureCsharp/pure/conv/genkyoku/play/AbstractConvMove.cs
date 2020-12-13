@@ -1,16 +1,16 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using System.Diagnostics;
 #else
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using System.Diagnostics;
 #endif
 
 namespace kifuwarabe_shogithink.pure.conv.genkyoku.play
 {
-    public abstract class Conv_Sasite
+    public abstract class AbstractConvMove
     {
         /// <summary>
         /// 
@@ -20,7 +20,7 @@ namespace kifuwarabe_shogithink.pure.conv.genkyoku.play
         public static Masu GetSrcMasu_WithoutErrorCheck(int ss)
         {
             return (Masu)((ss & MoveMask.SRC_MASU) >> MoveShift.SRC_MASU);
-            // if (Sasite.Toryo == ss || Conv_Sasite.IsUtta(ss)) { return KyokumenImpl.MASU_ERROR; }// エラーチェック付き
+            // if (Move.Toryo == ss || AbstractConvSasite.IsUtta(ss)) { return KyokumenImpl.MASU_ERROR; }// エラーチェック付き
         }
         public static Masu GetDstMasu_WithoutErrorCheck(int ss)
         {
@@ -41,25 +41,25 @@ namespace kifuwarabe_shogithink.pure.conv.genkyoku.play
         {
             // (v & m) >> s + 1。 v:バリュー、m:マスク、s:シフト
             return Conv_Masu.ToSujiO1_WithoutErrorCheck((int)GetSrcMasu_WithoutErrorCheck(ss));
-            // if (Sasite.Toryo == ss || Conv_Sasite.IsUtta(ss)) { return Conv_Masu.ERROR_SUJI; } // エラーチェック付き
+            // if (Move.Toryo == ss || AbstractConvSasite.IsUtta(ss)) { return Conv_Masu.ERROR_SUJI; } // エラーチェック付き
         }
         public static int GetSrcDan_WithoutErrorCheck(int ss)
         {
             // (v & m) >> s + 1。 v:バリュー、m:マスク、s:シフト
             return Conv_Masu.ToDanO1_WithoutErrorCheck((int)GetSrcMasu_WithoutErrorCheck(ss));
-            // if (Sasite.Toryo == ss || Conv_Sasite.IsUtta(ss)) { return Conv_Masu.ERROR_DAN; }  // エラーチェック付き
+            // if (Move.Toryo == ss || AbstractConvSasite.IsUtta(ss)) { return Conv_Masu.ERROR_DAN; }  // エラーチェック付き
         }
         public static int GetDstSuji_WithoutErrorCheck(int ss)
         {
             // (v & m) >> s + 1。 v:バリュー、m:マスク、s:シフト
             return Conv_Masu.ToSujiO1_WithoutErrorCheck((int)GetDstMasu_WithoutErrorCheck(ss));
-            // if (Sasite.Toryo == ss) { return Conv_Masu.ERROR_SUJI; } // エラーチェック付き
+            // if (Move.Toryo == ss) { return Conv_Masu.ERROR_SUJI; } // エラーチェック付き
         }
         public static int GetDstDan_WithoutErrorCheck(int ss)
         {
             // (v & m) >> s + 1。 v:バリュー、m:マスク、s:シフト
             return Conv_Masu.ToDanO1_WithoutErrorCheck((int)GetDstMasu_WithoutErrorCheck(ss));
-            // if (Sasite.Toryo == ss) { return Conv_Masu.ERROR_DAN; } // 解析不能☆
+            // if (Move.Toryo == ss) { return Conv_Masu.ERROR_DAN; } // 解析不能☆
         }
         public static void SetSrcMasu_WithoutErrorCheck(ref int ss, Masu ms_src)
         {
@@ -156,7 +156,7 @@ namespace kifuwarabe_shogithink.pure.conv.genkyoku.play
             // 元筋と元段☆（＾▽＾）「打」のときは何もしないぜ☆（＾▽＾）
 
             // 先筋と先段☆（＾▽＾）
-            Conv_Sasite.SetDstMasu_WithoutErrorCheck(ref v, ms_dst);
+            AbstractConvMove.SetDstMasu_WithoutErrorCheck(ref v, ms_dst);
 
 
             //必ず指定されているはず☆ if (MotiKomasyurui.Yososu != mkUtta)
@@ -223,11 +223,11 @@ namespace kifuwarabe_shogithink.pure.conv.genkyoku.play
         public static bool IsUtta(Move ss)
         {
             // 打か☆？
-            return MotigomaSyurui.Yososu != Conv_Sasite.GetUttaKomasyurui(ss);//指定があれば
+            return MotigomaSyurui.Yososu != AbstractConvMove.GetUttaKomasyurui(ss);//指定があれば
         }
     }
 
-    public abstract class Conv_SasiteCharacter
+    public abstract class AbstractConvSasiteCharacter
     {
         public static readonly MoveCharacter[] items = new MoveCharacter[] {
             // enum の配列順にすること。

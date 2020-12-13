@@ -10,7 +10,7 @@ using kifuwarabe_shogithink.pure.listen.ky;
 using kifuwarabe_shogithink.pure.listen.play;
 using kifuwarabe_shogithink.pure.logger;
 using kifuwarabe_shogithink.pure.med.ky;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.genkyoku;
 using kifuwarabe_shogithink.pure.speak.ky;
 using kifuwarabe_shogithink.pure.speak.play;
@@ -28,7 +28,7 @@ using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen.genkyoku;
 using kifuwarabe_shogithink.pure.listen.play;
 using kifuwarabe_shogithink.pure.logger;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.genkyoku;
 using kifuwarabe_shogithink.pure.speak.ky;
 using kifuwarabe_shogithink.pure.speak.play;
@@ -125,7 +125,7 @@ namespace kifuwarabe_shogiapi
             else
             {
                 // イリーガル・ムーブなどの、エラー理由表示☆（＾～＾）
-                out_setumei = SpkSasite.ToSetumeiByRiyu(out_riyu);
+                out_setumei = SpkMove.ToSetumeiByRiyu(out_riyu);
             }
             return ret;
         }
@@ -135,7 +135,7 @@ namespace kifuwarabe_shogiapi
         /// </summary>
         public static void DoSasite(Move ss)
         {
-            SasiteType ssType = SasiteType.N00_Karappo;
+            MoveType ssType = MoveType.N00_Karappo;
             if (DoSasiteOpe.TryFail_DoSasite_All( ss, ssType
 #if DEBUG
                 , PureSettei.fenSyurui
@@ -168,7 +168,7 @@ namespace kifuwarabe_shogiapi
             }
 
             ICommandMojiretu sasite_str = new MojiretuImpl();
-            SpkSasite.AppendFenTo(PureSettei.fenSyurui, PureMemory.tnsk_kohoSasite, sasite_str);
+            SpkMove.AppendFenTo(PureSettei.fenSyurui, PureMemory.tnsk_kohoSasite, sasite_str);
             out_sasiteFen = sasite_str.ToContents();
         }
 

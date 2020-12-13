@@ -1,4 +1,4 @@
-﻿using kifuwarabe_shogithink.pure.sasite;
+﻿using kifuwarabe_shogithink.pure.move;
 
 namespace kifuwarabe_shogithink.pure.listen.ikkyoku
 {

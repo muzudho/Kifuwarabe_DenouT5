@@ -13,7 +13,7 @@ using System.Diagnostics;
 #endif
 
 
-namespace kifuwarabe_shogithink.pure.sasite
+namespace kifuwarabe_shogithink.pure.move
 {
     public static class UndoSasiteOpe
     {
@@ -272,7 +272,7 @@ namespace kifuwarabe_shogithink.pure.sasite
                 return Pure.FailTrue("TryFail_Tejun1_IdosakiNoTebanNoKomaWoTorinozoku");
             }
 
-            if (Conv_Sasite.IsUtta(PureMemory.umv_ss))
+            if (AbstractConvMove.IsUtta(PureMemory.umv_ss))
             {
                 // 打つ
                 if (TryFail_Tejun2Utu_IdomotoniTebannoKomawoModosu(

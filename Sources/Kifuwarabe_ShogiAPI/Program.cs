@@ -1,7 +1,7 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ky;//局面データ
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Text;
 #else
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ky;//局面データ
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -146,15 +146,15 @@ namespace kifuwarabe_shogiapi
             // 先手がきりんを A2 に打つ場合は「do K*A2」
             // 先手が　ひよこ　を B1 で成る場合は末尾にプラスを付けて「do B2B1+」
             // 投了は 「toryo」
-            Move sasite;
-            ShogiApi.CreateSasite("do b3a4", out sasite);
+            Move move;
+            ShogiApi.CreateSasite("do b3a4", out move);
 
-            // 文字列を、sasite データに一度変換する☆（＾～＾）
+            // 文字列を、move データに一度変換する☆（＾～＾）
 
             // その手を指せるかどうかは、 CanDoSasite メソッドでチェックしろだぜ☆（＾～＾）
             MoveMatigaiRiyu riyu;
             string riyuSetumei;
-            if (!ShogiApi.CanDoSasite(sasite, out riyu, out riyuSetumei))
+            if (!ShogiApi.CanDoSasite(move, out riyu, out riyuSetumei))
             {
                 // 指せない手だった場合は、riyu に理由が入っているし、setumei には文章で説明が入っているぜ☆（＾～＾）
 
@@ -163,16 +163,16 @@ namespace kifuwarabe_shogiapi
             }
 
             // 入れ直し☆（＾～＾）
-            ShogiApi.CreateSasite("do b3b2", out sasite);
+            ShogiApi.CreateSasite("do b3b2", out move);
 
-            if (!ShogiApi.CanDoSasite(sasite, out riyu, out riyuSetumei))
+            if (!ShogiApi.CanDoSasite(move, out riyu, out riyuSetumei))
             {
                 // Visual Studio 2017 の出力ビューへ出力
                 Trace.WriteLine(riyuSetumei);
             }
 
             // １手を指すぜ☆（＾▽＾）
-            ShogiApi.DoSasite(sasite);
+            ShogiApi.DoSasite(move);
 
             //{
             //    IViewMojiretu sindan1 = new MojiretuImpl();

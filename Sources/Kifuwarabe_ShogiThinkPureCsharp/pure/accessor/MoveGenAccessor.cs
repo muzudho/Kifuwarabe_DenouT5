@@ -9,7 +9,7 @@ using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.listen.genkyoku;
 using kifuwarabe_shogithink.pure.listen.play;
 using kifuwarabe_shogithink.pure.logger;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.ky.bb;
 using kifuwarabe_shogithink.pure.speak.play;
 using System;
@@ -25,7 +25,7 @@ using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.listen.genkyoku;
 using kifuwarabe_shogithink.pure.listen.play;
 using kifuwarabe_shogithink.pure.logger;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.play;
 using System;
 using System.Diagnostics;
@@ -76,7 +76,7 @@ namespace kifuwarabe_shogithink.pure.accessor
             ScanKifu_0ToPreTeme((int iKifu, ref bool toBreak) =>
             {
                 Move ss = PureMemory.kifu_sasiteAr[iKifu];
-                SpkSasite.AppendFenTo(f, ss, syuturyoku);
+                SpkMove.AppendFenTo(f, ss, syuturyoku);
                 syuturyoku.Append(" ");
             });
         }
@@ -140,7 +140,7 @@ namespace kifuwarabe_shogithink.pure.accessor
             PureMemory.ClearTeme();
             // 最初の要素をリセットするぜ☆（＾～＾）
             PureMemory.kifu_sasiteAr[PureMemory.kifu_endTeme] = Move.Toryo;
-            PureMemory.kifu_sasiteTypeAr[PureMemory.kifu_endTeme] = SasiteType.N00_Karappo;
+            PureMemory.kifu_sasiteTypeAr[PureMemory.kifu_endTeme] = MoveType.N00_Karappo;
             PureMemory.kifu_toraretaKsAr[PureMemory.kifu_endTeme] = Komasyurui.Yososu;
         }
 
@@ -150,7 +150,7 @@ namespace kifuwarabe_shogithink.pure.accessor
         /// </summary>
         /// <param name="ss"></param>
         /// <param name="ssType"></param>
-        public static void AddKifu(Move ss, SasiteType ssType, Komasyurui toraretaKs)
+        public static void AddKifu(Move ss, MoveType ssType, Komasyurui toraretaKs)
         {
             PureMemory.kifu_sasiteAr[PureMemory.kifu_endTeme] = ss;
             PureMemory.kifu_sasiteTypeAr[PureMemory.kifu_endTeme] = ssType;
@@ -175,17 +175,17 @@ namespace kifuwarabe_shogithink.pure.accessor
             foreach (string fugo in fugoItiran)
             {
                 int caret = 0;
-                Move sasite;
-                if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, fugo, ref caret, out sasite))
+                Move move;
+                if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, fugo, ref caret, out move))
                 {
                     throw new System.Exception("指し手のパースエラー fugo=[" + fugo + "]");
                 }
                 //SasiteSeiseiAccessor.AddKifu(
-                //    sasite,
+                //    move,
                 //    SasiteType.N00_Karappo,
                 //    Komasyurui.Yososu // FIXME: 取られた駒も調べたい
                 //    );
-                PureMemory.mvs_ssAr[PureMemory.mvs_endTeme] = sasite;
+                PureMemory.mvs_ssAr[PureMemory.mvs_endTeme] = move;
                 PureMemory.mvs_endTeme++;
             }
         }
@@ -222,7 +222,7 @@ namespace kifuwarabe_shogithink.pure.accessor
                     return;
                 }
 
-                SasiteType ssType = SasiteType.N00_Karappo;
+                MoveType ssType = MoveType.N00_Karappo;
                 if (DoSasiteOpe.TryFail_DoSasite_All(ss, ssType
 #if DEBUG
                     , f
@@ -269,7 +269,7 @@ namespace kifuwarabe_shogithink.pure.accessor
 
                 if (DoSasiteOpe.TryFail_DoSasite_All(
                     ss,
-                    SasiteType.N00_Karappo
+                    MoveType.N00_Karappo
 #if DEBUG
                     , f
                     , (IDebugMojiretu)hyoji
@@ -281,7 +281,7 @@ namespace kifuwarabe_shogithink.pure.accessor
                     toBreak = true;
                     return;
                 }
-                MoveGenAccessor.AddKifu(ss, SasiteType.N00_Karappo, PureMemory.dmv_ks_c);
+                MoveGenAccessor.AddKifu(ss, MoveType.N00_Karappo, PureMemory.dmv_ks_c);
 #if DEBUG
                 // 局面表示☆
                 Interproject.project.HyojiKyokumen(iTeme, hyoji);
@@ -308,19 +308,19 @@ namespace kifuwarabe_shogithink.pure.accessor
 
             // 変数をグローバルに一時退避
             // 移動先升
-            PureMemory.dmv_ms_t1 = Conv_Sasite.GetDstMasu_WithoutErrorCheck((int)ss);
+            PureMemory.dmv_ms_t1 = AbstractConvMove.GetDstMasu_WithoutErrorCheck((int)ss);
             // あれば、移動先の相手の駒（取られる駒; capture）
             PureMemory.dmv_km_c = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma(PureMemory.kifu_aiteban, PureMemory.dmv_ms_t1);
             PureMemory.dmv_ks_c = Med_Koma.KomaToKomasyurui(PureMemory.dmv_km_c);
             PureMemory.dmv_mk_c = Med_Koma.BanjoKomaToMotiKoma(PureMemory.dmv_km_c);
 
-            if (Conv_Sasite.IsUtta(ss))
+            if (AbstractConvMove.IsUtta(ss))
             {
                 // 打
                 PureMemory.dmv_ms_t0 = Conv_Masu.masu_error;
 
                 // 指し手から「持駒」を判別
-                PureMemory.dmv_mks_t0 = Conv_Sasite.GetUttaKomasyurui(ss);
+                PureMemory.dmv_mks_t0 = AbstractConvMove.GetUttaKomasyurui(ss);
                 PureMemory.dmv_mk_t0 = Med_Koma.MotiKomasyuruiAndTaikyokusyaToMotiKoma(PureMemory.dmv_mks_t0, PureMemory.kifu_teban);
                 // 「持駒」から「駒」へ変換
                 PureMemory.dmv_km_t0 = Med_Koma.MotiKomasyuruiAndTaikyokusyaToKoma(PureMemory.dmv_mks_t0, PureMemory.kifu_teban);
@@ -341,12 +341,12 @@ namespace kifuwarabe_shogithink.pure.accessor
             else
             {
                 // 指し
-                PureMemory.dmv_ms_t0 = Conv_Sasite.GetSrcMasu_WithoutErrorCheck((int)ss);
+                PureMemory.dmv_ms_t0 = AbstractConvMove.GetSrcMasu_WithoutErrorCheck((int)ss);
                 PureMemory.dmv_km_t0 = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma(PureMemory.dmv_ms_t0);
                 PureMemory.dmv_ks_t0 = Med_Koma.KomaToKomasyurui(PureMemory.dmv_km_t0);//移動元の駒の種類
                 PureMemory.dmv_mks_t0 = MotigomaSyurui.Yososu;
                 PureMemory.dmv_mk_t0 = Motigoma.Yososu;
-                if (Conv_Sasite.IsNatta(ss)) // 駒が成るケース
+                if (AbstractConvMove.IsNatta(ss)) // 駒が成るケース
                 {
                     PureMemory.dmv_ks_t1 = Conv_Komasyurui.ToNariCase(PureMemory.dmv_ks_t0);
                     PureMemory.dmv_km_t1 = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(PureMemory.dmv_ks_t1, PureMemory.kifu_teban);
@@ -364,20 +364,20 @@ namespace kifuwarabe_shogithink.pure.accessor
             PureMemory.umv_ss = PureMemory.kifu_sasiteAr[PureMemory.kifu_endTeme];
 
             // 駒がないところを指していることがないか？
-            PureMemory.umv_ms_t1 = Conv_Sasite.GetDstMasu_WithoutErrorCheck((int)PureMemory.umv_ss);
+            PureMemory.umv_ms_t1 = AbstractConvMove.GetDstMasu_WithoutErrorCheck((int)PureMemory.umv_ss);
             PureMemory.umv_km_t1 = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma(PureMemory.umv_ms_t1);
             PureMemory.umv_ks_t1 = Med_Koma.KomaToKomasyurui(PureMemory.umv_km_t1);// 成っているかもしれない☆
             Debug.Assert(Conv_Masu.IsBanjoOrError(PureMemory.umv_ms_t1), "error Undo-Begin-6");
             Debug.Assert(Conv_Koma.IsOk(PureMemory.umv_km_t1), "error Undo-Begin-7");
 
 
-            if (!Conv_Sasite.IsUtta(PureMemory.umv_ss))// 指す
+            if (!AbstractConvMove.IsUtta(PureMemory.umv_ss))// 指す
             {
-                PureMemory.umv_ms_t0 = Conv_Sasite.GetSrcMasu_WithoutErrorCheck((int)PureMemory.umv_ss);// 戻し先。
+                PureMemory.umv_ms_t0 = AbstractConvMove.GetSrcMasu_WithoutErrorCheck((int)PureMemory.umv_ss);// 戻し先。
                 Debug.Assert(Conv_Masu.IsBanjo(PureMemory.umv_ms_t0), "error Undo-Begin-21 #金魚 戻し先が盤上でない？");
 
                 PureMemory.umv_mk_t0 = Motigoma.Yososu;
-                if (Conv_Sasite.IsNatta(PureMemory.umv_ss))// 成っていたとき
+                if (AbstractConvMove.IsNatta(PureMemory.umv_ss))// 成っていたとき
                 {
                     PureMemory.umv_ks_t0 = Conv_Komasyurui.ToNarazuCase(PureMemory.umv_ks_t1);// 成る前
                 }
@@ -416,7 +416,7 @@ namespace kifuwarabe_shogithink.pure.accessor
         /// <summary>
         /// 
         /// </summary>
-        public static void DoSasitePickerBegin(SasiteType flag)
+        public static void DoSasitePickerBegin(MoveType flag)
         {
             MoveGenAccessor.Clear_SsssUtikiri();
             // 空っぽにしておくぜ☆　何か入れないと投了だぜ☆（＾▽＾）ｗｗｗ
@@ -462,22 +462,22 @@ namespace kifuwarabe_shogithink.pure.accessor
             //────────────────────────────────────────
 
             if (
-                flag.HasFlag(SasiteType.N13_HippakuKaeriutiTe)
+                flag.HasFlag(MoveType.N13_HippakuKaeriutiTe)
                 ||
-                flag.HasFlag(SasiteType.N14_YoyuKaeriutiTe)
+                flag.HasFlag(MoveType.N14_YoyuKaeriutiTe)
                 )
             {
                 // 移動先は、王手をかけてきている駒☆（＾～＾）
                 PureMemory.ssss_bbBase_idosaki01_checker.Set(PureMemory.hot_bb_checkerAr[PureMemory.kifu_nTeban]);
             }
 
-            if (flag.HasFlag(SasiteType.N12_RaionCatch) || flag.HasFlag(SasiteType.N17_RaionCatchChosa))
+            if (flag.HasFlag(MoveType.N12_RaionCatch) || flag.HasFlag(MoveType.N17_RaionCatchChosa))
             {
                 // 相手らいおん　を取る手のみ生成するぜ☆（＾▽＾）
                 yomiIbashoBan.ToSet_Koma(Med_Koma.ToRaion(PureMemory.kifu_aiteban), PureMemory.ssss_bbBase_idosaki02_raionCatch);
             }
 
-            if (flag.HasFlag(SasiteType.N15_NigeroTe))
+            if (flag.HasFlag(MoveType.N15_NigeroTe))
             {
                 // 移動先
                 PureMemory.ssss_bbBase_idosaki03_nigeroTe.Set(BitboardsOmatome.bb_boardArea);
@@ -487,7 +487,7 @@ namespace kifuwarabe_shogithink.pure.accessor
                 PureMemory.ssss_bbBase_idosaki03_nigeroTe.Sitdown(PureMemory.hot_bb_checkerAr[PureMemory.kifu_nTeban]); // 返討手　は除外するぜ☆（＾▽＾）
             }
 
-            if (flag.HasFlag(SasiteType.N16_Try))
+            if (flag.HasFlag(MoveType.N16_Try))
             {
                 // トライは　どうぶつしょうぎ用　だぜ☆（＾～＾）
                 if (PureSettei.gameRule == GameRule.DobutuShogi)
@@ -499,7 +499,7 @@ namespace kifuwarabe_shogithink.pure.accessor
                 }
             }
 
-            if (flag.HasFlag(SasiteType.N01_KomaWoToruTe))
+            if (flag.HasFlag(MoveType.N01_KomaWoToruTe))
             {
                 // 移動先
                 yomiIbashoBan.ToSet_KomaZenbu(PureMemory.kifu_aiteban, PureMemory.ssss_bbBase_idosaki05_komaWoToruTe);// 相手の駒があるところだけ☆（＾▽＾）
@@ -507,7 +507,7 @@ namespace kifuwarabe_shogithink.pure.accessor
                 PureMemory.ssss_bbBase_idosaki05_komaWoToruTe.Sitdown(PureMemory.hot_bb_checkerAr[PureMemory.kifu_nTeban]); // 返討手　は除外するぜ☆（＾▽＾）
             }
 
-            if (flag.HasFlag(SasiteType.N10_HimozukiOteZasi))
+            if (flag.HasFlag(MoveType.N10_HimozukiOteZasi))
             {
                 // 移動先
                 PureMemory.ssss_bbBase_idosaki06_himodukiOteZasi.Set(BitboardsOmatome.bb_boardArea);
@@ -516,7 +516,7 @@ namespace kifuwarabe_shogithink.pure.accessor
                 PureMemory.ssss_bbBase_idosaki06_himodukiOteZasi.Sitdown(PureMemory.hot_bb_checkerAr[PureMemory.kifu_nTeban]); // 返討手　は除外するぜ☆（＾▽＾）
             }
 
-            if (flag.HasFlag(SasiteType.N06_SuteOteZasi))
+            if (flag.HasFlag(MoveType.N06_SuteOteZasi))
             {
                 // 移動先
                 PureMemory.ssss_bbBase_idosaki07_suteOteZasi.Set(BitboardsOmatome.bb_boardArea);
@@ -525,7 +525,7 @@ namespace kifuwarabe_shogithink.pure.accessor
                 PureMemory.ssss_bbBase_idosaki07_suteOteZasi.Sitdown(PureMemory.hot_bb_checkerAr[PureMemory.kifu_nTeban]); // 返討手　は除外☆（＾▽＾）
             }
 
-            if (flag.HasFlag(SasiteType.N07_SuteOteDa))
+            if (flag.HasFlag(MoveType.N07_SuteOteDa))
             {
                 // 持ち駒
                 PureMemory.ssss_bbBase_idosaki08_suteOteDa.Set(BitboardsOmatome.bb_boardArea);
@@ -533,7 +533,7 @@ namespace kifuwarabe_shogithink.pure.accessor
                 yomiIbashoBan.ToSitdown_KomaZenbu(Taikyokusya.T2, PureMemory.ssss_bbBase_idosaki08_suteOteDa);
             }
 
-            if (flag.HasFlag(SasiteType.N11_HimodukiOteDa))
+            if (flag.HasFlag(MoveType.N11_HimodukiOteDa))
             {
                 // 持ち駒
                 PureMemory.ssss_bbBase_idosaki09_himodukiOteDa.Set(BitboardsOmatome.bb_boardArea);
@@ -542,7 +542,7 @@ namespace kifuwarabe_shogithink.pure.accessor
                 PureMemory.gky_ky.yomiKy.yomiShogiban.yomiKikiBan.ToSelect_BBKikiZenbu(PureMemory.kifu_teban, PureMemory.ssss_bbBase_idosaki09_himodukiOteDa);// 紐を付ける☆
             }
 
-            if (flag.HasFlag(SasiteType.N08_HimotukiKanmanSasi))
+            if (flag.HasFlag(MoveType.N08_HimotukiKanmanSasi))
             {
                 // 盤面全体
                 PureMemory.ssss_bbBase_idosaki11_himodukiKanmanZasi.Set(BitboardsOmatome.bb_boardArea);
@@ -554,7 +554,7 @@ namespace kifuwarabe_shogithink.pure.accessor
                 yomiIbashoBan.ToSitdown_Koma(Med_Koma.ToRaion(PureMemory.kifu_aiteban), PureMemory.ssss_bbBase_idosaki11_himodukiKanmanZasi);
             }
 
-            if (flag.HasFlag(SasiteType.N02_BottiKanmanSasi))
+            if (flag.HasFlag(MoveType.N02_BottiKanmanSasi))
             {
                 // 移動先
                 PureMemory.ssss_bbBase_idosaki12_bottiKanmanZasi.Set(BitboardsOmatome.bb_boardArea);
@@ -564,7 +564,7 @@ namespace kifuwarabe_shogithink.pure.accessor
                 PureMemory.ssss_bbBase_idosaki12_bottiKanmanZasi.Sitdown(PureMemory.hot_bb_checkerAr[PureMemory.kifu_nTeban]); // 返討手　は除外するぜ☆（＾▽＾）
             }
 
-            if (flag.HasFlag(SasiteType.N03_BottiKanmanDa))
+            if (flag.HasFlag(MoveType.N03_BottiKanmanDa))
             {
                 // 持ち駒
                 PureMemory.ssss_bbBase_idosaki13_bottiKanmanDa.Set(BitboardsOmatome.bb_boardArea);
@@ -574,7 +574,7 @@ namespace kifuwarabe_shogithink.pure.accessor
                 yomiKikiBan.ToSitdown_BBKikiZenbu(PureMemory.kifu_aiteban, PureMemory.ssss_bbBase_idosaki13_bottiKanmanDa);// 敵の利きが利いていない場所☆（＾▽＾）
             }
 
-            if (flag.HasFlag(SasiteType.N04_SuteKanmanSasi))
+            if (flag.HasFlag(MoveType.N04_SuteKanmanSasi))
             {
                 PureMemory.ssss_bbBase_idosaki14_suteKanmanZasi.Set(BitboardsOmatome.bb_boardArea);
                 yomiIbashoBan.ToSitdown_KomaZenbu(PureMemory.kifu_teban, PureMemory.ssss_bbBase_idosaki14_suteKanmanZasi);// 味方の駒があるところには移動できないぜ☆（＾▽＾）
@@ -583,7 +583,7 @@ namespace kifuwarabe_shogithink.pure.accessor
                 PureMemory.ssss_bbBase_idosaki14_suteKanmanZasi.Sitdown(PureMemory.hot_bb_checkerAr[PureMemory.kifu_nTeban]); // 返討手　は除外するぜ☆（＾▽＾）
             }
 
-            if (flag.HasFlag(SasiteType.N05_SuteKanmanDa))
+            if (flag.HasFlag(MoveType.N05_SuteKanmanDa))
             {
                 PureMemory.ssss_bbBase_idosaki15_suteKanmanDa.Set(BitboardsOmatome.bb_boardArea);
                 yomiIbashoBan.ToSitdown_KomaZenbu(Taikyokusya.T1, PureMemory.ssss_bbBase_idosaki15_suteKanmanDa);// 味方の駒がない升
@@ -637,11 +637,11 @@ namespace kifuwarabe_shogithink.pure.accessor
 #endif
                 // */
 
-                Array.Copy(PureMemory.ssss_sasitelistBad[PureMemory.tnsk_fukasa].list_sasite, 0, PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].list_sasite, PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].listCount, PureMemory.ssss_sasitelistBad[PureMemory.tnsk_fukasa].listCount);
-                Array.Copy(PureMemory.ssss_sasitelistBad[PureMemory.tnsk_fukasa].list_sasiteType, 0, PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].list_sasiteType, PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].listCount, PureMemory.ssss_sasitelistBad[PureMemory.tnsk_fukasa].listCount);
+                Array.Copy(PureMemory.ssss_sasitelistBad[PureMemory.tnsk_fukasa].moveList, 0, PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].moveList, PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].listCount, PureMemory.ssss_sasitelistBad[PureMemory.tnsk_fukasa].listCount);
+                Array.Copy(PureMemory.ssss_sasitelistBad[PureMemory.tnsk_fukasa].moveTypeList, 0, PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].moveTypeList, PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].listCount, PureMemory.ssss_sasitelistBad[PureMemory.tnsk_fukasa].listCount);
                 PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].listCount += PureMemory.ssss_sasitelistBad[PureMemory.tnsk_fukasa].listCount;
-                Array.Clear(PureMemory.ssss_sasitelistBad[PureMemory.tnsk_fukasa].list_sasite, 0, PureMemory.ssss_sasitelistBad[PureMemory.tnsk_fukasa].listCount);
-                Array.Clear(PureMemory.ssss_sasitelistBad[PureMemory.tnsk_fukasa].list_sasiteType, 0, PureMemory.ssss_sasitelistBad[PureMemory.tnsk_fukasa].listCount);
+                Array.Clear(PureMemory.ssss_sasitelistBad[PureMemory.tnsk_fukasa].moveList, 0, PureMemory.ssss_sasitelistBad[PureMemory.tnsk_fukasa].listCount);
+                Array.Clear(PureMemory.ssss_sasitelistBad[PureMemory.tnsk_fukasa].moveTypeList, 0, PureMemory.ssss_sasitelistBad[PureMemory.tnsk_fukasa].listCount);
                 PureMemory.ssss_sasitelistBad[PureMemory.tnsk_fukasa].listCount = 0;
             }
         }
@@ -650,7 +650,7 @@ namespace kifuwarabe_shogithink.pure.accessor
         {
             if (PureMemory.ssss_genk_tume1) { MoveGenAccessor.Clear_Sasitelist(); }//他の指し手を消し飛ばすぜ☆（＾▽＾）
 
-            Move ss = Conv_Sasite.ToSasite_01b_NariSasi(PureMemory.ssss_ugoki_ms_src, PureMemory.ssss_ugoki_ms_dst);
+            Move ss = AbstractConvMove.ToSasite_01b_NariSasi(PureMemory.ssss_ugoki_ms_src, PureMemory.ssss_ugoki_ms_dst);
             Debug.Assert(Move.Toryo != ss, "");
             PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].AddList(ss, PureMemory.ssss_ugoki_kakuteiSsType);
         }
@@ -658,14 +658,14 @@ namespace kifuwarabe_shogithink.pure.accessor
         {
             if (PureMemory.ssss_genk_tume1) { MoveGenAccessor.Clear_Sasitelist(); }//他の指し手を消し飛ばすぜ☆（＾▽＾）
 
-            Move ss = Conv_Sasite.ToSasite_01a_NarazuSasi(PureMemory.ssss_ugoki_ms_src, PureMemory.ssss_ugoki_ms_dst);
+            Move ss = AbstractConvMove.ToSasite_01a_NarazuSasi(PureMemory.ssss_ugoki_ms_src, PureMemory.ssss_ugoki_ms_dst);
             Debug.Assert(Move.Toryo != ss, "");
             PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].AddList(ss, PureMemory.ssss_ugoki_kakuteiSsType);
         }
 
         public static void AddSasite_NarazuGoodXorBad()
         {
-            Move ss = Conv_Sasite.ToSasite_01a_NarazuSasi(PureMemory.ssss_ugoki_ms_src, PureMemory.ssss_ugoki_ms_dst);
+            Move ss = AbstractConvMove.ToSasite_01a_NarazuSasi(PureMemory.ssss_ugoki_ms_src, PureMemory.ssss_ugoki_ms_dst);
 
             if (PureMemory.ssss_genk_tume1) { MoveGenAccessor.Clear_Sasitelist(); }//他の指し手を消し飛ばすぜ☆（＾▽＾）
 
@@ -678,7 +678,7 @@ namespace kifuwarabe_shogithink.pure.accessor
         }
         public static void AddSasite_NariGoodXorBad()
         {
-            Move ss = Conv_Sasite.ToSasite_01b_NariSasi(PureMemory.ssss_ugoki_ms_src, PureMemory.ssss_ugoki_ms_dst);
+            Move ss = AbstractConvMove.ToSasite_01b_NariSasi(PureMemory.ssss_ugoki_ms_src, PureMemory.ssss_ugoki_ms_dst);
 
             if (PureMemory.ssss_genk_tume1) { MoveGenAccessor.Clear_Sasitelist(); }//他の指し手を消し飛ばすぜ☆（＾▽＾）
 
@@ -696,7 +696,7 @@ namespace kifuwarabe_shogithink.pure.accessor
         {
             if (PureMemory.ssss_genk_tume1) { MoveGenAccessor.Clear_Sasitelist(); }//他の指し手を消し飛ばすぜ☆（＾▽＾）
 
-            Move ss = Conv_Sasite.ToSasite_01c_Utta(PureMemory.ssss_ugoki_ms_dst, PureMemory.ssss_mot_mks);
+            Move ss = AbstractConvMove.ToSasite_01c_Utta(PureMemory.ssss_ugoki_ms_dst, PureMemory.ssss_mot_mks);
             Debug.Assert(Move.Toryo != ss, "");
             PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].AddList(ss, PureMemory.ssss_ugoki_kakuteiSsType);
         }

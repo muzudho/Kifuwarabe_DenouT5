@@ -118,12 +118,12 @@ namespace kifuwarabe_shogiwin.consolegame.console
 
                         //#if DEBUG
                         //                        CommandK.Ky(isSfen, "ky fen", gky, syuturyoku);// 参考：改造FEN表示
-                        //                        CommandS.Sasite_cmd(isSfen, "sasite", gky, syuturyoku);// 参考：指し手表示
+                        //                        CommandS.Sasite_cmd(isSfen, "move", gky, syuturyoku);// 参考：指し手表示
                         //                        if (false){
                         //                            SpkShogiban.HyojiKomanoIbasho(gky.ky.shogiban, syuturyoku);// 参考：駒の表示
                         //                            SpkShogiban.HyojiKomanoKikiSu(gky.ky.shogiban, syuturyoku);// 参考：利きの数
                         //                        }
-                        //                        CommandS.Sasite_cmd(isSfen, "sasite seisei", gky, syuturyoku);// 参考：指し手表示 詳細
+                        //                        CommandS.Sasite_cmd(isSfen, "move seisei", gky, syuturyoku);// 参考：指し手表示 詳細
                         //                        Util_Machine.Flush(syuturyoku);
                         //#endif
 
@@ -342,7 +342,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
                 }
                 isKyokumenEcho1 = true;
             }
-            else if (caret == cmdline.IndexOf("sasite", caret)) {
+            else if (caret == cmdline.IndexOf("move", caret)) {
                 if (CommandS.TryFail_Sasite_cmd(cmdline, hyoji))
                 {
                     return Pure.FailTrue("TryFail_Sasite_cmd");

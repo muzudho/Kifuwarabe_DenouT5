@@ -862,17 +862,17 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                 Util_Logger.WriteLine("posp>");
                 Util_Logger.WriteLine(ApplicationImpl.Kyokumen.Setumei());
 
-                Sasite ss = Conv_Sasite.ToSasite((Masu)7, (Masu)4, Komasyurui.H, Komasyurui.H, Komasyurui.H);
+                Move ss = AbstractConvSasite.ToSasite((Masu)7, (Masu)4, Komasyurui.H, Komasyurui.H, Komasyurui.H);
                 Debug.Assert((int)ss != -1, "");
 
-                Util_Logger.WriteLine("> " + Conv_Sasite.Setumei_Fen(ss));
-                Util_Logger.WriteLine("src masu > " + Conv_Sasite.GetSrcMasu(ss));
-                Util_Logger.WriteLine("src suji > " + Conv_Kihon.ToAlphabetLarge(Conv_Sasite.GetSrcSuji(ss)));
-                Util_Logger.WriteLine("src dan  > " + Conv_Sasite.GetSrcDan(ss));
-                Util_Logger.WriteLine("src uttKs> " + Conv_Komasyurui.Setumei(Conv_Sasite.GetUttaKomasyurui(ss)));
-                Util_Logger.WriteLine("dst masu > " + Conv_Sasite.GetDstMasu(ss));
-                Util_Logger.WriteLine("dst suji > " + Conv_Kihon.ToAlphabetLarge(Conv_Sasite.GetDstSuji(ss)));
-                Util_Logger.WriteLine("dst dan  > " + Conv_Sasite.GetDstDan(ss));
+                Util_Logger.WriteLine("> " + AbstractConvSasite.Setumei_Fen(ss));
+                Util_Logger.WriteLine("src masu > " + AbstractConvSasite.GetSrcMasu(ss));
+                Util_Logger.WriteLine("src suji > " + Conv_Kihon.ToAlphabetLarge(AbstractConvSasite.GetSrcSuji(ss)));
+                Util_Logger.WriteLine("src dan  > " + AbstractConvSasite.GetSrcDan(ss));
+                Util_Logger.WriteLine("src uttKs> " + Conv_Komasyurui.Setumei(AbstractConvSasite.GetUttaKomasyurui(ss)));
+                Util_Logger.WriteLine("dst masu > " + AbstractConvSasite.GetDstMasu(ss));
+                Util_Logger.WriteLine("dst suji > " + Conv_Kihon.ToAlphabetLarge(AbstractConvSasite.GetDstSuji(ss)));
+                Util_Logger.WriteLine("dst dan  > " + AbstractConvSasite.GetDstDan(ss));
                 Util_Logger.WriteLine("torareta > " + Conv_Komasyurui.Setumei(ApplicationImpl.Kyokumen.Konoteme.ToraretaKs));
 
                 Nanteme nanteme = new NantemeImpl();

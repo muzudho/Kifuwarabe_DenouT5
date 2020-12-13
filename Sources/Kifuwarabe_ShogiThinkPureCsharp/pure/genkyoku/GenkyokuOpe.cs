@@ -8,7 +8,7 @@ using kifuwarabe_shogithink.pure.logger;
 using kifuwarabe_shogithink.pure.software;
 using System;
 using System.Diagnostics;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.listen.genkyoku;
 using System.Collections.Generic;
 #else
@@ -19,7 +19,7 @@ using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.conv.genkyoku.play;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.software;
 using System.Diagnostics;
 #endif
@@ -597,7 +597,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
             if (Move.Toryo == ss) { reason = MoveMatigaiRiyu.Karappo; return true; }// 投了はＯＫだぜ☆（＾～＾）
 
             // 打つ駒調べ
-            MotigomaSyurui mksUtta = Conv_Sasite.GetUttaKomasyurui(ss);// 打った駒の種類
+            MotigomaSyurui mksUtta = AbstractConvMove.GetUttaKomasyurui(ss);// 打った駒の種類
             bool utta = MotigomaSyurui.Yososu != mksUtta;
             if (utta)
             {
@@ -611,7 +611,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
             }
 
             // 移動先、打つ先　調べ☆
-            Masu ms_dst = Conv_Sasite.GetDstMasu_WithoutErrorCheck((int)ss); // 移動先升
+            Masu ms_dst = AbstractConvMove.GetDstMasu_WithoutErrorCheck((int)ss); // 移動先升
             if (!Conv_Masu.IsBanjo(ms_dst))
             {
                 // 盤外に移動しようとしたぜ☆（＾～＾）
@@ -643,7 +643,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
             }
             else
             {
-                Masu ms_src = Conv_Sasite.GetSrcMasu_WithoutErrorCheck((int)ss); // 移動先升
+                Masu ms_src = AbstractConvMove.GetSrcMasu_WithoutErrorCheck((int)ss); // 移動先升
                 km_src = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma(ms_src);
                 Taikyokusya tai_srcKm = Med_Koma.KomaToTaikyokusya(km_src);
                 if (km_src == Koma.Kuhaku)
@@ -680,7 +680,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
 
 
             // 成り調べ
-            if (Conv_Sasite.IsNatta(ss))//成りを指示した場合
+            if (AbstractConvMove.IsNatta(ss))//成りを指示した場合
             {
                 switch (PureSettei.gameRule)
                 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace kifuwarabe_shogithink.pure.sasite
+namespace kifuwarabe_shogithink.pure.move
 {
     /// <summary>
     /// ２進数各桁
@@ -12,7 +12,7 @@ namespace kifuwarabe_shogithink.pure.sasite
     /// 3 … ぼっち or 捨て or 紐づき
     /// </summary>
     [Flags]
-    public enum SasiteType
+    public enum MoveType
     {
         /// <summary>
         /// そもそも指し手に当てはまらない、あるいは項目を使わない場合☆

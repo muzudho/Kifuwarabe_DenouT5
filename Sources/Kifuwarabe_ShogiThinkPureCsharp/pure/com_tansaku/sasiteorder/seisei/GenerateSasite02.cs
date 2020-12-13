@@ -3,14 +3,14 @@ using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using System.Diagnostics;
 #else
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using System.Diagnostics;
 #endif
 
@@ -208,7 +208,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
             {
                 // らいおんをキャッチする手は、１つ見つければＯＫだぜ☆（＾～＾）
 
-                if (SasiteType.N17_RaionCatchChosa == PureMemory.ssss_ugoki_kakuteiSsType)
+                if (MoveType.N17_RaionCatchChosa == PureMemory.ssss_ugoki_kakuteiSsType)
                 {
                     // 調査するだけ☆　らいおんキャッチできることが分かったので終了☆（＾～＾）
                     PureMemory.hot_raionCatchChosaAr[PureMemory.kifu_nTeban] = true;
@@ -223,7 +223,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
             {
                 // らいおんをキャッチする手は、１つ見つければＯＫだぜ☆（＾～＾）
 
-                if (SasiteType.N17_RaionCatchChosa == PureMemory.ssss_ugoki_kakuteiSsType)
+                if (MoveType.N17_RaionCatchChosa == PureMemory.ssss_ugoki_kakuteiSsType)
                 {
                     // 調査するだけ☆　らいおんキャッチできることが分かったので終了☆（＾～＾）
                     PureMemory.hot_raionCatchChosaAr[PureMemory.kifu_nTeban] = true;
@@ -249,7 +249,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
             {
                 // らいおんをキャッチする手は、１つ見つければＯＫだぜ☆（＾～＾）
 
-                if (SasiteType.N17_RaionCatchChosa == PureMemory.ssss_ugoki_kakuteiSsType)
+                if (MoveType.N17_RaionCatchChosa == PureMemory.ssss_ugoki_kakuteiSsType)
                 {
                     // 調査するだけ☆　らいおんキャッチできることが分かったので終了☆（＾～＾）
                     PureMemory.hot_raionCatchChosaAr[PureMemory.kifu_nTeban] = true;

@@ -11,11 +11,11 @@ using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.conv.genkyoku.play;
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using System.Diagnostics;
 #endif
 
-namespace kifuwarabe_shogithink.pure.sasite
+namespace kifuwarabe_shogithink.pure.move
 {
     public static class DoSasiteOpe
     {
@@ -30,7 +30,7 @@ namespace kifuwarabe_shogithink.pure.sasite
         /// <param name="ss">指し手☆</param>
         public static bool TryFail_DoSasite_All(
             Move ss,
-            SasiteType ssType
+            MoveType ssType
 #if DEBUG
             , FenSyurui f
             , IDebugMojiretu reigai1
@@ -58,7 +58,7 @@ namespace kifuwarabe_shogithink.pure.sasite
             Debug.Assert(Conv_Masu.IsBanjoOrError(PureMemory.dmv_ms_t1), "");
             Debug.Assert(Conv_Koma.IsOkOrKuhaku(PureMemory.dmv_km_c), "Ｄｏ");
 
-            if (Conv_Sasite.IsUtta(ss))
+            if (AbstractConvMove.IsUtta(ss))
             {
                 // 打った場合☆（＾～＾）
 

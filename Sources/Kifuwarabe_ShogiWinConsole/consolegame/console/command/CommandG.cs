@@ -80,7 +80,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
             {
                 Util_Machine.Flush(hyoji);
                 hyoji.Append("bestmove ");
-                SpkSasite.AppendFenTo(f, PureMemory.tnsk_kohoSasite, hyoji);
+                SpkMove.AppendFenTo(f, PureMemory.tnsk_kohoSasite, hyoji);
                 hyoji.AppendLine();
                 Util_Machine.Flush_USI(hyoji);
             }

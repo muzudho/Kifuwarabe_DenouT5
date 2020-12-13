@@ -1,10 +1,10 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.control;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using System;
 #else
 using kifuwarabe_shogithink.pure.control;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using System;
 #endif
 

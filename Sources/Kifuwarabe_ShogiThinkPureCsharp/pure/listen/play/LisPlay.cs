@@ -3,7 +3,7 @@ using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.conv.genkyoku.play;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen.ky;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using kifuwarabe_shogithink.fen;
@@ -12,7 +12,7 @@ using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.conv.genkyoku.play;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen.ky;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using kifuwarabe_shogithink.fen;
@@ -68,7 +68,7 @@ namespace kifuwarabe_shogithink.pure.listen.play
             // カーソルを進めるぜ☆（＾～＾）
             Util_String.SkipMatch(line, ref caret, m);
 
-            // 符号１「B4B3」を元に、sasite を作ります。
+            // 符号１「B4B3」を元に、move を作ります。
             out_sasite = TryFen_Sasite2(
                 f,
                 m.Groups[1].Value,
@@ -114,7 +114,7 @@ namespace kifuwarabe_shogithink.pure.listen.play
             if ("*" == str2)
             {
                 // 駒台から打ったぜ☆
-                return Conv_Sasite.ToSasite_01c_Utta(
+                return AbstractConvMove.ToSasite_01c_Utta(
                     dstMs,
                     Med_Parser.MojiToMotikomaSyurui(f, str1)//打った駒
                 );
@@ -124,11 +124,11 @@ namespace kifuwarabe_shogithink.pure.listen.play
                 // 盤上の駒を動かしたぜ☆
                 if (natta)
                 {
-                    return Conv_Sasite.ToSasite_01b_NariSasi(Med_Parser.FenSujiDan_Masu(f, str1, str2), dstMs);
+                    return AbstractConvMove.ToSasite_01b_NariSasi(Med_Parser.FenSujiDan_Masu(f, str1, str2), dstMs);
                 }
                 else
                 {
-                    return Conv_Sasite.ToSasite_01a_NarazuSasi(Med_Parser.FenSujiDan_Masu(f, str1, str2), dstMs);
+                    return AbstractConvMove.ToSasite_01a_NarazuSasi(Med_Parser.FenSujiDan_Masu(f, str1, str2), dstMs);
                 }
             }
         }

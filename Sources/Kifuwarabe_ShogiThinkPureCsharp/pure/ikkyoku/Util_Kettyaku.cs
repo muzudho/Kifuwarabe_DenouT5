@@ -1,11 +1,11 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.logger;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.accessor;
 #else
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 #endif
 
 namespace kifuwarabe_shogithink.pure.ikkyoku

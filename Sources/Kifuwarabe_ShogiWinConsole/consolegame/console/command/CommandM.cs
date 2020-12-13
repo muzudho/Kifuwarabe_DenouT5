@@ -46,7 +46,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
             hyoji.AppendLine("do toryo        : 投了するぜ☆");
 #if DEBUG
             hyoji.AppendLine("dump            : 変数をたくさん出力☆");
-            hyoji.AppendLine("dump sasite     : 指し手生成の変数をたくさん出力☆");
+            hyoji.AppendLine("dump move     : 指し手生成の変数をたくさん出力☆");
 #endif
 
             hyoji.AppendLine("fugo suji       : 筋符号一覧表☆");
@@ -102,10 +102,10 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
 
             hyoji.AppendLine("quit            : アプリケーション終了。保存してないものは保存する☆");
             hyoji.AppendLine("rnd             : ランダムに１手指すぜ☆");
-            hyoji.AppendLine("sasite          : 味方の指し手を一覧するぜ☆");
-            hyoji.AppendLine("sasite 1361     : 指し手コード 1361 を翻訳するぜ☆");
-            hyoji.AppendLine("sasite seisei   : 指し手生成のテストだぜ☆");
-            hyoji.AppendLine("sasite su       : 指し手の件数を出力するぜ☆");
+            hyoji.AppendLine("move          : 味方の指し手を一覧するぜ☆");
+            hyoji.AppendLine("move 1361     : 指し手コード 1361 を翻訳するぜ☆");
+            hyoji.AppendLine("move seisei   : 指し手生成のテストだぜ☆");
+            hyoji.AppendLine("move su       : 指し手の件数を出力するぜ☆");
             hyoji.AppendLine("set             : 設定を一覧表示するぜ☆");
             hyoji.AppendLine("set BanTateHaba 9       : 盤の縦幅☆");
             hyoji.AppendLine("set BanYokoHaba 9       : 盤の横幅☆");

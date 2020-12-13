@@ -40,7 +40,7 @@ namespace kifuwarabe_shogiwin.project
             // 「手目」に関する情報
             hyoji.AppendLine(string.Format("curr[{0,3}] next: ss={1} ssType={2} cap={3}",
                 PureMemory.kifu_endTeme,
-                SpkSasite.ToString_Fen(PureSettei.fenSyurui, PureMemory.kifu_sasiteAr[PureMemory.kifu_endTeme]),
+                SpkMove.ToString_Fen(PureSettei.fenSyurui, PureMemory.kifu_sasiteAr[PureMemory.kifu_endTeme]),
                 PureMemory.kifu_sasiteTypeAr[PureMemory.kifu_endTeme],
                 PureMemory.kifu_toraretaKsAr[PureMemory.kifu_endTeme]
                 ));

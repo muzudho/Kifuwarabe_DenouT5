@@ -2,11 +2,11 @@
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.com.sasiteorder;
 using kifuwarabe_shogithink.pure.logger;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 #else
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.com.sasiteorder;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 #endif
 
 namespace kifuwarabe_shogithink.pure.ikkyoku
@@ -21,13 +21,13 @@ namespace kifuwarabe_shogithink.pure.ikkyoku
         {
             //グローバル変数に指し手がセットされるぜ☆（＾▽＾）
             PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-            MoveGenAccessor.DoSasitePickerBegin(SasiteType.N21_All);
-            SasitePicker01.SasitePicker_01(SasiteType.N21_All, true);
+            MoveGenAccessor.DoSasitePickerBegin(MoveType.N21_All);
+            SasitePicker01.SasitePicker_01(MoveType.N21_All, true);
 
             if (PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL].listCount < 1)
             {
                 Move ss = Move.Toryo;
-                SasiteType ssType = SasiteType.N00_Karappo;
+                MoveType ssType = MoveType.N00_Karappo;
                 if (DoSasiteOpe.TryFail_DoSasite_All(ss, ssType
 #if DEBUG
                     , PureSettei.fenSyurui
@@ -48,9 +48,9 @@ namespace kifuwarabe_shogithink.pure.ikkyoku
             }
             else
             {
-                Move ss = PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL].list_sasite[PureSettei.random.Next(PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL].listCount)];
+                Move ss = PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL].moveList[PureSettei.random.Next(PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL].listCount)];
 
-                SasiteType ssType = SasiteType.N00_Karappo;
+                MoveType ssType = MoveType.N00_Karappo;
                 if (DoSasiteOpe.TryFail_DoSasite_All( ss, ssType
 #if DEBUG
                     , PureSettei.fenSyurui

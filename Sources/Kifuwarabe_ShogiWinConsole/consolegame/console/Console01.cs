@@ -5,7 +5,7 @@ using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.genkyoku;
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.logger;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.play;
 using kifuwarabe_shogiwin.consolegame.machine;
 using kifuwarabe_shogiwin.speak;
@@ -17,7 +17,7 @@ using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.genkyoku;
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.logger;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.play;
 using kifuwarabe_shogiwin.consolegame.machine;
 using kifuwarabe_shogiwin.speak;
@@ -113,7 +113,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
                         else if (!Console02.ParseDoSasite(out Move inputSasite))
                         {
                             // do コマンドのパースエラー表示（コンソール・ゲーム用）☆（＾～＾）
-                            SpkSasite.AppendSetumei(MoveMatigaiRiyu.ParameterSyosikiMatigai, hyoji);
+                            SpkMove.AppendSetumei(MoveMatigaiRiyu.ParameterSyosikiMatigai, hyoji);
                             hyoji.AppendLine();
                             Util_Machine.Flush(hyoji);
                             CommandlineState.CommentCommandline();// コマンドの誤発動防止
@@ -121,7 +121,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
                         else if (!GenkyokuOpe.CanDoSasite( inputSasite, out MoveMatigaiRiyu reason))// 指し手の合否チェック
                         {
                             // イリーガル・ムーブなどの、エラー理由表示☆（＾～＾）
-                            SpkSasite.AppendSetumei(reason, hyoji);
+                            SpkMove.AppendSetumei(reason, hyoji);
                             hyoji.AppendLine();
                             Util_Machine.Flush(hyoji);
                         }

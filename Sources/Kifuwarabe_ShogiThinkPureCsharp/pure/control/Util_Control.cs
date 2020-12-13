@@ -3,13 +3,13 @@ using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.listen;
 using kifuwarabe_shogithink.pure.logger;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 #else
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.listen;
 using kifuwarabe_shogithink.pure.logger;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 #endif
 
 namespace kifuwarabe_shogithink.pure.control
@@ -65,7 +65,7 @@ namespace kifuwarabe_shogithink.pure.control
             )
         {
 
-            SasiteType ssType = SasiteType.N00_Karappo;
+            MoveType ssType = MoveType.N00_Karappo;
             if (DoSasiteOpe.TryFail_DoSasite_All(ss, ssType
 #if DEBUG
                 , f
@@ -97,7 +97,7 @@ namespace kifuwarabe_shogithink.pure.control
 //        /// <param name="hyoji"></param>
 //        /// <returns></returns>
 //        public static bool TryFail_Go(
-//            out Sasite out_sasite,
+//            out Move out_sasite,
 //            Genkyoku gky,
 //            out HyokatiAb out_hyokatiUtiwake,
 //            IHyojiMojiretu hyoji

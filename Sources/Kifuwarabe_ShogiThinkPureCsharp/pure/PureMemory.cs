@@ -6,7 +6,7 @@ using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.ky.tobikiki;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.logger;
 using System;
 #else
@@ -18,7 +18,7 @@ using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.ky.tobikiki;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using System;
 #endif
 
@@ -53,8 +53,8 @@ namespace kifuwarabe_shogithink.pure
             #endregion
 
             #region 指し手生成（シングルスレッドを想定）
-            ssss_sasitelist = new Sasitelist[PureMemory.SAIDAI_SASITE_FUKASA];
-            ssss_sasitelistBad = new Sasitelist[PureMemory.SAIDAI_SASITE_FUKASA];
+            ssss_sasitelist = new MoveList[PureMemory.MaxMoveDepth];
+            ssss_sasitelistBad = new MoveList[PureMemory.MaxMoveDepth];
             ssss_bbVar_idosaki_narazu = new Bitboard();
             ssss_bbVar_idosaki_nari = new Bitboard();
             ssssTmp_bbVar_ibasho = new Bitboard();
@@ -77,10 +77,10 @@ namespace kifuwarabe_shogithink.pure
 
             ssss_sasitePickerWoNuketaBasho1 = "";
 
-            for (int iFukasa = 0; iFukasa < PureMemory.SAIDAI_SASITE_FUKASA; iFukasa++)
+            for (int iFukasa = 0; iFukasa < PureMemory.MaxMoveDepth; iFukasa++)
             {
-                ssss_sasitelist[iFukasa] = new Sasitelist();
-                ssss_sasitelistBad[iFukasa] = new Sasitelist();
+                ssss_sasitelist[iFukasa] = new MoveList();
+                ssss_sasitelistBad[iFukasa] = new MoveList();
             }
             #endregion
 
@@ -91,7 +91,7 @@ namespace kifuwarabe_shogithink.pure
             kifu_syokiKyokumenFen = "";
             kifu_toraretaKsAr = new Komasyurui[KIFU_SIZE];
             kifu_sasiteAr = new Move[KIFU_SIZE];
-            kifu_sasiteTypeAr = new SasiteType[KIFU_SIZE];
+            kifu_sasiteTypeAr = new MoveType[KIFU_SIZE];
             // 手番☆（＾～＾）
             kifu_tebanAr_ = new Taikyokusya[KIFU_SIZE];
             kifu_aitebanAr_ = new Taikyokusya[KIFU_SIZE];
@@ -193,7 +193,7 @@ namespace kifuwarabe_shogithink.pure
         /// <summary>
         /// 128手先も読まないだろう☆（＾～＾）
         /// </summary>
-        public const int SAIDAI_SASITE_FUKASA = 128;
+        public const int MaxMoveDepth = 128;
         /// <summary>
         /// 合法手の数は、
         /// どうぶつしょうぎ では 38、
@@ -201,17 +201,17 @@ namespace kifuwarabe_shogithink.pure
         /// 駒の動かし方や、駒の数などルールを　ころころ　変えることもあるが、
         /// 600 もあれば十分だろう☆（＾▽＾）
         /// </summary>
-        public const int SAIDAI_SASITE = 600; // 132 ざっくり、盤上12升×8方向 ＋ 持ち駒3種類×12升
+        public const int MaxMove = 600; // 132 ざっくり、盤上12升×8方向 ＋ 持ち駒3種類×12升
         /// <summary>
         /// [深さ]
         /// 指し手リスト☆（＾～＾）
         /// </summary>
-        public static Sasitelist[] ssss_sasitelist { get; set; }
+        public static MoveList[] ssss_sasitelist { get; set; }
         /// <summary>
         /// [深さ]
         /// 悪い指し手は、一旦　こっちに入れるんだぜ☆（＾～＾）あとで Sasitelist に入れなおすぜ☆（＾～＾）
         /// </summary>
-        public static Sasitelist[] ssss_sasitelistBad { get; set; }
+        public static MoveList[] ssss_sasitelistBad { get; set; }
         /// <summary>
         /// 勝負無し
         /// </summary>
@@ -254,11 +254,11 @@ namespace kifuwarabe_shogithink.pure
         /// <summary>
         /// 確定指し手タイプ
         /// </summary>
-        public static SasiteType ssss_ugoki_kakuteiSsType { get { return ssss_ugoki_kakuteiSsType_; } }
+        public static MoveType ssss_ugoki_kakuteiSsType { get { return ssss_ugoki_kakuteiSsType_; } }
         public static bool ssss_ugoki_kakuteiDa { get { return ssss_ugoki_kakuteiDa_; } }
-        static SasiteType ssss_ugoki_kakuteiSsType_;
+        static MoveType ssss_ugoki_kakuteiSsType_;
         static bool ssss_ugoki_kakuteiDa_;
-        public static void SetKakuteiSsType(SasiteType ssType, bool da)
+        public static void SetKakuteiSsType(MoveType ssType, bool da)
         {
             ssss_ugoki_kakuteiSsType_ = ssType;
             ssss_ugoki_kakuteiDa_ = da;
@@ -351,18 +351,18 @@ namespace kifuwarabe_shogithink.pure
                 return ssss_genk_misuteru_ && ssss_genk_nigasu_;
             }            
         }
-        public static SasiteType GetAkusyuType_Ssss()
+        public static MoveType GetAkusyuType_Ssss()
         {
-            SasiteType ssType = SasiteType.N00_Karappo;
+            MoveType ssType = MoveType.N00_Karappo;
 
             if (ssss_genk_misuteru)
             {
-                ssType |= SasiteType.N20_Option_MisuteruUgoki;
+                ssType |= MoveType.N20_Option_MisuteruUgoki;
             }
 
             if (ssss_genk_nigasu)
             {
-                 ssType |= SasiteType.N19_Option_NigemitiWoAkeruTe;
+                 ssType |= MoveType.N19_Option_NigemitiWoAkeruTe;
             }
 
             return ssType;
@@ -503,7 +503,7 @@ namespace kifuwarabe_shogithink.pure
         /// <summary>
         /// 読み筋に指し手タイプを出すことで、デバッグに使うために覚えておくぜ☆（＾▽＾）
         /// </summary>
-        public static readonly SasiteType[] kifu_sasiteTypeAr;
+        public static readonly MoveType[] kifu_sasiteTypeAr;
         /// <summary>
         /// 手番☆（＾～＾）
         /// </summary>

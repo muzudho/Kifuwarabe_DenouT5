@@ -4,7 +4,7 @@ using kifuwarabe_shogithink.pure.conv.genkyoku.play;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen.ky;
 using kifuwarabe_shogithink.pure.logger;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.ky;
 using kifuwarabe_shogithink.pure.control;
 using System;
@@ -16,7 +16,7 @@ using kifuwarabe_shogithink.pure.conv.genkyoku.play;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen.ky;
 using kifuwarabe_shogithink.pure.logger;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.ky;
 using System;
 using kifuwarabe_shogithink.fen;
@@ -24,7 +24,7 @@ using kifuwarabe_shogithink.fen;
 
 namespace kifuwarabe_shogithink.pure.speak.play
 {
-    public static class SpkSasite
+    public static class SpkMove
     {
         public static string ToString_Fen(FenSyurui f, Move ss)
         {
@@ -43,7 +43,7 @@ namespace kifuwarabe_shogithink.pure.speak.play
             int v = (int)ss;//バリュー（ビットフィールド）
 
             // 打った駒の種類（取り出すのは難しいので関数を使う☆）
-            MotigomaSyurui mksUtta = Conv_Sasite.GetUttaKomasyurui(ss);
+            MotigomaSyurui mksUtta = AbstractConvMove.GetUttaKomasyurui(ss);
 
             if (MotigomaSyurui.Yososu != mksUtta)//指定があれば
             {
@@ -63,12 +63,12 @@ namespace kifuwarabe_shogithink.pure.speak.play
                 {
                     case FenSyurui.sfe_n:
                         {
-                            syuturyoku.Append(PureSettei.banYokoHaba + 1 - Conv_Sasite.GetSrcSuji_WithoutErrorCheck(v));
+                            syuturyoku.Append(PureSettei.banYokoHaba + 1 - AbstractConvMove.GetSrcSuji_WithoutErrorCheck(v));
                         }
                         break;
                     case FenSyurui.dfe_n:
                         {
-                            syuturyoku.Append(Conv_Kihon.ToAlphabetLarge(Conv_Sasite.GetSrcSuji_WithoutErrorCheck(v)));
+                            syuturyoku.Append(Conv_Kihon.ToAlphabetLarge(AbstractConvMove.GetSrcSuji_WithoutErrorCheck(v)));
                         }
                         break;
                     default:
@@ -83,12 +83,12 @@ namespace kifuwarabe_shogithink.pure.speak.play
                 {
                     case FenSyurui.sfe_n:
                         {
-                            syuturyoku.Append(Conv_Kihon.ToAlphabetSmall(Conv_Sasite.GetSrcDan_WithoutErrorCheck(v)));
+                            syuturyoku.Append(Conv_Kihon.ToAlphabetSmall(AbstractConvMove.GetSrcDan_WithoutErrorCheck(v)));
                         }
                         break;
                     case FenSyurui.dfe_n:
                         {
-                            syuturyoku.Append(Conv_Sasite.GetSrcDan_WithoutErrorCheck(v).ToString());
+                            syuturyoku.Append(AbstractConvMove.GetSrcDan_WithoutErrorCheck(v).ToString());
                         }
                         break;
                     default:
@@ -104,12 +104,12 @@ namespace kifuwarabe_shogithink.pure.speak.play
             {
                 case FenSyurui.sfe_n:
                     {
-                        syuturyoku.Append(PureSettei.banYokoHaba + 1 - Conv_Sasite.GetDstSuji_WithoutErrorCheck(v));
+                        syuturyoku.Append(PureSettei.banYokoHaba + 1 - AbstractConvMove.GetDstSuji_WithoutErrorCheck(v));
                     }
                     break;
                 case FenSyurui.dfe_n:
                     {
-                        syuturyoku.Append(Conv_Kihon.ToAlphabetLarge(Conv_Sasite.GetDstSuji_WithoutErrorCheck(v)));
+                        syuturyoku.Append(Conv_Kihon.ToAlphabetLarge(AbstractConvMove.GetDstSuji_WithoutErrorCheck(v)));
                     }
                     break;
                 default:
@@ -124,12 +124,12 @@ namespace kifuwarabe_shogithink.pure.speak.play
             {
                 case FenSyurui.sfe_n:
                     {
-                        syuturyoku.Append(Conv_Kihon.ToAlphabetSmall(Conv_Sasite.GetDstDan_WithoutErrorCheck(v)));
+                        syuturyoku.Append(Conv_Kihon.ToAlphabetSmall(AbstractConvMove.GetDstDan_WithoutErrorCheck(v)));
                     }
                     break;
                 case FenSyurui.dfe_n:
                     {
-                        syuturyoku.Append(Conv_Sasite.GetDstDan_WithoutErrorCheck(v).ToString());
+                        syuturyoku.Append(AbstractConvMove.GetDstDan_WithoutErrorCheck(v).ToString());
                     }
                     break;
                 default:

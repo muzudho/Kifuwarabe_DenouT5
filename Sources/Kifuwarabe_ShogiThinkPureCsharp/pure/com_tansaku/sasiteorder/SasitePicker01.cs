@@ -5,7 +5,7 @@ using kifuwarabe_shogithink.pure.com.sasiteorder.seisei;
 using kifuwarabe_shogithink.pure.conv.genkyoku.play;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using System;
 using System.Diagnostics;
 #else
@@ -15,7 +15,7 @@ using kifuwarabe_shogithink.pure.com.sasiteorder.seisei;
 using kifuwarabe_shogithink.pure.conv.genkyoku.play;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using System;
 using System.Diagnostics;
 #endif
@@ -32,7 +32,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
         /// <param name="flag"></param>
         /// <param name="sasitelistMerge"></param>
         /// <returns></returns>
-        public static void SasitePicker_01(SasiteType flag, bool sasitelistMerge)
+        public static void SasitePicker_01(MoveType flag, bool sasitelistMerge)
         {
             #region 前準備
             Debug.Assert(0 <= PureMemory.tnsk_fukasa && PureMemory.tnsk_fukasa < PureMemory.ssss_sasitelist.Length, "");
@@ -84,7 +84,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
             //────────────────────────────────────────
             // ・正当防衛　専門なので、逃げろ手　がある場合は　駒を取りにいかないぜ☆　らいおんが取れても取らないぜ☆
             // ・返り討ちで斬った相手が　らいおん　かどうかまで見てないぜ☆　らいおん斬ったらラッキーということで☆（＾～＾）
-            PureMemory.SetKakuteiSsType( SasiteType.N13_HippakuKaeriutiTe, false);
+            PureMemory.SetKakuteiSsType( MoveType.N13_HippakuKaeriutiTe, false);
             if (flag.HasFlag(PureMemory.ssss_ugoki_kakuteiSsType))
             {
                 if (!PureMemory.ssss_bbBase_idosaki01_checker.IsEmpty())
@@ -153,7 +153,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
 
             #region 余裕返討手
             // 逃げることもできるが、王手をしてきた駒を取る手☆
-            PureMemory.SetKakuteiSsType( SasiteType.N14_YoyuKaeriutiTe, false);
+            PureMemory.SetKakuteiSsType( MoveType.N14_YoyuKaeriutiTe, false);
             if (flag.HasFlag(PureMemory.ssss_ugoki_kakuteiSsType))
             {
                 if (!PureMemory.ssss_bbBase_idosaki01_checker.IsEmpty())
@@ -217,14 +217,14 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
             //────────────────────────────────────────
             // どの　指し手タイプ　でも、らいおんを捕まえる手があるかどうかは調べたいぜ☆（＾～＾）
             {
-                if (flag.HasFlag(SasiteType.N12_RaionCatch))
+                if (flag.HasFlag(MoveType.N12_RaionCatch))
                 {
-                    PureMemory.SetKakuteiSsType( SasiteType.N12_RaionCatch,false);
+                    PureMemory.SetKakuteiSsType( MoveType.N12_RaionCatch,false);
                 }
                 else
                 {
                     // らいおんを取る手　以外のタイプでは、調査するだけだぜ☆（＾～＾）
-                    PureMemory.SetKakuteiSsType( SasiteType.N17_RaionCatchChosa,false);
+                    PureMemory.SetKakuteiSsType( MoveType.N17_RaionCatchChosa,false);
                     PureMemory.hot_raionCatchChosaAr[PureMemory.kifu_nTeban] = false;
                 }
 
@@ -302,7 +302,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                                                // FIXME: 返討手は、「らいおんを取れ」じゃないんだぜ☆（＞＿＜）
                 )
             {
-                PureMemory.SetKakuteiSsType( SasiteType.N15_NigeroTe,false);
+                PureMemory.SetKakuteiSsType( MoveType.N15_NigeroTe,false);
                 if (flag.HasFlag(PureMemory.ssss_ugoki_kakuteiSsType))
                 {
                     if (!PureMemory.ssss_bbBase_idosaki03_nigeroTe.IsEmpty())
@@ -314,10 +314,10 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
 
                         while (PureMemory.ssss_bbVar_idosaki_narazu.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_dst))
                         {
-                            Move ss = Conv_Sasite.ToSasite_01a_NarazuSasi(
+                            Move ss = AbstractConvMove.ToSasite_01a_NarazuSasi(
                                 PureMemory.hot_ms_raionAr[PureMemory.kifu_nTeban], PureMemory.ssss_ugoki_ms_dst
                                 );
-                            PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].AddList(ss, SasiteType.N15_NigeroTe);
+                            PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].AddList(ss, MoveType.N15_NigeroTe);
                         }
                     }
                 }
@@ -332,7 +332,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
             //────────────────────────────────────────
             // トライする手☆　（らいおん　のみ）
             //────────────────────────────────────────
-            PureMemory.SetKakuteiSsType( SasiteType.N16_Try,false);
+            PureMemory.SetKakuteiSsType( MoveType.N16_Try,false);
             if (flag.HasFlag(PureMemory.ssss_ugoki_kakuteiSsType))
             {
                 if (!PureMemory.ssss_bbBase_idosaki04_try.IsEmpty())
@@ -374,7 +374,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
             //────────────────────────────────────────
             // 駒を取る手☆（Good 逃げ道を開ける手、Bad 逃げ道を開けない手）
             //────────────────────────────────────────
-            PureMemory.SetKakuteiSsType( SasiteType.N01_KomaWoToruTe,false);
+            PureMemory.SetKakuteiSsType( MoveType.N01_KomaWoToruTe,false);
             if (flag.HasFlag(PureMemory.ssss_ugoki_kakuteiSsType))
             {
                 if (!PureMemory.ssss_bbBase_idosaki05_komaWoToruTe.IsEmpty())
@@ -435,7 +435,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
             #endregion
 
             #region GoodBadマージ　駒を取る手（Good 逃げ道を開ける手、Bad 逃げ道を開けない手）
-            if (flag.HasFlag(SasiteType.N18_Option_MergeGoodBad))
+            if (flag.HasFlag(MoveType.N18_Option_MergeGoodBad))
             {
                 // マージをするぜ☆（＾▽＾）
                 MoveGenAccessor.MergeSasitelistGoodBad(
@@ -452,7 +452,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
             //────────────────────────────────────────
             // 紐付王手指☆（Good 逃げ道を開けない手、Bad 逃げ道を開ける手）（らいおんを除く☆）
             //────────────────────────────────────────
-            PureMemory.SetKakuteiSsType( SasiteType.N10_HimozukiOteZasi,false);
+            PureMemory.SetKakuteiSsType( MoveType.N10_HimozukiOteZasi,false);
             if (flag.HasFlag(PureMemory.ssss_ugoki_kakuteiSsType))
             {
                 if (!PureMemory.ssss_bbBase_idosaki06_himodukiOteZasi.IsEmpty())
@@ -514,7 +514,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
             //────────────────────────────────────────
             // 捨て王手指☆（らいおんを除く☆）
             //────────────────────────────────────────
-            PureMemory.SetKakuteiSsType( SasiteType.N06_SuteOteZasi,false);
+            PureMemory.SetKakuteiSsType( MoveType.N06_SuteOteZasi,false);
             if (flag.HasFlag(PureMemory.ssss_ugoki_kakuteiSsType))
             {
                 if (!PureMemory.ssss_bbBase_idosaki07_suteOteZasi.IsEmpty())
@@ -579,7 +579,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                 //────────────────────────────────────────
                 // 捨て王手打☆
                 //────────────────────────────────────────
-                PureMemory.SetKakuteiSsType( SasiteType.N07_SuteOteDa,true);
+                PureMemory.SetKakuteiSsType( MoveType.N07_SuteOteDa,true);
                 if (flag.HasFlag(PureMemory.ssss_ugoki_kakuteiSsType))
                 {
                     // 2016-12-22 捨てだからと言って、紐を付けないとは限らない☆
@@ -615,7 +615,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                 //────────────────────────────────────────
                 // 紐付王手打☆
                 //────────────────────────────────────────
-                PureMemory.SetKakuteiSsType( SasiteType.N11_HimodukiOteDa,true);
+                PureMemory.SetKakuteiSsType( MoveType.N11_HimodukiOteDa,true);
                 if (flag.HasFlag(PureMemory.ssss_ugoki_kakuteiSsType))
                 {
                     if (!PureMemory.ssss_bbBase_idosaki09_himodukiOteDa.IsEmpty())
@@ -649,7 +649,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
             }
 
             #region GoodBadマージ　紐付王手指（Good 逃げ道を開ける手、Bad 逃げ道を開けない手）
-            if (flag.HasFlag(SasiteType.N18_Option_MergeGoodBad))
+            if (flag.HasFlag(MoveType.N18_Option_MergeGoodBad))
             {
                 // マージをするぜ☆（＾▽＾）
                 MoveGenAccessor.MergeSasitelistGoodBad(
@@ -666,7 +666,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                 //────────────────────────────────────────
                 // 紐付緩慢打☆
                 //────────────────────────────────────────
-                if (flag.HasFlag(SasiteType.N09_HimotukiKanmanDa))
+                if (flag.HasFlag(MoveType.N09_HimotukiKanmanDa))
                 {
                     // 持ち駒
                     PureMemory.ssss_bbBase_idosaki10_himodukiKanmanDa.Set(BitboardsOmatome.bb_boardArea);
@@ -674,7 +674,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                     PureMemory.gky_ky.shogiban.yomiIbashoBan_yoko.ToSitdown_KomaZenbu(Taikyokusya.T2, PureMemory.ssss_bbBase_idosaki10_himodukiKanmanDa);
                     yomiKikiBan.ToSelect_BBKikiZenbu(PureMemory.kifu_teban, PureMemory.ssss_bbBase_idosaki10_himodukiKanmanDa);// 紐を付ける☆
                 }
-                PureMemory.SetKakuteiSsType( SasiteType.N09_HimotukiKanmanDa,true);
+                PureMemory.SetKakuteiSsType( MoveType.N09_HimotukiKanmanDa,true);
                 if (flag.HasFlag(PureMemory.ssss_ugoki_kakuteiSsType))
                 {
                     //utuBB &= ~ky.BB_KikiZenbu[(int)相手];// 敵の利きが利いていない場所に打つぜ☆（＾▽＾）
@@ -715,7 +715,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
             //────────────────────────────────────────
             // 紐付緩慢指☆（Good 仲間を見捨てない動き、Bad 仲間を見捨てる動き）
             //────────────────────────────────────────
-            PureMemory.SetKakuteiSsType( SasiteType.N08_HimotukiKanmanSasi,false);
+            PureMemory.SetKakuteiSsType( MoveType.N08_HimotukiKanmanSasi,false);
             if (flag.HasFlag(PureMemory.ssss_ugoki_kakuteiSsType))
             {
                 if (!PureMemory.ssss_bbBase_idosaki11_himodukiKanmanZasi.IsEmpty())
@@ -780,7 +780,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
             //────────────────────────────────────────
             // ぼっち緩慢指☆（Good 仲間を見捨てない動き、Bad 仲間を見捨てる動き）
             //────────────────────────────────────────
-            PureMemory.SetKakuteiSsType( SasiteType.N02_BottiKanmanSasi,false);
+            PureMemory.SetKakuteiSsType( MoveType.N02_BottiKanmanSasi,false);
             if (flag.HasFlag(PureMemory.ssss_ugoki_kakuteiSsType))
             {
                 if (!PureMemory.ssss_bbBase_idosaki12_bottiKanmanZasi.IsEmpty())
@@ -837,7 +837,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                 //────────────────────────────────────────
                 // ぼっち緩慢打☆（Good 仲間を見捨てない動き、Bad 仲間を見捨てる動き）
                 //────────────────────────────────────────
-                PureMemory.SetKakuteiSsType( SasiteType.N03_BottiKanmanDa,true);
+                PureMemory.SetKakuteiSsType( MoveType.N03_BottiKanmanDa,true);
                 if (flag.HasFlag(PureMemory.ssss_ugoki_kakuteiSsType))
                 {
                     if (!PureMemory.ssss_bbBase_idosaki13_bottiKanmanDa.IsEmpty())
@@ -868,7 +868,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
 
 
             #region GoodBadマージ　ぼっち緩慢指☆（Good 仲間を見捨てない動き、Bad 仲間を見捨てる動き）
-            if (flag.HasFlag(SasiteType.N18_Option_MergeGoodBad))
+            if (flag.HasFlag(MoveType.N18_Option_MergeGoodBad))
             {
                 // マージをするぜ☆（＾▽＾）
                 MoveGenAccessor.MergeSasitelistGoodBad(
@@ -883,7 +883,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
             //────────────────────────────────────────
             // 捨て緩慢指☆（タダ捨て指し）
             //────────────────────────────────────────
-            PureMemory.SetKakuteiSsType( SasiteType.N04_SuteKanmanSasi,false);
+            PureMemory.SetKakuteiSsType( MoveType.N04_SuteKanmanSasi,false);
             if (flag.HasFlag(PureMemory.ssss_ugoki_kakuteiSsType))
             {
                 if (!PureMemory.ssss_bbBase_idosaki14_suteKanmanZasi.IsEmpty())
@@ -949,7 +949,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                 //────────────────────────────────────────
                 // 捨て緩慢打（タダ捨て打）☆
                 //────────────────────────────────────────
-                PureMemory.SetKakuteiSsType( SasiteType.N05_SuteKanmanDa,true);
+                PureMemory.SetKakuteiSsType( MoveType.N05_SuteKanmanDa,true);
                 if (flag.HasFlag(PureMemory.ssss_ugoki_kakuteiSsType))
                 {
                     if (!PureMemory.ssss_bbBase_idosaki15_suteKanmanDa.IsEmpty())

@@ -7,7 +7,7 @@ using kifuwarabe_shogithink.pure.listen;
 using kifuwarabe_shogithink.pure.listen.ky;
 using kifuwarabe_shogithink.pure.listen.play;
 using kifuwarabe_shogithink.pure.logger;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogiwin.project.speak;
 using kifuwarabe_shogiwin.speak.ban;
 using kifuwarabe_shogithink.fen;
@@ -20,7 +20,7 @@ using kifuwarabe_shogithink.pure.listen;
 using kifuwarabe_shogithink.pure.listen.ky;
 using kifuwarabe_shogithink.pure.listen.play;
 using kifuwarabe_shogithink.pure.logger;
-using kifuwarabe_shogithink.pure.sasite;
+using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogiwin.speak.ban;
 using kifuwarabe_shogithink.fen;
 #endif
@@ -184,7 +184,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                         return Pure.FailTrue(string.Format("指し手のパースエラー [{0}]", line));
                     }
 
-                    MoveGenAccessor.AddKifu(ss, SasiteType.N00_Karappo, PureMemory.dmv_ks_c);
+                    MoveGenAccessor.AddKifu(ss, MoveType.N00_Karappo, PureMemory.dmv_ks_c);
 //#if DEBUG
 //                    Util_Tansaku.Snapshot("DoSub(1)", (IDebugMojiretu)hyoji);
 //#endif
@@ -210,7 +210,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                     return Pure.FailTrue(string.Format( "指し手のパースエラー [{0}]", line));
                 }
 
-                SasiteType ssType = SasiteType.N00_Karappo;
+                MoveType ssType = MoveType.N00_Karappo;
                 if (DoSasiteOpe.TryFail_DoSasite_All(
                     ss,
                     ssType
@@ -265,7 +265,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                     return ret;
                 }
 #if DEBUG
-                else if (Util_String.MatchAndNext("sasite", line, ref caret))
+                else if (Util_String.MatchAndNext("move", line, ref caret))
                 {
                     SasiteSeiseiAccessor.DumpSasiteSeisei(hyoji);
                 }

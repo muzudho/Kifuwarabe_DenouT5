@@ -1,6 +1,6 @@
 ﻿using kifuwarabe_shogithink.pure.com.sasiteorder;
 
-namespace kifuwarabe_shogithink.pure.sasite
+namespace kifuwarabe_shogithink.pure.move
 {
 
     /// <summary>
