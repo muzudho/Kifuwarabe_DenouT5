@@ -3,13 +3,13 @@ using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 #else
 using kifuwarabe_shogithink.pure.accessor;
-using kifuwarabe_shogithink.pure.com.sasiteorder.hioute;
+using kifuwarabe_shogithink.pure.com.MoveOrder.hioute;
 using kifuwarabe_shogithink.pure.genkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 #endif
 
-namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
+namespace kifuwarabe_shogithink.pure.com.MoveOrder.seisei
 {
     /// <summary>
     /// 経験

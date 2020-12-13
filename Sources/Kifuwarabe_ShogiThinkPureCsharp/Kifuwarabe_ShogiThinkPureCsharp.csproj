@@ -72,11 +72,11 @@
     <Compile Include="pure\com_tansaku\TansakuSyuryoRiyu.cs" />
     <Compile Include="pure\control\FenSyurui.cs" />
     <Compile Include="pure\ky\MotigomaSyurui.cs" />
-    <Compile Include="pure\listen\sasite\LisSasiteType.cs" />
+    <Compile Include="pure\listen\sasite\LisMoveType.cs" />
     <Compile Include="pure\com_tansaku\sasiteorder\hioute\Util_Hioute.cs" />
     <Compile Include="pure\com_tansaku\sasiteorder\Tume1Hantei.cs" />
-    <Compile Include="pure\com_tansaku\sasiteorder\SasitePicker01.cs" />
-    <Compile Include="pure\com_tansaku\sasiteorder\seisei\GenerateSasite03.cs" />
+    <Compile Include="pure\com_tansaku\sasiteorder\MovePicker01.cs" />
+    <Compile Include="pure\com_tansaku\sasiteorder\seisei\GenerateMove03.cs" />
     <Compile Include="pure\logger\KarappoMojiretuImpl.cs" />
     <Compile Include="pure\sasite\MoveType.cs" />
     <Compile Include="pure\com_tansaku\Util_Joho.cs" />
@@ -84,9 +84,9 @@
     <Compile Include="pure\Interproject.cs" />
     <Compile Include="pure\com_tansaku\sasiteorder\seisei\NigemitiWatasuKansyu.cs" />
     <Compile Include="pure\com_tansaku\ComSettei.cs" />
-    <Compile Include="pure\sasite\DoSasiteOpe.cs" />
-    <Compile Include="pure\sasite\UndoSasiteOpe.cs" />
-    <Compile Include="pure\sasite\UtilSasite.cs" />
+    <Compile Include="pure\sasite\DoMoveOpe.cs" />
+    <Compile Include="pure\sasite\UndoMoveOpe.cs" />
+    <Compile Include="pure\sasite\UtilMove.cs" />
     <Compile Include="pure\ky\bb\JisyoWord.cs" />
     <Compile Include="pure\ky\bb\RotateChikanhyo.cs" />
     <Compile Include="pure\ky\bb\Util_Tobikiki.cs" />
@@ -118,7 +118,7 @@
     <Compile Include="pure\speak\ky\bb\SpkBitboard.cs" />
     <Compile Include="EnumExtensions.cs" />
     <Compile Include="fen\Itiran_FenParser.cs" />
-    <Compile Include="pure\listen\ikkyoku\LisSasiteCharacter.cs" />
+    <Compile Include="pure\listen\ikkyoku\LisMoveCharacter.cs" />
     <Compile Include="pure\listen\ky\LisBitboard.cs" />
     <Compile Include="pure\listen\ky\LisKoma.cs" />
     <Compile Include="pure\listen\ky\LisMotiKoma.cs" />
@@ -134,7 +134,7 @@
     <Compile Include="pure\ky\bb\Util_Bitboard.cs" />
     <Compile Include="pure\speak\genkyoku\SpkGenkyokuOpe.cs" />
     <Compile Include="pure\ikkyoku\Util_Kettyaku.cs" />
-    <Compile Include="pure\com_tansaku\sasiteorder\seisei\GenerateSasite02.cs" />
+    <Compile Include="pure\com_tansaku\sasiteorder\seisei\GenerateMove02.cs" />
     <Compile Include="pure\listen\Util_String.cs" />
     <Compile Include="pure\ikkyoku\Util_Taikyoku.cs" />
     <Compile Include="pure\com_tansaku\Util_Tansaku.cs" />

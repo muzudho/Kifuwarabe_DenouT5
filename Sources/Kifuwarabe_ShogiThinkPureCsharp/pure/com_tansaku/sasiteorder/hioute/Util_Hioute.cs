@@ -14,7 +14,7 @@ using System.Diagnostics;
 #endif
 
 
-namespace kifuwarabe_shogithink.pure.com.sasiteorder.hioute
+namespace kifuwarabe_shogithink.pure.com.MoveOrder.hioute
 {
     /// <summary>
     /// 王手されるのはいやだな☆（＾▽＾）ｗｗｗ

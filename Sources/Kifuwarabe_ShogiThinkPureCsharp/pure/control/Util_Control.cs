@@ -57,7 +57,7 @@ namespace kifuwarabe_shogithink.pure.control
                     );
         }
 
-        public static bool Try_DoSasite_Input(Move ss
+        public static bool Try_DoMove_Input(Move ss
 #if DEBUG
             , FenSyurui f
             , IDebugMojiretu dbg_reigai
@@ -66,12 +66,12 @@ namespace kifuwarabe_shogithink.pure.control
         {
 
             MoveType ssType = MoveType.N00_Karappo;
-            if (DoSasiteOpe.TryFail_DoSasite_All(ss, ssType
+            if (DoMoveOpe.TryFailDoMoveAll(ss, ssType
 #if DEBUG
                 , f
                 , dbg_reigai
                 , false
-                , "Try_DoSasite_Input"
+                , "Try_DoMove_Input"
 #endif
                 ))
             {
@@ -80,7 +80,7 @@ namespace kifuwarabe_shogithink.pure.control
             // 手番を進めるぜ☆（＾～＾）
             MoveGenAccessor.AddKifu(ss, ssType, PureMemory.dmv_ks_c);
 //#if DEBUG
-//            Util_Tansaku.Snapshot("Try_DoSasite_Input", dbg_reigai);
+//            Util_Tansaku.Snapshot("Try_DoMove_Input", dbg_reigai);
 //#endif
             return true;
         }
@@ -97,13 +97,13 @@ namespace kifuwarabe_shogithink.pure.control
 //        /// <param name="hyoji"></param>
 //        /// <returns></returns>
 //        public static bool TryFail_Go(
-//            out Move out_sasite,
+//            out Move out_move,
 //            Genkyoku gky,
 //            out HyokatiAb out_hyokatiUtiwake,
 //            IHyojiMojiretu hyoji
 //            )
 //        {
-//            if (Util_Tansaku.TryFail_Go(out out_sasite, gky, out out_hyokatiUtiwake, hyoji))
+//            if (Util_Tansaku.TryFail_Go(out out_move, gky, out out_hyokatiUtiwake, hyoji))
 //            {
 //                return Pure.FailTrue("Util_Tansaku.Try_Go"
 //#if DEBUG
@@ -127,7 +127,7 @@ namespace kifuwarabe_shogithink.pure.control
             int caret = 0;
             if (Util_String.MatchAndNext("undo", line, ref caret))
             {
-                if (UndoSasiteOpe.TryFail_UndoSasite(
+                if (UndoMoveOpe.TryFailUndoMove(
 #if DEBUG
                     PureSettei.fenSyurui
                     , (IDebugMojiretu)hyoji

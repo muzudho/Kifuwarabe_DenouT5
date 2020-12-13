@@ -14,7 +14,7 @@ using kifuwarabe_shogithink.pure.move;
 using System.Diagnostics;
 #endif
 
-namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
+namespace kifuwarabe_shogithink.pure.com.MoveOrder.seisei
 {
 
     /// <summary>
@@ -23,7 +23,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
     /// 優先度
     /// （１）らいおんキャッチ☆
     /// </summary>
-    public abstract class GenerateSasite02
+    public abstract class GenerateMove02
     {
         #region 逼迫返討手
         // らいおん　逼迫返討手
@@ -34,7 +34,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                 // 逃げられない状況で、王手が掛かけられていれば☆（＾～＾）
 
                 // らいおん　が自分から利きに飛び込むのを防ぐぜ☆（＾▽＾）ｗｗｗ
-                GenerateSasite03.KesuRaionJisatusyu();
+                GenerateMove03.KesuRaionJisatusyu();
 
                 while (PureMemory.ssss_bbVar_idosaki_narazu.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_dst))
                 {
@@ -45,7 +45,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     );
 
                     // チェッカーを取るような全ての手は、選択肢に入れるぜ☆（＾～＾）
-                    MoveGenAccessor.AddSasite_NarazuGood();
+                    MoveGenAccessor.AddMoveNarazuGood();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -68,7 +68,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     );
 
                     // チェッカーを取るような全ての手は、選択肢に入れるぜ☆（＾～＾）
-                    MoveGenAccessor.AddSasite_NariGood();
+                    MoveGenAccessor.AddMoveNariGood();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -82,7 +82,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     );
 
                     // チェッカーを取るような全ての手は、選択肢に入れるぜ☆（＾～＾）
-                    MoveGenAccessor.AddSasite_NarazuGood();
+                    MoveGenAccessor.AddMoveNarazuGood();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -104,7 +104,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     );
 
                     // チェッカーを取るような全ての手は、選択肢に入れるぜ☆（＾～＾）
-                    MoveGenAccessor.AddSasite_NarazuGood();
+                    MoveGenAccessor.AddMoveNarazuGood();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -121,7 +121,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                 // 逃げられない状況で、王手が掛かけられている……、というわけでもなければ☆（＾～＾）
 
                 // らいおん　が自分から　相手の利きに飛び込むのを防ぐぜ☆（＾▽＾）ｗｗｗ
-                GenerateSasite03.KesuRaionJisatusyu();
+                GenerateMove03.KesuRaionJisatusyu();
 
                 while (PureMemory.ssss_bbVar_idosaki_narazu.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_dst))
                 {
@@ -132,7 +132,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     );
 
                     // チェッカーを取るような全ての手は、選択肢に入れるぜ☆（＾～＾）
-                    MoveGenAccessor.AddSasite_NarazuGood();
+                    MoveGenAccessor.AddMoveNarazuGood();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -155,7 +155,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     );
 
                     // チェッカーを取るような全ての手は、選択肢に入れるぜ☆（＾～＾）
-                    MoveGenAccessor.AddSasite_NariGood();
+                    MoveGenAccessor.AddMoveNariGood();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -169,7 +169,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     );
 
                     // チェッカーを取るような全ての手は、選択肢に入れるぜ☆（＾～＾）
-                    MoveGenAccessor.AddSasite_NarazuGood();
+                    MoveGenAccessor.AddMoveNarazuGood();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -191,7 +191,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     );
 
                     // チェッカーを取るような全ての手は、選択肢に入れるぜ☆（＾～＾）
-                    MoveGenAccessor.AddSasite_NarazuGood();
+                    MoveGenAccessor.AddMoveNarazuGood();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -215,7 +215,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     return;
                 }
 
-                MoveGenAccessor.AddSasite_NariGood();
+                MoveGenAccessor.AddMoveNariGood();
                 PureMemory.SetTansakuUtikiri(TansakuUtikiri.RaionTukamaeta);
             }
 
@@ -235,7 +235,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     false,
                     NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                     );
-                MoveGenAccessor.AddSasite_NarazuGoodXorBad();
+                MoveGenAccessor.AddMoveNarazuGoodXorBad();
                 PureMemory.SetTansakuUtikiri(TansakuUtikiri.RaionTukamaeta);
             }
         }
@@ -261,7 +261,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     false,
                     NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                     );
-                MoveGenAccessor.AddSasite_NarazuGoodXorBad();
+                MoveGenAccessor.AddMoveNarazuGoodXorBad();
                 PureMemory.SetTansakuUtikiri(TansakuUtikiri.RaionTukamaeta);
             }
         }
@@ -272,7 +272,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
         public static void GenerateRaion_Try()
         {
             // らいおん　が自分から　相手の利きに飛び込むのを防ぐぜ☆（＾▽＾）ｗｗｗ
-            GenerateSasite03.KesuRaionJisatusyu();
+            GenerateMove03.KesuRaionJisatusyu();
 
             Pure.Sc.Push("トライ", PureMemory.tnsk_hyoji);
             Bitboard trysakiBB = Util_TryRule.GetTrySaki(PureMemory.ssss_bbVar_idosaki_narazu, PureMemory.ssss_ugoki_ms_src);
@@ -280,7 +280,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
 
             if (trysakiBB.GetNTZ(out PureMemory.ssss_ugoki_ms_dst))// トライはどこか１つ行けばいい
             {
-                MoveGenAccessor.AddSasite_NarazuGood();
+                MoveGenAccessor.AddMoveNarazuGood();
                 PureMemory.SetTansakuUtikiri(TansakuUtikiri.Try);
             }
         }
@@ -291,10 +291,10 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
         public static void GenerateRaion_KomaWoToruTe()
         {
             // トライ　は除外するぜ☆（＾▽＾）
-            GenerateSasite03.KesuTry();
+            GenerateMove03.KesuTry();
 
             // らいおん　が自分から　相手の利きに飛び込むのを防ぐぜ☆（＾▽＾）ｗｗｗ
-            GenerateSasite03.KesuRaionJisatusyu();
+            GenerateMove03.KesuRaionJisatusyu();
 
             while (PureMemory.ssss_bbVar_idosaki_narazu.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_dst))
             {
@@ -306,7 +306,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                     );
 
-                MoveGenAccessor.AddSasite_NarazuGoodXorBad();
+                MoveGenAccessor.AddMoveNarazuGoodXorBad();
 
                 if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
             }
@@ -325,7 +325,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                     );
 
-                MoveGenAccessor.AddSasite_NariGoodXorBad();
+                MoveGenAccessor.AddMoveNariGoodXorBad();
 
                 if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
             }
@@ -340,7 +340,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                     );
 
-                MoveGenAccessor.AddSasite_NarazuGoodXorBad();
+                MoveGenAccessor.AddMoveNarazuGoodXorBad();
 
                 if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
             }
@@ -358,7 +358,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                     );
 
-                MoveGenAccessor.AddSasite_NarazuGoodXorBad();
+                MoveGenAccessor.AddMoveNarazuGoodXorBad();
 
                 if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
             }
@@ -371,19 +371,19 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
         public static void GenerateRaion_BottiKanmanZasi_HimodukiKanmanZasi()
         {
             // トライ　は除外するぜ☆（＾▽＾）
-            GenerateSasite03.KesuTry();
+            GenerateMove03.KesuTry();
             // らいおん　が自分から　相手の利きに飛び込むのを防ぐぜ☆（＾▽＾）ｗｗｗ
-            GenerateSasite03.KesuRaionJisatusyu();
+            GenerateMove03.KesuRaionJisatusyu();
 
             while (PureMemory.ssss_bbVar_idosaki_narazu.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_dst))// 立っているビットを降ろすぜ☆
             {
                 PureMemory.SetSsssGenk(
                     Tume1Hantei.CheckBegin_Tume1_BanjoKoma(),// 一手詰めルーチン☆
-                    GenerateSasite03.IsMisuteruUgoki(),
+                    GenerateMove03.IsMisuteruUgoki(),
                     false//逃げ道を開けて逃がすかどうかは判定しないぜ☆（＾～＾）
                     );
 
-                MoveGenAccessor.AddSasite_NarazuGoodXorBad();
+                MoveGenAccessor.AddMoveNarazuGoodXorBad();
 
                 if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
             }
@@ -392,21 +392,21 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
         public static void Generate02ZouKirinNado_bottiKanmanZasi_himodukiKanmanZasi()
         {
             // 王手も除外するぜ☆（＾▽＾）
-            GenerateSasite03.KesuOte();
+            GenerateMove03.KesuOte();
 
             while (PureMemory.ssss_bbVar_idosaki_narazu.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_dst))// 立っているビットを降ろすぜ☆
             {
                 // タダ捨てではない動きであることを判定するぜ☆（＾～＾）
-                if (!GenerateSasite03.TadasuteNoUgoki())
+                if (!GenerateMove03.TadasuteNoUgoki())
                 {
                     PureMemory.SetSsssGenk(
                         Tume1Hantei.CheckBegin_Tume1_BanjoKoma(),// 一手詰めルーチン☆
-                        GenerateSasite03.IsMisuteruUgoki(),
+                        GenerateMove03.IsMisuteruUgoki(),
                         false//逃げ道を開けて逃がすかどうかは判定しないぜ☆（＾～＾）
                         );
 
                     // 成らずの指しをまずリストへ☆（＾～＾）
-                    MoveGenAccessor.AddSasite_NarazuGoodXorBad();
+                    MoveGenAccessor.AddMoveNarazuGoodXorBad();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -416,20 +416,20 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
         public static void Generate02HiyokoNado_BottiKanmanZasi_HimodukiKanmanZasi()
         {
             // 王手も除外するぜ☆（＾▽＾）
-            GenerateSasite03.KesuOte();
+            GenerateMove03.KesuOte();
 
             // 成れる場合
             while (PureMemory.ssss_bbVar_idosaki_nari.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_dst))// 立っているビットを降ろすぜ☆
             {
-                if (!GenerateSasite03.TadasuteNoUgoki())// タダ捨てではない動きに限るぜ☆（＾▽＾）
+                if (!GenerateMove03.TadasuteNoUgoki())// タダ捨てではない動きに限るぜ☆（＾▽＾）
                 {
                     PureMemory.SetSsssGenk(
                         Tume1Hantei.CheckBegin_Tume1_BanjoKoma(),// 一手詰めルーチン☆
-                        GenerateSasite03.IsMisuteruUgoki(),
+                        GenerateMove03.IsMisuteruUgoki(),
                         false//逃げ道を開けて逃がすかどうかは判定しないぜ☆（＾～＾）
                     );
 
-                    MoveGenAccessor.AddSasite_NariGood();
+                    MoveGenAccessor.AddMoveNariGood();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -437,16 +437,16 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
 
             while (PureMemory.ssss_bbVar_idosaki_narazu.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_dst))// 立っているビットを降ろすぜ☆
             {
-                if (!GenerateSasite03.TadasuteNoUgoki())// タダ捨てではない動きに限るぜ☆（＾▽＾）
+                if (!GenerateMove03.TadasuteNoUgoki())// タダ捨てではない動きに限るぜ☆（＾▽＾）
                 {
                     // 一手詰めルーチン☆
                     PureMemory.SetSsssGenk(
                         Tume1Hantei.CheckBegin_Tume1_BanjoKoma(),
-                        GenerateSasite03.IsMisuteruUgoki(),
+                        GenerateMove03.IsMisuteruUgoki(),
                         false//逃げ道を開けて逃がすかどうかは判定しないぜ☆（＾～＾）
                     );
 
-                    MoveGenAccessor.AddSasite_NarazuGoodXorBad();
+                    MoveGenAccessor.AddMoveNarazuGoodXorBad();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -456,20 +456,20 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
         public static void Generate02NiwatoriNado_BottiKanmanZasi_HimodukiKanmanZasi()
         {
             // 王手も除外するぜ☆（＾▽＾）
-            GenerateSasite03.KesuOte();
+            GenerateMove03.KesuOte();
 
             while (PureMemory.ssss_bbVar_idosaki_narazu.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_dst))// 立っているビットを降ろすぜ☆
             {
-                if (!GenerateSasite03.TadasuteNoUgoki())// タダ捨てではない動きに限るぜ☆（＾▽＾）
+                if (!GenerateMove03.TadasuteNoUgoki())// タダ捨てではない動きに限るぜ☆（＾▽＾）
                 {
                     // 一手詰めルーチン☆
                     PureMemory.SetSsssGenk(
                         Tume1Hantei.CheckBegin_Tume1_BanjoKoma(),
-                        GenerateSasite03.IsMisuteruUgoki(),
+                        GenerateMove03.IsMisuteruUgoki(),
                         false//逃げ道を開けて逃がすかどうかは判定しないぜ☆（＾～＾）
                         );
 
-                    MoveGenAccessor.AddSasite_NarazuGoodXorBad();
+                    MoveGenAccessor.AddMoveNarazuGoodXorBad();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -482,14 +482,14 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
         public static void GenerateNk_HimodukiOteZasi()
         {
             // 王手だけに絞り込むぜ☆（＾～＾）
-            GenerateSasite03.SiborikomiOte();
+            GenerateMove03.SiborikomiOte();
             // 紐を付ける手に絞り込むぜ☆（＾～＾）
-            GenerateSasite03.SiborikomiHimoduke();
+            GenerateMove03.SiborikomiHimoduke();
 
             // 成れる場合
             while (PureMemory.ssss_bbVar_idosaki_nari.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_dst))// 立っているビットを降ろすぜ☆
             {
-                if (!GenerateSasite03.TadasuteNoUgoki())// タダ捨てではない動きに限る☆
+                if (!GenerateMove03.TadasuteNoUgoki())// タダ捨てではない動きに限る☆
                 {
                     PureMemory.SetSsssGenk(
                         Tume1Hantei.CheckBegin_Tume1_BanjoKoma(),// 一手詰めルーチン☆
@@ -497,7 +497,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                         NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                         );
 
-                    MoveGenAccessor.AddSasite_NariGoodXorBad();
+                    MoveGenAccessor.AddMoveNariGoodXorBad();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -505,7 +505,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
 
             while (PureMemory.ssss_bbVar_idosaki_narazu.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_dst))// 立っているビットを降ろすぜ☆
             {
-                if (!GenerateSasite03.TadasuteNoUgoki())// タダ捨てではない動きに限る☆
+                if (!GenerateMove03.TadasuteNoUgoki())// タダ捨てではない動きに限る☆
                 {
                     PureMemory.SetSsssGenk(
                         Tume1Hantei.CheckBegin_Tume1_BanjoKoma(),// 一手詰めルーチン☆
@@ -513,7 +513,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                         NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                         );
 
-                    MoveGenAccessor.AddSasite_NarazuGoodXorBad();
+                    MoveGenAccessor.AddMoveNarazuGoodXorBad();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -523,20 +523,20 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
         public static void GenerateXk_HimodukiOteZasi()
         {
             // 王手だけに絞り込むぜ☆（＾～＾）
-            GenerateSasite03.SiborikomiOte();
+            GenerateMove03.SiborikomiOte();
             // 紐を付ける手に絞り込むぜ☆（＾～＾）
-            GenerateSasite03.SiborikomiHimoduke();
+            GenerateMove03.SiborikomiHimoduke();
 
             while (PureMemory.ssss_bbVar_idosaki_narazu.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_dst))// 立っているビットを降ろすぜ☆
             {
-                if (!GenerateSasite03.TadasuteNoUgoki())// タダ捨てではない動きに限る☆
+                if (!GenerateMove03.TadasuteNoUgoki())// タダ捨てではない動きに限る☆
                 {
                     PureMemory.SetSsssGenk(
                         Tume1Hantei.CheckBegin_Tume1_BanjoKoma(),// 一手詰めルーチン☆
                         false,
                         NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                         );
-                    MoveGenAccessor.AddSasite_NarazuGoodXorBad();
+                    MoveGenAccessor.AddMoveNarazuGoodXorBad();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -549,14 +549,14 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
         public static void GenerateNk_SuteOteZasi()
         {
             // 王手に限る☆
-            GenerateSasite03.SiborikomiOte();
+            GenerateMove03.SiborikomiOte();
             // 紐を付けない☆
-            GenerateSasite03.KesuHimoduke();
+            GenerateMove03.KesuHimoduke();
 
             // 成れる場合
             while (PureMemory.ssss_bbVar_idosaki_nari.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_dst))// 立っているビットを降ろすぜ☆
             {
-                if (GenerateSasite03.TadasuteNoUgoki())// タダ捨ての動きに限る☆
+                if (GenerateMove03.TadasuteNoUgoki())// タダ捨ての動きに限る☆
                 {
                     PureMemory.SetSsssGenk(
                         Tume1Hantei.CheckBegin_Tume1_BanjoKoma(),// 一手詰めルーチン☆
@@ -564,7 +564,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                         NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                         );
 
-                    MoveGenAccessor.AddSasite_NariGoodXorBad();
+                    MoveGenAccessor.AddMoveNariGoodXorBad();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -572,7 +572,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
 
             while (PureMemory.ssss_bbVar_idosaki_narazu.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_dst))// 立っているビットを降ろすぜ☆
             {
-                if (GenerateSasite03.TadasuteNoUgoki())// タダ捨ての動きに限る☆
+                if (GenerateMove03.TadasuteNoUgoki())// タダ捨ての動きに限る☆
                 {
                     PureMemory.SetSsssGenk(
                         Tume1Hantei.CheckBegin_Tume1_BanjoKoma(),// 一手詰めルーチン☆
@@ -580,7 +580,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                         NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                         );
 
-                    MoveGenAccessor.AddSasite_NarazuGoodXorBad();
+                    MoveGenAccessor.AddMoveNarazuGoodXorBad();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -590,13 +590,13 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
         public static void GenerateNx_SuteOteZasi()
         {
             // 王手に限る☆
-            GenerateSasite03.SiborikomiOte();
+            GenerateMove03.SiborikomiOte();
             // 紐を付けない☆
-            GenerateSasite03.KesuHimoduke();
+            GenerateMove03.KesuHimoduke();
 
             while (PureMemory.ssss_bbVar_idosaki_narazu.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_dst))// 立っているビットを降ろすぜ☆
             {
-                if (GenerateSasite03.TadasuteNoUgoki())// タダ捨ての動きに限る☆
+                if (GenerateMove03.TadasuteNoUgoki())// タダ捨ての動きに限る☆
                 {
                     PureMemory.SetSsssGenk(
                         Tume1Hantei.CheckBegin_Tume1_BanjoKoma(),// 一手詰めルーチン☆
@@ -604,7 +604,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                         NigemitiWatasuKansyu.IsNigemitiWoAkeru()
                         );
 
-                    MoveGenAccessor.AddSasite_NarazuGoodXorBad();
+                    MoveGenAccessor.AddMoveNarazuGoodXorBad();
 
                     if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
                 }
@@ -617,34 +617,34 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
         public static void GenerateNk_SuteKanmanZasi()
         {
             // 王手も除外するぜ☆（＾▽＾）
-            GenerateSasite03.KesuOte();
+            GenerateMove03.KesuOte();
 
             // 成れる場合
             while (PureMemory.ssss_bbVar_idosaki_nari.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_dst))// 立っているビットを降ろすぜ☆
             {
-                if (GenerateSasite03.TadasuteNoUgoki())// 相手の利きがあって、自分を除いた味方の利きがない升　に限るぜ☆（＾▽＾）ｗｗｗ
+                if (GenerateMove03.TadasuteNoUgoki())// 相手の利きがあって、自分を除いた味方の利きがない升　に限るぜ☆（＾▽＾）ｗｗｗ
                 {
                     PureMemory.SetSsssGenk(
                         false,// タダ捨てに、一手詰めは無いだろう☆（*＾～＾*）
-                        GenerateSasite03.IsMisuteruUgoki(),
+                        GenerateMove03.IsMisuteruUgoki(),
                         false//逃げ道を開けて逃がすかどうかは判定しないぜ☆（＾～＾）
                         );
 
-                    MoveGenAccessor.AddSasite_NariGood();
+                    MoveGenAccessor.AddMoveNariGood();
                 }
             }
 
             while (PureMemory.ssss_bbVar_idosaki_narazu.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_dst))// 立っているビットを降ろすぜ☆
             {
-                if (GenerateSasite03.TadasuteNoUgoki())// 相手の利きがあって、自分を除いた味方の利きがない升　に限るぜ☆（＾▽＾）ｗｗｗ
+                if (GenerateMove03.TadasuteNoUgoki())// 相手の利きがあって、自分を除いた味方の利きがない升　に限るぜ☆（＾▽＾）ｗｗｗ
                 {
                     PureMemory.SetSsssGenk(
                         false,// タダ捨てに、一手詰めは無いだろう☆（*＾～＾*）
-                        GenerateSasite03.IsMisuteruUgoki(),
+                        GenerateMove03.IsMisuteruUgoki(),
                         false//逃げ道を開けて逃がすかどうかは判定しないぜ☆（＾～＾）
                         );
 
-                    MoveGenAccessor.AddSasite_NarazuGoodXorBad();
+                    MoveGenAccessor.AddMoveNarazuGoodXorBad();
                 }
             }
         }
@@ -654,19 +654,19 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
             Debug.Assert(Conv_Koma.IsOk(PureMemory.ssss_ugoki_km), "");
 
             // 王手も除外するぜ☆（＾▽＾）
-            GenerateSasite03.KesuOte();
+            GenerateMove03.KesuOte();
 
             while (PureMemory.ssss_bbVar_idosaki_narazu.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_dst))// 立っているビットを降ろすぜ☆
             {
-                if (GenerateSasite03.TadasuteNoUgoki())// 相手の利きがあって、自分を除いた味方の利きがない升　に限るぜ☆（＾▽＾）ｗｗｗ
+                if (GenerateMove03.TadasuteNoUgoki())// 相手の利きがあって、自分を除いた味方の利きがない升　に限るぜ☆（＾▽＾）ｗｗｗ
                 {
                     PureMemory.SetSsssGenk(
                         false,// タダ捨てに、一手詰めは無いだろう☆（*＾～＾*）
-                        GenerateSasite03.IsMisuteruUgoki(),
+                        GenerateMove03.IsMisuteruUgoki(),
                         false//逃げ道を開けて逃がすかどうかは判定しないぜ☆（＾～＾）
                         );
 
-                    MoveGenAccessor.AddSasite_NarazuGoodXorBad();
+                    MoveGenAccessor.AddMoveNarazuGoodXorBad();
                 }
             }
         }
@@ -674,7 +674,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
 
         #region 持ち駒を使った指し手生成
         /// <summary>
-        /// グローバル変数 Util_SasiteSeisei.Sasitelist[fukasa] に、指し手が追加されていくぜ☆（＾▽＾）
+        /// グローバル変数 Util_MoveSeisei.Movelist[fukasa] に、指し手が追加されていくぜ☆（＾▽＾）
         /// 紐付王手打
         /// </summary>
         /// <param name="mks"></param>
@@ -690,13 +690,13 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                     false // 持ち駒を打つのに、逃げ道を開けて逃がす動きも無いだろう☆（＾～＾）
                 );
 
-                MoveGenAccessor.AddSasite_UttaGood();
+                MoveGenAccessor.AddMoveUttaGood();
 
                 if (Tume1Hantei.CheckEnd_Tume1()) { break; }//終了☆
             }
         }
         /// <summary>
-        /// グローバル変数 Util_SasiteSeisei.Sasitelist[fukasa] に、指し手が追加されていくぜ☆（＾▽＾）
+        /// グローバル変数 Util_MoveSeisei.Movelist[fukasa] に、指し手が追加されていくぜ☆（＾▽＾）
         /// 捨て緩慢打（タダ捨て打）
         /// </summary>
         /// <param name="mks"></param>
@@ -706,7 +706,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
         {
             while (PureMemory.ssss_bbVar_idosaki_narazu.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_dst))// 立っているビットを降ろすぜ☆
             {
-                if (GenerateSasite03.TadasuteNoUgoki())// タダ捨ての動きに限る☆
+                if (GenerateMove03.TadasuteNoUgoki())// タダ捨ての動きに限る☆
                 {
                     PureMemory.SetSsssGenk(
                         false,// タダ捨てに、一手詰めは無いだろう☆（*＾～＾*）
@@ -714,7 +714,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
                         false // 持ち駒を打つのに、逃げ道を開けて逃がす動きも無いだろう☆（＾～＾）
                     );
                     
-                    MoveGenAccessor.AddSasite_UttaGood();
+                    MoveGenAccessor.AddMoveUttaGood();
                 }
             }
         }

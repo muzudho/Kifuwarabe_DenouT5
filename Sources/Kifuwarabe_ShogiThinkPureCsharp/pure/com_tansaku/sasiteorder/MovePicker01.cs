@@ -1,7 +1,7 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.accessor;
-using kifuwarabe_shogithink.pure.com.sasiteorder.hioute;
-using kifuwarabe_shogithink.pure.com.sasiteorder.seisei;
+using kifuwarabe_shogithink.pure.com.moveorder.hioute;
+using kifuwarabe_shogithink.pure.com.moveorder.seisei;
 using kifuwarabe_shogithink.pure.conv.genkyoku.play;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
@@ -10,8 +10,8 @@ using System;
 using System.Diagnostics;
 #else
 using kifuwarabe_shogithink.pure.accessor;
-using kifuwarabe_shogithink.pure.com.sasiteorder.hioute;
-using kifuwarabe_shogithink.pure.com.sasiteorder.seisei;
+using kifuwarabe_shogithink.pure.com.MoveOrder.hioute;
+using kifuwarabe_shogithink.pure.com.MoveOrder.seisei;
 using kifuwarabe_shogithink.pure.conv.genkyoku.play;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
@@ -20,9 +20,9 @@ using System;
 using System.Diagnostics;
 #endif
 
-namespace kifuwarabe_shogithink.pure.com.sasiteorder
+namespace kifuwarabe_shogithink.pure.com.MoveOrder
 {
-    public static class SasitePicker01
+    public static class MovePicker01
     {
         /// <summary>
         /// 
@@ -30,12 +30,12 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
         /// <param name="fukasa">指し手リストは、深さ別で、配列を再利用しているぜ☆（＾～＾）</param>
         /// <param name="ky"></param>
         /// <param name="flag"></param>
-        /// <param name="sasitelistMerge"></param>
+        /// <param name="moveListMerge"></param>
         /// <returns></returns>
-        public static void SasitePicker_01(MoveType flag, bool sasitelistMerge)
+        public static void MovePickerN01(MoveType flag, bool moveListMerge)
         {
             #region 前準備
-            Debug.Assert(0 <= PureMemory.tnsk_fukasa && PureMemory.tnsk_fukasa < PureMemory.ssss_sasitelist.Length, "");
+            Debug.Assert(0 <= PureMemory.tnsk_fukasa && PureMemory.tnsk_fukasa < PureMemory.ssss_moveList.Length, "");
 
             //────────────────────────────────────────
             // 勝負無し調査☆
@@ -44,7 +44,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
             if (PureMemory.ssss_isSyobuNasi)
             {
 #if DEBUG
-                PureMemory.ssss_sasitePickerWoNuketaBasho1 = "無勝負";
+                PureMemory.ssss_movePickerWoNuketaBasho1 = "無勝負";
 #endif
                 return;
             }
@@ -57,7 +57,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
             //────────────────────────────────────────
             if (Util_Hioute.IsTunderu(PureMemory.kifu_teban))
             {
-                goto gt_FlushSasite; // 空っぽで投了だぜ☆（＾▽＾）
+                goto gt_FlushMove; // 空っぽで投了だぜ☆（＾▽＾）
             }
             #endregion
 
@@ -98,9 +98,9 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                             if (MoveGenAccessor.CheckUtikiri())
                             {
 #if DEBUG
-                                PureMemory.ssss_sasitePickerWoNuketaBasho1 = "逼迫返討手";
+                                PureMemory.ssss_movePickerWoNuketaBasho1 = "逼迫返討手";
 #endif
-                                goto gt_FlushSasite;
+                                goto gt_FlushMove;
                             }// 指し手生成終了☆
 
                             // 移動先リセット
@@ -109,12 +109,12 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                             PureMemory.ssss_bbVar_idosaki_nari.Set(PureMemory.ssss_bbVar_idosaki_narazu);
                             // 進んで構わない場所に絞り込むぜ☆（＾～＾）
                             PureMemory.ssss_bbVar_idosaki_narazu.Siborikomi(BitboardsOmatome.bb_uteruZone[(int)PureMemory.ssss_ugoki_km]);
-                            GenerateSasite03.SiborikomiNareruZone();
+                            GenerateMove03.SiborikomiNareruZone();
 
                             switch (PureMemory.ssss_ugoki_ks)
                             {
                                 case Komasyurui.R:
-                                    GenerateSasite02.GenerateRaion_HippakuKaeriutiTe();
+                                    GenerateMove02.GenerateRaion_HippakuKaeriutiTe();
                                     break;
 
                                 case Komasyurui.Z: // thru
@@ -123,7 +123,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                                 case Komasyurui.N:
                                 case Komasyurui.U:
                                 case Komasyurui.S:
-                                    GenerateSasite02.GenerateNk_HippakuKaeriutiTe();
+                                    GenerateMove02.GenerateNk_HippakuKaeriutiTe();
                                     break;
 
                                 case Komasyurui.PZ: // thru
@@ -133,7 +133,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                                 case Komasyurui.PN:
                                 case Komasyurui.PU:
                                 case Komasyurui.PS:
-                                    GenerateSasite02.GenerateXk_HippakuKaeriutiTe();
+                                    GenerateMove02.GenerateXk_HippakuKaeriutiTe();
                                     break;
                             }
                         }
@@ -147,7 +147,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                 // このフラグが立っているのに　ここに来たということは、
                 // TODO: 先に　らいおん　を取れるか、
                 // あるいは、投了だぜ☆（＾～＾）
-                goto gt_FlushSasite;
+                goto gt_FlushMove;
             }
             #endregion
 
@@ -167,9 +167,9 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                             if (MoveGenAccessor.CheckUtikiri())
                             {
 #if DEBUG
-                                PureMemory.ssss_sasitePickerWoNuketaBasho1 = "余裕返討手";
+                                PureMemory.ssss_movePickerWoNuketaBasho1 = "余裕返討手";
 #endif
-                                goto gt_FlushSasite;
+                                goto gt_FlushMove;
                             }// 指し手生成終了☆
 
                             // 移動先リセット
@@ -178,12 +178,12 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                             PureMemory.ssss_bbVar_idosaki_nari.Set(PureMemory.ssss_bbVar_idosaki_narazu);
                             // 進んで構わない場所に絞り込むぜ☆（＾～＾）
                             PureMemory.ssss_bbVar_idosaki_narazu.Siborikomi(BitboardsOmatome.bb_uteruZone[(int)PureMemory.ssss_ugoki_km]);
-                            GenerateSasite03.SiborikomiNareruZone();
+                            GenerateMove03.SiborikomiNareruZone();
 
                             switch (PureMemory.ssss_ugoki_ks)
                             {
                                 case Komasyurui.R:
-                                    GenerateSasite02.GenerateRaion_YoyuKaeriutiTe();
+                                    GenerateMove02.GenerateRaion_YoyuKaeriutiTe();
                                     break;
 
                                 case Komasyurui.Z: // thru
@@ -192,7 +192,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                                 case Komasyurui.N:
                                 case Komasyurui.U:
                                 case Komasyurui.S:
-                                    GenerateSasite02.GenerateNk_YoyuKaeriutiTe();
+                                    GenerateMove02.GenerateNk_YoyuKaeriutiTe();
                                     break;
 
                                 case Komasyurui.PZ: // thru
@@ -202,7 +202,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                                 case Komasyurui.PN:
                                 case Komasyurui.PU:
                                 case Komasyurui.PS:
-                                    GenerateSasite02.GenerateXk_YoyuKaeriutiTe();
+                                    GenerateMove02.GenerateXk_YoyuKaeriutiTe();
                                     break;
                             }
                         }
@@ -231,7 +231,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                 // らいおんと、らいおんが向かい合っている場合は、返討手でも　らいおんキャッチ扱いにする。
                 if (!PureMemory.ssss_bbBase_idosaki02_raionCatch.IsEmpty())
                 {
-                    int ssCount_old = PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].listCount;
+                    int ssCount_old = PureMemory.ssss_moveList[PureMemory.tnsk_fukasa].listCount;
 
                     foreach (Koma iKm_teban in Conv_Koma.itiranTuyoimonoJun[PureMemory.kifu_nTeban])// 弱い駒から順
                     {
@@ -242,9 +242,9 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                             if (MoveGenAccessor.CheckUtikiri())
                             {
 #if DEBUG
-                                PureMemory.ssss_sasitePickerWoNuketaBasho1 = "らいおんキャッチ";
+                                PureMemory.ssss_movePickerWoNuketaBasho1 = "らいおんキャッチ";
 #endif
-                                goto gt_FlushSasite;
+                                goto gt_FlushMove;
                             }// 指し手生成終了☆
 
                             // 移動先リセット
@@ -253,7 +253,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                             PureMemory.ssss_bbVar_idosaki_nari.Set(PureMemory.ssss_bbVar_idosaki_narazu);
                             // 進んで構わない場所に絞り込むぜ☆（＾～＾）
                             PureMemory.ssss_bbVar_idosaki_narazu.Siborikomi(BitboardsOmatome.bb_uteruZone[(int)PureMemory.ssss_ugoki_km]);
-                            GenerateSasite03.SiborikomiNareruZone();
+                            GenerateMove03.SiborikomiNareruZone();
 
                             switch (PureMemory.ssss_ugoki_ks)
                             {
@@ -264,7 +264,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                                 case Komasyurui.N:
                                 case Komasyurui.U:
                                 case Komasyurui.S:
-                                    GenerateSasite02.GenerateNk_RaionCatch();
+                                    GenerateMove02.GenerateNk_RaionCatch();
                                     break;
 
                                 case Komasyurui.R: // thru
@@ -274,17 +274,17 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                                 case Komasyurui.PN:
                                 case Komasyurui.PU:
                                 case Komasyurui.PS:
-                                    GenerateSasite02.GenerateRaionXk_RaionCatch();
+                                    GenerateMove02.GenerateRaionXk_RaionCatch();
                                     break;
                             }
 
                             // らいおんを捕まえる手が１手でもあれば十分☆ これ以降の手は作らないぜ☆（＾～＾）
-                            if (ssCount_old < PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].listCount || PureMemory.hot_raionCatchChosaAr[PureMemory.kifu_nTeban])
+                            if (ssCount_old < PureMemory.ssss_moveList[PureMemory.tnsk_fukasa].listCount || PureMemory.hot_raionCatchChosaAr[PureMemory.kifu_nTeban])
                             {
 #if DEBUG
-                                PureMemory.ssss_sasitePickerWoNuketaBasho1 = "らいおんキャッチ";
+                                PureMemory.ssss_movePickerWoNuketaBasho1 = "らいおんキャッチ";
 #endif
-                                goto gt_FlushSasite;
+                                goto gt_FlushMove;
                             }
                         }
                     }
@@ -314,17 +314,17 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
 
                         while (PureMemory.ssss_bbVar_idosaki_narazu.Ref_PopNTZ(out PureMemory.ssss_ugoki_ms_dst))
                         {
-                            Move ss = AbstractConvMove.ToSasite_01a_NarazuSasi(
+                            Move ss = AbstractConvMove.ToMove01aNarazuSasi(
                                 PureMemory.hot_ms_raionAr[PureMemory.kifu_nTeban], PureMemory.ssss_ugoki_ms_dst
                                 );
-                            PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].AddList(ss, MoveType.N15_NigeroTe);
+                            PureMemory.ssss_moveList[PureMemory.tnsk_fukasa].AddList(ss, MoveType.N15_NigeroTe);
                         }
                     }
                 }
 #if DEBUG
-                PureMemory.ssss_sasitePickerWoNuketaBasho1 = "逃げろ手";
+                PureMemory.ssss_movePickerWoNuketaBasho1 = "逃げろ手";
 #endif
-                goto gt_FlushSasite;
+                goto gt_FlushMove;
             }
             #endregion
 
@@ -345,9 +345,9 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                         if (MoveGenAccessor.CheckUtikiri())
                         {
 #if DEBUG
-                            PureMemory.ssss_sasitePickerWoNuketaBasho1 = "トライ";
+                            PureMemory.ssss_movePickerWoNuketaBasho1 = "トライ";
 #endif
-                            goto gt_FlushSasite;
+                            goto gt_FlushMove;
                         }// 指し手生成終了☆
 
                         // 移動先リセット
@@ -356,14 +356,14 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                         PureMemory.ssss_bbVar_idosaki_nari.Set(PureMemory.ssss_bbVar_idosaki_narazu);
                         // 進んで構わない場所に絞り込むぜ☆（＾～＾）
                         PureMemory.ssss_bbVar_idosaki_narazu.Siborikomi(BitboardsOmatome.bb_uteruZone[(int)PureMemory.ssss_ugoki_km]);
-                        GenerateSasite03.SiborikomiNareruZone();
+                        GenerateMove03.SiborikomiNareruZone();
 
-                        GenerateSasite02.GenerateRaion_Try();
+                        GenerateMove02.GenerateRaion_Try();
 
                         // トライする手が１手でもあれば十分☆ 指し手生成終了☆（＾▽＾）
-                        if (0 < PureMemory.ssss_sasitelist[PureMemory.tnsk_fukasa].listCount)
+                        if (0 < PureMemory.ssss_moveList[PureMemory.tnsk_fukasa].listCount)
                         {
-                            goto gt_FlushSasite;
+                            goto gt_FlushMove;
                         }
                     }
                 }
@@ -388,9 +388,9 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                             if (TansakuUtikiri.Karappo != PureMemory.ssss_tansakuUtikiri)
                             {
 #if DEBUG
-                                PureMemory.ssss_sasitePickerWoNuketaBasho1 = "駒を取る手";
+                                PureMemory.ssss_movePickerWoNuketaBasho1 = "駒を取る手";
 #endif
-                                goto gt_FlushSasite;
+                                goto gt_FlushMove;
                             }// 指し手生成終了☆
 
                             // 移動先リセット
@@ -399,12 +399,12 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                             PureMemory.ssss_bbVar_idosaki_nari.Set(PureMemory.ssss_bbVar_idosaki_narazu);
                             // 進んで構わない場所に絞り込むぜ☆（＾～＾）
                             PureMemory.ssss_bbVar_idosaki_narazu.Siborikomi(BitboardsOmatome.bb_uteruZone[(int)PureMemory.ssss_ugoki_km]);
-                            GenerateSasite03.SiborikomiNareruZone();
+                            GenerateMove03.SiborikomiNareruZone();
 
                             switch (PureMemory.ssss_ugoki_ks)
                             {
                                 case Komasyurui.R:
-                                    GenerateSasite02.GenerateRaion_KomaWoToruTe();
+                                    GenerateMove02.GenerateRaion_KomaWoToruTe();
                                     break;
 
                                 case Komasyurui.Z: // thuru
@@ -416,14 +416,14 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                                 case Komasyurui.N:
                                 case Komasyurui.U:
                                 case Komasyurui.S:
-                                    GenerateSasite02.GenerateNk_KomaWoToruTe();
+                                    GenerateMove02.GenerateNk_KomaWoToruTe();
                                     break;
 
                                 case Komasyurui.PH: // thru
                                 case Komasyurui.PN:
                                 case Komasyurui.PU:
                                 case Komasyurui.PS:
-                                    GenerateSasite02.GenerateXk_KomaWoToruTe();
+                                    GenerateMove02.GenerateXk_KomaWoToruTe();
                                     break;
 
                                 default: throw new Exception("未定義の駒種類 km=" + PureMemory.ssss_ugoki_km);
@@ -438,7 +438,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
             if (flag.HasFlag(MoveType.N18_Option_MergeGoodBad))
             {
                 // マージをするぜ☆（＾▽＾）
-                MoveGenAccessor.MergeSasitelistGoodBad(
+                MoveGenAccessor.MergeMoveListGoodBad(
 #if DEBUG
                     "マージ　盤上駒で紐付王手（逃げ道を開ける手）"
 #endif
@@ -466,9 +466,9 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                             if (MoveGenAccessor.CheckUtikiri())
                             {
 #if DEBUG
-                                PureMemory.ssss_sasitePickerWoNuketaBasho1 = "紐付王手指";
+                                PureMemory.ssss_movePickerWoNuketaBasho1 = "紐付王手指";
 #endif
-                                goto gt_FlushSasite;
+                                goto gt_FlushMove;
                             }// 指し手生成終了☆
 
                             // 移動先リセット
@@ -478,7 +478,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                             PureMemory.ssss_bbVar_idosaki_nari.Set(PureMemory.ssss_bbVar_idosaki_narazu);
                             // 進んで構わない場所に絞り込むぜ☆（＾～＾）
                             PureMemory.ssss_bbVar_idosaki_narazu.Siborikomi(BitboardsOmatome.bb_uteruZone[(int)PureMemory.ssss_ugoki_km]);
-                            GenerateSasite03.SiborikomiNareruZone();
+                            GenerateMove03.SiborikomiNareruZone();
 
                             switch (PureMemory.ssss_ugoki_ks)
                             {
@@ -491,7 +491,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                                 case Komasyurui.N:
                                 case Komasyurui.U:
                                 case Komasyurui.S:
-                                    GenerateSasite02.GenerateNk_HimodukiOteZasi();
+                                    GenerateMove02.GenerateNk_HimodukiOteZasi();
                                     break;
 
                                 case Komasyurui.PZ: // thru
@@ -501,7 +501,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                                 case Komasyurui.PN:
                                 case Komasyurui.PU:
                                 case Komasyurui.PS:
-                                    GenerateSasite02.GenerateXk_HimodukiOteZasi();
+                                    GenerateMove02.GenerateXk_HimodukiOteZasi();
                                     break;
                             }
                         }
@@ -530,9 +530,9 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                             if (MoveGenAccessor.CheckUtikiri())
                             {
 #if DEBUG
-                                PureMemory.ssss_sasitePickerWoNuketaBasho1 = "捨て王手指";
+                                PureMemory.ssss_movePickerWoNuketaBasho1 = "捨て王手指";
 #endif
-                                goto gt_FlushSasite;
+                                goto gt_FlushMove;
                             }// 指し手生成終了☆
 
                             // 移動先リセット
@@ -541,7 +541,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                             PureMemory.ssss_bbVar_idosaki_nari.Set(PureMemory.ssss_bbVar_idosaki_narazu);
                             // 進んで構わない場所に絞り込むぜ☆（＾～＾）
                             PureMemory.ssss_bbVar_idosaki_narazu.Siborikomi(BitboardsOmatome.bb_uteruZone[(int)PureMemory.ssss_ugoki_km]);
-                            GenerateSasite03.SiborikomiNareruZone();
+                            GenerateMove03.SiborikomiNareruZone();
 
                             switch (PureMemory.ssss_ugoki_ks)
                             {
@@ -554,7 +554,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                                 case Komasyurui.N:
                                 case Komasyurui.U:
                                 case Komasyurui.S:
-                                    GenerateSasite02.GenerateNk_SuteOteZasi();
+                                    GenerateMove02.GenerateNk_SuteOteZasi();
                                     break;
 
                                 case Komasyurui.PZ: // thru
@@ -564,7 +564,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                                 case Komasyurui.PN:
                                 case Komasyurui.PU:
                                 case Komasyurui.PS:
-                                    GenerateSasite02.GenerateNx_SuteOteZasi();
+                                    GenerateMove02.GenerateNx_SuteOteZasi();
                                     break;
                             }
                         }
@@ -596,16 +596,16 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                                 PureMemory.ssss_bbVar_idosaki_nari.Clear();// 「打」に「成り」は無いぜ☆（＾～＾）
 
                                 // 二歩防止
-                                if (MotigomaSyurui.H == PureMemory.ssss_mot_mks) { GenerateSasite03.SiborikomiByNifu(); }
+                                if (MotigomaSyurui.H == PureMemory.ssss_mot_mks) { GenerateMove03.SiborikomiByNifu(); }
                                 // 打って構わない場所に絞り込むぜ☆（＾～＾）
                                 PureMemory.ssss_bbVar_idosaki_narazu.Siborikomi(BitboardsOmatome.bb_uteruZone[(int)PureMemory.ssss_mot_km]);
 
-                                GenerateSasite02.GenerateMotigoma_SuteDa();
+                                GenerateMove02.GenerateMotigoma_SuteDa();
                             }
                         }
 
 #if DEBUG
-                        PureMemory.ssss_sasitePickerWoNuketaBasho1 = "捨て王手打";
+                        PureMemory.ssss_movePickerWoNuketaBasho1 = "捨て王手打";
 #endif
                     }
                 }
@@ -633,15 +633,15 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                                 BitboardsOmatome.KomanoUgokikataYk00.ToSelect_MergeShogiban(Med_Koma.KomasyuruiAndTaikyokusyaToKoma(PureMemory.ssss_mot_ks, PureMemory.kifu_aiteban), PureMemory.hot_ms_raionAr[PureMemory.kifu_nAiteban], PureMemory.ssss_bbVar_idosaki_narazu);
 
                                 // 二歩防止
-                                if (MotigomaSyurui.H == PureMemory.ssss_mot_mks) { GenerateSasite03.SiborikomiByNifu(); }
+                                if (MotigomaSyurui.H == PureMemory.ssss_mot_mks) { GenerateMove03.SiborikomiByNifu(); }
                                 // 打って構わない場所に絞り込むぜ☆（＾～＾）
                                 PureMemory.ssss_bbVar_idosaki_narazu.Siborikomi(BitboardsOmatome.bb_uteruZone[(int)PureMemory.ssss_mot_km]);
-                                GenerateSasite02.GenerateMotigoma_NormalDa();
+                                GenerateMove02.GenerateMotigoma_NormalDa();
                             }
                         }
 
 #if DEBUG
-                        PureMemory.ssss_sasitePickerWoNuketaBasho1 = "紐付王手打";
+                        PureMemory.ssss_movePickerWoNuketaBasho1 = "紐付王手打";
 #endif
                     }
                 }
@@ -652,7 +652,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
             if (flag.HasFlag(MoveType.N18_Option_MergeGoodBad))
             {
                 // マージをするぜ☆（＾▽＾）
-                MoveGenAccessor.MergeSasitelistGoodBad(
+                MoveGenAccessor.MergeMoveListGoodBad(
 #if DEBUG
                     "GoodBadマージ　紐付王手指（Good 逃げ道を開ける手、Bad 逃げ道を開けない手）"
 #endif
@@ -695,15 +695,15 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                                     PureMemory.hot_ms_raionAr[PureMemory.kifu_nAiteban], PureMemory.ssss_bbVar_idosaki_narazu);
 
                                 // 二歩防止
-                                if (MotigomaSyurui.H == PureMemory.ssss_mot_mks) { GenerateSasite03.SiborikomiByNifu(); }
+                                if (MotigomaSyurui.H == PureMemory.ssss_mot_mks) { GenerateMove03.SiborikomiByNifu(); }
                                 // 打って構わない場所に絞り込むぜ☆（＾～＾）
                                 PureMemory.ssss_bbVar_idosaki_narazu.Siborikomi(BitboardsOmatome.bb_uteruZone[(int)PureMemory.ssss_mot_km]);
 
-                                GenerateSasite02.GenerateMotigoma_NormalDa();
+                                GenerateMove02.GenerateMotigoma_NormalDa();
                             }
                         }
 #if DEBUG
-                        PureMemory.ssss_sasitePickerWoNuketaBasho1 = "紐付緩慢打";
+                        PureMemory.ssss_movePickerWoNuketaBasho1 = "紐付緩慢打";
 #endif
                     }
                 }
@@ -729,10 +729,10 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                             if (MoveGenAccessor.CheckUtikiri())
                             {
 #if DEBUG
-                                PureMemory.ssss_sasitePickerWoNuketaBasho1 = string.Format(
+                                PureMemory.ssss_movePickerWoNuketaBasho1 = string.Format(
                                     "紐付緩慢指Nuke utikiri={0}", PureMemory.ssss_tansakuUtikiri);
 #endif
-                                goto gt_FlushSasite;
+                                goto gt_FlushMove;
                             }// 指し手生成終了☆
 
                             // 移動先リセット
@@ -743,31 +743,31 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                             PureMemory.ssss_bbVar_idosaki_nari.Set(PureMemory.ssss_bbVar_idosaki_narazu);
                             // 進んで構わない場所に絞り込むぜ☆（＾～＾）
                             PureMemory.ssss_bbVar_idosaki_narazu.Siborikomi(BitboardsOmatome.bb_uteruZone[(int)PureMemory.ssss_ugoki_km]);
-                            GenerateSasite03.SiborikomiNareruZone();
+                            GenerateMove03.SiborikomiNareruZone();
 
                             switch (PureMemory.ssss_ugoki_ks)
                             {
-                                case Komasyurui.R: GenerateSasite02.GenerateRaion_BottiKanmanZasi_HimodukiKanmanZasi(); break;
-                                case Komasyurui.Z: GenerateSasite02.Generate02ZouKirinNado_bottiKanmanZasi_himodukiKanmanZasi(); break;
-                                case Komasyurui.PZ: GenerateSasite02.Generate02ZouKirinNado_bottiKanmanZasi_himodukiKanmanZasi(); break;
-                                case Komasyurui.K: GenerateSasite02.Generate02ZouKirinNado_bottiKanmanZasi_himodukiKanmanZasi(); break;
-                                case Komasyurui.PK: GenerateSasite02.Generate02ZouKirinNado_bottiKanmanZasi_himodukiKanmanZasi(); break;
-                                case Komasyurui.H: GenerateSasite02.Generate02HiyokoNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
+                                case Komasyurui.R: GenerateMove02.GenerateRaion_BottiKanmanZasi_HimodukiKanmanZasi(); break;
+                                case Komasyurui.Z: GenerateMove02.Generate02ZouKirinNado_bottiKanmanZasi_himodukiKanmanZasi(); break;
+                                case Komasyurui.PZ: GenerateMove02.Generate02ZouKirinNado_bottiKanmanZasi_himodukiKanmanZasi(); break;
+                                case Komasyurui.K: GenerateMove02.Generate02ZouKirinNado_bottiKanmanZasi_himodukiKanmanZasi(); break;
+                                case Komasyurui.PK: GenerateMove02.Generate02ZouKirinNado_bottiKanmanZasi_himodukiKanmanZasi(); break;
+                                case Komasyurui.H: GenerateMove02.Generate02HiyokoNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
                                 case Komasyurui.PH:
-                                    GenerateSasite02.Generate02NiwatoriNado_BottiKanmanZasi_HimodukiKanmanZasi();
+                                    GenerateMove02.Generate02NiwatoriNado_BottiKanmanZasi_HimodukiKanmanZasi();
                                     break;
-                                case Komasyurui.I: GenerateSasite02.Generate02HiyokoNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
-                                case Komasyurui.N: GenerateSasite02.Generate02HiyokoNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
+                                case Komasyurui.I: GenerateMove02.Generate02HiyokoNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
+                                case Komasyurui.N: GenerateMove02.Generate02HiyokoNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
                                 case Komasyurui.PN:
-                                    GenerateSasite02.Generate02NiwatoriNado_BottiKanmanZasi_HimodukiKanmanZasi();
+                                    GenerateMove02.Generate02NiwatoriNado_BottiKanmanZasi_HimodukiKanmanZasi();
                                     break;
-                                case Komasyurui.U: GenerateSasite02.Generate02HiyokoNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
+                                case Komasyurui.U: GenerateMove02.Generate02HiyokoNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
                                 case Komasyurui.PU:
-                                    GenerateSasite02.Generate02NiwatoriNado_BottiKanmanZasi_HimodukiKanmanZasi();
+                                    GenerateMove02.Generate02NiwatoriNado_BottiKanmanZasi_HimodukiKanmanZasi();
                                     break;
-                                case Komasyurui.S: GenerateSasite02.Generate02HiyokoNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
+                                case Komasyurui.S: GenerateMove02.Generate02HiyokoNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
                                 case Komasyurui.PS:
-                                    GenerateSasite02.Generate02NiwatoriNado_BottiKanmanZasi_HimodukiKanmanZasi();
+                                    GenerateMove02.Generate02NiwatoriNado_BottiKanmanZasi_HimodukiKanmanZasi();
                                     break;
                             }
                         }
@@ -794,9 +794,9 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                             if (MoveGenAccessor.CheckUtikiri())
                             {
 #if DEBUG
-                                PureMemory.ssss_sasitePickerWoNuketaBasho1 = "ぼっち緩慢指";
+                                PureMemory.ssss_movePickerWoNuketaBasho1 = "ぼっち緩慢指";
 #endif
-                                goto gt_FlushSasite;
+                                goto gt_FlushMove;
                             }// 指し手生成終了☆
 
                             // 移動先リセット
@@ -806,24 +806,24 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                             PureMemory.ssss_bbVar_idosaki_nari.Set(PureMemory.ssss_bbVar_idosaki_narazu);
                             // 進んで構わない場所に絞り込むぜ☆（＾～＾）
                             PureMemory.ssss_bbVar_idosaki_narazu.Siborikomi(BitboardsOmatome.bb_uteruZone[(int)PureMemory.ssss_ugoki_km]);
-                            GenerateSasite03.SiborikomiNareruZone();
+                            GenerateMove03.SiborikomiNareruZone();
 
                             switch (PureMemory.ssss_ugoki_ks)
                             {
-                                case Komasyurui.R: GenerateSasite02.GenerateRaion_BottiKanmanZasi_HimodukiKanmanZasi(); break;
-                                case Komasyurui.Z: GenerateSasite02.Generate02ZouKirinNado_bottiKanmanZasi_himodukiKanmanZasi(); break;
-                                case Komasyurui.PZ: GenerateSasite02.Generate02ZouKirinNado_bottiKanmanZasi_himodukiKanmanZasi(); break;
-                                case Komasyurui.K: GenerateSasite02.Generate02ZouKirinNado_bottiKanmanZasi_himodukiKanmanZasi(); break;
-                                case Komasyurui.PK: GenerateSasite02.Generate02ZouKirinNado_bottiKanmanZasi_himodukiKanmanZasi(); break;
-                                case Komasyurui.H: GenerateSasite02.Generate02HiyokoNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
-                                case Komasyurui.PH: GenerateSasite02.Generate02NiwatoriNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
-                                case Komasyurui.I: GenerateSasite02.Generate02HiyokoNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
-                                case Komasyurui.N: GenerateSasite02.Generate02HiyokoNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
-                                case Komasyurui.PN: GenerateSasite02.Generate02NiwatoriNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
-                                case Komasyurui.U: GenerateSasite02.Generate02HiyokoNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
-                                case Komasyurui.PU: GenerateSasite02.Generate02NiwatoriNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
-                                case Komasyurui.S: GenerateSasite02.Generate02HiyokoNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
-                                case Komasyurui.PS: GenerateSasite02.Generate02NiwatoriNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
+                                case Komasyurui.R: GenerateMove02.GenerateRaion_BottiKanmanZasi_HimodukiKanmanZasi(); break;
+                                case Komasyurui.Z: GenerateMove02.Generate02ZouKirinNado_bottiKanmanZasi_himodukiKanmanZasi(); break;
+                                case Komasyurui.PZ: GenerateMove02.Generate02ZouKirinNado_bottiKanmanZasi_himodukiKanmanZasi(); break;
+                                case Komasyurui.K: GenerateMove02.Generate02ZouKirinNado_bottiKanmanZasi_himodukiKanmanZasi(); break;
+                                case Komasyurui.PK: GenerateMove02.Generate02ZouKirinNado_bottiKanmanZasi_himodukiKanmanZasi(); break;
+                                case Komasyurui.H: GenerateMove02.Generate02HiyokoNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
+                                case Komasyurui.PH: GenerateMove02.Generate02NiwatoriNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
+                                case Komasyurui.I: GenerateMove02.Generate02HiyokoNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
+                                case Komasyurui.N: GenerateMove02.Generate02HiyokoNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
+                                case Komasyurui.PN: GenerateMove02.Generate02NiwatoriNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
+                                case Komasyurui.U: GenerateMove02.Generate02HiyokoNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
+                                case Komasyurui.PU: GenerateMove02.Generate02NiwatoriNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
+                                case Komasyurui.S: GenerateMove02.Generate02HiyokoNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
+                                case Komasyurui.PS: GenerateMove02.Generate02NiwatoriNado_BottiKanmanZasi_HimodukiKanmanZasi(); break;
                             }
                         }
                     }
@@ -851,15 +851,15 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                                 PureMemory.ssss_bbVar_idosaki_nari.Clear();// 「打」に「成り」は無いぜ☆（＾～＾）
 
                                 // 二歩防止
-                                if (MotigomaSyurui.H == PureMemory.ssss_mot_mks) { GenerateSasite03.SiborikomiByNifu(); }
+                                if (MotigomaSyurui.H == PureMemory.ssss_mot_mks) { GenerateMove03.SiborikomiByNifu(); }
                                 // 打って構わない場所に絞り込むぜ☆（＾～＾）
                                 PureMemory.ssss_bbVar_idosaki_narazu.Siborikomi(BitboardsOmatome.bb_uteruZone[(int)PureMemory.ssss_mot_km]);
 
-                                GenerateSasite02.GenerateMotigoma_NormalDa();
+                                GenerateMove02.GenerateMotigoma_NormalDa();
                             }
                         }
 #if DEBUG
-                        PureMemory.ssss_sasitePickerWoNuketaBasho1 = "ぼっち緩慢打";
+                        PureMemory.ssss_movePickerWoNuketaBasho1 = "ぼっち緩慢打";
 #endif
                     }
                 }
@@ -871,7 +871,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
             if (flag.HasFlag(MoveType.N18_Option_MergeGoodBad))
             {
                 // マージをするぜ☆（＾▽＾）
-                MoveGenAccessor.MergeSasitelistGoodBad(
+                MoveGenAccessor.MergeMoveListGoodBad(
 #if DEBUG
                     "GoodBadマージ　緩慢な手☆（Good 仲間を見捨てない動き、Bad 仲間を見捨てる動き）"
 #endif
@@ -899,9 +899,9 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                             if (MoveGenAccessor.CheckUtikiri())
                             {
 #if DEBUG
-                                PureMemory.ssss_sasitePickerWoNuketaBasho1 = "捨て緩慢指";
+                                PureMemory.ssss_movePickerWoNuketaBasho1 = "捨て緩慢指";
 #endif
-                                goto gt_FlushSasite;
+                                goto gt_FlushMove;
                             }// 指し手生成終了☆
 
                             // 移動先リセット
@@ -910,7 +910,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                             PureMemory.ssss_bbVar_idosaki_nari.Set(PureMemory.ssss_bbVar_idosaki_narazu);
                             // 進んで構わない場所に絞り込むぜ☆（＾～＾）
                             PureMemory.ssss_bbVar_idosaki_narazu.Siborikomi(BitboardsOmatome.bb_uteruZone[(int)PureMemory.ssss_ugoki_km]);
-                            GenerateSasite03.SiborikomiNareruZone();
+                            GenerateMove03.SiborikomiNareruZone();
 
                             switch (PureMemory.ssss_ugoki_ks)
                             {
@@ -923,7 +923,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                                 case Komasyurui.N:
                                 case Komasyurui.U:
                                 case Komasyurui.S:
-                                    GenerateSasite02.GenerateNk_SuteKanmanZasi();
+                                    GenerateMove02.GenerateNk_SuteKanmanZasi();
                                     break;
 
                                 case Komasyurui.PZ: // thru
@@ -933,7 +933,7 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                                 case Komasyurui.PN:
                                 case Komasyurui.PU:
                                 case Komasyurui.PS:
-                                    GenerateSasite02.GenerateXk_SuteKanmanZasi();
+                                    GenerateMove02.GenerateXk_SuteKanmanZasi();
                                     break;
                             }
 
@@ -964,29 +964,29 @@ namespace kifuwarabe_shogithink.pure.com.sasiteorder
                                 PureMemory.ssss_bbVar_idosaki_nari.Clear();// 「打」に「成り」は無いぜ☆（＾～＾）
 
                                 // 二歩防止
-                                if (MotigomaSyurui.H == PureMemory.ssss_mot_mks) { GenerateSasite03.SiborikomiByNifu(); }
+                                if (MotigomaSyurui.H == PureMemory.ssss_mot_mks) { GenerateMove03.SiborikomiByNifu(); }
                                 // 打って構わない場所に絞り込むぜ☆（＾～＾）
                                 PureMemory.ssss_bbVar_idosaki_narazu.Siborikomi(BitboardsOmatome.bb_uteruZone[(int)PureMemory.ssss_mot_km]);
-                                GenerateSasite02.GenerateMotigoma_SuteDa();
+                                GenerateMove02.GenerateMotigoma_SuteDa();
                             }
                         }
 
 #if DEBUG
-                        PureMemory.ssss_sasitePickerWoNuketaBasho1 = "捨て緩慢打";
+                        PureMemory.ssss_movePickerWoNuketaBasho1 = "捨て緩慢打";
 #endif
                     }
                 }
                 #endregion
             }
 
-        gt_FlushSasite:
+        gt_FlushMove:
             ;
 
 
-            if (sasitelistMerge)
+            if (moveListMerge)
             {
                 // マージを忘れるなだぜ☆（＾▽＾）
-                MoveGenAccessor.MergeSasitelistGoodBad(
+                MoveGenAccessor.MergeMoveListGoodBad(
 #if DEBUG
                     "マージを忘れるなだぜ☆（＾▽＾）"
 #endif

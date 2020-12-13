@@ -1,4 +1,4 @@
-﻿using kifuwarabe_shogithink.pure.com.sasiteorder;
+﻿using kifuwarabe_shogithink.pure.com.MoveOrder;
 
 namespace kifuwarabe_shogithink.pure.move
 {

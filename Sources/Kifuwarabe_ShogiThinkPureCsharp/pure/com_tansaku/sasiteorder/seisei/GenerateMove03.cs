@@ -9,11 +9,11 @@ using kifuwarabe_shogithink.pure.ky.bb;
 
 #endif
 
-namespace kifuwarabe_shogithink.pure.com.sasiteorder.seisei
+namespace kifuwarabe_shogithink.pure.com.MoveOrder.seisei
 {
-    public static class GenerateSasite03
+    public static class GenerateMove03
     {
-        static GenerateSasite03()
+        static GenerateMove03()
         {
             bbTmp_nifu = new Bitboard();
         }

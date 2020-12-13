@@ -1,11 +1,11 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.accessor;
-using kifuwarabe_shogithink.pure.com.sasiteorder;
+using kifuwarabe_shogithink.pure.com.moveorder;
 using kifuwarabe_shogithink.pure.logger;
 using kifuwarabe_shogithink.pure.move;
 #else
 using kifuwarabe_shogithink.pure.accessor;
-using kifuwarabe_shogithink.pure.com.sasiteorder;
+using kifuwarabe_shogithink.pure.com.MoveOrder;
 using kifuwarabe_shogithink.pure.move;
 #endif
 
@@ -21,14 +21,14 @@ namespace kifuwarabe_shogithink.pure.ikkyoku
         {
             //グローバル変数に指し手がセットされるぜ☆（＾▽＾）
             PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-            MoveGenAccessor.DoSasitePickerBegin(MoveType.N21_All);
-            SasitePicker01.SasitePicker_01(MoveType.N21_All, true);
+            MoveGenAccessor.DoMovePickerBegin(MoveType.N21_All);
+            MovePicker01.MovePickerN01(MoveType.N21_All, true);
 
-            if (PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL].listCount < 1)
+            if (PureMemory.ssss_moveList[PureMemory.FUKASA_MANUAL].listCount < 1)
             {
                 Move ss = Move.Toryo;
                 MoveType ssType = MoveType.N00_Karappo;
-                if (DoSasiteOpe.TryFail_DoSasite_All(ss, ssType
+                if (DoMoveOpe.TryFailDoMoveAll(ss, ssType
 #if DEBUG
                     , PureSettei.fenSyurui
                     , dbg_reigai
@@ -48,10 +48,10 @@ namespace kifuwarabe_shogithink.pure.ikkyoku
             }
             else
             {
-                Move ss = PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL].moveList[PureSettei.random.Next(PureMemory.ssss_sasitelist[PureMemory.FUKASA_MANUAL].listCount)];
+                Move ss = PureMemory.ssss_moveList[PureMemory.FUKASA_MANUAL].moveList[PureSettei.random.Next(PureMemory.ssss_moveList[PureMemory.FUKASA_MANUAL].listCount)];
 
                 MoveType ssType = MoveType.N00_Karappo;
-                if (DoSasiteOpe.TryFail_DoSasite_All( ss, ssType
+                if (DoMoveOpe.TryFailDoMoveAll( ss, ssType
 #if DEBUG
                     , PureSettei.fenSyurui
                     , dbg_reigai

@@ -67,7 +67,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
             }
 
             // 勝敗判定☆（＾▽＾）
-            if (!Util_Kettyaku.Try_JudgeKettyaku(PureMemory.tnsk_kohoSasite
+            if (!Util_Kettyaku.Try_JudgeKettyaku(PureMemory.tnsk_kohoMove
 #if DEBUG
                 , hyoji
 #endif
@@ -80,7 +80,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
             {
                 Util_Machine.Flush(hyoji);
                 hyoji.Append("bestmove ");
-                SpkMove.AppendFenTo(f, PureMemory.tnsk_kohoSasite, hyoji);
+                SpkMove.AppendFenTo(f, PureMemory.tnsk_kohoMove, hyoji);
                 hyoji.AppendLine();
                 Util_Machine.Flush_USI(hyoji);
             }

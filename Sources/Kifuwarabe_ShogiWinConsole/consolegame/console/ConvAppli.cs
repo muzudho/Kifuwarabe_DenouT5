@@ -12,7 +12,7 @@ using System;
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.com;
 using kifuwarabe_shogithink.pure.com.hyoka;
-using kifuwarabe_shogithink.pure.com.sasiteorder;
+using kifuwarabe_shogithink.pure.com.MoveOrder;
 using kifuwarabe_shogithink.pure.genkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
@@ -134,7 +134,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
                 else if (Util_String.MatchAndNext("P1Char", line, ref caret))
                 {
                     // うしろに続く文字は☆（＾▽＾）
-                    PureSettei.char_playerN[(int)Taikyokusya.T1] = LisSasiteCharacter.Parse(line, ref caret);
+                    PureSettei.char_playerN[(int)Taikyokusya.T1] = LisMoveCharacter.Parse(line, ref caret);
                 }
                 #endregion
                 #region P1Com
@@ -159,7 +159,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
                 else if (Util_String.MatchAndNext("P2Char", line, ref caret))
                 {
                     // うしろに続く文字は☆（＾▽＾）
-                    PureSettei.char_playerN[(int)Taikyokusya.T2] = LisSasiteCharacter.Parse(line, ref caret);
+                    PureSettei.char_playerN[(int)Taikyokusya.T2] = LisMoveCharacter.Parse(line, ref caret);
                 }
                 #endregion
                 #region P2Com

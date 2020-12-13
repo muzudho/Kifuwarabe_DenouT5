@@ -57,8 +57,8 @@ namespace kifuwarabe_shogiwin.speak
         {
             return string.Format("curr[{0,3}] next: ss={1} ssType={2} cap={3}",
                 iTeme,
-                SpkMove.ToString_Fen(PureSettei.fenSyurui, PureMemory.kifu_sasiteAr[iTeme]),
-                PureMemory.kifu_sasiteTypeAr[iTeme],
+                SpkMove.ToString_Fen(PureSettei.fenSyurui, PureMemory.kifu_moveArray[iTeme]),
+                PureMemory.kifu_moveTypeArray[iTeme],
                 PureMemory.kifu_toraretaKsAr[iTeme]
                 );
         }

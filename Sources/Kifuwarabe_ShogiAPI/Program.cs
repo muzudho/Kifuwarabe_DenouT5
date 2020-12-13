@@ -147,14 +147,14 @@ namespace kifuwarabe_shogiapi
             // 先手が　ひよこ　を B1 で成る場合は末尾にプラスを付けて「do B2B1+」
             // 投了は 「toryo」
             Move move;
-            ShogiApi.CreateSasite("do b3a4", out move);
+            ShogiApi.CreateMove("do b3a4", out move);
 
             // 文字列を、move データに一度変換する☆（＾～＾）
 
-            // その手を指せるかどうかは、 CanDoSasite メソッドでチェックしろだぜ☆（＾～＾）
+            // その手を指せるかどうかは、 CanDoMove メソッドでチェックしろだぜ☆（＾～＾）
             MoveMatigaiRiyu riyu;
             string riyuSetumei;
-            if (!ShogiApi.CanDoSasite(move, out riyu, out riyuSetumei))
+            if (!ShogiApi.CanDoMove(move, out riyu, out riyuSetumei))
             {
                 // 指せない手だった場合は、riyu に理由が入っているし、setumei には文章で説明が入っているぜ☆（＾～＾）
 
@@ -163,16 +163,16 @@ namespace kifuwarabe_shogiapi
             }
 
             // 入れ直し☆（＾～＾）
-            ShogiApi.CreateSasite("do b3b2", out move);
+            ShogiApi.CreateMove("do b3b2", out move);
 
-            if (!ShogiApi.CanDoSasite(move, out riyu, out riyuSetumei))
+            if (!ShogiApi.CanDoMove(move, out riyu, out riyuSetumei))
             {
                 // Visual Studio 2017 の出力ビューへ出力
                 Trace.WriteLine(riyuSetumei);
             }
 
             // １手を指すぜ☆（＾▽＾）
-            ShogiApi.DoSasite(move);
+            ShogiApi.DoMove(move);
 
             //{
             //    IViewMojiretu sindan1 = new MojiretuImpl();
@@ -182,16 +182,16 @@ namespace kifuwarabe_shogiapi
             //return;
 
             // コンピューターに１手指させるぜ☆（＾～＾）
-            string com_sasiteFen;
-            ShogiApi.Go(out com_sasiteFen);
+            string com_moveFen;
+            ShogiApi.Go(out com_moveFen);
 
-            // 指し手は PureMemory.tnsk_kohoSasite に入っているし、 com_sasiteFen に文字列データとしても入っているぜ☆（＾～＾）
+            // 指し手は PureMemory.tnsk_kohoMove に入っているし、 com_moveFen に文字列データとしても入っているぜ☆（＾～＾）
 
             // テスト出力
             {
                 StringBuilder sb = new StringBuilder();
                 sb.AppendLine("（１）");
-                sb.AppendLine(com_sasiteFen);
+                sb.AppendLine(com_moveFen);
                 sb.AppendLine("（２）");
                 sb.AppendLine(ShogiApi.GetKyokumen_TusinYo());
                 sb.AppendLine("（３）");
@@ -214,7 +214,7 @@ namespace kifuwarabe_shogiapi
             //────────────────────────────────────────
             // （５）自分の手番でも、コンピューターに指させることができるぜ☆（＾～＾）
             //────────────────────────────────────────
-            ShogiApi.Go(out com_sasiteFen);
+            ShogiApi.Go(out com_moveFen);
 
             // テスト出力
             {

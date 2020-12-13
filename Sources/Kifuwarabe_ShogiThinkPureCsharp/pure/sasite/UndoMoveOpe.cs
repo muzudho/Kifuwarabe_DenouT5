@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 namespace kifuwarabe_shogithink.pure.move
 {
-    public static class UndoSasiteOpe
+    public static class UndoMoveOpe
     {
 
 
@@ -237,7 +237,7 @@ namespace kifuwarabe_shogithink.pure.move
         /// 指定した指し手をやりなおす動きをするぜ☆（＾▽＾）
         /// </summary>
         /// <param name="ss"></param>
-        public static bool TryFail_UndoSasite(
+        public static bool TryFailUndoMove(
 #if DEBUG
             FenSyurui dbg_f
             , IDebugMojiretu dbg_reigai
@@ -257,7 +257,7 @@ namespace kifuwarabe_shogithink.pure.move
             //────────────────────────────────────────
             // グローバル変数に、結果を入れておくぜ☆（＾～＾）
             //────────────────────────────────────────
-            MoveGenAccessor.BunkaiSasite_Umv();
+            MoveGenAccessor.BunkaiMoveUmv();
 
             if (Move.Toryo == PureMemory.umv_ss) { goto gt_EndMethod; }// なにも更新せず終了☆（＾▽＾）
 

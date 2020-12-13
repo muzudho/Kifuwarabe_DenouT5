@@ -46,14 +46,14 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
             {
                 if (Util_String.MatchAndNext("daiOff", line, ref caret))
                 {
-                    if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, line, ref caret, out Move ss))
+                    if (!LisPlay.MatchFenMove(PureSettei.fenSyurui, line, ref caret, out Move ss))
                     {
                         return Pure.FailTrue(string.Format("指し手のパースエラー [{0}]", line));
                     }
 
-                    MoveGenAccessor.BunkaiSasite_Dmv(ss);
+                    MoveGenAccessor.BunkaiMoveDmv(ss);
 
-                    DoSasiteOpe.TryFail_DaiOff(
+                    DoMoveOpe.TryFail_DaiOff(
                         PureMemory.dmv_ms_t0,
                         PureMemory.dmv_km_t0,
                         PureMemory.dmv_mk_t0,
@@ -67,14 +67,14 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                 // 取った駒を、駒台に置くぜ☆（＾▽＾）
                 else if (Util_String.MatchAndNext("daiOn", line, ref caret))
                 {
-                    if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, line, ref caret, out Move ss))
+                    if (!LisPlay.MatchFenMove(PureSettei.fenSyurui, line, ref caret, out Move ss))
                     {
                         return Pure.FailTrue(string.Format("指し手のパースエラー [{0}]", line));
                     }
 
-                    MoveGenAccessor.BunkaiSasite_Dmv(ss);
+                    MoveGenAccessor.BunkaiMoveDmv(ss);
 
-                    DoSasiteOpe.TryFail_DaiOn(
+                    DoMoveOpe.TryFail_DaiOn(
                         PureMemory.dmv_km_c,
                         PureMemory.dmv_ks_c,
                         PureMemory.dmv_mk_c
@@ -87,14 +87,14 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                 // 移動先に駒があれば消すぜ☆（＾～＾）
                 else if (Util_String.MatchAndNext("dstOff", line, ref caret))
                 {
-                    if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, line, ref caret, out Move ss))
+                    if (!LisPlay.MatchFenMove(PureSettei.fenSyurui, line, ref caret, out Move ss))
                     {
                         return Pure.FailTrue(string.Format("指し手のパースエラー [{0}]", line));
                     }
 
-                    MoveGenAccessor.BunkaiSasite_Dmv(ss);
+                    MoveGenAccessor.BunkaiMoveDmv(ss);
 
-                    DoSasiteOpe.TryFail_DstOff(
+                    DoMoveOpe.TryFail_DstOff(
                         PureMemory.dmv_ms_t1,
                         PureMemory.dmv_km_c,
                         PureMemory.dmv_ks_c
@@ -130,7 +130,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                     Koma km_t1;
                     Itiran_FenParser.MatchKoma(line, ref caret, out km_t1);
 
-                    DoSasiteOpe.TryFail_DstOn(
+                    DoMoveOpe.TryFail_DstOn(
                         ms_t0, // 移動元の升
                         km_t1, // 駒
                         ms_t1 // 打ち先の升
@@ -142,14 +142,14 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                 }
                 else if (Util_String.MatchAndNext("srcOff", line, ref caret))
                 {
-                    if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, line, ref caret, out Move ss))
+                    if (!LisPlay.MatchFenMove(PureSettei.fenSyurui, line, ref caret, out Move ss))
                     {
                         return Pure.FailTrue(string.Format("指し手のパースエラー [{0}]", line));
                     }
 
-                    MoveGenAccessor.BunkaiSasite_Dmv(ss);
+                    MoveGenAccessor.BunkaiMoveDmv(ss);
 
-                    DoSasiteOpe.TryFail_SrcOff(
+                    DoMoveOpe.TryFail_SrcOff(
                         ss,
                         PureMemory.dmv_ms_t0,
                         PureMemory.dmv_km_t1,
@@ -162,11 +162,11 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                         );
                 }
                 // 指し手の終わりに☆（＾～＾）
-                else if (Util_String.MatchAndNext("addSasiteToKifu", line, ref caret))
+                else if (Util_String.MatchAndNext("addMoveToKifu", line, ref caret))
                 {
-                    // 「dosub addSasiteToKifu K*E5 -」
+                    // 「dosub addMoveToKifu K*E5 -」
                     // 指し手、取った駒種類
-                    if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, line, ref caret, out Move ss))
+                    if (!LisPlay.MatchFenMove(PureSettei.fenSyurui, line, ref caret, out Move ss))
                     {
                         return Pure.FailTrue(string.Format("指し手のパースエラー [{0}]", line));
                     }
@@ -205,13 +205,13 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
             if (Util_String.MatchAndNext("do", line, ref caret))//"do "
             {
                 // 一体型☆（＾～＾）
-                if (!LisPlay.MatchFenSasite(f, line, ref caret, out Move ss))
+                if (!LisPlay.MatchFenMove(f, line, ref caret, out Move ss))
                 {
                     return Pure.FailTrue(string.Format( "指し手のパースエラー [{0}]", line));
                 }
 
                 MoveType ssType = MoveType.N00_Karappo;
-                if (DoSasiteOpe.TryFail_DoSasite_All(
+                if (DoMoveOpe.TryFailDoMoveAll(
                     ss,
                     ssType
 #if DEBUG
@@ -222,7 +222,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
 #endif
                 ))
                 {
-                    return Pure.FailTrue("TryFail_DoSasite_All");
+                    return Pure.FailTrue("TryFail_DoMove_All");
                 }
                 // 手番を進めるぜ☆（＾～＾）
                 MoveGenAccessor.AddKifu(ss, ssType, PureMemory.dmv_ks_c);
@@ -267,7 +267,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
 #if DEBUG
                 else if (Util_String.MatchAndNext("move", line, ref caret))
                 {
-                    SasiteSeiseiAccessor.DumpSasiteSeisei(hyoji);
+                    MoveSeiseiAccessor.DumpMoveSeisei(hyoji);
                 }
 #endif
             }

@@ -1,7 +1,7 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.com;
-using kifuwarabe_shogithink.pure.com.sasiteorder.hioute;
+using kifuwarabe_shogithink.pure.com.moveorder.hioute;
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.project;
 using kifuwarabe_shogithink.pure.genkyoku;
@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.com;
-using kifuwarabe_shogithink.pure.com.sasiteorder.hioute;
+using kifuwarabe_shogithink.pure.com.MoveOrder.hioute;
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.genkyoku;
 using kifuwarabe_shogithink.pure.ky;
@@ -862,28 +862,28 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                 Util_Logger.WriteLine("posp>");
                 Util_Logger.WriteLine(ApplicationImpl.Kyokumen.Setumei());
 
-                Move ss = AbstractConvSasite.ToSasite((Masu)7, (Masu)4, Komasyurui.H, Komasyurui.H, Komasyurui.H);
+                Move ss = AbstractConvMove.ToMove((Masu)7, (Masu)4, Komasyurui.H, Komasyurui.H, Komasyurui.H);
                 Debug.Assert((int)ss != -1, "");
 
-                Util_Logger.WriteLine("> " + AbstractConvSasite.Setumei_Fen(ss));
-                Util_Logger.WriteLine("src masu > " + AbstractConvSasite.GetSrcMasu(ss));
-                Util_Logger.WriteLine("src suji > " + Conv_Kihon.ToAlphabetLarge(AbstractConvSasite.GetSrcSuji(ss)));
-                Util_Logger.WriteLine("src dan  > " + AbstractConvSasite.GetSrcDan(ss));
-                Util_Logger.WriteLine("src uttKs> " + Conv_Komasyurui.Setumei(AbstractConvSasite.GetUttaKomasyurui(ss)));
-                Util_Logger.WriteLine("dst masu > " + AbstractConvSasite.GetDstMasu(ss));
-                Util_Logger.WriteLine("dst suji > " + Conv_Kihon.ToAlphabetLarge(AbstractConvSasite.GetDstSuji(ss)));
-                Util_Logger.WriteLine("dst dan  > " + AbstractConvSasite.GetDstDan(ss));
+                Util_Logger.WriteLine("> " + AbstractConvMove.Setumei_Fen(ss));
+                Util_Logger.WriteLine("src masu > " + AbstractConvMove.GetSrcMasu(ss));
+                Util_Logger.WriteLine("src suji > " + Conv_Kihon.ToAlphabetLarge(AbstractConvMove.GetSrcSuji(ss)));
+                Util_Logger.WriteLine("src dan  > " + AbstractConvMove.GetSrcDan(ss));
+                Util_Logger.WriteLine("src uttKs> " + Conv_Komasyurui.Setumei(AbstractConvMove.GetUttaKomasyurui(ss)));
+                Util_Logger.WriteLine("dst masu > " + AbstractConvMove.GetDstMasu(ss));
+                Util_Logger.WriteLine("dst suji > " + Conv_Kihon.ToAlphabetLarge(AbstractConvMove.GetDstSuji(ss)));
+                Util_Logger.WriteLine("dst dan  > " + AbstractConvMove.GetDstDan(ss));
                 Util_Logger.WriteLine("torareta > " + Conv_Komasyurui.Setumei(ApplicationImpl.Kyokumen.Konoteme.ToraretaKs));
 
                 Nanteme nanteme = new NantemeImpl();
-                ApplicationImpl.Kyokumen.DoSasite(ss, ref nanteme);
-                Util_Logger.WriteLine("DoSasite >");
+                ApplicationImpl.Kyokumen.DoMove(ss, ref nanteme);
+                Util_Logger.WriteLine("DoMove >");
                 Util_Logger.WriteLine(ApplicationImpl.Kyokumen.Setumei());
 
                 Util_Logger.WriteLine("torareta > " + Conv_Komasyurui.Setumei(ApplicationImpl.Kyokumen.Konoteme.ToraretaKs));
 
-                Util_Logger.WriteLine("UndoSasite>");
-                ApplicationImpl.Kyokumen.UndoSasite(ss);
+                Util_Logger.WriteLine("UndoMove>");
+                ApplicationImpl.Kyokumen.UndoMove(ss);
                 Util_Logger.WriteLine(ApplicationImpl.Kyokumen.Setumei());
                 Util_Logger.Flush();
                 */

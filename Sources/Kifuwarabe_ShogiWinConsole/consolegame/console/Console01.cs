@@ -110,7 +110,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
                             // do以外のコマンドであれば、コマンドラインを保持したまま、そのまま続行
                         }
                         // 以下、do コマンドの場合☆
-                        else if (!Console02.ParseDoSasite(out Move inputSasite))
+                        else if (!Console02.ParseDoMove(out Move inputMove))
                         {
                             // do コマンドのパースエラー表示（コンソール・ゲーム用）☆（＾～＾）
                             SpkMove.AppendSetumei(MoveMatigaiRiyu.ParameterSyosikiMatigai, hyoji);
@@ -118,7 +118,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
                             Util_Machine.Flush(hyoji);
                             CommandlineState.CommentCommandline();// コマンドの誤発動防止
                         }
-                        else if (!GenkyokuOpe.CanDoSasite( inputSasite, out MoveMatigaiRiyu reason))// 指し手の合否チェック
+                        else if (!GenkyokuOpe.CanDoMove( inputMove, out MoveMatigaiRiyu reason))// 指し手の合否チェック
                         {
                             // イリーガル・ムーブなどの、エラー理由表示☆（＾～＾）
                             SpkMove.AppendSetumei(reason, hyoji);
@@ -130,17 +130,17 @@ namespace kifuwarabe_shogiwin.consolegame.console
                             // do コマンドを実行するぜ☆（＾▽＾）
 
                             // １手指す☆！（＾▽＾）
-                            if (!Util_Control.Try_DoSasite_Input(inputSasite
+                            if (!Util_Control.Try_DoMove_Input(inputMove
 #if DEBUG
                                 , PureSettei.fenSyurui
                                 , (IDebugMojiretu)hyoji
 #endif
                                 ))
                             {
-                                return Pure.FailTrue("Try_DoSasite_Input");
+                                return Pure.FailTrue("Try_DoMove_Input");
                             }
                             // 勝敗判定☆（＾▽＾）
-                            if (!Util_Kettyaku.Try_JudgeKettyaku(inputSasite
+                            if (!Util_Kettyaku.Try_JudgeKettyaku(inputMove
 #if DEBUG
                                 , hyoji
 #endif
@@ -171,7 +171,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
                             return Pure.FailTrue("Try_Go");
                         }
                         // 勝敗判定☆（＾▽＾）
-                        if (!Util_Kettyaku.Try_JudgeKettyaku(PureMemory.tnsk_kohoSasite
+                        if (!Util_Kettyaku.Try_JudgeKettyaku(PureMemory.tnsk_kohoMove
 #if DEBUG
                             , hyoji
 #endif

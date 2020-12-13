@@ -53,8 +53,8 @@ namespace kifuwarabe_shogithink.pure
             #endregion
 
             #region 指し手生成（シングルスレッドを想定）
-            ssss_sasitelist = new MoveList[PureMemory.MaxMoveDepth];
-            ssss_sasitelistBad = new MoveList[PureMemory.MaxMoveDepth];
+            ssss_moveList = new MoveList[PureMemory.MaxMoveDepth];
+            ssss_moveListBad = new MoveList[PureMemory.MaxMoveDepth];
             ssss_bbVar_idosaki_narazu = new Bitboard();
             ssss_bbVar_idosaki_nari = new Bitboard();
             ssssTmp_bbVar_ibasho = new Bitboard();
@@ -75,12 +75,12 @@ namespace kifuwarabe_shogithink.pure
             ssss_bbBase_idosaki14_suteKanmanZasi = new Bitboard();
             ssss_bbBase_idosaki15_suteKanmanDa = new Bitboard();
 
-            ssss_sasitePickerWoNuketaBasho1 = "";
+            ssss_movePickerWoNuketaBasho1 = "";
 
             for (int iFukasa = 0; iFukasa < PureMemory.MaxMoveDepth; iFukasa++)
             {
-                ssss_sasitelist[iFukasa] = new MoveList();
-                ssss_sasitelistBad[iFukasa] = new MoveList();
+                ssss_moveList[iFukasa] = new MoveList();
+                ssss_moveListBad[iFukasa] = new MoveList();
             }
             #endregion
 
@@ -90,8 +90,8 @@ namespace kifuwarabe_shogithink.pure
             #region 棋譜（コンピューター・プレイヤー同時に１つまで）
             kifu_syokiKyokumenFen = "";
             kifu_toraretaKsAr = new Komasyurui[KIFU_SIZE];
-            kifu_sasiteAr = new Move[KIFU_SIZE];
-            kifu_sasiteTypeAr = new MoveType[KIFU_SIZE];
+            kifu_moveArray = new Move[KIFU_SIZE];
+            kifu_moveTypeArray = new MoveType[KIFU_SIZE];
             // 手番☆（＾～＾）
             kifu_tebanAr_ = new Taikyokusya[KIFU_SIZE];
             kifu_aitebanAr_ = new Taikyokusya[KIFU_SIZE];
@@ -120,7 +120,7 @@ namespace kifuwarabe_shogithink.pure
             #endregion
 
             #region 探索（tnsk）
-            tnsk_kohoSasite = Move.Toryo;
+            tnsk_kohoMove = Move.Toryo;
             #endregion
         }
 
@@ -206,12 +206,12 @@ namespace kifuwarabe_shogithink.pure
         /// [深さ]
         /// 指し手リスト☆（＾～＾）
         /// </summary>
-        public static MoveList[] ssss_sasitelist { get; set; }
+        public static MoveList[] ssss_moveList { get; set; }
         /// <summary>
         /// [深さ]
-        /// 悪い指し手は、一旦　こっちに入れるんだぜ☆（＾～＾）あとで Sasitelist に入れなおすぜ☆（＾～＾）
+        /// 悪い指し手は、一旦　こっちに入れるんだぜ☆（＾～＾）あとで Movelist に入れなおすぜ☆（＾～＾）
         /// </summary>
-        public static MoveList[] ssss_sasitelistBad { get; set; }
+        public static MoveList[] ssss_moveListBad { get; set; }
         /// <summary>
         /// 勝負無し
         /// </summary>
@@ -247,7 +247,7 @@ namespace kifuwarabe_shogithink.pure
         /// <summary>
         /// 指し手ピッカーを抜けた場所
         /// </summary>
-        public static string ssss_sasitePickerWoNuketaBasho1;
+        public static string ssss_movePickerWoNuketaBasho1;
         //──────────
         // １マスずつ駒の動きを調べている段階だぜ☆（＾～＾）
         //──────────
@@ -387,7 +387,7 @@ namespace kifuwarabe_shogithink.pure
 
         #region 指し手生成ドゥムーブ「dmv」
         /// <summary>
-        /// dmv_変数は、DoSasiteOpe.BunkaiSasite( ) で設定するぜ☆（＾～＾）
+        /// dmv_変数は、DoMoveOpe.BunkaiMove( ) で設定するぜ☆（＾～＾）
         /// 
         /// t0 は移動元だぜ☆（＾～＾）
         /// </summary>
@@ -499,11 +499,11 @@ namespace kifuwarabe_shogithink.pure
         /// <summary>
         /// 未確定の、探索中の指し手が入っているぜ☆（＾▽＾）
         /// </summary>
-        public static readonly Move[] kifu_sasiteAr;
+        public static readonly Move[] kifu_moveArray;
         /// <summary>
         /// 読み筋に指し手タイプを出すことで、デバッグに使うために覚えておくぜ☆（＾▽＾）
         /// </summary>
-        public static readonly MoveType[] kifu_sasiteTypeAr;
+        public static readonly MoveType[] kifu_moveTypeArray;
         /// <summary>
         /// 手番☆（＾～＾）
         /// </summary>
@@ -656,7 +656,7 @@ namespace kifuwarabe_shogithink.pure
         /// <summary>
         /// ベストムーブの候補になっている指し手だぜ☆（＾～＾）
         /// </summary>
-        public static Move tnsk_kohoSasite;
+        public static Move tnsk_kohoMove;
         public static int tnsk_itibanFukaiNekkoKaranoFukasa_JohoNoTameni;
         /// <summary>
         /// 探索した枝数☆

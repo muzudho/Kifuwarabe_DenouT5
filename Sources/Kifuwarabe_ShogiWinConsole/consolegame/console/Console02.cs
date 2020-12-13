@@ -104,7 +104,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
             }
         }
 
-        public static bool ParseDoSasite( out Move out_sasite)
+        public static bool ParseDoMove( out Move out_move)
         {
             // コンソールからのキー入力を解析するぜ☆（＾▽＾）
             int caret = CommandlineState.caret;
@@ -113,7 +113,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
             Util_String.TobasuTangoToMatubiKuhaku(CommandlineState.commandline, ref caret, "do ");
 
             // うしろに続く文字は☆（＾▽＾）
-            if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, CommandlineState.commandline, ref caret, out out_sasite))
+            if (!LisPlay.MatchFenMove(PureSettei.fenSyurui, CommandlineState.commandline, ref caret, out out_move))
             {
                 CommandlineState.caret = oldCaret;
 

@@ -2,7 +2,7 @@
 
 namespace kifuwarabe_shogithink.pure.listen.ikkyoku
 {
-    public static class LisSasiteCharacter
+    public static class LisMoveCharacter
     {
         public static MoveCharacter Parse(string line, ref int caret)
         {

@@ -105,19 +105,19 @@ namespace kifuwarabe_shogiapi
         /// <summary>
         /// １手作るぜ☆（＾～＾）
         /// </summary>
-        public static void CreateSasite(string dfen, out Move out_sasite)
+        public static void CreateMove(string dfen, out Move out_move)
         {
             int caret = 0;
-            if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, dfen, ref caret, out out_sasite))
+            if (!LisPlay.MatchFenMove(PureSettei.fenSyurui, dfen, ref caret, out out_move))
             {
-                out_sasite = Move.Toryo;//エラー
+                out_move = Move.Toryo;//エラー
             }
         }
 
-        public static bool CanDoSasite(Move inputSasite, out MoveMatigaiRiyu out_riyu, out string out_setumei)
+        public static bool CanDoMove(Move inputMove, out MoveMatigaiRiyu out_riyu, out string out_setumei)
         {
             // 指し手の合否チェック
-            bool ret = GenkyokuOpe.CanDoSasite( inputSasite, out out_riyu);
+            bool ret = GenkyokuOpe.CanDoMove( inputMove, out out_riyu);
             if (ret)
             {
                 out_setumei = "";
@@ -133,15 +133,15 @@ namespace kifuwarabe_shogiapi
         /// <summary>
         /// １手指すぜ☆（＾▽＾）
         /// </summary>
-        public static void DoSasite(Move ss)
+        public static void DoMove(Move ss)
         {
             MoveType ssType = MoveType.N00_Karappo;
-            if (DoSasiteOpe.TryFail_DoSasite_All( ss, ssType
+            if (DoMoveOpe.TryFailDoMoveAll( ss, ssType
 #if DEBUG
                 , PureSettei.fenSyurui
                 , PureAppli.syuturyoku1
                 , false
-                , "Shogi34#DoSasite"
+                , "Shogi34#DoMove"
 #endif
             ))
             {
@@ -155,9 +155,9 @@ namespace kifuwarabe_shogiapi
 
         /// <summary>
         /// コンピューターに１手指させるぜ☆（＾～＾）
-        /// エラーが無ければ、PureMemory.tnsk_kohoSasite にベストムーブが入っているぜ☆（＾～＾）
+        /// エラーが無ければ、PureMemory.tnsk_kohoMove にベストムーブが入っているぜ☆（＾～＾）
         /// </summary>
-        public static void Go(out string out_sasiteFen)
+        public static void Go(out string out_moveFen)
         {
             // コンピューターに１手指させるぜ☆
             Util_Tansaku.PreGo();
@@ -167,9 +167,9 @@ namespace kifuwarabe_shogiapi
                 throw new Exception("Goでエラー☆（＾～＾）");
             }
 
-            ICommandMojiretu sasite_str = new MojiretuImpl();
-            SpkMove.AppendFenTo(PureSettei.fenSyurui, PureMemory.tnsk_kohoSasite, sasite_str);
-            out_sasiteFen = sasite_str.ToContents();
+            ICommandMojiretu move_str = new MojiretuImpl();
+            SpkMove.AppendFenTo(PureSettei.fenSyurui, PureMemory.tnsk_kohoMove, move_str);
+            out_moveFen = move_str.ToContents();
         }
 
         /// <summary>

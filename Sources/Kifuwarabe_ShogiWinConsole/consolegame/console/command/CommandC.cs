@@ -43,12 +43,12 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                 {
                     return;
                 }
-                else if (!LisPlay.MatchFenSasite(f, line, ref caret, out ss))
+                else if (!LisPlay.MatchFenMove(f, line, ref caret, out ss))
                 {
                     throw new Exception("パースエラー [" + line + "]");
                 }
 
-                if (GenkyokuOpe.CanDoSasite( ss, out MoveMatigaiRiyu riyu))
+                if (GenkyokuOpe.CanDoMove( ss, out MoveMatigaiRiyu riyu))
                 {
                     hyoji.AppendLine("cando, true");
                 }

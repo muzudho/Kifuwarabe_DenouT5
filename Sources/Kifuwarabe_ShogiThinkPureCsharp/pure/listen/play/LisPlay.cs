@@ -28,18 +28,18 @@ namespace kifuwarabe_shogithink.pure.listen.play
         /// <param name="line">B4B3、または toryo といった文字列を含む行☆</param>
         /// <param name="caret">文字カーソルの位置</param>
         /// <param name="ky">取られた駒を調べるために使う☆</param>
-        /// <param name="out_sasite"></param>
+        /// <param name="out_move"></param>
         /// <returns></returns>
-        public static bool MatchFenSasite(
+        public static bool MatchFenMove(
             FenSyurui f,
             string line,
             ref int caret,
-            out Move out_sasite
+            out Move out_move
             )
         {
             if (Util_String.MatchAndNext(Itiran_FenParser.GetToryo(f), line, ref caret))
             {
-                out_sasite = Move.Toryo;
+                out_move = Move.Toryo;
                 return true;
             }
 
@@ -55,7 +55,7 @@ namespace kifuwarabe_shogithink.pure.listen.play
                 //Util_Machine.Flush();
                 //throw new Exception(msg);
 
-                out_sasite = Move.Toryo;
+                out_move = Move.Toryo;
                 return false;
             }
 
@@ -69,7 +69,7 @@ namespace kifuwarabe_shogithink.pure.listen.play
             Util_String.SkipMatch(line, ref caret, m);
 
             // 符号１「B4B3」を元に、move を作ります。
-            out_sasite = TryFen_Sasite2(
+            out_move = TryFenMove2(
                 f,
                 m.Groups[1].Value,
                 m.Groups[2].Value,
@@ -77,11 +77,11 @@ namespace kifuwarabe_shogithink.pure.listen.play
                 m.Groups[4].Value,
                 m.Groups[5].Value
                 );
-            Debug.Assert((int)out_sasite != -1, "");
+            Debug.Assert((int)out_move != -1, "");
 
             return true;
         }
-        public static Move TryFen_Sasite2(
+        public static Move TryFenMove2(
             FenSyurui f,
             string str1,
             string str2,
@@ -114,7 +114,7 @@ namespace kifuwarabe_shogithink.pure.listen.play
             if ("*" == str2)
             {
                 // 駒台から打ったぜ☆
-                return AbstractConvMove.ToSasite_01c_Utta(
+                return AbstractConvMove.ToMove01cUtta(
                     dstMs,
                     Med_Parser.MojiToMotikomaSyurui(f, str1)//打った駒
                 );
@@ -124,11 +124,11 @@ namespace kifuwarabe_shogithink.pure.listen.play
                 // 盤上の駒を動かしたぜ☆
                 if (natta)
                 {
-                    return AbstractConvMove.ToSasite_01b_NariSasi(Med_Parser.FenSujiDan_Masu(f, str1, str2), dstMs);
+                    return AbstractConvMove.ToMove01bNariSasi(Med_Parser.FenSujiDan_Masu(f, str1, str2), dstMs);
                 }
                 else
                 {
-                    return AbstractConvMove.ToSasite_01a_NarazuSasi(Med_Parser.FenSujiDan_Masu(f, str1, str2), dstMs);
+                    return AbstractConvMove.ToMove01aNarazuSasi(Med_Parser.FenSujiDan_Masu(f, str1, str2), dstMs);
                 }
             }
         }

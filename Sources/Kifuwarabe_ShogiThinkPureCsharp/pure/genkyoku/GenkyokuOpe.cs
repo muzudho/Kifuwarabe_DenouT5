@@ -592,7 +592,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
 
 
 
-        public static bool CanDoSasite( Move ss, out MoveMatigaiRiyu reason)
+        public static bool CanDoMove( Move ss, out MoveMatigaiRiyu reason)
         {
             if (Move.Toryo == ss) { reason = MoveMatigaiRiyu.Karappo; return true; }// 投了はＯＫだぜ☆（＾～＾）
 

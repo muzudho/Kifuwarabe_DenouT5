@@ -90,7 +90,7 @@
     <Compile Include="project\speak\SpkDump.cs" />
     <Compile Include="speak\SpkKifu_WinConsole.cs" />
     <Compile Include="speak\SpkNaration.cs" />
-    <Compile Include="speak\SpkSasiteList.cs" />
+    <Compile Include="speak\SpkMoveList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

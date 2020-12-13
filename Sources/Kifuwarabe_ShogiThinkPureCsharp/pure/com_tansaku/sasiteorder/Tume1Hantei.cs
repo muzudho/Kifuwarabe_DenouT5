@@ -12,7 +12,7 @@ using System.Diagnostics;
 #endif
 
 
-namespace kifuwarabe_shogithink.pure.com.sasiteorder
+namespace kifuwarabe_shogithink.pure.com.MoveOrder
 {
     /// <summary>
     /// 一手詰め判定

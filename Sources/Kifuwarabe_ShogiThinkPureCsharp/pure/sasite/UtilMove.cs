@@ -1,13 +1,13 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.accessor;
-using kifuwarabe_shogithink.pure.com.sasiteorder;
+using kifuwarabe_shogithink.pure.com.moveorder;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen;
 using kifuwarabe_shogithink.pure.listen.play;
 using kifuwarabe_shogithink.pure.logger;
 #else
 using kifuwarabe_shogithink.pure.accessor;
-using kifuwarabe_shogithink.pure.com.sasiteorder;
+using kifuwarabe_shogithink.pure.com.MoveOrder;
 using kifuwarabe_shogithink.pure.listen;
 using kifuwarabe_shogithink.pure.listen.play;
 using kifuwarabe_shogithink.pure.logger;
@@ -15,7 +15,7 @@ using kifuwarabe_shogithink.pure.logger;
 
 namespace kifuwarabe_shogithink.pure.move
 {
-    public static class UtilSasite
+    public static class UtilMove
     {
         /// <summary>
         /// グローバル変数に結果を入れるぜ☆（＾～＾）
@@ -23,16 +23,16 @@ namespace kifuwarabe_shogithink.pure.move
         /// <param name="out_list"></param>
         /// <param name="hyoji"></param>
         /// <returns></returns>
-        public static bool TryFail_Sasite_cmd1(IHyojiMojiretu hyoji)
+        public static bool TryFailMoveCmd1(IHyojiMojiretu hyoji)
         {
             //グローバル変数に指し手がセットされるぜ☆（＾▽＾）
             PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);
-            MoveGenAccessor.DoSasitePickerBegin(MoveType.N21_All);
-            SasitePicker01.SasitePicker_01(MoveType.N21_All, true);
+            MoveGenAccessor.DoMovePickerBegin(MoveType.N21_All);
+            MovePicker01.MovePickerN01(MoveType.N21_All, true);
             return Pure.SUCCESSFUL_FALSE;
         }
 
-        public static bool Try_Sasite_cmd2(out Move out_sasite, string line)
+        public static bool TryMoveCmd2(out Move out_move, string line)
         {
             // うしろに続く文字は☆（＾▽＾）
             int caret = 0;
@@ -43,14 +43,14 @@ namespace kifuwarabe_shogithink.pure.move
             int ssSuji;
             if (int.TryParse(line2, out ssSuji))
             {
-                out_sasite = (Move)ssSuji;
+                out_move = (Move)ssSuji;
                 return true;
             }
 
             // 数字でなければ、 move B2B3 といった文字列か☆（＾～＾）
-            if (!LisPlay.MatchFenSasite(PureSettei.fenSyurui, line, ref caret, out out_sasite))
+            if (!LisPlay.MatchFenMove(PureSettei.fenSyurui, line, ref caret, out out_move))
             {
-                out_sasite = Move.Toryo;
+                out_move = Move.Toryo;
                 return false;
             }
 

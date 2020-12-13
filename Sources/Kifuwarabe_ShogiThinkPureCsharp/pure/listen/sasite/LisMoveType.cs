@@ -8,7 +8,7 @@ using kifuwarabe_shogithink.pure.move;
 
 namespace kifuwarabe_shogithink.pure.listen.move
 {
-    public abstract class LisSasiteType
+    public abstract class LisMoveType
     {
         /// <summary>
         /// 指し手符号の解説。
@@ -40,7 +40,7 @@ namespace kifuwarabe_shogithink.pure.listen.move
                 case MoveType.N19_Option_NigemitiWoAkeruTe: hyoji.Append("ONAT"); break; // 逃げ道を開ける手☆（＾～＾）開けたくて開けているわけではないぜ☆（＾▽＾）ｗｗｗ
                 case MoveType.N20_Option_MisuteruUgoki: hyoji.Append("OMis"); break; // 仲間を見捨てる動き☆（＾～＾）利きを外して仲間が取られるような動きだぜ☆（＾▽＾）ｗｗｗ
                 case MoveType.N21_All: hyoji.Append("All_"); break; // 調査を除く、すべて☆
-                //case SasiteType.N22_All_SeisiTansaku: syuturyoku.Append("AllS"); break; // 静止探索用☆　駒を取る手まで☆
+                //case MoveType.N22_All_SeisiTansaku: syuturyoku.Append("AllS"); break; // 静止探索用☆　駒を取る手まで☆
                 default: hyoji.Append("____"); break;//設定漏れ☆（＾▽＾）
             }
         }

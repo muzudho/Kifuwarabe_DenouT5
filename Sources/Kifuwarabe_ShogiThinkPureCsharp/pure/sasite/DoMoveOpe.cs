@@ -17,7 +17,7 @@ using System.Diagnostics;
 
 namespace kifuwarabe_shogithink.pure.move
 {
-    public static class DoSasiteOpe
+    public static class DoMoveOpe
     {
 
 
@@ -28,7 +28,7 @@ namespace kifuwarabe_shogithink.pure.move
         /// 手番を進める処理は、分けるぜ☆（＾～＾）
         /// </summary>
         /// <param name="ss">指し手☆</param>
-        public static bool TryFail_DoSasite_All(
+        public static bool TryFailDoMoveAll(
             Move ss,
             MoveType ssType
 #if DEBUG
@@ -51,7 +51,7 @@ namespace kifuwarabe_shogithink.pure.move
                 PureMemory.dmv_ks_c = Komasyurui.Yososu;
                 goto gt_EndMethod;
             }
-            MoveGenAccessor.BunkaiSasite_Dmv(ss);
+            MoveGenAccessor.BunkaiMoveDmv(ss);
 
             Debug.Assert(Conv_Koma.IsOk(PureMemory.dmv_km_t0), string.Format("Ｄｏ km_t0={0}", PureMemory.dmv_km_t0));
             Debug.Assert(Conv_Koma.IsOk(PureMemory.dmv_km_t1), "Ｄｏ");
@@ -197,7 +197,7 @@ namespace kifuwarabe_shogithink.pure.move
                 // 駒台はこのステップが１つ多い
             }
 
-            //DoSasite1( isSfen, ss, ssType, ref konoTeme, syuturyoku, out gt_EndMethod);
+            //DoMove1( isSfen, ss, ssType, ref konoTeme, syuturyoku, out gt_EndMethod);
 
 
             //────────────────────────────────────────
@@ -342,7 +342,7 @@ namespace kifuwarabe_shogithink.pure.move
                 // FIXME: ここに問題のコードがあった★★★★★★★★★★★★★★★★★★★
             }
 
-            //DoSasite1( isSfen, ss, ssType, ref konoTeme, syuturyoku, out gt_EndMethod);
+            //DoMove1( isSfen, ss, ssType, ref konoTeme, syuturyoku, out gt_EndMethod);
 
 
             // ローカル変数はグローバル変数に移動した。

@@ -83,7 +83,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
 //                }
 
                 //// 終局図まで進めるぜ☆（＾～＾）
-                //if (!SasiteSeiseiAccessor.Try_PlayToFinish(f, hyoji))
+                //if (!MoveSeiseiAccessor.Try_PlayToFinish(f, hyoji))
                 //{
                 //    string msg = hyoji.ToContents();
                 //    Util_Machine.Flush(hyoji);

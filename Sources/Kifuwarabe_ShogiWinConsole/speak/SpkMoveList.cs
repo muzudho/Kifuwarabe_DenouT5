@@ -13,7 +13,7 @@ using kifuwarabe_shogithink.pure.speak.play;
 
 namespace kifuwarabe_shogiwin.speak
 {
-    public static class SpkSasiteList
+    public static class SpkMoveList
     {
         public static void Setumei(FenSyurui f, string header, MoveList sslist, IHyojiMojiretu hyoji)
         {
@@ -26,7 +26,7 @@ namespace kifuwarabe_shogiwin.speak
             }
             hyoji.AppendLine("└──────────┘");
 #if DEBUG
-            hyoji.AppendLine("指し手生成を抜けた場所：" + PureMemory.ssss_sasitePickerWoNuketaBasho1);
+            hyoji.AppendLine("指し手生成を抜けた場所：" + PureMemory.ssss_movePickerWoNuketaBasho1);
 #endif
         }
     }
