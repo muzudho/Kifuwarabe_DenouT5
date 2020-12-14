@@ -150,9 +150,12 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
 
             var profilePath = System.Configuration.ConfigurationManager.AppSettings["Profile"];
             var toml = Toml.ReadFile(Path.Combine(profilePath, "Engine.toml"));
+
             var engineName = toml.Get<TomlTable>("Engine").Get<string>("Name");
+            Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             var engineAuthor = toml.Get<TomlTable>("Engine").Get<string>("Author");
-            hyoji.AppendLine($"id name {engineName}");
+
+            hyoji.AppendLine($"id name {engineName} {version.Major}.{version.Minor}.{version.Build}");
             hyoji.AppendLine($"id author {engineAuthor}");
             hyoji.AppendLine("option name SikoJikan type spin default 500 min 100 max 10000000");
             hyoji.AppendLine("option name SikoJikanRandom type spin default 1000 min 0 max 10000000");
