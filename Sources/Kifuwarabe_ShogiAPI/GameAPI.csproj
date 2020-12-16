@@ -66,9 +66,9 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Kifuwarabe_ShogiThinkPureCsharp\Kifuwarabe_ShogiThinkPureCsharp.csproj">
+    <ProjectReference Include="..\Kifuwarabe_ShogiThinkPureCsharp\Entities.csproj">
       <Project>{0d39f8bd-aea4-4baa-81b8-472bab9b22eb}</Project>
-      <Name>Kifuwarabe_ShogiThinkPureCsharp</Name>
+      <Name>Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
