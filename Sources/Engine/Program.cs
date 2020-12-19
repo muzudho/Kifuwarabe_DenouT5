@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Grayscale.Kifuwarabi.Engine;
 using Grayscale.Kifuwarabi.Entities.Logging;
 using Grayscale.Kifuwarabi.UseCases;
 using kifuwarabe_shogithink.pure;
@@ -361,7 +362,7 @@ namespace kifuwarabe_shogiwin
                 }
 
                 // 次の入力を促す表示をしてるだけだぜ☆（＾～＾）
-                CommandlineState.ShowPrompt(PureSettei.fenSyurui, hyoji);
+                ProgramSupport.ShowPrompt(PureSettei.fenSyurui, hyoji);
 
                 #endregion
 

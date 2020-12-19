@@ -6,5 +6,6 @@ namespace Grayscale.Kifuwarabi.Entities
     {
         void UsiOk(string line, string engineName, string engineAuthor, IHyojiMojiretu hyoji);
 
+        void ReadOk(string commandline, IHyojiMojiretu hyoji);
     }
 }

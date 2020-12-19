@@ -52,7 +52,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
         /// TODO: 複数行コマンドモード☆（＾～＾）
         /// 「.」だけの行になるまで続く予定☆（＾～＾）
         /// </summary>
-        static bool isMultipleLineCommand;
+        public static bool isMultipleLineCommand;
         public static List<string> multipleLineCommand;
         public static void DoMultipleLineCommand(DLGT_MultipleLineCommand dlgt_multipleLineCommand)
         {
@@ -101,62 +101,6 @@ namespace kifuwarabe_shogiwin.consolegame.console
             caret = 0;
         }
 
-        /// <summary>
-        /// 次の入力を促す表示をしてるだけだぜ☆（＾～＾）
-        /// </summary>
-        public static void ShowPrompt( FenSyurui f, IHyojiMojiretu hyoji)
-        {
-            if (0 < commandBuffer.Count)
-            {
-                // コマンド・バッファーの実行中だぜ☆（＾▽＾）
-                hyoji.Append(commandBufferName + "> ");
-                Logger.Flush(hyoji);
-            }
-            else if (GameMode.Game == PureAppli.gameMode)
-            {
-                // 表示（コンソール・ゲーム用）　局面、あれば勝敗☆（＾～＾）
-                {
-                    if (isKyokumenEcho1)
-                    {
-                        SpkBan_1Column.Setumei_NingenGameYo(PureMemory.kifu_endTeme, hyoji);
-
-                        //#if DEBUG
-                        //                        CommandK.Ky(isSfen, "ky fen", gky, syuturyoku);// 参考：改造FEN表示
-                        //                        CommandS.Move_cmd(isSfen, "move", gky, syuturyoku);// 参考：指し手表示
-                        //                        if (false){
-                        //                            SpkShogiban.HyojiKomanoIbasho(gky.ky.shogiban, syuturyoku);// 参考：駒の表示
-                        //                            SpkShogiban.HyojiKomanoKikiSu(gky.ky.shogiban, syuturyoku);// 参考：利きの数
-                        //                        }
-                        //                        CommandS.Move_cmd(isSfen, "move seisei", gky, syuturyoku);// 参考：指し手表示 詳細
-                        //                        Util_Machine.Flush(syuturyoku);
-                        //#endif
-
-                        CommandR.Result(hyoji, CommandMode.NingenYoConsoleGame);
-                    }
-                    Logger.Flush(hyoji);
-                }
-
-                if (!isMultipleLineCommand // 複数行コマンド読み取り中はプロンプトを出さないぜ☆（＾～＾）
-                    &&
-                    (PureMemory.kifu_teban == Taikyokusya.T1 && !PureSettei.p1Com)
-                    ||
-                    (PureMemory.kifu_teban == Taikyokusya.T2 && !PureSettei.p2Com)
-                    )
-                {
-                    // 人間の手番が始まるところで☆
-                    hyoji.Append(
-                        "指し手を入力してください。一例　do B3B2　※ do b3b2 も同じ" + Environment.NewLine +
-                        "> ");
-                    Logger.Flush(hyoji);
-                }
-            }
-            else
-            {
-                // 表示（コンソール・ゲーム用）
-                hyoji.Append("> ");
-                Logger.Flush(hyoji);
-            }
-        }
 
         public static bool TryFail_DoCommandline(IPlaying playing, IHyojiMojiretu hyoji)
         {
@@ -282,7 +226,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
                     return Pure.FailTrue("TryFail_Ojama");
                 }
             }
-            else if (caret == cmdline.IndexOf("isready", caret)) { CommandI.Isready(cmdline, hyoji); }
+            else if (caret == cmdline.IndexOf("isready", caret)) { playing.ReadOk(cmdline, hyoji); }
             else if (caret == cmdline.IndexOf("jokyo", caret)) { CommandJ.Jokyo( cmdline, hyoji); }
             else if (caret == cmdline.IndexOf("kansosen", caret)) { CommandK.Kansosen(PureSettei.fenSyurui, cmdline, hyoji); }// 駒の場所を表示するぜ☆（＾▽＾）
             else if (caret == cmdline.IndexOf("kifu", caret)) { CommandK.Kifu(PureSettei.fenSyurui, cmdline, hyoji); }// 駒の場所を表示するぜ☆（＾▽＾）

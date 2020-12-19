@@ -18,5 +18,13 @@ namespace Grayscale.Kifuwarabi.UseCases
             hyoji.AppendLine("usiok");
             Logger.Flush_USI(hyoji);
         }
+
+        public void ReadOk(string commandline, IHyojiMojiretu hyoji)
+        {
+            Logger.Flush(hyoji);
+            hyoji.AppendLine("readyok");
+            Logger.Flush_USI(hyoji);
+        }
+
     }
 }

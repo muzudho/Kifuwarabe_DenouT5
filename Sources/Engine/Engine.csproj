@@ -50,50 +50,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Features\consolegame\ConsolegameSettei.cs" />
-    <Compile Include="Features\consolegame\console\CommandMode.cs" />
-    <Compile Include="Features\consolegame\console\command\CommandA.cs" />
-    <Compile Include="Features\consolegame\console\command\CommandB.cs" />
-    <Compile Include="Features\consolegame\console\command\CommandC.cs" />
-    <Compile Include="Features\consolegame\console\command\CommandD.cs" />
-    <Compile Include="Features\consolegame\console\command\CommandN.cs" />
-    <Compile Include="Features\consolegame\console\command\CommandG.cs" />
-    <Compile Include="Features\consolegame\console\command\CommandH.cs" />
-    <Compile Include="Features\consolegame\console\command\CommandI.cs" />
-    <Compile Include="Features\consolegame\console\command\CommandJ.cs" />
-    <Compile Include="Features\consolegame\console\command\CommandK.cs" />
-    <Compile Include="Features\consolegame\console\command\CommandM.cs" />
-    <Compile Include="Features\consolegame\console\command\CommandF.cs" />
-    <Compile Include="Features\consolegame\console\command\CommandO.cs" />
-    <Compile Include="Features\consolegame\console\command\CommandP.cs" />
-    <Compile Include="Features\consolegame\console\command\CommandR.cs" />
-    <Compile Include="Features\consolegame\console\command\CommandS.cs" />
-    <Compile Include="Features\consolegame\console\command\CommandT.cs" />
-    <Compile Include="Features\consolegame\console\command\CommandU.cs" />
-    <Compile Include="Features\consolegame\console\Console02.cs" />
-    <Compile Include="Features\consolegame\console\ConvAppli.cs" />
-    <Compile Include="Features\consolegame\console\CommandlineState.cs" />
-    <Compile Include="Features\consolegame\console\Util_ConsoleGame.cs" />
-    <Compile Include="Features\consolegame\gakusyu\Util_Sigmoid.cs" />
-    <Compile Include="Features\consolegame\machine\Util_Machine.cs" />
-    <Compile Include="Features\consolegame\tumeshogi\Util_TumeShogi.cs" />
-    <Compile Include="Features\consolegame\yomisuji\Util_JohoWinconsole.cs" />
-    <Compile Include="Features\listen\LisHyoji.cs" />
+    <Compile Include="Features\CommandlineState.cs" />
+    <Compile Include="command\CommandA.cs" />
+    <Compile Include="command\CommandB.cs" />
+    <Compile Include="command\CommandC.cs" />
+    <Compile Include="command\CommandD.cs" />
+    <Compile Include="command\CommandN.cs" />
+    <Compile Include="command\CommandG.cs" />
+    <Compile Include="command\CommandH.cs" />
+    <Compile Include="command\CommandJ.cs" />
+    <Compile Include="command\CommandK.cs" />
+    <Compile Include="command\CommandM.cs" />
+    <Compile Include="command\CommandF.cs" />
+    <Compile Include="command\CommandO.cs" />
+    <Compile Include="command\CommandP.cs" />
+    <Compile Include="command\CommandR.cs" />
+    <Compile Include="command\CommandS.cs" />
+    <Compile Include="command\CommandT.cs" />
+    <Compile Include="command\CommandU.cs" />
+    <Compile Include="Features\Console02.cs" />
+    <Compile Include="Features\SpkDump.cs" />
+    <Compile Include="Features\Util_ConsoleGame.cs" />
+    <Compile Include="Features\WinconsoleProject.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ProgramSupport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Features\project\WinconsoleProject.cs" />
-    <Compile Include="Features\speak\ban\SpkBan_1Column.cs" />
-    <Compile Include="Features\speak\ban\SpkBan_Ex.cs" />
-    <Compile Include="Features\speak\ban\SpkBan_MultiColumn.cs" />
-    <Compile Include="Features\speak\ban\SpkBan_MultiRow.cs" />
-    <Compile Include="Features\project\speak\SpkDump.cs" />
-    <Compile Include="Features\speak\SpkKifu_WinConsole.cs" />
-    <Compile Include="Features\speak\SpkNaration.cs" />
-    <Compile Include="Features\speak\SpkMoveList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.NetAnalyzers.5.0.1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.NetAnalyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.NetAnalyzers.5.0.1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.NetAnalyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entities\Entities.csproj">
@@ -104,10 +93,6 @@
       <Project>{071cd65e-c8b0-422f-825e-d834307ab3ce}</Project>
       <Name>UseCases</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.NetAnalyzers.5.0.1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.NetAnalyzers.dll" />
-    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.NetAnalyzers.5.0.1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.NetAnalyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

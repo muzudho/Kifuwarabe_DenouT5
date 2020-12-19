@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Nett, Version=0.15.0.0, Culture=neutral, PublicKeyToken=605dcfe7a1d3365b, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nett.0.15.0\lib\net40\Nett.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,6 +44,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\consolegame\ConsolegameSettei.cs" />
+    <Compile Include="Features\consolegame\console\CommandMode.cs" />
+    <Compile Include="Features\consolegame\console\ConvAppli.cs" />
+    <Compile Include="Features\consolegame\gakusyu\Util_Sigmoid.cs" />
+    <Compile Include="Features\consolegame\machine\Util_Machine.cs" />
+    <Compile Include="Features\consolegame\tumeshogi\Util_TumeShogi.cs" />
+    <Compile Include="Features\consolegame\yomisuji\Util_JohoWinconsole.cs" />
+    <Compile Include="Features\listen\LisHyoji.cs" />
+    <Compile Include="Features\speak\ban\SpkBan_1Column.cs" />
+    <Compile Include="Features\speak\ban\SpkBan_Ex.cs" />
+    <Compile Include="Features\speak\ban\SpkBan_MultiColumn.cs" />
+    <Compile Include="Features\speak\ban\SpkBan_MultiRow.cs" />
+    <Compile Include="Features\speak\SpkKifu_WinConsole.cs" />
+    <Compile Include="Features\speak\SpkMoveList.cs" />
+    <Compile Include="Features\speak\SpkNaration.cs" />
     <Compile Include="Playing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -49,6 +67,9 @@
       <Project>{0d39f8bd-aea4-4baa-81b8-472bab9b22eb}</Project>
       <Name>Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
