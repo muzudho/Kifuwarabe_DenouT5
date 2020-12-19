@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Sources\Kifuwarabe_ShogiThinkPureCsharp\Entities.csproj", "{0D39F8BD-AEA4-4BAA-81B8-472BAB9B22EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Sources\Entities\Entities.csproj", "{0D39F8BD-AEA4-4BAA-81B8-472BAB9B22EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Sources\Kifuwarabe_ShogiWinConsole\Engine.csproj", "{C163CDA8-78F8-4A4F-B88B-969CB7C5DD19}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Sources\Engine\Engine.csproj", "{C163CDA8-78F8-4A4F-B88B-969CB7C5DD19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameApi", "Sources\Kifuwarabe_ShogiAPI\GameApi.csproj", "{036B8AA0-3EB4-40DD-8899-B07DB0DE1048}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameApi", "Sources\GameApi\GameApi.csproj", "{036B8AA0-3EB4-40DD-8899-B07DB0DE1048}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
