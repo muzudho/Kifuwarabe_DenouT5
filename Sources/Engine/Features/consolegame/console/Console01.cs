@@ -11,6 +11,7 @@ using kifuwarabe_shogiwin.consolegame.machine;
 using kifuwarabe_shogiwin.speak;
 using kifuwarabe_shogiwin.speak.ban;
 #else
+using Grayscale.Kifuwarabi.Entities;
 using Grayscale.Kifuwarabi.Entities.Logging;
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.com;
@@ -34,7 +35,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
         /// </summary>
         /// <param name="line">コマンドライン☆</param>
         /// <param name="hyoji">実行結果☆</param>
-        public static bool TryFail_Execute(string line, IHyojiMojiretu hyoji)
+        public static bool TryFail_Execute(IPlaying playing, string line, IHyojiMojiretu hyoji)
         {
             // このプログラムでは（Ａ）コマンド・モード、（Ｂ）ゲーム・モード　の２種類があるぜ☆
             // 最初は　コマンド・モードになっている☆（＾～＾）
@@ -200,7 +201,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
                 //────────────────────────────────────────
                 // （手順６）ゲーム用の指し手以外のコマンドライン実行
                 //────────────────────────────────────────
-                if(CommandlineState.TryFail_DoCommandline( hyoji))
+                if(CommandlineState.TryFail_DoCommandline(playing, hyoji))
                 {
                     return Pure.FailTrue("Try_DoCommandline");
                 }

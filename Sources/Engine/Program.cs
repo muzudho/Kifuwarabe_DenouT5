@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 #else
 using Grayscale.Kifuwarabi.Entities.Logging;
+using Grayscale.Kifuwarabi.UseCases;
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.com;
 using kifuwarabe_shogithink.pure.control;
@@ -47,6 +48,8 @@ namespace kifuwarabe_shogiwin
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            var playing = new Playing();
+
             // （手順２）きふわらべの応答は、文字列になって　ここに入るぜ☆（＾▽＾）
             // syuturyoku.ToContents() メソッドで中身を取り出せるぜ☆（＾～＾）
             IHyojiMojiretu hyoji = PureAppli.syuturyoku1;
@@ -107,7 +110,7 @@ namespace kifuwarabe_shogiwin
                 Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
                 var engineAuthor = toml.Get<TomlTable>("Engine").Get<string>("Author");
 
-                CommandU.Usi(CommandlineState.commandline, $"{engineName} {version.Major}.{version.Minor}.{version.Build}", engineAuthor, hyoji);
+                playing.UsiOk(CommandlineState.commandline, $"{engineName} {version.Major}.{version.Minor}.{version.Build}", engineAuthor, hyoji);
             }
             else
             {
@@ -117,7 +120,7 @@ namespace kifuwarabe_shogiwin
 
             //Face_Kifuwarabe.Execute("", Option_Application.Kyokumen, syuturyoku); // 空打ちで、ゲームモードに入るぜ☆（＾▽＾）
             // 空打ちで、ゲームモードに入るぜ☆（＾▽＾）
-            if (Console01.TryFail_Execute(CommandlineState.commandline, hyoji))
+            if (Console01.TryFail_Execute(playing, CommandlineState.commandline, hyoji))
             {
                 Logger.Flush(hyoji);
                 Console.WriteLine("おわり☆（＾▽＾）");

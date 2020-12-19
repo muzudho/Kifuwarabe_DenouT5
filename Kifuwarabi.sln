@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Sources\Engine\En
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameApi", "Sources\GameApi\GameApi.csproj", "{036B8AA0-3EB4-40DD-8899-B07DB0DE1048}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UseCases", "Sources\UseCases\UseCases.csproj", "{071CD65E-C8B0-422F-825E-D834307AB3CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,16 @@ Global
 		{036B8AA0-3EB4-40DD-8899-B07DB0DE1048}.U__ Unity|Any CPU.ActiveCfg = Release|Any CPU
 		{036B8AA0-3EB4-40DD-8899-B07DB0DE1048}.UK_ Unity Kaihatu|Any CPU.ActiveCfg = Release|Any CPU
 		{036B8AA0-3EB4-40DD-8899-B07DB0DE1048}.UKD Unity Kaihatu DEBUG|Any CPU.ActiveCfg = Release|Any CPU
+		{071CD65E-C8B0-422F-825E-D834307AB3CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{071CD65E-C8B0-422F-825E-D834307AB3CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{071CD65E-C8B0-422F-825E-D834307AB3CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{071CD65E-C8B0-422F-825E-D834307AB3CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{071CD65E-C8B0-422F-825E-D834307AB3CE}.U__ Unity|Any CPU.ActiveCfg = Debug|Any CPU
+		{071CD65E-C8B0-422F-825E-D834307AB3CE}.U__ Unity|Any CPU.Build.0 = Debug|Any CPU
+		{071CD65E-C8B0-422F-825E-D834307AB3CE}.UK_ Unity Kaihatu|Any CPU.ActiveCfg = Debug|Any CPU
+		{071CD65E-C8B0-422F-825E-D834307AB3CE}.UK_ Unity Kaihatu|Any CPU.Build.0 = Debug|Any CPU
+		{071CD65E-C8B0-422F-825E-D834307AB3CE}.UKD Unity Kaihatu DEBUG|Any CPU.ActiveCfg = Debug|Any CPU
+		{071CD65E-C8B0-422F-825E-D834307AB3CE}.UKD Unity Kaihatu DEBUG|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

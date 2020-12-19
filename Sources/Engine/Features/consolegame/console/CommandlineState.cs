@@ -26,6 +26,7 @@ using System.Collections.Generic;
 using Nett;
 using System.IO;
 using Grayscale.Kifuwarabi.Entities.Logging;
+using Grayscale.Kifuwarabi.Entities;
 #endif
 
 namespace kifuwarabe_shogiwin.consolegame.console
@@ -103,7 +104,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
         /// <summary>
         /// 次の入力を促す表示をしてるだけだぜ☆（＾～＾）
         /// </summary>
-        public static void ShowPrompt(FenSyurui f, IHyojiMojiretu hyoji)
+        public static void ShowPrompt( FenSyurui f, IHyojiMojiretu hyoji)
         {
             if (0 < commandBuffer.Count)
             {
@@ -157,7 +158,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
             }
         }
 
-        public static bool TryFail_DoCommandline( IHyojiMojiretu hyoji)
+        public static bool TryFail_DoCommandline(IPlaying playing, IHyojiMojiretu hyoji)
         {
             string cmdline = CommandlineState.commandline;
             int caret = CommandlineState.caret;
@@ -395,7 +396,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
                 Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
                 var engineAuthor = toml.Get<TomlTable>("Engine").Get<string>("Author");
 
-                CommandU.Usi(cmdline, $"{engineName} {version.Major}.{version.Minor}.{version.Build}", engineAuthor, hyoji);
+                playing.UsiOk(cmdline, $"{engineName} {version.Major}.{version.Minor}.{version.Build}", engineAuthor, hyoji);
             }
             else
             {
