@@ -4,6 +4,7 @@ using kifuwarabe_shogithink.pure.logger;
 using kifuwarabe_shogiwin.consolegame.machine;
 #else
 using Grayscale.Kifuwarabi.Entities.Logging;
+using Grayscale.Kifuwarabi.UseCases;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.logger;
 using kifuwarabe_shogiwin.consolegame.machine;
@@ -19,10 +20,10 @@ namespace kifuwarabe_shogiwin.consolegame.console
         /// <summary>
         /// メインループ開始時☆（＾▽＾）
         /// </summary>
-        public static void Begin_Mainloop(ProgramSupport programSupport, IHyojiMojiretu hyoji)
+        public static void Begin_Mainloop(Playing playing, ProgramSupport programSupport, IHyojiMojiretu hyoji)
         {
             programSupport.InitCommandline();// コマンド・ライン初期化☆
-            programSupport.ReadCommandBuffer(hyoji);// コマンド・バッファー読取り☆
+            programSupport.ReadCommandBuffer(playing, hyoji);// コマンド・バッファー読取り☆
         }
 
         public static void ReadCommandline(ProgramSupport programSupport, IHyojiMojiretu hyoji)

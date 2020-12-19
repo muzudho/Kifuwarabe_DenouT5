@@ -25,6 +25,7 @@ using kifuwarabe_shogiwin.speak.ban;
 using System;
 using System.Collections.Generic;
 using Grayscale.Kifuwarabi.Entities.Logging;
+using Grayscale.Kifuwarabi.UseCases;
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ikkyoku;
@@ -40,15 +41,12 @@ namespace kifuwarabe_shogiwin.consolegame.console
     {
         public ProgramSupport()
         {
-            commandBufferName = "";
-            commandBuffer = new List<string>(0);
             multipleLineCommand = new List<string>();
         }
 
         public string commandline { get; set; }
         public int caret { get; set; }
-        public string commandBufferName { get; set; }
-        public List<string> commandBuffer { get; set; }
+
         public bool isQuit { get; set; }
         public bool isKyokumenEcho1 { get; set; }
 
@@ -90,13 +88,13 @@ namespace kifuwarabe_shogiwin.consolegame.console
         /// <summary>
         /// コマンド・バッファーから１行読取り。
         /// </summary>
-        public void ReadCommandBuffer(IHyojiMojiretu hyoji)
+        public void ReadCommandBuffer(Playing playing, IHyojiMojiretu hyoji)
         {
-            if (0 < commandBuffer.Count)
+            if (0 < playing.commandBuffer.Count)
             {
-                commandline = commandBuffer[0];
+                commandline = playing.commandBuffer[0];
                 caret = 0;
-                commandBuffer.RemoveAt(0);
+                playing.commandBuffer.RemoveAt(0);
                 hyoji.AppendLine(commandline);
             }
         }
@@ -109,12 +107,12 @@ namespace kifuwarabe_shogiwin.consolegame.console
         /// <summary>
         /// 次の入力を促す表示をしてるだけだぜ☆（＾～＾）
         /// </summary>
-        public void ShowPrompt(FenSyurui f, IHyojiMojiretu hyoji)
+        public void ShowPrompt(Playing playing, FenSyurui f, IHyojiMojiretu hyoji)
         {
-            if (0 < this.commandBuffer.Count)
+            if (0 < playing.commandBuffer.Count)
             {
                 // コマンド・バッファーの実行中だぜ☆（＾▽＾）
-                hyoji.Append(this.commandBufferName + "> ");
+                hyoji.Append(playing.commandBufferName + "> ");
                 Logger.Flush(hyoji);
             }
             else if (GameMode.Game == PureAppli.gameMode)

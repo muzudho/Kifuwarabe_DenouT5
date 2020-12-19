@@ -160,7 +160,7 @@ namespace kifuwarabe_shogiwin
                 //────────────────────────────────────────
                 // （手順２）ユーザー入力
                 //────────────────────────────────────────
-                Util_ConsoleGame.Begin_Mainloop(programSupport, hyoji);
+                Util_ConsoleGame.Begin_Mainloop(playing, programSupport, hyoji);
                 if (programSupport.commandline != null)
                 {
                     // コマンド・バッファーにコマンドラインが残っていたようなら、そのまま使うぜ☆（＾▽＾）
@@ -394,7 +394,7 @@ namespace kifuwarabe_shogiwin
                     }
                 }
                 // なるべく、アルファベット順☆（＾▽＾）同じつづりで始まる単語の場合、語句の長い単語を優先にしないと if 文が通らないぜ☆ｗｗｗ
-                else if (caret == cmdline.IndexOf("@", caret)) { CommandA.Atmark(programSupport, cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("@", caret)) { playing.Atmark(cmdline, hyoji); }
                 else if (caret == cmdline.IndexOf("#", caret)) { }// 受け付けるが、何もしないぜ☆（＾▽＾）ｗｗｗ
                 else if (caret == cmdline.IndexOf("bitboard", caret))
                 {
@@ -645,7 +645,7 @@ namespace kifuwarabe_shogiwin
                 }
 
                 // 次の入力を促す表示をしてるだけだぜ☆（＾～＾）
-                programSupport.ShowPrompt(PureSettei.fenSyurui, hyoji);
+                programSupport.ShowPrompt(playing, PureSettei.fenSyurui, hyoji);
 
                 #endregion
 
