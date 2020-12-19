@@ -51,8 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ProgramSupport.cs" />
-    <Compile Include="command\CommandN.cs" />
-    <Compile Include="command\CommandM.cs" />
     <Compile Include="command\CommandO.cs" />
     <Compile Include="command\CommandP.cs" />
     <Compile Include="command\CommandR.cs" />

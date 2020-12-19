@@ -525,12 +525,12 @@ namespace kifuwarabe_shogiwin
                     }
 
                 }// 局面を表示するぜ☆（＾▽＾）
-                else if (caret == cmdline.IndexOf("manual", caret)) { CommandM.Man(hyoji); }// "man" と同じ☆（＾▽＾）
-                else if (caret == cmdline.IndexOf("man", caret)) { CommandM.Man(hyoji); }// "manual" と同じ☆（＾▽＾）
-                else if (caret == cmdline.IndexOf("masu", caret)) { CommandM.Masu_cmd(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("manual", caret)) { playing.Man(hyoji); }// "man" と同じ☆（＾▽＾）
+                else if (caret == cmdline.IndexOf("man", caret)) { playing.Man(hyoji); }// "manual" と同じ☆（＾▽＾）
+                else if (caret == cmdline.IndexOf("masu", caret)) { playing.Masu_cmd(cmdline, hyoji); }
                 else if (caret == cmdline.IndexOf("nanamedan", caret))
                 {
-                    if (CommandN.TryFail_Nanamedan(cmdline, hyoji
+                    if (playing.TryFail_Nanamedan(cmdline, hyoji
                         ))
                     {
                         result2 = Pure.FailTrue("TryFail_Nanamedan");
@@ -539,7 +539,7 @@ namespace kifuwarabe_shogiwin
                 }
                 else if (caret == cmdline.IndexOf("nisinsu", caret))
                 {
-                    if (CommandN.TryFail_Nisinsu(cmdline, hyoji
+                    if (playing.TryFail_Nisinsu(cmdline, hyoji
                         ))
                     {
                         result2 = Pure.FailTrue("TryFail_Nisinsu");

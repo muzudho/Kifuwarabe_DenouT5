@@ -32,11 +32,11 @@ namespace kifuwarabe_shogiwin.project.speak
             //CommandK.TryFail_Kiki("kiki", gky, hyoji);
 
             // ojhsh お邪魔ハッシュキー
-            CommandN.TryFail_Nanamedan("ojama ojhsh KT", hyoji);
-            CommandN.TryFail_Nanamedan("ojama ojhsh KY", hyoji);
-            CommandN.TryFail_Nanamedan("ojama ojhsh S", hyoji);
-            CommandN.TryFail_Nanamedan("ojama ojhsh ZHa", hyoji);
-            CommandN.TryFail_Nanamedan("ojama ojhsh ZHs", hyoji);
+            playing.TryFail_Nanamedan("ojama ojhsh KT", hyoji);
+            playing.TryFail_Nanamedan("ojama ojhsh KY", hyoji);
+            playing.TryFail_Nanamedan("ojama ojhsh S", hyoji);
+            playing.TryFail_Nanamedan("ojama ojhsh ZHa", hyoji);
+            playing.TryFail_Nanamedan("ojama ojhsh ZHs", hyoji);
 
             return Pure.SUCCESSFUL_FALSE;
         }
