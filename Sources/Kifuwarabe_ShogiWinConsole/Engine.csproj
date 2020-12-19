@@ -7,7 +7,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C163CDA8-78F8-4A4F-B88B-969CB7C5DD19}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>kifuwarabe_shogiwin</RootNamespace>
+    <RootNamespace>Grayscale.Kifuwarabi.Engine</RootNamespace>
     <AssemblyName>Grayscale.Kifuwarabi.Engine</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -21,7 +21,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Game_Debug\</OutputPath>
+    <OutputPath>..\..\Builds\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -31,7 +31,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Game_Release\</OutputPath>
+    <OutputPath>..\..\Builds\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -39,7 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Nett, Version=0.15.0.0, Culture=neutral, PublicKeyToken=605dcfe7a1d3365b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nett.0.15.0\lib\net40\Nett.dll</HintPath>
+      <HintPath>..\..\packages\Nett.0.15.0\lib\net40\Nett.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

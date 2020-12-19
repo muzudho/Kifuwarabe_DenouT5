@@ -8,8 +8,8 @@
     <ProjectGuid>{0D39F8BD-AEA4-4BAA-81B8-472BAB9B22EB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>kifuwarabe_shogithink</RootNamespace>
-    <AssemblyName>Kifuwarabe_ShogiThinkPureCsharp2017</AssemblyName>
+    <RootNamespace>Grayscale.Kifuwarabi.Entities</RootNamespace>
+    <AssemblyName>Grayscale.Kifuwarabi.Entities</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -37,7 +37,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Game_ShogiThink_DeleteMe_Debug\</OutputPath>
+    <OutputPath>..\..\Builds\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -48,7 +48,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Game_ShogiThink_DeleteMe_Release\</OutputPath>
+    <OutputPath>..\..\Builds\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

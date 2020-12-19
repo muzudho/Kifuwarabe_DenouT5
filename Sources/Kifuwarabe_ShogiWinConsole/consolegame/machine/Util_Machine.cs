@@ -7,6 +7,7 @@ using System.IO;
 #else
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.logger;
+using Nett;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -26,9 +27,9 @@ namespace kifuwarabe_shogiwin.consolegame.machine
             System.Console.Title = "きふわらべ";
 
             // ログ・ファイルがあれば削除するぜ☆
-            if (File.Exists(LOG_FOLDER + LOG_FILE_WOE + LOG_FILE_EXT))
+            if (File.Exists(Path.Combine( LogDirectory, LogFileStem + LogFileExt)))
             {
-                File.Delete(LOG_FOLDER + LOG_FILE_WOE + LOG_FILE_EXT);
+                File.Delete(Path.Combine(LogDirectory, LogFileStem + LogFileExt));
             }
 
             // 254文字までしか入力できない。（Console.DefaultConsoleBufferSize = 256 引く CRLF 2文字）
@@ -46,15 +47,34 @@ namespace kifuwarabe_shogiwin.consolegame.machine
         /// <summary>
         /// ログ・フォルダー
         /// </summary>
-        readonly static string LOG_FOLDER = "Log" + Path.DirectorySeparatorChar.ToString();
+        /// <summary>
+        /// ログ・フォルダー
+        /// </summary>
+        static string LogDirectory
+        {
+            get
+            {
+                if (Util_Machine.logDirectory == null)
+                {
+                    var profilePath = System.Configuration.ConfigurationManager.AppSettings["Profile"];
+                    var toml = Toml.ReadFile(Path.Combine(profilePath, "Engine.toml"));
+                    var logDirectory = toml.Get<TomlTable>("Resources").Get<string>("LogDirectory");
+                    Util_Machine.logDirectory = Path.Combine(profilePath, logDirectory);
+                }
+
+                return Util_Machine.logDirectory;
+            }
+        }
+        static string logDirectory;
+
         /// <summary>
         /// ログ・ファイル名　拡張子抜き（without extension）
         /// </summary>
-        const string LOG_FILE_WOE = "_auto_log";
+        const string LogFileStem = "_auto_log";
         /// <summary>
         /// ログ・ファイル名の拡張子
         /// </summary>
-        const string LOG_FILE_EXT = ".txt";
+        const string LogFileExt = ".txt";
 
         /// <summary>
         /// ローカルルール名
@@ -135,7 +155,7 @@ namespace kifuwarabe_shogiwin.consolegame.machine
                     // まず、ログファイルがあるか、Ｎ個確認するぜ☆（＾▽＾）
                     for (int i = 0; i < maxFileCount; i++)
                     {
-                        string file = LOG_FOLDER + LOG_FILE_WOE + "_" + (i + 1) + LOG_FILE_EXT;
+                        string file = Path.Combine( LogDirectory, LogFileStem + "_" + (i + 1) + LogFileExt);
 
                         // ファイルがあるか☆
                         if (File.Exists(file))
@@ -168,12 +188,12 @@ namespace kifuwarabe_shogiwin.consolegame.machine
                     {
                         // ログ・ファイルが１つも無ければ、新規作成するぜ☆（＾▽＾）
 
-                        if (!Directory.Exists(LOG_FOLDER))
+                        if (!Directory.Exists(LogDirectory))
                         {
-                            Directory.CreateDirectory(LOG_FOLDER);
+                            Directory.CreateDirectory(LogDirectory);
                         }
 
-                        bestFile = LOG_FOLDER + LOG_FILE_WOE + "_1" + LOG_FILE_EXT;
+                        bestFile = Path.Combine(LogDirectory, LogFileStem + "_1" + LogFileExt);
 
                         FileStream fs = File.Create(bestFile);
                         fs.Close(); // File.Create したあとは、必ず Close() しないと、ロックがかかったままになる☆（＾▽＾）
@@ -182,7 +202,7 @@ namespace kifuwarabe_shogiwin.consolegame.machine
                     {
                         // ファイルがある場合は、一番新しいファイルに書き足すぜ☆（＾▽＾）
 
-                        bestFile = LOG_FOLDER + LOG_FILE_WOE + "_" + (newestFileIndex+1) + LOG_FILE_EXT;
+                        bestFile = Path.Combine(LogDirectory, LogFileStem + "_" + (newestFileIndex+1) + LogFileExt);
                         // 一番新しいファイルのサイズが n バイト を超えている場合は、
                         // 新しいファイルを新規作成するぜ☆（＾▽＾）
                         if (maxFileSize < newestFileSize) // n バイト以上なら
@@ -191,7 +211,7 @@ namespace kifuwarabe_shogiwin.consolegame.machine
                             if (maxFileCount <= existFileCount)
                             {
                                 // ファイルが全部ある場合は、一番古いファイルを消して、一から書き込むぜ☆
-                                bestFile = LOG_FOLDER + LOG_FILE_WOE + "_" + (oldestFileIndex+1) + LOG_FILE_EXT;
+                                bestFile = Path.Combine(LogDirectory, LogFileStem + "_" + (oldestFileIndex+1) + LogFileExt);
                                 File.Delete(bestFile);
 
                                 FileStream fs = File.Create(bestFile);
@@ -200,7 +220,7 @@ namespace kifuwarabe_shogiwin.consolegame.machine
                             else
                             {
                                 // まだ作っていないファイルを作って、書き込むぜ☆（＾▽＾）
-                                bestFile = LOG_FOLDER + LOG_FILE_WOE + "_" + (noExistsFileIndex+1) + LOG_FILE_EXT;
+                                bestFile = Path.Combine(LogDirectory, LogFileStem + "_" + (noExistsFileIndex+1) + LogFileExt);
 
                                 FileStream fs = File.Create(bestFile);
                                 fs.Close(); // File.Create したあとは、必ず Close() しないと、ロックがかかったままになる☆（＾▽＾）

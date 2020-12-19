@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Sources\Kifuwar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Sources\Kifuwarabe_ShogiWinConsole\Engine.csproj", "{C163CDA8-78F8-4A4F-B88B-969CB7C5DD19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameAPI", "Sources\Kifuwarabe_ShogiAPI\GameAPI.csproj", "{036B8AA0-3EB4-40DD-8899-B07DB0DE1048}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameApi", "Sources\Kifuwarabe_ShogiAPI\GameApi.csproj", "{036B8AA0-3EB4-40DD-8899-B07DB0DE1048}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
