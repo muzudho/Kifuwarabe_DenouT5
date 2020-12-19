@@ -23,6 +23,8 @@ using kifuwarabe_shogiwin.consolegame.machine;
 using kifuwarabe_shogiwin.speak.ban;
 using System;
 using System.Collections.Generic;
+using Nett;
+using System.IO;
 #endif
 
 namespace kifuwarabe_shogiwin.consolegame.console
@@ -382,7 +384,18 @@ namespace kifuwarabe_shogiwin.consolegame.console
                 CommandU.UpdateRule(cmdline, hyoji);
             }
             else if (caret == cmdline.IndexOf("usinewgame", caret)) { CommandU.Usinewgame(cmdline, hyoji); }
-            else if (caret == cmdline.IndexOf("usi", caret)) { CommandU.Usi(cmdline, hyoji); }//ここは普通、来ない☆（＾～＾）
+            else if (caret == cmdline.IndexOf("usi", caret))
+            {
+                //ここは普通、来ない☆（＾～＾）
+                var profilePath = System.Configuration.ConfigurationManager.AppSettings["Profile"];
+                var toml = Toml.ReadFile(Path.Combine(profilePath, "Engine.toml"));
+
+                var engineName = toml.Get<TomlTable>("Engine").Get<string>("Name");
+                Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+                var engineAuthor = toml.Get<TomlTable>("Engine").Get<string>("Author");
+
+                CommandU.Usi(cmdline, $"id name {engineName} {version.Major}.{version.Minor}.{version.Build}", engineAuthor, hyoji);
+            }
             else
             {
                 // 表示（コンソール・ゲーム用）

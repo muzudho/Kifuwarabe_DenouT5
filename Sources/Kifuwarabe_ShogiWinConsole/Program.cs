@@ -26,8 +26,10 @@ using kifuwarabe_shogiwin.consolegame.console.command;
 using kifuwarabe_shogiwin.consolegame.machine;
 using kifuwarabe_shogiwin.project;
 using kifuwarabe_shogiwin.speak;
+using Nett;
 using System;
 using System.Collections.Generic;
+using System.IO;
 #endif
 
 namespace kifuwarabe_shogiwin
@@ -97,7 +99,14 @@ namespace kifuwarabe_shogiwin
                     }
                 );
 
-                CommandU.Usi(CommandlineState.commandline, hyoji);
+                var profilePath = System.Configuration.ConfigurationManager.AppSettings["Profile"];
+                var toml = Toml.ReadFile(Path.Combine(profilePath, "Engine.toml"));
+
+                var engineName = toml.Get<TomlTable>("Engine").Get<string>("Name");
+                Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+                var engineAuthor = toml.Get<TomlTable>("Engine").Get<string>("Author");
+
+                CommandU.Usi(CommandlineState.commandline, $"id name {engineName} {version.Major}.{version.Minor}.{version.Build}", engineAuthor, hyoji);
             }
             else
             {
