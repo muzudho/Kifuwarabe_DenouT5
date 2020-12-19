@@ -29,7 +29,10 @@ using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
+using kifuwarabe_shogithink.pure.listen;
+using kifuwarabe_shogithink.pure.listen.play;
 using kifuwarabe_shogithink.pure.logger;
+using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogiwin.speak.ban;
 #endif
 
@@ -141,5 +144,37 @@ namespace kifuwarabe_shogiwin.consolegame.console
                 Logger.Flush(hyoji);
             }
         }
+
+        public bool ParseDoMove(out Move out_move)
+        {
+            // コンソールからのキー入力を解析するぜ☆（＾▽＾）
+            int caret = this.caret;
+            int oldCaret = this.caret;
+
+            Util_String.TobasuTangoToMatubiKuhaku(this.commandline, ref caret, "do ");
+
+            // うしろに続く文字は☆（＾▽＾）
+            if (!LisPlay.MatchFenMove(PureSettei.fenSyurui, this.commandline, ref caret, out out_move))
+            {
+                this.caret = oldCaret;
+
+                //String2 str = new String2Impl();
+                //str.Append("指し手のパースに失敗だぜ☆（＾～＾）！ #鷺 commandline=[");
+                //str.Append(commandline);
+                //str.Append("] caret=[");
+                //str.Append(caret);
+                //str.Append("]");
+                //syuturyoku.AppendLine(str.ToContents());
+                //Util_Machine.Flush();
+                //throw new Exception(str.ToContents());
+                return false;
+            }
+
+            // do コマンドだった場合☆
+            this.caret = caret;
+            this.CommentCommandline();// コマンドの誤発動防止
+            return true;
+        }
+
     }
 }

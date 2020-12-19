@@ -204,7 +204,7 @@ namespace kifuwarabe_shogiwin
                             // do以外のコマンドであれば、コマンドラインを保持したまま、そのまま続行
                         }
                         // 以下、do コマンドの場合☆
-                        else if (!Console02.ParseDoMove(programSupport, out Move inputMove))
+                        else if (!programSupport.ParseDoMove( out Move inputMove))
                         {
                             // do コマンドのパースエラー表示（コンソール・ゲーム用）☆（＾～＾）
                             SpkMove.AppendSetumei(MoveMatigaiRiyu.ParameterSyosikiMatigai, hyoji);
