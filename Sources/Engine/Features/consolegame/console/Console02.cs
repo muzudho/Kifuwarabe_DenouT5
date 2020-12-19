@@ -37,75 +37,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
 {
     public static class Console02
     {
-        /// <summary>
-        /// 対局終了
-        /// </summary>
-        public static void DoTejun5_SyuryoTaikyoku1( IHyojiMojiretu hyoji)
-        {
-            // 表示（コンソール・ゲーム用）
-            {
-                CommandR.Result( hyoji, CommandMode.NingenYoConsoleGame);
-                hyoji.AppendLine("終わったぜ☆（＾▽＾）");
-                Logger.Flush(hyoji);
-            }
-
-
-
-            // 棋譜の初期局面を更新☆
-            {
-                ICommandMojiretu kyFen_temp = new MojiretuImpl();
-                SpkGenkyokuOpe.AppendFenTo( PureSettei.fenSyurui, kyFen_temp);
-                PureMemory.kifu_syokiKyokumenFen = kyFen_temp.ToContents();
-            }
-
-
-            // TODO: 成績は保存しないにしても、棋譜は欲しいときもあるぜ☆（＾～＾）
-            // 棋譜を作ろうぜ☆
-            hyoji.AppendLine( "感想戦を行う場合は kansosen と打てだぜ☆（＾▽＾）　そのあと kifu 1 とか打て☆（＾▽＾）");
-            hyoji.AppendLine( "終わるときは hirate な☆（＾▽＾）");
-            Logger.Flush(hyoji);
-
-            // 初期局面に戻すぜ☆（＾▽＾）
-            Util_Taikyoku.Clear();
-
-            // 棋譜カーソルを０にすれば、初期局面に戻るだろ☆ｗｗｗ（＾▽＾）
-            MoveGenAccessor.BackTemeToFirst_AndClearTeme();
-
-
-            if (Util_Machine.IsRenzokuTaikyokuStop())
-            {
-                // 連続対局を止めるぜ☆（＾▽＾）
-                ConsolegameSettei.renzokuTaikyoku = false;
-                hyoji.AppendLine(Util_Machine.RENZOKU_TAIKYOKU_STOP_FILE + "> done");
-            }
-
-            if (!ConsolegameSettei.renzokuTaikyoku)
-            {
-                // ゲームモードを解除するぜ☆（＾～＾）
-                if (GameMode.Game == PureAppli.gameMode)// 感想戦での発動防止☆
-                {
-                    PureAppli.gameMode = GameMode.Karappo;
-                }
-            }
-            else
-            {
-                // 連続対局中☆（＾～＾）
-
-            }
-
-            // コマンドの誤発動防止
-            CommandlineState.CommentCommandline();
-        }
-        public static void DoTejun7_FlushAll2(IHyojiMojiretu hyoji)
-        {
-            // 表示・ログ出力（コンソール・ゲーム用）
-            {
-                // ファイルに書き出していないログが溜まっていれば、これで全部書き出します。
-                Logger.Flush(hyoji);
-            }
-        }
-
-        public static bool ParseDoMove( out Move out_move)
+        public static bool ParseDoMove(out Move out_move)
         {
             // コンソールからのキー入力を解析するぜ☆（＾▽＾）
             int caret = CommandlineState.caret;
@@ -137,21 +69,6 @@ namespace kifuwarabe_shogiwin.consolegame.console
         }
 
         #region コンソールゲーム用の機能☆
-        /// <summary>
-        /// アプリケーション終了時に呼び出せだぜ☆（＾▽＾）！
-        /// </summary>
-        /// <param name="hyoji"></param>
-        public static void End_Application(IHyojiMojiretu hyoji)
-        {
-            #region （手順７）保存して終了
-            //────────────────────────────────────────
-            // （手順７）保存して終了
-            //────────────────────────────────────────
-            // 保存していないものを保存するぜ☆（＾▽＾）
-            Console02.DoTejun7_FlushAll2(hyoji);
-            #endregion
-        }
-
         /// <summary>
         /// 人間の番☆
         /// </summary>
