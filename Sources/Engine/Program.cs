@@ -481,7 +481,7 @@ namespace kifuwarabe_shogiwin
                 else if (caret == cmdline.IndexOf("hyoka", caret)) { playing.Hyoka(cmdline, hyoji); }
                 else if (caret == cmdline.IndexOf("ojama", caret))
                 {
-                    if (CommandO.TryFail_Ojama(cmdline, hyoji
+                    if (playing.TryFail_Ojama(cmdline, hyoji
                         ))
                     {
                         result2 = Pure.FailTrue("TryFail_Ojama");
@@ -546,8 +546,8 @@ namespace kifuwarabe_shogiwin
                         goto gt_EndCommand;
                     }
                 }
-                else if (caret == cmdline.IndexOf("position", caret)) { CommandP.Position(PureSettei.fenSyurui, cmdline, hyoji); }
-                else if (caret == cmdline.IndexOf("prego", caret)) { CommandP.PreGo(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("position", caret)) { playing.Position(PureSettei.fenSyurui, cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("prego", caret)) { playing.PreGo(cmdline, hyoji); }
                 else if (caret == cmdline.IndexOf("quit", caret)) { programSupport.isQuit = true; programSupport.isKyokumenEcho1 = true; }
                 else if (caret == cmdline.IndexOf("result", caret)) { CommandR.Result(hyoji, CommandMode.NigenYoConsoleKaihatu); }
                 else if (caret == cmdline.IndexOf("rnd", caret))
