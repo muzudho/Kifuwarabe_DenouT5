@@ -33,7 +33,6 @@ using kifuwarabe_shogithink.pure.speak.genkyoku;
 using kifuwarabe_shogithink.pure.speak.play;
 using kifuwarabe_shogiwin.consolegame;
 using kifuwarabe_shogiwin.consolegame.console;
-using kifuwarabe_shogiwin.consolegame.console.command;
 using kifuwarabe_shogiwin.consolegame.machine;
 using kifuwarabe_shogiwin.project;
 using kifuwarabe_shogiwin.speak;
@@ -573,11 +572,11 @@ namespace kifuwarabe_shogiwin
                 }
                 else if (caret == cmdline.IndexOf("setoption", caret)) { playing.Setoption(cmdline, hyoji); }
                 else if (caret == cmdline.IndexOf("set", caret)) { playing.Set(cmdline, hyoji); }
-                else if (caret == cmdline.IndexOf("taikyokusya", caret)) { CommandT.Taikyokusya_cmd(cmdline, hyoji); }
-                else if (caret == cmdline.IndexOf("tansaku", caret)) { CommandT.Tansaku(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("taikyokusya", caret)) { playing.Taikyokusya_cmd(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("tansaku", caret)) { playing.Tansaku(cmdline, hyoji); }
                 else if (caret == cmdline.IndexOf("test", caret))
                 {
-                    if (CommandT.TryFail_Test(cmdline, hyoji))
+                    if (playing.TryFail_Test(cmdline, hyoji))
                     {
                         result2 = Pure.FailTrue("TryFail_Test");
                         goto gt_EndCommand;
@@ -585,17 +584,17 @@ namespace kifuwarabe_shogiwin
                 }
                 else if (caret == cmdline.IndexOf("tonarikiki", caret))
                 {
-                    if (CommandT.TryFail_Tonarikiki(cmdline, hyoji))
+                    if (playing.TryFail_Tonarikiki(cmdline, hyoji))
                     {
                         result2 = Pure.FailTrue("TryFail_Tonarikiki");
                         goto gt_EndCommand;
                     }
                 }
-                else if (caret == cmdline.IndexOf("tumeshogi", caret)) { CommandT.TumeShogi(PureSettei.fenSyurui, cmdline, hyoji); }// "tu" と同じ☆（＾▽＾）
-                else if (caret == cmdline.IndexOf("tu", caret)) { CommandT.TumeShogi(PureSettei.fenSyurui, cmdline, hyoji); }// "tumeshogi" と同じ☆（＾▽＾）
+                else if (caret == cmdline.IndexOf("tumeshogi", caret)) { playing.TumeShogi(PureSettei.fenSyurui, cmdline, hyoji); }// "tu" と同じ☆（＾▽＾）
+                else if (caret == cmdline.IndexOf("tu", caret)) { playing.TumeShogi(PureSettei.fenSyurui, cmdline, hyoji); }// "tumeshogi" と同じ☆（＾▽＾）
                 else if (caret == cmdline.IndexOf("ugokikata", caret))
                 {
-                    if (CommandU.TryFail_Ugokikata(cmdline, hyoji))
+                    if (playing.TryFail_Ugokikata(cmdline, hyoji))
                     {
                         result2 = Pure.FailTrue("TryFail_Ugokikata");
                         goto gt_EndCommand;
@@ -603,13 +602,13 @@ namespace kifuwarabe_shogiwin
                 }
                 else if (caret == cmdline.IndexOf("undo", caret))
                 {
-                    CommandU.Undo(cmdline, hyoji);
+                    playing.Undo(cmdline, hyoji);
                 }
                 else if (caret == cmdline.IndexOf("updaterule", caret))
                 {
-                    CommandU.UpdateRule(cmdline, hyoji);
+                    playing.UpdateRule(cmdline, hyoji);
                 }
-                else if (caret == cmdline.IndexOf("usinewgame", caret)) { CommandU.Usinewgame(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("usinewgame", caret)) { playing.UsiNewGame(cmdline, hyoji); }
                 else if (caret == cmdline.IndexOf("usi", caret))
                 {
                     //ここは普通、来ない☆（＾～＾）

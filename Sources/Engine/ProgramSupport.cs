@@ -23,7 +23,6 @@ using kifuwarabe_shogiwin.consolegame.console.command;
 using kifuwarabe_shogiwin.speak.ban;
 #else
 using System;
-using System.Collections.Generic;
 using Grayscale.Kifuwarabi.Entities.Logging;
 using Grayscale.Kifuwarabi.UseCases;
 using kifuwarabe_shogithink.pure;
@@ -31,7 +30,6 @@ using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.logger;
-using kifuwarabe_shogiwin.consolegame.console.command;
 using kifuwarabe_shogiwin.speak.ban;
 #endif
 

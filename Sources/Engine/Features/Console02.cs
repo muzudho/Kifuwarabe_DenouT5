@@ -18,19 +18,12 @@ using kifuwarabe_shogithink.pure.listen.genkyoku;
 using System.Collections.Generic;
 using kifuwarabe_shogithink.pure.control;
 #else
-using Grayscale.Kifuwarabi.Entities.Logging;
 using kifuwarabe_shogithink.pure;
-using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.com;
-using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen;
 using kifuwarabe_shogithink.pure.listen.play;
-using kifuwarabe_shogithink.pure.logger;
 using kifuwarabe_shogithink.pure.move;
-using kifuwarabe_shogithink.pure.speak.genkyoku;
-using kifuwarabe_shogiwin.consolegame.console.command;
-using kifuwarabe_shogiwin.consolegame.machine;
 #endif
 
 namespace kifuwarabe_shogiwin.consolegame.console

@@ -8,8 +8,6 @@ using kifuwarabe_shogiwin.speak.ban;
 using Grayscale.Kifuwarabi.UseCases;
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.logger;
-using kifuwarabe_shogiwin.consolegame.console;
-using kifuwarabe_shogiwin.consolegame.console.command;
 using kifuwarabe_shogiwin.speak.ban;
 #endif
 

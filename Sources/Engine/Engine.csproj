@@ -51,8 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ProgramSupport.cs" />
-    <Compile Include="command\CommandT.cs" />
-    <Compile Include="command\CommandU.cs" />
     <Compile Include="Features\Console02.cs" />
     <Compile Include="Features\SpkDump.cs" />
     <Compile Include="Features\Util_ConsoleGame.cs" />
