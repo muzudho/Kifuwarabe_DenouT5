@@ -72,7 +72,6 @@
     <Compile Include="Features\consolegame\console\command\CommandU.cs" />
     <Compile Include="Features\consolegame\console\Console02.cs" />
     <Compile Include="Features\consolegame\console\ConvAppli.cs" />
-    <Compile Include="Features\consolegame\console\Console01.cs" />
     <Compile Include="Features\consolegame\console\CommandlineState.cs" />
     <Compile Include="Features\consolegame\console\Util_ConsoleGame.cs" />
     <Compile Include="Features\consolegame\gakusyu\Util_Sigmoid.cs" />
