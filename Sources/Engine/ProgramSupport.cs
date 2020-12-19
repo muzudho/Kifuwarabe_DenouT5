@@ -117,7 +117,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
                         //                        Util_Machine.Flush(syuturyoku);
                         //#endif
 
-                        CommandR.Result(hyoji, CommandMode.NingenYoConsoleGame);
+                        playing.Result(hyoji, CommandMode.NingenYoConsoleGame);
                     }
                     Logger.Flush(hyoji);
                 }

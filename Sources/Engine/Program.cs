@@ -292,7 +292,7 @@ namespace kifuwarabe_shogiwin
                         // 対局終了時
                         // 表示（コンソール・ゲーム用）
                         {
-                            CommandR.Result(hyoji, CommandMode.NingenYoConsoleGame);
+                            playing.Result(hyoji, CommandMode.NingenYoConsoleGame);
                             hyoji.AppendLine("終わったぜ☆（＾▽＾）");
                             Logger.Flush(hyoji);
                         }
@@ -549,10 +549,10 @@ namespace kifuwarabe_shogiwin
                 else if (caret == cmdline.IndexOf("position", caret)) { playing.Position(PureSettei.fenSyurui, cmdline, hyoji); }
                 else if (caret == cmdline.IndexOf("prego", caret)) { playing.PreGo(cmdline, hyoji); }
                 else if (caret == cmdline.IndexOf("quit", caret)) { programSupport.isQuit = true; programSupport.isKyokumenEcho1 = true; }
-                else if (caret == cmdline.IndexOf("result", caret)) { CommandR.Result(hyoji, CommandMode.NigenYoConsoleKaihatu); }
+                else if (caret == cmdline.IndexOf("result", caret)) { playing.Result(hyoji, CommandMode.NigenYoConsoleKaihatu); }
                 else if (caret == cmdline.IndexOf("rnd", caret))
                 {
-                    if (!CommandR.Try_Rnd(
+                    if (!playing.Try_Rnd(
 #if DEBUG
                     (IDebugMojiretu)hyoji
 #endif
@@ -565,14 +565,14 @@ namespace kifuwarabe_shogiwin
                 }
                 else if (caret == cmdline.IndexOf("move", caret))
                 {
-                    if (CommandS.TryFail_Move_cmd(cmdline, hyoji))
+                    if (playing.TryFail_Move_cmd(cmdline, hyoji))
                     {
                         result2 = Pure.FailTrue("TryFail_Move_cmd");
                         goto gt_EndCommand;
                     }
                 }
-                else if (caret == cmdline.IndexOf("setoption", caret)) { CommandS.Setoption(cmdline, hyoji); }
-                else if (caret == cmdline.IndexOf("set", caret)) { CommandS.Set(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("setoption", caret)) { playing.Setoption(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("set", caret)) { playing.Set(cmdline, hyoji); }
                 else if (caret == cmdline.IndexOf("taikyokusya", caret)) { CommandT.Taikyokusya_cmd(cmdline, hyoji); }
                 else if (caret == cmdline.IndexOf("tansaku", caret)) { CommandT.Tansaku(cmdline, hyoji); }
                 else if (caret == cmdline.IndexOf("test", caret))
