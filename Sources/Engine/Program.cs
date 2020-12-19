@@ -350,7 +350,289 @@ namespace kifuwarabe_shogiwin
                 //────────────────────────────────────────
                 // （手順６）ゲーム用の指し手以外のコマンドライン実行
                 //────────────────────────────────────────
-                if (CommandlineState.TryFail_DoCommandline(playing, hyoji))
+                bool result2 = Pure.SUCCESSFUL_FALSE;
+                string cmdline = CommandlineState.commandline;
+                int caret = CommandlineState.caret;
+                CommandlineState.isQuit = false;
+                CommandlineState.isKyokumenEcho1 = false; // ゲーム・モードの場合、特に指示がなければ　コマンド終了後、局面表示を返すぜ☆
+
+                if (CommandlineState.isMultipleLineCommand)
+                {
+                    // TODO: 複数行コマンド中☆（＾～＾）
+                    //syuturyoku.AppendLine("TODO: ky set 複数行コマンド中☆（＾～＾）(2) commandline="+ commandline);
+                    //isKyokumenEcho1 = false;
+                    if (cmdline == ".")
+                    {
+                        // 「.」だけの行が来たら終了だぜ☆（＾～＾）
+                        CommandlineState.isMultipleLineCommand = false;
+                        // 実行☆（＾～＾）
+                        CommandlineState.dlgt_multipleLineCommand(CommandlineState.multipleLineCommand);
+                        CommandlineState.multipleLineCommand.Clear();
+                        //syuturyoku.AppendLine("TODO: 複数行コマンドは=" + sbMultipleLineCommand.ToString());
+                    }
+                    else
+                    {
+                        CommandlineState.multipleLineCommand.Add(cmdline);
+                    }
+                    goto gt_EndCommand;
+                }
+
+                if (null == cmdline)
+                {
+                    // 未設定
+                    CommandlineState.isKyokumenEcho1 = true;
+                }
+                else if (cmdline == "")
+                {
+                    CommandlineState.isKyokumenEcho1 = true;
+                    // 空打ちは無視するか、からっぽモードでは、ゲームモードに切り替えるぜ☆（＾▽＾）
+                    if (GameMode.Karappo == PureAppli.gameMode)// 感想戦での発動防止☆
+                    {
+                        // ゲームモード（対局開始）
+                        PureAppli.gameMode = GameMode.Game;
+                    }
+                }
+                // なるべく、アルファベット順☆（＾▽＾）同じつづりで始まる単語の場合、語句の長い単語を優先にしないと if 文が通らないぜ☆ｗｗｗ
+                else if (caret == cmdline.IndexOf("@", caret)) { CommandA.Atmark(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("#", caret)) { }// 受け付けるが、何もしないぜ☆（＾▽＾）ｗｗｗ
+                else if (caret == cmdline.IndexOf("bitboard", caret))
+                {
+                    // ビットボードの表示テスト用だぜ☆（＾～＾）
+                    if (CommandB.TryFail_Bitboard(cmdline, hyoji))
+                    {
+                        result2 = Pure.FailTrue("TryFail_Bitboard");
+                        goto gt_EndCommand;
+                    }
+                }
+                else if (caret == cmdline.IndexOf("cando", caret))
+                {
+                    CommandC.CanDo(PureSettei.fenSyurui, cmdline, GameMode.Game == PureAppli.gameMode ? CommandMode.NingenYoConsoleGame : CommandMode.NigenYoConsoleKaihatu, hyoji);
+                    CommandlineState.isKyokumenEcho1 = true;
+                }
+                else if (caret == cmdline.IndexOf("chikanhyo", caret))
+                {
+                    if (CommandC.TryFail_ChikanHyo(cmdline, hyoji
+                        ))
+                    {
+                        result2 = Pure.FailTrue("TryFail_ChikanHyo");
+                        goto gt_EndCommand;
+                    }
+                }
+                else if (caret == cmdline.IndexOf("clear", caret)) { CommandC.Clear(); }
+                else if (caret == cmdline.IndexOf("dosub", caret))
+                {
+                    if (CommandD.TryFail_DoSub(cmdline, hyoji))
+                    {
+                        result2 = Pure.FailTrue("TryFail_Do");
+                        goto gt_EndCommand;
+                    }
+                    CommandlineState.isKyokumenEcho1 = true;
+                }
+                else if (caret == cmdline.IndexOf("do", caret))
+                {
+                    if (CommandD.TryFail_Do(
+                        PureSettei.fenSyurui,
+                        cmdline,
+                        GameMode.Game == PureAppli.gameMode ? CommandMode.NingenYoConsoleGame : CommandMode.NigenYoConsoleKaihatu, hyoji
+                        ))
+                    {
+                        result2 = Pure.FailTrue("TryFail_Do");
+                        goto gt_EndCommand;
+                    }
+                    CommandlineState.isKyokumenEcho1 = true;
+                }
+#if DEBUG
+            else if (caret == cmdline.IndexOf("dump", caret))
+            {
+                if (CommandD.TryFail_Dump(cmdline, hyoji
+                    ))
+                {
+                    return Pure.FailTrue("TryFail_Dump");
+                }
+            }
+#endif
+                else if (caret == cmdline.IndexOf("fugo", caret))
+                {
+                    if (CommandF.TryFail_Fugo(cmdline, hyoji
+                        ))
+                    {
+                        result2 = Pure.FailTrue("TryFail_Fugo");
+                        goto gt_EndCommand;
+                    }
+                }
+                else if (caret == cmdline.IndexOf("gameover", caret)) { CommandG.Gameover(cmdline, hyoji); CommandlineState.isKyokumenEcho1 = true; }
+                else if (caret == cmdline.IndexOf("go", caret))
+                {
+                    if (CommandG.TryFail_Go(
+                        PureSettei.usi,
+                        PureSettei.fenSyurui,
+                        CommandMode.NigenYoConsoleKaihatu
+                        , hyoji
+                        ))
+                    {
+                        result2 = Pure.FailTrue("Try_Go");
+                        goto gt_EndCommand;
+                    }
+                }
+                else if (caret == cmdline.IndexOf("hirate", caret)) { CommandH.Hirate(cmdline, hyoji); CommandlineState.isKyokumenEcho1 = true; }
+                else if (caret == cmdline.IndexOf("honyaku", caret)) { CommandH.Honyaku(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("hyoka", caret)) { CommandH.Hyoka(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("ojama", caret))
+                {
+                    if (CommandO.TryFail_Ojama(cmdline, hyoji
+                        ))
+                    {
+                        result2 = Pure.FailTrue("TryFail_Ojama");
+                        goto gt_EndCommand;
+                    }
+                }
+                else if (caret == cmdline.IndexOf("isready", caret)) { playing.ReadOk(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("jokyo", caret)) { CommandJ.Jokyo(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("kansosen", caret)) { CommandK.Kansosen(PureSettei.fenSyurui, cmdline, hyoji); }// 駒の場所を表示するぜ☆（＾▽＾）
+                else if (caret == cmdline.IndexOf("kifu", caret)) { CommandK.Kifu(PureSettei.fenSyurui, cmdline, hyoji); }// 駒の場所を表示するぜ☆（＾▽＾）
+                else if (caret == cmdline.IndexOf("kikisu", caret))
+                {
+                    // 利きの数を調べるぜ☆（＾▽＾）
+                    // 旧名「kikikazu」→「kikisu」
+                    CommandK.Kikisu(cmdline, hyoji);
+                }
+                else if (caret == cmdline.IndexOf("kiki", caret))
+                {
+                    // 利きを調べるぜ☆（＾▽＾）
+                    if (CommandK.TryFail_Kiki(cmdline, hyoji))
+                    {
+                        result2 = Pure.FailTrue("TryFail_Kiki");
+                        goto gt_EndCommand;
+                    }
+                }
+                else if (caret == cmdline.IndexOf("koma", caret))
+                {
+                    Pure.Sc.Push("komaコマンド");
+                    CommandK.Koma_cmd(PureSettei.fenSyurui, cmdline, hyoji);
+                    Pure.Sc.Pop();
+                }// 駒の場所を表示するぜ☆（＾▽＾）
+                else if (caret == cmdline.IndexOf("ky", caret))
+                {
+                    // 局面をクリアーしてやり直すときもここを通るので、ここで局面アサートを入れてはいけないぜ☆（＾～＾）
+
+                    if (CommandK.TryFail_Ky(cmdline, hyoji))
+                    {
+                        result2 = Pure.FailTrue("Try_Ky");
+                        goto gt_EndCommand;
+                    }
+
+                }// 局面を表示するぜ☆（＾▽＾）
+                else if (caret == cmdline.IndexOf("manual", caret)) { CommandM.Man(hyoji); }// "man" と同じ☆（＾▽＾）
+                else if (caret == cmdline.IndexOf("man", caret)) { CommandM.Man(hyoji); }// "manual" と同じ☆（＾▽＾）
+                else if (caret == cmdline.IndexOf("masu", caret)) { CommandM.Masu_cmd(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("nanamedan", caret))
+                {
+                    if (CommandN.TryFail_Nanamedan(cmdline, hyoji
+                        ))
+                    {
+                        result2 = Pure.FailTrue("TryFail_Nanamedan");
+                        goto gt_EndCommand;
+                    }
+                }
+                else if (caret == cmdline.IndexOf("nisinsu", caret))
+                {
+                    if (CommandN.TryFail_Nisinsu(cmdline, hyoji
+                        ))
+                    {
+                        result2 = Pure.FailTrue("TryFail_Nisinsu");
+                        goto gt_EndCommand;
+                    }
+                }
+                else if (caret == cmdline.IndexOf("position", caret)) { CommandP.Position(PureSettei.fenSyurui, cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("prego", caret)) { CommandP.PreGo(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("quit", caret)) { CommandlineState.isQuit = true; CommandlineState.isKyokumenEcho1 = true; }
+                else if (caret == cmdline.IndexOf("result", caret)) { CommandR.Result(hyoji, CommandMode.NigenYoConsoleKaihatu); }
+                else if (caret == cmdline.IndexOf("rnd", caret))
+                {
+                    if (!CommandR.Try_Rnd(
+#if DEBUG
+                    (IDebugMojiretu)hyoji
+#endif
+                ))
+                    {
+                        result2 = Pure.FailTrue("commandline");
+                        goto gt_EndCommand;
+                    }
+                    CommandlineState.isKyokumenEcho1 = true;
+                }
+                else if (caret == cmdline.IndexOf("move", caret))
+                {
+                    if (CommandS.TryFail_Move_cmd(cmdline, hyoji))
+                    {
+                        result2 = Pure.FailTrue("TryFail_Move_cmd");
+                        goto gt_EndCommand;
+                    }
+                }
+                else if (caret == cmdline.IndexOf("setoption", caret)) { CommandS.Setoption(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("set", caret)) { CommandS.Set(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("taikyokusya", caret)) { CommandT.Taikyokusya_cmd(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("tansaku", caret)) { CommandT.Tansaku(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("test", caret))
+                {
+                    if (CommandT.TryFail_Test(cmdline, hyoji))
+                    {
+                        result2 = Pure.FailTrue("TryFail_Test");
+                        goto gt_EndCommand;
+                    }
+                }
+                else if (caret == cmdline.IndexOf("tonarikiki", caret))
+                {
+                    if (CommandT.TryFail_Tonarikiki(cmdline, hyoji))
+                    {
+                        result2 = Pure.FailTrue("TryFail_Tonarikiki");
+                        goto gt_EndCommand;
+                    }
+                }
+                else if (caret == cmdline.IndexOf("tumeshogi", caret)) { CommandT.TumeShogi(PureSettei.fenSyurui, cmdline, hyoji); }// "tu" と同じ☆（＾▽＾）
+                else if (caret == cmdline.IndexOf("tu", caret)) { CommandT.TumeShogi(PureSettei.fenSyurui, cmdline, hyoji); }// "tumeshogi" と同じ☆（＾▽＾）
+                else if (caret == cmdline.IndexOf("ugokikata", caret))
+                {
+                    if (CommandU.TryFail_Ugokikata(cmdline, hyoji))
+                    {
+                        result2 = Pure.FailTrue("TryFail_Ugokikata");
+                        goto gt_EndCommand;
+                    }
+                }
+                else if (caret == cmdline.IndexOf("undo", caret))
+                {
+                    CommandU.Undo(cmdline, hyoji);
+                }
+                else if (caret == cmdline.IndexOf("updaterule", caret))
+                {
+                    CommandU.UpdateRule(cmdline, hyoji);
+                }
+                else if (caret == cmdline.IndexOf("usinewgame", caret)) { CommandU.Usinewgame(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("usi", caret))
+                {
+                    //ここは普通、来ない☆（＾～＾）
+                    var profilePath = System.Configuration.ConfigurationManager.AppSettings["Profile"];
+                    var toml = Toml.ReadFile(Path.Combine(profilePath, "Engine.toml"));
+
+                    var engineName = toml.Get<TomlTable>("Engine").Get<string>("Name");
+                    Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+                    var engineAuthor = toml.Get<TomlTable>("Engine").Get<string>("Author");
+
+                    playing.UsiOk(cmdline, $"{engineName} {version.Major}.{version.Minor}.{version.Build}", engineAuthor, hyoji);
+                }
+                else
+                {
+                    // 表示（コンソール・ゲーム用）
+                    hyoji.Append("「");
+                    hyoji.Append(cmdline);
+                    hyoji.AppendLine("」☆？（＾▽＾）");
+
+                    hyoji.AppendLine("そんなコマンドは無いぜ☆（＞＿＜） man で調べろだぜ☆（＾▽＾）");
+                    Logger.Flush(hyoji);
+                    CommandlineState.isKyokumenEcho1 = true;
+                }
+            gt_EndCommand:
+
+                if (result2)
                 {
                     result1 = Pure.FailTrue("Try_DoCommandline");
                     goto gt_EndLoop1;
