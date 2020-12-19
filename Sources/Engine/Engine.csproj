@@ -52,9 +52,6 @@
   <ItemGroup>
     <Compile Include="ProgramSupport.cs" />
     <Compile Include="command\CommandN.cs" />
-    <Compile Include="command\CommandH.cs" />
-    <Compile Include="command\CommandJ.cs" />
-    <Compile Include="command\CommandK.cs" />
     <Compile Include="command\CommandM.cs" />
     <Compile Include="command\CommandO.cs" />
     <Compile Include="command\CommandP.cs" />

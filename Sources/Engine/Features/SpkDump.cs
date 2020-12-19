@@ -5,6 +5,7 @@ using kifuwarabe_shogithink.pure.logger;
 using kifuwarabe_shogiwin.consolegame.console.command;
 using kifuwarabe_shogiwin.speak.ban;
 #else
+using Grayscale.Kifuwarabi.UseCases;
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.logger;
 using kifuwarabe_shogiwin.consolegame.console;
@@ -19,12 +20,12 @@ namespace kifuwarabe_shogiwin.project.speak
     /// </summary>
     public static class SpkDump
     {
-        public static bool TryFail_Dump(ProgramSupport programSupport, IHyojiMojiretu hyoji)
+        public static bool TryFail_Dump(Playing playing, IHyojiMojiretu hyoji)
         {
             // FIXME: 再計算はいったん廃止☆（＾～＾）
             hyoji.AppendLine("──────────再計算──────────");
             // 駒の配置
-            CommandK.Koma_cmd(programSupport, PureSettei.fenSyurui, "koma", hyoji);
+            playing.Koma_cmd( PureSettei.fenSyurui, "koma", hyoji);
 
             // 利き
             HyojiKikiItiran(hyoji);

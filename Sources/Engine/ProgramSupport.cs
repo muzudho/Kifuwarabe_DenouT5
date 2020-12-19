@@ -41,7 +41,6 @@ namespace kifuwarabe_shogiwin.consolegame.console
     {
         public ProgramSupport()
         {
-            multipleLineCommand = new List<string>();
         }
 
         public string commandline { get; set; }
@@ -50,22 +49,6 @@ namespace kifuwarabe_shogiwin.consolegame.console
         public bool isQuit { get; set; }
         public bool isKyokumenEcho1 { get; set; }
 
-        #region 複数行コマンド
-        /// <summary>
-        /// TODO: 複数行コマンドモード☆（＾～＾）
-        /// 「.」だけの行になるまで続く予定☆（＾～＾）
-        /// </summary>
-        public bool isMultipleLineCommand;
-        public List<string> multipleLineCommand;
-        public void DoMultipleLineCommand(DLGT_MultipleLineCommand dlgt_multipleLineCommand)
-        {
-            isMultipleLineCommand = true;
-            //isKyokumenEcho1 = false;
-            this.dlgt_multipleLineCommand = dlgt_multipleLineCommand;
-        }
-        public delegate void DLGT_MultipleLineCommand(List<string> multipleLineCommand);
-        public DLGT_MultipleLineCommand dlgt_multipleLineCommand;
-        #endregion
 
         public void InitCommandline()
         {
@@ -139,7 +122,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
                     Logger.Flush(hyoji);
                 }
 
-                if (!this.isMultipleLineCommand // 複数行コマンド読み取り中はプロンプトを出さないぜ☆（＾～＾）
+                if (!playing.isMultipleLineCommand // 複数行コマンド読み取り中はプロンプトを出さないぜ☆（＾～＾）
                     &&
                     (PureMemory.kifu_teban == Taikyokusya.T1 && !PureSettei.p1Com)
                     ||

@@ -77,7 +77,7 @@ namespace kifuwarabe_shogiwin
 
             // まず最初に「USI\n」が届くかどうかを判定☆（＾～＾）
             Util_ConsoleGame.ReadCommandline(programSupport, hyoji);
-            if (programSupport.commandline=="usi")
+            if (programSupport.commandline == "usi")
             {
                 // 「将棋所」で本将棋を指す想定☆（＾～＾）
                 // CommandA.Atmark("@USI9x9", hyoji);
@@ -357,7 +357,7 @@ namespace kifuwarabe_shogiwin
                 programSupport.isQuit = false;
                 programSupport.isKyokumenEcho1 = false; // ゲーム・モードの場合、特に指示がなければ　コマンド終了後、局面表示を返すぜ☆
 
-                if (programSupport.isMultipleLineCommand)
+                if (playing.isMultipleLineCommand)
                 {
                     // TODO: 複数行コマンド中☆（＾～＾）
                     //syuturyoku.AppendLine("TODO: ky set 複数行コマンド中☆（＾～＾）(2) commandline="+ commandline);
@@ -365,15 +365,15 @@ namespace kifuwarabe_shogiwin
                     if (cmdline == ".")
                     {
                         // 「.」だけの行が来たら終了だぜ☆（＾～＾）
-                        programSupport.isMultipleLineCommand = false;
+                        playing.isMultipleLineCommand = false;
                         // 実行☆（＾～＾）
-                        programSupport.dlgt_multipleLineCommand(programSupport.multipleLineCommand);
-                        programSupport.multipleLineCommand.Clear();
+                        playing.dlgt_multipleLineCommand(playing.multipleLineCommand);
+                        playing.multipleLineCommand.Clear();
                         //syuturyoku.AppendLine("TODO: 複数行コマンドは=" + sbMultipleLineCommand.ToString());
                     }
                     else
                     {
-                        programSupport.multipleLineCommand.Add(cmdline);
+                        playing.multipleLineCommand.Add(cmdline);
                     }
                     goto gt_EndCommand;
                 }
@@ -476,9 +476,9 @@ namespace kifuwarabe_shogiwin
                         goto gt_EndCommand;
                     }
                 }
-                else if (caret == cmdline.IndexOf("hirate", caret)) { CommandH.Hirate(cmdline, hyoji); programSupport.isKyokumenEcho1 = true; }
-                else if (caret == cmdline.IndexOf("honyaku", caret)) { CommandH.Honyaku(cmdline, hyoji); }
-                else if (caret == cmdline.IndexOf("hyoka", caret)) { CommandH.Hyoka(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("hirate", caret)) { playing.Hirate(cmdline, hyoji); programSupport.isKyokumenEcho1 = true; }
+                else if (caret == cmdline.IndexOf("honyaku", caret)) { playing.Honyaku(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("hyoka", caret)) { playing.Hyoka(cmdline, hyoji); }
                 else if (caret == cmdline.IndexOf("ojama", caret))
                 {
                     if (CommandO.TryFail_Ojama(cmdline, hyoji
@@ -489,19 +489,20 @@ namespace kifuwarabe_shogiwin
                     }
                 }
                 else if (caret == cmdline.IndexOf("isready", caret)) { playing.ReadOk(cmdline, hyoji); }
-                else if (caret == cmdline.IndexOf("jokyo", caret)) { CommandJ.Jokyo(cmdline, hyoji); }
-                else if (caret == cmdline.IndexOf("kansosen", caret)) { CommandK.Kansosen(PureSettei.fenSyurui, cmdline, hyoji); }// 駒の場所を表示するぜ☆（＾▽＾）
-                else if (caret == cmdline.IndexOf("kifu", caret)) { CommandK.Kifu(PureSettei.fenSyurui, cmdline, hyoji); }// 駒の場所を表示するぜ☆（＾▽＾）
+                else if (caret == cmdline.IndexOf("jokyo", caret)) { playing.Jokyo(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("kansosen", caret)) { playing.Kansosen(PureSettei.fenSyurui, cmdline, hyoji); }// 駒の場所を表示するぜ☆（＾▽＾）
+                else if (caret == cmdline.IndexOf("kifu", caret)) { playing.Kifu(PureSettei.fenSyurui, cmdline, hyoji); }// 駒の場所を表示するぜ☆（＾▽＾）
                 else if (caret == cmdline.IndexOf("kikisu", caret))
                 {
                     // 利きの数を調べるぜ☆（＾▽＾）
                     // 旧名「kikikazu」→「kikisu」
-                    CommandK.Kikisu(cmdline, hyoji);
+                    playing.Kikisu(cmdline, hyoji);
                 }
                 else if (caret == cmdline.IndexOf("kiki", caret))
                 {
                     // 利きを調べるぜ☆（＾▽＾）
-                    if (CommandK.TryFail_Kiki(cmdline, hyoji))
+                    var result3 = playing.TryFail_Kiki(cmdline, hyoji);
+                    if (result3)
                     {
                         result2 = Pure.FailTrue("TryFail_Kiki");
                         goto gt_EndCommand;
@@ -510,14 +511,14 @@ namespace kifuwarabe_shogiwin
                 else if (caret == cmdline.IndexOf("koma", caret))
                 {
                     Pure.Sc.Push("komaコマンド");
-                    CommandK.Koma_cmd(programSupport, PureSettei.fenSyurui, cmdline, hyoji);
+                    playing.Koma_cmd( PureSettei.fenSyurui, cmdline, hyoji);
                     Pure.Sc.Pop();
                 }// 駒の場所を表示するぜ☆（＾▽＾）
                 else if (caret == cmdline.IndexOf("ky", caret))
                 {
                     // 局面をクリアーしてやり直すときもここを通るので、ここで局面アサートを入れてはいけないぜ☆（＾～＾）
 
-                    if (CommandK.TryFail_Ky(programSupport, cmdline, hyoji))
+                    if (playing.TryFail_Ky(cmdline, hyoji))
                     {
                         result2 = Pure.FailTrue("Try_Ky");
                         goto gt_EndCommand;
@@ -651,7 +652,7 @@ namespace kifuwarabe_shogiwin
                 #endregion
 
             }//無限ループ
-            gt_EndLoop1:
+        gt_EndLoop1:
             ;
 
             if (result1)
