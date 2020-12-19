@@ -16,6 +16,7 @@ using kifuwarabe_shogithink.pure.logger;
 using kifuwarabe_shogithink.pure.project;
 using kifuwarabe_shogithink.pure.speak.ky.bb;
 using kifuwarabe_shogithink.pure.speak.play;
+using kifuwarabe_shogiwin.consolegame.console;
 using kifuwarabe_shogiwin.consolegame.machine;
 using kifuwarabe_shogiwin.project.speak;
 using kifuwarabe_shogiwin.speak.ban;
@@ -65,6 +66,7 @@ namespace kifuwarabe_shogiwin.project
             SpkBan_Hisigata.Setumei_yk00(header, bb, hyoji);
             return hyoji.ToContents();
         }
+        /*
         /// <summary>
         /// なんでもかんでも出力させたいとき
         /// </summary>
@@ -74,10 +76,11 @@ namespace kifuwarabe_shogiwin.project
         {
             MojiretuImpl mojiretu = new MojiretuImpl();
 
-            SpkDump.TryFail_Dump(mojiretu);
+            SpkDump.TryFail_Dump(programSupport, mojiretu);
 
             return mojiretu.ToContents();
         }
+        */
 
 #if DEBUG
         public override void Dbg_TryRule1(Bitboard kikiBB, Bitboard trySakiBB)

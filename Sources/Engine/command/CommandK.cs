@@ -305,7 +305,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
             return Pure.SUCCESSFUL_FALSE;
 #endregion
         }
-        public static void Koma_cmd(FenSyurui f, string line, IHyojiMojiretu hyoji)
+        public static void Koma_cmd(ProgramSupport programSupport, FenSyurui f, string line, IHyojiMojiretu hyoji)
         {
             if (line == "koma")
             {
@@ -353,6 +353,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
         }
 
         public static bool TryFail_Ky(
+            ProgramSupport programSupport,
             string line,
             IHyojiMojiretu hyoji
             )
@@ -519,7 +520,7 @@ namespace kifuwarabe_shogiwin.consolegame.console.command
                 }
                 else if (Util_String.MatchAndNext("set", line, ref caret))
                 {
-                    CommandlineState.DoMultipleLineCommand((List<string> multipleLineCommand) => {
+                    programSupport.DoMultipleLineCommand((List<string> multipleLineCommand) => {
                         StringBuilder sb = new StringBuilder();
                         foreach (string line1 in multipleLineCommand)
                         {

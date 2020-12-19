@@ -17,7 +17,6 @@ using System.Collections.Generic;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Grayscale.Kifuwarabi.Engine;
 using Grayscale.Kifuwarabi.Entities.Logging;
 using Grayscale.Kifuwarabi.UseCases;
 using kifuwarabe_shogithink.pure;
@@ -58,6 +57,8 @@ namespace kifuwarabe_shogiwin
         {
             var playing = new Playing();
 
+            var programSupport = new ProgramSupport();
+
             // （手順２）きふわらべの応答は、文字列になって　ここに入るぜ☆（＾▽＾）
             // syuturyoku.ToContents() メソッドで中身を取り出せるぜ☆（＾～＾）
             IHyojiMojiretu hyoji = PureAppli.syuturyoku1;
@@ -75,8 +76,8 @@ namespace kifuwarabe_shogiwin
 
 
             // まず最初に「USI\n」が届くかどうかを判定☆（＾～＾）
-            Util_ConsoleGame.ReadCommandline(hyoji);
-            if (CommandlineState.commandline=="usi")
+            Util_ConsoleGame.ReadCommandline(programSupport, hyoji);
+            if (programSupport.commandline=="usi")
             {
                 // 「将棋所」で本将棋を指す想定☆（＾～＾）
                 // CommandA.Atmark("@USI9x9", hyoji);
@@ -118,7 +119,7 @@ namespace kifuwarabe_shogiwin
                 Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
                 var engineAuthor = toml.Get<TomlTable>("Engine").Get<string>("Author");
 
-                playing.UsiOk(CommandlineState.commandline, $"{engineName} {version.Major}.{version.Minor}.{version.Build}", engineAuthor, hyoji);
+                playing.UsiOk(programSupport.commandline, $"{engineName} {version.Major}.{version.Minor}.{version.Build}", engineAuthor, hyoji);
             }
             else
             {
@@ -159,8 +160,8 @@ namespace kifuwarabe_shogiwin
                 //────────────────────────────────────────
                 // （手順２）ユーザー入力
                 //────────────────────────────────────────
-                Util_ConsoleGame.Begin_Mainloop(hyoji);
-                if (CommandlineState.commandline != null)
+                Util_ConsoleGame.Begin_Mainloop(programSupport, hyoji);
+                if (programSupport.commandline != null)
                 {
                     // コマンド・バッファーにコマンドラインが残っていたようなら、そのまま使うぜ☆（＾▽＾）
                 }
@@ -170,12 +171,12 @@ namespace kifuwarabe_shogiwin
                     Console02.IsComputerNoBan() // コンピューターの番の場合☆
                     )
                 {
-                    CommandlineState.ClearCommandline(); // コマンドラインは消しておくぜ☆（＾▽＾）
+                    programSupport.ClearCommandline(); // コマンドラインは消しておくぜ☆（＾▽＾）
                 }
                 else
                 {
 
-                    Util_ConsoleGame.ReadCommandline(hyoji);// コンソールからのキー入力を受け取るぜ☆（＾▽＾）（コンソール・ゲーム用）
+                    Util_ConsoleGame.ReadCommandline(programSupport, hyoji);// コンソールからのキー入力を受け取るぜ☆（＾▽＾）（コンソール・ゲーム用）
                 }
                 #endregion
 
@@ -199,18 +200,18 @@ namespace kifuwarabe_shogiwin
                         // ゲームモードでの人間の手番では、さらにコマンド解析
 
                         // ここで do コマンド（do b3b2 等）を先行して解析するぜ☆（＾▽＾）
-                        if (CommandlineState.caret != CommandlineState.commandline.IndexOf("do ", CommandlineState.caret))
+                        if (programSupport.caret != programSupport.commandline.IndexOf("do ", programSupport.caret))
                         {
                             // do以外のコマンドであれば、コマンドラインを保持したまま、そのまま続行
                         }
                         // 以下、do コマンドの場合☆
-                        else if (!Console02.ParseDoMove(out Move inputMove))
+                        else if (!Console02.ParseDoMove(programSupport, out Move inputMove))
                         {
                             // do コマンドのパースエラー表示（コンソール・ゲーム用）☆（＾～＾）
                             SpkMove.AppendSetumei(MoveMatigaiRiyu.ParameterSyosikiMatigai, hyoji);
                             hyoji.AppendLine();
                             Logger.Flush(hyoji);
-                            CommandlineState.CommentCommandline();// コマンドの誤発動防止
+                            programSupport.CommentCommandline();// コマンドの誤発動防止
                         }
                         else if (!GenkyokuOpe.CanDoMove(inputMove, out MoveMatigaiRiyu reason))// 指し手の合否チェック
                         {
@@ -341,7 +342,7 @@ namespace kifuwarabe_shogiwin
                         }
 
                         // コマンドの誤発動防止
-                        CommandlineState.CommentCommandline();
+                        programSupport.CommentCommandline();
                     }
                     #endregion
                 }
@@ -351,12 +352,12 @@ namespace kifuwarabe_shogiwin
                 // （手順６）ゲーム用の指し手以外のコマンドライン実行
                 //────────────────────────────────────────
                 bool result2 = Pure.SUCCESSFUL_FALSE;
-                string cmdline = CommandlineState.commandline;
-                int caret = CommandlineState.caret;
-                CommandlineState.isQuit = false;
-                CommandlineState.isKyokumenEcho1 = false; // ゲーム・モードの場合、特に指示がなければ　コマンド終了後、局面表示を返すぜ☆
+                string cmdline = programSupport.commandline;
+                int caret = programSupport.caret;
+                programSupport.isQuit = false;
+                programSupport.isKyokumenEcho1 = false; // ゲーム・モードの場合、特に指示がなければ　コマンド終了後、局面表示を返すぜ☆
 
-                if (CommandlineState.isMultipleLineCommand)
+                if (programSupport.isMultipleLineCommand)
                 {
                     // TODO: 複数行コマンド中☆（＾～＾）
                     //syuturyoku.AppendLine("TODO: ky set 複数行コマンド中☆（＾～＾）(2) commandline="+ commandline);
@@ -364,15 +365,15 @@ namespace kifuwarabe_shogiwin
                     if (cmdline == ".")
                     {
                         // 「.」だけの行が来たら終了だぜ☆（＾～＾）
-                        CommandlineState.isMultipleLineCommand = false;
+                        programSupport.isMultipleLineCommand = false;
                         // 実行☆（＾～＾）
-                        CommandlineState.dlgt_multipleLineCommand(CommandlineState.multipleLineCommand);
-                        CommandlineState.multipleLineCommand.Clear();
+                        programSupport.dlgt_multipleLineCommand(programSupport.multipleLineCommand);
+                        programSupport.multipleLineCommand.Clear();
                         //syuturyoku.AppendLine("TODO: 複数行コマンドは=" + sbMultipleLineCommand.ToString());
                     }
                     else
                     {
-                        CommandlineState.multipleLineCommand.Add(cmdline);
+                        programSupport.multipleLineCommand.Add(cmdline);
                     }
                     goto gt_EndCommand;
                 }
@@ -380,11 +381,11 @@ namespace kifuwarabe_shogiwin
                 if (null == cmdline)
                 {
                     // 未設定
-                    CommandlineState.isKyokumenEcho1 = true;
+                    programSupport.isKyokumenEcho1 = true;
                 }
                 else if (cmdline == "")
                 {
-                    CommandlineState.isKyokumenEcho1 = true;
+                    programSupport.isKyokumenEcho1 = true;
                     // 空打ちは無視するか、からっぽモードでは、ゲームモードに切り替えるぜ☆（＾▽＾）
                     if (GameMode.Karappo == PureAppli.gameMode)// 感想戦での発動防止☆
                     {
@@ -393,7 +394,7 @@ namespace kifuwarabe_shogiwin
                     }
                 }
                 // なるべく、アルファベット順☆（＾▽＾）同じつづりで始まる単語の場合、語句の長い単語を優先にしないと if 文が通らないぜ☆ｗｗｗ
-                else if (caret == cmdline.IndexOf("@", caret)) { CommandA.Atmark(cmdline, hyoji); }
+                else if (caret == cmdline.IndexOf("@", caret)) { CommandA.Atmark(programSupport, cmdline, hyoji); }
                 else if (caret == cmdline.IndexOf("#", caret)) { }// 受け付けるが、何もしないぜ☆（＾▽＾）ｗｗｗ
                 else if (caret == cmdline.IndexOf("bitboard", caret))
                 {
@@ -407,7 +408,7 @@ namespace kifuwarabe_shogiwin
                 else if (caret == cmdline.IndexOf("cando", caret))
                 {
                     CommandC.CanDo(PureSettei.fenSyurui, cmdline, GameMode.Game == PureAppli.gameMode ? CommandMode.NingenYoConsoleGame : CommandMode.NigenYoConsoleKaihatu, hyoji);
-                    CommandlineState.isKyokumenEcho1 = true;
+                    programSupport.isKyokumenEcho1 = true;
                 }
                 else if (caret == cmdline.IndexOf("chikanhyo", caret))
                 {
@@ -426,7 +427,7 @@ namespace kifuwarabe_shogiwin
                         result2 = Pure.FailTrue("TryFail_Do");
                         goto gt_EndCommand;
                     }
-                    CommandlineState.isKyokumenEcho1 = true;
+                    programSupport.isKyokumenEcho1 = true;
                 }
                 else if (caret == cmdline.IndexOf("do", caret))
                 {
@@ -439,7 +440,7 @@ namespace kifuwarabe_shogiwin
                         result2 = Pure.FailTrue("TryFail_Do");
                         goto gt_EndCommand;
                     }
-                    CommandlineState.isKyokumenEcho1 = true;
+                    programSupport.isKyokumenEcho1 = true;
                 }
 #if DEBUG
             else if (caret == cmdline.IndexOf("dump", caret))
@@ -460,7 +461,7 @@ namespace kifuwarabe_shogiwin
                         goto gt_EndCommand;
                     }
                 }
-                else if (caret == cmdline.IndexOf("gameover", caret)) { CommandG.Gameover(cmdline, hyoji); CommandlineState.isKyokumenEcho1 = true; }
+                else if (caret == cmdline.IndexOf("gameover", caret)) { CommandG.Gameover(cmdline, hyoji); programSupport.isKyokumenEcho1 = true; }
                 else if (caret == cmdline.IndexOf("go", caret))
                 {
                     if (CommandG.TryFail_Go(
@@ -474,7 +475,7 @@ namespace kifuwarabe_shogiwin
                         goto gt_EndCommand;
                     }
                 }
-                else if (caret == cmdline.IndexOf("hirate", caret)) { CommandH.Hirate(cmdline, hyoji); CommandlineState.isKyokumenEcho1 = true; }
+                else if (caret == cmdline.IndexOf("hirate", caret)) { CommandH.Hirate(cmdline, hyoji); programSupport.isKyokumenEcho1 = true; }
                 else if (caret == cmdline.IndexOf("honyaku", caret)) { CommandH.Honyaku(cmdline, hyoji); }
                 else if (caret == cmdline.IndexOf("hyoka", caret)) { CommandH.Hyoka(cmdline, hyoji); }
                 else if (caret == cmdline.IndexOf("ojama", caret))
@@ -508,14 +509,14 @@ namespace kifuwarabe_shogiwin
                 else if (caret == cmdline.IndexOf("koma", caret))
                 {
                     Pure.Sc.Push("komaコマンド");
-                    CommandK.Koma_cmd(PureSettei.fenSyurui, cmdline, hyoji);
+                    CommandK.Koma_cmd(programSupport, PureSettei.fenSyurui, cmdline, hyoji);
                     Pure.Sc.Pop();
                 }// 駒の場所を表示するぜ☆（＾▽＾）
                 else if (caret == cmdline.IndexOf("ky", caret))
                 {
                     // 局面をクリアーしてやり直すときもここを通るので、ここで局面アサートを入れてはいけないぜ☆（＾～＾）
 
-                    if (CommandK.TryFail_Ky(cmdline, hyoji))
+                    if (CommandK.TryFail_Ky(programSupport, cmdline, hyoji))
                     {
                         result2 = Pure.FailTrue("Try_Ky");
                         goto gt_EndCommand;
@@ -545,7 +546,7 @@ namespace kifuwarabe_shogiwin
                 }
                 else if (caret == cmdline.IndexOf("position", caret)) { CommandP.Position(PureSettei.fenSyurui, cmdline, hyoji); }
                 else if (caret == cmdline.IndexOf("prego", caret)) { CommandP.PreGo(cmdline, hyoji); }
-                else if (caret == cmdline.IndexOf("quit", caret)) { CommandlineState.isQuit = true; CommandlineState.isKyokumenEcho1 = true; }
+                else if (caret == cmdline.IndexOf("quit", caret)) { programSupport.isQuit = true; programSupport.isKyokumenEcho1 = true; }
                 else if (caret == cmdline.IndexOf("result", caret)) { CommandR.Result(hyoji, CommandMode.NigenYoConsoleKaihatu); }
                 else if (caret == cmdline.IndexOf("rnd", caret))
                 {
@@ -558,7 +559,7 @@ namespace kifuwarabe_shogiwin
                         result2 = Pure.FailTrue("commandline");
                         goto gt_EndCommand;
                     }
-                    CommandlineState.isKyokumenEcho1 = true;
+                    programSupport.isKyokumenEcho1 = true;
                 }
                 else if (caret == cmdline.IndexOf("move", caret))
                 {
@@ -628,7 +629,7 @@ namespace kifuwarabe_shogiwin
 
                     hyoji.AppendLine("そんなコマンドは無いぜ☆（＞＿＜） man で調べろだぜ☆（＾▽＾）");
                     Logger.Flush(hyoji);
-                    CommandlineState.isKyokumenEcho1 = true;
+                    programSupport.isKyokumenEcho1 = true;
                 }
             gt_EndCommand:
 
@@ -638,13 +639,13 @@ namespace kifuwarabe_shogiwin
                     goto gt_EndLoop1;
                 }
 
-                if (CommandlineState.isQuit)
+                if (programSupport.isQuit)
                 {
                     break;//goto gt_EndLoop1;
                 }
 
                 // 次の入力を促す表示をしてるだけだぜ☆（＾～＾）
-                ProgramSupport.ShowPrompt(PureSettei.fenSyurui, hyoji);
+                programSupport.ShowPrompt(PureSettei.fenSyurui, hyoji);
 
                 #endregion
 

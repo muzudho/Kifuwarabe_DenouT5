@@ -37,18 +37,18 @@ namespace kifuwarabe_shogiwin.consolegame.console
 {
     public static class Console02
     {
-        public static bool ParseDoMove(out Move out_move)
+        public static bool ParseDoMove(ProgramSupport programSupport, out Move out_move)
         {
             // コンソールからのキー入力を解析するぜ☆（＾▽＾）
-            int caret = CommandlineState.caret;
-            int oldCaret = CommandlineState.caret;
+            int caret = programSupport.caret;
+            int oldCaret = programSupport.caret;
 
-            Util_String.TobasuTangoToMatubiKuhaku(CommandlineState.commandline, ref caret, "do ");
+            Util_String.TobasuTangoToMatubiKuhaku(programSupport.commandline, ref caret, "do ");
 
             // うしろに続く文字は☆（＾▽＾）
-            if (!LisPlay.MatchFenMove(PureSettei.fenSyurui, CommandlineState.commandline, ref caret, out out_move))
+            if (!LisPlay.MatchFenMove(PureSettei.fenSyurui, programSupport.commandline, ref caret, out out_move))
             {
-                CommandlineState.caret = oldCaret;
+                programSupport.caret = oldCaret;
 
                 //String2 str = new String2Impl();
                 //str.Append("指し手のパースに失敗だぜ☆（＾～＾）！ #鷺 commandline=[");
@@ -63,8 +63,8 @@ namespace kifuwarabe_shogiwin.consolegame.console
             }
 
             // do コマンドだった場合☆
-            CommandlineState.caret = caret;
-            CommandlineState.CommentCommandline();// コマンドの誤発動防止
+            programSupport.caret = caret;
+            programSupport.CommentCommandline();// コマンドの誤発動防止
             return true;
         }
 

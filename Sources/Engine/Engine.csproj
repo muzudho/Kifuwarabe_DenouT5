@@ -50,7 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Features\CommandlineState.cs" />
+    <Compile Include="ProgramSupport.cs" />
     <Compile Include="command\CommandA.cs" />
     <Compile Include="command\CommandB.cs" />
     <Compile Include="command\CommandC.cs" />
@@ -73,7 +73,6 @@
     <Compile Include="Features\Util_ConsoleGame.cs" />
     <Compile Include="Features\WinconsoleProject.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="ProgramSupport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

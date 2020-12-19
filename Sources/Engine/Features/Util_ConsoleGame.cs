@@ -19,17 +19,17 @@ namespace kifuwarabe_shogiwin.consolegame.console
         /// <summary>
         /// メインループ開始時☆（＾▽＾）
         /// </summary>
-        public static void Begin_Mainloop(IHyojiMojiretu hyoji)
+        public static void Begin_Mainloop(ProgramSupport programSupport, IHyojiMojiretu hyoji)
         {
-            CommandlineState.InitCommandline();// コマンド・ライン初期化☆
-            CommandlineState.ReadCommandBuffer(hyoji);// コマンド・バッファー読取り☆
+            programSupport.InitCommandline();// コマンド・ライン初期化☆
+            programSupport.ReadCommandBuffer(hyoji);// コマンド・バッファー読取り☆
         }
 
-        public static void ReadCommandline(IHyojiMojiretu hyoji)
+        public static void ReadCommandline(ProgramSupport programSupport, IHyojiMojiretu hyoji)
         {
             Logger.Flush(hyoji);
-            CommandlineState.SetCommandline(Util_Machine.ReadLine());
-            hyoji.AppendLine(CommandlineState.commandline);
+            programSupport.SetCommandline(Util_Machine.ReadLine());
+            hyoji.AppendLine(programSupport.commandline);
             Logger.Flush_NoEcho(hyoji);
         }
 

@@ -49,6 +49,7 @@ namespace kifuwarabe_shogithink.pure.project
             // 仮実装
             return string.Format("{0} bbB={1} bbA={2}", header, bb.value64127, bb.value063);
         }
+        /*
         /// <summary>
         /// なんでもかんでも出力させたいとき
         /// </summary>
@@ -58,6 +59,7 @@ namespace kifuwarabe_shogithink.pure.project
         {
             return "未実装";
         }
+        */
 
 #if DEBUG
         public virtual void Dbg_TryRule1(Bitboard kikiBB, Bitboard trySakiBB)
