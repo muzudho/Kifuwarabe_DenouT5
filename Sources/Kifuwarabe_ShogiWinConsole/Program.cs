@@ -106,7 +106,7 @@ namespace kifuwarabe_shogiwin
                 Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
                 var engineAuthor = toml.Get<TomlTable>("Engine").Get<string>("Author");
 
-                CommandU.Usi(CommandlineState.commandline, $"id name {engineName} {version.Major}.{version.Minor}.{version.Build}", engineAuthor, hyoji);
+                CommandU.Usi(CommandlineState.commandline, $"{engineName} {version.Major}.{version.Minor}.{version.Build}", engineAuthor, hyoji);
             }
             else
             {

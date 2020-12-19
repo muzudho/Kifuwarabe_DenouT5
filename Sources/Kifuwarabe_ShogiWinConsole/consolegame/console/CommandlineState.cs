@@ -394,7 +394,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
                 Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
                 var engineAuthor = toml.Get<TomlTable>("Engine").Get<string>("Author");
 
-                CommandU.Usi(cmdline, $"id name {engineName} {version.Major}.{version.Minor}.{version.Build}", engineAuthor, hyoji);
+                CommandU.Usi(cmdline, $"{engineName} {version.Major}.{version.Minor}.{version.Build}", engineAuthor, hyoji);
             }
             else
             {
