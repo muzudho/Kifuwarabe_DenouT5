@@ -399,7 +399,7 @@ namespace kifuwarabe_shogiwin
                 else if (caret == cmdline.IndexOf("bitboard", caret))
                 {
                     // ビットボードの表示テスト用だぜ☆（＾～＾）
-                    if (CommandB.TryFail_Bitboard(cmdline, hyoji))
+                    if (playing.TryFail_Bitboard(cmdline, hyoji))
                     {
                         result2 = Pure.FailTrue("TryFail_Bitboard");
                         goto gt_EndCommand;
@@ -407,22 +407,22 @@ namespace kifuwarabe_shogiwin
                 }
                 else if (caret == cmdline.IndexOf("cando", caret))
                 {
-                    CommandC.CanDo(PureSettei.fenSyurui, cmdline, GameMode.Game == PureAppli.gameMode ? CommandMode.NingenYoConsoleGame : CommandMode.NigenYoConsoleKaihatu, hyoji);
+                    playing.CanDo(PureSettei.fenSyurui, cmdline, GameMode.Game == PureAppli.gameMode ? CommandMode.NingenYoConsoleGame : CommandMode.NigenYoConsoleKaihatu, hyoji);
                     programSupport.isKyokumenEcho1 = true;
                 }
                 else if (caret == cmdline.IndexOf("chikanhyo", caret))
                 {
-                    if (CommandC.TryFail_ChikanHyo(cmdline, hyoji
+                    if (playing.TryFail_ChikanHyo(cmdline, hyoji
                         ))
                     {
                         result2 = Pure.FailTrue("TryFail_ChikanHyo");
                         goto gt_EndCommand;
                     }
                 }
-                else if (caret == cmdline.IndexOf("clear", caret)) { CommandC.Clear(); }
+                else if (caret == cmdline.IndexOf("clear", caret)) { playing.Clear(); }
                 else if (caret == cmdline.IndexOf("dosub", caret))
                 {
-                    if (CommandD.TryFail_DoSub(cmdline, hyoji))
+                    if (playing.TryFail_DoSub(cmdline, hyoji))
                     {
                         result2 = Pure.FailTrue("TryFail_Do");
                         goto gt_EndCommand;
@@ -431,7 +431,7 @@ namespace kifuwarabe_shogiwin
                 }
                 else if (caret == cmdline.IndexOf("do", caret))
                 {
-                    if (CommandD.TryFail_Do(
+                    if (playing.TryFail_Do(
                         PureSettei.fenSyurui,
                         cmdline,
                         GameMode.Game == PureAppli.gameMode ? CommandMode.NingenYoConsoleGame : CommandMode.NigenYoConsoleKaihatu, hyoji
@@ -454,22 +454,23 @@ namespace kifuwarabe_shogiwin
 #endif
                 else if (caret == cmdline.IndexOf("fugo", caret))
                 {
-                    if (CommandF.TryFail_Fugo(cmdline, hyoji
+                    if (playing.TryFail_Fugo(cmdline, hyoji
                         ))
                     {
                         result2 = Pure.FailTrue("TryFail_Fugo");
                         goto gt_EndCommand;
                     }
                 }
-                else if (caret == cmdline.IndexOf("gameover", caret)) { CommandG.Gameover(cmdline, hyoji); programSupport.isKyokumenEcho1 = true; }
+                else if (caret == cmdline.IndexOf("gameover", caret)) { playing.Gameover(cmdline, hyoji); programSupport.isKyokumenEcho1 = true; }
                 else if (caret == cmdline.IndexOf("go", caret))
                 {
-                    if (CommandG.TryFail_Go(
+                    var result3 = playing.TryFail_Go(
                         PureSettei.usi,
                         PureSettei.fenSyurui,
                         CommandMode.NigenYoConsoleKaihatu
                         , hyoji
-                        ))
+                        );
+                    if (result3)
                     {
                         result2 = Pure.FailTrue("Try_Go");
                         goto gt_EndCommand;

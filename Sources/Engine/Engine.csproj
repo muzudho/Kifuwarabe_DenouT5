@@ -51,17 +51,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ProgramSupport.cs" />
-    <Compile Include="command\CommandA.cs" />
-    <Compile Include="command\CommandB.cs" />
-    <Compile Include="command\CommandC.cs" />
-    <Compile Include="command\CommandD.cs" />
     <Compile Include="command\CommandN.cs" />
-    <Compile Include="command\CommandG.cs" />
     <Compile Include="command\CommandH.cs" />
     <Compile Include="command\CommandJ.cs" />
     <Compile Include="command\CommandK.cs" />
     <Compile Include="command\CommandM.cs" />
-    <Compile Include="command\CommandF.cs" />
     <Compile Include="command\CommandO.cs" />
     <Compile Include="command\CommandP.cs" />
     <Compile Include="command\CommandR.cs" />
