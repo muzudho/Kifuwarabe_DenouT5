@@ -2375,13 +2375,6 @@ namespace Grayscale.Kifuwarabi.UseCases
                         }
                     }
                     break;
-                case CommandMode.TusinYo:
-                    {
-                        // 列挙型をそのまま出力するぜ☆（＾▽＾）
-                        hyoji.Append("< result, kekka = ");
-                        hyoji.AppendLine(PureMemory.gky_kekka.ToString());
-                    }
-                    break;
                 default://thru
                 case CommandMode.NigenYoConsoleKaihatu:
                     {

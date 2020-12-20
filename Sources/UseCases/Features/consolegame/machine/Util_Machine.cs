@@ -124,8 +124,6 @@ using System.IO;
         [Conditional("DEBUG")]
         public static void DoKakushiJikken(Dlgt_KakushiJikken kakushiJikken)
         {
-            // TODO: Unityで使うなら、このメソッドの中身は消そうぜ☆（＾▽＾）
-
             kakushiJikken();
         }
 

@@ -11,10 +11,5 @@
         /// 人間がコンソール画面でゲームをするための出力
         /// </summary>
         NingenYoConsoleGame,
-
-        /// <summary>
-        /// Unity用
-        /// </summary>
-        TusinYo
     }
 }

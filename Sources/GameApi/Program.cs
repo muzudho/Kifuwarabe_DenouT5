@@ -64,21 +64,6 @@ namespace kifuwarabe_shogiapi
     /// また、将棋所にエンジン登録することで対局が可能
     /// 
     /// Ｃ＃７．０（Visual Studio 2017のデフォルト）
-    /// 
-    /// 
-    /// 
-    /// Unity での必要な設定
-    /// ─────────────────────
-    /// 
-    /// 添付画像「Unity設定.png」参照
-    /// 
-    /// （１）Edit -> Project Settings -> Player -> Other Settings -> Optimization -> Api Compatibility Level => .NET 2.0
-    /// 「.NET 2.0 subset」を「.NET 2.0」に変更すること
-    /// 
-    /// （２）すぐ下の Scripting Define Symbols* に「UNITY」と追加（既にキーワードが入っている場合は半角スペース区切り）
-    /// 
-    /// 参考：「unity > error CS0117: `System.Text.RegularExpressions.RegexOptions' does not contain a definition for `Compiled'」https://qiita.com/7of9/items/3334286bc0f0cb5cae13
-    /// 
     /// </summary>
     static class Program
     {
