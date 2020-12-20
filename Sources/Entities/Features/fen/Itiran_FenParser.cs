@@ -57,8 +57,8 @@ namespace kifuwarabe_shogithink.fen
             public string banjoT2 { get { return $"r{ motigomaT2}"; } }
             public string suji { get { return "ABCDEFGHIabcdefghi"; } }
             public string dan { get { return "123456789"; } }
-            public string position { get { return "(?:(" + STARTPOS_LABEL + ")|(?:"+fen+" ([" + SPACE + banjoT1 + banjoT2 + "+/]+) " + motigomaPos + " " + tebanPos + "))"; } }
-            public string motigomaPos { get { return "(["+ motigomaNasi+@"\d" + motigomaT1 + motigomaT2 + "]+)"; } }
+            public string position { get { return $"(?:({ STARTPOS_LABEL })|(?:{fen} ([{ SPACE}{ banjoT1}{ banjoT2 }+/]+) { motigomaPos } { tebanPos }))"; } }
+            public string motigomaPos { get { return $@"([{ motigomaNasi }\d{ motigomaT1}{ motigomaT2 }]+)"; } }
             public string motigomaNasi { get { return "-"; } }
             public string tebanPos { get { return "(1|2)"; } }
             public string toryo { get { return "toryo"; } }
@@ -73,12 +73,12 @@ namespace kifuwarabe_shogithink.fen
             public string komasyuruiT2 { get { return "pbrlnsgk"; } }
             public string motigomaT1 { get { return "BRPGSNL"; } }
             public string motigomaT2 { get { return "brpgsnl"; } }
-            public string banjoT1 { get { return "K" + motigomaT1; } }
-            public string banjoT2 { get { return "k" + motigomaT2; } }
+            public string banjoT1 { get { return $"K{ motigomaT1}"; } }
+            public string banjoT2 { get { return $"k{ motigomaT2}"; } }
             public string suji { get { return "123456789"; } }
             public string dan { get { return "ABCDEFGHIabcdefghi"; } }
-            public string position { get { return "(?:(" + STARTPOS_LABEL + ")|(?:" + fen + " ([" + SPACE + banjoT1 + banjoT2 + "+/]+) " + motigomaPos + " " + tebanPos + "))"; } }
-            public string motigomaPos { get { return "([" + motigomaNasi + @"\d" + motigomaT1 + motigomaT2 + "]+)"; } }
+            public string position { get { return $"(?:({ STARTPOS_LABEL })|(?:{ fen } ([{ SPACE }{ banjoT1 }{ banjoT2 }+/]+) { motigomaPos } { tebanPos }))"; } }
+            public string motigomaPos { get { return $@"([{ motigomaNasi }\d{ motigomaT1 }{ motigomaT2 }]+)"; } }
             public string motigomaNasi { get { return "-"; } }
             public string tebanPos { get { return "(b|w)"; } }
             public string toryo { get { return "resign"; } }
@@ -159,7 +159,7 @@ namespace kifuwarabe_shogithink.fen
                             // 9×9 へも拡張。
                             // 1文字目の ZKH は打てる持ち駒だが、ひよこのHが、筋番号のHと区別できない
                             movePattern_sfen_ = new Regex(
-                                @"([" + Sfen.suji + Sfen.motigomaT1 + @"])([" + Sfen.dan + @"\*])([" + Sfen.suji + @"])([" + Sfen.dan + @"])(\+)?"
+                                $@"([{ Sfen.suji }{ Sfen.motigomaT1 }])([{ Sfen.dan }\*])([{ Sfen.suji }])([{ Sfen.dan }])(\+)?"
                                 , RegexOptions.Compiled
                             );
                         }
@@ -173,7 +173,7 @@ namespace kifuwarabe_shogithink.fen
                             // 9×9 へも拡張。
                             // 1文字目の ZKH は打てる持ち駒だが、ひよこのHが、筋番号のHと区別できない
                             movePattern_dfen_ = new Regex(
-                                @"([" + Dfen.suji + Dfen.motigomaT1 + @"])([" + Dfen.dan + @"\*])([" + Dfen.suji + @"])([" + Dfen.dan + @"])(\+)?"
+                                $@"([{ Dfen.suji }{ Dfen.motigomaT1 }])([{ Dfen.dan }\*])([{ Dfen.suji }])([{ Dfen.dan }])(\+)?"
                                 , RegexOptions.Compiled
                             );
                         }
@@ -200,7 +200,7 @@ namespace kifuwarabe_shogithink.fen
                         if (null == masMovePattern_sfen_)
                         {
                             masMovePattern_sfen_ = new Regex(
-                            "([" + Sfen.suji + Sfen.motigomaT1 + "])([" + Sfen.dan + @"\*])"
+                            $@"([{ Sfen.suji }{ Sfen.motigomaT1 }])([{ Sfen.dan }\*])"
                                 , RegexOptions.Compiled
                             );
                         }
@@ -211,14 +211,14 @@ namespace kifuwarabe_shogithink.fen
                         if (null == masMovePattern_dfen_)
                         {
                             masMovePattern_dfen_ = new Regex(
-                            "([" + Dfen.suji + Dfen.motigomaT1 + "])([" + Dfen.dan + @"\*])"
+                            $@"([{ Dfen.suji }{ Dfen.motigomaT1 }])([{ Dfen.dan }\*])"
                                 , RegexOptions.Compiled
                             );
                         }
                         return masMovePattern_dfen_;
                     }
                 default:
-                    throw new Exception(string.Format("未定義 {0}", f));
+                    throw new Exception($"未定義 {f}");
             }
         }
         static Regex masMovePattern_sfen_;
@@ -239,7 +239,7 @@ namespace kifuwarabe_shogithink.fen
                         if (null == masPattern_sfen_)
                         {
                             masPattern_sfen_ = new Regex(
-                                @"([" + Sfen.suji + @"])([" + Sfen.dan + @"])"
+                                $@"([{ Sfen.suji }])([{ Sfen.dan }])"
                                 , RegexOptions.Compiled
                             );
                         }
@@ -250,14 +250,14 @@ namespace kifuwarabe_shogithink.fen
                         if (null == masPattern_dfen_)
                         {
                             masPattern_dfen_ = new Regex(
-                                @"([" + Dfen.suji + @"])([" + Dfen.dan + @"])"
+                                $@"([{ Dfen.suji }])([{ Dfen.dan }])"
                                 , RegexOptions.Compiled
                             );
                         }
                         return masPattern_dfen_;
                     }
                 default:
-                    throw new Exception(string.Format("未定義 {0}", f));
+                    throw new Exception($"未定義 {f}");
             }
         }
         static Regex masPattern_sfen_;
@@ -277,7 +277,7 @@ namespace kifuwarabe_shogithink.fen
         //        {
         //            // kiki B3 R 1  : 升と、駒の種類と、手番を指定すると、利きを表示するぜ☆（＾▽＾）
         //            kikiCommandPattern_sfen_ = new Regex(
-        //                @"([" + Sfen.suji + @"])([" + Sfen.dan + @"\*])\s+([" + Sfen.motigomaT1 + Sfen.motigomaT2 + @"])\s+"+Sfen.tebanPos
+        //                $@"([{ Sfen.suji }])([{ Sfen.dan }\*])\s+([{ Sfen.motigomaT1 }{ Sfen.motigomaT2 }])\s+{Sfen.tebanPos}"
         //                , RegexOptions.Compiled
         //            );
         //        }
@@ -289,7 +289,7 @@ namespace kifuwarabe_shogithink.fen
         //        {
         //            // kiki B3 R 1  : 升と、駒の種類と、手番を指定すると、利きを表示するぜ☆（＾▽＾）
         //            kikiCommandPattern_dfen_ = new Regex(
-        //                @"([" + Sfen.suji + @"])([" + Sfen.dan + @"\*])\s+([" + Sfen.motigomaT1 + Sfen.motigomaT2 + @"])\s+" + Sfen.tebanPos
+        //                $@"([{ Sfen.suji }])([{ Sfen.dan }\*])\s+([{ Sfen.motigomaT1 }{ Sfen.motigomaT2 }])\s+{ Sfen.tebanPos}"
         //                , RegexOptions.Compiled
         //            );
         //        }
@@ -314,7 +314,7 @@ namespace kifuwarabe_shogithink.fen
                     {
                         // 例「K」「K*」
                         srcMs_sfen_ = new Regex(
-                            @"([" + Sfen.komasyuruiT1 + Sfen.suji + @"][" + Sfen.dan + @"\*])"//\s*
+                            $@"([{ Sfen.komasyuruiT1 }{ Sfen.suji }][{ Sfen.dan }\*])"//\s*
                             , RegexOptions.Compiled
                         );
                     }
@@ -325,7 +325,7 @@ namespace kifuwarabe_shogithink.fen
                         {
                             // 例「R」「R*」
                             srcMs_dfen_ = new Regex(
-                                @"([" + Dfen.komasyuruiT1 + Dfen.suji + @"][" + Dfen.dan + @"\*])"//\s*
+                                $@"([{ Dfen.komasyuruiT1 }{ Dfen.suji }][{ Dfen.dan }\*])"//\s*
                                 , RegexOptions.Compiled
                             );
                         }
@@ -377,7 +377,7 @@ namespace kifuwarabe_shogithink.fen
                             // 例「K」
                             komasyurui_sfen_ = new Regex(
                                 // 「+」は成り駒
-                                @"(\+?[" + Sfen.komasyuruiT1 + Sfen.komasyuruiT2 + @"])"
+                                $@"(\+?[{ Sfen.komasyuruiT1 }{ Sfen.komasyuruiT2 }])"
                                 , RegexOptions.Compiled
                             );
                         }
@@ -390,7 +390,7 @@ namespace kifuwarabe_shogithink.fen
                             // 例「R」
                             komasyurui_dfen_ = new Regex(
                                 // 「+」は成り駒
-                                @"(\+?[" + Dfen.komasyuruiT1 + Dfen.komasyuruiT2 + @"])"
+                                $@"(\+?[{ Dfen.komasyuruiT1 }{ Dfen.komasyuruiT2 }])"
                                 , RegexOptions.Compiled
                             );
                         }
@@ -452,7 +452,7 @@ namespace kifuwarabe_shogithink.fen
                         {
                             // 例「K」
                             taikyokusya_sfen_ = new Regex(
-                                @"([" + Sfen.tebanPos + @"])"
+                                $@"([{ Sfen.tebanPos }])"
                                 , RegexOptions.Compiled
                             );
                         }
@@ -464,7 +464,7 @@ namespace kifuwarabe_shogithink.fen
                         {
                             // 例「R」
                             taikyokusya_dfen_ = new Regex(
-                                @"([" + Dfen.tebanPos + @"])"
+                                $@"([{ Dfen.tebanPos }])"
                                 , RegexOptions.Compiled
                             );
                         }
