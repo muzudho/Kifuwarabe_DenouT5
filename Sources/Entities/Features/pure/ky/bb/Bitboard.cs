@@ -298,7 +298,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
                 return value64127 == 0UL && value063 == (ulong)b;
             }
 
-            throw new Exception("b type is "+b.GetType().Name);
+            throw new Exception($"b type is {b.GetType().Name}");
         }
         public bool Equals(Bitboard b)
         {

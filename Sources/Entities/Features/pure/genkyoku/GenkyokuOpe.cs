@@ -670,7 +670,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                     // その駒の種類からは、ありえない動きをしたぜ☆（＾▽＾）
 //#if DEBUG
                     
-//                    throw new Exception("その駒の種類からは、ありえない動きをしたぜ☆（＾▽＾） ms1=["+ ms_src + "] ms2=["+ ms_dst + "]");
+//                    throw new Exception($"その駒の種類からは、ありえない動きをしたぜ☆（＾▽＾） ms1=[{ ms_src }] ms2=[{ ms_dst }]");
 //#else
                     reason = MoveMatigaiRiyu.SonoKomasyuruiKarahaArienaiUgoki;
                     return false;

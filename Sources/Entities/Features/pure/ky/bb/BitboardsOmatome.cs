@@ -270,7 +270,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
                         bb_danArray[iDan].Set(bb_danArray[iDan - 1]);
                         bb_danArray[iDan].LeftShift(yoko);
                         //#if DEBUG
-                        //                    Util_Machine.Syuturyoku.AppendLine("iDan=["+ iDan + "] KyokumenImpl.BB_DanArray[iDan]=["+ KyokumenImpl.BB_DanArray[iDan].Value + "] Option_Application.Optionlist.BanTateHaba=["+ Option_Application.Optionlist.BanTateHaba + "] Option_Application.Optionlist.BanYokoHaba=["+ Option_Application.Optionlist.BanYokoHaba + "]");
+                        //                    Util_Machine.Syuturyoku.AppendLine($"iDan=[{ iDan }] KyokumenImpl.BB_DanArray[iDan]=[{ KyokumenImpl.BB_DanArray[iDan].Value }] Option_Application.Optionlist.BanTateHaba=[{ Option_Application.Optionlist.BanTateHaba }] Option_Application.Optionlist.BanYokoHaba=[{ Option_Application.Optionlist.BanYokoHaba }]");
                         //                    Util_Machine.Flush(Util_Machine.Syuturyoku);
                         //#endif
                     }

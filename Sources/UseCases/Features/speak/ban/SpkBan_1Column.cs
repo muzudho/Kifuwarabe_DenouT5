@@ -270,7 +270,7 @@ namespace kifuwarabe_shogiwin.speak.ban
 
         public static void HyojiKomaHairetuYososuMade(Masu ms, Koma[] kmHairetu, StringBuilder hyoji)
         {
-            hyoji.Append("置くか除けるかした升=["+(Masu)ms+"] 関連する飛び利き駒一覧=[");
+            hyoji.Append($"置くか除けるかした升=[{(Masu)ms}] 関連する飛び利き駒一覧=[");
             foreach (Koma km_var in kmHairetu)
             {
                 if (Koma.Yososu == km_var)

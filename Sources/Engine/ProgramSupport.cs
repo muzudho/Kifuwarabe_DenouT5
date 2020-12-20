@@ -97,7 +97,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
             if (0 < playing.commandBuffer.Count)
             {
                 // コマンド・バッファーの実行中だぜ☆（＾▽＾）
-                hyoji.Append(playing.commandBufferName + "> ");
+                hyoji.Append($"{playing.commandBufferName }> ");
                 Logger.Flush(hyoji);
             }
             else if (GameMode.Game == PureAppli.gameMode)

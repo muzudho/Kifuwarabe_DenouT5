@@ -324,7 +324,7 @@ namespace kifuwarabe_shogiwin
                         {
                             // 連続対局を止めるぜ☆（＾▽＾）
                             ConsolegameSettei.renzokuTaikyoku = false;
-                            hyoji.AppendLine(Util_Machine.RENZOKU_TAIKYOKU_STOP_FILE + "> done");
+                            hyoji.AppendLine($"{Util_Machine.RENZOKU_TAIKYOKU_STOP_FILE }> done");
                         }
 
                         if (!ConsolegameSettei.renzokuTaikyoku)
@@ -360,7 +360,7 @@ namespace kifuwarabe_shogiwin
                 if (playing.isMultipleLineCommand)
                 {
                     // TODO: 複数行コマンド中☆（＾～＾）
-                    //syuturyoku.AppendLine("TODO: ky set 複数行コマンド中☆（＾～＾）(2) commandline="+ commandline);
+                    //syuturyoku.AppendLine($"TODO: ky set 複数行コマンド中☆（＾～＾）(2) commandline={ commandline}");
                     //isKyokumenEcho1 = false;
                     if (cmdline == ".")
                     {
