@@ -209,22 +209,13 @@ namespace kifuwarabe_shogithink.pure.com
                 if (0 == PureMemory.tnsk_itibanFukaiNekkoKaranoFukasa_JohoNoTameni)
                 {
 #if DEBUG
-                        hyoji.AppendLine(
-                            string.Format(
-                                "0手投了してないかだぜ☆？（＾～＾）\n"+
-                            " tansakuSyuryoRiyu=[{0}]\n" +
-                            "Option_Application.Optionlist.SaidaiFukasa=[{1}]\n" +
-                            "Option_Application.Optionlist.SikoJikan_KonkaiNoTansaku=[{2}]\n" +
-                            "Option_Application.Optionlist.SikoJikan=[{3}]\n" +
-                            "Option_Application.Optionlist.SikoJikanRandom=[{4}]\n" +
-                                "",
-                                PureMemory.tnsk_syuryoRiyu,
-                                ComSettei.saidaiFukasa,
-                                ComSettei.sikoJikan_KonkaiNoTansaku,
-                                ComSettei.sikoJikan,
-                                ComSettei.sikoJikanRandom
-                                )
-                            );
+                        hyoji.AppendLine($@"0手投了してないかだぜ☆？（＾～＾）
+tansakuSyuryoRiyu=[{PureMemory.tnsk_syuryoRiyu}]
+Option_Application.Optionlist.SaidaiFukasa=[{ComSettei.saidaiFukasa}]
+Option_Application.Optionlist.SikoJikan_KonkaiNoTansaku=[{ComSettei.sikoJikan_KonkaiNoTansaku}]
+Option_Application.Optionlist.SikoJikan=[{ComSettei.sikoJikan}]
+Option_Application.Optionlist.SikoJikanRandom=[{ComSettei.sikoJikanRandom}]
+");
                         return Pure.FailTrue("0手投了");
 #endif
                 }

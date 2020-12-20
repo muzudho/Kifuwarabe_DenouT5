@@ -129,7 +129,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                 {
                     for (int iSuji = 0; iSuji < PureSettei.banYokoHaba; iSuji++)
                     {
-                        SpkBan_1Column.Setumei_Bitboard("筋" + iSuji, BitboardsOmatome.bb_sujiArray[iSuji], hyoji);
+                        SpkBan_1Column.Setumei_Bitboard($"筋{ iSuji}", BitboardsOmatome.bb_sujiArray[iSuji], hyoji);
                     }
                     hyoji.AppendLine();
                 }
@@ -137,7 +137,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                 {
                     for (int iDan = 0; iDan < PureSettei.banTateHaba; iDan++)
                     {
-                        SpkBan_1Column.Setumei_Bitboard("段" + iDan, BitboardsOmatome.bb_danArray[iDan], hyoji);
+                        SpkBan_1Column.Setumei_Bitboard($"段{ iDan}", BitboardsOmatome.bb_danArray[iDan], hyoji);
                     }
                     hyoji.AppendLine();
                 }
@@ -379,7 +379,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                 }
                 else if (!LisPlay.MatchFenMove(f, line, ref caret, out ss))
                 {
-                    throw new Exception("パースエラー [" + line + "]");
+                    throw new Exception($"パースエラー [{ line }]");
                 }
 
                 if (GenkyokuOpe.CanDoMove(ss, out MoveMatigaiRiyu riyu))
@@ -1024,9 +1024,9 @@ namespace Grayscale.Kifuwarabi.UseCases
         {
             if (line == "jokyo")
             {
-                hyoji.AppendLine("GameMode = " + PureAppli.gameMode);
-                hyoji.AppendLine("Kekka    = " + PureMemory.gky_kekka);
-                hyoji.AppendLine("Kettyaku = " + Genkyoku.IsKettyaku());
+                hyoji.AppendLine($"GameMode = { PureAppli.gameMode}");
+                hyoji.AppendLine($"Kekka    = { PureMemory.gky_kekka}");
+                hyoji.AppendLine($"Kettyaku = { Genkyoku.IsKettyaku()}");
                 return;
             }
         }
@@ -1388,7 +1388,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                     {
                         if (LisInt.MatchInt(line, ref caret, out maisu))
                         {
-                            hyoji.AppendLine("パースエラー103 commandline=[" + line + "]");
+                            hyoji.AppendLine($"パースエラー103 commandline=[{ line }]");
                             return Pure.FailTrue("motu(1) ");
                         }
                     }
@@ -1479,7 +1479,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                             }
                         );
 
-                        //syuturyoku.AppendLine("TODO: 複数行コマンドは=" + sb.ToString());
+                        //syuturyoku.AppendLine($"TODO: 複数行コマンドは={ sb}");
                     });
 
                 }
@@ -2435,7 +2435,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                         {
                             return Pure.FailTrue("TryFail_Move_cmd1");
                         }
-                        hyoji.AppendLine("指し手 件数=[" + PureMemory.ssss_moveList[PureMemory.FUKASA_MANUAL].listCount + "]");
+                        hyoji.AppendLine($"指し手 件数=[{ PureMemory.ssss_moveList[PureMemory.FUKASA_MANUAL].listCount }]");
                         return Pure.SUCCESSFUL_FALSE;
                     }
                     #endregion
@@ -2797,26 +2797,26 @@ namespace Grayscale.Kifuwarabi.UseCases
         {
             if (line == "set")
             {
-                hyoji.AppendLine("BanTateHaba              = " + PureSettei.banTateHaba);
-                hyoji.AppendLine("BanYokoHaba              = " + PureSettei.banYokoHaba);
-                hyoji.AppendLine("FEN                      = " + PureSettei.fenSyurui);
-                hyoji.AppendLine("GameRule                 = " + PureSettei.gameRule);
-                hyoji.AppendLine("HimodukiHyokaTukau       = " + ComSettei.himodukiHyokaTukau);
-                hyoji.AppendLine("IttedumeTukau            = " + PureSettei.ittedumeTukau);
-                hyoji.AppendLine("JohoJikan                = " + ComSettei.johoJikan);
-                hyoji.AppendLine("P1Char                   = " + PureSettei.char_playerN[(int)Taikyokusya.T1]);
-                hyoji.AppendLine("P1Com                    = " + PureSettei.p1Com);
-                hyoji.AppendLine("P1Name                   = " + PureSettei.name_playerN[(int)Taikyokusya.T1]);
-                hyoji.AppendLine("P2Char                   = " + PureSettei.char_playerN[(int)Taikyokusya.T2]);
-                hyoji.AppendLine("P2Com                    = " + PureSettei.p2Com);
-                hyoji.AppendLine("P2Name                   = " + PureSettei.name_playerN[(int)Taikyokusya.T2]);
-                hyoji.AppendLine("RenzokuTaikyoku          = " + ConsolegameSettei.renzokuTaikyoku);
-                hyoji.AppendLine("SaidaiFukasa             = " + ComSettei.saidaiFukasa);
-                hyoji.AppendLine("SikoJikan                = " + ComSettei.sikoJikan);
-                hyoji.AppendLine("SikoJikanRandom          = " + ComSettei.sikoJikanRandom);
-                hyoji.AppendLine("TobikikiTukau            = " + PureSettei.tobikikiTukau);
-                hyoji.AppendLine("UseTimeOver              = " + ComSettei.useTimeOver);
-                hyoji.AppendLine("USI                      = " + PureSettei.usi);
+                hyoji.AppendLine($"BanTateHaba              = { PureSettei.banTateHaba}");
+                hyoji.AppendLine($"BanYokoHaba              = { PureSettei.banYokoHaba}");
+                hyoji.AppendLine($"FEN                      = { PureSettei.fenSyurui}");
+                hyoji.AppendLine($"GameRule                 = { PureSettei.gameRule}");
+                hyoji.AppendLine($"HimodukiHyokaTukau       = { ComSettei.himodukiHyokaTukau}");
+                hyoji.AppendLine($"IttedumeTukau            = { PureSettei.ittedumeTukau}");
+                hyoji.AppendLine($"JohoJikan                = { ComSettei.johoJikan}");
+                hyoji.AppendLine($"P1Char                   = { PureSettei.char_playerN[(int)Taikyokusya.T1]}");
+                hyoji.AppendLine($"P1Com                    = { PureSettei.p1Com}");
+                hyoji.AppendLine($"P1Name                   = { PureSettei.name_playerN[(int)Taikyokusya.T1]}");
+                hyoji.AppendLine($"P2Char                   = { PureSettei.char_playerN[(int)Taikyokusya.T2]}");
+                hyoji.AppendLine($"P2Com                    = { PureSettei.p2Com}");
+                hyoji.AppendLine($"P2Name                   = { PureSettei.name_playerN[(int)Taikyokusya.T2]}");
+                hyoji.AppendLine($"RenzokuTaikyoku          = { ConsolegameSettei.renzokuTaikyoku}");
+                hyoji.AppendLine($"SaidaiFukasa             = { ComSettei.saidaiFukasa}");
+                hyoji.AppendLine($"SikoJikan                = { ComSettei.sikoJikan}");
+                hyoji.AppendLine($"SikoJikanRandom          = { ComSettei.sikoJikanRandom}");
+                hyoji.AppendLine($"TobikikiTukau            = { PureSettei.tobikikiTukau}");
+                hyoji.AppendLine($"UseTimeOver              = { ComSettei.useTimeOver}");
+                hyoji.AppendLine($"USI                      = { PureSettei.usi}");
                 return;
             }
 
@@ -2902,29 +2902,29 @@ namespace Grayscale.Kifuwarabi.UseCases
                 #region ビット演算のテスト☆
                 Bitboard x = new Bitboard();
                 Masu ntz;
-                x.Set(0); x.GetNTZ(out ntz); hyoji.AppendLine("    0  0000 0000 0000 0000 の NTZ =[" + ntz + "]");
-                x.Set(1); x.GetNTZ(out ntz); hyoji.AppendLine("    1  0000 0000 0000 0001 の NTZ =[" + ntz + "]");
-                x.Set(2); x.GetNTZ(out ntz); hyoji.AppendLine("    2  0000 0000 0000 0010 の NTZ =[" + ntz + "]");
-                x.Set(4); x.GetNTZ(out ntz); hyoji.AppendLine("    4  0000 0000 0000 0100 の NTZ =[" + ntz + "]");
-                x.Set(8); x.GetNTZ(out ntz); hyoji.AppendLine("    8  0000 0000 0000 1000 の NTZ =[" + ntz + "]");
-                x.Set(16); x.GetNTZ(out ntz); hyoji.AppendLine("   16  0000 0000 0001 0000 の NTZ =[" + ntz + "]");
-                x.Set(32); x.GetNTZ(out ntz); hyoji.AppendLine("   32  0000 0000 0010 0000 の NTZ =[" + ntz + "]");
-                x.Set(64); x.GetNTZ(out ntz); hyoji.AppendLine("   64  0000 0000 0100 0000 の NTZ =[" + ntz + "]");
-                x.Set(128); x.GetNTZ(out ntz); hyoji.AppendLine("  128  0000 0000 1000 0000 の NTZ =[" + ntz + "]");
-                x.Set(256); x.GetNTZ(out ntz); hyoji.AppendLine("  256  0000 0001 0000 0000 の NTZ =[" + ntz + "]");
-                x.Set(512); x.GetNTZ(out ntz); hyoji.AppendLine("  512  0000 0010 0000 0000 の NTZ =[" + ntz + "]");
-                x.Set(1024); x.GetNTZ(out ntz); hyoji.AppendLine(" 1024  0000 0100 0000 0000 の NTZ =[" + ntz + "]");
-                x.Set(2048); x.GetNTZ(out ntz); hyoji.AppendLine(" 2048  0000 1000 0000 0000 の NTZ =[" + ntz + "]");
-                x.Set(4096); x.GetNTZ(out ntz); hyoji.AppendLine(" 4096  0001 0000 0000 0000 の NTZ =[" + ntz + "]");
-                x.Set(8192); x.GetNTZ(out ntz); hyoji.AppendLine(" 8192  0010 0000 0000 0000 の NTZ =[" + ntz + "]");
-                x.Set(16384); x.GetNTZ(out ntz); hyoji.AppendLine("16384  0100 0000 0000 0000 の NTZ =[" + ntz + "]");
-                x.Set(32768); x.GetNTZ(out ntz); hyoji.AppendLine("32768  1000 0000 0000 0000 の NTZ =[" + ntz + "]");
+                x.Set(0); x.GetNTZ(out ntz); hyoji.AppendLine($"    0  0000 0000 0000 0000 の NTZ =[{ ntz }]");
+                x.Set(1); x.GetNTZ(out ntz); hyoji.AppendLine($"    1  0000 0000 0000 0001 の NTZ =[{ ntz }]");
+                x.Set(2); x.GetNTZ(out ntz); hyoji.AppendLine($"    2  0000 0000 0000 0010 の NTZ =[{ ntz }]");
+                x.Set(4); x.GetNTZ(out ntz); hyoji.AppendLine($"    4  0000 0000 0000 0100 の NTZ =[{ ntz }]");
+                x.Set(8); x.GetNTZ(out ntz); hyoji.AppendLine($"    8  0000 0000 0000 1000 の NTZ =[{ ntz }]");
+                x.Set(16); x.GetNTZ(out ntz); hyoji.AppendLine($"   16  0000 0000 0001 0000 の NTZ =[{ ntz }]");
+                x.Set(32); x.GetNTZ(out ntz); hyoji.AppendLine($"   32  0000 0000 0010 0000 の NTZ =[{ ntz }]");
+                x.Set(64); x.GetNTZ(out ntz); hyoji.AppendLine($"   64  0000 0000 0100 0000 の NTZ =[{ ntz }]");
+                x.Set(128); x.GetNTZ(out ntz); hyoji.AppendLine($"  128  0000 0000 1000 0000 の NTZ =[{ ntz }]");
+                x.Set(256); x.GetNTZ(out ntz); hyoji.AppendLine($"  256  0000 0001 0000 0000 の NTZ =[{ ntz }]");
+                x.Set(512); x.GetNTZ(out ntz); hyoji.AppendLine($"  512  0000 0010 0000 0000 の NTZ =[{ ntz }]");
+                x.Set(1024); x.GetNTZ(out ntz); hyoji.AppendLine($" 1024  0000 0100 0000 0000 の NTZ =[{ ntz }]");
+                x.Set(2048); x.GetNTZ(out ntz); hyoji.AppendLine($" 2048  0000 1000 0000 0000 の NTZ =[{ ntz }]");
+                x.Set(4096); x.GetNTZ(out ntz); hyoji.AppendLine($" 4096  0001 0000 0000 0000 の NTZ =[{ ntz }]");
+                x.Set(8192); x.GetNTZ(out ntz); hyoji.AppendLine($" 8192  0010 0000 0000 0000 の NTZ =[{ ntz }]");
+                x.Set(16384); x.GetNTZ(out ntz); hyoji.AppendLine($"16384  0100 0000 0000 0000 の NTZ =[{ ntz }]");
+                x.Set(32768); x.GetNTZ(out ntz); hyoji.AppendLine($"32768  1000 0000 0000 0000 の NTZ =[{ ntz }]");
                 //for (int i = 17; i < 67; i++) // [63]以降は 64 のようだぜ☆（＾▽＾）
                 for (int i = 17; i < 131; i++) // [63]以降は 64 のようだぜ☆（＾▽＾）
                 {
                     x.LeftShift(1);
                     x.GetNTZ(out ntz);
-                    hyoji.AppendLine("(" + i + ")                         NTZ =[" + ntz + "] Contents=[" + x.ToContents() + "]");
+                    hyoji.AppendLine($"({ i })                         NTZ =[{ ntz }] Contents=[{ x.ToContents() }]");
                 }
                 Logger.Flush(hyoji);
                 #endregion
@@ -3049,7 +3049,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                         int max = 64;// 32: 32bit
                         for (int i = 12; i < max; i += 3)
                         {
-                            hyoji.AppendLine("i=[" + i + "]");
+                            hyoji.AppendLine($"i=[{ i }]");
                             hyoji.Append("         ");
                             maskBB.Set(0x200);
                             Koma km = Med_Koma.KomasyuruiAndTaikyokusyaToKoma((Komasyurui)iKs, (Taikyokusya)iTb);
@@ -3356,14 +3356,14 @@ namespace Grayscale.Kifuwarabi.UseCases
                 for (ulong x = 0; x < 32UL; x++)
                 {
                     tmp.Set(x);
-                    hyoji.AppendLine(Convert.ToString((long)x, 2) + " の PopCnt =[" + tmp.PopCnt() + "]");
+                    hyoji.AppendLine($"{Convert.ToString((long)x, 2)} の PopCnt =[{ tmp.PopCnt() }]");
                 }
                 // 64bitあたり
                 tmp.Set(1UL);
                 tmp.LeftShift(63);
                 for (int x = 0; x < 10; x++)
                 {
-                    hyoji.AppendLine(Convert.ToString((long)tmp.value64127, 2) + "_" + Convert.ToString((long)tmp.value063, 2) + " の PopCnt =[" + tmp.PopCnt() + "]");
+                    hyoji.AppendLine($"{Convert.ToString((long)tmp.value64127, 2)}_{ Convert.ToString((long)tmp.value063, 2) } の PopCnt =[{ tmp.PopCnt() }]");
                     tmp.LeftShift(1);
                 }
                 Logger.Flush(hyoji);
@@ -3378,7 +3378,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                 {
                     for (int iDan = 0; iDan < PureSettei.banTateHaba; iDan++)
                     {
-                        SpkBan_1Column.Setumei_Bitboard("段" + iDan, BitboardsOmatome.bb_danArray[iDan], hyoji);
+                        SpkBan_1Column.Setumei_Bitboard($"段{iDan}", BitboardsOmatome.bb_danArray[iDan], hyoji);
                     }
                     hyoji.AppendLine();
                 }
@@ -3641,22 +3641,22 @@ namespace Grayscale.Kifuwarabi.UseCases
                 Move ss = AbstractConvMove.ToMove((Masu)7, (Masu)4, Komasyurui.H, Komasyurui.H, Komasyurui.H);
                 Debug.Assert((int)ss != -1, "");
 
-                Util_Logger.WriteLine("> " + AbstractConvMove.Setumei_Fen(ss));
-                Util_Logger.WriteLine("src masu > " + AbstractConvMove.GetSrcMasu(ss));
-                Util_Logger.WriteLine("src suji > " + Conv_Kihon.ToAlphabetLarge(AbstractConvMove.GetSrcSuji(ss)));
-                Util_Logger.WriteLine("src dan  > " + AbstractConvMove.GetSrcDan(ss));
-                Util_Logger.WriteLine("src uttKs> " + Conv_Komasyurui.Setumei(AbstractConvMove.GetUttaKomasyurui(ss)));
-                Util_Logger.WriteLine("dst masu > " + AbstractConvMove.GetDstMasu(ss));
-                Util_Logger.WriteLine("dst suji > " + Conv_Kihon.ToAlphabetLarge(AbstractConvMove.GetDstSuji(ss)));
-                Util_Logger.WriteLine("dst dan  > " + AbstractConvMove.GetDstDan(ss));
-                Util_Logger.WriteLine("torareta > " + Conv_Komasyurui.Setumei(ApplicationImpl.Kyokumen.Konoteme.ToraretaKs));
+                Util_Logger.WriteLine($"> { AbstractConvMove.Setumei_Fen(ss)}");
+                Util_Logger.WriteLine($"src masu > { AbstractConvMove.GetSrcMasu(ss)}");
+                Util_Logger.WriteLine($"src suji > { Conv_Kihon.ToAlphabetLarge(AbstractConvMove.GetSrcSuji(ss))}");
+                Util_Logger.WriteLine($"src dan  > { AbstractConvMove.GetSrcDan(ss)}");
+                Util_Logger.WriteLine($"src uttKs> { Conv_Komasyurui.Setumei(AbstractConvMove.GetUttaKomasyurui(ss))}");
+                Util_Logger.WriteLine($"dst masu > { AbstractConvMove.GetDstMasu(ss)}");
+                Util_Logger.WriteLine($"dst suji > { Conv_Kihon.ToAlphabetLarge(AbstractConvMove.GetDstSuji(ss))}");
+                Util_Logger.WriteLine($"dst dan  > { AbstractConvMove.GetDstDan(ss)}");
+                Util_Logger.WriteLine($"torareta > { Conv_Komasyurui.Setumei(ApplicationImpl.Kyokumen.Konoteme.ToraretaKs)}");
 
                 Nanteme nanteme = new NantemeImpl();
                 ApplicationImpl.Kyokumen.DoMove(ss, ref nanteme);
                 Util_Logger.WriteLine("DoMove >");
                 Util_Logger.WriteLine(ApplicationImpl.Kyokumen.Setumei());
 
-                Util_Logger.WriteLine("torareta > " + Conv_Komasyurui.Setumei(ApplicationImpl.Kyokumen.Konoteme.ToraretaKs));
+                Util_Logger.WriteLine($"torareta > { Conv_Komasyurui.Setumei(ApplicationImpl.Kyokumen.Konoteme.ToraretaKs)}");
 
                 Util_Logger.WriteLine("UndoMove>");
                 ApplicationImpl.Kyokumen.UndoMove(ss);

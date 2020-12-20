@@ -133,7 +133,7 @@ namespace kifuwarabe_shogiwin.speak.ban
         {
             for (int ms = 0; ms < masuYososu; ms++)
             {
-                hyoji.AppendLine("ます" + ms);
+                hyoji.AppendLine($"ます{ ms}");
                 foreach (Taikyokusya tai in Conv_Taikyokusya.itiran)
                 {
                     // 盤上

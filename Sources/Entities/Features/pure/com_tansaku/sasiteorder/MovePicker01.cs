@@ -426,7 +426,7 @@ namespace kifuwarabe_shogithink.pure.com.MoveOrder
                                     GenerateMove02.GenerateXk_KomaWoToruTe();
                                     break;
 
-                                default: throw new Exception("未定義の駒種類 km=" + PureMemory.ssss_ugoki_km);
+                                default: throw new Exception($"未定義の駒種類 km={ PureMemory.ssss_ugoki_km}");
                             }
                         }
                     }

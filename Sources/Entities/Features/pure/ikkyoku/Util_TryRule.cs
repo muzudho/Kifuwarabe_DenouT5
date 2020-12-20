@@ -55,7 +55,7 @@ namespace kifuwarabe_shogithink.pure.ikkyoku
             int dan = Conv_Masu.ToDanO1_JibunSiten(PureMemory.kifu_teban, ms1);
             bool nidanme = 2 == dan;
 #if DEBUG
-            Util_Test.AppendLine("２段目にいるか☆？[" + nidanme + "]　わたしは[" + dan + "]段目にいるぜ☆", Pure.Sc.dbgMojiretu);
+            Util_Test.AppendLine($"２段目にいるか☆？[{nidanme}]　わたしは[{dan}]段目にいるぜ☆", Pure.Sc.dbgMojiretu);
 #endif
             if (!nidanme)
             {

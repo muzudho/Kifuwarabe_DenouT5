@@ -27,7 +27,7 @@ namespace kifuwarabe_shogiwin.speak
             }
             hyoji.AppendLine("└──────────┘");
 #if DEBUG
-            hyoji.AppendLine("指し手生成を抜けた場所：" + PureMemory.ssss_movePickerWoNuketaBasho1);
+            hyoji.AppendLine($"指し手生成を抜けた場所：{ PureMemory.ssss_movePickerWoNuketaBasho1}");
 #endif
         }
     }

@@ -25,7 +25,7 @@ namespace kifuwarabe_shogithink.pure.conv
             }
             else
             {
-                throw new Exception("数字[" + num + "]をアルファベットに変えることはできませんでした。");
+                throw new Exception($"数字[{num}]をアルファベットに変えることはできませんでした。");
             }
         }
         public static string ToAlphabetLarge(int num)
@@ -36,7 +36,7 @@ namespace kifuwarabe_shogithink.pure.conv
             }
             else
             {
-                throw new Exception("数字[" + num + "]をアルファベットに変えることはできませんでした。");
+                throw new Exception($"数字[{num}]をアルファベットに変えることはできませんでした。");
             }
         }
 

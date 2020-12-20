@@ -132,9 +132,8 @@ namespace kifuwarabe_shogiwin.consolegame.console
                     )
                 {
                     // 人間の手番が始まるところで☆
-                    hyoji.Append(
-                        "指し手を入力してください。一例　do B3B2　※ do b3b2 も同じ" + Environment.NewLine +
-                        "> ");
+                    hyoji.Append(@"指し手を入力してください。一例　do B3B2　※ do b3b2 も同じ
+> ");
                     Logger.Flush(hyoji);
                 }
             }

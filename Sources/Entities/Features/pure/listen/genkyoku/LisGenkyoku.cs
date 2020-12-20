@@ -173,10 +173,10 @@ namespace kifuwarabe_shogithink.pure.listen.genkyoku
                         //}
 
                         //Mojiretu reigai1 = new StringBuilder();
-                        //reigai1.AppendLine("未定義の空白の数 moji=[" + moji + "]");
-                        //reigai1.AppendLine("dan   =[" + dan + "]");
-                        //reigai1.AppendLine("caret =[" + caret + "]");
-                        //reigai1.AppendLine("danMojiretu[dan-1] =[" + danMojiretu[dan - 1] + "]");
+                        //reigai1.AppendLine($"未定義の空白の数 moji=[{moji}]");
+                        //reigai1.AppendLine($"dan   =[{dan}]");
+                        //reigai1.AppendLine($"caret =[{caret}]");
+                        //reigai1.AppendLine($"danMojiretu[dan-1] =[{danMojiretu[dan - 1]}]");
 
                         //throw new Exception(reigai1.ToContents());
                     }
@@ -195,7 +195,7 @@ namespace kifuwarabe_shogithink.pure.listen.genkyoku
                         }
 
                         Koma tmp;
-                        if (!LisKoma.Try_ParseFen(f, (isPowerupKoma ? "+" + moji : moji.ToString()), out tmp))
+                        if (!LisKoma.Try_ParseFen(f, (isPowerupKoma ? $"+{moji}" : moji.ToString()), out tmp))
                         {
 #if DEBUG
                             Pure.Sc.AddErr(string.Format("SetNaiyoで未定義の駒が指定されました。 fen moji=[{0}]",moji));
@@ -241,8 +241,8 @@ namespace kifuwarabe_shogithink.pure.listen.genkyoku
                         tb_Mojis,
                         syokikyokumenTai
                         ));
-                    //reigai1.AppendLine("ky.Teban=[" + PureMemory.gky_ky.yomiKy.teban + "]");
-                    //reigai1.AppendLine("BanTateHaba=[" + PureSettei.banTateHaba + "]");
+                    //reigai1.AppendLine($"ky.Teban=[{PureMemory.gky_ky.yomiKy.teban}]");
+                    //reigai1.AppendLine($"BanTateHaba=[{PureSettei.banTateHaba}]");
 
                     dbg_reigai.AppendLine(string.Format("持ち駒数一覧({0}件)", danMojiretu.Length));
                     foreach (Motigoma mk in Conv_Motigoma.itiran)
@@ -251,7 +251,7 @@ namespace kifuwarabe_shogithink.pure.listen.genkyoku
                     }
 #endif
                     return Pure.FailTrue("Try_Taikyokusya");
-                    //throw new Exception("対局者のパースエラー tb_Mojis=[" + tb_Mojis + "]"+reigai1.ToContents());
+                    //throw new Exception($"対局者のパースエラー tb_Mojis=[{tb_Mojis}]{reigai1.ToContents()}");
                 }
                 // 先手番始まりか、後手番始まりか、に合わせるぜ☆（＾～＾）
                 PureMemory.ResetTebanArray(syokikyokumenTai);
@@ -341,8 +341,7 @@ namespace kifuwarabe_shogithink.pure.listen.genkyoku
             {
                 // FIXME:
 #if DEBUG
-                string msg = "パースに失敗だぜ☆（＾～＾）！ #麒麟 commandline=[" + line + "] caret=[" + caret + "]";
-                reigai1.AppendLine(msg);
+                reigai1.AppendLine($"パースに失敗だぜ☆（＾～＾）！ #麒麟 commandline=[{ line }] caret=[{ caret }]");
 #endif
                 return false;
             }

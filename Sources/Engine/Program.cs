@@ -369,7 +369,7 @@ namespace kifuwarabe_shogiwin
                         // 実行☆（＾～＾）
                         playing.dlgt_multipleLineCommand(playing.multipleLineCommand);
                         playing.multipleLineCommand.Clear();
-                        //syuturyoku.AppendLine("TODO: 複数行コマンドは=" + sbMultipleLineCommand.ToString());
+                        //syuturyoku.AppendLine($"TODO: 複数行コマンドは={ sbMultipleLineCommand}");
                     }
                     else
                     {

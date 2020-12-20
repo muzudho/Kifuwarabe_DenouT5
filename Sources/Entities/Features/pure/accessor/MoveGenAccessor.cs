@@ -179,7 +179,7 @@ namespace kifuwarabe_shogithink.pure.accessor
                 Move move;
                 if (!LisPlay.MatchFenMove(PureSettei.fenSyurui, fugo, ref caret, out move))
                 {
-                    throw new System.Exception("指し手のパースエラー fugo=[" + fugo + "]");
+                    throw new System.Exception($"指し手のパースエラー fugo=[{ fugo }]");
                 }
                 //MoveSeiseiAccessor.AddKifu(
                 //    move,
@@ -337,7 +337,8 @@ namespace kifuwarabe_shogithink.pure.accessor
                 //                    Util_Machine.Flush(syuturyoku);
                 //                }
                 //#endif
-                Debug.Assert(PureMemory.gky_ky.motigomaItiran.yomiMotigomaItiran.HasMotigoma(PureMemory.dmv_mk_t0), "持っていない駒を打つのか☆（＾～＾）！？ mks_src=[" + PureMemory.dmv_mks_t0 + "] mk_utu=[" + PureMemory.dmv_mk_t0 + "]");
+                Debug.Assert(PureMemory.gky_ky.motigomaItiran.yomiMotigomaItiran.HasMotigoma(PureMemory.dmv_mk_t0),
+                    $"持っていない駒を打つのか☆（＾～＾）！？ mks_src=[{ PureMemory.dmv_mks_t0 }] mk_utu=[{ PureMemory.dmv_mk_t0 }]");
             }
             else
             {
@@ -633,7 +634,7 @@ namespace kifuwarabe_shogithink.pure.accessor
             {
                 /*
 #if DEBUG
-                Util_Machine.AppendLine("指し手リストのGood,Bad をマージするぜ☆（＾～＾）hint=[" + hint + "]");
+                Util_Machine.AppendLine("指し手リストのGood,Bad をマージするぜ☆（＾～＾）hint=[{ hint }]");
                 Util_Machine.Flush();
 #endif
                 // */

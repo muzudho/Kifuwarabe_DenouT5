@@ -16,7 +16,7 @@ namespace kifuwarabe_shogithink.pure.project
         /// <param name="hyoji"></param>
         public virtual string Owata(string hint, StringBuilder hyoji)
         {
-            return hint + " " + hyoji.ToString();
+            return $"{hint} {hyoji}";
         }
         public virtual string Owata(string hint)
         {

@@ -50,7 +50,7 @@ namespace kifuwarabe_shogithink.pure.listen.play
             if (!m.Success)
             {
                 //// 「B4B3」形式ではなかった☆（＾△＾）！？　次の一手が読めない☆
-                //string msg = "指し手のパースに失敗だぜ☆（＾～＾）！ commandline=[" + commandline + "] caret=[" + caret + "] m.Groups.Count=["+ m.Groups.Count + "]";
+                //string msg = $"指し手のパースに失敗だぜ☆（＾～＾）！ commandline=[{ commandline }] caret=[{ caret }] m.Groups.Count=[{ m.Groups.Count }]";
                 //Util_Machine.AppendLine(msg);
                 //Util_Machine.Flush();
                 //throw new Exception(msg);

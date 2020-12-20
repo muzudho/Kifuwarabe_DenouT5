@@ -62,10 +62,10 @@ namespace kifuwarabe_shogithink.pure.com
         {
             sikoJikan_KonkaiNoTansaku = sikoJikan + PureSettei.random.Next(sikoJikanRandom);
 
-            Debug.Assert(0 < sikoJikan_KonkaiNoTansaku, "思考時間が1ミリ秒も無いぜ☆（＾～＾）！\n" +
-                "SikoJikan=" + sikoJikan + "\n" +
-                "SikoJikan_KonkaiNoTansaku=" + sikoJikan_KonkaiNoTansaku + "\n" +
-                "");
+            Debug.Assert(0 < sikoJikan_KonkaiNoTansaku, $@"思考時間が1ミリ秒も無いぜ☆（＾～＾）！
+SikoJikan={ sikoJikan }
+SikoJikan_KonkaiNoTansaku={ sikoJikan_KonkaiNoTansaku }
+");
         }
         #endregion
 

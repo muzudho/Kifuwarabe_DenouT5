@@ -85,7 +85,7 @@ namespace kifuwarabe_shogithink.pure.conv.genkyoku.play
         public static Move ToMove01aNarazuSasi(Masu ms_src, Masu ms_dst)
         {
 #if DEBUG
-            Debug.Assert(Conv_Masu.IsBanjoOrError(ms_src), "ms_src=["+ ms_src + "] kymS.masuYososu=[" + PureSettei.banHeimen + "]");
+            Debug.Assert(Conv_Masu.IsBanjoOrError(ms_src), $"ms_src=[{ms_src}] kymS.masuYososu=[{PureSettei.banHeimen}]");
             Debug.Assert(Conv_Masu.IsBanjo(ms_dst), "盤外に指したぜ☆？");
 #endif
 

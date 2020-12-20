@@ -128,7 +128,7 @@ using System.IO;
                     // まず、ログファイルがあるか、Ｎ個確認するぜ☆（＾▽＾）
                     for (int i = 0; i < maxFileCount; i++)
                     {
-                        string file = Path.Combine(LogDirectory, LogFileStem + "_" + (i + 1) + LogFileExt);
+                        string file = Path.Combine(LogDirectory, $"{LogFileStem}_{ (i + 1) }{LogFileExt}");
 
                         // ファイルがあるか☆
                         if (File.Exists(file))
@@ -166,7 +166,7 @@ using System.IO;
                             Directory.CreateDirectory(LogDirectory);
                         }
 
-                        bestFile = Path.Combine(LogDirectory, LogFileStem + "_1" + LogFileExt);
+                        bestFile = Path.Combine(LogDirectory, $"{LogFileStem}_1{ LogFileExt}");
 
                         FileStream fs = File.Create(bestFile);
                         fs.Close(); // File.Create したあとは、必ず Close() しないと、ロックがかかったままになる☆（＾▽＾）
@@ -175,7 +175,7 @@ using System.IO;
                     {
                         // ファイルがある場合は、一番新しいファイルに書き足すぜ☆（＾▽＾）
 
-                        bestFile = Path.Combine(LogDirectory, LogFileStem + "_" + (newestFileIndex + 1) + LogFileExt);
+                        bestFile = Path.Combine(LogDirectory, $"{LogFileStem}_{ (newestFileIndex + 1) }{ LogFileExt}");
                         // 一番新しいファイルのサイズが n バイト を超えている場合は、
                         // 新しいファイルを新規作成するぜ☆（＾▽＾）
                         if (maxFileSize < newestFileSize) // n バイト以上なら
@@ -184,7 +184,7 @@ using System.IO;
                             if (maxFileCount <= existFileCount)
                             {
                                 // ファイルが全部ある場合は、一番古いファイルを消して、一から書き込むぜ☆
-                                bestFile = Path.Combine(LogDirectory, LogFileStem + "_" + (oldestFileIndex + 1) + LogFileExt);
+                                bestFile = Path.Combine(LogDirectory, $"{LogFileStem}_{ (oldestFileIndex + 1) }{ LogFileExt}");
                                 File.Delete(bestFile);
 
                                 FileStream fs = File.Create(bestFile);
@@ -193,7 +193,7 @@ using System.IO;
                             else
                             {
                                 // まだ作っていないファイルを作って、書き込むぜ☆（＾▽＾）
-                                bestFile = Path.Combine(LogDirectory, LogFileStem + "_" + (noExistsFileIndex + 1) + LogFileExt);
+                                bestFile = Path.Combine(LogDirectory, $"{LogFileStem}_{ (noExistsFileIndex + 1) }{ LogFileExt}");
 
                                 FileStream fs = File.Create(bestFile);
                                 fs.Close(); // File.Create したあとは、必ず Close() しないと、ロックがかかったままになる☆（＾▽＾）

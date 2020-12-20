@@ -53,8 +53,8 @@ namespace kifuwarabe_shogithink.fen
             public string komasyuruiT2 { get { return "hzksunir"; } }
             public string motigomaT1 { get { return "ZKHINUS"; } }
             public string motigomaT2 { get { return "zkhinus"; } }
-            public string banjoT1 { get { return "R" + motigomaT1; } }
-            public string banjoT2 { get { return "r" + motigomaT2; } }
+            public string banjoT1 { get { return $"R{ motigomaT1}"; } }
+            public string banjoT2 { get { return $"r{ motigomaT2}"; } }
             public string suji { get { return "ABCDEFGHIabcdefghi"; } }
             public string dan { get { return "123456789"; } }
             public string position { get { return "(?:(" + STARTPOS_LABEL + ")|(?:"+fen+" ([" + SPACE + banjoT1 + banjoT2 + "+/]+) " + motigomaPos + " " + tebanPos + "))"; } }

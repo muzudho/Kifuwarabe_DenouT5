@@ -29,7 +29,7 @@ namespace kifuwarabe_shogiwin.project
     {
         public override string Owata(string hint, StringBuilder hyoji)
         {
-            string msg = hint + " " + hyoji.ToString();
+            string msg = $"{hint} {hyoji.ToString()}";
             Logger.Flush(hyoji);
             return msg;
         }

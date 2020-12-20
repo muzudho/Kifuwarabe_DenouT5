@@ -1152,7 +1152,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
             public static Bitboard Clone_Merge(Koma km, Masu ms_ibasho)
             {
                 Debug.Assert(Conv_Masu.IsBanjo(ms_ibasho));
-                Debug.Assert(Conv_Koma.IsOk(km), "km=[" + (int)km + "]");
+                Debug.Assert(Conv_Koma.IsOk(km), $"km=[{(int)km}]");
 
                 Merge_ToProperty( km, ms_ibasho);
                 return bbTmp_ugokikata_forMerge.Clone();

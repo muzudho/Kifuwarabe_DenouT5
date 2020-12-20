@@ -62,7 +62,7 @@ namespace kifuwarabe_shogithink.pure.listen.ky
                         int iSuji;
                         if (!int.TryParse(suji, out iSuji))
                         {
-                            throw new Exception("パース失敗 suji=[" + suji + "]");
+                            throw new Exception($"パース失敗 suji=[{ suji }]");
                         }
                         return PureSettei.banYokoHaba + 1 - iSuji;
                     }
@@ -91,7 +91,7 @@ namespace kifuwarabe_shogithink.pure.listen.ky
                         int iDan;
                         if (!int.TryParse(dan, out iDan))
                         {
-                            throw new Exception("パース失敗 dan=[" + dan + "]");
+                            throw new Exception($"パース失敗 dan=[{ dan }]");
                         }
                         return iDan;
                     }

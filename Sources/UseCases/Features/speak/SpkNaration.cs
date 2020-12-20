@@ -30,31 +30,31 @@ namespace kifuwarabe_shogiwin.speak
         public static void Speak_TitleGamen(StringBuilder hyoji)
         {
             hyoji.Append(
-                "┌─────────────────────────────────────┐" + Environment.NewLine +
-                "│ら　ぞ　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　き　ぞ│" + Environment.NewLine +
-                "│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│" + Environment.NewLine +
-                "│ぞ　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　き│" + Environment.NewLine +
-                "│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│" + Environment.NewLine +
-                "│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│" + Environment.NewLine +
-                "│　　　　　　　　し　ょ　う　ぎ　　　　さ　ん　　　　よ　ん　　　　　　　　│" + Environment.NewLine +
-                "│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│" + Environment.NewLine +
-                "│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│" + Environment.NewLine +
-                "│　　　　　　　　　　　　かいはつしゃ　　　むずでょ　　　　　　　　　　　　│" + Environment.NewLine +
-                "│　　　　　　　　　　　　さーくる　　ぐれーすけーる　　　　　　　　　　　　│" + Environment.NewLine +
-                "│ひ　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　に│" + Environment.NewLine +
-                "│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│" + Environment.NewLine +
-                "│き　ひ　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　に　ひ│" + Environment.NewLine +
-                "└─────────────────────────────────────┘" + Environment.NewLine +
-                "……ようこそ、将棋３４へ☆（＾▽＾）ｗｗｗ" + Environment.NewLine +
-                Environment.NewLine +
-                Environment.NewLine +
-                "　　　　　　　　[Enter]　　　　……　対局開始" + Environment.NewLine +
-                "　　　　　　　　man [Enter]　　……　コマンド説明" + Environment.NewLine +
-                "　　　　　　　　quit [Enter]　　……　終了" + Environment.NewLine +
-                Environment.NewLine +
-                Environment.NewLine +
-                Environment.NewLine +
-                "");
+                $@"┌─────────────────────────────────────┐
+│ら　ぞ　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　き　ぞ│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│ぞ　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　き│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│　　　　　　　　し　ょ　う　ぎ　　　　さ　ん　　　　よ　ん　　　　　　　　│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│　　　　　　　　　　　　かいはつしゃ　　　むずでょ　　　　　　　　　　　　│
+│　　　　　　　　　　　　さーくる　　ぐれーすけーる　　　　　　　　　　　　│
+│ひ　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　に│
+│　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　│
+│き　ひ　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　に　ひ│
+└─────────────────────────────────────┘
+……ようこそ、将棋３４へ☆（＾▽＾）ｗｗｗ
+
+
+　　　　　　　　[Enter]　　　　……　対局開始
+　　　　　　　　man [Enter]　　……　コマンド説明
+　　　　　　　　quit [Enter]　　……　終了
+
+
+
+");
 #if DEBUG
             hyoji.Append("**デバッグ・モード**");//注意喚起☆（＾▽＾）
 #endif

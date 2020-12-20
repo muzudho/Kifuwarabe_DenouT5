@@ -28,7 +28,7 @@ namespace kifuwarabe_shogithink.pure.listen.ky_info
                 //{
                 //    //*
                 //    // FIXME:
-                //    string msg = "パースに失敗だぜ☆（＾～＾）！  commandline=[" + commandline + "]caret(" + caret + ") .Value=[" + m.Groups[1].Value + "] m.Index=["+ m.Index+ "] m.Length=["+ m.Length + "]";
+                //    string msg = $"パースに失敗だぜ☆（＾～＾）！  commandline=[{ commandline }]caret({ caret }) .Value=[{ m.Groups[1].Value }] m.Index=[{ m.Index }] m.Length=[{ m.Length }]";
                 //    Util_Machine.AppendLine(msg);
                 //    Util_Machine.Flush();
                 //    throw new Exception(msg);
@@ -48,8 +48,7 @@ namespace kifuwarabe_shogithink.pure.listen.ky_info
                     //*
                     // FIXME:
 #if DEBUG
-                    string msg = "パースに失敗だぜ☆（＾～＾）！ #鱒 commandline=[" + commandline + "]caret(" + caret + ") .Value=[" + m.Groups[1].Value + "]";
-                    reigai1.AppendLine(msg);
+                    reigai1.AppendLine($"パースに失敗だぜ☆（＾～＾）！ #鱒 commandline=[{ commandline }]caret({ caret }) .Value=[{ m.Groups[1].Value }]");
 #endif
                     return false;
                     // */
@@ -59,7 +58,7 @@ namespace kifuwarabe_shogithink.pure.listen.ky_info
             /*
             {
                 // FIXME:
-                string msg = "パースに失敗だぜ☆（＾～＾）！  commandline=[" + commandline + "]caret(" + caret + ")";
+                string msg = $"パースに失敗だぜ☆（＾～＾）！  commandline=[{ commandline }]caret({ caret })";
                 Util_Machine.AppendLine(msg);
                 Util_Machine.Flush();
                 throw new Exception(msg);
