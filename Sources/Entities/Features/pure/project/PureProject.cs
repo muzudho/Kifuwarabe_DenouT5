@@ -1,9 +1,9 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky.bb;
-using kifuwarabe_shogithink.pure.logger;
+
 #else
+using System.Text;
 using kifuwarabe_shogithink.pure.ky.bb;
-using kifuwarabe_shogithink.pure.logger;
 #endif
 
 namespace kifuwarabe_shogithink.pure.project
@@ -14,32 +14,32 @@ namespace kifuwarabe_shogithink.pure.project
         /// オワタ☆（＾▽＾）　強制終了の準備だぜ☆（＾～＾）
         /// </summary>
         /// <param name="hyoji"></param>
-        public virtual string Owata(string hint, IHyojiMojiretu hyoji)
+        public virtual string Owata(string hint, StringBuilder hyoji)
         {
-            return hint + " " + hyoji.ToContents();
+            return hint + " " + hyoji.ToString();
         }
         public virtual string Owata(string hint)
         {
             return hint;
         }
 
-        public virtual void HyojiKikiItiran(IHyojiMojiretu hyoji)
+        public virtual void HyojiKikiItiran(StringBuilder hyoji)
         {
             hyoji.AppendLine("未実装");
         }
-        public virtual void SnapshotTansaku(IHyojiMojiretu hyoji)
+        public virtual void SnapshotTansaku(StringBuilder hyoji)
         {
             hyoji.AppendLine("未実装");
         }
-        public virtual void HyojiIbasho(string header, IHyojiMojiretu hyoji)
+        public virtual void HyojiIbasho(string header, StringBuilder hyoji)
         {
             hyoji.AppendLine(string.Format("未実装 header={0}", header));
         }
-        public virtual void HyojiKyokumen(int teme, IHyojiMojiretu hyoji)
+        public virtual void HyojiKyokumen(int teme, StringBuilder hyoji)
         {
             hyoji.AppendLine(string.Format("未実装 teme={0}", teme));
         }
-        public virtual void HyojiBitboard(string header, Bitboard bb, IHyojiMojiretu hyoji)
+        public virtual void HyojiBitboard(string header, Bitboard bb, StringBuilder hyoji)
         {
             // 仮実装
             hyoji.Append(HyojiBitboard(header, bb));

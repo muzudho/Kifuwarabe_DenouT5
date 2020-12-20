@@ -21,7 +21,7 @@ using kifuwarabe_shogithink.pure.listen;
 using kifuwarabe_shogithink.pure.listen.genkyoku;
 using kifuwarabe_shogithink.pure.listen.ky;
 using kifuwarabe_shogithink.pure.listen.play;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.med.ky;
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.genkyoku;
@@ -74,7 +74,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         public DLGT_MultipleLineCommand dlgt_multipleLineCommand;
         #endregion
 
-        public void UsiOk(string line, string engineName, string engineAuthor, IHyojiMojiretu hyoji)
+        public void UsiOk(string line, string engineName, string engineAuthor, StringBuilder hyoji)
         {
             Logger.Flush(hyoji);
 
@@ -87,14 +87,14 @@ namespace Grayscale.Kifuwarabi.UseCases
             Logger.Flush_USI(hyoji);
         }
 
-        public void ReadOk(string commandline, IHyojiMojiretu hyoji)
+        public void ReadOk(string commandline, StringBuilder hyoji)
         {
             Logger.Flush(hyoji);
             hyoji.AppendLine("readyok");
             Logger.Flush_USI(hyoji);
         }
 
-        public void Atmark(string commandline, IHyojiMojiretu hyoji)
+        public void Atmark(string commandline, StringBuilder hyoji)
         {
             // 頭の「@」を取って、末尾に「.txt」を付けた文字は☆（＾▽＾）
             this.commandBufferName = commandline.Substring("@".Length);
@@ -118,7 +118,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         /// <param name="line">コマンドライン</param>
         public bool TryFail_Bitboard(
             string line,
-            IHyojiMojiretu hyoji)
+            StringBuilder hyoji)
         {
             #region bitboard
             if (line == "bitboard")
@@ -366,7 +366,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         }
 
         public void CanDo(FenSyurui f, string line,
-    CommandMode commandMode, IHyojiMojiretu hyoji)
+    CommandMode commandMode, StringBuilder hyoji)
         {
             // うしろに続く文字は☆（＾▽＾）
             int caret = 0;
@@ -400,7 +400,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         /// <param name="line"></param>
         /// <param name="hyoji"></param>
         public bool TryFail_ChikanHyo(string line,
-            IHyojiMojiretu hyoji)
+            StringBuilder hyoji)
         {
             // うしろに続く文字は☆（＾▽＾）
             int caret = 0;
@@ -458,7 +458,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         /// <param name="hyoji"></param>
         /// <returns></returns>
         public bool TryFail_DoSub(string line,
-            IHyojiMojiretu hyoji)
+            StringBuilder hyoji)
         {
             int caret = 0;
             if (Util_String.MatchAndNext("dosub", line, ref caret))
@@ -618,7 +618,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         }
 
         public bool TryFail_Do(FenSyurui f, string line,
-    CommandMode commandMode, IHyojiMojiretu hyoji)
+    CommandMode commandMode, StringBuilder hyoji)
         {
             int caret = 0;
             if (Util_String.MatchAndNext("do", line, ref caret))//"do "
@@ -670,7 +670,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         /// <param name="line"></param>
         /// <param name="ky2"></param>
         /// <param name="hyoji"></param>
-        public static bool TryFail_Dump(string line, IHyojiMojiretu hyoji)
+        public static bool TryFail_Dump(string line, StringBuilder hyoji)
         {
             int caret = 0;
             if (Util_String.MatchAndNext("dump", line, ref caret))
@@ -700,7 +700,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         /// <param name="line"></param>
         /// <param name="hyoji"></param>
         public bool TryFail_Fugo(string line,
-            IHyojiMojiretu hyoji)
+            StringBuilder hyoji)
         {
             // うしろに続く文字は☆（＾▽＾）
             int caret = 0;
@@ -778,7 +778,7 @@ namespace Grayscale.Kifuwarabi.UseCases
             return Pure.SUCCESSFUL_FALSE;
         }
 
-        public void Gameover(string line, IHyojiMojiretu hyoji)
+        public void Gameover(string line, StringBuilder hyoji)
         {
             int caret = 0;
             if (Util_String.MatchAndNext("gameover", line, ref caret))
@@ -810,7 +810,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         /// <param name="mode"></param>
         /// <param name="ky"></param>
         /// <param name="hyoji"></param>
-        public bool TryFail_Go(bool isUsi, FenSyurui f, CommandMode mode, IHyojiMojiretu hyoji)
+        public bool TryFail_Go(bool isUsi, FenSyurui f, CommandMode mode, StringBuilder hyoji)
         {
             Util_Tansaku.PreGo();
             if (Util_Tansaku.TryFail_Go(hyoji))
@@ -846,7 +846,7 @@ namespace Grayscale.Kifuwarabi.UseCases
             return Pure.SUCCESSFUL_FALSE;
         }
 
-        public void Hirate(string line, IHyojiMojiretu hyoji)
+        public void Hirate(string line, StringBuilder hyoji)
         {
             int caret = 0;
             if (Util_String.MatchAndNext("hirate", line, ref caret))
@@ -908,7 +908,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         /// </summary>
         /// <param name="line"></param>
         /// <param name="hyoji"></param>
-        public void Honyaku(string line, IHyojiMojiretu hyoji)
+        public void Honyaku(string line, StringBuilder hyoji)
         {
             int caret = 0;
             if (Util_String.MatchAndNext("honyaku", line, ref caret))
@@ -929,7 +929,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                         ))
                         {
                             Logger.Flush(hyoji);
-                            throw new Exception(hyoji.ToContents());
+                            throw new Exception(hyoji.ToString());
                         }
 
                         hyoji.AppendLine(PureMemory.kifu_syokiKyokumenFen);
@@ -955,10 +955,10 @@ namespace Grayscale.Kifuwarabi.UseCases
                         ))
                         {
                             Logger.Flush(hyoji);
-                            throw new Exception(hyoji.ToContents());
+                            throw new Exception(hyoji.ToString());
                         }
 
-                        ICommandMojiretu sfen = new MojiretuImpl();
+                        StringBuilder sfen = new StringBuilder();
                         SpkGenkyokuOpe.AppendFenTo(FenSyurui.dfe_n, sfen);// 局面は、棋譜を持っていない
 
                         //if ("" != moves)
@@ -971,7 +971,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                         //}
 
                         sfen.AppendLine();
-                        Logger.Flush((IHyojiMojiretu)sfen);
+                        Logger.Flush((StringBuilder)sfen);
                     }
                     else
                     {
@@ -989,7 +989,7 @@ namespace Grayscale.Kifuwarabi.UseCases
             }
         }
 
-        public void Hyoka(string line, IHyojiMojiretu hyoji)
+        public void Hyoka(string line, StringBuilder hyoji)
         {
             int caret = 0;
             if (Util_String.MatchAndNext("hyoka", line, ref caret))
@@ -1020,7 +1020,7 @@ namespace Grayscale.Kifuwarabi.UseCases
             }
         }
 
-        public void Jokyo(string line, IHyojiMojiretu hyoji)
+        public void Jokyo(string line, StringBuilder hyoji)
         {
             if (line == "jokyo")
             {
@@ -1037,7 +1037,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         /// <param name="f"></param>
         /// <param name="line"></param>
         /// <param name="hyoji"></param>
-        public void Kansosen(FenSyurui f, string line, IHyojiMojiretu hyoji)
+        public void Kansosen(FenSyurui f, string line, StringBuilder hyoji)
         {
             int caret = 0;
             if (Util_String.MatchAndNext("kansosen", line, ref caret))
@@ -1075,7 +1075,7 @@ namespace Grayscale.Kifuwarabi.UseCases
 
                 if (!SpkKifu_WinConsole.Try_SetumeiAll(hyoji))
                 {
-                    string msg = hyoji.ToContents();
+                    string msg = hyoji.ToString();
                     Logger.Flush(hyoji);
                     throw new Exception(msg);
                 }
@@ -1087,7 +1087,7 @@ namespace Grayscale.Kifuwarabi.UseCases
             }
         }
 
-        public void Kifu(FenSyurui f, string line, IHyojiMojiretu hyoji)
+        public void Kifu(FenSyurui f, string line, StringBuilder hyoji)
         {
             int caret = 0;
             if (Util_String.MatchAndNext("kifu", line, ref caret))
@@ -1099,7 +1099,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                     if (!SpkKifu_WinConsole.Try_SetumeiAll(hyoji))
                     {
                         Logger.Flush(hyoji);
-                        throw new Exception(hyoji.ToContents());
+                        throw new Exception(hyoji.ToString());
                     }
                     return;
                 }
@@ -1111,7 +1111,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                         if (!MoveGenAccessor.Try_GoToTememade(f, temeMade, hyoji))
                         {
                             Logger.Flush(hyoji);
-                            throw new Exception(hyoji.ToContents());
+                            throw new Exception(hyoji.ToString());
                         }
 
                         hyoji.AppendLine("指定局面図");
@@ -1127,7 +1127,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                     if (!SpkKifu_WinConsole.Try_SetumeiTebanAll(hyoji))
                     {
                         Logger.Flush(hyoji);
-                        throw new Exception(hyoji.ToContents());
+                        throw new Exception(hyoji.ToString());
                     }
                     return;
                 }
@@ -1143,7 +1143,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         /// 旧名「kikikazu」
         /// </summary>
         /// <param name="line"></param>
-        public void Kikisu(string line, IHyojiMojiretu hyoji)
+        public void Kikisu(string line, StringBuilder hyoji)
         {
             int caret = 0;
             if (Util_String.MatchAndNext("kikisu", line, ref caret))
@@ -1167,7 +1167,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         /// 駒の利き全集
         /// </summary>
         /// <param name="line"></param>
-        public bool TryFail_Kiki(string line, IHyojiMojiretu hyoji)
+        public bool TryFail_Kiki(string line, StringBuilder hyoji)
         {
             #region kiki
 
@@ -1290,7 +1290,7 @@ namespace Grayscale.Kifuwarabi.UseCases
 
         public bool TryFail_Ky(
     string line,
-    IHyojiMojiretu hyoji
+    StringBuilder hyoji
     )
         {
             int caret = 0;
@@ -1511,7 +1511,7 @@ namespace Grayscale.Kifuwarabi.UseCases
             return Pure.SUCCESSFUL_FALSE;
         }
 
-        public void Koma_cmd(FenSyurui f, string line, IHyojiMojiretu hyoji)
+        public void Koma_cmd(FenSyurui f, string line, StringBuilder hyoji)
         {
             if (line == "koma")
             {
@@ -1558,7 +1558,7 @@ namespace Grayscale.Kifuwarabi.UseCases
 
         }
 
-        public void Man(IHyojiMojiretu hyoji)
+        public void Man(StringBuilder hyoji)
         {
             // なるべく、アルファベット順☆（＾▽＾）
             hyoji.AppendLine("(空っぽEnter)   : ゲームモードのフラグを ON にするぜ☆");
@@ -1688,7 +1688,7 @@ namespace Grayscale.Kifuwarabi.UseCases
             Logger.Flush(hyoji);
         }
 
-        public void Masu_cmd(string line, IHyojiMojiretu hyoji)
+        public void Masu_cmd(string line, StringBuilder hyoji)
         {
             // うしろに続く文字は☆（＾▽＾）
             int caret = 0;
@@ -1716,7 +1716,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         /// </summary>
         /// <param name="line"></param>
         /// <param name="hyoji"></param>
-        public bool TryFail_Nanamedan(string line, IHyojiMojiretu hyoji)
+        public bool TryFail_Nanamedan(string line, StringBuilder hyoji)
         {
             // うしろに続く文字は☆（＾▽＾）
             int caret = 0;
@@ -1944,7 +1944,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         /// </summary>
         /// <param name="line"></param>
         /// <param name="hyoji"></param>
-        public bool TryFail_Nisinsu(string line, IHyojiMojiretu hyoji)
+        public bool TryFail_Nisinsu(string line, StringBuilder hyoji)
         {
             // うしろに続く文字は☆（＾▽＾）
             int caret = 0;
@@ -1966,7 +1966,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         /// </summary>
         /// <param name="line"></param>
         /// <param name="hyoji"></param>
-        public bool TryFail_Ojama(string line, IHyojiMojiretu hyoji)
+        public bool TryFail_Ojama(string line, StringBuilder hyoji)
         {
             // うしろに続く文字は☆（＾▽＾）
             int caret = 0;
@@ -2168,7 +2168,7 @@ namespace Grayscale.Kifuwarabi.UseCases
             string header,
             TobikikiDirection kikiDir,
             Masu ms,
-            IHyojiMojiretu hyoji
+            StringBuilder hyoji
 #if DEBUG
             , bool dbg_hisigata
 #endif
@@ -2254,7 +2254,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         static void HyojiOjamaHsh(
             string header,
             TobikikiDirection kikiDir,
-            IHyojiMojiretu hyoji
+            StringBuilder hyoji
 #if DEBUG
             , bool dbg_hisigata
 #endif
@@ -2280,7 +2280,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         /// <param name="f"></param>
         /// <param name="line"></param>
         /// <param name="hyoji"></param>
-        public void Position(FenSyurui f, string line, IHyojiMojiretu hyoji)
+        public void Position(FenSyurui f, string line, StringBuilder hyoji)
         {
             int caret = 0;
             if (Util_String.MatchAndNext("position", line, ref caret))
@@ -2296,7 +2296,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                 {
                     hyoji.AppendLine("パースに失敗だぜ☆（＾～＾）！ #黒牛");
                     // 例外で出力したいので、フラッシュされる前に退避だぜ☆（＾～＾）
-                    string msg = hyoji.ToContents();
+                    string msg = hyoji.ToString();
                     Logger.Flush(hyoji);
                     throw new Exception(msg);
                 }
@@ -2321,7 +2321,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                     if (!MoveGenAccessor.Try_PlayMoves_0ToPreTeme(f, hyoji))
                     {
                         Logger.Flush(hyoji);
-                        throw new Exception(hyoji.ToContents());
+                        throw new Exception(hyoji.ToString());
                     }
                 }
 
@@ -2329,12 +2329,12 @@ namespace Grayscale.Kifuwarabi.UseCases
             }
         }
 
-        public  void PreGo(string line, IHyojiMojiretu hyoji)
+        public  void PreGo(string line, StringBuilder hyoji)
         {
             Util_Tansaku.PreGo();
         }
 
-        public void Result(IHyojiMojiretu hyoji, CommandMode commandMode)
+        public void Result(StringBuilder hyoji, CommandMode commandMode)
         {
             switch (commandMode)
             {
@@ -2416,7 +2416,7 @@ namespace Grayscale.Kifuwarabi.UseCases
             return true;
         }
 
-        public bool TryFail_Move_cmd(string line, IHyojiMojiretu hyoji)
+        public bool TryFail_Move_cmd(string line, StringBuilder hyoji)
         {
             int caret = 0;
             if (Util_String.MatchAndNext("move", line, ref caret))
@@ -2776,7 +2776,7 @@ namespace Grayscale.Kifuwarabi.UseCases
             return Pure.SUCCESSFUL_FALSE;
         }
 
-        public void Setoption(string line, IHyojiMojiretu hyoji)
+        public void Setoption(string line, StringBuilder hyoji)
         {
             // // とりあえず無視☆（*＾～＾*）
 
@@ -2800,7 +2800,7 @@ namespace Grayscale.Kifuwarabi.UseCases
             }
         }
 
-        public void Set(string line, IHyojiMojiretu hyoji)
+        public void Set(string line, StringBuilder hyoji)
         {
             if (line == "set")
             {
@@ -2835,7 +2835,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         /// </summary>
         /// <param name="line"></param>
         /// <param name="hyoji"></param>
-        public void Taikyokusya_cmd(string line, IHyojiMojiretu hyoji)
+        public void Taikyokusya_cmd(string line, StringBuilder hyoji)
         {
             int caret = 0;
             if (Util_String.MatchAndNext("taikyokusya", line, ref caret))
@@ -2849,7 +2849,7 @@ namespace Grayscale.Kifuwarabi.UseCases
             }
         }
 
-        public void Tansaku(string line, IHyojiMojiretu hyoji)
+        public void Tansaku(string line, StringBuilder hyoji)
         {
             int caret = 0;
             if (Util_String.MatchAndNext("tansaku", line, ref caret))
@@ -2865,7 +2865,7 @@ namespace Grayscale.Kifuwarabi.UseCases
             }
         }
 
-        public bool TryFail_Test(string line, IHyojiMojiretu hyoji)
+        public bool TryFail_Test(string line, StringBuilder hyoji)
         {
             if (line == "test")
             {
@@ -3675,7 +3675,7 @@ namespace Grayscale.Kifuwarabi.UseCases
             return Pure.SUCCESSFUL_FALSE;
         }
 
-        public bool TryFail_Tonarikiki(string line, IHyojiMojiretu hyoji)
+        public bool TryFail_Tonarikiki(string line, StringBuilder hyoji)
         {
             int caret = 0;
             if (Util_String.MatchAndNext("tonarikiki", line, ref caret))
@@ -3703,7 +3703,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         /// <summary>
         /// 詰将棋だぜ☆（＾▽＾）
         /// </summary>
-        public void TumeShogi(FenSyurui f, string line, IHyojiMojiretu hyoji)
+        public void TumeShogi(FenSyurui f, string line, StringBuilder hyoji)
         {
             // "tu" に統一するぜ☆（＾▽＾）
             line = line.Replace("tumeshogi", "tu");
@@ -3734,7 +3734,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                 ))
             {
                 Logger.Flush(hyoji);
-                throw new Exception(hyoji.ToContents());
+                throw new Exception(hyoji.ToString());
             }
 
             ComSettei.saidaiFukasa = nantedume + 1;
@@ -3747,7 +3747,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         /// </summary>
         /// <param name="line"></param>
         /// <param name="hyoji"></param>
-        public bool TryFail_Ugokikata(string line, IHyojiMojiretu hyoji)
+        public bool TryFail_Ugokikata(string line, StringBuilder hyoji)
         {
             int caret = 0;
             if (Util_String.MatchAndNext("ugokikata", line, ref caret))
@@ -3817,12 +3817,12 @@ namespace Grayscale.Kifuwarabi.UseCases
             return Pure.SUCCESSFUL_FALSE;
         }
 
-        public void Undo(string line, IHyojiMojiretu hyoji)
+        public void Undo(string line, StringBuilder hyoji)
         {
             if (!Util_Control.Try_Undo(line, hyoji))
             {
                 Logger.Flush(hyoji);
-                throw new Exception(hyoji.ToContents());
+                throw new Exception(hyoji.ToString());
             }
             SpkBan_1Column.Setumei_Kyokumen(PureMemory.kifu_endTeme, hyoji);
         }
@@ -3832,7 +3832,7 @@ namespace Grayscale.Kifuwarabi.UseCases
         /// </summary>
         /// <param name="line"></param>
         /// <param name="hyoji"></param>
-        public void UpdateRule(string line, IHyojiMojiretu hyoji)
+        public void UpdateRule(string line, StringBuilder hyoji)
         {
             int caret = 0;
             if (Util_String.MatchAndNext("updaterule", line, ref caret))
@@ -3845,7 +3845,7 @@ namespace Grayscale.Kifuwarabi.UseCases
             }
         }
 
-        public void UsiNewGame(string line, IHyojiMojiretu hyoji)
+        public void UsiNewGame(string line, StringBuilder hyoji)
         {
             // 設定を何か変更して、確定したければ、ここでやれだぜ☆（＾～＾）
         }

@@ -4,7 +4,7 @@ using kifuwarabe_shogithink.pure.conv;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.ky.tobikiki;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.speak.ky;
 using System.Diagnostics;
 #else
@@ -15,9 +15,10 @@ using kifuwarabe_shogithink.pure.genkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.ky.tobikiki;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.speak.ky;
 using System.Diagnostics;
+using System.Text;
 #endif
 
 namespace kifuwarabe_shogiwin.speak.ban
@@ -32,7 +33,7 @@ namespace kifuwarabe_shogiwin.speak.ban
         /// ログに向いた、シンプルな表示☆
         /// </summary>
         /// <returns></returns>
-        public static void Setumei_Bitboard(string header, Bitboard bb, IHyojiMojiretu hyoji)
+        public static void Setumei_Bitboard(string header, Bitboard bb, StringBuilder hyoji)
         {
             Debug.Assert(null != bb, "");
 
@@ -46,7 +47,7 @@ namespace kifuwarabe_shogiwin.speak.ban
         /// ログに向いた、シンプルな表示☆
         /// </summary>
         /// <returns></returns>
-        public static void Setumei_Kyokumen(int teme, IHyojiMojiretu hyoji)
+        public static void Setumei_Kyokumen(int teme, StringBuilder hyoji)
         {
             int banYokoHaba_tmp = PureSettei.banYokoHaba;
             int banTateHaba_tmp = PureSettei.banTateHaba;
@@ -63,7 +64,7 @@ namespace kifuwarabe_shogiwin.speak.ban
         /// ログに向いた、シンプルな表示☆
         /// </summary>
         /// <returns></returns>
-        public static void Setumei_Kyokumen(int teme, OjamaBanSyurui ojamaBanSyurui, IHyojiMojiretu hyoji)
+        public static void Setumei_Kyokumen(int teme, OjamaBanSyurui ojamaBanSyurui, StringBuilder hyoji)
         {
             int banYokoHaba_tmp = PureSettei.banYokoHaba;
             int banTateHaba_tmp = PureSettei.banTateHaba;
@@ -85,7 +86,7 @@ namespace kifuwarabe_shogiwin.speak.ban
         /// ビットボード用☆（＾▽＾）
         /// </summary>
         /// <returns></returns>
-        public static void Setumei_Kyokumen(int teme, Bitboard bb, IHyojiMojiretu hyoji)
+        public static void Setumei_Kyokumen(int teme, Bitboard bb, StringBuilder hyoji)
         {
             int banYokoHaba_tmp = PureSettei.banYokoHaba;
             int banTateHaba_tmp = PureSettei.banTateHaba;
@@ -102,7 +103,7 @@ namespace kifuwarabe_shogiwin.speak.ban
         /// コンソールでゲームするのに向いた表示☆
         /// </summary>
         /// <returns></returns>
-        public static void Setumei_NingenGameYo(int teme, IHyojiMojiretu hyoji)
+        public static void Setumei_NingenGameYo(int teme, StringBuilder hyoji)
         {
             int banYokoHaba_tmp = PureSettei.banYokoHaba;
             int banTateHaba_tmp = PureSettei.banTateHaba;
@@ -124,7 +125,7 @@ namespace kifuwarabe_shogiwin.speak.ban
             int banYokoHaba_tmp,
             int banTateHaba_tmp,
             int teme,
-            IHyojiMojiretu hyoji
+            StringBuilder hyoji
             )
         {
             #region 盤の上の方
@@ -215,7 +216,7 @@ namespace kifuwarabe_shogiwin.speak.ban
         /// 居場所（対局者別ですべての駒）
         /// </summary>
         /// <param name="hyoji"></param>
-        public static void ToHyojiIbasho(string header, IHyojiMojiretu hyoji)
+        public static void ToHyojiIbasho(string header, StringBuilder hyoji)
         {
             IbashoBan.YomiIbashoBan yomiIbashoBan = PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan;
             AppendKomaZenbuIbashoTo(header, yomiIbashoBan, hyoji);
@@ -226,7 +227,7 @@ namespace kifuwarabe_shogiwin.speak.ban
         /// 居場所（対局者別ですべての駒）
         /// </summary>
         /// <param name="hyoji"></param>
-        static void AppendKomaZenbuIbashoTo(string header, IbashoBan.YomiIbashoBan yomiIbashoBan, IHyojiMojiretu hyoji)
+        static void AppendKomaZenbuIbashoTo(string header, IbashoBan.YomiIbashoBan yomiIbashoBan, StringBuilder hyoji)
         {
             hyoji.AppendLine(string.Format("居場所（対局者別） {0}", header));
             SpkBan_MultiColumn.Setumei_Bitboard(
@@ -241,7 +242,7 @@ namespace kifuwarabe_shogiwin.speak.ban
         /// 駒別の居場所
         /// </summary>
         /// <param name="hyoji"></param>
-        static void AppendKomaBetuIbashoTo(IbashoBan.YomiIbashoBan yomiIbashoBan, IHyojiMojiretu hyoji)
+        static void AppendKomaBetuIbashoTo(IbashoBan.YomiIbashoBan yomiIbashoBan, StringBuilder hyoji)
         {
             hyoji.AppendLine("駒別の居場所");
             foreach (Taikyokusya tai in Conv_Taikyokusya.itiran)// 対局者１、対局者２
@@ -267,7 +268,7 @@ namespace kifuwarabe_shogiwin.speak.ban
             }
         }
 
-        public static void HyojiKomaHairetuYososuMade(Masu ms, Koma[] kmHairetu, IHyojiMojiretu hyoji)
+        public static void HyojiKomaHairetuYososuMade(Masu ms, Koma[] kmHairetu, StringBuilder hyoji)
         {
             hyoji.Append("置くか除けるかした升=["+(Masu)ms+"] 関連する飛び利き駒一覧=[");
             foreach (Koma km_var in kmHairetu)
@@ -281,7 +282,7 @@ namespace kifuwarabe_shogiwin.speak.ban
             hyoji.AppendLine("]");
         }
 
-        public static void Setumei_Discovered(Masu ms_removed, IHyojiMojiretu hyoji)
+        public static void Setumei_Discovered(Masu ms_removed, StringBuilder hyoji)
         {
             Koma[] kmHairetu_control;
             PureMemory.gky_ky.yomiKy.TryInControl(ms_removed, out kmHairetu_control);

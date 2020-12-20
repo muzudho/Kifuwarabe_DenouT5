@@ -4,7 +4,7 @@ using kifuwarabe_shogithink.pure.genkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.ky.tobikiki;
-using kifuwarabe_shogithink.pure.logger;
+
 using System;
 #else
 using kifuwarabe_shogithink.pure;
@@ -12,8 +12,9 @@ using kifuwarabe_shogithink.pure.genkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.ky.tobikiki;
-using kifuwarabe_shogithink.pure.logger;
+
 using System;
+using System.Text;
 #endif
 
 namespace kifuwarabe_shogithink.pure.speak.ky.bb
@@ -28,7 +29,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky.bb
 
         public static void ScanAndHyojiHisigata(
             DLGT_DrawMasu dlgt_DrawMasu,
-            TobikikiDirection kikiDir, IHyojiMojiretu hyoji)
+            TobikikiDirection kikiDir, StringBuilder hyoji)
         {
             int dLen = PureSettei.banNanameDanLen;
 
@@ -63,7 +64,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky.bb
             hyoji.AppendLine();
         }
 
-        public static void Setumei_yk00(string header, Bitboard bb, IHyojiMojiretu hyoji)
+        public static void Setumei_yk00(string header, Bitboard bb, StringBuilder hyoji)
         {
             if (header != "")
             {
@@ -85,7 +86,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky.bb
             }
         }
 
-        public static void Setumei( TobikikiDirection kikiDir, IHyojiMojiretu hyoji)
+        public static void Setumei( TobikikiDirection kikiDir, StringBuilder hyoji)
         {
             OjamaBanSyurui ojamaBanSyurui = Conv_TobikikiDirection.ojamaBanSyuruiItiran[(int)kikiDir];
             switch (kikiDir)

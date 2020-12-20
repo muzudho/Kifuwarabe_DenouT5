@@ -2,13 +2,14 @@
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.listen;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.move;
 #else
+using System.Text;
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.listen;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.move;
 #endif
 
@@ -100,7 +101,7 @@ namespace kifuwarabe_shogithink.pure.control
 //            out Move out_move,
 //            Genkyoku gky,
 //            out HyokatiAb out_hyokatiUtiwake,
-//            IHyojiMojiretu hyoji
+//            StringBuilder hyoji
 //            )
 //        {
 //            if (Util_Tansaku.TryFail_Go(out out_move, gky, out out_hyokatiUtiwake, hyoji))
@@ -121,7 +122,7 @@ namespace kifuwarabe_shogithink.pure.control
         /// <param name="line"></param>
         /// <param name="hyoji"></param>
         /// <returns></returns>
-        public static bool Try_Undo(string line, IHyojiMojiretu hyoji)
+        public static bool Try_Undo(string line, StringBuilder hyoji)
         {
             // うしろに続く文字は☆（＾▽＾）
             int caret = 0;

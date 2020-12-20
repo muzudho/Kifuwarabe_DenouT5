@@ -1,6 +1,6 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using System;
 using kifuwarabe_shogithink.pure.accessor;
 #else

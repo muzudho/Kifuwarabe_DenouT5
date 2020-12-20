@@ -1,15 +1,16 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.cui.ky;
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.control;
 using System;
 #else
 using System;
 using kifuwarabe_shogithink.cui.ky;
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.control;
+using System.Text;
 #endif
 
 namespace kifuwarabe_shogithink.pure.listen.ky
@@ -83,7 +84,7 @@ namespace kifuwarabe_shogithink.pure.listen.ky
             }
         }
 
-        public static Motigoma Yomu_Motikoma(FenSyurui f, string line, ref int caret, ref bool sippai, IHyojiMojiretu hyoji)
+        public static Motigoma Yomu_Motikoma(FenSyurui f, string line, ref int caret, ref bool sippai, StringBuilder hyoji)
         {
             if (sippai)
             {

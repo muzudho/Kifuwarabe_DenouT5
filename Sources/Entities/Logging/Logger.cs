@@ -2,17 +2,18 @@
 {
 #if DEBUG
 using kifuwarabe_shogithink.pure;
-using kifuwarabe_shogithink.pure.logger;
+
 using System;
 using System.Diagnostics;
 using System.IO;
 #else
     using kifuwarabe_shogithink.pure;
-    using kifuwarabe_shogithink.pure.logger;
+    
     using Nett;
     using System;
     using System.Diagnostics;
     using System.IO;
+    using System.Text;
 #endif
 
     public static class Logger
@@ -78,7 +79,7 @@ using System.IO;
         /// <summary>
         /// バッファーに溜まっているログを吐き出します。
         /// </summary>
-        public static void Flush(IHyojiMojiretu hyoji)
+        public static void Flush(StringBuilder hyoji)
         {
             bool echo = true;
 
@@ -90,25 +91,25 @@ using System.IO;
 
             Logger.Flush(echo, hyoji);
         }
-        public static void Flush_NoEcho(IHyojiMojiretu hyoji)
+        public static void Flush_NoEcho(StringBuilder hyoji)
         {
             Logger.Flush(false, hyoji);
         }
-        public static void Flush_USI(IHyojiMojiretu hyoji)
+        public static void Flush_USI(StringBuilder hyoji)
         {
             Logger.Flush(true, hyoji);
         }
         /// <summary>
         /// バッファーに溜まっているログを吐き出します。
         /// </summary>
-        public static void Flush(bool echo, IHyojiMojiretu hyoji)
+        public static void Flush(bool echo, StringBuilder hyoji)
         {
             if (0 < hyoji.Length)
             {
                 if (echo)
                 {
                     // コンソールに表示
-                    System.Console.Out.Write(hyoji.ToContents());
+                    System.Console.Out.Write(hyoji.ToString());
                 }
 
                 // ログの書き込み
@@ -205,7 +206,7 @@ using System.IO;
                 {
                     try
                     {
-                        File.AppendAllText(bestFile, hyoji.ToContents());
+                        File.AppendAllText(bestFile, hyoji.ToString());
                         break;
                     }
                     catch (Exception)

@@ -1,7 +1,7 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky.bb;
 using System;
-using kifuwarabe_shogithink.pure.logger;
+
 #else
 using kifuwarabe_shogithink.pure.ky.bb;
 using System;

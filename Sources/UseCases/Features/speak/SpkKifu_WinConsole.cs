@@ -3,13 +3,14 @@ using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen.genkyoku;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.speak.play;
 using kifuwarabe_shogiwin.speak.ban;
 #else
+using System.Text;
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.accessor;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.speak.play;
 #endif
 
@@ -24,7 +25,7 @@ namespace kifuwarabe_shogiwin.speak
         /// <param name="isSfen"></param>
         /// <param name="hyoji"></param>
         /// <returns></returns>
-        public static bool Try_SetumeiAll( IHyojiMojiretu hyoji)
+        public static bool Try_SetumeiAll( StringBuilder hyoji)
         {
             hyoji.AppendLine(string.Format("棋譜カーソル： 手目={0} 手番={1}",
                 PureMemory.kifu_endTeme,
@@ -37,7 +38,7 @@ namespace kifuwarabe_shogiwin.speak
             });
             return true;
         }
-        public static bool Try_SetumeiTebanAll(IHyojiMojiretu hyoji)
+        public static bool Try_SetumeiTebanAll(StringBuilder hyoji)
         {
             hyoji.AppendLine("手番、最初の数件：");
             for (int iTeme=0; iTeme<10 && iTeme<PureMemory.KIFU_SIZE; iTeme++)

@@ -1,10 +1,10 @@
 ﻿#if DEBUG
-using kifuwarabe_shogithink.pure.logger;
+
 using System.Diagnostics;
 
 namespace kifuwarabe_shogithink.pure.project
 {
-    public delegate void TestBlock(IHyojiMojiretu hyoji);
+    public delegate void TestBlock(StringBuilder hyoji);
 
     public abstract class Util_Test
     {
@@ -20,7 +20,7 @@ namespace kifuwarabe_shogithink.pure.project
         }
 
         [Conditional("DEBUG")]
-        public static void Append(string line, IHyojiMojiretu hyoji)
+        public static void Append(string line, StringBuilder hyoji)
         {
             if (Util_Test.TestMode)
             {
@@ -28,7 +28,7 @@ namespace kifuwarabe_shogithink.pure.project
             }
         }
         [Conditional("DEBUG")]
-        public static void AppendLine(string line, IHyojiMojiretu hyoji)
+        public static void AppendLine(string line, StringBuilder hyoji)
         {
             if (Util_Test.TestMode)
             {

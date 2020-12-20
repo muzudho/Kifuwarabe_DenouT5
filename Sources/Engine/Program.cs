@@ -4,7 +4,7 @@ using kifuwarabe_shogithink.pure.com;
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen.genkyoku;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogiwin.consolegame;
 using kifuwarabe_shogiwin.consolegame.console;
 using kifuwarabe_shogiwin.consolegame.console.command;
@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using Grayscale.Kifuwarabi.Entities.Logging;
 using Grayscale.Kifuwarabi.UseCases;
 using kifuwarabe_shogithink.pure;
@@ -27,7 +28,7 @@ using kifuwarabe_shogithink.pure.genkyoku;
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen.genkyoku;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.genkyoku;
 using kifuwarabe_shogithink.pure.speak.play;
@@ -60,13 +61,13 @@ namespace kifuwarabe_shogiwin
 
             // （手順２）きふわらべの応答は、文字列になって　ここに入るぜ☆（＾▽＾）
             // syuturyoku.ToContents() メソッドで中身を取り出せるぜ☆（＾～＾）
-            IHyojiMojiretu hyoji = PureAppli.syuturyoku1;
+            StringBuilder hyoji = PureAppli.syuturyoku1;
             Interproject.project = new WinconsoleProject();
 
             if (PureAppli.TryFail_Init())
             {
                 Logger.Flush(hyoji);
-                throw new Exception(hyoji.ToContents());
+                throw new Exception(hyoji.ToString());
             }
 
             // コンソールゲーム用の設定上書き
@@ -300,9 +301,9 @@ namespace kifuwarabe_shogiwin
 
                         // 棋譜の初期局面を更新☆
                         {
-                            ICommandMojiretu kyFen_temp = new MojiretuImpl();
+                            StringBuilder kyFen_temp = new StringBuilder();
                             SpkGenkyokuOpe.AppendFenTo(PureSettei.fenSyurui, kyFen_temp);
-                            PureMemory.kifu_syokiKyokumenFen = kyFen_temp.ToContents();
+                            PureMemory.kifu_syokiKyokumenFen = kyFen_temp.ToString();
                         }
 
 

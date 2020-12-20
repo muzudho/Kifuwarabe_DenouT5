@@ -2,7 +2,7 @@
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.tobikiki;
 using kifuwarabe_shogithink.pure.ky.bb;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.speak.ky;
 using System.Diagnostics;
 using kifuwarabe_shogithink.pure;
@@ -11,9 +11,10 @@ using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.tobikiki;
 using kifuwarabe_shogithink.pure.ky.bb;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.speak.ky;
 using System.Diagnostics;
+using System.Text;
 #endif
 
 namespace kifuwarabe_shogiwin.speak.ban
@@ -25,7 +26,7 @@ namespace kifuwarabe_shogiwin.speak.ban
         /// ビットボードをコンソールへ出力するぜ☆（＾▽＾）
         /// </summary>
         /// <returns></returns>
-        public static void Setumei_Bitboard(string[] headers, Bitboard[] bbHairetu, IHyojiMojiretu hyoji)
+        public static void Setumei_Bitboard(string[] headers, Bitboard[] bbHairetu, StringBuilder hyoji)
         {
             // 見出し
             if(null!= headers)
@@ -57,7 +58,7 @@ namespace kifuwarabe_shogiwin.speak.ban
         /// <param name="headers">見出しを使わない場合はヌル</param>
         /// <param name="yomiBbHairetu"></param>
         /// <param name="hyoji"></param>
-        public static void Setumei_Bitboard(string[] headers, YomiBitboard[] yomiBbHairetu, string yes, string no, IHyojiMojiretu hyoji)
+        public static void Setumei_Bitboard(string[] headers, YomiBitboard[] yomiBbHairetu, string yes, string no, StringBuilder hyoji)
         {
             Debug.Assert(0 < yomiBbHairetu.Length && null != yomiBbHairetu[0], "");
 
@@ -92,7 +93,7 @@ namespace kifuwarabe_shogiwin.speak.ban
         /// </summary>
         /// <returns></returns>
         public static void Setumei_MasuHyo(
-            string[] headers, Masu[][] masuHyoHairetu, bool yokoTateHanten, IHyojiMojiretu hyoji)
+            string[] headers, Masu[][] masuHyoHairetu, bool yokoTateHanten, StringBuilder hyoji)
         {
             Debug.Assert(0 < masuHyoHairetu.Length, "");
             int banYokoHaba_tmp;
@@ -136,7 +137,7 @@ namespace kifuwarabe_shogiwin.speak.ban
         /// </summary>
         /// <returns></returns>
         public static void Setumei_Masutbl(
-            string[] headers, int[][] numberHyoHairetu, bool yokoTateHanten, IHyojiMojiretu hyoji)
+            string[] headers, int[][] numberHyoHairetu, bool yokoTateHanten, StringBuilder hyoji)
         {
             Debug.Assert(0 < numberHyoHairetu.Length, "");
             int banYokoHaba_tmp;

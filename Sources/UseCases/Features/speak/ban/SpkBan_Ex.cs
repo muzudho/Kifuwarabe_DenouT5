@@ -2,11 +2,12 @@
 using kifuwarabe_shogiwin.speak.ban;
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 #else
+using System.Text;
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 #endif
 
 namespace kifuwarabe_shogiwin.speak.ban
@@ -19,9 +20,9 @@ namespace kifuwarabe_shogiwin.speak.ban
         /// <returns></returns>
         public static string Setumei_Kyokumen_NingenYo()
         {
-            IHyojiMojiretu str = new MojiretuImpl();
+            StringBuilder str = new StringBuilder();
             SpkBan_1Column.Setumei_NingenGameYo(PureMemory.kifu_endTeme, str);
-            return str.ToContents();
+            return str.ToString();
         }
 
         /// <summary>
@@ -30,7 +31,7 @@ namespace kifuwarabe_shogiwin.speak.ban
         /// <param name="yomiKy"></param>
         /// <param name="tai"></param>
         /// <param name="hyoji"></param>
-        public static void Setumei_GenkoKiki( Taikyokusya tai, IHyojiMojiretu hyoji)
+        public static void Setumei_GenkoKiki( Taikyokusya tai, StringBuilder hyoji)
         {
             hyoji.AppendLine("利き：（現行）");
             SpkBan_MultiColumn.Setumei_Bitboard(

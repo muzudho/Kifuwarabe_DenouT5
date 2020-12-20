@@ -1,11 +1,12 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.control;
 #else
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.control;
+using System.Text;
 #endif
 
 
@@ -14,16 +15,16 @@ namespace kifuwarabe_shogithink.pure.speak.ky
     public static class SpkKoma
     {
         public static string ToSetumei(Koma km) { return Conv_Koma.m_itimojiKoma_[(int)km]; }
-        public static void AppendSetumei(Koma km, IHyojiMojiretu hyoji) { hyoji.Append(ToSetumei(km)); }
+        public static void AppendSetumei(Koma km, StringBuilder hyoji) { hyoji.Append(ToSetumei(km)); }
 
-        public static void AppendTusinYo(Koma km, ICommandMojiretu syuturyoku) { syuturyoku.Append(Conv_Koma.m_dfen_[(int)km]); }
+        public static void AppendTusinYo(Koma km, StringBuilder syuturyoku) { syuturyoku.Append(Conv_Koma.m_dfen_[(int)km]); }
 
         /// <summary>
         /// 目視確認用の文字列を返すぜ☆（＾▽＾）
         /// </summary>
         /// <param name="mk"></param>
         /// <returns></returns>
-        public static void AppendSetumei(Motigoma mk, IHyojiMojiretu hyoji)
+        public static void AppendSetumei(Motigoma mk, StringBuilder hyoji)
         {
             hyoji.Append(Conv_Motigoma.m_setumeiMojiretu_[(int)mk]);
         }
@@ -33,7 +34,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky
         /// </summary>
         /// <param name="km"></param>
         /// <returns></returns>
-        public static void AppendFenTo(FenSyurui f, Koma km, ICommandMojiretu syuturyoku)
+        public static void AppendFenTo(FenSyurui f, Koma km, StringBuilder syuturyoku)
         {
             syuturyoku.Append(f==FenSyurui.sfe_n ? Conv_Koma.m_sfen_[(int)km] : Conv_Koma.m_dfen_[(int)km]);
         }

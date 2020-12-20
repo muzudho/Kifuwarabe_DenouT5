@@ -3,7 +3,7 @@ using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.conv.genkyoku.play;
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using System.Diagnostics;
 #else
 using kifuwarabe_shogithink.pure.accessor;

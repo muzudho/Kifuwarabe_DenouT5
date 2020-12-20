@@ -1,7 +1,8 @@
 ﻿using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.control;
 using System;
+using System.Text;
 
 namespace kifuwarabe_shogithink.pure.speak.ky
 {
@@ -12,7 +13,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky
         /// </summary>
         /// <param name="ks"></param>
         /// <returns></returns>
-        public static void GetNingenyoMijikaiFugo(Komasyurui ks, IHyojiMojiretu hyoji)
+        public static void GetNingenyoMijikaiFugo(Komasyurui ks, StringBuilder hyoji)
         {
             hyoji.Append(Conv_Komasyurui.m_ningenyoMijikaiFugo_[(int)ks]);
         }
@@ -44,7 +45,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky
         /// </summary>
         /// <param name="ks"></param>
         /// <returns></returns>
-        public static void AppendFenTo(FenSyurui f, Komasyurui ks, ICommandMojiretu syuturyoku)
+        public static void AppendFenTo(FenSyurui f, Komasyurui ks, StringBuilder syuturyoku)
         {
             syuturyoku.Append(ToFen(f, ks));
         }

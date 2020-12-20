@@ -3,13 +3,14 @@ using kifuwarabe_shogithink.cui.ky;
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.speak.ky;
 #else
+using System.Text;
 using kifuwarabe_shogithink.cui.ky;
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.speak.ky;
 #endif
 
@@ -23,7 +24,7 @@ namespace kifuwarabe_shogithink.pure.speak.genkyoku
         /// 盤上の駒配置、持ち駒の数、手番の対局者
         /// </summary>
         public static void AppendFenTo(
-            FenSyurui f, ICommandMojiretu syuturyoku)
+            FenSyurui f, StringBuilder syuturyoku)
         {
             syuturyoku.Append(f==FenSyurui.sfe_n ? "sfen " : "fen ");
 
@@ -109,7 +110,7 @@ namespace kifuwarabe_shogithink.pure.speak.genkyoku
         /// fen(盤上の駒配置、持ち駒の数、手番の対局者) 何手目 同形反復の回数
         /// </summary>
         /// <param name="syuturyoku"></param>
-        public static void TusinYo_Line( FenSyurui f, ICommandMojiretu syuturyoku)
+        public static void TusinYo_Line( FenSyurui f, StringBuilder syuturyoku)
         {
             // まず、fen を返すぜ☆（＾▽＾）
             // 盤上の駒配置、持ち駒の数、手番の対局者☆

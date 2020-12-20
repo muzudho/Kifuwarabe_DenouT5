@@ -1,6 +1,6 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky.tobikiki;
-using kifuwarabe_shogithink.pure.logger;
+
 #else
 using kifuwarabe_shogithink.pure.ky.tobikiki;
 #endif

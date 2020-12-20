@@ -4,7 +4,7 @@ using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.genkyoku;
 using kifuwarabe_shogithink.pure.ikkyoku;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.speak.ky;
 using System;
 #else
@@ -12,10 +12,11 @@ using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.speak.ky;
 using kifuwarabe_shogiwin.speak.ban;
 using System;
+using System.Text;
 #endif
 
 
@@ -26,7 +27,7 @@ namespace kifuwarabe_shogiwin.speak
         /// <summary>
         /// タイトル画面表示☆（＾～＾）
         /// </summary>
-        public static void Speak_TitleGamen(IHyojiMojiretu hyoji)
+        public static void Speak_TitleGamen(StringBuilder hyoji)
         {
             hyoji.Append(
                 "┌─────────────────────────────────────┐" + Environment.NewLine +
@@ -63,7 +64,7 @@ namespace kifuwarabe_shogiwin.speak
         /// <summary>
         /// コンピューター思考中表示☆（＾～＾）
         /// </summary>
-        public static void Speak_ComputerSikochu( IHyojiMojiretu hyoji)
+        public static void Speak_ComputerSikochu( StringBuilder hyoji)
         {
 #if DEBUG
             hyoji.Append("**デバッグ・モード** ");//注意喚起☆（＾▽＾）
@@ -77,7 +78,7 @@ namespace kifuwarabe_shogiwin.speak
         /// <summary>
         /// 決着時のメッセージ表示☆
         /// </summary>
-        public static void Speak_KettyakuJi( IHyojiMojiretu hyoji)
+        public static void Speak_KettyakuJi( StringBuilder hyoji)
         {
             if (TaikyokuKekka.Karappo != PureMemory.gky_kekka)
             {

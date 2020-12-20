@@ -3,14 +3,14 @@ using kifuwarabe_shogithink.pure.conv;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.tobikiki;
 using kifuwarabe_shogithink.pure.ky.bb;
-using kifuwarabe_shogithink.pure.logger;
+
 using System.Text;
 #else
 using kifuwarabe_shogithink.pure.ky.tobikiki;
 using kifuwarabe_shogithink.pure.conv;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
-using kifuwarabe_shogithink.pure.logger;
+
 using System.Text;
 #endif
 
@@ -59,7 +59,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky
         /// 将棋盤の見出しをコンソールへ出力するぜ☆（＾▽＾）
         /// </summary>
         /// <returns></returns>
-        public static void Setumei_Headers(string[] headers, IHyojiMojiretu hyoji)
+        public static void Setumei_Headers(string[] headers, StringBuilder hyoji)
         {
             foreach (string header in headers)
             {
@@ -74,7 +74,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky
         /// 筋符号
         /// </summary>
         /// <param name="hyoji"></param>
-        public static void AppendLine_SujiFugo(int banYokoHaba, IHyojiMojiretu hyoji)
+        public static void AppendLine_SujiFugo(int banYokoHaba, StringBuilder hyoji)
         {
             hyoji.Append("   ");
             for (int iSuji = 0; iSuji < banYokoHaba; iSuji++)
@@ -96,7 +96,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky
         /// </summary>
         /// <param name="kumiRetuSu"></param>
         /// <param name="hyoji"></param>
-        public static void AppendLine_TopBar(int kumiRetuSu, int banYokoHaba, IHyojiMojiretu hyoji)
+        public static void AppendLine_TopBar(int kumiRetuSu, int banYokoHaba, StringBuilder hyoji)
         {
             for (int ban = 0; ban < kumiRetuSu; ban++)
             {
@@ -125,7 +125,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky
         /// <param name="dlgt_GetCellData"></param>
         /// <param name="dan"></param>
         /// <param name="hyoji"></param>
-        public static void AppendLine_Record_Cell4Hankakus1(DLGT_GetCellData1 dlgt_GetCellData, int dan, IHyojiMojiretu hyoji)
+        public static void AppendLine_Record_Cell4Hankakus1(DLGT_GetCellData1 dlgt_GetCellData, int dan, StringBuilder hyoji)
         {
             for (int iTai = 0; iTai < Conv_Taikyokusya.itiran.Length; iTai++)
             {
@@ -147,7 +147,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky
         /// <param name="dan"></param>
         /// <param name="hyoji"></param>
         public static void AppendLine_Record_Cell4Hankakus2(
-            DLGT_GetCellData2 dlgt_GetCellData, int dan, int banYokoHaba, IHyojiMojiretu hyoji)
+            DLGT_GetCellData2 dlgt_GetCellData, int dan, int banYokoHaba, StringBuilder hyoji)
         {
             hyoji.Append("│");
             for (int iMs_offset = 0; iMs_offset < banYokoHaba; iMs_offset++)
@@ -167,7 +167,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky
         /// <param name="ms_hidariHasi"></param>
         /// <param name="hyoji"></param>
         public static void AppendLine_Record_Cell4Hankakus3(
-            DLGT_GetCellData3 dlgt_GetCellData, Taikyokusya tai, int dan, IHyojiMojiretu hyoji)
+            DLGT_GetCellData3 dlgt_GetCellData, Taikyokusya tai, int dan, StringBuilder hyoji)
         {
             for (int iKs = 0; iKs < Conv_Komasyurui.itiran.Length; iKs++)
             {
@@ -191,7 +191,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky
         /// <param name="hyoji"></param>
         public static void AppendLine_MultiTableRecord_Cell4Hankakus4(
             DLGT_GetCellData4 dLGT_GetCellData4,
-            YomiBitboard[] hyoHairetu, int dan, IHyojiMojiretu hyoji)
+            YomiBitboard[] hyoHairetu, int dan, StringBuilder hyoji)
         {
             for (int iHyo = 0; iHyo < hyoHairetu.Length; iHyo++)
             {
@@ -213,7 +213,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky
         /// <param name="hyoji"></param>
         public static void AppendLine_MultiTableRecord_Cell4Hankakus4(
             DLGT_GetCellData4 dLGT_GetCellData4,
-            Bitboard[] hyoHairetu, int dan, IHyojiMojiretu hyoji)
+            Bitboard[] hyoHairetu, int dan, StringBuilder hyoji)
         {
             for (int iHyo = 0; iHyo < hyoHairetu.Length; iHyo++)
             {
@@ -237,7 +237,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky
         /// <param name="hyoji"></param>
         public static void AppendLine_MultiTableRecord_Cell4Hankakus5(
             DLGT_GetCellData5 dLGT_GetCellData5,
-            Masu[][] masuHyoHairetu, int dan, int banYokoHaba, IHyojiMojiretu hyoji)
+            Masu[][] masuHyoHairetu, int dan, int banYokoHaba, StringBuilder hyoji)
         {
             for (int iBb = 0; iBb < masuHyoHairetu.Length; iBb++)
             {
@@ -263,7 +263,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky
         /// <param name="hyoji"></param>
         public static void AppendLine_MultiTableRecord_Cell4Hankakus5(
             DLGT_GetCellData6 dLGT_GetCellData6,
-            int tableSu, int dan, int banYokoHaba, IHyojiMojiretu hyoji)
+            int tableSu, int dan, int banYokoHaba, StringBuilder hyoji)
         {
             for (int iTable = 0; iTable < tableSu; iTable++)
             {
@@ -285,7 +285,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky
         /// </summary>
         /// <param name="banSu"></param>
         /// <param name="hyoji"></param>
-        public static void AppendLine_MiddleBar(int banSu, int banYokoHaba, IHyojiMojiretu hyoji)
+        public static void AppendLine_MiddleBar(int banSu, int banYokoHaba, StringBuilder hyoji)
         {
             for (int ban = 0; ban < banSu; ban++)
             {
@@ -312,7 +312,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky
         /// </summary>
         /// <param name="banSu"></param>
         /// <param name="hyoji"></param>
-        public static void AppendLine_BottomBar(int banSu, int banYokoHaba, IHyojiMojiretu hyoji)
+        public static void AppendLine_BottomBar(int banSu, int banYokoHaba, StringBuilder hyoji)
         {
             for (int ban = 0; ban < banSu; ban++)
             {

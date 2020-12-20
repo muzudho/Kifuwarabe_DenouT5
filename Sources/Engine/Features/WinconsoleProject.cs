@@ -1,7 +1,7 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.ky.bb;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.project;
 using kifuwarabe_shogithink.pure.speak.ky.bb;
 using kifuwarabe_shogithink.pure.speak.play;
@@ -9,10 +9,11 @@ using kifuwarabe_shogiwin.consolegame.machine;
 using kifuwarabe_shogiwin.project.speak;
 using kifuwarabe_shogiwin.speak.ban;
 #else
+using System.Text;
 using Grayscale.Kifuwarabi.Entities.Logging;
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.ky.bb;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.project;
 using kifuwarabe_shogithink.pure.speak.ky.bb;
 using kifuwarabe_shogithink.pure.speak.play;
@@ -26,18 +27,18 @@ namespace kifuwarabe_shogiwin.project
 {
     public class WinconsoleProject : PureProject
     {
-        public override string Owata(string hint, IHyojiMojiretu hyoji)
+        public override string Owata(string hint, StringBuilder hyoji)
         {
-            string msg = hint + " " + hyoji.ToContents();
+            string msg = hint + " " + hyoji.ToString();
             Logger.Flush(hyoji);
             return msg;
         }
 
-        public override void HyojiKikiItiran(IHyojiMojiretu hyoji)
+        public override void HyojiKikiItiran(StringBuilder hyoji)
         {
             SpkDump.HyojiKikiItiran(hyoji);
         }
-        public override void SnapshotTansaku(IHyojiMojiretu hyoji)
+        public override void SnapshotTansaku(StringBuilder hyoji)
         {
             // 「手目」に関する情報
             hyoji.AppendLine(string.Format("curr[{0,3}] next: ss={1} ssType={2} cap={3}",
@@ -47,24 +48,24 @@ namespace kifuwarabe_shogiwin.project
                 PureMemory.kifu_toraretaKsAr[PureMemory.kifu_endTeme]
                 ));
         }
-        public override void HyojiIbasho(string header, IHyojiMojiretu hyoji)
+        public override void HyojiIbasho(string header, StringBuilder hyoji)
         {
             // 駒の居場所表示☆
             SpkBan_1Column.ToHyojiIbasho(header, hyoji);
         }
-        public override void HyojiKyokumen(int teme, IHyojiMojiretu hyoji)
+        public override void HyojiKyokumen(int teme, StringBuilder hyoji)
         {
             SpkBan_1Column.Setumei_NingenGameYo(teme, hyoji);
         }
-        public override void HyojiBitboard(string header, Bitboard bb, IHyojiMojiretu hyoji)
+        public override void HyojiBitboard(string header, Bitboard bb, StringBuilder hyoji)
         {
             SpkBan_Hisigata.Setumei_yk00(header, bb, hyoji);
         }
         public override string HyojiBitboard(string header, Bitboard bb)
         {
-            MojiretuImpl hyoji = new MojiretuImpl();
+            StringBuilder hyoji = new StringBuilder();
             SpkBan_Hisigata.Setumei_yk00(header, bb, hyoji);
-            return hyoji.ToContents();
+            return hyoji.ToString();
         }
         /*
         /// <summary>
@@ -74,7 +75,7 @@ namespace kifuwarabe_shogiwin.project
         /// <returns></returns>
         public override string Dump()
         {
-            MojiretuImpl mojiretu = new MojiretuImpl();
+            StringBuilder mojiretu = new StringBuilder();
 
             SpkDump.TryFail_Dump(programSupport, mojiretu);
 

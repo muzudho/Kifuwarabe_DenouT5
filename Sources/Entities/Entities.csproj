@@ -83,7 +83,6 @@
     <Compile Include="Features\pure\com_tansaku\sasiteorder\Tume1Hantei.cs" />
     <Compile Include="Features\pure\com_tansaku\sasiteorder\MovePicker01.cs" />
     <Compile Include="Features\pure\com_tansaku\sasiteorder\seisei\GenerateMove03.cs" />
-    <Compile Include="Features\pure\logger\KarappoMojiretuImpl.cs" />
     <Compile Include="Features\pure\sasite\MoveType.cs" />
     <Compile Include="Features\pure\com_tansaku\Util_Joho.cs" />
     <Compile Include="Features\pure\conv\ky\Conv_Kyokumen.cs" />
@@ -165,14 +164,12 @@
     <Compile Include="Features\pure\ky\bb\Bitboard.cs" />
     <Compile Include="Features\pure\ky\MotigomaItiran.cs" />
     <Compile Include="Features\pure\sasite\MoveList.cs" />
-    <Compile Include="Features\pure\logger\MojiretuImpl.cs" />
     <Compile Include="Features\pure\ky\Shogiban.cs" />
     <Compile Include="Features\pure\protocol\IFenProtocol.cs" />
     <Compile Include="Features\pure\ikkyoku\TaikyokuKekka.cs" />
     <Compile Include="Features\pure\sasite\Move.cs" />
     <Compile Include="Features\pure\ky\Komasyurui.cs" />
     <Compile Include="Features\pure\ky\Koma.cs" />
-    <Compile Include="Features\pure\logger\Mojiretu.cs" />
     <Compile Include="Features\pure\ky\Taikyokusya.cs" />
     <Compile Include="Features\pure\ky\Masu.cs" />
     <Compile Include="Features\pure\com_tansaku\jikan\Util_TimeManager.cs" />

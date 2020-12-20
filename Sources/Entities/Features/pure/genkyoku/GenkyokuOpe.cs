@@ -4,7 +4,7 @@ using kifuwarabe_shogithink.pure.conv.genkyoku.play;
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.software;
 using System;
 using System.Diagnostics;

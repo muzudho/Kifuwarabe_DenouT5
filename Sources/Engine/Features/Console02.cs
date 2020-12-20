@@ -8,7 +8,7 @@ using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen;
 using kifuwarabe_shogithink.pure.listen.play;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.genkyoku;
 using kifuwarabe_shogiwin.consolegame.console.command;
@@ -30,36 +30,6 @@ namespace kifuwarabe_shogiwin.consolegame.console
 {
     public static class Console02
     {
-        public static bool ParseDoMove(ProgramSupport programSupport, out Move out_move)
-        {
-            // コンソールからのキー入力を解析するぜ☆（＾▽＾）
-            int caret = programSupport.caret;
-            int oldCaret = programSupport.caret;
-
-            Util_String.TobasuTangoToMatubiKuhaku(programSupport.commandline, ref caret, "do ");
-
-            // うしろに続く文字は☆（＾▽＾）
-            if (!LisPlay.MatchFenMove(PureSettei.fenSyurui, programSupport.commandline, ref caret, out out_move))
-            {
-                programSupport.caret = oldCaret;
-
-                //String2 str = new String2Impl();
-                //str.Append("指し手のパースに失敗だぜ☆（＾～＾）！ #鷺 commandline=[");
-                //str.Append(commandline);
-                //str.Append("] caret=[");
-                //str.Append(caret);
-                //str.Append("]");
-                //syuturyoku.AppendLine(str.ToContents());
-                //Util_Machine.Flush();
-                //throw new Exception(str.ToContents());
-                return false;
-            }
-
-            // do コマンドだった場合☆
-            programSupport.caret = caret;
-            programSupport.CommentCommandline();// コマンドの誤発動防止
-            return true;
-        }
 
         #region コンソールゲーム用の機能☆
         /// <summary>

@@ -4,7 +4,7 @@ using kifuwarabe_shogithink.pure.com.jikan;
 using kifuwarabe_shogithink.pure.genkyoku;
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.listen.genkyoku;
 using System.Collections.Generic;
 using kifuwarabe_shogithink.pure.control;
@@ -15,8 +15,9 @@ using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen.genkyoku;
-using kifuwarabe_shogithink.pure.logger;
+
 using System.Collections.Generic;
+using System.Text;
 #endif
 
 namespace kifuwarabe_shogithink.pure
@@ -28,8 +29,8 @@ namespace kifuwarabe_shogithink.pure
     {
         static PureAppli()
         {
-            syuturyoku1 = new MojiretuImpl();
-            karappoSyuturyoku = new KarappoMojiretuImpl();
+            syuturyoku1 = new StringBuilder();
+            karappoSyuturyoku = new StringBuilder();
 
             dlgt_CreateJoho = Util_Joho.Dlgt_IgnoreJoho;
         }
@@ -78,11 +79,11 @@ namespace kifuwarabe_shogithink.pure
         /// 
         /// コンソールゲーム用、エラー用の区別なく１つに出力されるぜ☆（＾～＾）
         /// </summary>
-        public static INewString syuturyoku1;
+        public static StringBuilder syuturyoku1;
         /// <summary>
         /// 仕事をしない出力だぜ☆（＾▽＾）ｗｗｗ
         /// </summary>
-        public static INewString karappoSyuturyoku { get; set; }
+        public static StringBuilder karappoSyuturyoku { get; set; }
 
         public static GameMode gameMode { get; set; }
 
@@ -127,7 +128,7 @@ namespace kifuwarabe_shogithink.pure
 
         public static bool TryFail_Init()
         {
-            IHyojiMojiretu hyoji = syuturyoku1;
+            StringBuilder hyoji = syuturyoku1;
 
             //────────────────────────────────────────
             // （手順１）アプリケーション開始前に設定しろだぜ☆（＾▽＾）！

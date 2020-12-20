@@ -2,14 +2,15 @@
 using kifuwarabe_shogithink.pure.com.hyoka;
 using kifuwarabe_shogithink.pure.com.jikan;
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.accessor;
 #else
+using System.Text;
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.com.hyoka;
 using kifuwarabe_shogithink.pure.com.jikan;
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 #endif
 
 namespace kifuwarabe_shogithink.pure.com
@@ -39,7 +40,7 @@ namespace kifuwarabe_shogithink.pure.com
             int fukasa,
             int nekkoKaranoFukasa,
 
-            IHyojiMojiretu hyoji
+            StringBuilder hyoji
 #if DEBUG
             , string hint
 #endif
@@ -53,7 +54,7 @@ namespace kifuwarabe_shogithink.pure.com
             Hyokati hyokatiUtiwake,
             int fukasa,
             int nekkoKaranoFukasa,
-            IHyojiMojiretu hyoji
+            StringBuilder hyoji
 #if DEBUG
             , string hint
 #endif
@@ -66,7 +67,7 @@ namespace kifuwarabe_shogithink.pure.com
         public static void JohoMatome(
             int fukasa,
             Hyokati hyokasuToBack,
-            IHyojiMojiretu hyoji
+            StringBuilder hyoji
 #if DEBUG
             , string hint
 #endif

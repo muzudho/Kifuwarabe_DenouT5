@@ -1,6 +1,7 @@
 ﻿using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.control;
+using System.Text;
 
 namespace kifuwarabe_shogithink.pure.speak.ky
 {
@@ -25,7 +26,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky
         /// </summary>
         /// <param name="ts"></param>
         /// <returns></returns>
-        public static void AppendSetumeiName(Taikyokusya ts, IHyojiMojiretu hyoji)
+        public static void AppendSetumeiName(Taikyokusya ts, StringBuilder hyoji)
         {
             hyoji.Append(ToSetumeiName(ts));
         }
@@ -40,7 +41,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky
         /// </summary>
         /// <param name="ts"></param>
         /// <returns></returns>
-        public static void AppendSetumeiSankaku(Taikyokusya ts, IHyojiMojiretu hyoji)
+        public static void AppendSetumeiSankaku(Taikyokusya ts, StringBuilder hyoji)
         {
             hyoji.Append(sankaku[(int)ts]);
         }
@@ -50,7 +51,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky
             "2",
             "x"
         };
-        public static void AppendTusinYo(Taikyokusya ts, ICommandMojiretu syuturyoku)
+        public static void AppendTusinYo(Taikyokusya ts, StringBuilder syuturyoku)
         {
             syuturyoku.Append(m_tusinYo_[(int)ts]);
         }
@@ -59,7 +60,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky
         /// </summary>
         /// <param name="tb"></param>
         /// <returns></returns>
-        public static void AppendSetumeiNagame(Ninsyo tb, IHyojiMojiretu hyoji)
+        public static void AppendSetumeiNagame(Ninsyo tb, StringBuilder hyoji)
         {
             switch (tb)
             {

@@ -1,7 +1,8 @@
 ﻿using Grayscale.Kifuwarabi.Entities.Logging;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogiwin.consolegame.machine;
 using System;
+using System.Text;
 
 namespace kifuwarabe_shogiwin.consolegame.gakusyu
 {
@@ -160,7 +161,7 @@ namespace kifuwarabe_shogiwin.consolegame.gakusyu
         }
 
 
-        public static void Test(IHyojiMojiretu hyoji)
+        public static void Test(StringBuilder hyoji)
         {
 
             //*

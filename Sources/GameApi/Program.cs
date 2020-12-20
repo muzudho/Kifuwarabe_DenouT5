@@ -175,7 +175,7 @@ namespace kifuwarabe_shogiapi
             ShogiApi.DoMove(move);
 
             //{
-            //    IViewMojiretu sindan1 = new MojiretuImpl();
+            //    IViewMojiretu sindan1 = new StringBuilder();
             //    SpkShogiban.AppendKomanoIbashoTo(PureAppli.genkyokumen.ky.shogiban.ibashoBan.sindanIB, sindan1);// 駒の居場所☆
             //    textBox1.Text = sindan1.ToContents();
             //}

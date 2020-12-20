@@ -3,7 +3,7 @@ using kifuwarabe_shogithink.pure.conv;
 using kifuwarabe_shogithink.pure.conv.genkyoku.play;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.ky;
 using kifuwarabe_shogithink.pure.control;
@@ -15,11 +15,12 @@ using kifuwarabe_shogithink.pure.conv;
 using kifuwarabe_shogithink.pure.conv.genkyoku.play;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.ky;
 using System;
 using kifuwarabe_shogithink.fen;
+using System.Text;
 #endif
 
 namespace kifuwarabe_shogithink.pure.speak.play
@@ -28,15 +29,15 @@ namespace kifuwarabe_shogithink.pure.speak.play
     {
         public static string ToString_Fen(FenSyurui f, Move ss)
         {
-            MojiretuImpl hyoji = new MojiretuImpl();
+            StringBuilder hyoji = new StringBuilder();
             AppendFenTo(f, ss, hyoji);
-            return hyoji.ToContents();
+            return hyoji.ToString();
         }
         /// <summary>
         /// 改造FEN符号表記
         /// </summary>
         /// <returns></returns>
-        public static void AppendFenTo(FenSyurui f, Move ss, ICommandMojiretu syuturyoku)
+        public static void AppendFenTo(FenSyurui f, Move ss, StringBuilder syuturyoku)
         {
             if (Move.Toryo == ss) { syuturyoku.Append(Itiran_FenParser.GetToryo(f)); return; }
 
@@ -154,11 +155,11 @@ namespace kifuwarabe_shogithink.pure.speak.play
         /// 指し手符号の解説。
         /// </summary>
         /// <returns></returns>
-        public static void AppendSetumei(FenSyurui f, Move ss, IHyojiMojiretu hyoji)
+        public static void AppendSetumei(FenSyurui f, Move ss, StringBuilder hyoji)
         {
             AppendFenTo(f, ss, hyoji);
         }
-        public static void AppendSetumeiLine(FenSyurui f, Move ss, IHyojiMojiretu hyoji)
+        public static void AppendSetumeiLine(FenSyurui f, Move ss, StringBuilder hyoji)
         {
             AppendFenTo(f, ss, hyoji);
             hyoji.AppendLine();
@@ -182,11 +183,11 @@ namespace kifuwarabe_shogithink.pure.speak.play
                 default: return "未定義のエラーです。";
             }
         }
-        public static void AppendSetumei(MoveMatigaiRiyu riyu, IHyojiMojiretu hyoji)
+        public static void AppendSetumei(MoveMatigaiRiyu riyu, StringBuilder hyoji)
         {
             hyoji.Append(ToSetumeiByRiyu(riyu));
         }
-        public static void AppendSetumeiLine(MoveMatigaiRiyu riyu, IHyojiMojiretu hyoji)
+        public static void AppendSetumeiLine(MoveMatigaiRiyu riyu, StringBuilder hyoji)
         {
             hyoji.AppendLine(ToSetumeiByRiyu(riyu));
         }

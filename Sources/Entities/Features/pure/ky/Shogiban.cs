@@ -1,7 +1,7 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.ky.tobikiki;
-using kifuwarabe_shogithink.pure.logger;
+
 using System.Diagnostics;
 #else
 using kifuwarabe_shogithink.pure.com;

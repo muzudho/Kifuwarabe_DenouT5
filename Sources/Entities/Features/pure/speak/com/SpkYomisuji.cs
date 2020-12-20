@@ -1,21 +1,22 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.accessor;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.speak.play;
 using kifuwarabe_shogithink.pure.control;
 #else
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.ikkyoku;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.speak.play;
+using System.Text;
 #endif
 
 namespace kifuwarabe_shogithink.pure.speak.com
 {
     public static class SpkYomisuji
     {
-        public static void Setumei(FenSyurui f, IHyojiMojiretu hyoji)
+        public static void Setumei(FenSyurui f, StringBuilder hyoji)
         {
             bool isBelow = false;
             MoveGenAccessor.ScanBestYomisuji((int iKifu, ref bool toBreak)=>

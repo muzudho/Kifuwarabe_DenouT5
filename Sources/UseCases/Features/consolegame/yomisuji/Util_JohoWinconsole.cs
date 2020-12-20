@@ -5,12 +5,13 @@ using kifuwarabe_shogithink.pure.com.hyoka;
 using kifuwarabe_shogithink.pure.com.jikan;
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.speak.com;
 using kifuwarabe_shogithink.pure.speak.ky_info;
 using kifuwarabe_shogiwin.consolegame.machine;
 using kifuwarabe_shogiwin.speak.ban;
 #else
+using System.Text;
 using Grayscale.Kifuwarabi.Entities.Logging;
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.com;
@@ -18,7 +19,7 @@ using kifuwarabe_shogithink.pure.com.hyoka;
 using kifuwarabe_shogithink.pure.com.jikan;
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.speak.com;
 using kifuwarabe_shogithink.pure.speak.ky_info;
 using kifuwarabe_shogiwin.consolegame.machine;
@@ -40,7 +41,7 @@ namespace kifuwarabe_shogiwin.consolegame.yomisuji
             Hyokati hyokaSu,
             int fukasa,
             int nekkoKaranoFukasa,
-            IHyojiMojiretu hyoji
+            StringBuilder hyoji
 #if DEBUG
             ,string hint
 #endif

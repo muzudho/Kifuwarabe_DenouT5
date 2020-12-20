@@ -1,32 +1,33 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogiwin.consolegame.machine;
 #else
+using System.Text;
 using Grayscale.Kifuwarabi.Entities.Logging;
 using Grayscale.Kifuwarabi.UseCases;
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogiwin.consolegame.machine;
 #endif
 
 namespace kifuwarabe_shogiwin.consolegame.console
 {
     /// <summary>
-    /// Unityでは使わないだろうもの☆（＾～＾）
+    /// コンソール画面用☆（＾～＾）
     /// </summary>
     public abstract class Util_ConsoleGame
     {
         /// <summary>
         /// メインループ開始時☆（＾▽＾）
         /// </summary>
-        public static void Begin_Mainloop(Playing playing, ProgramSupport programSupport, IHyojiMojiretu hyoji)
+        public static void Begin_Mainloop(Playing playing, ProgramSupport programSupport, StringBuilder hyoji)
         {
             programSupport.InitCommandline();// コマンド・ライン初期化☆
             programSupport.ReadCommandBuffer(playing, hyoji);// コマンド・バッファー読取り☆
         }
 
-        public static void ReadCommandline(ProgramSupport programSupport, IHyojiMojiretu hyoji)
+        public static void ReadCommandline(ProgramSupport programSupport, StringBuilder hyoji)
         {
             Logger.Flush(hyoji);
             programSupport.SetCommandline(Util_Machine.ReadLine());

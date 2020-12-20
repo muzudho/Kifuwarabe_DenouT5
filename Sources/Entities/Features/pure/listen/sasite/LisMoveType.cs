@@ -1,8 +1,9 @@
 ﻿#if DEBUG
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.move;
 #else
-using kifuwarabe_shogithink.pure.logger;
+
+using System.Text;
 using kifuwarabe_shogithink.pure.move;
 #endif
 
@@ -14,7 +15,7 @@ namespace kifuwarabe_shogithink.pure.listen.move
         /// 指し手符号の解説。
         /// </summary>
         /// <returns></returns>
-        public static void Setumei(MoveType ss, IHyojiMojiretu hyoji)
+        public static void Setumei(MoveType ss, StringBuilder hyoji)
         {
             switch (ss)
             {

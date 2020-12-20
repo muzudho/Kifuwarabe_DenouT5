@@ -1,7 +1,7 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.com.moveorder;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.move;
 #else
 using kifuwarabe_shogithink.pure.accessor;

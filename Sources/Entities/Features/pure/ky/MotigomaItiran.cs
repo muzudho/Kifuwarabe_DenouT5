@@ -2,7 +2,7 @@
 using System.Diagnostics;
 
 #if DEBUG
-using kifuwarabe_shogithink.pure.logger;
+
 #endif
 
 namespace kifuwarabe_shogithink.pure.ky

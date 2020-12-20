@@ -1,7 +1,7 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.speak.ky;
 using System.Diagnostics;
 using kifuwarabe_shogithink.pure;
@@ -9,9 +9,10 @@ using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.speak.ky;
 using System.Diagnostics;
+using System.Text;
 #endif
 
 namespace kifuwarabe_shogiwin.speak.ban
@@ -23,7 +24,7 @@ namespace kifuwarabe_shogiwin.speak.ban
         /// 対局者別と、駒別
         /// </summary>
         /// <returns></returns>
-        public static void HyojiKomanoKikiSu(KikiBan.YomiKikiBan yomiKikiBan, IHyojiMojiretu hyoji)
+        public static void HyojiKomanoKikiSu(KikiBan.YomiKikiBan yomiKikiBan, StringBuilder hyoji)
         {
             hyoji.AppendLine("重ね利き数全部");
             hyoji.AppendLine(string.Format("差分更新トータル ▲{0} △{1}", yomiKikiBan.CountKikisuTotalZenbu(Taikyokusya.T1), yomiKikiBan.CountKikisuTotalZenbu(Taikyokusya.T2)));
@@ -88,7 +89,7 @@ namespace kifuwarabe_shogiwin.speak.ban
         /// <param name="bbItiran_kikiZenbu"></param>
         /// <param name="bbItiran_kikiKomabetu"></param>
         /// <param name="hyoji"></param>
-        public static void HyojiKomanoKiki(KikiBan.YomiKikiBan yomiKikiBan, IHyojiMojiretu hyoji)
+        public static void HyojiKomanoKiki(KikiBan.YomiKikiBan yomiKikiBan, StringBuilder hyoji)
         {
             Debug.Assert(yomiKikiBan.IsActiveBBKiki(), "");
 
@@ -128,7 +129,7 @@ namespace kifuwarabe_shogiwin.speak.ban
         /// </summary>
         /// <param name="komanoUgokikata"></param>
         /// <param name="hyoji"></param>
-        public static void HyojiKomanoUgoki(KikiBan.YomiKikiBan yomiKikiBan, int masuYososu, IHyojiMojiretu hyoji)
+        public static void HyojiKomanoUgoki(KikiBan.YomiKikiBan yomiKikiBan, int masuYososu, StringBuilder hyoji)
         {
             for (int ms = 0; ms < masuYososu; ms++)
             {

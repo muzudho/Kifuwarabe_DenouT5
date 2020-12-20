@@ -8,7 +8,7 @@ using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen.ky;
 using kifuwarabe_shogithink.pure.listen.play;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.med.ky;
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.genkyoku;
@@ -27,13 +27,14 @@ using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen.genkyoku;
 using kifuwarabe_shogithink.pure.listen.play;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.genkyoku;
 using kifuwarabe_shogithink.pure.speak.ky;
 using kifuwarabe_shogithink.pure.speak.play;
 using System;
 using System.Collections.Generic;
+using System.Text;
 #endif
 
 namespace kifuwarabe_shogiapi
@@ -66,7 +67,7 @@ namespace kifuwarabe_shogiapi
         /// <returns></returns>
         public static string ToLogString()
         {
-            return PureAppli.syuturyoku1.ToContents();
+            return PureAppli.syuturyoku1.ToString();
         }
 
         /// <summary>
@@ -145,7 +146,7 @@ namespace kifuwarabe_shogiapi
 #endif
             ))
             {
-                throw new Exception(PureAppli.syuturyoku1.ToContents());
+                throw new Exception(PureAppli.syuturyoku1.ToString());
             }
             MoveGenAccessor.AddKifu(ss, ssType,PureMemory.dmv_ks_c);
 //#if DEBUG
@@ -167,9 +168,9 @@ namespace kifuwarabe_shogiapi
                 throw new Exception("Goでエラー☆（＾～＾）");
             }
 
-            ICommandMojiretu move_str = new MojiretuImpl();
+            StringBuilder move_str = new StringBuilder();
             SpkMove.AppendFenTo(PureSettei.fenSyurui, PureMemory.tnsk_kohoMove, move_str);
-            out_moveFen = move_str.ToContents();
+            out_moveFen = move_str.ToString();
         }
 
         /// <summary>
@@ -178,9 +179,9 @@ namespace kifuwarabe_shogiapi
         /// <returns></returns>
         public static string GetKyokumen_TusinYo()
         {
-            IHyojiMojiretu str = new MojiretuImpl();
+            StringBuilder str = new StringBuilder();
             SpkGenkyokuOpe.TusinYo_Line(PureSettei.fenSyurui, str);
-            return str.ToContents();
+            return str.ToString();
         }
 
         /// <summary>

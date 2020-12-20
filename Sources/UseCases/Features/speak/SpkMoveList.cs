@@ -1,12 +1,13 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.play;
 using kifuwarabe_shogithink.pure.control;
 #else
+using System.Text;
 using kifuwarabe_shogithink.pure.control;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.play;
 #endif
@@ -15,7 +16,7 @@ namespace kifuwarabe_shogiwin.speak
 {
     public static class SpkMoveList
     {
-        public static void Setumei(FenSyurui f, string header, MoveList sslist, IHyojiMojiretu hyoji)
+        public static void Setumei(FenSyurui f, string header, MoveList sslist, StringBuilder hyoji)
         {
             hyoji.AppendLine(header);
             hyoji.AppendLine("┌──────────┐");

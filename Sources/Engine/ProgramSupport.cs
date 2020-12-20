@@ -3,7 +3,7 @@ using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.genkyoku;
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogiwin.consolegame.console.command;
 using kifuwarabe_shogiwin.consolegame.machine;
 using kifuwarabe_shogiwin.speak.ban;
@@ -17,12 +17,13 @@ using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogiwin.consolegame.console;
 using kifuwarabe_shogiwin.consolegame.console.command;
 using kifuwarabe_shogiwin.speak.ban;
 #else
 using System;
+using System.Text;
 using Grayscale.Kifuwarabi.Entities.Logging;
 using Grayscale.Kifuwarabi.UseCases;
 using kifuwarabe_shogithink.pure;
@@ -31,7 +32,7 @@ using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen;
 using kifuwarabe_shogithink.pure.listen.play;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogiwin.speak.ban;
 #endif
@@ -72,7 +73,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
         /// <summary>
         /// コマンド・バッファーから１行読取り。
         /// </summary>
-        public void ReadCommandBuffer(Playing playing, IHyojiMojiretu hyoji)
+        public void ReadCommandBuffer(Playing playing, StringBuilder hyoji)
         {
             if (0 < playing.commandBuffer.Count)
             {
@@ -91,7 +92,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
         /// <summary>
         /// 次の入力を促す表示をしてるだけだぜ☆（＾～＾）
         /// </summary>
-        public void ShowPrompt(Playing playing, FenSyurui f, IHyojiMojiretu hyoji)
+        public void ShowPrompt(Playing playing, FenSyurui f, StringBuilder hyoji)
         {
             if (0 < playing.commandBuffer.Count)
             {

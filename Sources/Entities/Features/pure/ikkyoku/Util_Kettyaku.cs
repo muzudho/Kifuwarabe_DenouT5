@@ -1,6 +1,6 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.accessor;
 #else
@@ -18,7 +18,7 @@ namespace kifuwarabe_shogithink.pure.ikkyoku
         /// <param name="bestMove">投了かどうか調べるだけだぜ☆（＾▽＾）</param>
         public static bool Try_JudgeKettyaku(Move bestMove
 #if DEBUG
-            , IHyojiMojiretu hyoji
+            , StringBuilder hyoji
 #endif
             )
         {

@@ -3,7 +3,7 @@ using kifuwarabe_shogithink.pure.project;
 using kifuwarabe_shogithink.pure.genkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.accessor;
 using System;
 #else

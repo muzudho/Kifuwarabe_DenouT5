@@ -1,13 +1,14 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogiwin.consolegame.console.command;
 using kifuwarabe_shogiwin.speak.ban;
 #else
+using System.Text;
 using Grayscale.Kifuwarabi.UseCases;
 using kifuwarabe_shogithink.pure;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogiwin.speak.ban;
 #endif
 
@@ -18,7 +19,7 @@ namespace kifuwarabe_shogiwin.project.speak
     /// </summary>
     public static class SpkDump
     {
-        public static bool TryFail_Dump(Playing playing, IHyojiMojiretu hyoji)
+        public static bool TryFail_Dump(Playing playing, StringBuilder hyoji)
         {
             // FIXME: 再計算はいったん廃止☆（＾～＾）
             hyoji.AppendLine("──────────再計算──────────");
@@ -42,7 +43,7 @@ namespace kifuwarabe_shogiwin.project.speak
         /// <summary>
         /// 利きの表示
         /// </summary>
-        public static void HyojiKikiItiran(IHyojiMojiretu hyoji)
+        public static void HyojiKikiItiran(StringBuilder hyoji)
         {
             // 現行
             hyoji.AppendLine("利き一覧");//（現行）:全部、駒別

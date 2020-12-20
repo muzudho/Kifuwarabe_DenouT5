@@ -5,7 +5,7 @@ using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen;
 using kifuwarabe_shogithink.pure.listen.ikkyoku;
-using kifuwarabe_shogithink.pure.logger;
+
 using System;
 #else
 using System;
@@ -18,9 +18,10 @@ using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.listen;
 using kifuwarabe_shogithink.pure.listen.ikkyoku;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogiwin.consolegame.machine;
+using System.Text;
 #endif
 
 namespace kifuwarabe_shogiwin.consolegame.console
@@ -34,7 +35,7 @@ namespace kifuwarabe_shogiwin.consolegame.console
         /// <param name="ky2"></param>
         /// <param name="hyoji"></param>
         public static void Set(
-            string line, IHyojiMojiretu hyoji
+            string line, StringBuilder hyoji
             )
         {
             int caret = 0;

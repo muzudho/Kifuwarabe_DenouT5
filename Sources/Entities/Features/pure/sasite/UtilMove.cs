@@ -4,13 +4,14 @@ using kifuwarabe_shogithink.pure.com.moveorder;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen;
 using kifuwarabe_shogithink.pure.listen.play;
-using kifuwarabe_shogithink.pure.logger;
+
 #else
+using System.Text;
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.com.MoveOrder;
 using kifuwarabe_shogithink.pure.listen;
 using kifuwarabe_shogithink.pure.listen.play;
-using kifuwarabe_shogithink.pure.logger;
+
 #endif
 
 namespace kifuwarabe_shogithink.pure.move
@@ -23,7 +24,7 @@ namespace kifuwarabe_shogithink.pure.move
         /// <param name="out_list"></param>
         /// <param name="hyoji"></param>
         /// <returns></returns>
-        public static bool TryFailMoveCmd1(IHyojiMojiretu hyoji)
+        public static bool TryFailMoveCmd1(StringBuilder hyoji)
         {
             //グローバル変数に指し手がセットされるぜ☆（＾▽＾）
             PureMemory.SetTnskFukasa(PureMemory.FUKASA_MANUAL);

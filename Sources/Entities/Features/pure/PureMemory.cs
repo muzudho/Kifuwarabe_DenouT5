@@ -7,10 +7,10 @@ using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.ky.tobikiki;
 using kifuwarabe_shogithink.pure.move;
-using kifuwarabe_shogithink.pure.logger;
+
 using System;
 #else
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.com;
 using kifuwarabe_shogithink.pure.com.hyoka;
 using kifuwarabe_shogithink.pure.control;
@@ -20,6 +20,7 @@ using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.ky.tobikiki;
 using kifuwarabe_shogithink.pure.move;
 using System;
+using System.Text;
 #endif
 
 namespace kifuwarabe_shogithink.pure
@@ -683,12 +684,12 @@ namespace kifuwarabe_shogithink.pure
         /// <summary>
         /// 探索用の表示文字列
         /// </summary>
-        public static IHyojiMojiretu tnsk_hyoji { get { return tnsk_hyoji_; } }
-        public static void SetTnskHyoji(IHyojiMojiretu hyoji)
+        public static StringBuilder tnsk_hyoji { get { return tnsk_hyoji_; } }
+        public static void SetTnskHyoji(StringBuilder hyoji)
         {
             tnsk_hyoji_ = hyoji;
         }
-        static IHyojiMojiretu tnsk_hyoji_;
+        static StringBuilder tnsk_hyoji_;
 #if DEBUG
         public static TansakuSyuryoRiyu tnsk_syuryoRiyu;
 #endif

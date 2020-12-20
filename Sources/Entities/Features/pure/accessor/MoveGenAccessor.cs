@@ -8,7 +8,7 @@ using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.listen.genkyoku;
 using kifuwarabe_shogithink.pure.listen.play;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.ky.bb;
 using kifuwarabe_shogithink.pure.speak.play;
@@ -24,11 +24,12 @@ using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.listen.genkyoku;
 using kifuwarabe_shogithink.pure.listen.play;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.play;
 using System;
 using System.Diagnostics;
+using System.Text;
 #endif
 
 namespace kifuwarabe_shogithink.pure.accessor
@@ -45,7 +46,7 @@ namespace kifuwarabe_shogithink.pure.accessor
     public static class MoveGenAccessor
     {
 #if DEBUG
-        public static void DumpMoveGen(IHyojiMojiretu hyoji)
+        public static void DumpMoveGen(StringBuilder hyoji)
         {
             
             SpkBan_Hisigata.Setumei_yk00("チェッカー(手番へ)", PureMemory.hot_bb_checkerAr[PureMemory.kifu_nTeban], hyoji);
@@ -71,7 +72,7 @@ namespace kifuwarabe_shogithink.pure.accessor
         }
 #endif
 
-        public static void AppendMovesTo(FenSyurui f, ICommandMojiretu syuturyoku)
+        public static void AppendMovesTo(FenSyurui f, StringBuilder syuturyoku)
         {
             ScanKifu_0ToPreTeme((int iKifu, ref bool toBreak) =>
             {
@@ -197,7 +198,7 @@ namespace kifuwarabe_shogithink.pure.accessor
         /// <param name="temeMade"></param>
         /// <param name="ky2"></param>
         /// <param name="hyoji"></param>
-        public static bool Try_GoToTememade(FenSyurui f, int temeMade, IHyojiMojiretu hyoji)
+        public static bool Try_GoToTememade(FenSyurui f, int temeMade, StringBuilder hyoji)
         {
             // 棋譜を元に、局面データを再現するぜ☆
 
@@ -252,7 +253,7 @@ namespace kifuwarabe_shogithink.pure.accessor
         /// </summary>
         /// <param name="ky2"></param>
         /// <param name="hyoji"></param>
-        public static bool Try_PlayMoves_0ToPreTeme(FenSyurui f, IHyojiMojiretu hyoji)
+        public static bool Try_PlayMoves_0ToPreTeme(FenSyurui f, StringBuilder hyoji)
         {
             // 棋譜を元に、局面データを再現するぜ☆
             MoveGenAccessor.ScanMoves_0ToPreTeme((int iTeme, ref bool toBreak) => {

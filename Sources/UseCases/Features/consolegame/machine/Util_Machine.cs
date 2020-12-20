@@ -3,17 +3,18 @@
     using Grayscale.Kifuwarabi.Entities.Logging;
 #if DEBUG
 using kifuwarabe_shogithink.pure;
-using kifuwarabe_shogithink.pure.logger;
+
 using System;
 using System.Diagnostics;
 using System.IO;
 #else
     using kifuwarabe_shogithink.pure;
-    using kifuwarabe_shogithink.pure.logger;
+    
     using Nett;
     using System;
     using System.Diagnostics;
     using System.IO;
+    using System.Text;
 #endif
 
     /// <summary>
@@ -105,12 +106,12 @@ using System.IO;
         /// <param name="condition"></param>
         /// <param name="message"></param>
         [Conditional("DEBUG")]
-        public static void Assert(bool condition, string message, IHyojiMojiretu hyoji)
+        public static void Assert(bool condition, string message, StringBuilder hyoji)
         {
             if (!condition)
             {
                 hyoji.Append(message);
-                string message2 = hyoji.ToContents();
+                string message2 = hyoji.ToString();
                 Logger.Flush(hyoji);
                 Debug.Assert(condition, message2);
             }
@@ -133,9 +134,9 @@ using System.IO;
         /// </summary>
         /// <param name="logger"></param>
         [Conditional("DEBUG")]
-        public static void Fail(IHyojiMojiretu hyoji)
+        public static void Fail(StringBuilder hyoji)
         {
-            string message = hyoji.ToContents();
+            string message = hyoji.ToString();
             Logger.Flush(hyoji);
             Debug.Fail(message);
             throw new System.Exception(message);

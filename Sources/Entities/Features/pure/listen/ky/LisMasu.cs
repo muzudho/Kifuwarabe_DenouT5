@@ -1,6 +1,6 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using System.Text.RegularExpressions;
 using kifuwarabe_shogithink.fen;
 #else
@@ -9,7 +9,7 @@ using kifuwarabe_shogithink.pure.genkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using System;
 using System.Text.RegularExpressions;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.fen;
 #endif
 

@@ -1,13 +1,14 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.com.hyoka;
-using kifuwarabe_shogithink.pure.logger;
+
 using System;
 using kifuwarabe_shogithink.pure.control;
 #else
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.com.hyoka;
-using kifuwarabe_shogithink.pure.logger;
+
 using System;
+using System.Text;
 #endif
 
 namespace kifuwarabe_shogithink.pure.speak.ky_info
@@ -16,9 +17,9 @@ namespace kifuwarabe_shogithink.pure.speak.ky_info
     {
         public static string ToContents(Hyokati hyokaSu)
         {
-            MojiretuImpl hyoji = new MojiretuImpl();
+            StringBuilder hyoji = new StringBuilder();
             Setumei(hyokaSu, hyoji);
-            return hyoji.ToContents();
+            return hyoji.ToString();
         }
 
         /// <summary>
@@ -28,7 +29,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky_info
         /// </summary>
         /// <param name="hyokaSu"></param>
         /// <param name="hyoji"></param>
-        public static void Setumei(Hyokati hyokaSu, IHyojiMojiretu hyoji)
+        public static void Setumei(Hyokati hyokaSu, StringBuilder hyoji)
         {
             if (hyokaSu.tumeSu==Conv_Tumesu.None)
             {

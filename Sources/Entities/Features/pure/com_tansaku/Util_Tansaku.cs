@@ -4,7 +4,7 @@ using kifuwarabe_shogithink.pure.com.hyoka;
 using kifuwarabe_shogithink.pure.com.moveorder;
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.ky;
 using kifuwarabe_shogithink.pure.speak.play;
@@ -16,10 +16,11 @@ using kifuwarabe_shogithink.pure.com.hyoka;
 using kifuwarabe_shogithink.pure.com.MoveOrder;
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.move;
 using System;
 using System.Diagnostics;
+using System.Text;
 #endif
 
 namespace kifuwarabe_shogithink.pure.com
@@ -81,7 +82,7 @@ namespace kifuwarabe_shogithink.pure.com
         /// 最善手は yomisuji[0] に入っているぜ☆（＾▽＾）
         /// </summary>
         /// <returns></returns>
-        public static bool TryFail_Go(IHyojiMojiretu hyoji)
+        public static bool TryFail_Go(StringBuilder hyoji)
         {
             tmp_bestHyokaSu.Clear();
             if (PureMemory.gky_ky.shogiban.yomiIbashoBan_yoko.IsEmpty(Med_Koma.KomasyuruiAndTaikyokusyaToKoma(Komasyurui.R, PureMemory.kifu_teban)))
@@ -415,7 +416,7 @@ namespace kifuwarabe_shogithink.pure.com
                     ))
                 {
                     // 探索時にエラーが起こった場合は強制終了☆（＾～＾）
-                    throw new Exception(PureMemory.tnsk_hyoji.ToContents());
+                    throw new Exception(PureMemory.tnsk_hyoji.ToString());
                 }
                 // 手番を進めるぜ☆（＾～＾）
                 MoveGenAccessor.AddKifu(
@@ -500,7 +501,7 @@ namespace kifuwarabe_shogithink.pure.com
                     ))
                 {
                     // 探索時にエラーが起こった場合は強制終了☆（＾～＾）
-                    throw new Exception(PureMemory.tnsk_hyoji.ToContents());
+                    throw new Exception(PureMemory.tnsk_hyoji.ToString());
                 }
 
 #if DEBUG

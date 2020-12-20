@@ -2,7 +2,7 @@
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.med.ky;
 using kifuwarabe_shogithink.pure.speak.genkyoku;
 using System;
@@ -13,13 +13,14 @@ using kifuwarabe_shogithink.fen;
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen.ky;
-using kifuwarabe_shogithink.pure.logger;
+
 using kifuwarabe_shogithink.pure.med.ky;
 using kifuwarabe_shogithink.pure.speak.genkyoku;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using kifuwarabe_shogithink.fen;
+using System.Text;
 #endif
 
 namespace kifuwarabe_shogithink.pure.listen.genkyoku
@@ -28,7 +29,7 @@ namespace kifuwarabe_shogithink.pure.listen.genkyoku
     {
         static LisGenkyoku()
         {
-            tmp_syokikyokumenFen = new MojiretuImpl();
+            tmp_syokikyokumenFen = new StringBuilder();
         }
 
         /// <summary>
@@ -43,7 +44,7 @@ namespace kifuwarabe_shogithink.pure.listen.genkyoku
             Dictionary<Motigoma, int> motigomaKaisiSettei
             )
         {
-            IHyojiMojiretu hyoji = PureAppli.syuturyoku1;
+            StringBuilder hyoji = PureAppli.syuturyoku1;
 
             PureSettei.gameRule = gameRule;
             PureSettei.banYokoHaba = banYokohaba;
@@ -66,7 +67,7 @@ namespace kifuwarabe_shogithink.pure.listen.genkyoku
 #endif
             ))
             {
-                throw new Exception(PureAppli.syuturyoku1.ToContents());
+                throw new Exception(PureAppli.syuturyoku1.ToString());
             }
 
             // 持駒の枚数をセット☆（＾～＾）
@@ -171,7 +172,7 @@ namespace kifuwarabe_shogithink.pure.listen.genkyoku
                         ruikeiKuhakuSu = ruikeiKuhakuSu * 10 + kuhaku;
                         //}
 
-                        //Mojiretu reigai1 = new MojiretuImpl();
+                        //Mojiretu reigai1 = new StringBuilder();
                         //reigai1.AppendLine("未定義の空白の数 moji=[" + moji + "]");
                         //reigai1.AppendLine("dan   =[" + dan + "]");
                         //reigai1.AppendLine("caret =[" + caret + "]");
@@ -262,7 +263,7 @@ namespace kifuwarabe_shogithink.pure.listen.genkyoku
         }
 
 
-        static readonly ICommandMojiretu tmp_syokikyokumenFen;
+        static readonly StringBuilder tmp_syokikyokumenFen;
         /// <summary>
         /// 例: fen kr1/1h1/1H1/1R1 K2z 1
         /// 例: startpos
@@ -332,7 +333,7 @@ namespace kifuwarabe_shogithink.pure.listen.genkyoku
                 {
                     tmp_syokikyokumenFen.Clear();
                     SpkGenkyokuOpe.AppendFenTo(f, tmp_syokikyokumenFen);
-                    PureMemory.kifu_syokiKyokumenFen = tmp_syokikyokumenFen.ToContents();
+                    PureMemory.kifu_syokiKyokumenFen = tmp_syokikyokumenFen.ToString();
                 }
                 return Pure.SUCCESSFUL_FALSE;
             }

@@ -1,11 +1,11 @@
 ﻿#if DEBUG
-using kifuwarabe_shogithink.pure.logger;
+
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
 #else
 using System.Text;
-using kifuwarabe_shogithink.pure.logger;
+
 using System.Diagnostics;
 #endif
 
@@ -40,7 +40,7 @@ namespace kifuwarabe_shogithink.pure
             {
 #if DEBUG
                 stackcall_ = new List<StringBuilder>();
-                stackcallDbgMojiretuList = new List<IHyojiMojiretu>();
+                stackcallDbgMojiretuList = new List<StringBuilder>();
 #endif
             }
 
@@ -49,7 +49,7 @@ namespace kifuwarabe_shogithink.pure
             /// <summary>
             /// エラー文字列等の出力先
             /// </summary>
-            static List<IHyojiMojiretu> stackcallDbgMojiretuList;
+            static List<StringBuilder> stackcallDbgMojiretuList;
 #endif
             /// <summary>
             /// エラーメッセージ等を入れろだぜ☆（＾～＾）
@@ -85,7 +85,7 @@ namespace kifuwarabe_shogithink.pure
             /// <param name="hint"></param>
             /// <param name="dbgMojiretu">これは、ゲームの出力とは分けた出力だぜ☆（＾～＾）</param>
             [Conditional("DEBUG")]
-            public static void Push(string hint, IHyojiMojiretu dbgMojiretu)
+            public static void Push(string hint, StringBuilder dbgMojiretu)
             {
 #if DEBUG
                 StringBuilder sb = new StringBuilder();
@@ -128,7 +128,7 @@ namespace kifuwarabe_shogithink.pure
             /// <summary>
             /// これは、ゲームの出力とは分けた出力だぜ☆（＾～＾）
             /// </summary>
-            public static IHyojiMojiretu dbgMojiretu
+            public static StringBuilder dbgMojiretu
             {
                 get
                 {
