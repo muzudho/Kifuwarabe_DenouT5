@@ -1,18 +1,18 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
-
 using kifuwarabe_shogithink.pure.speak.ky;
 using System.Diagnostics;
 using kifuwarabe_shogithink.pure;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
-
 using kifuwarabe_shogithink.pure.speak.ky;
 using System.Diagnostics;
 using System.Text;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogiwin.speak.ban
@@ -57,7 +57,7 @@ namespace kifuwarabe_shogiwin.speak.ban
             // 駒別
             foreach (Taikyokusya tai in Conv_Taikyokusya.itiran) // 対局者１、対局者２
             {
-                foreach (Koma km_tai in Conv_Koma.itiranTai[(int)tai])
+                foreach (Piece km_tai in Conv_Koma.itiranTai[(int)tai])
                 {
                     hyoji.Append(SpkBanWaku.CutHeaderBanWidthZenkaku(Conv_Koma.GetName(km_tai)));
                 }

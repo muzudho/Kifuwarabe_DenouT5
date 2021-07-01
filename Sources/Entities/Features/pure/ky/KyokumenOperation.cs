@@ -1,10 +1,11 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky.bb;
 using System;
-
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.ky.bb;
 using System;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogithink.pure.ky
@@ -60,12 +61,12 @@ namespace kifuwarabe_shogithink.pure.ky
                 {
                     Komasyurui ks = Conv_Komasyurui.itiran[iKs];
 
-                    Koma km1 = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, Taikyokusya.T1);
+                    Piece km1 = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, Taikyokusya.T1);
                     tmp_T1 = PureMemory.gky_ky.shogiban.ibashoBan_yk00.CloneBb_Koma(km1);
                     tmp_T1.Bitflip128();
                     PureMemory.gky_ky.shogiban.ibashoBan_yk00.Set_Koma(km1, tmp_T1);
 
-                    Koma km2 = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, Taikyokusya.T2);
+                    Piece km2 = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, Taikyokusya.T2);
                     tmp_T2 = PureMemory.gky_ky.shogiban.ibashoBan_yk00.CloneBb_Koma(km2);
                     tmp_T2.Bitflip128();
                     PureMemory.gky_ky.shogiban.ibashoBan_yk00.Set_Koma(km2, tmp_T2);

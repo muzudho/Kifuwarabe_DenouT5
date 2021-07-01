@@ -1,4 +1,5 @@
 ﻿using kifuwarabe_shogithink.pure.ky.tobikiki;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 
 namespace kifuwarabe_shogithink.pure.ky
 {
@@ -14,7 +15,7 @@ namespace kifuwarabe_shogithink.pure.ky
             {
                 komasyuruiNamaeItiran[iTai] = new string[Conv_Komasyurui.itiran.Length];
                 int iKs = 0;
-                foreach (Koma km_tai in Conv_Koma.itiranTai[(int)iTai])
+                foreach (Piece km_tai in Conv_Koma.itiranTai[(int)iTai])
                 {
                     komasyuruiNamaeItiran[iTai][iKs] = Conv_Koma.GetName(km_tai);
                     iKs++;
@@ -100,7 +101,7 @@ namespace kifuwarabe_shogithink.pure.ky
             Komasyurui.Yososu,// 駒のない升だぜ☆（＾▽＾）
             Komasyurui.Yososu// 要素数だが、空白升、該当無し、としても使うぜ☆（＾▽＾）
         };
-        public static Komasyurui KomaToKomasyurui(Koma km) { return Med_Koma.m_KomaToKomasyurui_[(int)km]; }
+        public static Komasyurui KomaToKomasyurui(Piece km) { return Med_Koma.m_KomaToKomasyurui_[(int)km]; }
         #endregion
 
         #region 駒→手番
@@ -164,7 +165,7 @@ namespace kifuwarabe_shogithink.pure.ky
             Taikyokusya.Yososu,//駒のない升だぜ☆（＾▽＾）
             Taikyokusya.Yososu// 空白～後手のにわとり　までの要素の個数になるぜ☆（＾▽＾）
         };
-        public static Taikyokusya KomaToTaikyokusya(Koma km) { return m_KomaToTaikyokusya_[(int)km]; }
+        public static Taikyokusya KomaToTaikyokusya(Piece km) { return m_KomaToTaikyokusya_[(int)km]; }
         #endregion
 
         #region 駒→飛び利き種類
@@ -228,7 +229,7 @@ namespace kifuwarabe_shogithink.pure.ky
             TobikikiSyurui.None,//駒のない升だぜ☆（＾▽＾）
             TobikikiSyurui.None,// 空白～後手のにわとり　までの要素の個数になるぜ☆（＾▽＾）
         };
-        public static TobikikiSyurui KomaToTobikikiSyurui(Koma km) { return m_TobikikiSyurui_[(int)km]; }
+        public static TobikikiSyurui KomaToTobikikiSyurui(Piece km) { return m_TobikikiSyurui_[(int)km]; }
         #endregion
 
 
@@ -297,7 +298,7 @@ namespace kifuwarabe_shogithink.pure.ky
             Motigoma.Yososu,//駒のない升だぜ☆（＾▽＾）
             Motigoma.Yososu// 空白～後手のにわとり　までの要素の個数になるぜ☆（＾▽＾）
         };
-        public static Motigoma BanjoKomaToMotiKoma(Koma km) { return Med_Koma.m_BanjoKomaToMotiKoma_[(int)km]; }
+        public static Motigoma BanjoKomaToMotiKoma(Piece km) { return Med_Koma.m_BanjoKomaToMotiKoma_[(int)km]; }
         #endregion
 
         #region 駒種類と手番→持駒
@@ -356,28 +357,28 @@ namespace kifuwarabe_shogithink.pure.ky
         #endregion
 
         #region 駒種類と手番→駒
-        static Koma[,] m_KomasyuruiAndTaikyokusyaToKoma_ =
+        static Piece[,] m_KomasyuruiAndTaikyokusyaToKoma_ =
         {
-            { Koma.R, Koma.r },// らいおん
-            { Koma.Z, Koma.z },// ぞう
-            { Koma.PZ, Koma.pz },// パワーアップぞう
-            { Koma.K, Koma.k },// きりん
-            { Koma.PK, Koma.pk },// パワーアップきりん
-            { Koma.H, Koma.h },// ひよこ
-            { Koma.PH, Koma.ph },// にわとり
-            { Koma.I, Koma.i },// いぬ
-            { Koma.N, Koma.n },// ねこ
-            { Koma.PN, Koma.pn },// パワーアップねこ
-            { Koma.U, Koma.u },// うさぎ
-            { Koma.PU, Koma.pu },// パワーアップうさぎ
-            { Koma.S, Koma.s },// いのしし
-            { Koma.PS, Koma.ps },// パワーアップいのしし
-            { Koma.Kuhaku, Koma.Kuhaku },// らいおん～にわとり　までの要素の個数になるぜ☆（＾▽＾）どの駒の種類にも当てはまらない場合に、Yososu と書くことがある☆（＾▽＾）ｗｗｗ
+            { Piece.R, Piece.r },// らいおん
+            { Piece.Z, Piece.z },// ぞう
+            { Piece.PZ, Piece.pz },// パワーアップぞう
+            { Piece.K, Piece.k },// きりん
+            { Piece.PK, Piece.pk },// パワーアップきりん
+            { Piece.H, Piece.h },// ひよこ
+            { Piece.PH, Piece.ph },// にわとり
+            { Piece.I, Piece.i },// いぬ
+            { Piece.N, Piece.n },// ねこ
+            { Piece.PN, Piece.pn },// パワーアップねこ
+            { Piece.U, Piece.u },// うさぎ
+            { Piece.PU, Piece.pu },// パワーアップうさぎ
+            { Piece.S, Piece.s },// いのしし
+            { Piece.PS, Piece.ps },// パワーアップいのしし
+            { Piece.Kuhaku, Piece.Kuhaku },// らいおん～にわとり　までの要素の個数になるぜ☆（＾▽＾）どの駒の種類にも当てはまらない場合に、Yososu と書くことがある☆（＾▽＾）ｗｗｗ
         };
-        public static Koma KomasyuruiAndTaikyokusyaToKoma(Komasyurui ks, Taikyokusya tb) {
+        public static Piece KomasyuruiAndTaikyokusyaToKoma(Komasyurui ks, Taikyokusya tb) {
             return m_KomasyuruiAndTaikyokusyaToKoma_[(int)ks, (int)tb];
         }
-        public static Koma ToRaion(Taikyokusya tb)
+        public static Piece ToRaion(Taikyokusya tb)
         {
             return m_KomasyuruiAndTaikyokusyaToKoma_[(int)Komasyurui.R, (int)tb];
         }
@@ -473,7 +474,7 @@ namespace kifuwarabe_shogithink.pure.ky
         #endregion
 
         #region 持駒→駒
-        public static Koma MotiKomaToKoma(Motigoma mk)
+        public static Piece MotiKomaToKoma(Motigoma mk)
         {
             return MotiKomasyuruiAndTaikyokusyaToKoma(MotiKomaToMotiKomasyrui(mk), MotiKomaToTaikyokusya(mk));
         }
@@ -634,34 +635,34 @@ namespace kifuwarabe_shogithink.pure.ky
         #endregion
 
         #region 持駒種類と手番→駒
-        static Koma[,] m_MotiKomasyuruiAndTaikyokusyaToKoma_ =
+        static Piece[,] m_MotiKomasyuruiAndTaikyokusyaToKoma_ =
         {
             // ぞう
-            { Koma.Z, Koma.z },
+            { Piece.Z, Piece.z },
 
             // きりん
-            { Koma.K, Koma.k },
+            { Piece.K, Piece.k },
 
             // ひよこ
-            { Koma.H, Koma.h },// にわとり　にはならないぜ☆（＾～＾）
+            { Piece.H, Piece.h },// にわとり　にはならないぜ☆（＾～＾）
 
             // いぬ
-            { Koma.I, Koma.i },
+            { Piece.I, Piece.i },
 
             // ねこ
-            { Koma.N, Koma.n },
+            { Piece.N, Piece.n },
 
             // うさぎ
-            { Koma.U, Koma.u },
+            { Piece.U, Piece.u },
 
             // いのしし
-            { Koma.S, Koma.s },
+            { Piece.S, Piece.s },
 
             // 要素の個数になるぜ☆（＾▽＾）
             // どの駒の種類にも当てはまらない場合に、Yososu と書くことがある☆（＾▽＾）ｗｗｗ
-            { Koma.Yososu, Koma.Yososu },
+            { Piece.Yososu, Piece.Yososu },
         };
-        public static Koma MotiKomasyuruiAndTaikyokusyaToKoma(MotigomaSyurui mks, Taikyokusya tb)
+        public static Piece MotiKomasyuruiAndTaikyokusyaToKoma(MotigomaSyurui mks, Taikyokusya tb)
         {
             return Med_Koma.m_MotiKomasyuruiAndTaikyokusyaToKoma_[(int)mks, (int)tb];
         }

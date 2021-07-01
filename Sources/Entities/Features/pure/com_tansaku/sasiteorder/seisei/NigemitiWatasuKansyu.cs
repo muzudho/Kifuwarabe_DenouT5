@@ -1,12 +1,14 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.com.MoveOrder.hioute;
 using kifuwarabe_shogithink.pure.genkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogithink.pure.com.MoveOrder.seisei
@@ -33,8 +35,8 @@ namespace kifuwarabe_shogithink.pure.com.MoveOrder.seisei
             // 手番らいおん　の８近傍　のどこかに、重ね利きの数　０　が出来ていれば、
             // 逃げ道を開けると判定するぜ☆（＾▽＾）
             bool akeru = false;
-            Koma km0_teban = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(PureMemory.ssss_ugoki_ks, PureMemory.kifu_teban);
-            Koma km1_teban = km0_teban;// FIXME: 成りを考慮していない
+            Piece km0_teban = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(PureMemory.ssss_ugoki_ks, PureMemory.kifu_teban);
+            Piece km1_teban = km0_teban;// FIXME: 成りを考慮していない
 
 
             //────────────────────────────────────────

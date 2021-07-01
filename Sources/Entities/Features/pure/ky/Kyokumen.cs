@@ -2,10 +2,12 @@
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.accessor;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.ky.bb;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogithink.pure.ky
@@ -47,11 +49,11 @@ namespace kifuwarabe_shogithink.pure.ky
             /// <summary>
             /// 駒が動いたことで、飛び利きが伸びそうな駒を返す。（ディスカバード・アタック判定用）
             /// </summary>
-            public void TryInControl(Masu ms, out Koma[] out_discovered)
+            public void TryInControl(Masu ms, out Piece[] out_discovered)
             {
                 int iEnd = 0;
-                out_discovered = new Koma[Conv_Koma.itiranTobikiki.Length + 1];
-                foreach (Koma km_tobikiki in Conv_Koma.itiranTobikiki)
+                out_discovered = new Piece[Conv_Koma.itiranTobikiki.Length + 1];
+                foreach (Piece km_tobikiki in Conv_Koma.itiranTobikiki)
                 {
                     if (hontai_.shogiban.kikiBan.yomiKikiBan.ExistsBBKiki(km_tobikiki, ms))
                     {
@@ -59,9 +61,9 @@ namespace kifuwarabe_shogithink.pure.ky
                         iEnd++;
                     }
                 }
-                out_discovered[iEnd] = Koma.Yososu; // 終端子
+                out_discovered[iEnd] = Piece.Yososu; // 終端子
             }
-            public bool EqualsKiki(Koma km, Shogiban sg_hikaku)
+            public bool EqualsKiki(Piece km, Shogiban sg_hikaku)
             {
                 return hontai_.shogiban.kikiBan.yomiKikiBan.EqualsKiki(km, sg_hikaku);
             }

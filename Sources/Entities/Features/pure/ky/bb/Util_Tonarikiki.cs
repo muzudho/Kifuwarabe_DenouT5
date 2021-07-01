@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 
 namespace kifuwarabe_shogithink.pure.ky.bb
 {
@@ -12,7 +13,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
     {
         public static void Tukurinaosi()
         {
-            foreach (Koma km_all in Conv_Koma.itiran)
+            foreach (Piece km_all in Conv_Koma.itiran)
             {
                 // 居場所マス
                 for (int iMs = 0; iMs < PureSettei.banHeimen; iMs++)
@@ -210,7 +211,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
         /// <param name="ms"></param>
         /// <param name="tb"></param>
         /// <returns></returns>
-        static void TasuKonoUe(Koma km, Masu ms)
+        static void TasuKonoUe(Piece km, Masu ms)
         {
             switch (Med_Koma.KomaToTaikyokusya(km))
             {
@@ -237,7 +238,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
         /// <param name="ms"></param>
         /// <param name="tb"></param>
         /// <returns></returns>
-        static void TasuKonoMigiue(Koma km, Masu ms)
+        static void TasuKonoMigiue(Piece km, Masu ms)
         {
             switch (Med_Koma.KomaToTaikyokusya(km))
             {
@@ -264,7 +265,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
         /// <param name="ms"></param>
         /// <param name="tb"></param>
         /// <returns></returns>
-        static void TasuKonoMigi(Koma km, Masu ms)
+        static void TasuKonoMigi(Piece km, Masu ms)
         {
             switch (Med_Koma.KomaToTaikyokusya(km))
             {
@@ -291,7 +292,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
         /// <param name="ms"></param>
         /// <param name="tb"></param>
         /// <returns></returns>
-        static void TasuKonoMigisita(Koma km, Masu ms)
+        static void TasuKonoMigisita(Piece km, Masu ms)
         {
             switch (Med_Koma.KomaToTaikyokusya(km))
             {
@@ -318,7 +319,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
         /// <param name="ms"></param>
         /// <param name="tb"></param>
         /// <returns></returns>
-        static void TasuKonoSita(Koma km, Masu ms)
+        static void TasuKonoSita(Piece km, Masu ms)
         {
             switch (Med_Koma.KomaToTaikyokusya(km))
             {
@@ -345,7 +346,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
         /// <param name="ms"></param>
         /// <param name="tb"></param>
         /// <returns></returns>
-        static void TasuKonoHidarisita(Koma km, Masu ms)
+        static void TasuKonoHidarisita(Piece km, Masu ms)
         {
             switch (Med_Koma.KomaToTaikyokusya(km))
             {
@@ -372,7 +373,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
         /// <param name="ms"></param>
         /// <param name="tb"></param>
         /// <returns></returns>
-        static void TasuKonoHidari(Koma km, Masu ms)
+        static void TasuKonoHidari(Piece km, Masu ms)
         {
             switch (Med_Koma.KomaToTaikyokusya(km))
             {
@@ -399,7 +400,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
         /// <param name="ms"></param>
         /// <param name="tb"></param>
         /// <returns></returns>
-        static void TasuKonoHidariue(Koma km, Masu ms)
+        static void TasuKonoHidariue(Piece km, Masu ms)
         {
             switch (Med_Koma.KomaToTaikyokusya(km))
             {
@@ -426,7 +427,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
         /// <param name="ms"></param>
         /// <param name="tb"></param>
         /// <returns></returns>
-        static void TasuKeimatobiMigi(Koma km, Masu ms)
+        static void TasuKeimatobiMigi(Piece km, Masu ms)
         {
             Taikyokusya tai = Med_Koma.KomaToTaikyokusya(km);
             if (!BitboardsOmatome.YomiBitboardsOmatome.IsIntersect_UsagigaMiginiToberu(tai, ms))
@@ -455,7 +456,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
         /// <param name="ms"></param>
         /// <param name="tb"></param>
         /// <returns></returns>
-        static void TasuKeimatobiHidari(Koma km, Masu ms)
+        static void TasuKeimatobiHidari(Piece km, Masu ms)
         {
             Taikyokusya tai = Med_Koma.KomaToTaikyokusya(km);
             if (!BitboardsOmatome.YomiBitboardsOmatome.IsIntersect_UsagigaHidariniToberu(tai, ms))

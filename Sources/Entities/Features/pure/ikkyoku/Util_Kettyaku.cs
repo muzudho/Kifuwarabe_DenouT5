@@ -1,11 +1,12 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky;
-
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.accessor;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.move;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogithink.pure.ikkyoku
@@ -59,8 +60,8 @@ namespace kifuwarabe_shogithink.pure.ikkyoku
             else
             {
                 // らいおんがいるか☆
-                bool raion1Vanished = PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.IsEmptyKoma(Koma.R);
-                bool raion2Vanished = PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.IsEmptyKoma(Koma.r);
+                bool raion1Vanished = PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.IsEmptyKoma(Piece.R);
+                bool raion2Vanished = PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.IsEmptyKoma(Piece.r);
 
                 if (raion1Vanished && raion2Vanished)
                 {

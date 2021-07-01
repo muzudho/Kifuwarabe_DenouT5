@@ -1,7 +1,9 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.accessor;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.accessor;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogithink.pure.ky.bb
@@ -44,7 +46,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
 
             foreach (Komasyurui ks in Conv_Komasyurui.itiran)
             {
-                Koma km_teban = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, PureMemory.kifu_teban);
+                Piece km_teban = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, PureMemory.kifu_teban);
                 PureMemory.gky_ky.shogiban.yomiIbashoBan_yoko.ToSet_Koma(km_teban, mikataBB);
                 Masu ms;
                 while (mikataBB.Ref_PopNTZ(out ms))

@@ -1,9 +1,11 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky;
 using System.Text;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.ky;
 using System.Text;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogithink.pure.speak.ky
@@ -20,7 +22,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky
             string[] ret = new string[PureSettei.banHeimen];
             for (int iMs = 0; iMs < PureSettei.banHeimen; iMs++)
             {
-                Koma km = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma((Masu)iMs);
+                Piece km = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma((Masu)iMs);
                 ret[iMs] = SpkKoma.Koma_To_Zen1(km);
             }
             return ret;
@@ -36,7 +38,7 @@ namespace kifuwarabe_shogithink.pure.speak.ky
             StringBuilder sb = new StringBuilder();
             for (int iMs = 0; iMs < PureSettei.banHeimen; iMs++)
             {
-                Koma km = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma((Masu)iMs);
+                Piece km = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma((Masu)iMs);
                 sb.Append(SpkKoma.Koma_To_Zen1(km));
 
                 // 改行
@@ -52,12 +54,12 @@ namespace kifuwarabe_shogithink.pure.speak.ky
         /// </summary>
         /// <param name="yomiKy"></param>
         /// <returns></returns>
-        public static string ToZen1Mojiretu(Koma[] komaHairetu)
+        public static string ToZen1Mojiretu(Piece[] komaHairetu)
         {
             StringBuilder sb = new StringBuilder();
             for (int iMs = 0; iMs < komaHairetu.Length; iMs++)
             {
-                Koma km = komaHairetu[iMs];
+                Piece km = komaHairetu[iMs];
                 sb.Append(SpkKoma.Koma_To_Zen1(km));
 
                 // 改行

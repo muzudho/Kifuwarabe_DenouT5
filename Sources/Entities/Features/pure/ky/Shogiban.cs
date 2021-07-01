@@ -1,8 +1,8 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.ky.tobikiki;
-
 using System.Diagnostics;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.com;
 using kifuwarabe_shogithink.pure.com.hyoka;
@@ -10,6 +10,7 @@ using kifuwarabe_shogithink.pure.genkyoku;
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.ky.tobikiki;
 using System.Diagnostics;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 
@@ -180,7 +181,7 @@ namespace kifuwarabe_shogithink.pure.ky
         /// </summary>
         /// <param name="ms"></param>
         /// <param name="km"></param>
-        void TorinozokuKoma(Masu ms, Koma km)
+        void TorinozokuKoma(Masu ms, Piece km)
         {
             ibashoBan_yk00.N240_TorinozokuKoma(km, ms);
 
@@ -188,7 +189,7 @@ namespace kifuwarabe_shogithink.pure.ky
             ojamaBan_hs45.N240_TorinozokuKoma(RotateChikanhyo.chikanHyo_hs45[(int)ms]);
             ojamaBan_ht90.N240_TorinozokuKoma(RotateChikanhyo.chikanHyo_ht90[(int)ms]);
         }
-        void OkuKoma(Masu ms, Koma km)
+        void OkuKoma(Masu ms, Piece km)
         {
             ibashoBan_yk00.N240_OkuKoma(km, ms);
 
@@ -209,7 +210,7 @@ namespace kifuwarabe_shogithink.pure.ky
         /// <param name="updateKiki">利きを先に作るか、駒を先に並べるか、という循環が発生するのを防ぐために</param>
         public bool TryFail_OkuKoma(
             Masu ms_t1,
-            Koma km_t1,
+            Piece km_t1,
             bool updateKiki
 #if DEBUG
             , IDebugMojiretu reigai1
@@ -250,7 +251,7 @@ namespace kifuwarabe_shogithink.pure.ky
 
                     foreach (Komasyurui ks in ksAr)
                     {
-                        Koma km_reverse = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, tai);
+                        Piece km_reverse = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, tai);
 
                         //bbTmp_kiki_forOku.Clear();
                         BitboardsOmatome.KomanoUgokikataYk00.ToSet_Merge(
@@ -304,7 +305,7 @@ namespace kifuwarabe_shogithink.pure.ky
         /// <returns></returns>
         public bool TryFail_TorinozokuKoma(
             Masu ms_ibasho,
-            Koma km_remove,
+            Piece km_remove,
             Masu ms_mirainihaKomagaAru,
             bool updateKiki
             
@@ -352,7 +353,7 @@ namespace kifuwarabe_shogithink.pure.ky
 
                     foreach (Komasyurui ks in ksAr)
                     {
-                        Koma km_forReverse = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, tai);
+                        Piece km_forReverse = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, tai);
 
                         BitboardsOmatome.KomanoUgokikataYk00.ToSet_Merge(
                             km_forReverse,// 相手番の駒にして、利きを飛ばしてきている位置を調べるのに使う

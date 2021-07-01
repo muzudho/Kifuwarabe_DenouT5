@@ -8,12 +8,12 @@ using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.listen.genkyoku;
 using kifuwarabe_shogithink.pure.listen.play;
-
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.ky.bb;
 using kifuwarabe_shogithink.pure.speak.play;
 using System;
 using System.Diagnostics;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.com;
 using kifuwarabe_shogithink.pure.com.MoveOrder.hioute;
@@ -24,12 +24,12 @@ using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.listen.genkyoku;
 using kifuwarabe_shogithink.pure.listen.play;
-
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.play;
 using System;
 using System.Diagnostics;
 using System.Text;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogithink.pure.accessor
@@ -394,7 +394,7 @@ namespace kifuwarabe_shogithink.pure.accessor
             else// 打つ
             {
                 PureMemory.umv_ms_t0 = Conv_Masu.masu_error;
-                PureMemory.umv_km_t0 = Koma.Yososu;
+                PureMemory.umv_km_t0 = Piece.Yososu;
                 PureMemory.umv_ks_t0 = Komasyurui.Yososu;
                 PureMemory.umv_mk_t0 = Med_Koma.KomasyuruiAndTaikyokusyaToMotiKoma(PureMemory.umv_ks_t1, PureMemory.kifu_teban);
             }
@@ -410,7 +410,7 @@ namespace kifuwarabe_shogithink.pure.accessor
             }
             else
             {
-                PureMemory.umv_km_c = Koma.Yososu;
+                PureMemory.umv_km_c = Piece.Yososu;
                 PureMemory.umv_mk_c = Motigoma.Yososu;
             }
         }

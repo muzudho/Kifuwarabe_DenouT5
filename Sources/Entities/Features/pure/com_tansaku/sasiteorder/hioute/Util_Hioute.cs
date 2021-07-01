@@ -3,6 +3,7 @@ using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 using System.Diagnostics;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.control;
@@ -11,6 +12,7 @@ using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 using System.Diagnostics;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 
@@ -124,16 +126,16 @@ namespace kifuwarabe_shogithink.pure.com.MoveOrder.hioute
                 Masu ms_checker;
                 bbVar_checker.Set(PureMemory.hot_bb_raion8KinboAr[(int)irekaeTeban]);
                 // きりんとぞうは、先後同形☆（＾～＾）
-                BitboardsOmatome.KomanoUgokikataYk00.ToStandup_Merge(Koma.K, PureMemory.hot_ms_raionAr[(int)irekaeTeban], bbVar_checker);
-                BitboardsOmatome.KomanoUgokikataYk00.ToStandup_Merge(Koma.Z, PureMemory.hot_ms_raionAr[(int)irekaeTeban], bbVar_checker);
+                BitboardsOmatome.KomanoUgokikataYk00.ToStandup_Merge(Piece.K, PureMemory.hot_ms_raionAr[(int)irekaeTeban], bbVar_checker);
+                BitboardsOmatome.KomanoUgokikataYk00.ToStandup_Merge(Piece.Z, PureMemory.hot_ms_raionAr[(int)irekaeTeban], bbVar_checker);
                 // いのししは先後別☆（＾～＾）
                 switch (irekaeAiteban)
                 {
                     case Taikyokusya.T1:
-                        BitboardsOmatome.KomanoUgokikataYk00.ToStandup_Merge(Koma.S, PureMemory.hot_ms_raionAr[(int)irekaeTeban], bbVar_checker);
+                        BitboardsOmatome.KomanoUgokikataYk00.ToStandup_Merge(Piece.S, PureMemory.hot_ms_raionAr[(int)irekaeTeban], bbVar_checker);
                         break;
                     case Taikyokusya.T2:
-                        BitboardsOmatome.KomanoUgokikataYk00.ToStandup_Merge(Koma.s, PureMemory.hot_ms_raionAr[(int)irekaeTeban], bbVar_checker);
+                        BitboardsOmatome.KomanoUgokikataYk00.ToStandup_Merge(Piece.s, PureMemory.hot_ms_raionAr[(int)irekaeTeban], bbVar_checker);
                         break;
                 }
                 while (bbVar_checker.Ref_PopNTZ(out ms_checker))// 立っているビットを降ろすぜ☆
@@ -251,7 +253,7 @@ namespace kifuwarabe_shogithink.pure.com.MoveOrder.hioute
                 Komasyurui ks;
                 if (PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.ExistsKoma(irekaeAiteban, ms_attacker, out ks))// 駒があれば、その駒の種類を確認
                 {
-                    Koma km_attacker = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, irekaeAiteban);
+                    Piece km_attacker = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, irekaeAiteban);
                     // 相手の攻撃駒の利き
                     // ここで飛び利きを判定できるか？
                     return BitboardsOmatome.KomanoUgokikataYk00.IsIntersect(

@@ -4,9 +4,9 @@ using kifuwarabe_shogithink.pure.conv;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.ky.tobikiki;
-
 using kifuwarabe_shogithink.pure.speak.ky;
 using System.Diagnostics;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure;
@@ -15,10 +15,10 @@ using kifuwarabe_shogithink.pure.genkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.ky.tobikiki;
-
 using kifuwarabe_shogithink.pure.speak.ky;
 using System.Diagnostics;
 using System.Text;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogiwin.speak.ban
@@ -54,7 +54,7 @@ namespace kifuwarabe_shogiwin.speak.ban
 
             Setumei_Hanyo((int dan, Masu ms) =>
             {
-                Koma km = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma(ms);
+                Piece km = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma(ms);
                 return SpkKoma.ToSetumei(km);
             },
             banYokoHaba_tmp, banTateHaba_tmp, teme, hyoji);
@@ -109,7 +109,7 @@ namespace kifuwarabe_shogiwin.speak.ban
             int banTateHaba_tmp = PureSettei.banTateHaba;
             Setumei_Hanyo((int dan, Masu ms) =>
                 {
-                    Koma km = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma(ms);
+                    Piece km = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma(ms);
                     return SpkKoma.ToSetumei(km);
                 },
                 banYokoHaba_tmp, banTateHaba_tmp, teme, hyoji);
@@ -248,7 +248,7 @@ namespace kifuwarabe_shogiwin.speak.ban
             foreach (Taikyokusya tai in Conv_Taikyokusya.itiran)// 対局者１、対局者２
             {
                 // 駒別
-                foreach (Koma km_tai in Conv_Koma.itiranTai[(int)tai])
+                foreach (Piece km_tai in Conv_Koma.itiranTai[(int)tai])
                 {
                     hyoji.Append(SpkBanWaku.CutHeaderBanWidthZenkaku(Conv_Koma.GetName(km_tai)));
                 }
@@ -268,12 +268,12 @@ namespace kifuwarabe_shogiwin.speak.ban
             }
         }
 
-        public static void HyojiKomaHairetuYososuMade(Masu ms, Koma[] kmHairetu, StringBuilder hyoji)
+        public static void HyojiKomaHairetuYososuMade(Masu ms, Piece[] kmHairetu, StringBuilder hyoji)
         {
             hyoji.Append($"置くか除けるかした升=[{(Masu)ms}] 関連する飛び利き駒一覧=[");
-            foreach (Koma km_var in kmHairetu)
+            foreach (Piece km_var in kmHairetu)
             {
-                if (Koma.Yososu == km_var)
+                if (Piece.Yososu == km_var)
                 {
                     break;
                 }
@@ -284,15 +284,15 @@ namespace kifuwarabe_shogiwin.speak.ban
 
         public static void Setumei_Discovered(Masu ms_removed, StringBuilder hyoji)
         {
-            Koma[] kmHairetu_control;
+            Piece[] kmHairetu_control;
             PureMemory.gky_ky.yomiKy.TryInControl(ms_removed, out kmHairetu_control);
 
             Bitboard bb_relative = new Bitboard();//関連のある飛び利き駒
 
             // 飛び利きを計算し直す
-            foreach (Koma km_var in kmHairetu_control)
+            foreach (Piece km_var in kmHairetu_control)
             {
-                if (Koma.Yososu == km_var) { break; }
+                if (Piece.Yososu == km_var) { break; }
 
                 // 駒の居場所
                 Bitboard bb_ibasho = new Bitboard();

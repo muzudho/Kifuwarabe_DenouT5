@@ -7,10 +7,9 @@ using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.ky.tobikiki;
 using kifuwarabe_shogithink.pure.move;
-
 using System;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
-
 using kifuwarabe_shogithink.pure.com;
 using kifuwarabe_shogithink.pure.com.hyoka;
 using kifuwarabe_shogithink.pure.control;
@@ -21,6 +20,7 @@ using kifuwarabe_shogithink.pure.ky.tobikiki;
 using kifuwarabe_shogithink.pure.move;
 using System;
 using System.Text;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogithink.pure
@@ -267,16 +267,16 @@ namespace kifuwarabe_shogithink.pure
         /// <summary>
         /// 動かす駒
         /// </summary>
-        public static Koma ssss_ugoki_km { get { return ssss_ugoki_km_; } }
-        public static Koma ssss_ugoki_sakasaKm { get { return ssss_ugoki_sakasaKm_; } }
+        public static Piece ssss_ugoki_km { get { return ssss_ugoki_km_; } }
+        public static Piece ssss_ugoki_sakasaKm { get { return ssss_ugoki_sakasaKm_; } }
         public static Komasyurui ssss_ugoki_ks { get { return ssss_ugoki_ks_; } }
-        static Koma ssss_ugoki_km_;
+        static Piece ssss_ugoki_km_;
         /// <summary>
         /// 自分の駒を先後逆にしたものだぜ☆（＾～＾）指定のマスにその駒が行く方法を調べるのに使うんだぜ☆（＾～＾）
         /// </summary>
-        static Koma ssss_ugoki_sakasaKm_;
+        static Piece ssss_ugoki_sakasaKm_;
         static Komasyurui ssss_ugoki_ks_;
-        public static void SetSsssUgokiKm(Koma km)
+        public static void SetSsssUgokiKm(Piece km)
         {
             ssss_ugoki_km_ = km;
             ssss_ugoki_ks_ = Med_Koma.KomaToKomasyurui(km);
@@ -298,11 +298,11 @@ namespace kifuwarabe_shogithink.pure
         /// <summary>
         /// 持ち駒を持っているときだけセットするぜ☆（＾～＾）
         /// </summary>
-        public static Koma ssss_mot_km { get { return ssss_mot_km_; } }
+        public static Piece ssss_mot_km { get { return ssss_mot_km_; } }
         public static Komasyurui ssss_mot_ks { get { return ssss_mot_ks_; } }
         static MotigomaSyurui ssss_mot_mks_;
         static Motigoma ssss_mot_mg_;
-        static Koma ssss_mot_km_;
+        static Piece ssss_mot_km_;
         static Komasyurui ssss_mot_ks_;
         public static bool SetSsssMotMks_AndHasMotigoma(MotigomaSyurui val)
         {
@@ -393,7 +393,7 @@ namespace kifuwarabe_shogithink.pure
         /// t0 は移動元だぜ☆（＾～＾）
         /// </summary>
         public static Masu dmv_ms_t0;
-        public static Koma dmv_km_t0;
+        public static Piece dmv_km_t0;
         public static MotigomaSyurui dmv_mks_t0;
         public static Motigoma dmv_mk_t0;
         /// <summary>
@@ -403,7 +403,7 @@ namespace kifuwarabe_shogithink.pure
         /// <summary>
         /// t1 は移動先だぜ☆（＾～＾）
         /// </summary>
-        public static Koma dmv_km_t1;
+        public static Piece dmv_km_t1;
         /// <summary>
         /// 成れる駒は成り、成れない駒はそのまま☆（＾～＾）
         /// </summary>
@@ -415,7 +415,7 @@ namespace kifuwarabe_shogithink.pure
         /// <summary>
         /// あれば、移動先の相手の駒（取られる駒; capture）
         /// </summary>
-        public static Koma dmv_km_c;
+        public static Piece dmv_km_c;
         /// <summary>
         /// 取られた駒種類
         /// </summary>
@@ -432,14 +432,14 @@ namespace kifuwarabe_shogithink.pure
         //
         public static Move umv_ss;
         public static Masu umv_ms_t1;
-        public static Koma umv_km_t1;
+        public static Piece umv_km_t1;
         public static Komasyurui umv_ks_t1;
         public static Masu umv_ms_t0;
         public static Motigoma umv_mk_t0;
         public static Komasyurui umv_ks_t0;
-        public static Koma umv_km_t0;
+        public static Piece umv_km_t0;
         public static Komasyurui umv_ks_c;
-        public static Koma umv_km_c;
+        public static Piece umv_km_c;
         public static Motigoma umv_mk_c;
         #endregion
 

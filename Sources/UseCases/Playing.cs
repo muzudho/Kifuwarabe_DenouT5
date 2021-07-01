@@ -21,7 +21,6 @@ using kifuwarabe_shogithink.pure.listen;
 using kifuwarabe_shogithink.pure.listen.genkyoku;
 using kifuwarabe_shogithink.pure.listen.ky;
 using kifuwarabe_shogithink.pure.listen.play;
-
 using kifuwarabe_shogithink.pure.med.ky;
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.genkyoku;
@@ -38,6 +37,7 @@ using kifuwarabe_shogiwin.listen;
 using kifuwarabe_shogiwin.speak;
 using kifuwarabe_shogiwin.speak.ban;
 using Nett;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 
 namespace Grayscale.Kifuwarabi.UseCases
 {
@@ -546,7 +546,7 @@ namespace Grayscale.Kifuwarabi.UseCases
 #endif
                         );
                     // 駒
-                    Koma km_t1;
+                    Piece km_t1;
                     Itiran_FenParser.MatchKoma(line, ref caret, out km_t1);
 
                     DoMoveOpe.TryFail_DstOn(
@@ -1219,7 +1219,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                             {
                                 // 対局者まで一致
                                 // 例「kiki b3 R 1」
-                                Koma km = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, tai);
+                                Piece km = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, tai);
 
                                 BitboardsOmatome.KomanoUgokikataYk00.ToSet_Merge(
                                     km,// 駒
@@ -1241,7 +1241,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                             Taikyokusya tai;
                             PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.ExistsKomaZenbu(attackerMs, out tai);
                             PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.ExistsKoma(tai, attackerMs, out ks);
-                            Koma km = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, tai);
+                            Piece km = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, tai);
 
                             BitboardsOmatome.KomanoUgokikataYk00.ToSet_Merge(
                                 km,// 駒
@@ -1347,7 +1347,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                         {
                             return Pure.FailTrue("パースエラー101 kesu(1) ");
                         }
-                        Koma km_remove = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma(ms);
+                        Piece km_remove = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma(ms);
                         Debug.Assert(Conv_Koma.IsOk(km_remove), "km_remove can not remove");
                         if (PureMemory.gky_ky.shogiban.TryFail_TorinozokuKoma(
                             ms,
@@ -1409,9 +1409,9 @@ namespace Grayscale.Kifuwarabi.UseCases
                     Util_String.YomuTangoTobasuMatubiKuhaku(line, ref caret, out token);
 
                     bool failure = false;
-                    if (!LisKoma.Try_ParseFen(PureSettei.fenSyurui, token, out Koma km1))
+                    if (!LisKoma.Try_ParseFen(PureSettei.fenSyurui, token, out Piece km1))
                     {
-                        km1 = Koma.Kuhaku;
+                        km1 = Piece.Kuhaku;
                         failure = true;
                     }
 
@@ -1538,7 +1538,7 @@ namespace Grayscale.Kifuwarabi.UseCases
             else
             {
                 // raion,zou,kirin,hiyoko,niwatori は廃止
-                foreach (Koma km_all in Conv_Koma.itiran)
+                foreach (Piece km_all in Conv_Koma.itiran)
                 {
                     if (caret == line.IndexOf(Conv_Koma.GetFen(f, km_all)))
                     {
@@ -2967,7 +2967,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                             maskBB.Set(0x01);// 0x01,0x02,0x04
                             for (int iShift = 0; iShift < 3; iShift++)
                             {
-                                Koma km = Med_Koma.KomasyuruiAndTaikyokusyaToKoma((Komasyurui)iKs, (Taikyokusya)iTb);
+                                Piece km = Med_Koma.KomasyuruiAndTaikyokusyaToKoma((Komasyurui)iKs, (Taikyokusya)iTb);
                                 SpkBitboard.AppendSyuturyokuTo(BitboardsOmatome.KomanoUgokikataYk00.Clone_Merge(km, (Masu)iMs).Siborikomi(maskBB).RightShift(iShift), hyoji);
                                 maskBB.LeftShift(1);
                             }
@@ -2988,7 +2988,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                             maskBB.Set(0x08);// 0x08,0x10,0x20
                             for (int iShift = 3; iShift < 6; iShift++)
                             {
-                                Koma km = Med_Koma.KomasyuruiAndTaikyokusyaToKoma((Komasyurui)iKs, (Taikyokusya)iTb);
+                                Piece km = Med_Koma.KomasyuruiAndTaikyokusyaToKoma((Komasyurui)iKs, (Taikyokusya)iTb);
                                 SpkBitboard.AppendSyuturyokuTo(BitboardsOmatome.KomanoUgokikataYk00.Clone_Merge(km, (Masu)iMs).Siborikomi(maskBB).RightShift(iShift), hyoji);
                                 maskBB.LeftShift(1);
                             }
@@ -3009,7 +3009,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                             maskBB.Set(0x40);// 0x40,0x80,0x100
                             for (int iShift = 6; iShift < 9; iShift++)
                             {
-                                Koma km = Med_Koma.KomasyuruiAndTaikyokusyaToKoma((Komasyurui)iKs, (Taikyokusya)iTb);
+                                Piece km = Med_Koma.KomasyuruiAndTaikyokusyaToKoma((Komasyurui)iKs, (Taikyokusya)iTb);
                                 SpkBitboard.AppendSyuturyokuTo(BitboardsOmatome.KomanoUgokikataYk00.Clone_Merge(km, (Masu)iMs).Siborikomi(maskBB).RightShift(iShift), hyoji);
                                 maskBB.LeftShift(1);
                             }
@@ -3030,7 +3030,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                             maskBB.Set(0x200);// 0x200,0x400,0x800
                             for (int iShift = 9; iShift < 12; iShift++)
                             {
-                                Koma km = Med_Koma.KomasyuruiAndTaikyokusyaToKoma((Komasyurui)iKs, (Taikyokusya)iTb);
+                                Piece km = Med_Koma.KomasyuruiAndTaikyokusyaToKoma((Komasyurui)iKs, (Taikyokusya)iTb);
                                 SpkBitboard.AppendSyuturyokuTo(BitboardsOmatome.KomanoUgokikataYk00.Clone_Merge(km, (Masu)iMs).Siborikomi(maskBB).RightShift(iShift), hyoji);
                                 maskBB.LeftShift(1);
                             }
@@ -3052,7 +3052,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                             hyoji.AppendLine($"i=[{ i }]");
                             hyoji.Append("         ");
                             maskBB.Set(0x200);
-                            Koma km = Med_Koma.KomasyuruiAndTaikyokusyaToKoma((Komasyurui)iKs, (Taikyokusya)iTb);
+                            Piece km = Med_Koma.KomasyuruiAndTaikyokusyaToKoma((Komasyurui)iKs, (Taikyokusya)iTb);
                             SpkBitboard.AppendSyuturyokuTo(BitboardsOmatome.KomanoUgokikataYk00.Clone_Merge(km, Conv_Masu.A1).Siborikomi(maskBB).RightShift(i + 0), hyoji);
                             if (i + 1 < max)
                             {
@@ -3599,7 +3599,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                 hyoji.AppendLine();
                 Logger.Flush(hyoji);
 
-                Koma raionKm = (PureMemory.kifu_teban == Taikyokusya.T1 ? Koma.R : Koma.r);
+                Piece raionKm = (PureMemory.kifu_teban == Taikyokusya.T1 ? Piece.R : Piece.r);
                 Masu ms1 = GenkyokuOpe.Lookup(raionKm);
                 Bitboard kikiBB = new Bitboard();
                 BitboardsOmatome.KomanoUgokikataYk00.ToSet_Merge(
@@ -3673,7 +3673,7 @@ namespace Grayscale.Kifuwarabi.UseCases
             int caret = 0;
             if (Util_String.MatchAndNext("tonarikiki", line, ref caret))
             {
-                Koma km;
+                Piece km;
                 if (LisKoma.MatchKoma(line, ref caret, out km))
                 {
 
@@ -3746,7 +3746,7 @@ namespace Grayscale.Kifuwarabi.UseCases
             if (Util_String.MatchAndNext("ugokikata", line, ref caret))
             {
                 // 先後駒
-                Koma km;
+                Piece km;
                 {
                     string koma;
                     Util_String.YomuTangoTobasuMatubiKuhaku(line, ref caret, out koma);
@@ -3782,16 +3782,16 @@ namespace Grayscale.Kifuwarabi.UseCases
                 Bitboard bb;
                 switch (km)
                 {
-                    case Koma.K:
-                    case Koma.k:
-                    case Koma.PK:
-                    case Koma.pk:
-                    case Koma.Z:
-                    case Koma.z:
-                    case Koma.PZ:
-                    case Koma.pz:
-                    case Koma.S:
-                    case Koma.s:
+                    case Piece.K:
+                    case Piece.k:
+                    case Piece.PK:
+                    case Piece.pk:
+                    case Piece.Z:
+                    case Piece.z:
+                    case Piece.PZ:
+                    case Piece.pz:
+                    case Piece.S:
+                    case Piece.s:
                         bb = BitboardsOmatome.KomanoUgokikataYk00.CloneElement(
                             tai, kikiDir, (Masu)iMs, iBlocks);
                         break;

@@ -3,8 +3,8 @@ using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.conv.genkyoku.play;
 using kifuwarabe_shogithink.pure.ky;
-
 using System.Diagnostics;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.accessor;
@@ -13,6 +13,7 @@ using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.move;
 using System.Diagnostics;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogithink.pure.move
@@ -163,7 +164,7 @@ namespace kifuwarabe_shogithink.pure.move
         /// <returns></returns>
         public static bool TryFail_DaiOff(
             Masu ms_t0,
-            Koma km_t0,
+            Piece km_t0,
             Motigoma mk_t0,
             Masu ms_t1 // 移動先升
 
@@ -210,9 +211,9 @@ namespace kifuwarabe_shogithink.pure.move
         /// 移動先に駒があって、その駒を取ることができるか☆（＾～＾）？
         /// </summary>
         /// <returns></returns>
-        public static bool CanDstOff(Koma km_c)
+        public static bool CanDstOff(Piece km_c)
         {
-            return km_c != Koma.Kuhaku;
+            return km_c != Piece.Kuhaku;
         }
 
         /// <summary>
@@ -221,7 +222,7 @@ namespace kifuwarabe_shogithink.pure.move
         /// <returns></returns>
         public static bool TryFail_DstOff(
             Masu ms_t1, // 移動先升
-            Koma km_c,// あれば、移動先の相手の駒（取られる駒; capture）
+            Piece km_c,// あれば、移動先の相手の駒（取られる駒; capture）
             Komasyurui ks_c // 取られた駒の種類
 #if DEBUG
             , FenSyurui f
@@ -266,7 +267,7 @@ namespace kifuwarabe_shogithink.pure.move
         /// </summary>
         /// <returns></returns>
         public static bool TryFail_DaiOn(
-            Koma km_c,// あれば、移動先の相手の駒（取られる駒; capture）
+            Piece km_c,// あれば、移動先の相手の駒（取られる駒; capture）
             Komasyurui ks_c,
             Motigoma mk_c
 
@@ -281,7 +282,7 @@ namespace kifuwarabe_shogithink.pure.move
             //          移動先に駒があれば……。
             //────────────────────────────────────────
             #region 駒を取る
-            if (km_c != Koma.Kuhaku)
+            if (km_c != Piece.Kuhaku)
             {
                 // 駒取るぜ☆（＾▽＾）！
 
@@ -319,7 +320,7 @@ namespace kifuwarabe_shogithink.pure.move
         public static bool TryFail_SrcOff(
             Move ss,
             Masu ms_t0,
-            Koma km_t0,
+            Piece km_t0,
             Motigoma mk_t0,
             Masu ms_t1 // 移動先升
 #if DEBUG
@@ -381,7 +382,7 @@ namespace kifuwarabe_shogithink.pure.move
         /// <returns></returns>
         public static bool TryFail_DstOn(
             Masu ms_t0,
-            Koma km_t1,
+            Piece km_t1,
             Masu ms_t1 // 移動先升
 
 #if DEBUG

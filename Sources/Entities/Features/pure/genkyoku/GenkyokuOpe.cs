@@ -11,6 +11,7 @@ using System.Diagnostics;
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.listen.genkyoku;
 using System.Collections.Generic;
+    using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using System.Collections.Generic;
 using kifuwarabe_shogithink.pure.listen.genkyoku;
@@ -22,6 +23,7 @@ using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.software;
 using System.Diagnostics;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogithink.pure.genkyoku
@@ -42,8 +44,8 @@ namespace kifuwarabe_shogithink.pure.genkyoku
         /// <returns></returns>
         public static bool IsSyobuNasi()
         {
-            Koma raionJibun = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(Komasyurui.R, PureMemory.kifu_teban);
-            Koma raionAite = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(Komasyurui.R, PureMemory.kifu_aiteban);
+            Piece raionJibun = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(Komasyurui.R, PureMemory.kifu_teban);
+            Piece raionAite = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(Komasyurui.R, PureMemory.kifu_aiteban);
 
             // （Ａ）自分のらいおんがいない☆
             if (PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.IsEmptyKoma(raionJibun))
@@ -88,7 +90,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
             )
         {
             int r;//ランダム値☆
-            Koma tmpKm;
+            Piece tmpKm;
             MotigomaItiran motiKomaItiranImpl;//使わない
 
             // 盤がでかくなると時間がかかる☆（＾～＾）最大 1万回で☆（＾～＾）
@@ -163,7 +165,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                         else if ((1 == r || 2 == r) && PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.ExistsKomaZenbu((Masu)iMs1))
                         {
                             // 持駒交換成立☆（＾▽＾）
-                            Koma km_tmp = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma((Masu)iMs1);
+                            Piece km_tmp = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma((Masu)iMs1);
                             tmpKs = Med_Koma.KomaToKomasyurui(km_tmp);
 
                             //Taikyokusya tai_tmp = Med_Koma.KomaToTaikyokusya(km_tmp);
@@ -176,7 +178,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                                 case Komasyurui.Z:
                                     {
                                         PureMemory.gky_ky.motigomaItiran.Fuyasu(mk);
-                                        Koma km_remove = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma((Masu)iMs1);
+                                        Piece km_remove = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma((Masu)iMs1);
                                         Debug.Assert(Conv_Koma.IsOk(km_remove), "km_remove can not remove");
                                         if (PureMemory.gky_ky.shogiban.TryFail_TorinozokuKoma(
                                             (Masu)iMs1,
@@ -193,7 +195,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                                 case Komasyurui.K:
                                     {
                                         PureMemory.gky_ky.motigomaItiran.Fuyasu(mk);
-                                        Koma km_remove = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma((Masu)iMs1);
+                                        Piece km_remove = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma((Masu)iMs1);
                                         Debug.Assert(Conv_Koma.IsOk(km_remove), "km_remove can not remove");
                                         if (PureMemory.gky_ky.shogiban.TryFail_TorinozokuKoma(
                                             (Masu)iMs1,
@@ -212,7 +214,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                                 case Komasyurui.H:
                                     {
                                         PureMemory.gky_ky.motigomaItiran.Fuyasu(mk);
-                                        Koma km_remove = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma((Masu)iMs1);
+                                        Piece km_remove = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma((Masu)iMs1);
                                         Debug.Assert(Conv_Koma.IsOk(km_remove), "km_remove can not remove");
                                         if (PureMemory.gky_ky.shogiban.TryFail_TorinozokuKoma(
                                             (Masu)iMs1,
@@ -235,34 +237,34 @@ namespace kifuwarabe_shogithink.pure.genkyoku
 
                     // ひんぱんに、ひよこ／にわとりの入れ替えだぜ☆（＾▽＾）ｗｗｗ
                     {
-                        Koma km;
+                        Piece km;
                         r = PureSettei.random.Next(kakuritu);
                         if (r % 5 < 2)
                         {
-                            if (PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.ExistsKoma(Koma.H, (Masu)iMs1) || PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.ExistsKoma(Koma.h, (Masu)iMs1))
+                            if (PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.ExistsKoma(Piece.H, (Masu)iMs1) || PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.ExistsKoma(Piece.h, (Masu)iMs1))
                             {
                                 if (0 == r) {
-                                    km = Koma.PH;
+                                    km = Piece.PH;
                                 }
                                 else {
-                                    km = Koma.ph;
+                                    km = Piece.ph;
                                 }
                             }
-                            else if (PureMemory.gky_ky.shogiban.yomiIbashoBan_yoko.IsOn(Koma.PH, (Masu)iMs1) || PureMemory.gky_ky.shogiban.yomiIbashoBan_yoko.IsOn(Koma.ph, (Masu)iMs1))
+                            else if (PureMemory.gky_ky.shogiban.yomiIbashoBan_yoko.IsOn(Piece.PH, (Masu)iMs1) || PureMemory.gky_ky.shogiban.yomiIbashoBan_yoko.IsOn(Piece.ph, (Masu)iMs1))
                             {
                                 if (0 == r) {
-                                    km = Koma.H;
+                                    km = Piece.H;
                                 }
                                 else {
-                                    km = Koma.h;
+                                    km = Piece.h;
                                 }
                             }
                             else
                             {
-                                km = Koma.Yososu;
+                                km = Piece.Yososu;
                             }
 
-                            if (km!=Koma.Yososu)
+                            if (km!=Piece.Yososu)
                             {
                                 if (PureMemory.gky_ky.shogiban.TryFail_OkuKoma(// 混ぜる
                                     (Masu)iMs1, km, true
@@ -279,7 +281,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
 
                     for (int iMk2 = 0; iMk2 < Conv_Motigoma.itiran.Length; iMk2++)
                     {
-                        Koma km = Koma.Yososu;
+                        Piece km = Piece.Yososu;
                         r = PureSettei.random.Next(kakuritu);
                         if ((1 == r || 2 == r) && PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.ExistsKomaZenbu((Masu)iMs1) &&
                             PureMemory.gky_ky.motigomaItiran.yomiMotigomaItiran.HasMotigoma((Motigoma)iMk2))
@@ -299,10 +301,10 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                                     }
 
                                     if (1 == r) {
-                                        km = Koma.Z;
+                                        km = Piece.Z;
                                     }
                                     else {
-                                        km = Koma.z;
+                                        km = Piece.z;
                                     }
                                     break;
                                 case Motigoma.K:
@@ -317,10 +319,10 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                                     }
 
                                     if (1 == r) {
-                                        km = Koma.K;
+                                        km = Piece.K;
                                     }
                                     else {
-                                        km = Koma.k;
+                                        km = Piece.k;
                                     }
                                     break;
                                 case Motigoma.H:
@@ -334,10 +336,10 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                                     }
 
                                     if (1 == r) {
-                                        km = Koma.H;
+                                        km = Piece.H;
                                     }
                                     else {
-                                        km = Koma.h;
+                                        km = Piece.h;
                                     }
                                     break;
                                 case Motigoma.z:
@@ -351,10 +353,10 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                                     }
 
                                     if (1 == r) {
-                                        km = Koma.z;
+                                        km = Piece.z;
                                     }
                                     else {
-                                        km = Koma.Z;
+                                        km = Piece.Z;
                                     }
                                     break;
                                 case Motigoma.k:
@@ -368,10 +370,10 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                                     }
 
                                     if (1 == r) {
-                                        km = Koma.k;
+                                        km = Piece.k;
                                     }
                                     else {
-                                        km = Koma.K;
+                                        km = Piece.K;
                                     }
                                     break;
                                 case Motigoma.h:
@@ -385,15 +387,15 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                                     }
 
                                     if (1 == r) {
-                                        km = Koma.h;
+                                        km = Piece.h;
                                     }
                                     else {
-                                        km = Koma.H;
+                                        km = Piece.H;
                                     }
                                     break;
                             }
 
-                            if (Koma.Yososu!=km)
+                            if (Piece.Yososu!=km)
                             {
                                 if (PureMemory.gky_ky.shogiban.TryFail_OkuKoma(//混ぜる
                                     (Masu)iMs1, km, true
@@ -450,17 +452,17 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                     }
                     */
 
-                    if (PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.ExistsKoma(Koma.R, (Masu)iMs1) || PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.ExistsKoma(Koma.r, (Masu)iMs1))
+                    if (PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.ExistsKoma(Piece.R, (Masu)iMs1) || PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.ExistsKoma(Piece.r, (Masu)iMs1))
                     {
-                        Koma km = Koma.Yososu;
+                        Piece km = Piece.Yososu;
                         if (tb == Taikyokusya.T1) {
-                            km = Koma.R;
+                            km = Piece.R;
                         }
                         else {
-                            km = Koma.r;
+                            km = Piece.r;
                         }
 
-                        if (Koma.Yososu!=km)
+                        if (Piece.Yososu!=km)
                         {
                             if (PureMemory.gky_ky.shogiban.TryFail_OkuKoma(//混ぜる
                                 (Masu)iMs1, km, true
@@ -489,7 +491,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
         /// </summary>
         /// <param name="km"></param>
         /// <returns></returns>
-        public static Masu Lookup(Koma km)
+        public static Masu Lookup(Piece km)
         {
             for (int iMs = 0; iMs < PureSettei.banHeimen; iMs++)
             {
@@ -525,8 +527,8 @@ namespace kifuwarabe_shogithink.pure.genkyoku
             {
                 if (iMs < HirateShokiKyokumen.banjo.Length)
                 {
-                    Koma km = HirateShokiKyokumen.banjo[iMs];
-                    if (Koma.Kuhaku != km)
+                    Piece km = HirateShokiKyokumen.banjo[iMs];
+                    if (Piece.Kuhaku != km)
                     {
                         if(PureMemory.gky_ky.shogiban.TryFail_OkuKoma(
                             (Masu)iMs, km, updateKiki
@@ -541,7 +543,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                 }
                 else
                 {
-                    Koma km_remove = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma((Masu)iMs);
+                    Piece km_remove = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma((Masu)iMs);
                     Debug.Assert(Conv_Koma.IsOk(km_remove), string.Format("km_remove can not remove 初期局面升数={0} 盤上の升数={1}", HirateShokiKyokumen.banjo.Length, PureSettei.banHeimen));
                     if (PureMemory.gky_ky.shogiban.TryFail_TorinozokuKoma(
                         (Masu)iMs,
@@ -618,15 +620,15 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                 reason = MoveMatigaiRiyu.BangaiIdo;
                 return false;
             }
-            Koma km_dst = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma(ms_dst);
+            Piece km_dst = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma(ms_dst);
             Taikyokusya tai_dstKm = Med_Koma.KomaToTaikyokusya(km_dst);
-            if (km_dst != Koma.Kuhaku && PureMemory.kifu_teban == tai_dstKm)
+            if (km_dst != Piece.Kuhaku && PureMemory.kifu_teban == tai_dstKm)
             {
                 // 自分の駒を取ろうとするのは、イリーガル・ムーブだぜ☆（＾▽＾）
                 reason = MoveMatigaiRiyu.TebanKomaNoTokoroheIdo;
                 return false;
             }
-            else if (utta && km_dst != Koma.Kuhaku)
+            else if (utta && km_dst != Piece.Kuhaku)
             {
                 // 駒があるところに打ち込んではいけないぜ☆（＾▽＾）
                 reason = MoveMatigaiRiyu.KomaGaAruTokoroheUti;
@@ -635,7 +637,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
 
 
             // 移動元調べ☆
-            Koma km_src;
+            Piece km_src;
             if (utta)
             {
                 // 「打」のときは　ここ。
@@ -646,7 +648,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                 Masu ms_src = AbstractConvMove.GetSrcMasu_WithoutErrorCheck((int)ss); // 移動先升
                 km_src = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma(ms_src);
                 Taikyokusya tai_srcKm = Med_Koma.KomaToTaikyokusya(km_src);
-                if (km_src == Koma.Kuhaku)
+                if (km_src == Piece.Kuhaku)
                 {
                     // 空き升に駒があると思って動かそうとするのは、イリーガル・ムーブだぜ☆（＾▽＾）
                     reason = MoveMatigaiRiyu.KuhakuWoIdo;

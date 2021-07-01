@@ -2,11 +2,12 @@
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
-
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogithink.pure.com.MoveOrder.seisei
@@ -26,7 +27,7 @@ namespace kifuwarabe_shogithink.pure.com.MoveOrder.seisei
         public static void SiborikomiByNifu()
         {
             bbTmp_nifu.Clear();
-            Koma hiyoko = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(Komasyurui.H, PureMemory.kifu_teban);
+            Piece hiyoko = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(Komasyurui.H, PureMemory.kifu_teban);
             for (int iSuji = 0; iSuji < PureSettei.banYokoHaba; iSuji++)
             {
                 PureMemory.gky_ky.shogiban.yomiIbashoBan_yoko.ToSet_Koma(hiyoko, bbTmp_nifu);//自分の歩
@@ -58,8 +59,8 @@ namespace kifuwarabe_shogithink.pure.com.MoveOrder.seisei
 
             }
 
-            Koma km_t0 = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks_t0, PureMemory.kifu_teban);
-            Koma km_t1 = km_t0;//FIXME:成りを考慮してないぜ☆（＞＿＜）
+            Piece km_t0 = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks_t0, PureMemory.kifu_teban);
+            Piece km_t1 = km_t0;//FIXME:成りを考慮してないぜ☆（＞＿＜）
 
             int sasaeBeforeMove = 0; // 移動前に、動こうとしている駒を支えている味方の数
             int sasaeAfterMove = 0; // 移動後の、動いた駒を支えている味方の数

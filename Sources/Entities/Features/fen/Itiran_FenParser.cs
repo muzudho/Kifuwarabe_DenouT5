@@ -8,6 +8,7 @@ using System;
 using kifuwarabe_shogithink.pure.listen.ky;
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.listen;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using System;
 using kifuwarabe_shogithink.pure.control;
@@ -17,6 +18,7 @@ using System.Text.RegularExpressions;
 using kifuwarabe_shogithink.pure.listen.ky;
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.listen;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogithink.fen
@@ -421,7 +423,7 @@ namespace kifuwarabe_shogithink.fen
                 return false;
             }
         }
-        public static bool MatchKoma(string line, ref int caret, out Koma out_km)
+        public static bool MatchKoma(string line, ref int caret, out Piece out_km)
         {
             Match m = GetKomaPattern(PureSettei.fenSyurui).Match(line, caret);
             if (m.Success)
@@ -435,7 +437,7 @@ namespace kifuwarabe_shogithink.fen
             }
             else
             {
-                out_km = Koma.Yososu;
+                out_km = Piece.Yososu;
                 return false;
             }
         }

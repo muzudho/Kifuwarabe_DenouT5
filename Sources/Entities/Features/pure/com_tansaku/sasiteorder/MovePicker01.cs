@@ -8,6 +8,7 @@ using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.move;
 using System;
 using System.Diagnostics;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.com.MoveOrder.hioute;
@@ -18,6 +19,7 @@ using kifuwarabe_shogithink.pure.ky.bb;
 using kifuwarabe_shogithink.pure.move;
 using System;
 using System.Diagnostics;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogithink.pure.com.MoveOrder
@@ -89,7 +91,7 @@ namespace kifuwarabe_shogithink.pure.com.MoveOrder
             {
                 if (!PureMemory.ssss_bbBase_idosaki01_checker.IsEmpty())
                 {
-                    foreach (Koma iKm_teban in Conv_Koma.itiranTuyoimonoJun[PureMemory.kifu_nTeban])// 駒について、弱い駒から順
+                    foreach (Piece iKm_teban in Conv_Koma.itiranTuyoimonoJun[PureMemory.kifu_nTeban])// 駒について、弱い駒から順
                     {
                         PureMemory.SetSsssUgokiKm(iKm_teban);
                         PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.ToSet_Koma(PureMemory.ssss_ugoki_km, PureMemory.ssssTmp_bbVar_ibasho);
@@ -158,7 +160,7 @@ namespace kifuwarabe_shogithink.pure.com.MoveOrder
             {
                 if (!PureMemory.ssss_bbBase_idosaki01_checker.IsEmpty())
                 {
-                    foreach (Koma iKm_teban in Conv_Koma.itiranTuyoimonoJun[PureMemory.kifu_nTeban])// 弱い駒から順
+                    foreach (Piece iKm_teban in Conv_Koma.itiranTuyoimonoJun[PureMemory.kifu_nTeban])// 弱い駒から順
                     {
                         PureMemory.SetSsssUgokiKm(iKm_teban);
                         yomiIbashoBan.ToSet_Koma(PureMemory.ssss_ugoki_km, PureMemory.ssssTmp_bbVar_ibasho);
@@ -233,7 +235,7 @@ namespace kifuwarabe_shogithink.pure.com.MoveOrder
                 {
                     int ssCount_old = PureMemory.ssss_moveList[PureMemory.tnsk_fukasa].listCount;
 
-                    foreach (Koma iKm_teban in Conv_Koma.itiranTuyoimonoJun[PureMemory.kifu_nTeban])// 弱い駒から順
+                    foreach (Piece iKm_teban in Conv_Koma.itiranTuyoimonoJun[PureMemory.kifu_nTeban])// 弱い駒から順
                     {
                         PureMemory.SetSsssUgokiKm(iKm_teban);
                         yomiIbashoBan.ToSet_Koma(PureMemory.ssss_ugoki_km, PureMemory.ssssTmp_bbVar_ibasho);
@@ -379,7 +381,7 @@ namespace kifuwarabe_shogithink.pure.com.MoveOrder
             {
                 if (!PureMemory.ssss_bbBase_idosaki05_komaWoToruTe.IsEmpty())
                 {
-                    foreach (Koma iKm_teban in Conv_Koma.itiranTuyoimonoJun[PureMemory.kifu_nTeban])// 弱い駒から順
+                    foreach (Piece iKm_teban in Conv_Koma.itiranTuyoimonoJun[PureMemory.kifu_nTeban])// 弱い駒から順
                     {
                         PureMemory.SetSsssUgokiKm(iKm_teban);
                         yomiIbashoBan.ToSet_Koma(PureMemory.ssss_ugoki_km, PureMemory.ssssTmp_bbVar_ibasho);
@@ -457,7 +459,7 @@ namespace kifuwarabe_shogithink.pure.com.MoveOrder
             {
                 if (!PureMemory.ssss_bbBase_idosaki06_himodukiOteZasi.IsEmpty())
                 {
-                    foreach (Koma iKm_teban in Conv_Koma.itiranTuyoimonoJun[PureMemory.kifu_nTeban])// 弱い駒から順
+                    foreach (Piece iKm_teban in Conv_Koma.itiranTuyoimonoJun[PureMemory.kifu_nTeban])// 弱い駒から順
                     {
                         PureMemory.SetSsssUgokiKm(iKm_teban);
                         yomiIbashoBan.ToSet_Koma(PureMemory.ssss_ugoki_km, PureMemory.ssssTmp_bbVar_ibasho);
@@ -521,7 +523,7 @@ namespace kifuwarabe_shogithink.pure.com.MoveOrder
                 {
                     // 2016-12-22 捨てだからと言って、紐を付けないとは限らない☆
 
-                    foreach (Koma iKm_teban in Conv_Koma.itiranTuyoimonoJun[PureMemory.kifu_nTeban])// 弱い駒から順
+                    foreach (Piece iKm_teban in Conv_Koma.itiranTuyoimonoJun[PureMemory.kifu_nTeban])// 弱い駒から順
                     {
                         PureMemory.SetSsssUgokiKm(iKm_teban);
                         yomiIbashoBan.ToSet_Koma(PureMemory.ssss_ugoki_km, PureMemory.ssssTmp_bbVar_ibasho);
@@ -720,7 +722,7 @@ namespace kifuwarabe_shogithink.pure.com.MoveOrder
             {
                 if (!PureMemory.ssss_bbBase_idosaki11_himodukiKanmanZasi.IsEmpty())
                 {
-                    foreach (Koma iKm_teban in Conv_Koma.itiranTuyoimonoJun[PureMemory.kifu_nTeban])// 弱い駒から順
+                    foreach (Piece iKm_teban in Conv_Koma.itiranTuyoimonoJun[PureMemory.kifu_nTeban])// 弱い駒から順
                     {
                         PureMemory.SetSsssUgokiKm(iKm_teban);
                         yomiIbashoBan.ToSet_Koma(PureMemory.ssss_ugoki_km, PureMemory.ssssTmp_bbVar_ibasho);
@@ -785,7 +787,7 @@ namespace kifuwarabe_shogithink.pure.com.MoveOrder
             {
                 if (!PureMemory.ssss_bbBase_idosaki12_bottiKanmanZasi.IsEmpty())
                 {
-                    foreach (Koma iKm_teban in Conv_Koma.itiranTuyoimonoJun[PureMemory.kifu_nTeban])// 弱い駒から順
+                    foreach (Piece iKm_teban in Conv_Koma.itiranTuyoimonoJun[PureMemory.kifu_nTeban])// 弱い駒から順
                     {
                         PureMemory.SetSsssUgokiKm(iKm_teban);
                         yomiIbashoBan.ToSet_Koma(PureMemory.ssss_ugoki_km, PureMemory.ssssTmp_bbVar_ibasho);
@@ -890,7 +892,7 @@ namespace kifuwarabe_shogithink.pure.com.MoveOrder
                 {
                     // 2016-12-22 捨てだからと言って、紐を付けないとは限らない☆
 
-                    foreach (Koma iKm_teban in Conv_Koma.itiranTuyoimonoJun[PureMemory.kifu_nTeban])// 弱い駒から順
+                    foreach (Piece iKm_teban in Conv_Koma.itiranTuyoimonoJun[PureMemory.kifu_nTeban])// 弱い駒から順
                     {
                         PureMemory.SetSsssUgokiKm(iKm_teban);
                         yomiIbashoBan.ToSet_Koma(PureMemory.ssss_ugoki_km, PureMemory.ssssTmp_bbVar_ibasho);

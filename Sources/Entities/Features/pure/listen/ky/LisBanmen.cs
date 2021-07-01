@@ -1,13 +1,14 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky;
-
 using System;
 using kifuwarabe_shogithink.pure.accessor;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.accessor;
 using System;
 using kifuwarabe_shogithink.pure.genkyoku;
 using kifuwarabe_shogithink.pure.ky;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogithink.pure.listen.ky
@@ -43,14 +44,14 @@ namespace kifuwarabe_shogithink.pure.listen.ky
 
             for (int iMs = 0; iMs < PureSettei.banHeimen; iMs++)
             {
-                Koma km;
+                Piece km;
                 string moji_z1 = banmen_z1.ToCharArray()[iMs].ToString();
                 if (!LisKoma.TryParse_ZenkakuKanaNyuryoku(moji_z1, out km))
                 {
                     throw new Exception(string.Format("盤面カナ入力パースエラー ms=[{0}] moji_z1=[{1}]", iMs, moji_z1));
                 }
 
-                if (Koma.Kuhaku != km)
+                if (Piece.Kuhaku != km)
                 {
                     if (PureMemory.gky_ky.shogiban.TryFail_OkuKoma(//AddBanjo
                         (Masu)iMs, km,

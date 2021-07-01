@@ -1,14 +1,15 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
-
 using System;
 using System.Diagnostics;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 using System;
 using System.Diagnostics;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 
@@ -76,7 +77,7 @@ namespace kifuwarabe_shogithink.pure.com.MoveOrder
                 return false;
             }
 
-            Koma km_t1 = Med_Koma.MotiKomaToKoma(PureMemory.ssss_mot_mg);//t0も同じ
+            Piece km_t1 = Med_Koma.MotiKomaToKoma(PureMemory.ssss_mot_mg);//t0も同じ
 
             // FIXME: ↓駒移動後の、利きを取る必要がある
             Bitboard bb_kikiNewJibun = new Bitboard();
@@ -133,8 +134,8 @@ namespace kifuwarabe_shogithink.pure.com.MoveOrder
                 throw new Exception(Interproject.project.Owata("TryFail_Ittedume_BanjoKoma gky.ky.shogiban.ibashoBan.ExistsBBKoma(1)", PureMemory.tnsk_hyoji));
             }
 
-            Koma km_t0 = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks_t0, PureMemory.kifu_teban);
-            Koma km_t1 = km_t0; // FIXME: 成りを考慮していないぜ☆（＞＿＜）
+            Piece km_t0 = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks_t0, PureMemory.kifu_teban);
+            Piece km_t1 = km_t0; // FIXME: 成りを考慮していないぜ☆（＞＿＜）
 
             // Ａ Ｂ  Ｃ
             //　┌──┬──┬──┐

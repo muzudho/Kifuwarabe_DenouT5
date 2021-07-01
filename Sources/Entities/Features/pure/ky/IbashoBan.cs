@@ -1,9 +1,11 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky.bb;
 using System;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.ky.bb;
 using System;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogithink.pure.ky
@@ -97,7 +99,7 @@ namespace kifuwarabe_shogithink.pure.ky
                 hontai_.BBItiran_Komazenbu.ToSelect(tai, bb_update);
 
             }
-            public Koma GetBanjoKoma(Masu ms)
+            public Piece GetBanjoKoma(Masu ms)
             {
                 Taikyokusya tai;
                 if (ExistsKomaZenbu(ms, out tai))
@@ -108,45 +110,45 @@ namespace kifuwarabe_shogithink.pure.ky
                         return Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, tai);
                     }
                 }
-                return Koma.Kuhaku;
+                return Piece.Kuhaku;
             }
             #endregion
 
             #region 状況（駒別）
-            public Koma GetBanjoKoma(Taikyokusya tai, Masu ms)
+            public Piece GetBanjoKoma(Taikyokusya tai, Masu ms)
             {
                 Komasyurui ks;
                 if (ExistsKoma(tai, ms, out ks))
                 {
                     return Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, tai);
                 }
-                return Koma.Kuhaku;
+                return Piece.Kuhaku;
             }
-            public bool IsIntersect(Koma km, Bitboard bb)
+            public bool IsIntersect(Piece km, Bitboard bb)
             {
                 return hontai_.BBItiran_Komabetu.RefBBKoma(km).IsIntersect(bb);
             }
-            public bool GetNTZ(Koma km, out Masu out_ms)
+            public bool GetNTZ(Piece km, out Masu out_ms)
             {
                 return hontai_.BBItiran_Komabetu.RefBBKoma(km).GetNTZ(out out_ms);
             }
-            public bool IsEmpty(Koma km)
+            public bool IsEmpty(Piece km)
             {
                 return hontai_.BBItiran_Komabetu.RefBBKoma(km).IsEmpty();
             }
-            public Bitboard CloneKoma(Koma km)
+            public Bitboard CloneKoma(Piece km)
             {
                 return hontai_.BBItiran_Komabetu.RefBBKoma(km).Clone();
             }
-            public YomiBitboard GetKoma(Koma km)
+            public YomiBitboard GetKoma(Piece km)
             {
                 return new YomiBitboard(hontai_.BBItiran_Komabetu.RefBBKoma(km));
             }
-            public bool IsOn(Koma km, Masu ms)
+            public bool IsOn(Piece km, Masu ms)
             {
                 return hontai_.BBItiran_Komabetu.RefBBKoma(km).IsOn(ms);
             }
-            public bool IsEmptyKoma(Koma km)
+            public bool IsEmptyKoma(Piece km)
             {
                 return hontai_.BBItiran_Komabetu.RefBBKoma(km).IsEmpty();
             }
@@ -158,7 +160,7 @@ namespace kifuwarabe_shogithink.pure.ky
             {
                 return hontai_.BBItiran_Komabetu.Exists(tai, ms);
             }
-            public bool ExistsKoma(Koma km, Masu ms)
+            public bool ExistsKoma(Piece km, Masu ms)
             {
                 return hontai_.BBItiran_Komabetu.RefBBKoma(km).IsOn(ms);
             }
@@ -169,29 +171,29 @@ namespace kifuwarabe_shogithink.pure.ky
             /// <param name="tai"></param>
             /// <param name="yomiIbashoBan2"></param>
             /// <returns></returns>
-            public bool Equals_Koma_ForDevelop(Koma km, IbashoBan.YomiIbashoBan yomiIbashoBan2)
+            public bool Equals_Koma_ForDevelop(Piece km, IbashoBan.YomiIbashoBan yomiIbashoBan2)
             {
                 return hontai_.CloneBb_Koma(km) == yomiIbashoBan2.CloneKoma(km);
             }
             #endregion
             #region 影響（駒別）
-            public bool ToIsIntersect_Koma(Koma km, Bitboard bb_target)
+            public bool ToIsIntersect_Koma(Piece km, Bitboard bb_target)
             {
                 return hontai_.BBItiran_Komabetu.ToIsIntersect(km, bb_target);
             }
-            public void ToSet_Koma(Koma km, Bitboard bb_update)
+            public void ToSet_Koma(Piece km, Bitboard bb_update)
             {
                 bb_update.Set(hontai_.BBItiran_Komabetu.RefBBKoma(km));
             }
-            public void ToStandup_Koma(Koma km, Bitboard bb_update)
+            public void ToStandup_Koma(Piece km, Bitboard bb_update)
             {
                 bb_update.Standup(hontai_.BBItiran_Komabetu.RefBBKoma(km));
             }
-            public void ToSitdown_Koma(Koma km, Bitboard bb_update)
+            public void ToSitdown_Koma(Piece km, Bitboard bb_update)
             {
                 bb_update.Sitdown(hontai_.BBItiran_Komabetu.RefBBKoma(km));
             }
-            public void ToSelect_Koma(Koma km, Bitboard bb_update)
+            public void ToSelect_Koma(Piece km, Bitboard bb_update)
             {
                 bb_update.Siborikomi(hontai_.BBItiran_Komabetu.RefBBKoma(km));
             }
@@ -423,25 +425,25 @@ namespace kifuwarabe_shogithink.pure.ky
             }
             #endregion
             #region 状況
-            public Bitboard CloneBb(Koma km)
+            public Bitboard CloneBb(Piece km)
             {
                 return valueKm[(int)km].Clone();
             }
             #endregion
             #region 編集
-            public void Set(Koma km, Bitboard bb_src)
+            public void Set(Piece km, Bitboard bb_src)
             {
                 valueKm[(int)km].Set(bb_src);
             }
             #endregion
             #region 影響
-            public bool ToIsIntersect(Koma km, Bitboard bb_target)
+            public bool ToIsIntersect(Piece km, Bitboard bb_target)
             {
                 return bb_target.IsIntersect(valueKm[(int)km]);
             }
             #endregion
 
-            public Bitboard RefBBKoma(Koma km)
+            public Bitboard RefBBKoma(Piece km)
             {
                 return valueKm[(int)km];
             }
@@ -449,7 +451,7 @@ namespace kifuwarabe_shogithink.pure.ky
             {
                 for (int iKm = 0; iKm < Conv_Koma.itiranTai[(int)tai].Length; iKm++)
                 {
-                    Koma km = Conv_Koma.itiranTai[(int)tai][iKm];
+                    Piece km = Conv_Koma.itiranTai[(int)tai][iKm];
                     if (valueKm[(int)km].IsOn(ms))
                     {
                         out_ks = Med_Koma.KomaToKomasyurui(km);
@@ -469,11 +471,11 @@ namespace kifuwarabe_shogithink.pure.ky
             }
         }
 
-        public Bitboard CloneBb_Koma(Koma km)
+        public Bitboard CloneBb_Koma(Piece km)
         {
             return BBItiran_Komabetu.CloneBb(km);
         }
-        public void Set_Koma(Koma km, Bitboard bb_src)
+        public void Set_Koma(Piece km, Bitboard bb_src)
         {
             BBItiran_Komabetu.Set(km, bb_src);
         }
@@ -491,7 +493,7 @@ namespace kifuwarabe_shogithink.pure.ky
         /// </summary>
         /// <param name="km"></param>
         /// <param name="ms"></param>
-        public void N240_OkuKoma(Koma km, Masu ms)
+        public void N240_OkuKoma(Piece km, Masu ms)
         {
             BBItiran_Komazenbu.Standup(Med_Koma.KomaToTaikyokusya(km),ms);
             BBItiran_Komabetu.RefBBKoma(km).Standup(ms);
@@ -510,7 +512,7 @@ namespace kifuwarabe_shogithink.pure.ky
         /// </summary>
         /// <param name="km"></param>
         /// <param name="ms"></param>
-        public void N240_TorinozokuKoma(Koma km, Masu ms)
+        public void N240_TorinozokuKoma(Piece km, Masu ms)
         {
 
             BBItiran_Komazenbu.Sitdown(Med_Koma.KomaToTaikyokusya(km), ms);

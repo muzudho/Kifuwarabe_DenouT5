@@ -188,7 +188,7 @@
     <Compile Include="Features\pure\ikkyoku\TaikyokuKekka.cs" />
     <Compile Include="Features\pure\sasite\Move.cs" />
     <Compile Include="Features\pure\ky\Komasyurui.cs" />
-    <Compile Include="Features\pure\ky\Koma.cs" />
+    <Compile Include="Features\pure\ky\Piece.cs" />
     <Compile Include="Features\pure\ky\Taikyokusya.cs" />
     <Compile Include="Features\pure\ky\Masu.cs" />
     <Compile Include="Features\pure\com_tansaku\jikan\Util_TimeManager.cs" />
@@ -200,6 +200,7 @@
     <Compile Include="Features\pure\com_tansaku\jikan\TimeManager.cs" />
     <Compile Include="Features\pure\com_tansaku\jikan\Face_TimeManager.cs" />
     <Compile Include="Features\pure\project\PureTest.cs" />
+    <Compile Include="Take1Base\Piece.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

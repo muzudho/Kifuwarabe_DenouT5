@@ -3,11 +3,13 @@ using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ky.tobikiki;
 using System;
 using System.Diagnostics;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ky.tobikiki;
 using System;
 using System.Diagnostics;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogithink.pure.ky.bb
@@ -465,7 +467,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
             // 段配列をセットしたあとで
             {
                 bb_uteruZone = new Bitboard[Conv_Koma.itiran.Length];
-                foreach (Koma km in Conv_Koma.itiran)
+                foreach (Piece km in Conv_Koma.itiran)
                 {
                     // まず、盤面全体に打てるとするぜ☆（＾～＾）
                     bb_uteruZone[(int)km] = bb_boardArea.Clone();
@@ -476,20 +478,20 @@ namespace kifuwarabe_shogithink.pure.ky.bb
                         switch (km)
                         {
                             // ひよこ、いのしし
-                            case Koma.H:
-                            case Koma.S:
+                            case Piece.H:
+                            case Piece.S:
                                 bb_uteruZone[(int)km].Sitdown(bb_danArray[0]);
                                 break;
-                            case Koma.h:
-                            case Koma.s:
+                            case Piece.h:
+                            case Piece.s:
                                 bb_uteruZone[(int)km].Sitdown(bb_danArray[tate - 1]);
                                 break;
                             // うさぎ
-                            case Koma.U:
+                            case Piece.U:
                                 bb_uteruZone[(int)km].Sitdown(bb_danArray[0]);
                                 bb_uteruZone[(int)km].Sitdown(bb_danArray[1]);
                                 break;
-                            case Koma.u:
+                            case Piece.u:
                                 bb_uteruZone[(int)km].Sitdown(bb_danArray[tate - 1]);
                                 bb_uteruZone[(int)km].Sitdown(bb_danArray[tate - 2]);
                                 break;
@@ -537,11 +539,11 @@ namespace kifuwarabe_shogithink.pure.ky.bb
                 /// </summary>
                 public static Bitboard[][] ugokikataTon { get; set; }
 
-                public static void Standup(Koma km, Masu ms, Bitboard bb_kiki)
+                public static void Standup(Piece km, Masu ms, Bitboard bb_kiki)
                 {
                     ugokikataTon[(int)km][(int)ms].Standup(bb_kiki);
                 }
-                public static void Standup(Koma km, Masu ms, Masu ms_add)
+                public static void Standup(Piece km, Masu ms, Masu ms_add)
                 {
                     ugokikataTon[(int)km][(int)ms].Standup(ms_add);
                 }
@@ -579,7 +581,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
             }
 
             #region 状況（隣利き）
-            public static Bitboard CloneElement(Koma km, Masu ms)
+            public static Bitboard CloneElement(Piece km, Masu ms)
             {
                 return TonarikikiElement.ugokikataTon[(int)km][(int)ms].Clone();
             }
@@ -605,20 +607,20 @@ namespace kifuwarabe_shogithink.pure.ky.bb
             }
             #endregion
             #region エレメントの影響（隣利き）
-            static void ToSet_ByElement(Koma km, Masu ms, Bitboard bb_update)
+            static void ToSet_ByElement(Piece km, Masu ms, Bitboard bb_update)
             {
                 bb_update.Set(TonarikikiElement.ugokikataTon[(int)km][(int)ms]);
             }
-            static void ToStandup_ByElement(Koma km, Masu ms, Bitboard bb_update)
+            static void ToStandup_ByElement(Piece km, Masu ms, Bitboard bb_update)
             {
                 Debug.Assert(Conv_Masu.IsBanjo(ms));
                 bb_update.Standup(TonarikikiElement.ugokikataTon[(int)km][(int)ms]);
             }
-            static void ToSitdown_ByElement(Koma km, Masu ms, Bitboard bb_update)
+            static void ToSitdown_ByElement(Piece km, Masu ms, Bitboard bb_update)
             {
                 bb_update.Sitdown(TonarikikiElement.ugokikataTon[(int)km][(int)ms]);
             }
-            static Bitboard RefElement(Koma km, Masu ms)
+            static Bitboard RefElement(Piece km, Masu ms)
             {
                 return TonarikikiElement.ugokikataTon[(int)km][(int)ms];
             }
@@ -633,11 +635,11 @@ namespace kifuwarabe_shogithink.pure.ky.bb
             {
                 TobikikiElement.ugokikataTob[(int)tai][nKikiDir][(int)ms][iBlocks].Standup(ms_add);
             }
-            public static void StandupElement(Koma km, Masu ms, Bitboard bb_kiki)
+            public static void StandupElement(Piece km, Masu ms, Bitboard bb_kiki)
             {
                 TonarikikiElement.ugokikataTon[(int)km][(int)ms].Standup(bb_kiki);
             }
-            public static void StandupElement(Koma km, Masu ms, Masu ms_add)
+            public static void StandupElement(Piece km, Masu ms, Masu ms_add)
             {
                 TonarikikiElement.ugokikataTon[(int)km][(int)ms].Standup(ms_add);
             }
@@ -989,7 +991,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
                     }
                 }
                 TonarikikiElement.ugokikataTon = new Bitboard[Conv_Koma.itiran.Length][];
-                foreach (Koma km_all in Conv_Koma.itiran)
+                foreach (Piece km_all in Conv_Koma.itiran)
                 {
                     TonarikikiElement.ugokikataTon[(int)km_all] = new Bitboard[heimen];
                     for (int iMs = 0; iMs < heimen; iMs++)//ボードサイズを先に設定しておくこと。
@@ -1018,7 +1020,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
 
             #region マージ
             static Bitboard bbTmp_ugokikata_forMerge = new Bitboard();
-            public static void ToStandup_Merge( Koma km_all, Masu ms, Bitboard bb_update)
+            public static void ToStandup_Merge( Piece km_all, Masu ms, Bitboard bb_update)
             {
                 Debug.Assert(Conv_Masu.IsBanjo(ms));
                 Merge_ToProperty(km_all, ms);
@@ -1026,7 +1028,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
                 // 駒の動ける先と、指定したビットボードのアンドを取れだぜ☆（＾～＾）
                 bb_update.Standup(bbTmp_ugokikata_forMerge);
             }
-            public static void ToSitdown_Merge(Koma km, Masu ms, Bitboard bb_update)
+            public static void ToSitdown_Merge(Piece km, Masu ms, Bitboard bb_update)
             {
                 Debug.Assert(Conv_Masu.IsBanjo(ms));
                 Merge_ToProperty( km, ms);
@@ -1043,7 +1045,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
             /// <param name="yomiSg"></param>
             /// <param name="km_all"></param>
             /// <param name="ms"></param>
-            static void Merge_ToProperty(Koma km_all, Masu ms)
+            static void Merge_ToProperty(Piece km_all, Masu ms)
             {
                 Debug.Assert(Conv_Masu.IsBanjo(ms));
 
@@ -1056,10 +1058,10 @@ namespace kifuwarabe_shogithink.pure.ky.bb
 
                 switch (km_all)
                 {
-                    case Koma.K:
-                    case Koma.k:
-                    case Koma.PK:
-                    case Koma.pk:
+                    case Piece.K:
+                    case Piece.k:
+                    case Piece.PK:
+                    case Piece.pk:
                         {
                             // 横
                             TobikikiDirection kikiDir = TobikikiDirection.KY;
@@ -1077,10 +1079,10 @@ namespace kifuwarabe_shogithink.pure.ky.bb
                             ToStandup_ByElement(km_all, ms, bbTmp_ugokikata_forMerge);
                         }
                         break;
-                    case Koma.Z:
-                    case Koma.z:
-                    case Koma.PZ:
-                    case Koma.pz:
+                    case Piece.Z:
+                    case Piece.z:
+                    case Piece.PZ:
+                    case Piece.pz:
                         {
                             // 左上がり
                             TobikikiDirection kikiDir = TobikikiDirection.ZHa;
@@ -1098,10 +1100,10 @@ namespace kifuwarabe_shogithink.pure.ky.bb
                             ToStandup_ByElement(km_all, ms, bbTmp_ugokikata_forMerge);
                         }
                         break;
-                    case Koma.S:
-                    case Koma.s:
-                    case Koma.PS:
-                    case Koma.ps:
+                    case Piece.S:
+                    case Piece.s:
+                    case Piece.PS:
+                    case Piece.ps:
                         {
                             // いのしし縦
                             TobikikiDirection kikiDir = TobikikiDirection.S;
@@ -1130,7 +1132,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
             /// <param name="km"></param>
             /// <param name="ms"></param>
             /// <param name="bb_update"></param>
-            public static void ToSelect_MergeShogiban(Koma km, Masu ms, Bitboard bb_update)
+            public static void ToSelect_MergeShogiban(Piece km, Masu ms, Bitboard bb_update)
             {
                 Debug.Assert(Conv_Masu.IsBanjo(ms));
                 Merge_ToProperty( km, ms);
@@ -1139,7 +1141,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
                 bb_update.Siborikomi(bbTmp_ugokikata_forMerge);                
             }
             public static void ToSet_Merge(
-                Koma km,
+                Piece km,
                 Masu ms,
                 Bitboard bb_update
                 )
@@ -1149,7 +1151,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
                 bb_update.Set(bbTmp_ugokikata_forMerge);
             }
 
-            public static Bitboard Clone_Merge(Koma km, Masu ms_ibasho)
+            public static Bitboard Clone_Merge(Piece km, Masu ms_ibasho)
             {
                 Debug.Assert(Conv_Masu.IsBanjo(ms_ibasho));
                 Debug.Assert(Conv_Koma.IsOk(km), $"km=[{(int)km}]");
@@ -1166,7 +1168,7 @@ namespace kifuwarabe_shogithink.pure.ky.bb
             /// <param name="ms_dst">調べたいマス</param>
             /// <returns>ms_dstマスが、駒の動き方に重なっていれば真</returns>
             public static bool IsIntersect(
-                Koma km,
+                Piece km,
                 Masu ms_src,
                 Masu ms_dst
                 )

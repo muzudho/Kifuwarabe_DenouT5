@@ -1,121 +1,37 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.com.hyoka;
 using kifuwarabe_shogithink.pure.control;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.com.hyoka;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogithink.pure.ky
 {
-    /// <summary>
-    /// 先後付きの盤上の駒だぜ☆（＾▽＾）
-    /// </summary>
-    public enum Koma
-    {
-        /// <summary>
-        /// らいおん（対局者１，２）
-        /// </summary>
-        R,r,
-
-        /// <summary>
-        /// ぞう
-        /// </summary>
-        Z,z,
-
-        /// <summary>
-        /// パワーアップぞう
-        /// </summary>
-        PZ,pz,
-
-        /// <summary>
-        /// きりん
-        /// </summary>
-        K,k,
-
-        /// <summary>
-        /// パワーアップきりん
-        /// </summary>
-        PK,pk,
-
-        /// <summary>
-        /// ひよこ
-        /// </summary>
-        H,h,
-
-        /// <summary>
-        /// にわとり
-        /// </summary>
-        PH,ph,
-
-        /// <summary>
-        /// いぬ
-        /// </summary>
-        I,i,
-
-        /// <summary>
-        /// ねこ
-        /// </summary>
-        N,n,
-
-        /// <summary>
-        /// 成りねこ
-        /// </summary>
-        PN,pn,
-
-        /// <summary>
-        /// うさぎ
-        /// </summary>
-        U,u,
-
-        /// <summary>
-        /// 成りうさぎ
-        /// </summary>
-        PU,pu,
-
-        /// <summary>
-        /// いのしし
-        /// </summary>
-        S,s,
-
-        /// <summary>
-        /// 成りいのしし
-        /// </summary>
-        PS,ps,
-
-        /// <summary>
-        /// 空白☆ 駒のない升だぜ☆（＾▽＾）
-        /// </summary>
-        Kuhaku,
-
-        /// <summary>
-        /// 空白～後手のにわとり　までの要素の個数になるぜ☆（＾▽＾）
-        /// </summary>
-        Yososu
-    }
-
     public abstract class Conv_Koma
     {
         /// <summary>
         /// [先後駒列挙型]
         /// 一覧
         /// </summary>
-        public static readonly Koma[] itiran =
+        public static readonly Piece[] itiran =
         {
-            Koma.R,Koma.r,// らいおん（対局者１、対局者２）
-            Koma.Z,Koma.z,// ぞう
-            Koma.PZ,Koma.pz,// パワーアップぞう
-            Koma.K,Koma.k,// きりん
-            Koma.PK,Koma.pk,// パワーアップきりん
-            Koma.H,Koma.h,// ひよこ
-            Koma.PH,Koma.ph,// にわとり
-            Koma.I,Koma.i,// いぬ
-            Koma.N,Koma.n,// ねこ
-            Koma.PN,Koma.pn,// 成りねこ
-            Koma.U,Koma.u,// うさぎ
-            Koma.PU,Koma.pu,// 成りうさぎ
-            Koma.S,Koma.s,// いのしし
-            Koma.PS,Koma.ps,// 成りいのしし
+            Piece.R,Piece.r,// らいおん（対局者１、対局者２）
+            Piece.Z,Piece.z,// ぞう
+            Piece.PZ,Piece.pz,// パワーアップぞう
+            Piece.K,Piece.k,// きりん
+            Piece.PK,Piece.pk,// パワーアップきりん
+            Piece.H,Piece.h,// ひよこ
+            Piece.PH,Piece.ph,// にわとり
+            Piece.I,Piece.i,// いぬ
+            Piece.N,Piece.n,// ねこ
+            Piece.PN,Piece.pn,// 成りねこ
+            Piece.U,Piece.u,// うさぎ
+            Piece.PU,Piece.pu,// 成りうさぎ
+            Piece.S,Piece.s,// いのしし
+            Piece.PS,Piece.ps,// 成りいのしし
         };
         /// <summary>
         /// [先後駒列挙型]
@@ -142,41 +58,41 @@ namespace kifuwarabe_shogithink.pure.ky
         /// 一覧
         /// [対局者][駒種類]
         /// </summary>
-        public static readonly Koma[][] itiranTai = new Koma[][]
+        public static readonly Piece[][] itiranTai = new Piece[][]
         {
-            new Koma[]{// 対局者１
-                Koma.R,// らいおん
-                Koma.Z,// ぞう
-                Koma.PZ,// パワーアップぞう
-                Koma.K,// きりん
-                Koma.PK,// パワーアップきりん
-                Koma.H,// ひよこ
-                Koma.PH,// にわとり
-                Koma.I,// いぬ
-                Koma.N,// ねこ
-                Koma.PN,// パワーアップねこ
-                Koma.U,// うさぎ
-                Koma.PU,// パワーアップうさぎ
-                Koma.S,// いのしし
-                Koma.PS,// パワーアップいのしし
+            new Piece[]{// 対局者１
+                Piece.R,// らいおん
+                Piece.Z,// ぞう
+                Piece.PZ,// パワーアップぞう
+                Piece.K,// きりん
+                Piece.PK,// パワーアップきりん
+                Piece.H,// ひよこ
+                Piece.PH,// にわとり
+                Piece.I,// いぬ
+                Piece.N,// ねこ
+                Piece.PN,// パワーアップねこ
+                Piece.U,// うさぎ
+                Piece.PU,// パワーアップうさぎ
+                Piece.S,// いのしし
+                Piece.PS,// パワーアップいのしし
             },
-            new Koma[]{// 対局者２
-                Koma.r,
-                Koma.z,
-                Koma.pz,
-                Koma.k,
-                Koma.pk,
-                Koma.h,
-                Koma.ph,
-                Koma.i,
-                Koma.n,
-                Koma.pn,
-                Koma.u,
-                Koma.pu,
-                Koma.s,
-                Koma.ps,
+            new Piece[]{// 対局者２
+                Piece.r,
+                Piece.z,
+                Piece.pz,
+                Piece.k,
+                Piece.pk,
+                Piece.h,
+                Piece.ph,
+                Piece.i,
+                Piece.n,
+                Piece.pn,
+                Piece.u,
+                Piece.pu,
+                Piece.s,
+                Piece.ps,
             },
-            new Koma[]{
+            new Piece[]{
                 // 該当無し
             }
         };
@@ -184,135 +100,135 @@ namespace kifuwarabe_shogithink.pure.ky
         /// [対局者][駒種類]
         /// 指し手生成のオーダリング用（弱いもの順）
         /// </summary>
-        public static readonly Koma[][] itiranYowaimonoJun = new Koma[][]
+        public static readonly Piece[][] itiranYowaimonoJun = new Piece[][]
         {
-            new Koma[]{
-                Koma.H,
-                Koma.PH,
-                Koma.S,
-                Koma.PS,
-                Koma.U,
-                Koma.PU,
-                Koma.N,
-                Koma.PN,
-                Koma.I,
-                Koma.Z,
-                Koma.PZ,
-                Koma.K,
-                Koma.PK,
-                Koma.R,
+            new Piece[]{
+                Piece.H,
+                Piece.PH,
+                Piece.S,
+                Piece.PS,
+                Piece.U,
+                Piece.PU,
+                Piece.N,
+                Piece.PN,
+                Piece.I,
+                Piece.Z,
+                Piece.PZ,
+                Piece.K,
+                Piece.PK,
+                Piece.R,
             },
-            new Koma[]{
-                Koma.h,
-                Koma.ph,
-                Koma.s,
-                Koma.ps,
-                Koma.u,
-                Koma.pu,
-                Koma.n,
-                Koma.pn,
-                Koma.i,
-                Koma.z,
-                Koma.pz,
-                Koma.k,
-                Koma.pk,
-                Koma.r,
+            new Piece[]{
+                Piece.h,
+                Piece.ph,
+                Piece.s,
+                Piece.ps,
+                Piece.u,
+                Piece.pu,
+                Piece.n,
+                Piece.pn,
+                Piece.i,
+                Piece.z,
+                Piece.pz,
+                Piece.k,
+                Piece.pk,
+                Piece.r,
             }
         };
         /// <summary>
         /// [対局者][駒種類]
         /// 指し手生成のオーダリング用（強い駒順）
         /// </summary>
-        public static readonly Koma[][] itiranTuyoimonoJun = new Koma[][]
+        public static readonly Piece[][] itiranTuyoimonoJun = new Piece[][]
         {
-            new Koma[]{
-                Koma.R,
-                Koma.PK,
-                Koma.PZ,
-                Koma.PH,
-                Koma.PS,
-                Koma.PU,
-                Koma.PN,
-                Koma.K,
-                Koma.Z,
-                Koma.I,
-                Koma.N,
-                Koma.U,
-                Koma.S,
-                Koma.H,
+            new Piece[]{
+                Piece.R,
+                Piece.PK,
+                Piece.PZ,
+                Piece.PH,
+                Piece.PS,
+                Piece.PU,
+                Piece.PN,
+                Piece.K,
+                Piece.Z,
+                Piece.I,
+                Piece.N,
+                Piece.U,
+                Piece.S,
+                Piece.H,
             },
-            new Koma[]{
-                Koma.r,
-                Koma.pk,
-                Koma.pz,
-                Koma.ph,
-                Koma.ps,
-                Koma.pu,
-                Koma.pn,
-                Koma.k,
-                Koma.z,
-                Koma.i,
-                Koma.n,
-                Koma.u,
-                Koma.s,
-                Koma.h,
+            new Piece[]{
+                Piece.r,
+                Piece.pk,
+                Piece.pz,
+                Piece.ph,
+                Piece.ps,
+                Piece.pu,
+                Piece.pn,
+                Piece.k,
+                Piece.z,
+                Piece.i,
+                Piece.n,
+                Piece.u,
+                Piece.s,
+                Piece.h,
             }
         };
         /// <summary>
         /// 飛び利きのある駒一覧（ディスカバード・アタック用）
         /// [イテレーション]
         /// </summary>
-        public static readonly Koma[] itiranTobikiki = new Koma[]
+        public static readonly Piece[] itiranTobikiki = new Piece[]
         {
-            Koma.Z,Koma.z,// ぞう
-            Koma.PZ,Koma.pz,// パワーアップぞう
-            Koma.K,Koma.k,// きりん
-            Koma.PK,Koma.pk,// パワーアップきりん
-            Koma.S,Koma.s,// いのしし
+            Piece.Z,Piece.z,// ぞう
+            Piece.PZ,Piece.pz,// パワーアップぞう
+            Piece.K,Piece.k,// きりん
+            Piece.PK,Piece.pk,// パワーアップきりん
+            Piece.S,Piece.s,// いのしし
         };
         /// <summary>
         /// らいおんを除いた一覧。ジャム用。
         /// </summary>
-        public static readonly Koma[] itiranRaionNozoku =
+        public static readonly Piece[] itiranRaionNozoku =
         {
             // ぞう（対局者１、対局者２）
-            Koma.Z,Koma.z,
+            Piece.Z,Piece.z,
 
             // パワーアップぞう
-            Koma.PZ,Koma.pz,
+            Piece.PZ,Piece.pz,
 
             // きりん
-            Koma.K,Koma.k,
+            Piece.K,Piece.k,
 
             // パワーアップきりん
-            Koma.PK,Koma.pk,
+            Piece.PK,Piece.pk,
 
             // ひよこ
-            Koma.H,Koma.h,
+            Piece.H,Piece.h,
 
             // にわとり
-            Koma.PH,Koma.ph,
+            Piece.PH,Piece.ph,
 
             // いぬ
-            Koma.I,Koma.i,
+            Piece.I,Piece.i,
 
             // ねこ
-            Koma.N,Koma.n,
+            Piece.N,Piece.n,
 
             // パワーアップねこ
-            Koma.PN,Koma.pn,
+            Piece.PN,Piece.pn,
 
             // うさぎ
-            Koma.U,Koma.u,
+            Piece.U,Piece.u,
 
             // パワーアップうさぎ
-            Koma.PU,Koma.pu,
+            Piece.PU,Piece.pu,
 
             // いのしし
-            Koma.S,Koma.s,
+            Piece.S,Piece.s,
 
             // パワーアップいのしし
-            Koma.PS,Koma.ps,
+            Piece.PS,Piece.ps,
 
         };
         ///// <summary>
@@ -500,12 +416,12 @@ namespace kifuwarabe_shogithink.pure.ky
             // 空白、要素数
             "　　", "　　",
         };
-        public static string GetName(Koma km)
+        public static string GetName(Piece km)
         {
             return m_namae_[(int)km];
         }
 
-        public static string GetFen(FenSyurui f, Koma km)
+        public static string GetFen(FenSyurui f, Piece km)
         {
             return f==FenSyurui.sfe_n ? m_sfen_[(int)km] : m_dfen_[(int)km];
         }
@@ -514,56 +430,56 @@ namespace kifuwarabe_shogithink.pure.ky
         /// </summary>
         /// <param name="km"></param>
         /// <returns></returns>
-        public static Koma Hanten(Koma km)
+        public static Piece Hanten(Piece km)
         {
             switch (km)
             {
-                case Koma.R: return Koma.r;
-                case Koma.r: return Koma.R;
+                case Piece.R: return Piece.r;
+                case Piece.r: return Piece.R;
 
-                case Koma.Z: return Koma.z;
-                case Koma.z: return Koma.Z;
+                case Piece.Z: return Piece.z;
+                case Piece.z: return Piece.Z;
 
-                case Koma.PZ: return Koma.pz;
-                case Koma.pz: return Koma.PZ;
+                case Piece.PZ: return Piece.pz;
+                case Piece.pz: return Piece.PZ;
 
-                case Koma.K: return Koma.k;
-                case Koma.k: return Koma.K;
+                case Piece.K: return Piece.k;
+                case Piece.k: return Piece.K;
 
-                case Koma.PK: return Koma.pk;
-                case Koma.pk: return Koma.PK;
+                case Piece.PK: return Piece.pk;
+                case Piece.pk: return Piece.PK;
 
-                case Koma.H: return Koma.h;
-                case Koma.h: return Koma.H;
+                case Piece.H: return Piece.h;
+                case Piece.h: return Piece.H;
 
-                case Koma.PH: return Koma.ph;
-                case Koma.ph: return Koma.PH;
+                case Piece.PH: return Piece.ph;
+                case Piece.ph: return Piece.PH;
 
-                case Koma.I: return Koma.i;
-                case Koma.i: return Koma.I;
+                case Piece.I: return Piece.i;
+                case Piece.i: return Piece.I;
 
-                case Koma.N: return Koma.n;
-                case Koma.n: return Koma.N;
+                case Piece.N: return Piece.n;
+                case Piece.n: return Piece.N;
 
-                case Koma.PN: return Koma.pn;
-                case Koma.pn: return Koma.PN;
+                case Piece.PN: return Piece.pn;
+                case Piece.pn: return Piece.PN;
 
-                case Koma.U: return Koma.u;
-                case Koma.u: return Koma.U;
+                case Piece.U: return Piece.u;
+                case Piece.u: return Piece.U;
 
-                case Koma.PU: return Koma.pu;
-                case Koma.pu: return Koma.PU;
+                case Piece.PU: return Piece.pu;
+                case Piece.pu: return Piece.PU;
 
-                case Koma.S: return Koma.s;
-                case Koma.s: return Koma.S;
+                case Piece.S: return Piece.s;
+                case Piece.s: return Piece.S;
 
-                case Koma.PS: return Koma.ps;
-                case Koma.ps: return Koma.PS;
+                case Piece.PS: return Piece.ps;
+                case Piece.ps: return Piece.PS;
 
-                case Koma.Kuhaku: return Koma.Kuhaku;
+                case Piece.Kuhaku: return Piece.Kuhaku;
                 default: break;
             }
-            return Koma.Yososu;
+            return Piece.Yososu;
         }
 
         /// <summary>
@@ -571,18 +487,18 @@ namespace kifuwarabe_shogithink.pure.ky
         /// </summary>
         /// <param name="km"></param>
         /// <returns></returns>
-        public static bool IsOkOrKuhaku(Koma km)
+        public static bool IsOkOrKuhaku(Piece km)
         {
-            return Koma.R <= km && km <= Koma.Kuhaku;
+            return Piece.R <= km && km <= Piece.Kuhaku;
         }
         /// <summary>
         /// 空白、要素数以外の駒
         /// </summary>
         /// <param name="km"></param>
         /// <returns></returns>
-        public static bool IsOk(Koma km)
+        public static bool IsOk(Piece km)
         {
-            return Koma.R <= km && km < Koma.Kuhaku;
+            return Piece.R <= km && km < Piece.Kuhaku;
         }
 
         /// <summary>
@@ -591,22 +507,22 @@ namespace kifuwarabe_shogithink.pure.ky
         /// </summary>
         /// <param name="km"></param>
         /// <returns></returns>
-        public static bool IsHasirigoma(Koma km)
+        public static bool IsHasirigoma(Piece km)
         {
             switch (km)
             {
-                case Koma.K:
-                case Koma.k:
-                case Koma.Z:
-                case Koma.z:
-                case Koma.S:
-                case Koma.s:
-                case Koma.PK:
-                case Koma.pk:
-                case Koma.PZ:
-                case Koma.pz:
-                case Koma.PS:
-                case Koma.ps:
+                case Piece.K:
+                case Piece.k:
+                case Piece.Z:
+                case Piece.z:
+                case Piece.S:
+                case Piece.s:
+                case Piece.PK:
+                case Piece.pk:
+                case Piece.PZ:
+                case Piece.pz:
+                case Piece.PS:
+                case Piece.ps:
                     return true;
                 default:
                     return false;

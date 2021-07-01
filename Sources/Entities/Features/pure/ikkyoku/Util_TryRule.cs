@@ -3,14 +3,15 @@ using kifuwarabe_shogithink.pure.project;
 using kifuwarabe_shogithink.pure.genkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
-
 using kifuwarabe_shogithink.pure.accessor;
 using System;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 using System;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogithink.pure.ikkyoku
@@ -28,7 +29,7 @@ namespace kifuwarabe_shogithink.pure.ikkyoku
         /// <returns></returns>
         public static bool IsTried(Taikyokusya ts)
         {
-            Koma km = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(Komasyurui.R, ts);
+            Piece km = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(Komasyurui.R, ts);
             switch (ts)
             {
                 case Taikyokusya.T1: return PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.ToIsIntersect_Koma(km, BitboardsOmatome.bb_danArray[0]);

@@ -1,8 +1,10 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.com.hyoka;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.ky;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogithink.pure.software
@@ -15,19 +17,19 @@ namespace kifuwarabe_shogithink.pure.software
         static HirateShokiKyokumen()
         {
             // どうぶつしょうぎの平手初期局面
-            banjo = new Koma[]
+            banjo = new Piece[]
             {
-                Koma.k, Koma.r, Koma.z,
-                Koma.Kuhaku, Koma.h, Koma.Kuhaku,
-                Koma.Kuhaku, Koma.H, Koma.Kuhaku,
-                Koma.Z, Koma.R, Koma.K
+                Piece.k, Piece.r, Piece.z,
+                Piece.Kuhaku, Piece.h, Piece.Kuhaku,
+                Piece.Kuhaku, Piece.H, Piece.Kuhaku,
+                Piece.Z, Piece.R, Piece.K
             };
         }
 
         /// <summary>
         /// FIXME: 本将棋に対応してない
         /// </summary>
-        public static Koma[] banjo;
+        public static Piece[] banjo;
 
     }
 }

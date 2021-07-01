@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.control;
 using kifuwarabe_shogithink.pure.ky;//局面データ
@@ -15,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogiapi
@@ -186,7 +188,7 @@ namespace kifuwarabe_shogiapi
                 sb.AppendLine("（５）対局結果");
                 sb.AppendLine(ShogiApi.TaikyokuKekka.ToString());
                 sb.AppendLine("（７）盤面の駒データを配列で");
-                foreach (Koma km_var in ShogiApi.GetKyokumen_Hairetu())
+                foreach (Piece km_var in ShogiApi.GetKyokumen_Hairetu())
                 {
                     sb.AppendLine(km_var.ToString());
                 }

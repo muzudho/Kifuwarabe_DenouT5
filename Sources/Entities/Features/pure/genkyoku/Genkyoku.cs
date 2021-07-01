@@ -1,9 +1,9 @@
 ﻿#if DEBUG
 using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
-
 using System.Diagnostics;
 using kifuwarabe_shogithink.pure.accessor;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure.accessor;
 using kifuwarabe_shogithink.pure.control;
@@ -12,6 +12,7 @@ using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.ky.bb;
 using System.Diagnostics;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogithink.pure.genkyoku
@@ -53,7 +54,7 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                 for (int iKs = 0; iKs < Conv_Komasyurui.itiran.Length; iKs++)
                 {
                     Komasyurui ks = Conv_Komasyurui.itiran[iKs];
-                    Koma km = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, tai);
+                    Piece km = Med_Koma.KomasyuruiAndTaikyokusyaToKoma(ks, tai);
 
                     if (!PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.Equals_Koma_ForDevelop(km, shogiban_hikaku.ibashoBan_yk00.yomiIbashoBan)) { return false; }
                 }

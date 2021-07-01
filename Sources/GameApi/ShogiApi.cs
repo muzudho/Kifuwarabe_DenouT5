@@ -8,7 +8,6 @@ using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen.ky;
 using kifuwarabe_shogithink.pure.listen.play;
-
 using kifuwarabe_shogithink.pure.med.ky;
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.genkyoku;
@@ -17,6 +16,7 @@ using kifuwarabe_shogithink.pure.speak.play;
 using System;
 using System.Collections.Generic;
 using kifuwarabe_shogithink.pure.listen.genkyoku;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #else
 using kifuwarabe_shogithink.pure;
 using kifuwarabe_shogithink.pure.accessor;
@@ -27,7 +27,6 @@ using kifuwarabe_shogithink.pure.ikkyoku;
 using kifuwarabe_shogithink.pure.ky;
 using kifuwarabe_shogithink.pure.listen.genkyoku;
 using kifuwarabe_shogithink.pure.listen.play;
-
 using kifuwarabe_shogithink.pure.move;
 using kifuwarabe_shogithink.pure.speak.genkyoku;
 using kifuwarabe_shogithink.pure.speak.ky;
@@ -35,6 +34,7 @@ using kifuwarabe_shogithink.pure.speak.play;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Grayscale.Kifuwarabi.Entities.Take1Base;
 #endif
 
 namespace kifuwarabe_shogiapi
@@ -197,9 +197,9 @@ namespace kifuwarabe_shogiapi
         /// 盤面を駒データの配列として取得することもできるぜ☆（＾～＾）
         /// </summary>
         /// <returns></returns>
-        public static Koma[] GetKyokumen_Hairetu()
+        public static Piece[] GetKyokumen_Hairetu()
         {
-            Koma[] ret = new Koma[PureSettei.banHeimen];
+            Piece[] ret = new Piece[PureSettei.banHeimen];
             for (int iMs = 0; iMs < PureSettei.banHeimen; iMs++)
             {
                 ret[iMs] = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma((Masu)iMs);

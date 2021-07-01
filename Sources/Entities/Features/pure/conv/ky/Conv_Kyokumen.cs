@@ -1,7 +1,8 @@
-﻿using kifuwarabe_shogithink.pure.ky;
-
-namespace kifuwarabe_shogithink.pure.conv.ky
+﻿namespace kifuwarabe_shogithink.pure.conv.ky
 {
+    using kifuwarabe_shogithink.pure.ky;
+    using Grayscale.Kifuwarabi.Entities.Take1Base;
+
     public static class Conv_Kyokumen
     {
         /// <summary>
@@ -9,9 +10,9 @@ namespace kifuwarabe_shogithink.pure.conv.ky
         /// </summary>
         /// <param name="yomiKy"></param>
         /// <returns></returns>
-        public static Koma[] ToKomaHairetu()
+        public static Piece[] ToKomaHairetu()
         {
-            Koma[] ret = new Koma[PureSettei.banHeimen];
+            Piece[] ret = new Piece[PureSettei.banHeimen];
             for (int iMs = 0; iMs < PureSettei.banHeimen; iMs++)
             {
                 ret[iMs] = PureMemory.gky_ky.yomiKy.yomiShogiban.yomiIbashoBan.GetBanjoKoma((Masu)iMs);
