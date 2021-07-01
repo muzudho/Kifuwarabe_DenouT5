@@ -60,8 +60,8 @@ namespace kifuwarabe_shogithink.pure.ikkyoku
             else
             {
                 // らいおんがいるか☆
-                bool raion1Vanished = PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.IsEmptyKoma(Piece.R);
-                bool raion2Vanished = PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.IsEmptyKoma(Piece.r);
+                bool raion1Vanished = PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.IsEmptyKoma(Piece.K1);
+                bool raion2Vanished = PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.IsEmptyKoma(Piece.K2);
 
                 if (raion1Vanished && raion2Vanished)
                 {

@@ -18,20 +18,20 @@ namespace kifuwarabe_shogithink.pure.ky
         /// </summary>
         public static readonly Piece[] itiran =
         {
-            Piece.R,Piece.r,// らいおん（対局者１、対局者２）
-            Piece.Z,Piece.z,// ぞう
-            Piece.PZ,Piece.pz,// パワーアップぞう
-            Piece.K,Piece.k,// きりん
-            Piece.PK,Piece.pk,// パワーアップきりん
-            Piece.H,Piece.h,// ひよこ
-            Piece.PH,Piece.ph,// にわとり
-            Piece.I,Piece.i,// いぬ
-            Piece.N,Piece.n,// ねこ
-            Piece.PN,Piece.pn,// 成りねこ
-            Piece.U,Piece.u,// うさぎ
-            Piece.PU,Piece.pu,// 成りうさぎ
-            Piece.S,Piece.s,// いのしし
-            Piece.PS,Piece.ps,// 成りいのしし
+            Piece.K1,Piece.K2,// らいおん（対局者１、対局者２）
+            Piece.B1,Piece.B2,// ぞう
+            Piece.PB1,Piece.PB2,// パワーアップぞう
+            Piece.R1,Piece.R2,// きりん
+            Piece.PR1,Piece.PR2,// パワーアップきりん
+            Piece.P1,Piece.P2,// ひよこ
+            Piece.PP1,Piece.PP2,// にわとり
+            Piece.G1,Piece.G2,// いぬ
+            Piece.S1,Piece.S2,// ねこ
+            Piece.PS1,Piece.PS2,// 成りねこ
+            Piece.N1,Piece.N2,// うさぎ
+            Piece.PN1,Piece.PN2,// 成りうさぎ
+            Piece.L1,Piece.L2,// いのしし
+            Piece.PL1,Piece.PL2,// 成りいのしし
         };
         /// <summary>
         /// [先後駒列挙型]
@@ -61,36 +61,36 @@ namespace kifuwarabe_shogithink.pure.ky
         public static readonly Piece[][] itiranTai = new Piece[][]
         {
             new Piece[]{// 対局者１
-                Piece.R,// らいおん
-                Piece.Z,// ぞう
-                Piece.PZ,// パワーアップぞう
-                Piece.K,// きりん
-                Piece.PK,// パワーアップきりん
-                Piece.H,// ひよこ
-                Piece.PH,// にわとり
-                Piece.I,// いぬ
-                Piece.N,// ねこ
-                Piece.PN,// パワーアップねこ
-                Piece.U,// うさぎ
-                Piece.PU,// パワーアップうさぎ
-                Piece.S,// いのしし
-                Piece.PS,// パワーアップいのしし
+                Piece.K1,// らいおん
+                Piece.B1,// ぞう
+                Piece.PB1,// パワーアップぞう
+                Piece.R1,// きりん
+                Piece.PR1,// パワーアップきりん
+                Piece.P1,// ひよこ
+                Piece.PP1,// にわとり
+                Piece.G1,// いぬ
+                Piece.S1,// ねこ
+                Piece.PS1,// パワーアップねこ
+                Piece.N1,// うさぎ
+                Piece.PN1,// パワーアップうさぎ
+                Piece.L1,// いのしし
+                Piece.PL1,// パワーアップいのしし
             },
             new Piece[]{// 対局者２
-                Piece.r,
-                Piece.z,
-                Piece.pz,
-                Piece.k,
-                Piece.pk,
-                Piece.h,
-                Piece.ph,
-                Piece.i,
-                Piece.n,
-                Piece.pn,
-                Piece.u,
-                Piece.pu,
-                Piece.s,
-                Piece.ps,
+                Piece.K2,
+                Piece.B2,
+                Piece.PB2,
+                Piece.R2,
+                Piece.PR2,
+                Piece.P2,
+                Piece.PP2,
+                Piece.G2,
+                Piece.S2,
+                Piece.PS2,
+                Piece.N2,
+                Piece.PN2,
+                Piece.L2,
+                Piece.PL2,
             },
             new Piece[]{
                 // 該当無し
@@ -103,36 +103,36 @@ namespace kifuwarabe_shogithink.pure.ky
         public static readonly Piece[][] itiranYowaimonoJun = new Piece[][]
         {
             new Piece[]{
-                Piece.H,
-                Piece.PH,
-                Piece.S,
-                Piece.PS,
-                Piece.U,
-                Piece.PU,
-                Piece.N,
-                Piece.PN,
-                Piece.I,
-                Piece.Z,
-                Piece.PZ,
-                Piece.K,
-                Piece.PK,
-                Piece.R,
+                Piece.P1,
+                Piece.PP1,
+                Piece.L1,
+                Piece.PL1,
+                Piece.N1,
+                Piece.PN1,
+                Piece.S1,
+                Piece.PS1,
+                Piece.G1,
+                Piece.B1,
+                Piece.PB1,
+                Piece.R1,
+                Piece.PR1,
+                Piece.K1,
             },
             new Piece[]{
-                Piece.h,
-                Piece.ph,
-                Piece.s,
-                Piece.ps,
-                Piece.u,
-                Piece.pu,
-                Piece.n,
-                Piece.pn,
-                Piece.i,
-                Piece.z,
-                Piece.pz,
-                Piece.k,
-                Piece.pk,
-                Piece.r,
+                Piece.P2,
+                Piece.PP2,
+                Piece.L2,
+                Piece.PL2,
+                Piece.N2,
+                Piece.PN2,
+                Piece.S2,
+                Piece.PS2,
+                Piece.G2,
+                Piece.B2,
+                Piece.PB2,
+                Piece.R2,
+                Piece.PR2,
+                Piece.K2,
             }
         };
         /// <summary>
@@ -142,36 +142,36 @@ namespace kifuwarabe_shogithink.pure.ky
         public static readonly Piece[][] itiranTuyoimonoJun = new Piece[][]
         {
             new Piece[]{
-                Piece.R,
-                Piece.PK,
-                Piece.PZ,
-                Piece.PH,
-                Piece.PS,
-                Piece.PU,
-                Piece.PN,
-                Piece.K,
-                Piece.Z,
-                Piece.I,
-                Piece.N,
-                Piece.U,
-                Piece.S,
-                Piece.H,
+                Piece.K1,
+                Piece.PR1,
+                Piece.PB1,
+                Piece.PP1,
+                Piece.PL1,
+                Piece.PN1,
+                Piece.PS1,
+                Piece.R1,
+                Piece.B1,
+                Piece.G1,
+                Piece.S1,
+                Piece.N1,
+                Piece.L1,
+                Piece.P1,
             },
             new Piece[]{
-                Piece.r,
-                Piece.pk,
-                Piece.pz,
-                Piece.ph,
-                Piece.ps,
-                Piece.pu,
-                Piece.pn,
-                Piece.k,
-                Piece.z,
-                Piece.i,
-                Piece.n,
-                Piece.u,
-                Piece.s,
-                Piece.h,
+                Piece.K2,
+                Piece.PR2,
+                Piece.PB2,
+                Piece.PP2,
+                Piece.PL2,
+                Piece.PN2,
+                Piece.PS2,
+                Piece.R2,
+                Piece.B2,
+                Piece.G2,
+                Piece.S2,
+                Piece.N2,
+                Piece.L2,
+                Piece.P2,
             }
         };
         /// <summary>
@@ -180,11 +180,11 @@ namespace kifuwarabe_shogithink.pure.ky
         /// </summary>
         public static readonly Piece[] itiranTobikiki = new Piece[]
         {
-            Piece.Z,Piece.z,// ぞう
-            Piece.PZ,Piece.pz,// パワーアップぞう
-            Piece.K,Piece.k,// きりん
-            Piece.PK,Piece.pk,// パワーアップきりん
-            Piece.S,Piece.s,// いのしし
+            Piece.B1,Piece.B2,// ぞう
+            Piece.PB1,Piece.PB2,// パワーアップぞう
+            Piece.R1,Piece.R2,// きりん
+            Piece.PR1,Piece.PR2,// パワーアップきりん
+            Piece.L1,Piece.L2,// いのしし
         };
         /// <summary>
         /// らいおんを除いた一覧。ジャム用。
@@ -192,43 +192,43 @@ namespace kifuwarabe_shogithink.pure.ky
         public static readonly Piece[] itiranRaionNozoku =
         {
             // ぞう（対局者１、対局者２）
-            Piece.Z,Piece.z,
+            Piece.B1,Piece.B2,
 
             // パワーアップぞう
-            Piece.PZ,Piece.pz,
+            Piece.PB1,Piece.PB2,
 
             // きりん
-            Piece.K,Piece.k,
+            Piece.R1,Piece.R2,
 
             // パワーアップきりん
-            Piece.PK,Piece.pk,
+            Piece.PR1,Piece.PR2,
 
             // ひよこ
-            Piece.H,Piece.h,
+            Piece.P1,Piece.P2,
 
             // にわとり
-            Piece.PH,Piece.ph,
+            Piece.PP1,Piece.PP2,
 
             // いぬ
-            Piece.I,Piece.i,
+            Piece.G1,Piece.G2,
 
             // ねこ
-            Piece.N,Piece.n,
+            Piece.S1,Piece.S2,
 
             // パワーアップねこ
-            Piece.PN,Piece.pn,
+            Piece.PS1,Piece.PS2,
 
             // うさぎ
-            Piece.U,Piece.u,
+            Piece.N1,Piece.N2,
 
             // パワーアップうさぎ
-            Piece.PU,Piece.pu,
+            Piece.PN1,Piece.PN2,
 
             // いのしし
-            Piece.S,Piece.s,
+            Piece.L1,Piece.L2,
 
             // パワーアップいのしし
-            Piece.PS,Piece.ps,
+            Piece.PL1,Piece.PL2,
 
         };
         ///// <summary>
@@ -434,47 +434,47 @@ namespace kifuwarabe_shogithink.pure.ky
         {
             switch (km)
             {
-                case Piece.R: return Piece.r;
-                case Piece.r: return Piece.R;
+                case Piece.K1: return Piece.K2;
+                case Piece.K2: return Piece.K1;
 
-                case Piece.Z: return Piece.z;
-                case Piece.z: return Piece.Z;
+                case Piece.B1: return Piece.B2;
+                case Piece.B2: return Piece.B1;
 
-                case Piece.PZ: return Piece.pz;
-                case Piece.pz: return Piece.PZ;
+                case Piece.PB1: return Piece.PB2;
+                case Piece.PB2: return Piece.PB1;
 
-                case Piece.K: return Piece.k;
-                case Piece.k: return Piece.K;
+                case Piece.R1: return Piece.R2;
+                case Piece.R2: return Piece.R1;
 
-                case Piece.PK: return Piece.pk;
-                case Piece.pk: return Piece.PK;
+                case Piece.PR1: return Piece.PR2;
+                case Piece.PR2: return Piece.PR1;
 
-                case Piece.H: return Piece.h;
-                case Piece.h: return Piece.H;
+                case Piece.P1: return Piece.P2;
+                case Piece.P2: return Piece.P1;
 
-                case Piece.PH: return Piece.ph;
-                case Piece.ph: return Piece.PH;
+                case Piece.PP1: return Piece.PP2;
+                case Piece.PP2: return Piece.PP1;
 
-                case Piece.I: return Piece.i;
-                case Piece.i: return Piece.I;
+                case Piece.G1: return Piece.G2;
+                case Piece.G2: return Piece.G1;
 
-                case Piece.N: return Piece.n;
-                case Piece.n: return Piece.N;
+                case Piece.S1: return Piece.S2;
+                case Piece.S2: return Piece.S1;
 
-                case Piece.PN: return Piece.pn;
-                case Piece.pn: return Piece.PN;
+                case Piece.PS1: return Piece.PS2;
+                case Piece.PS2: return Piece.PS1;
 
-                case Piece.U: return Piece.u;
-                case Piece.u: return Piece.U;
+                case Piece.N1: return Piece.N2;
+                case Piece.N2: return Piece.N1;
 
-                case Piece.PU: return Piece.pu;
-                case Piece.pu: return Piece.PU;
+                case Piece.PN1: return Piece.PN2;
+                case Piece.PN2: return Piece.PN1;
 
-                case Piece.S: return Piece.s;
-                case Piece.s: return Piece.S;
+                case Piece.L1: return Piece.L2;
+                case Piece.L2: return Piece.L1;
 
-                case Piece.PS: return Piece.ps;
-                case Piece.ps: return Piece.PS;
+                case Piece.PL1: return Piece.PL2;
+                case Piece.PL2: return Piece.PL1;
 
                 case Piece.Kuhaku: return Piece.Kuhaku;
                 default: break;
@@ -489,7 +489,7 @@ namespace kifuwarabe_shogithink.pure.ky
         /// <returns></returns>
         public static bool IsOkOrKuhaku(Piece km)
         {
-            return Piece.R <= km && km <= Piece.Kuhaku;
+            return Piece.K1 <= km && km <= Piece.Kuhaku;
         }
         /// <summary>
         /// 空白、要素数以外の駒
@@ -498,7 +498,7 @@ namespace kifuwarabe_shogithink.pure.ky
         /// <returns></returns>
         public static bool IsOk(Piece km)
         {
-            return Piece.R <= km && km < Piece.Kuhaku;
+            return Piece.K1 <= km && km < Piece.Kuhaku;
         }
 
         /// <summary>
@@ -511,18 +511,18 @@ namespace kifuwarabe_shogithink.pure.ky
         {
             switch (km)
             {
-                case Piece.K:
-                case Piece.k:
-                case Piece.Z:
-                case Piece.z:
-                case Piece.S:
-                case Piece.s:
-                case Piece.PK:
-                case Piece.pk:
-                case Piece.PZ:
-                case Piece.pz:
-                case Piece.PS:
-                case Piece.ps:
+                case Piece.R1:
+                case Piece.R2:
+                case Piece.B1:
+                case Piece.B2:
+                case Piece.L1:
+                case Piece.L2:
+                case Piece.PR1:
+                case Piece.PR2:
+                case Piece.PB1:
+                case Piece.PB2:
+                case Piece.PL1:
+                case Piece.PL2:
                     return true;
                 default:
                     return false;

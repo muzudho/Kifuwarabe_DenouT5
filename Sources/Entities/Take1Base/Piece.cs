@@ -6,74 +6,74 @@
     public enum Piece
     {
         /// <summary>
-        /// らいおん（対局者１，２）
+        /// 玉（対局者１，２）
         /// </summary>
-        R, r,
+        K1, K2,
 
         /// <summary>
-        /// ぞう
+        /// 角
         /// </summary>
-        Z, z,
+        B1, B2,
 
         /// <summary>
-        /// パワーアップぞう
+        /// 馬
         /// </summary>
-        PZ, pz,
+        PB1, PB2,
 
         /// <summary>
-        /// きりん
+        /// 飛
         /// </summary>
-        K, k,
+        R1, R2,
 
         /// <summary>
-        /// パワーアップきりん
+        /// 竜
         /// </summary>
-        PK, pk,
+        PR1, PR2,
 
         /// <summary>
-        /// ひよこ
+        /// 歩
         /// </summary>
-        H, h,
+        P1, P2,
 
         /// <summary>
-        /// にわとり
+        /// と
         /// </summary>
-        PH, ph,
+        PP1, PP2,
 
         /// <summary>
-        /// いぬ
+        /// 金
         /// </summary>
-        I, i,
+        G1, G2,
 
         /// <summary>
-        /// ねこ
+        /// 銀
         /// </summary>
-        N, n,
+        S1, S2,
 
         /// <summary>
-        /// 成りねこ
+        /// 全
         /// </summary>
-        PN, pn,
+        PS1, PS2,
 
         /// <summary>
-        /// うさぎ
+        /// 桂
         /// </summary>
-        U, u,
+        N1, N2,
 
         /// <summary>
-        /// 成りうさぎ
+        /// 圭
         /// </summary>
-        PU, pu,
+        PN1, PN2,
 
         /// <summary>
-        /// いのしし
+        /// 香
         /// </summary>
-        S, s,
+        L1, L2,
 
         /// <summary>
-        /// 成りいのしし
+        /// 杏
         /// </summary>
-        PS, ps,
+        PL1, PL2,
 
         /// <summary>
         /// 空白☆ 駒のない升だぜ☆（＾▽＾）

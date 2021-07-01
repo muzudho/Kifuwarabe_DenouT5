@@ -19,10 +19,10 @@ namespace kifuwarabe_shogithink.pure.software
             // どうぶつしょうぎの平手初期局面
             banjo = new Piece[]
             {
-                Piece.k, Piece.r, Piece.z,
-                Piece.Kuhaku, Piece.h, Piece.Kuhaku,
-                Piece.Kuhaku, Piece.H, Piece.Kuhaku,
-                Piece.Z, Piece.R, Piece.K
+                Piece.R2, Piece.K2, Piece.B2,
+                Piece.Kuhaku, Piece.P2, Piece.Kuhaku,
+                Piece.Kuhaku, Piece.P1, Piece.Kuhaku,
+                Piece.B1, Piece.K1, Piece.R1
             };
         }
 

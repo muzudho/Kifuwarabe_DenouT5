@@ -241,22 +241,22 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                         r = PureSettei.random.Next(kakuritu);
                         if (r % 5 < 2)
                         {
-                            if (PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.ExistsKoma(Piece.H, (Masu)iMs1) || PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.ExistsKoma(Piece.h, (Masu)iMs1))
+                            if (PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.ExistsKoma(Piece.P1, (Masu)iMs1) || PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.ExistsKoma(Piece.P2, (Masu)iMs1))
                             {
                                 if (0 == r) {
-                                    km = Piece.PH;
+                                    km = Piece.PP1;
                                 }
                                 else {
-                                    km = Piece.ph;
+                                    km = Piece.PP2;
                                 }
                             }
-                            else if (PureMemory.gky_ky.shogiban.yomiIbashoBan_yoko.IsOn(Piece.PH, (Masu)iMs1) || PureMemory.gky_ky.shogiban.yomiIbashoBan_yoko.IsOn(Piece.ph, (Masu)iMs1))
+                            else if (PureMemory.gky_ky.shogiban.yomiIbashoBan_yoko.IsOn(Piece.PP1, (Masu)iMs1) || PureMemory.gky_ky.shogiban.yomiIbashoBan_yoko.IsOn(Piece.PP2, (Masu)iMs1))
                             {
                                 if (0 == r) {
-                                    km = Piece.H;
+                                    km = Piece.P1;
                                 }
                                 else {
-                                    km = Piece.h;
+                                    km = Piece.P2;
                                 }
                             }
                             else
@@ -301,10 +301,10 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                                     }
 
                                     if (1 == r) {
-                                        km = Piece.Z;
+                                        km = Piece.B1;
                                     }
                                     else {
-                                        km = Piece.z;
+                                        km = Piece.B2;
                                     }
                                     break;
                                 case Motigoma.K:
@@ -319,10 +319,10 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                                     }
 
                                     if (1 == r) {
-                                        km = Piece.K;
+                                        km = Piece.R1;
                                     }
                                     else {
-                                        km = Piece.k;
+                                        km = Piece.R2;
                                     }
                                     break;
                                 case Motigoma.H:
@@ -336,10 +336,10 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                                     }
 
                                     if (1 == r) {
-                                        km = Piece.H;
+                                        km = Piece.P1;
                                     }
                                     else {
-                                        km = Piece.h;
+                                        km = Piece.P2;
                                     }
                                     break;
                                 case Motigoma.z:
@@ -353,10 +353,10 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                                     }
 
                                     if (1 == r) {
-                                        km = Piece.z;
+                                        km = Piece.B2;
                                     }
                                     else {
-                                        km = Piece.Z;
+                                        km = Piece.B1;
                                     }
                                     break;
                                 case Motigoma.k:
@@ -370,10 +370,10 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                                     }
 
                                     if (1 == r) {
-                                        km = Piece.k;
+                                        km = Piece.R2;
                                     }
                                     else {
-                                        km = Piece.K;
+                                        km = Piece.R1;
                                     }
                                     break;
                                 case Motigoma.h:
@@ -387,10 +387,10 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                                     }
 
                                     if (1 == r) {
-                                        km = Piece.h;
+                                        km = Piece.P2;
                                     }
                                     else {
-                                        km = Piece.H;
+                                        km = Piece.P1;
                                     }
                                     break;
                             }
@@ -452,14 +452,14 @@ namespace kifuwarabe_shogithink.pure.genkyoku
                     }
                     */
 
-                    if (PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.ExistsKoma(Piece.R, (Masu)iMs1) || PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.ExistsKoma(Piece.r, (Masu)iMs1))
+                    if (PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.ExistsKoma(Piece.K1, (Masu)iMs1) || PureMemory.gky_ky.shogiban.ibashoBan_yk00.yomiIbashoBan.ExistsKoma(Piece.K2, (Masu)iMs1))
                     {
                         Piece km = Piece.Yososu;
                         if (tb == Taikyokusya.T1) {
-                            km = Piece.R;
+                            km = Piece.K1;
                         }
                         else {
-                            km = Piece.r;
+                            km = Piece.K2;
                         }
 
                         if (Piece.Yososu!=km)

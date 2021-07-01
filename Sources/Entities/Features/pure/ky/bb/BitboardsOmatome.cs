@@ -478,20 +478,20 @@ namespace kifuwarabe_shogithink.pure.ky.bb
                         switch (km)
                         {
                             // ひよこ、いのしし
-                            case Piece.H:
-                            case Piece.S:
+                            case Piece.P1:
+                            case Piece.L1:
                                 bb_uteruZone[(int)km].Sitdown(bb_danArray[0]);
                                 break;
-                            case Piece.h:
-                            case Piece.s:
+                            case Piece.P2:
+                            case Piece.L2:
                                 bb_uteruZone[(int)km].Sitdown(bb_danArray[tate - 1]);
                                 break;
                             // うさぎ
-                            case Piece.U:
+                            case Piece.N1:
                                 bb_uteruZone[(int)km].Sitdown(bb_danArray[0]);
                                 bb_uteruZone[(int)km].Sitdown(bb_danArray[1]);
                                 break;
-                            case Piece.u:
+                            case Piece.N2:
                                 bb_uteruZone[(int)km].Sitdown(bb_danArray[tate - 1]);
                                 bb_uteruZone[(int)km].Sitdown(bb_danArray[tate - 2]);
                                 break;
@@ -1058,10 +1058,10 @@ namespace kifuwarabe_shogithink.pure.ky.bb
 
                 switch (km_all)
                 {
-                    case Piece.K:
-                    case Piece.k:
-                    case Piece.PK:
-                    case Piece.pk:
+                    case Piece.R1:
+                    case Piece.R2:
+                    case Piece.PR1:
+                    case Piece.PR2:
                         {
                             // 横
                             TobikikiDirection kikiDir = TobikikiDirection.KY;
@@ -1079,10 +1079,10 @@ namespace kifuwarabe_shogithink.pure.ky.bb
                             ToStandup_ByElement(km_all, ms, bbTmp_ugokikata_forMerge);
                         }
                         break;
-                    case Piece.Z:
-                    case Piece.z:
-                    case Piece.PZ:
-                    case Piece.pz:
+                    case Piece.B1:
+                    case Piece.B2:
+                    case Piece.PB1:
+                    case Piece.PB2:
                         {
                             // 左上がり
                             TobikikiDirection kikiDir = TobikikiDirection.ZHa;
@@ -1100,10 +1100,10 @@ namespace kifuwarabe_shogithink.pure.ky.bb
                             ToStandup_ByElement(km_all, ms, bbTmp_ugokikata_forMerge);
                         }
                         break;
-                    case Piece.S:
-                    case Piece.s:
-                    case Piece.PS:
-                    case Piece.ps:
+                    case Piece.L1:
+                    case Piece.L2:
+                    case Piece.PL1:
+                    case Piece.PL2:
                         {
                             // いのしし縦
                             TobikikiDirection kikiDir = TobikikiDirection.S;

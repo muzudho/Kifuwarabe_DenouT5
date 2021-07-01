@@ -126,16 +126,16 @@ namespace kifuwarabe_shogithink.pure.com.MoveOrder.hioute
                 Masu ms_checker;
                 bbVar_checker.Set(PureMemory.hot_bb_raion8KinboAr[(int)irekaeTeban]);
                 // きりんとぞうは、先後同形☆（＾～＾）
-                BitboardsOmatome.KomanoUgokikataYk00.ToStandup_Merge(Piece.K, PureMemory.hot_ms_raionAr[(int)irekaeTeban], bbVar_checker);
-                BitboardsOmatome.KomanoUgokikataYk00.ToStandup_Merge(Piece.Z, PureMemory.hot_ms_raionAr[(int)irekaeTeban], bbVar_checker);
+                BitboardsOmatome.KomanoUgokikataYk00.ToStandup_Merge(Piece.R1, PureMemory.hot_ms_raionAr[(int)irekaeTeban], bbVar_checker);
+                BitboardsOmatome.KomanoUgokikataYk00.ToStandup_Merge(Piece.B1, PureMemory.hot_ms_raionAr[(int)irekaeTeban], bbVar_checker);
                 // いのししは先後別☆（＾～＾）
                 switch (irekaeAiteban)
                 {
                     case Taikyokusya.T1:
-                        BitboardsOmatome.KomanoUgokikataYk00.ToStandup_Merge(Piece.S, PureMemory.hot_ms_raionAr[(int)irekaeTeban], bbVar_checker);
+                        BitboardsOmatome.KomanoUgokikataYk00.ToStandup_Merge(Piece.L1, PureMemory.hot_ms_raionAr[(int)irekaeTeban], bbVar_checker);
                         break;
                     case Taikyokusya.T2:
-                        BitboardsOmatome.KomanoUgokikataYk00.ToStandup_Merge(Piece.s, PureMemory.hot_ms_raionAr[(int)irekaeTeban], bbVar_checker);
+                        BitboardsOmatome.KomanoUgokikataYk00.ToStandup_Merge(Piece.L2, PureMemory.hot_ms_raionAr[(int)irekaeTeban], bbVar_checker);
                         break;
                 }
                 while (bbVar_checker.Ref_PopNTZ(out ms_checker))// 立っているビットを降ろすぜ☆

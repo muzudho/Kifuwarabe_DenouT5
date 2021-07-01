@@ -44,47 +44,47 @@ namespace kifuwarabe_shogithink.pure.speak.ky
             switch (km)
             {
                 // らいおん（対局者１、対局者２）
-                case Piece.R: return Conv_Koma.ZEN1_RAION1;
-                case Piece.r: return Conv_Koma.ZEN1_RAION2;
+                case Piece.K1: return Conv_Koma.ZEN1_RAION1;
+                case Piece.K2: return Conv_Koma.ZEN1_RAION2;
 
-                case Piece.Z: return Conv_Koma.ZEN1_ZOU1;
-                case Piece.z: return Conv_Koma.ZEN1_ZOU2;
+                case Piece.B1: return Conv_Koma.ZEN1_ZOU1;
+                case Piece.B2: return Conv_Koma.ZEN1_ZOU2;
 
-                case Piece.PZ: return Conv_Koma.ZEN1_POW_ZOU1;
-                case Piece.pz: return Conv_Koma.ZEN1_POW_ZOU2;
+                case Piece.PB1: return Conv_Koma.ZEN1_POW_ZOU1;
+                case Piece.PB2: return Conv_Koma.ZEN1_POW_ZOU2;
 
-                case Piece.K: return Conv_Koma.ZEN1_KIRIN1;
-                case Piece.k: return Conv_Koma.ZEN1_KIRIN2;
+                case Piece.R1: return Conv_Koma.ZEN1_KIRIN1;
+                case Piece.R2: return Conv_Koma.ZEN1_KIRIN2;
 
-                case Piece.PK: return Conv_Koma.ZEN1_POW_KIRIN1;
-                case Piece.pk: return Conv_Koma.ZEN1_POW_KIRIN2;
+                case Piece.PR1: return Conv_Koma.ZEN1_POW_KIRIN1;
+                case Piece.PR2: return Conv_Koma.ZEN1_POW_KIRIN2;
 
-                case Piece.H: return Conv_Koma.ZEN1_HIYOKO1;
-                case Piece.h: return Conv_Koma.ZEN1_HIYOKO2;
+                case Piece.P1: return Conv_Koma.ZEN1_HIYOKO1;
+                case Piece.P2: return Conv_Koma.ZEN1_HIYOKO2;
 
-                case Piece.PH: return Conv_Koma.ZEN1_POW_HIYOKO1;
-                case Piece.ph: return Conv_Koma.ZEN1_POW_HIYOKO2;
+                case Piece.PP1: return Conv_Koma.ZEN1_POW_HIYOKO1;
+                case Piece.PP2: return Conv_Koma.ZEN1_POW_HIYOKO2;
 
-                case Piece.I: return Conv_Koma.ZEN1_INU1;
-                case Piece.i: return Conv_Koma.ZEN1_INU2;
+                case Piece.G1: return Conv_Koma.ZEN1_INU1;
+                case Piece.G2: return Conv_Koma.ZEN1_INU2;
 
-                case Piece.N: return Conv_Koma.ZEN1_NEKO1;
-                case Piece.n: return Conv_Koma.ZEN1_NEKO2;
+                case Piece.S1: return Conv_Koma.ZEN1_NEKO1;
+                case Piece.S2: return Conv_Koma.ZEN1_NEKO2;
 
-                case Piece.PN: return Conv_Koma.ZEN1_POW_NEKO1;
-                case Piece.pn: return Conv_Koma.ZEN1_POW_NEKO2;
+                case Piece.PS1: return Conv_Koma.ZEN1_POW_NEKO1;
+                case Piece.PS2: return Conv_Koma.ZEN1_POW_NEKO2;
 
-                case Piece.U: return Conv_Koma.ZEN1_USAGI1;
-                case Piece.u: return Conv_Koma.ZEN1_USAGI2;
+                case Piece.N1: return Conv_Koma.ZEN1_USAGI1;
+                case Piece.N2: return Conv_Koma.ZEN1_USAGI2;
 
-                case Piece.PU: return Conv_Koma.ZEN1_POW_USAGI1;
-                case Piece.pu: return Conv_Koma.ZEN1_POW_USAGI2;
+                case Piece.PN1: return Conv_Koma.ZEN1_POW_USAGI1;
+                case Piece.PN2: return Conv_Koma.ZEN1_POW_USAGI2;
 
-                case Piece.S: return Conv_Koma.ZEN1_SISI1;
-                case Piece.s: return Conv_Koma.ZEN1_SISI2;
+                case Piece.L1: return Conv_Koma.ZEN1_SISI1;
+                case Piece.L2: return Conv_Koma.ZEN1_SISI2;
 
-                case Piece.PS: return Conv_Koma.ZEN1_POW_SISI1;
-                case Piece.ps: return Conv_Koma.ZEN1_POW_SISI2;
+                case Piece.PL1: return Conv_Koma.ZEN1_POW_SISI1;
+                case Piece.PL2: return Conv_Koma.ZEN1_POW_SISI2;
 
                 case Piece.Kuhaku: return Conv_Koma.ZEN1_KUHAKU_ZEN;//空白は全角で
                 default: return "×";

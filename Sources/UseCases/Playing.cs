@@ -3599,7 +3599,7 @@ namespace Grayscale.Kifuwarabi.UseCases
                 hyoji.AppendLine();
                 Logger.Flush(hyoji);
 
-                Piece raionKm = (PureMemory.kifu_teban == Taikyokusya.T1 ? Piece.R : Piece.r);
+                Piece raionKm = (PureMemory.kifu_teban == Taikyokusya.T1 ? Piece.K1 : Piece.K2);
                 Masu ms1 = GenkyokuOpe.Lookup(raionKm);
                 Bitboard kikiBB = new Bitboard();
                 BitboardsOmatome.KomanoUgokikataYk00.ToSet_Merge(
@@ -3782,16 +3782,16 @@ namespace Grayscale.Kifuwarabi.UseCases
                 Bitboard bb;
                 switch (km)
                 {
-                    case Piece.K:
-                    case Piece.k:
-                    case Piece.PK:
-                    case Piece.pk:
-                    case Piece.Z:
-                    case Piece.z:
-                    case Piece.PZ:
-                    case Piece.pz:
-                    case Piece.S:
-                    case Piece.s:
+                    case Piece.R1:
+                    case Piece.R2:
+                    case Piece.PR1:
+                    case Piece.PR2:
+                    case Piece.B1:
+                    case Piece.B2:
+                    case Piece.PB1:
+                    case Piece.PB2:
+                    case Piece.L1:
+                    case Piece.L2:
                         bb = BitboardsOmatome.KomanoUgokikataYk00.CloneElement(
                             tai, kikiDir, (Masu)iMs, iBlocks);
                         break;

@@ -359,20 +359,20 @@ namespace kifuwarabe_shogithink.pure.ky
         #region 駒種類と手番→駒
         static Piece[,] m_KomasyuruiAndTaikyokusyaToKoma_ =
         {
-            { Piece.R, Piece.r },// らいおん
-            { Piece.Z, Piece.z },// ぞう
-            { Piece.PZ, Piece.pz },// パワーアップぞう
-            { Piece.K, Piece.k },// きりん
-            { Piece.PK, Piece.pk },// パワーアップきりん
-            { Piece.H, Piece.h },// ひよこ
-            { Piece.PH, Piece.ph },// にわとり
-            { Piece.I, Piece.i },// いぬ
-            { Piece.N, Piece.n },// ねこ
-            { Piece.PN, Piece.pn },// パワーアップねこ
-            { Piece.U, Piece.u },// うさぎ
-            { Piece.PU, Piece.pu },// パワーアップうさぎ
-            { Piece.S, Piece.s },// いのしし
-            { Piece.PS, Piece.ps },// パワーアップいのしし
+            { Piece.K1, Piece.K2 },// らいおん
+            { Piece.B1, Piece.B2 },// ぞう
+            { Piece.PB1, Piece.PB2 },// パワーアップぞう
+            { Piece.R1, Piece.R2 },// きりん
+            { Piece.PR1, Piece.PR2 },// パワーアップきりん
+            { Piece.P1, Piece.P2 },// ひよこ
+            { Piece.PP1, Piece.PP2 },// にわとり
+            { Piece.G1, Piece.G2 },// いぬ
+            { Piece.S1, Piece.S2 },// ねこ
+            { Piece.PS1, Piece.PS2 },// パワーアップねこ
+            { Piece.N1, Piece.N2 },// うさぎ
+            { Piece.PN1, Piece.PN2 },// パワーアップうさぎ
+            { Piece.L1, Piece.L2 },// いのしし
+            { Piece.PL1, Piece.PL2 },// パワーアップいのしし
             { Piece.Kuhaku, Piece.Kuhaku },// らいおん～にわとり　までの要素の個数になるぜ☆（＾▽＾）どの駒の種類にも当てはまらない場合に、Yososu と書くことがある☆（＾▽＾）ｗｗｗ
         };
         public static Piece KomasyuruiAndTaikyokusyaToKoma(Komasyurui ks, Taikyokusya tb) {
@@ -638,25 +638,25 @@ namespace kifuwarabe_shogithink.pure.ky
         static Piece[,] m_MotiKomasyuruiAndTaikyokusyaToKoma_ =
         {
             // ぞう
-            { Piece.Z, Piece.z },
+            { Piece.B1, Piece.B2 },
 
             // きりん
-            { Piece.K, Piece.k },
+            { Piece.R1, Piece.R2 },
 
             // ひよこ
-            { Piece.H, Piece.h },// にわとり　にはならないぜ☆（＾～＾）
+            { Piece.P1, Piece.P2 },// にわとり　にはならないぜ☆（＾～＾）
 
             // いぬ
-            { Piece.I, Piece.i },
+            { Piece.G1, Piece.G2 },
 
             // ねこ
-            { Piece.N, Piece.n },
+            { Piece.S1, Piece.S2 },
 
             // うさぎ
-            { Piece.U, Piece.u },
+            { Piece.N1, Piece.N2 },
 
             // いのしし
-            { Piece.S, Piece.s },
+            { Piece.L1, Piece.L2 },
 
             // 要素の個数になるぜ☆（＾▽＾）
             // どの駒の種類にも当てはまらない場合に、Yososu と書くことがある☆（＾▽＾）ｗｗｗ
